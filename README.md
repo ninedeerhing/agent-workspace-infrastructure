@@ -38,6 +38,40 @@ The agent will automatically execute the context preload sequence (CONSTITUTION.
 
 ---
 
+### Importing into an Existing Project (mid-development)
+
+Already have a codebase? AWI supports incremental adoption. First, run a compatibility audit:
+
+```bash
+.\bootstrap.ps1 -TargetPath "D:\my-existing-project" -ProjectName "MyApp" -Mode audit
+```
+
+This produces a report showing which files are compatible, which are safe to add, and which would conflict — **without modifying anything**. Based on the score, choose one of three modes:
+
+| Mode | Command | What it does |
+|------|---------|--------------|
+| **audit** | `-Mode audit` | Read-only scan + compatibility score + recommendations |
+| **minimum** | `-Mode minimum` | Adds `harness/` + `.omx/` + core contracts *only*. **Never overwrites** any existing file. Your code stays untouched. |
+| **full** | `-Mode full -Force` | Deploys everything (agents, skills, docs, rules, design).
+
+**Default behavior:** when no `-Mode` is specified, AWI auto-detects — empty directory → `full`, existing project → `minimum`. This means you will never accidentally overwrite your project.
+
+**What minimum mode adds to an existing project:**
+```
+your-project/
+├── (existing code — untouched)
+├── CONSTITUTION.md      # Non-negotiable engineering rules
+├── AGENTS.md            # Agent instruction contract
+├── SECURITY-ZONES.md    # Runtime security boundaries
+├── harness/             # State management + verification
+├── .omx/                # Persistent memory + semantic search
+└── bootstrap.ps1        # Reusable for updates
+```
+
+The agent can then participate in your ongoing development — it reads your existing code, learns its structure, and starts helping with planning, implementation, and review using AWI's governance layer.
+
+---
+
 ## Architecture Overview
 
 ```
@@ -49,7 +83,7 @@ my-project/
 ├── RULES.md                  # Rule contract — must-do / must-not-do lists
 ├── SECURITY.md               # Security policy — key management + injection defense
 ├── SECURITY-ZONES.md         # Runtime security zones — 🟢🟡🔴 three-tier boundaries
-├── bootstrap.ps1             # One-command bootstrap script
+├── bootstrap.ps1             # One-command bootstrap (new + existing projects)
 ├── README.md                 # This file
 │
 ├── agents/                   # 5 layers, 18 specialized agent roles
@@ -107,6 +141,7 @@ my-project/
 │   ├── grader-types.md       #   5 grader types + 25 check items + pass@k
 │   ├── clean-state-checklist.md  # Session start/end/feature-complete three-tier checklists
 │   ├── ci-cd-template.yml    #   GitHub Actions 6-stage pipeline
+│   ├── audit.ps1             #   Compatibility audit for existing projects
 │   └── archive/              #   Archive engine (8 operations + safe restore)
 │
 ├── .omx/                     # OMX compatibility layer
@@ -335,6 +370,10 @@ A: Absolutely. The core philosophy is "solo developer + AI agents = virtual team
 **Q: What are the prerequisites?**
 
 A: Node.js 22+, Git, PowerShell 5.1+, any AI coding tool (Trae / Claude Code / Codex CLI / Cursor).
+
+**Q: Can I use AWI with an existing project that's already in development?**
+
+A: Yes. Run `.\bootstrap.ps1 -Mode audit` first to get a compatibility report without modifying anything. Then `.\bootstrap.ps1 -Mode minimum` to add only the governance layer (harness/ + .omx/ + core contracts). Your existing code and config files are never touched in minimum mode.
 
 **Q: How do I update the framework?**
 

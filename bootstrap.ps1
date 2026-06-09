@@ -1,110 +1,267 @@
 <#
 .SYNOPSIS
-    AWI 一键初始化脚本
+    AWI 导入脚本 — 支持新项目初始化、已有项目最小导入、已有项目完整导入
 .DESCRIPTION
-    将 AWI 框架部署到目标项目目录。
-    自动创建所有必要的目录、复制核心文件、初始化状态文件。
+    三种模式：
+      audit   — 只评估兼容性，不修改任何文件
+      minimum — 只添加状态管理层（harness/ + .omx/ + 核心配置），不覆盖任何现有文件
+      full    — 完整部署所有文件（代理+技能+文档+规则+缓存+前端架构），-Force 覆盖冲突
+
 .PARAMETER TargetPath
     目标项目路径（默认：当前目录）
 .PARAMETER ProjectName
     项目名称（默认：从目录名推断）
 .PARAMETER SourcePath
-    框架源目录（默认：脚本自身所在目录）
+    AWI 框架源目录（默认：脚本自身所在目录）
+.PARAMETER Mode
+    导入模式：audit / minimum / full（默认：auto — 空目录用full，已有项目用minimum）
+.PARAMETER Force
+    强制覆盖冲突文件（仅 full 模式有效）
 .EXAMPLE
-    .\bootstrap.ps1 -TargetPath "D:\my-new-project" -ProjectName "MyProject"
+    .\bootstrap.ps1 -TargetPath "D:\new-project" -ProjectName "MyApp"
+    自动检测：新项目=full，已有项目=minimum
+
+.EXAMPLE
+    .\bootstrap.ps1 -TargetPath "D:\existing-project" -Mode audit
+    只审计，不修改
+
+.EXAMPLE
+    .\bootstrap.ps1 -TargetPath "D:\existing-project" -Mode minimum
+    已有项目最小导入：只添加状态管理
+
+.EXAMPLE
+    .\bootstrap.ps1 -TargetPath "D:\existing-project" -Mode full -Force
+    已有项目完整导入，覆盖冲突文件
 #>
 
 param(
     [string]$TargetPath = (Get-Location).Path,
     [string]$ProjectName = (Split-Path $TargetPath -Leaf),
-    [string]$SourcePath = $PSScriptRoot
+    [string]$SourcePath = $PSScriptRoot,
+    [ValidateSet("auto","audit","minimum","full")]
+    [string]$Mode = "auto",
+    [switch]$Force
 )
 
-$ErrorActionPreference = "Stop"
+$ErrorActionPreference = "Continue"
+
+# ═══════════════════════════════════════════════════════════════
+# Source validation
+# ═══════════════════════════════════════════════════════════════
+if (-not (Test-Path (Join-Path $SourcePath "CONSTITUTION.md"))) {
+    Write-Host "[ERROR] CONSTITUTION.md not found in source. Run this script from AWI root." -ForegroundColor Red
+    exit 1
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Auto-detect mode
+# ═══════════════════════════════════════════════════════════════
+if ($Mode -eq "auto") {
+    $existingItems = Get-ChildItem -Path $TargetPath -Exclude ".git","node_modules","__pycache__" -EA SilentlyContinue
+    if ($null -eq $existingItems -or $existingItems.Count -eq 0) {
+        $Mode = "full"
+    } else {
+        # Run audit to check compatibility
+        $auditScript = Join-Path $SourcePath "harness\audit.ps1"
+        Write-Host ""
+        Write-Host "Auto-detected existing project. Running compatibility audit..." -ForegroundColor Cyan
+        if (Test-Path $auditScript) {
+            & $auditScript -TargetPath $TargetPath -ProjectName $ProjectName -SourcePath $SourcePath
+        }
+        Write-Host ""
+        Write-Host "Auto-selected mode: minimum (safe for existing projects)" -ForegroundColor Cyan
+        Write-Host "Use -Mode full -Force to install all agents/skills/docs/rules." -ForegroundColor Gray
+        $Mode = "minimum"
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Banner
+# ═══════════════════════════════════════════════════════════════
 $Banner = @"
 
   ╔══════════════════════════════════════════════════════╗
-  ║   AWI v1.0.0             ║
-  ║   AI 工程工作区底层架构 — 一键初始化                  ║
+  ║   AWI v1.0.0 — Mode: $($Mode.ToUpper().PadRight(23)) ║
+  ║   AI Engineering Workspace Infrastructure            ║
   ╚══════════════════════════════════════════════════════╝
 
 "@
-
 Write-Host $Banner -ForegroundColor Cyan
 
-# 检查 PowerShell 版本
+Write-Host "Project:   $ProjectName" -ForegroundColor White
+Write-Host "Target:    $TargetPath" -ForegroundColor Gray
+Write-Host "Mode:      $Mode" -ForegroundColor $(if ($Mode -eq "audit") { "Yellow" } elseif ($Mode -eq "minimum") { "Cyan" } else { "Green" })
+
+# ═══════════════════════════════════════════════════════════════
+# MODE: audit — delegate to harness/audit.ps1, exit
+# ═══════════════════════════════════════════════════════════════
+if ($Mode -eq "audit") {
+    $auditScript = Join-Path $SourcePath "harness\audit.ps1"
+    if (Test-Path $auditScript) {
+        & $auditScript -TargetPath $TargetPath -ProjectName $ProjectName -SourcePath $SourcePath
+    } else {
+        Write-Host "[ERROR] harness/audit.ps1 not found" -ForegroundColor Red
+        exit 1
+    }
+    exit 0
+}
+
+# ═══════════════════════════════════════════════════════════════
+# PS version check
+# ═══════════════════════════════════════════════════════════════
 if ($PSVersionTable.PSVersion.Major -lt 5) {
-    Write-Host "[错误] 需要 PowerShell 5.0 或更高版本。当前版本: $($PSVersionTable.PSVersion)" -ForegroundColor Red
+    Write-Host "[ERROR] PowerShell 5.0+ required. Current: $($PSVersionTable.PSVersion)" -ForegroundColor Red
     exit 1
 }
-Write-Host "[OK] PowerShell 版本: $($PSVersionTable.PSVersion)" -ForegroundColor Green
+Write-Host "[OK] PS $($PSVersionTable.PSVersion)" -ForegroundColor Green
 
-# 验证源路径
-if (-not (Test-Path (Join-Path $SourcePath "CONSTITUTION.md"))) {
-    Write-Host "[错误] 未在源路径找到 CONSTITUTION.md，请确保在 AWI 根目录运行此脚本。" -ForegroundColor Red
-    exit 1
-}
-
-# 创建目标目录
-Write-Host ""
-Write-Host "=== 初始化目标项目: $ProjectName ===" -ForegroundColor Yellow
-Write-Host "目标路径: $TargetPath" -ForegroundColor Gray
-
+# ═══════════════════════════════════════════════════════════════
+# Ensure target directory exists
+# ═══════════════════════════════════════════════════════════════
 if (-not (Test-Path $TargetPath)) {
     New-Item -ItemType Directory -Path $TargetPath -Force | Out-Null
-    Write-Host "[OK] 创建目标目录" -ForegroundColor Green
+    Write-Host "[OK] Target directory created" -ForegroundColor Green
 }
 
-# 创建目录结构
-$Directories = @(
-    "agents",
-    "skills",
+# ═══════════════════════════════════════════════════════════════
+# Common: create directory structure (both minimum and full)
+# ═══════════════════════════════════════════════════════════════
+$MinimumDirs = @(
     "harness/archive",
-    "harness/templates",
-    "docs/adr",
-    "docs/research",
-    ".omx/plans",
-    "cache/scripts",
-    "rules/common",
-    ".trae/rules",
-    ".trae/skills"
+    ".omx/plans"
 )
 
-foreach ($dir in $Directories) {
+$FullDirs = @(
+    "agents",
+    "skills",
+    "docs/adr",
+    "cache/scripts",
+    "rules/common"
+)
+
+$dirs = $MinimumDirs
+if ($Mode -eq "full") {
+    $dirs += $FullDirs
+}
+
+foreach ($dir in $dirs) {
     $fullPath = Join-Path $TargetPath $dir
     if (-not (Test-Path $fullPath)) {
         New-Item -ItemType Directory -Path $fullPath -Force | Out-Null
     }
 }
-Write-Host "[OK] 目录结构已创建 ($($Directories.Count) 个目录)" -ForegroundColor Green
+Write-Host "[OK] Directories created ($($dirs.Count))" -ForegroundColor Green
 
-# 复制核心文件（排除 .git/、node_modules/ 等）
-$ExcludeDirs = @(".git", "node_modules", "__pycache__", ".venv", "venv", "dist", "build", ".next", ".nuxt")
-$ExcludeFiles = @("*.log", "*.env", ".DS_Store")
+# ═══════════════════════════════════════════════════════════════
+# Minimum mode files (always safe — never overwrite existing)
+# ═══════════════════════════════════════════════════════════════
+$MinimumFiles = @(
+    "harness/init.ps1",
+    "harness/audit.ps1",
+    "harness/workflow-gates.md",
+    "harness/workflow-state.json",
+    "harness/grader-types.md",
+    "harness/clean-state-checklist.md",
+    "harness/ci-cd-template.yml",
+    "harness/archive/store.ps1",
+    "harness/archive/index.json",
+    ".omx/memory.md",
+    ".omx/memory-index.md",
+    ".omx/memory-search.ps1",
+    "CONSTITUTION.md",
+    "SECURITY-ZONES.md",
+    "SECURITY.md",
+    "SOUL.md",
+    "AGENTS.md",
+    "AGENTS-lite.md",
+    "RULES.md",
+    "docs/scaling-guide.md",
+    "docs/project-init-checklist.md",
+    "docs/context-preload.md",
+    "docs/personal-growth-framework.md",
+    "docs/frontend-architecture.md",
+    "docs/task-queue.md",
+    "docs/inter-agent-comm.md",
+    "bootstrap.ps1"
+)
 
-$coreFiles = Get-ChildItem -Path $SourcePath -Exclude $ExcludeDirs | Where-Object {
-    $_.Name -notin $ExcludeDirs -and
-    $_.Name -notin @("bootstrap.ps1", ".gitignore") -and
-    $_.Extension -notin @(".log")
-}
+$FullFiles = @(
+    @{ SrcDir = "agents"; Exclude = $null; Recursive = $false },
+    @{ SrcDir = "skills"; Exclude = $null; Recursive = $true },
+    @{ SrcDir = "docs/adr"; Exclude = $null; Recursive = $false },
+    @{ SrcDir = "cache"; Exclude = $null; Recursive = $true },
+    @{ SrcDir = "rules/common"; Exclude = $null; Recursive = $false },
+    @{ SrcDir = "design-architecture"; Exclude = $null; Recursive = $true },
+    @{ SrcDir = ".omx/plans"; Exclude = $null; Recursive = $false }
+)
 
-$copiedCount = 0
-foreach ($item in $coreFiles) {
-    $dest = Join-Path $TargetPath $item.Name
-    try {
-        Copy-Item -Path $item.FullName -Destination $dest -Recurse -Force -ErrorAction Stop
-        $copiedCount++
-    } catch {
-        Write-Host "[警告] 复制失败: $($item.Name) — $($_.Exception.Message)" -ForegroundColor Yellow
+# Copy minimum files
+$added = 0
+$skipped = 0
+$overwritten = 0
+
+foreach ($f in $MinimumFiles) {
+    $src = Join-Path $SourcePath $f
+    $dst = Join-Path $TargetPath $f
+
+    if (-not (Test-Path $src)) { continue }
+
+    if (Test-Path $dst) {
+        $srcHash = (Get-FileHash $src -Algorithm MD5).Hash
+        $dstHash = (Get-FileHash $dst -Algorithm MD5).Hash
+        if ($srcHash -eq $dstHash) {
+            $skipped++
+            continue
+        }
+        if ($Mode -eq "minimum") {
+            $skipped++
+            continue
+        }
+        if ($Mode -eq "full" -and -not $Force) {
+            $skipped++
+            continue
+        }
+        $overwritten++
     }
-}
-Write-Host "[OK] 核心文件已复制 ($copiedCount 项)" -ForegroundColor Green
 
-# 初始化 harness/ 状态文件
+    $parent = Split-Path $dst -Parent
+    if (-not (Test-Path $parent)) {
+        New-Item -ItemType Directory -Path $parent -Force | Out-Null
+    }
+    Copy-Item -Path $src -Destination $dst -Force
+    $added++
+}
+
+Write-Host "[OK] Core files: $added added, $skipped skipped, $overwritten overwritten" -ForegroundColor Green
+
+# Copy full-mode files
+if ($Mode -eq "full") {
+    foreach ($item in $FullFiles) {
+        $srcDir = Join-Path $SourcePath $item.SrcDir
+        if (-not (Test-Path $srcDir)) { continue }
+
+        $dstDir = Join-Path $TargetPath $item.SrcDir
+        if (-not (Test-Path $dstDir)) {
+            New-Item -ItemType Directory -Path $dstDir -Force | Out-Null
+        }
+
+        $files = Get-ChildItem -Path $srcDir
+        foreach ($fi in $files) {
+            $dst = Join-Path $dstDir $fi.Name
+            if (Test-Path $dst -and -not $Force) { continue }
+            Copy-Item -Path $fi.FullName -Destination $dst -Recurse -Force
+        }
+    }
+    Write-Host "[OK] Full-mode files deployed" -ForegroundColor Green
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Initialize/update harness state files (never overwrite if they exist)
+# ═══════════════════════════════════════════════════════════════
 $harnessDir = Join-Path $TargetPath "harness"
 
-# feature_list.json 空模板
-$featureList = @"
+$stateFiles = @{
+    "feature_list.json" = @"
 {
   "features": [],
   "current_feature": null,
@@ -112,51 +269,41 @@ $featureList = @"
   "project": "$ProjectName"
 }
 "@
-Set-Content -Path (Join-Path $harnessDir "feature_list.json") -Value $featureList -Encoding UTF8
+    "progress.md" = @"
+# $ProjectName — Progress Log
 
-# progress.md 空模板
-$progress = @"
-# $ProjectName — 进度日志
+## Session History
 
-## 会话记录
+### $(Get-Date -Format 'yyyy-MM-dd') — AWI Import
 
-### $(Get-Date -Format 'yyyy-MM-dd') — 项目初始化
+- Imported AWI v1.0.0 via bootstrap.ps1 (mode: $Mode)
+- Framework ready for AI-agent-driven development
 
-- 通过 bootstrap.ps1 初始化 AWI
-- 框架版本: v1.0.0
-- 状态: 就绪
+## Next Steps
 
-## 下一步
-
-运行 `harness/init.ps1` 验证基础设施完整性，然后开始第一个功能模块。
+Run `harness/init.ps1` to verify infrastructure.
 "@
-Set-Content -Path (Join-Path $harnessDir "progress.md") -Value $progress -Encoding UTF8
+    "session-handoff.md" = @"
+# $ProjectName — Session Handoff
 
-# session-handoff.md 空模板
-$handoff = @"
-# $ProjectName — 会话交接
+## Current State
 
-## 当前状态
+- Stage: initialized (AWI imported)
+- Active feature: none
+- Blockers: none
 
-- 工作流阶段: 初始化完成
-- 活跃功能: 无
-- 阻塞项: 无
+## Next Tasks
 
-## 下一步任务
+1. Tell your AI agent: "Load workspace, tell me current status"
+2. Start your first feature module
 
-1. 对 AI 代理说 "加载 workspace，告诉我当前状态"
-2. 开始第一个功能模块（使用 deep-interview → ralplan → ultragoal 工作流）
+## Notes
 
-## 注意事项
-
-- 框架已部署，CONSTITUTION.md 处于最高优先级
-- 45 个技能可用，使用 `\$技能名` 语法调用
-- 所有代理角色位于 agents/ 目录
+- Framework deployed, CONSTITUTION.md is highest priority
+- 46 skills available, invoke with `\$skill-name`
+- Agent roles in agents/ directory
 "@
-Set-Content -Path (Join-Path $harnessDir "session-handoff.md") -Value $handoff -Encoding UTF8
-
-# workflow-state.json 默认值
-$workflowState = @"
+    "workflow-state.json" = @"
 {
   "project": "$ProjectName",
   "current_stage": "init",
@@ -168,42 +315,84 @@ $workflowState = @"
   "blockers": []
 }
 "@
-Set-Content -Path (Join-Path $harnessDir "workflow-state.json") -Value $workflowState -Encoding UTF8
+}
 
-Write-Host "[OK] 状态文件已初始化" -ForegroundColor Green
+foreach ($key in $stateFiles.Keys) {
+    $path = Join-Path $harnessDir $key
+    if (Test-Path $path) {
+        Write-Host "  [skip] $key already exists, preserved" -ForegroundColor DarkGray
+    } else {
+        Set-Content -Path $path -Value $stateFiles[$key] -Encoding UTF8
+        Write-Host "  [init] $key created" -ForegroundColor DarkGray
+    }
+}
+Write-Host "[OK] State files initialized (preserving existing)" -ForegroundColor Green
 
-# 运行验证
+# ═══════════════════════════════════════════════════════════════
+# .gitignore — merge, never overwrite
+# ═══════════════════════════════════════════════════════════════
+$gitignorePath = Join-Path $TargetPath ".gitignore"
+$awiGitignore = @"
+node_modules/
+.env
+*.log
+.omx/project-memory.json
+.omx/memory-index.json
+harness/health-log.json
+harness/task-queue.json
+"@
+
+if (Test-Path $gitignorePath) {
+    $existing = Get-Content $gitignorePath -Raw
+    if ($existing -notmatch "\.omx/project-memory") {
+        Add-Content -Path $gitignorePath -Value "`r`n$awiGitignore"
+        Write-Host "[OK] .gitignore augmented (existing preserved)" -ForegroundColor Green
+    } else {
+        Write-Host "[skip] .gitignore already has AWI entries" -ForegroundColor DarkGray
+    }
+} else {
+    Set-Content -Path $gitignorePath -Value $awiGitignore -Encoding UTF8
+    Write-Host "[OK] .gitignore created" -ForegroundColor Green
+}
+
+# ═══════════════════════════════════════════════════════════════
+# Run verification
+# ═══════════════════════════════════════════════════════════════
 $initScript = Join-Path $harnessDir "init.ps1"
 if (Test-Path $initScript) {
     Write-Host ""
-    Write-Host "=== 运行基础设施验证 ===" -ForegroundColor Yellow
+    Write-Host "=== Running infrastructure verification ===" -ForegroundColor Yellow
     try {
-        & $initScript -ProjectName $ProjectName -ErrorAction Continue
+        Push-Location $TargetPath
+        & $initScript -Quiet
+        Pop-Location
     } catch {
-        Write-Host "[警告] 验证脚本执行时出现非致命错误，继续..." -ForegroundColor Yellow
+        Write-Host "[WARN] Verification encountered non-fatal issue, continuing..." -ForegroundColor Yellow
     }
-} else {
-    Write-Host "[警告] 未找到 harness/init.ps1，跳过自动验证" -ForegroundColor Yellow
 }
 
-# 输出成功消息
+# ═══════════════════════════════════════════════════════════════
+# Success output
+# ═══════════════════════════════════════════════════════════════
 Write-Host ""
 Write-Host "╔══════════════════════════════════════════════════════╗" -ForegroundColor Green
-Write-Host "║  导入成功！AWI 已就绪    ║" -ForegroundColor Green
+Write-Host "║   Import complete! AWI is ready.                    ║" -ForegroundColor Green
 Write-Host "╚══════════════════════════════════════════════════════╝" -ForegroundColor Green
 Write-Host ""
-Write-Host "项目名称: $ProjectName" -ForegroundColor Cyan
-Write-Host "项目路径: $TargetPath" -ForegroundColor Cyan
+Write-Host "Project:  $ProjectName" -ForegroundColor Cyan
+Write-Host "Path:     $TargetPath" -ForegroundColor Cyan
+Write-Host "Mode:     $Mode" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "下一步:" -ForegroundColor Yellow
-Write-Host "  1. 在目标目录中打开 AI 编码工具（Trae / Claude Code / Codex CLI）" -ForegroundColor White
-Write-Host '  2. 对 AI 代理说："加载 workspace，告诉我当前状态"' -ForegroundColor White
-Write-Host "  3. 代理将自动加载上下文并报告当前工作流状态" -ForegroundColor White
-Write-Host ""
-Write-Host "快速命令:" -ForegroundColor Yellow
-Write-Host "  启动新功能: deep-interview → brainstorming → ralplan → TDD" -ForegroundColor Gray
-Write-Host "  继续开发:   说“继续上次的开发”恢复上下文" -ForegroundColor Gray
-Write-Host "  安全审计:   使用 security-review 技能（" -ForegroundColor Gray -NoNewline
-Write-Host '$security-review' -ForegroundColor DarkCyan -NoNewline
-Write-Host "）" -ForegroundColor Gray
+Write-Host "Next:" -ForegroundColor Yellow
+Write-Host "  1. Open your AI coding tool in this directory" -ForegroundColor White
+Write-Host '  2. Tell the agent: "Load workspace, tell me current status"' -ForegroundColor White
+
+if ($Mode -eq "minimum") {
+    Write-Host ""
+    Write-Host "  Minimum mode note:" -ForegroundColor DarkGray
+    Write-Host "  - Your existing code and config files are NOT modified" -ForegroundColor DarkGray
+    Write-Host "  - agents/ and skills/ were NOT installed (use -Mode full for that)" -ForegroundColor DarkGray
+    Write-Host "  - The agent can still read agents/skills from the AWI source directory" -ForegroundColor DarkGray
+}
+
 Write-Host ""
