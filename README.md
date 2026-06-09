@@ -1,312 +1,354 @@
-# agent-workspace-infrastructure
+# AWI
 
-> 面向超大型长期项目的 AI 工程工作区底层架构。一键导入，即刻开工。
-
-## 一句话定位
-
-为 AI 编码代理提供完整的操作契约、状态管理、验证闭环和技能生态——让代理在一个工程化的工作区中高效协作，无需从零搭建项目基础设施。
+> A production-grade AI engineering workspace infrastructure for large-scale, long-term projects. Integrates 21+ open-source project methodologies into a unified foundation — one command to bootstrap, instantly ready for development.
 
 ---
 
-## 快速开始
+## What is this?
 
-### 导入（3 步）
+A complete operational foundation for AI coding agents. It provides agents with engineering contracts, state management, verification loops, and a skill ecosystem — so you focus entirely on your business logic while the infrastructure handles everything else.
 
-1. **克隆本仓库**到目标项目目录：
-   ```powershell
-   git clone <repo-url> my-project
-   cd my-project
-   ```
-
-2. **运行初始化脚本**：
-   ```powershell
-   .\bootstrap.ps1 -ProjectName "MyProject"
-   ```
-
-3. **在目标目录中打开 AI 编码工具**（Trae / Claude Code / Codex CLI），然后对 AI 代理说：
-
-   > "加载 workspace，告诉我当前状态"
-
-   代理将自动执行上下文预加载序列（CONSTITUTION.md → AGENTS-lite.md → .omx/memory.md → workflow-state.json → session-handoff.md），然后报告当前工作流阶段和下一步任务。
-
-### 导入后立即开工
-
-用户可以在导入后直接对代理说：
-
-| 场景 | 指令 |
-|------|------|
-| 启动新项目 | "我要开发一个电商平台，技术栈 React+Node.js+PostgreSQL" |
-| 粘贴 PRD | "这是我的 PRD：[粘贴详细设计]" |
-| 恢复上下文 | "继续上次的开发" |
-| 审查代码 | "审查 src/ 目录的代码质量" |
-| 安全审计 | "对本次变更做安全审查" |
+After importing, just tell the AI agent what you want to build, and it automatically performs context recovery, task planning, execution, and verification — **your energy stays on the product, the infrastructure is already in place**.
 
 ---
 
-## 架构概览
+## Quick Start
 
-```
-agent-workspace-infrastructure/
-├── CONSTITUTION.md         # 宪法级系统提示（最高优先级，不可协商）
-├── AGENTS.md               # 代理指令主入口（14 原则 + 45 技能路由 + 5 层代理）
-├── AGENTS-lite.md          # 执行层精简版（~40 行，快速加载）
-├── SOUL.md                 # 核心身份与跨项目愿景
-├── RULES.md                # 规则契约文件
-├── SECURITY.md             # 安全策略文件
-├── SECURITY-ZONES.md       # 运行时安全区定义
-├── README.md               # 本文件
-├── bootstrap.ps1           # 一键初始化脚本
-├── .gitignore              # Git 忽略规则
-│
-├── agents/                 # 19 个专业代理角色（5 层分层）
-│   ├── orchestrator.md     #   编排层：主编排器
-│   ├── planner.md          #   规划层：需求拆解、任务排序
-│   ├── architect.md        #   规划层：系统边界、技术权衡
-│   ├── critic.md           #   规划层：反方挑战
-│   ├── executor.md         #   执行层：有边界实现与重构
-│   ├── explore.md          #   执行层：代码库探索
-│   ├── debugger.md         #   执行层：根因分析
-│   ├── code-reviewer.md    #   质量层：代码审查
-│   ├── test-engineer.md    #   质量层：测试设计
-│   ├── verifier.md         #   质量层：验收确认
-│   ├── security-reviewer.md#   质量层：安全审查
-│   ├── designer.md         #   产品层：UI/UX 设计
-│   ├── qa-tester.md        #   产品层：手动验证
-│   ├── writer.md           #   产品层：文档撰写
-│   ├── analyst.md          #   需求分析
-│   ├── scientist.md        #   科学分析
-│   ├── tracer.md           #   因果追踪
-│   ├── git-master.md       #   Git 操作
-│   └── growth-engineer.md  #   能力累积
-│
-├── skills/                 # 45 个可复用工作流技能
-│   ├── deep-interview/     #   苏格拉底式深度访谈
-│   ├── ralplan/            #   多角色协作共识规划
-│   ├── ultragoal/          #   多目标持久化跟踪
-│   ├── prometheus-strict/  #   严格三阶段计划
-│   ├── team-pipeline/      #   5 阶段团队流水线
-│   ├── test-driven-development/ # Red-Green-Refactor
-│   ├── session-retro/      #   会话复盘与模式提取
-│   ├── skillify/           #   经验沉淀为技能
-│   ├── capability-accumulation/ # 六层能力累积
-│   ├── security-review/    #   安全审查
-│   ├── ...（共 45 个技能，完整列表见 AGENTS.md §6）
-│
-├── harness/                # 状态管理中枢
-│   ├── init.ps1            #   33 项自动验证脚本
-│   ├── feature_list.json   #   功能模块追踪
-│   ├── progress.md         #   进度日志
-│   ├── session-handoff.md  #   会话交接
-│   ├── workflow-state.json #   工作流状态机
-│   ├── workflow-gates.md   #   28 条阶段门禁
-│   ├── grader-types.md     #   5 种评分器 + pass@k
-│   ├── clean-state-checklist.md # 清洁状态检查
-│   ├── ci-cd-template.yml  #   CI/CD 模板
-│   ├── archive/            #   归档引擎
-│   │   ├── store.ps1       #     归档存储脚本
-│   │   └── index.json      #     归档索引
-│   └── templates/          #   工作流模板（standard/complex/product/tdd）
-│
-├── .omx/                   # OMX 兼容层
-│   ├── memory.md           #   持久记忆
-│   ├── memory-index.md     #   语义搜索规范
-│   ├── memory-search.ps1   #   语义搜索脚本
-│   └── plans/              #   工作流模板（JSON）
-│
-├── docs/                   # 文档与决策
-│   ├── adr/                #   架构决策记录（ADR-001~004）
-│   ├── research/           #   外部项目调研
-│   ├── scaling-guide.md    #   大型项目扩展指南
-│   ├── project-init-checklist.md   # 项目启动检查清单
-│   ├── context-preload.md  #   上下文预加载规范
-│   └── PROJECT-STRUCTURE.md        # 项目结构说明
-│
-├── rules/common/           # 编码规范（7 个）
-│   ├── coding-style.md     #   代码风格
-│   ├── testing.md          #   测试规范
-│   ├── security.md         #   安全规范
-│   ├── api-design.md       #   API 设计规范
-│   ├── database.md         #   数据库规范
-│   ├── patterns.md         #   设计模式
-│   └── agents.md           #   代理规范
-│
-├── cache/                  # Token 优化策略（5 个）
-│   ├── caveman-prompt.md   #   极限压缩通信
-│   ├── rtk-strategy.md     #   推理-令牌-知识框架
-│   ├── headroom-strategy.md#   智能上下文压缩
-│   ├── reasonix-cache.md   #   Prefix-Cache 稳定性
-│   ├── token-budget.md     #   Token 预算综合管理
-│   └── scripts/            #   辅助脚本
-│
-├── design-architecture/    # 前端设计六层架构（TypeScript）
-│   ├── src/
-│   │   ├── core/           #   核心类型 + 主题引擎
-│   │   ├── design/         #   设计令牌 + 技能
-│   │   ├── copilot/        #   Copilot 层
-│   │   └── animation/      #   动画引擎
-│   ├── package.json
-│   ├── tsconfig.json
-│   └── DESIGN.md
-│
-└── .trae/rules/            # Trae IDE 专用规则
-    └── project_rules.md
+### Import (2 steps)
+
+```bash
+# 1. Clone
+git clone https://github.com/ninedeerhing/agent-workspace-infrastructure.git my-project
+cd my-project
+
+# 2. One-command bootstrap
+.\bootstrap.ps1 -TargetPath . -ProjectName "MyProject"
 ```
 
----
-
-## 核心方法论
-
-TRAE Workspace 融合了 20+ 个开源项目的精华，形成五大工程支柱：
-
-### 支柱 1：Harness Engineering（工程体系）
-
-来源：learn-harness-engineering、superpowers
-
-- **五子系统**：Instructions / State / Verification / Scope / Lifecycle
-- **TDD 强制**：Red-Green-Refactor 循环，目标覆盖率 80%+
-- **28 条阶段门禁**：覆盖 standard / complex / product / tdd 四种工作流
-- **33 项自动验证**：`harness/init.ps1` 一键检查所有基础设施
-
-### 支柱 2：OMX 工作流（任务编排）
-
-来源：oh-my-codex、oh-my-openagent
-
-| 路径 | 流程 | 适用场景 |
-|------|------|----------|
-| **默认路径** | deep-interview → ralplan → ultragoal | 常规功能开发 |
-| **严格模式** | prometheus-strict（Interview→Critique→Synthesize） | 高风险架构决策 |
-| **研究边界** | best-practice-research / autoresearch / autoresearch-goal | 不熟悉的技术栈 |
-| **并行模式** | team-pipeline / sciomc | 多模块协同 |
-| **持续模式** | ralph-loop | 长期迭代优化 |
-
-### 支柱 3：ECC 质量体系（验证闭环）
-
-来源：Enterprise Coding Conventions
-
-- **5 种评分器**：G-CORRECT / G-COMPLETE / G-STYLE / G-SECURE / G-PERF
-- **pass@k 质量指标**：多次采样通过率
-- **六维度评估**：Token Optimization / Memory Persistence / Continuous Learning / Verification Loops / Parallelization / Subagent Orchestration
-- **验证优先级**：目标测试 → 类型检查/Lint → 构建 → 冒烟/E2E → 手动审查
-
-### 支柱 4：记忆与持久化（长期知识）
-
-来源：mempalace、everos、hermes-agents
-
-- **分层记忆**：核心记忆（.omx/memory.md）+ 全文搜索（memory-index）+ 归档（archive/）
-- **语义搜索**：三阶段检索流水线 + 9 因子加权评分
-- **闭环学习**：session-retro → skillify → capability-accumulation，自动触发
-- **会话连续性**：session-handoff + context-preload + 上下文快照
-
-### 支柱 5：安全体系（运行时防御）
-
-来源：personal_AI_infrastructure、ECC
-
-- **宪法级提示**：CONSTITUTION.md（不可协商规则，最高优先级）
-- **三级安全区**：🟢 自由区 / 🟡 保护区 / 🔴 禁区
-- **Prompt Defense Baseline**：6 条规则防注入和泄露
-- **密钥审计**：init.ps1 自动检测硬编码凭证
-
----
-
-## 代理分层
-
-| 层级 | 角色 | 职责 |
-|------|------|------|
-| **编排层** | orchestrator | 选择流程、同步状态、拆分任务、整合结果 |
-| **规划层** | planner、architect、critic | 需求拆解、系统边界、反方挑战 |
-| **执行层** | executor、explore、debugger | 有边界实现、代码探索、根因分析 |
-| **质量层** | code-reviewer、test-engineer、verifier、security-reviewer | 代码审查、测试设计、验收、安全 |
-| **产品层** | designer、qa-tester、writer | UI/UX、手动验证、文档 |
-| **专项层** | analyst、scientist、tracer、git-master、growth-engineer | 需求分析、数据分析、因果追踪、版本控制、能力累积 |
-
----
-
-## 各模块评分
-
-| 模块 | 评分 | 说明 |
-|------|------|------|
-| 项目初始化 | 4/5 | 完整 checklist + CI 模板，缺一键脚手架 |
-| 架构设计规范 | 5/5 | ADR 4 个 + patterns.md + 5 层代理分层 |
-| 工作流管理 | 5/5 | 4 工作流 + 28 门禁 + 状态机 |
-| 代理角色体系 | 5/5 | 19 个 5 层分层，无冗余 |
-| 技能生态 | 5/5 | 45 技能 + 链式调用 + 路由表 |
-| 测试体系 | 4/5 | TDD 强制 + 5 评分器 + pass@k |
-| 代码质量 | 5/5 | G-CORRECT + G-STYLE 10 检查项 |
-| 安全体系 | 5/5 | CONSTITUTION + ZONES + Prompt Defense + 密钥审计 |
-| 长期记忆 | 4/5 | OMX + archive + 语义搜索，缺自动降维 |
-| 语义搜索 | 4/5 | memory-index + memory-search.ps1，缺向量嵌入 |
-| 会话连续性 | 5/5 | session-handoff + handoff prompt + context-preload |
-| 健康监控 | 4/5 | 4 脚本（heartbeat + degradation + self-healing + monitor） |
-| 闭环学习 | 4/5 | retro → skillify → capability 自动触发 |
-| 个人成长追踪 | 4/5 | growth-engineer + 六维能力雷达 |
-| 任务调度 | 3/5 | task-queue 规范，缺实现 |
-| 代理间通信 | 3/5 | inter-agent-comm 规范，缺消息总线 |
-| Token 优化 | 4/5 | 4 策略 + caveman + token-budget |
-| 前端设计 | 4/5 | design-architecture/ 六层 + TypeScript 零错误 |
-| 数据库规范 | 4/5 | database.md 覆盖迁移 + 索引 + 查询 |
-| API 设计规范 | 4/5 | api-design.md 覆盖 RESTful + 版本 + 分页 |
-
-**综合评分：4.3 / 5 — 可以开启大型长期项目**
-
----
-
-## 参考项目矩阵
-
-本工作区从以下 20+ 个开源项目中提炼方法论和最佳实践：
-
-| 项目 | 学习要点 | 融入模块 |
-|------|----------|----------|
-| **learn-harness-engineering** | 五子系统工程方法论、TDD 循环 | CONSTITUTION、AGENTS.md、harness/ |
-| **superpowers** | 代理角色定义、技能路由 | agents/、skills/ |
-| **oh-my-codex** | OMX 工作流编排、状态管理 | .omx/、workflow-state.json |
-| **oh-my-openagent** | 开放代理框架、门禁系统 | workflow-gates.md |
-| **mempalace** | 分层记忆架构、持久化存储 | .omx/memory.md、archive/ |
-| **everos** | 代理间通信协议、任务队列 | docs/research/everos-*.md |
-| **hermes-agents** | 多代理协调、消息传递 | agents/orchestrator.md |
-| **personal_AI_infrastructure** | 安全区划分、宪法级规则 | CONSTITUTION.md、SECURITY-ZONES.md |
-| **Enterprise Coding Conventions** | 评分器体系、质量度量 | grader-types.md、rules/common/ |
-| **claude-code-superpowers** | 子代理驱动开发、TDD 工作流 | subagent-driven-dev、test-driven-development |
-| **deepseek-reasonix** | Prefix-Cache 稳定性策略 | cache/reasonix-cache.md |
-| **YC Office Hours** | 产品可行性评估框架 | skills/office-hours/ |
-| **Karpathy Guidelines** | LLM 编码反模式规避 | skills/karpathy-guidelines/ |
-| **RALPH Loop** | 自引用持久循环执行 | skills/ralph-loop/ |
-| **CCG（Claude-Codex-Gemini）** | 三模型协作审查 | skills/ccg/ |
-| **Diataxis Framework** | 技术文档四象限体系 | skills/writer/ |
-| **Conventional Commits** | 规范化提交信息 | agents/git-master.md |
-| **Git Worktrees** | 并行隔离开发环境 | skills/using-git-worktrees/ |
-
----
-
-## 工作流选择指南
+### Then tell your AI agent
 
 ```
-你要做什么？
-├── 启动新项目
-│   └── 运行 bootstrap.ps1 → 说"加载 workspace"
-├── 开发新功能
-│   └── deep-interview → brainstorming → ralplan → TDD → code-review
-├── 修复 Bug
-│   └── systematic-debugging → TDD → verification-before-completion
-├── 重构代码
-│   └── code-review（评估） → TDD → code-review（审查）
-├── 安全审计
-│   └── security-review
-├── 技术调研
-│   └── best-practice-research / autoresearch
-├── 发布上线
-│   └── finishing-dev-branch → qa-testing → ship-release
-├── 会话结束
-│   └── session-retro → handoff
-└── 能力成长
-    └── capability-accumulation → skillify
+"Load the workspace, tell me the current project status"
+"I want to build an e-commerce platform with React + Node.js + PostgreSQL"
+"Here's my PRD: [paste detailed design doc]"
+"Continue from where we left off"
+```
+
+The agent will automatically execute the context preload sequence (CONSTITUTION.md → AGENTS-lite.md → .omx/memory.md → workflow-state.json → session-handoff.md), then report current status and start working.
+
+---
+
+## Architecture Overview
+
+```
+my-project/
+├── CONSTITUTION.md           # Constitutional system prompt — non-negotiable rules, highest priority
+├── AGENTS.md                 # Agent instruction entry — 16 principles + 46 skill routes + 5 agent layers
+├── AGENTS-lite.md            # Lightweight execution layer version (~40 lines)
+├── SOUL.md                   # Core identity & cross-tool portability
+├── RULES.md                  # Rule contract — must-do / must-not-do lists
+├── SECURITY.md               # Security policy — key management + injection defense
+├── SECURITY-ZONES.md         # Runtime security zones — 🟢🟡🔴 three-tier boundaries
+├── bootstrap.ps1             # One-command bootstrap script
+├── README.md                 # This file
+│
+├── agents/                   # 5 layers, 18 specialized agent roles
+│   ├── orchestrator.md       #   Planning layer: workflow selection + task decomposition + final acceptance
+│   ├── planner.md            #                requirement breakdown + task ordering + milestone planning
+│   ├── architect.md          #                system boundaries + tech tradeoffs + ADR records
+│   ├── critic.md             #                adversarial challenge, blind spot prevention
+│   ├── executor.md           #   Execution layer: bounded implementation & refactoring
+│   ├── explore.md            #                rapid codebase exploration (merged explorer)
+│   ├── debugger.md           #                root cause analysis + reproduction + regression isolation
+│   ├── code-reviewer.md      #   Quality layer: logic flaws + performance + style (absorbed code-simplifier)
+│   ├── security-reviewer.md  #                secret detection + injection defense + supply chain audit
+│   ├── test-engineer.md      #                TDD + coverage + stability
+│   ├── verifier.md           #                completion evidence + acceptance + risk report
+│   ├── designer.md           #   Product layer: UI/UX + design system + usability
+│   ├── qa-tester.md          #                browser/CLI manual verification
+│   ├── writer.md             #                documentation (absorbed document-specialist)
+│   └── growth-engineer.md    #   Growth layer: capability accumulation + curation + metrics
+│
+├── skills/                   # 46 reusable workflow skills
+│   ├── deep-interview/       #   OMX core: Socratic deep interview
+│   ├── ralplan/              #            three-role consensus planning
+│   ├── ultragoal/            #            multi-goal persistent tracking
+│   ├── prometheus-strict/    #            raft-mode rigorous planning
+│   ├── best-practice-research/  # Research: official evidence pre-planning research
+│   ├── autoresearch/         #          bounded validator-gated research
+│   ├── autoresearch-goal/    #          goal-mode continuous research
+│   ├── github-research/      #          three-mode GitHub research (exact/fuzzy/Trending)
+│   ├── brainstorming/        #   TDD flow: explore requirements before coding
+│   ├── writing-plans/        #          decompose design into incremental plans
+│   ├── test-driven-development/  #   Red→Green→Refactor
+│   ├── subagent-driven-dev/  #   parallel subagent dispatch
+│   ├── executing-plans/      #   serial execution without subagent environment
+│   ├── team-pipeline/        #   5-stage team pipeline
+│   ├── omc-conversation-continuity/  # Session continuity: handoff prompt + recovery
+│   ├── omo-agent-router/     #   auto task classification routing (4-dimension matrix)
+│   ├── omo-health-monitor/   #   health monitoring: heartbeat + degradation + self-healing
+│   ├── session-retro/        #   auto retrospective + pattern extraction
+│   ├── skillify/             #   experience → reusable skill
+│   ├── capability-accumulation/  # Six-layer capability accumulation framework
+│   ├── caveman-token-compress/  # Token optimization suite
+│   ├── security-review/      #   + security audit
+│   ├── code-review/          #   + engineering review
+│   ├── frontend-design/      #   + frontend design
+│   ├── git-publish/          #   auto commit + conventional commits + push
+│   └── ...                   #   more skills in skills/ directory
+│
+├── harness/                  # State management hub
+│   ├── init.ps1              #   34-item automated verification script
+│   ├── feature_list.json     #   Feature module tracking (id/status/evidence/dependencies)
+│   ├── progress.md           #   Human-readable progress log
+│   ├── session-handoff.md    #   Session handoff template (with startup sequence)
+│   ├── workflow-state.json   #   4 workflow state machines
+│   ├── workflow-gates.md     #   28 stage quality gates
+│   ├── grader-types.md       #   5 grader types + 25 check items + pass@k
+│   ├── clean-state-checklist.md  # Session start/end/feature-complete three-tier checklists
+│   ├── ci-cd-template.yml    #   GitHub Actions 6-stage pipeline
+│   └── archive/              #   Archive engine (8 operations + safe restore)
+│
+├── .omx/                     # OMX compatibility layer
+│   ├── memory.md             #   Layered persistent memory (PROJECT/SESSION/AGENT/TURN)
+│   ├── memory-index.md       #   Semantic search specification (3-stage pipeline)
+│   ├── memory-search.ps1     #   Semantic search script (1055-line full implementation)
+│   └── plans/                #   Workflow templates (standard/research/goal)
+│
+├── docs/                     # Documentation & decisions
+│   ├── adr/                  #   Architecture Decision Records (ADR-001~006)
+│   ├── scaling-guide.md      #   Large project scaling guide
+│   ├── project-init-checklist.md   # Project launch 36-item checklist
+│   ├── context-preload.md    #   New session auto-load sequence
+│   ├── personal-growth-framework.md  # Six-dimension personal growth framework
+│   ├── frontend-architecture.md      # Frontend design infrastructure
+│   ├── personal-ai-infra-assessment.md
+│   ├── task-queue.md         #   Task scheduling queue specification
+│   └── inter-agent-comm.md   #   Inter-agent communication protocol
+│
+├── rules/common/             # 7 coding standards
+│   ├── patterns.md           #   Architecture patterns
+│   ├── coding-style.md       #   Code style
+│   ├── testing.md            #   Testing standards
+│   ├── security.md           #   Security rules
+│   ├── agents.md             #   Agent rules
+│   ├── database.md           #   Database standards
+│   └── api-design.md         #   API design standards
+│
+├── cache/                    # 5 Token optimization strategies
+│   ├── caveman-prompt.md     #   Extreme compression protocol
+│   ├── rtk-strategy.md       #   Reasoning-Token-Knowledge three-stage
+│   ├── headroom-strategy.md  #   Context compression + layered memory
+│   ├── reasonix-cache.md     #   Prefix-Cache stability
+│   └── token-budget.md       #   Four-layer Token budget architecture
+│
+└── design-architecture/      # Frontend design six-layer architecture (TypeScript, zero errors)
+    ├── DESIGN.md             #   Design token single source of truth
+    ├── src/core/theme-engine.ts    # L1 Theme engine
+    ├── src/design/tokens.ts        # L2 Programmatic tokens
+    ├── src/animation/engine.ts     # L4 Animation engine
+    ├── src/design/skills/          # L5 AI intelligence layer (anti-patterns + design commands)
+    └── src/copilot/copilot-layer.ts  # L6 Copilot collaboration layer
+```
+
+> **Note:** `.trae/` directory (Trae IDE-specific skill and agent registrations) is excluded from the repository. Users can generate it by running `bootstrap.ps1` or manually syncing from `skills/` and `agents/`.
+
+---
+
+## Core Capabilities
+
+### 🏗️ Engineering Foundation — Harness Engineering Five Subsystems
+
+| Subsystem | Key Files | Function |
+|-----------|-----------|----------|
+| **Instructions** | CONSTITUTION.md + AGENTS.md + SOUL.md + RULES.md + SECURITY.md | 7-layer document priority chain, 16 operational principles |
+| **State** | feature_list.json + progress.md + session-handoff.md + workflow-state.json | Feature tracking + progress logging + session handoff + state machine |
+| **Verification** | workflow-gates.md + grader-types.md + clean-state-checklist.md + init.ps1 | 28 gates + 5 grader types + 3-tier checklists + 34 auto-checks |
+| **Scope** | SECURITY-ZONES.md + project-init-checklist.md + scaling-guide.md | 🟢🟡🔴 security boundaries + project launch governance + scaling decisions |
+| **Lifecycle** | archive/store.ps1 + bootstrap.ps1 + context-preload.md | Archive engine + one-command init + context recovery |
+
+### 🔄 OMX Standard Workflows
+
+```
+Default path:    deep-interview → ralplan → ultragoal
+Strict mode:     prometheus-strict (Interview→Critique→Synthesize, enforced gates each step)
+Research boundary: best-practice-research → autoresearch → autoresearch-goal
+```
+
+### ✅ Verification Loop
+
+```
+5 grader types × 25 check items:
+  G-CORRECT   — logical correctness + boundary conditions + error paths + idempotency + concurrency safety
+  G-COMPLETE  — requirement coverage + file completeness + test coverage + doc sync + dependency declaration
+  G-STYLE     — naming conventions + function length + file length + nesting depth + dead code
+  G-SECURE    — secret detection + input validation + injection defense + auth/authz + error non-leakage
+  G-PERF      — N+1 detection + sync blocking + memory leaks + bundle size bloat
+
+pass@k quality targets: pass@1(G-SECURE) ≥ 100%, pass@1(G-CORRECT) ≥ 95%
+```
+
+### 🧠 Long-Term Memory System
+
+```
+.omx/memory.md         — 4-layer scoping (PROJECT/SESSION/AGENT/TURN) + 7 memory categories
+memory-index.md        — 3-stage semantic search specification
+memory-search.ps1      — 1055-line full implementation (exact+fuzzy+alias+tag+Levenshtein+9-factor scoring)
+archive/store.ps1      — 8-operation complete archive engine
+session-handoff.md     — structured session handoff + 7-step startup sequence
+```
+
+### 🔒 Runtime Security
+
+```
+CONSTITUTION.md        — Constitutional system prompt (non-negotiable rules, highest priority)
+SECURITY-ZONES.md      — 🟢Free / 🟡Protected / 🔴Restricted three-tier runtime boundaries
+Prompt Defense (6 rules) — user instruction priority + external content isolation + system prompt non-leakage
+Secret auditing        — init.ps1 automatic hardcoded secret detection
+```
+
+### 🌱 Closed-Loop Learning
+
+```
+session-retro          →  auto retrospective + pattern extraction
+skillify               →  experience → reusable skill
+capability-accumulation  →  six-layer capability growth framework
+growth-engineer        →  7-day curation cycle + capability metrics
 ```
 
 ---
 
-## 许可证
+## Workflow Selection Guide
 
-MIT
+| Scenario | Workflow | Skill Chain |
+|----------|----------|-------------|
+| Simple bug fix (1-2 files) | Direct execution | executor |
+| Feature development (3-5 files) | **default** | brainstorming→tdd→code-review→verify |
+| Architecture change (5-10 files) | **complex** | deep-interview→ralplan→team-execution→security-review |
+| Product from scratch (0→1) | **product** | office-hours→ceo-review→eng-review→design-review→build→qa→ship |
+| Multi-goal long-term project | **omx-standard** | deep-interview→ralplan→ultragoal |
+| Security-sensitive feature | **complex + prometheus-strict** | Interview→Critique→Synthesize with enforced gates |
 
-## 作者
+---
 
-TRAE Workspace Harness System
+## Agent Hierarchy (5 Layers, 18 Roles)
+
+| Layer | Roles | Responsibilities |
+|-------|-------|------------------|
+| **Planning** | orchestrator · planner · architect · critic | Workflow selection, task decomposition, ADR records, adversarial challenge |
+| **Execution** | executor · explore · debugger · researcher | Bounded implementation, code exploration, root cause analysis, evidence collection |
+| **Quality** | code-reviewer · security-reviewer · test-engineer · verifier | Logic review, security audit, TDD design, completion verification |
+| **Product** | designer · qa-tester · writer | UI/UX design, manual verification, documentation |
+| **Growth** | growth-engineer | Capability accumulation, 7-day curation, growth metrics |
+
+---
+
+## Skill Routes (46 skills, called by scenario)
+
+| Scenario | Recommended Skill Chain |
+|----------|------------------------|
+| Start new project | `$deepinit` → generate full AGENTS.md instruction system |
+| Explore requirements | `$brainstorming` → `$deep-interview` → `$ralplan` |
+| External research | `$github-research` (3 modes) → `$best-practice-research` |
+| Technical investigation | `$autoresearch` (bounded validator-gated) → `$autoresearch-goal` (goal mode) |
+| Write code | `$test-driven-development` → `$karpathy-guidelines` |
+| Parallel development | `$using-git-worktrees` → `$subagent-driven-dev` |
+| Code review | `$requesting-code-review` · `$receiving-code-review` · `$code-review` |
+| Security audit | `$security-review` (mandatory before commit) |
+| Release | `$release-omc` (auto release + tag) |
+| Session switch | `$omc-conversation-continuity` (handoff prompt generation) |
+| Health check | `$omo-health-monitor` (heartbeat + degradation + self-healing) |
+| Continuous improvement | `$ralph-loop` → `$session-retro` → `$capability-accumulation` |
+| Multi-goal management | `$ultragoal` (persistent goal tracking) |
+| Token optimization | `$token-budget` → `$caveman-token-compress` · `$rtk-strategy` · `$headroom-strategy` |
+| Frontend development | `$frontend-design` · `$web-dev` → `$webapp-testing` |
+| Rigorous planning | `$prometheus-strict` (Interview→Critique→Synthesize raft mode) |
+| Publish to GitHub | `$git-publish` (auto commit + conventional commits + push) |
+
+---
+
+## Reference Projects (21)
+
+### Core Engineering Frameworks
+
+| Project | What We Absorbed |
+|---------|-----------------|
+| **learn-harness-engineering** | Five-subsystem architecture (Instructions/State/Verification/Scope/Lifecycle), Harness directory specification, clean-state checklists |
+| **superpowers** | TDD enforced workflow (Red→Green→Refactor→PR→Code Review), subagent development protocol (max 6 parallel), Git Worktree |
+| **gstack** | YC Office Hours 6-question pattern, CEO/Eng/Design three-perspective expert review chain, product/startup workflow |
+| **ECC** | Six-dimension quality assessment framework, 5 grader type designs, layered security system (Prompt Defense + secret auditing + multi-language rule library) |
+| **andrej-karpathy-skills** | 7 anti-overengineering rules, evidence-driven principle, context-awareness (avoid last 20% window for large tasks) |
+
+### Token Optimization
+
+| Project | What We Absorbed |
+|---------|-----------------|
+| **caveman** | Extreme compression protocol, 4-level compression strategy (L0→L1→L2→L3) |
+| **rtk** | Reasoning-Token-Knowledge three-stage framework, layered context injection, per-layer Token budget hard constraints |
+| **headroom** | Context compression strategy, layered scoped memory (PROJECT/SESSION/AGENT/TURN), memory bubbling |
+| **reasonix** | Prefix-Cache stability strategy, DeepSeek model switching, API cost optimization |
+
+### OMX System
+
+| Project | What We Absorbed |
+|---------|-----------------|
+| **oh-my-codex** | Standard workflow path (deep-interview→ralplan→ultragoal), research boundary tripartition, prometheus-strict raft mode, .omx/ persistent state directory, bounded validator-gated research |
+| **oh-my-openagent** | Background agent loop, health monitoring system (heartbeat+degradation+self-healing), auto task classification routing (4-dimension matrix), inter-agent shared memory communication |
+
+### Memory & Persistence
+
+| Project | What We Absorbed |
+|---------|-----------------|
+| **mempalace** | Memory palace metaphor, layered storage (core+extended+archive), 3-stage semantic search pipeline, 8-factor weighted scoring engine → memory-search.ps1 (1055-line implementation) |
+| **everos** | Persistent Agent OS, four-tier task queue, complete Agent lifecycle management, shared memory communication model |
+| **hermes-agents** (23k+ ⭐) | Closed-loop learning flywheel → capability-accumulation six-layer framework, dual memory architecture (MEMORY.md+FTS5) → .omx/memory.md + memory-index, Curator 7-day curation cycle, progressive disclosure, self-nudge mechanism |
+
+### Personal Infrastructure
+
+| Project | What We Absorbed |
+|---------|-----------------|
+| **personal_AI_infrastructure** | Constitutional system prompt → CONSTITUTION.md, runtime security zones (Containment Zones) → SECURITY-ZONES.md, document priority chain, context preload pipeline → context-preload.md |
+
+### Frontend Design
+
+| Project | What We Absorbed |
+|---------|-----------------|
+| **open-design** | Design token system (55+ fields), component atomic design (Atom→Molecule→Organism→Template) → DESIGN.md |
+| **copilotKit** | AI agent UI development role separation (generator/reviewer/refactorer), Agent Runtime + Generative UI + Shared State → copilot-layer.ts |
+| **taste-skill** | Design taste evaluation (visual+interaction+responsive), 12 anti-patterns with programmable detection → anti-patterns.ts |
+| **awesome-design-md** | Markdown-driven design (DESIGN.md as single source of truth), PRD→Wireframe→Component workflow |
+| **anime** | Animation engine wrapper (Anime.js+CSS fallback), 60fps performance constraint, ENTRANCE/HOVER/PAGE presets → engine.ts |
+| **impeccable** | Perfect delivery standards (LCP<2.5s, FID<100ms, CLS<0.1), WCAG 2.1 AA accessibility, 23 design commands → design-commands.ts |
+
+---
+
+## FAQ
+
+**Q: How is this different from just using Cursor/Copilot?**
+
+A: Cursor/Copilot provide code-completion-level assistance. This framework provides a complete engineering methodology — task state management, quality gates, verification loops, session handoff, long-term memory, security auditing, and more. It doesn't replace AI coding tools; it makes them run in an engineering-grade environment.
+
+**Q: Is this suitable for solo projects?**
+
+A: Absolutely. The core philosophy is "solo developer + AI agents = virtual team." Even alone, 18 agent roles assist you at different stages — planner+architect during planning, executor during implementation, code-reviewer+security-reviewer during review.
+
+**Q: What are the prerequisites?**
+
+A: Node.js 22+, Git, PowerShell 5.1+, any AI coding tool (Trae / Claude Code / Codex CLI / Cursor).
+
+**Q: How do I update the framework?**
+
+A: `git pull` to get the latest version, then run `.\bootstrap.ps1` to sync. Your project files will not be overwritten.
+
+**Q: Is it safe to run the `.ps1` scripts?**
+
+A: Yes, fully. All scripts are open-source and operate **exclusively within the project directory**. They never touch system settings, never make network calls, and never require administrator privileges. You can (and should) read every line before running — they're pure file operations and read-only checks.
+
+> If PowerShell's execution policy blocks them, run with `-ExecutionPolicy Bypass` or set `Set-ExecutionPolicy RemoteSigned` once.
+> Non-Windows users: install `pwsh` (PowerShell Core) to use the scripts, or run the equivalent operations manually.
+
+---
+
+## License
+
+MIT © 2026

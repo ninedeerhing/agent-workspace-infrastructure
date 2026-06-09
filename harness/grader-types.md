@@ -1,6 +1,6 @@
 # Grader Types — 评分器类型定义
 
-> 本文件定义 TRAE Workspace 的 5 种评分器类型，用于 Verification Loops 质量评估。每条完成声明都应至少通过一种评分器的检查。
+> 本文件定义 AWI 的 5 种评分器类型，用于 Verification Loops 质量评估。每条完成声明都应至少通过一种评分器的检查。
 
 ---
 

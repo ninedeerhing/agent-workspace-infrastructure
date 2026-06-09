@@ -4,13 +4,13 @@
 
 **日期**：2026-06-09
 
-**决策者**：TRAE Workspace 架构团队
+**决策者**：AWI 架构团队
 
 ---
 
 ## 背景
 
-TRAE Workspace 作为一个 AI 工程工作区，需要在开发过程中持续记录架构决策。这些决策记录需要满足以下需求：
+AWI 作为一个 AI 工程工作区，需要在开发过程中持续记录架构决策。这些决策记录需要满足以下需求：
 
 - **可被 AI 代理直接读取**：无需额外工具或渲染步骤，AI 代理能直接解析和理解
 - **版本控制友好**：差异可读、合并友好、适合 Git 管理
@@ -37,7 +37,7 @@ TRAE Workspace 作为一个 AI 工程工作区，需要在开发过程中持续�
 1. 所有 ADR 存放在 `docs/adr/` 目录
 2. 文件命名规范：`ADR-NNN-简短描述.md`，如 `ADR-001-harness-engineering-methodology.md`
 3. ADR 编号从 001 开始，顺序递增
-4. 使用 [TEMPLATE.md](file:///e:/trae_workspace/docs/adr/TEMPLATE.md) 作为标准模板
+4. 使用 [TEMPLATE.md](file:///e:/AWI/docs/adr/TEMPLATE.md) 作为标准模板
 5. 模板包含以下章节：背景、决策、理由、后果、备选方案、参考资料
 
 ---
@@ -52,7 +52,7 @@ Markdown 是唯一同时满足所有需求的方案：
 
 3. **零工具链依赖**：不需要 AsciiDoc 处理器、YAML 验证器或 Wiki 服务器。开发者用任何编辑器即可创建和修改 ADR
 
-4. **与技术栈一致**：TRAE Workspace 的所有核心协议文件（AGENTS.md、SOUL.md、RULES.md、SECURITY.md、agents/*.md、skills/*/SKILL.md）均为 Markdown 格式。选择 Markdown 保持了整个工作区的技术一致性，降低了认知负担
+4. **与技术栈一致**：AWI 的所有核心协议文件（AGENTS.md、SOUL.md、RULES.md、SECURITY.md、agents/*.md、skills/*/SKILL.md）均为 Markdown 格式。选择 Markdown 保持了整个工作区的技术一致性，降低了认知负担
 
 5. **结构化能力充足**：标题层级支持章节组织，表格支持备选方案对比，链接支持跨 ADR 引用
 
@@ -100,6 +100,6 @@ Markdown 是唯一同时满足所有需求的方案：
 ## 参考资料
 
 - Michael Nygard, [Documenting Architecture Decisions](https://cognitect.com/blog/2011/11/15/documenting-architecture-decisions) — ADR 概念的原始提出
-- [TEMPLATE.md](file:///e:/trae_workspace/docs/adr/TEMPLATE.md) — 本项目的 ADR 标准模板
-- [ADR-001](file:///e:/trae_workspace/docs/adr/ADR-001-harness-engineering-methodology.md) — 首个 ADR，定义了工作区核心框架
-- [AGENTS.md](file:///e:/trae_workspace/AGENTS.md) — 项目文档均为 Markdown 格式的例证
+- [TEMPLATE.md](file:///e:/AWI/docs/adr/TEMPLATE.md) — 本项目的 ADR 标准模板
+- [ADR-001](file:///e:/AWI/docs/adr/ADR-001-harness-engineering-methodology.md) — 首个 ADR，定义了工作区核心框架
+- [AGENTS.md](file:///e:/AWI/AGENTS.md) — 项目文档均为 Markdown 格式的例证

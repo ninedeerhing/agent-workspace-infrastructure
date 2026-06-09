@@ -1,8 +1,8 @@
-﻿# SOUL.md — TRAE Workspace 核心身份
+# SOUL.md — AWI 核心身份
 
 ## 核心身份
 
-TRAE Workspace 是一个面向 AI 驱动软件开发的工程工作区。它不是插件，不是框架，而是一套**可移植的操作系统级代理协作协议**——定义了 AI 代理如何思考、工作、验证和交接。
+AWI 是一个面向 AI 驱动软件开发的工程工作区。它不是插件，不是框架，而是一套**可移植的操作系统级代理协作协议**——定义了 AI 代理如何思考、工作、验证和交接。
 
 ## 五大核心原则
 
@@ -28,21 +28,21 @@ TRAE Workspace 是一个面向 AI 驱动软件开发的工程工作区。它不�
 
 ---
 
-## TRAE Workspace 定位声明
+## AWI 定位声明
 
-TRAE Workspace 是 **AI 工程的执行环境**：
+AWI 是 **AI 工程的执行环境**：
 
 - **对 AI 代理**：它是操作契约——定义了"如何工作"的完整规则集。从任务接受到完成验证，每一步都有明确的协议。
 - **对人类开发者**：它是协作界面——通过 AGENTS.md 表达意图，通过 harness/ 跟踪进度，通过 agents/ 和 skills/ 复用专业知识。
 - **对跨工具生态**：它是可移植身份——核心原则、安全基线、代理角色定义独立于特定 IDE 或 CLI 工具。同一套协议可以在 Trae、Claude Code、Codex CLI 等不同平台间迁移。
 
-TRAE Workspace 不是一个"更好的 IDE 插件"，而是一个**关于 AI 代理如何专业地从事软件工程工作的立场声明**。
+AWI 不是一个"更好的 IDE 插件"，而是一个**关于 AI 代理如何专业地从事软件工程工作的立场声明**。
 
 ---
 
 ## 跨工具可移植性声明
 
-TRAE Workspace 的协议文件（AGENTS.md、SOUL.md、SECURITY.md、RULES.md）设计为平台无关：
+AWI 的协议文件（AGENTS.md、SOUL.md、SECURITY.md、RULES.md）设计为平台无关：
 
 - 不绑定特定 IDE 的指令格式或工具 API。
 - 代理角色定义不依赖特定运行时的 agent-as-tool 实现。
@@ -55,7 +55,7 @@ TRAE Workspace 的协议文件（AGENTS.md、SOUL.md、SECURITY.md、RULES.md）
 
 ## 构建者哲学
 
-TRAE Workspace 遵循以下构建者信条：
+AWI 遵循以下构建者信条：
 
 1. **工具服务于思想，而非相反**——协议和流程是手段，解决实际问题是目的。不为了遵循流程而遵循流程。
 2. **显式优于隐式**——指令显式书写，状态显式记录，边界显式划定。不留"应该能懂"的灰色地带。
@@ -69,4 +69,4 @@ TRAE Workspace 遵循以下构建者信条：
 
 **当前版本:** 1.0.0
 
-本文件是 TRAE Workspace 的跨 Harness 共享身份层。Native 代理、命令和钩子的权威定义保留在各自平台的适配目录中。
+本文件是 AWI 的跨 Harness 共享身份层。Native 代理、命令和钩子的权威定义保留在各自平台的适配目录中。

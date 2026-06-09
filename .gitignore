@@ -6,3 +6,6 @@ harness/health-log.json
 harness/task-queue.json
 .omx/project-memory.json
 .omx/memory-index.json
+docs/research/
+.trae/
+_research/

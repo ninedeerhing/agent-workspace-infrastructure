@@ -1,6 +1,6 @@
-﻿<#
+<#
 .SYNOPSIS
-    TRAE Workspace Harness — 历史交接归档引擎
+    AWI Harness — 历史交接归档引擎
 .DESCRIPTION
     对 harness/ 目录下的状态文件进行时间点快照归档。
     支持创建归档、列出归档、还原归档、删除归档和比较归档。

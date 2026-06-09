@@ -2,13 +2,13 @@
 
 **状态:** accepted  
 **日期:** 2026-06-09  
-**决策者:** TRAE Workspace Harness 系统
+**决策者:** AWI Harness 系统
 
 ---
 
 ## 背景
 
-TRAE Workspace 需要定义项目的顶层目录布局。核心问题是：协议文件（AGENTS.md、SOUL.md、RULES.md、SECURITY.md）应该放在何处？状态管理文件应该独立还是分散？
+AWI 需要定义项目的顶层目录布局。核心问题是：协议文件（AGENTS.md、SOUL.md、RULES.md、SECURITY.md）应该放在何处？状态管理文件应该独立还是分散？
 
 候选方案之一是创建 `docs/` 子目录存放所有 `.md` 文档，但这种方法违背了 Claude Code / Codex CLI 的 AGENTS.md 根目录约定。
 
@@ -19,7 +19,7 @@ TRAE Workspace 需要定义项目的顶层目录布局。核心问题是：协�
 具体文件布局：
 
 ```
-E:\trae_workspace\
+E:\AWI\
 ├── AGENTS.md              — 代理指令主入口
 ├── SOUL.md                — 核心身份声明
 ├── RULES.md               — 规则契约

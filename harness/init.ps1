@@ -1,6 +1,6 @@
-﻿<#
+<#
 .SYNOPSIS
-    TRAE Workspace Harness — 启动验证脚本
+    AWI Harness — 启动验证脚本
 .DESCRIPTION
     检查开发环境、安装依赖、运行类型检查、lint 和测试。
     用于每次会话开始时的环境验证，确保工作区处于干净可用状态。
@@ -146,7 +146,7 @@ function Test-NpmScriptExists {
 
 Write-Host ""
 Write-Host "  ╔══════════════════════════════════════════════════════════╗" -ForegroundColor Magenta
-Write-Host "  ║          TRAE Workspace Harness — 启动验证              ║" -ForegroundColor Magenta
+Write-Host "  ║          AWI Harness — 启动验证              ║" -ForegroundColor Magenta
 Write-Host "  ║          基于 learn-harness-engineering 五子系统         ║" -ForegroundColor Magenta
 Write-Host "  ╚══════════════════════════════════════════════════════════╝" -ForegroundColor Magenta
 Write-Host ""

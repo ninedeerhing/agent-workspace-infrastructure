@@ -2,7 +2,7 @@
   "metadata": {
     "version": "1.0.0",
     "created": "2026-06-09",
-    "description": "TRAE Workspace 工作流状态追踪器。记录当前活跃的工作流类型、阶段、任务上下文和阶段转换验证状态。与 feature_list.json（功能真相来源）互补，聚焦于过程状态而非结果状态。"
+    "description": "AWI 工作流状态追踪器。记录当前活跃的工作流类型、阶段、任务上下文和阶段转换验证状态。与 feature_list.json（功能真相来源）互补，聚焦于过程状态而非结果状态。"
   },
   "active_workflow": null,
   "workflow_history": [],

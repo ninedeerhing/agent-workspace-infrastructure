@@ -1,8 +1,8 @@
-# TRAE Workspace 项目结构与使用说明
+# AWI 项目结构与使用说明
 
 ## 项目概览
 
-TRAE Workspace 是一个基于 **Harness Engineering** 方法论的 AI 工程工作区，专为高复杂度、多代理协作、技能驱动开发场景而设计。它将多个前沿 AI 编程方法论项目的最佳实践融合到一个统一的工程环境中，使开发者能够在同一工作区内使用最合适的流程和工具完成从创意到发布的全生命周期。
+AWI 是一个基于 **Harness Engineering** 方法论的 AI 工程工作区，专为高复杂度、多代理协作、技能驱动开发场景而设计。它将多个前沿 AI 编程方法论项目的最佳实践融合到一个统一的工程环境中，使开发者能够在同一工作区内使用最合适的流程和工具完成从创意到发布的全生命周期。
 
 本工作区整合了以下 12 个来源项目的精华思想：
 
@@ -21,12 +21,12 @@ TRAE Workspace 是一个基于 **Harness Engineering** 方法论的 AI 工程工
 | 11 | headroom | 上下文窗口管理，智能裁剪保持关键信息 |
 | 12 | DeepSeek-Reasonix | Prefix-Cache 稳定性增强，优化推理模型的缓存命中率 |
 
-这些来源项目被吸收、重组、统一为 TRAE Workspace 的三个核心层次：**技能（Skills）**、**代理（Agents）**、**规则（Rules）**，并由 Harness 五子系统协调运行。
+这些来源项目被吸收、重组、统一为 AWI 的三个核心层次：**技能（Skills）**、**代理（Agents）**、**规则（Rules）**，并由 Harness 五子系统协调运行。
 
 ## 目录结构
 
 ```
-E:\trae_workspace\
+E:\AWI\
 ├── AGENTS.md                    # 代理指令主入口，所有 AI 代理启动时首先读取
 ├── SOUL.md                      # 核心身份与愿景定义，描述工作区的设计哲学
 ├── SECURITY.md                  # 安全策略文档，定义安全边界与防护规则
@@ -118,7 +118,7 @@ E:\trae_workspace\
 
 ### 2. 执行任务 — 默认工作流
 
-TRAE Workspace 的标准工作流是一个 7 步循环：
+AWI 的标准工作流是一个 7 步循环：
 
 ```
 INTAKE → RESEARCH → PLAN → EXECUTE → REVIEW → VERIFY → HANDOFF
@@ -186,7 +186,7 @@ INTAKE → RESEARCH → PLAN → EXECUTE → REVIEW → VERIFY → HANDOFF
 
 ## 工作流体系
 
-TRAE Workspace 提供了 4 套工作流，根据任务复杂度自动或手动选择：
+AWI 提供了 4 套工作流，根据任务复杂度自动或手动选择：
 
 ### 默认任务流（7 步）
 
@@ -222,7 +222,7 @@ Brainstorming → Worktree/Scope → Writing Plans → TDD → Subagent Developm
 
 ## 核心原则
 
-TRAE Workspace 遵循以下核心原则，这些原则贯穿所有工作流和技能：
+AWI 遵循以下核心原则，这些原则贯穿所有工作流和技能：
 
 | 原则 | 说明 |
 |------|------|

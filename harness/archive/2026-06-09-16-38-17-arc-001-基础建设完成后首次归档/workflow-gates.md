@@ -1,6 +1,6 @@
-# Workflow Gates — TRAE Workspace 工作流质量门禁
+# Workflow Gates — agent-workspace-infrastructure 工作流质量门禁
 
-> 本文件定义 TRAE Workspace 四种工作流中各阶段的质量门禁（Quality Gates）。每个门禁定义进入条件、退出条件和验证要求。
+> 本文件定义 agent-workspace-infrastructure 四种工作流中各阶段的质量门禁（Quality Gates）。每个门禁定义进入条件、退出条件和验证要求。
 >
 > 与 `workflow-state.json` 配合使用：`workflow-state.json` 记录当前工作流状态和门禁通过状态，本文件定义每个门禁的具体标准。
 
@@ -464,4 +464,4 @@
 
 **当前版本:** 1.0.0
 **最后更新:** 2026-06-09
-**维护者:** TRAE Workspace Harness
+**维护者:** agent-workspace-infrastructure Harness

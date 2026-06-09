@@ -47,7 +47,7 @@ function Get-TokenCount {
     要统计的根目录路径，默认为当前目录 "."
 
 .EXAMPLE
-    Get-ProjectTokens -Path "e:\trae_workspace"
+    Get-ProjectTokens -Path "e:\AWI"
     # 输出: 按 Token 数降序排列的文件列表
 #>
 function Get-ProjectTokens {

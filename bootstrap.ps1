@@ -1,8 +1,8 @@
 <#
 .SYNOPSIS
-    agent-workspace-infrastructure 一键初始化脚本
+    AWI 一键初始化脚本
 .DESCRIPTION
-    将 agent-workspace-infrastructure 框架部署到目标项目目录。
+    将 AWI 框架部署到目标项目目录。
     自动创建所有必要的目录、复制核心文件、初始化状态文件。
 .PARAMETER TargetPath
     目标项目路径（默认：当前目录）
@@ -24,7 +24,7 @@ $ErrorActionPreference = "Stop"
 $Banner = @"
 
   ╔══════════════════════════════════════════════════════╗
-  ║   agent-workspace-infrastructure v1.0.0             ║
+  ║   AWI v1.0.0             ║
   ║   AI 工程工作区底层架构 — 一键初始化                  ║
   ╚══════════════════════════════════════════════════════╝
 
@@ -41,7 +41,7 @@ Write-Host "[OK] PowerShell 版本: $($PSVersionTable.PSVersion)" -ForegroundCol
 
 # 验证源路径
 if (-not (Test-Path (Join-Path $SourcePath "CONSTITUTION.md"))) {
-    Write-Host "[错误] 未在源路径找到 CONSTITUTION.md，请确保在 agent-workspace-infrastructure 根目录运行此脚本。" -ForegroundColor Red
+    Write-Host "[错误] 未在源路径找到 CONSTITUTION.md，请确保在 AWI 根目录运行此脚本。" -ForegroundColor Red
     exit 1
 }
 
@@ -122,7 +122,7 @@ $progress = @"
 
 ### $(Get-Date -Format 'yyyy-MM-dd') — 项目初始化
 
-- 通过 bootstrap.ps1 初始化 agent-workspace-infrastructure
+- 通过 bootstrap.ps1 初始化 AWI
 - 框架版本: v1.0.0
 - 状态: 就绪
 
@@ -189,7 +189,7 @@ if (Test-Path $initScript) {
 # 输出成功消息
 Write-Host ""
 Write-Host "╔══════════════════════════════════════════════════════╗" -ForegroundColor Green
-Write-Host "║  导入成功！agent-workspace-infrastructure 已就绪    ║" -ForegroundColor Green
+Write-Host "║  导入成功！AWI 已就绪    ║" -ForegroundColor Green
 Write-Host "╚══════════════════════════════════════════════════════╝" -ForegroundColor Green
 Write-Host ""
 Write-Host "项目名称: $ProjectName" -ForegroundColor Cyan

@@ -70,7 +70,7 @@
   - 创建了 docs/research/everos-task-queue.md (253 行):
     - 覆盖四个层级队列体系: Buffer Queue / OME Queue / Cascade Queue / Audit Log
     - 详细分析 md_change_state 表结构、LSN 崩溃恢复机制、一致性模型
-    - 包含与 TRAE Workspace Harness 系统的对照分析
+    - 包含与 AWI Harness 系统的对照分析
     - 来源: EverOS GitHub 官方文档 (architecture.md, how-memory-works.md, api.md)
   - 创建了 docs/research/everos-inter-agent-comm.md (241 行):
     - 定义共享记忆通信模型: 通信 = 写入记忆 + 检索记忆

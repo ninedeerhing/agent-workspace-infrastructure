@@ -1,6 +1,6 @@
-# Clean State Checklist — TRAE Workspace 干净状态检查清单
+# Clean State Checklist — agent-workspace-infrastructure 干净状态检查清单
 
-> 本文件定义 TRAE Workspace 工作区的"干净状态"标准。在会话开始、会话结束和功能完成时使用，确保工作区始终处于可信任的状态。
+> 本文件定义 agent-workspace-infrastructure 工作区的"干净状态"标准。在会话开始、会话结束和功能完成时使用，确保工作区始终处于可信任的状态。
 >
 > 基于 learn-harness-engineering 的 Verification（验证）子系统设计。
 
@@ -152,4 +152,4 @@ Select-String -Path "." -Pattern '(TOKEN|SECRET|KEY|PASSWORD)\s*[:=]\s*["''][A-Z
 
 **当前版本:** 1.0.0
 **最后更新:** 2026-06-09
-**维护者:** TRAE Workspace Harness
+**维护者:** agent-workspace-infrastructure Harness

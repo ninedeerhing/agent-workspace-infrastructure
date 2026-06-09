@@ -4,13 +4,13 @@
 
 **日期**：2026-06-09
 
-**决策者**：TRAE Workspace 架构团队
+**决策者**：AWI 架构团队
 
 ---
 
 ## 背景
 
-在构建 TRAE Workspace 时，需要一个统一的框架来组织 AI 代理的协作方式、任务生命周期管理和质量保证流程。工作区将承载多个 AI 代理角色（orchestrator、planner、executor、reviewer 等）和 28+ 个可复用技能，需要一个清晰的操作系统级协议来定义代理如何"思考、工作、验证和交接"。
+在构建 AWI 时，需要一个统一的框架来组织 AI 代理的协作方式、任务生命周期管理和质量保证流程。工作区将承载多个 AI 代理角色（orchestrator、planner、executor、reviewer 等）和 28+ 个可复用技能，需要一个清晰的操作系统级协议来定义代理如何"思考、工作、验证和交接"。
 
 我们考察了以下几个方法论框架：
 
@@ -30,7 +30,7 @@
 
 ## 决策
 
-**我们将采用 Harness Engineering 方法论作为 TRAE Workspace 的核心框架**，并将其五子系统映射为以下具体实现：
+**我们将采用 Harness Engineering 方法论作为 AWI 的核心框架**，并将其五子系统映射为以下具体实现：
 
 1. **Instructions（指令）** — `AGENTS.md` 作为主入口契约，`SOUL.md` 定义核心身份，`agents/` 承载角色提示词，`skills/` 承载可复用工作流
 2. **State（状态）** — `harness/` 目录持久化所有任务状态（`feature_list.json`、`progress.md`、`session-handoff.md`）
@@ -96,8 +96,8 @@ Harness Engineering 被选中的核心原因：
 
 ## 参考资料
 
-- [SOUL.md](file:///e:/trae_workspace/SOUL.md) — TRAE Workspace 核心身份定义
-- [AGENTS.md](file:///e:/trae_workspace/AGENTS.md) — 代理指令主入口
-- [docs/PROJECT-STRUCTURE.md](file:///e:/trae_workspace/docs/PROJECT-STRUCTURE.md) — 项目结构说明
+- [SOUL.md](file:///e:/AWI/SOUL.md) — AWI 核心身份定义
+- [AGENTS.md](file:///e:/AWI/AGENTS.md) — 代理指令主入口
+- [docs/PROJECT-STRUCTURE.md](file:///e:/AWI/docs/PROJECT-STRUCTURE.md) — 项目结构说明
 - `harness/` 目录 — 状态管理实现
 - ADR-002 — 采用 Markdown 格式存储 ADR

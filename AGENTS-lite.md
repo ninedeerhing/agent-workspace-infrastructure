@@ -6,7 +6,7 @@
 
 **版本:** 1.0.0-lite | 完整版见 `AGENTS.md`
 
-`trae_workspace` 是 Harness-native AI 工程工作区。本文件是代理的快速启动契约。完整指令见 `AGENTS.md`。
+`AWI` 是 Harness-native AI 工程工作区。本文件是代理的快速启动契约。完整指令见 `AGENTS.md`。
 
 ---
 

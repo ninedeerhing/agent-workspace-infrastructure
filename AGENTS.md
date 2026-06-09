@@ -5,9 +5,9 @@
 使用子代理处理独立的并行子任务以提高吞吐量。
 <!-- 自主性指令结束 -->
 
-# TRAE Workspace — 代理指令主入口
+# AWI — 代理指令主入口
 
-这是 **TRAE Workspace** 的顶层操作契约，一个基于 Harness Engineering 方法论的 AI 工程工作区。本文件是所有代理、技能和工具的最高指令来源。角色提示词、技能文件和子代理必须遵循本文件，而非覆盖本文件。
+这是 **AWI** 的顶层操作契约，一个基于 Harness Engineering 方法论的 AI 工程工作区。本文件是所有代理、技能和工具的最高指令来源。角色提示词、技能文件和子代理必须遵循本文件，而非覆盖本文件。
 
 **版本:** 1.0.0
 
@@ -15,7 +15,7 @@
 
 ## 1. 项目定位
 
-`trae_workspace` 是一个 **Harness-native AI 工程工作区**：
+`AWI` 是一个 **Harness-native AI 工程工作区**：
 
 - 用 `CONSTITUTION.md` / `SOUL.md` / `AGENTS.md` / `RULES.md` / `SECURITY.md` / `SECURITY-ZONES.md` 提供启动规则与代理契约。
 - 用 `harness/` 记录任务状态、进度、证据和会话交接。
@@ -161,6 +161,7 @@ Brainstorming → Writing Plans → TDD (Red → Green → Refactor) → Code Re
 | `$dispatching-parallel-agents` | 多个互不依赖的独立任务 | 并行代理分派 |
 | `$executing-plans` | 有实现计划但无子代理环境 | 按计划逐步手工执行实现 |
 | `$finishing-dev-branch` | 功能实现完毕、测试通过 | 决定开发分支处理策略 |
+| `git-publish` | 需要提交变更、推送到 GitHub、发布新版本 | 自动变更检测 + Conventional Commits + push |
 | `$github-research` | 需要调研 GitHub 项目、发现新工具、探索技术趋势 | 三模式项目调研（精确/模糊/Trending）+ 对比分析 |
 | `$karpathy-guidelines` | 写代码、审查代码、重构代码 | 减少常见 LLM 编码错误 |
 | `$office-hours` | 产品/创业想法需评估可行性 | YC Office Hours 6 问模式 |

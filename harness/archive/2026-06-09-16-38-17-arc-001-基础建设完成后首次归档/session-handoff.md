@@ -1,4 +1,4 @@
-# Session Handoff — TRAE Workspace 会话交接
+# Session Handoff — agent-workspace-infrastructure 会话交接
 
 > 本文件用于跨会话的工作交接。每次会话结束时更新，记录当前目标、完成内容、验证证据和下一步建议。下次会话开始时读取本文件以快速恢复上下文。
 
@@ -6,9 +6,9 @@
 
 ## Current Objective（当前目标）
 
-**构建 TRAE Workspace Harness 工程系统**
+**构建 agent-workspace-infrastructure Harness 工程系统**
 
-基于 learn-harness-engineering 的五子系统设计（Instructions / State / Verification / Scope / Lifecycle），在 `E:\trae_workspace\` 下搭建完整的 AI 工程工作区基础设施。目标是将多个来源项目的最佳实践（oh-my-claudecode、oh-my-codex、gstack、superpowers、learn-harness-engineering、oh-my-openagent、ECC、andrej-karpathy-skills）整合为一套可移植的操作系统级代理协作协议。
+基于 learn-harness-engineering 的五子系统设计（Instructions / State / Verification / Scope / Lifecycle），在 `E:\agent-workspace-infrastructure\` 下搭建完整的 AI 工程工作区基础设施。目标是将多个来源项目的最佳实践（oh-my-claudecode、oh-my-codex、gstack、superpowers、learn-harness-engineering、oh-my-openagent、ECC、andrej-karpathy-skills）整合为一套可移植的操作系统级代理协作协议。
 
 **阶段：** 基础建设 ✅ 已完成
 
@@ -18,7 +18,7 @@
 
 ### 1. 核心协议文件（4 个文件）
 
-在 `E:\trae_workspace\` 根目录创建了四个核心协议文件：
+在 `E:\agent-workspace-infrastructure\` 根目录创建了四个核心协议文件：
 
 | 文件 | 说明 |
 |------|------|
@@ -29,7 +29,7 @@
 
 ### 2. Harness 状态管理文件（5 个文件）
 
-在 `E:\trae_workspace\harness\` 目录创建了五个状态管理文件：
+在 `E:\agent-workspace-infrastructure\harness\` 目录创建了五个状态管理文件：
 
 | 文件 | 说明 |
 |------|------|
@@ -41,7 +41,7 @@
 
 ### 3. 五子系统对应关系
 
-| learn-harness-engineering 子系统 | TRAE Workspace 实现 |
+| learn-harness-engineering 子系统 | agent-workspace-infrastructure 实现 |
 |----------------------------------|---------------------|
 | **Instructions（指令系统）** | AGENTS.md（14 条核心原则 + 委派规则）、SOUL.md（核心身份）、RULES.md（规则契约）、`.trae/rules/project_rules.md`（IDE 专用规则） |
 | **State（状态管理）** | `harness/feature_list.json`（功能真相来源）、`harness/progress.md`（进度日志）、`harness/session-handoff.md`（交接记录） |
@@ -69,16 +69,16 @@
 ### 新建文件
 
 ```
-E:\trae_workspace\AGENTS.md                    — 代理指令主入口
-E:\trae_workspace\SOUL.md                      — 核心身份声明
-E:\trae_workspace\RULES.md                     — 规则契约
-E:\trae_workspace\SECURITY.md                  — 安全策略
-E:\trae_workspace\harness\feature_list.json    — 功能状态追踪器
-E:\trae_workspace\harness\progress.md          — 会话连续性日志
-E:\trae_workspace\harness\session-handoff.md   — 会话交接模板（本文件）
-E:\trae_workspace\harness\init.ps1             — 启动验证脚本
-E:\trae_workspace\harness\clean-state-checklist.md — 干净状态检查清单
-E:\trae_workspace\.trae\rules\project_rules.md — Trae IDE 专用规则
+E:\agent-workspace-infrastructure\AGENTS.md                    — 代理指令主入口
+E:\agent-workspace-infrastructure\SOUL.md                      — 核心身份声明
+E:\agent-workspace-infrastructure\RULES.md                     — 规则契约
+E:\agent-workspace-infrastructure\SECURITY.md                  — 安全策略
+E:\agent-workspace-infrastructure\harness\feature_list.json    — 功能状态追踪器
+E:\agent-workspace-infrastructure\harness\progress.md          — 会话连续性日志
+E:\agent-workspace-infrastructure\harness\session-handoff.md   — 会话交接模板（本文件）
+E:\agent-workspace-infrastructure\harness\init.ps1             — 启动验证脚本
+E:\agent-workspace-infrastructure\harness\clean-state-checklist.md — 干净状态检查清单
+E:\agent-workspace-infrastructure\.trae\rules\project_rules.md — Trae IDE 专用规则
 ```
 
 ### 未修改的已有文件
@@ -117,7 +117,7 @@ E:\trae_workspace\.trae\rules\project_rules.md — Trae IDE 专用规则
 
 ```powershell
 # 步骤 1：定位项目目录
-cd E:\trae_workspace
+cd E:\agent-workspace-infrastructure
 
 # 步骤 2：读取 AGENTS.md（了解操作契约和当前规则）
 # （在 IDE 中打开或使用 cat/type 命令）
@@ -222,7 +222,7 @@ powershell -ExecutionPolicy Bypass -File .\harness\archive\store.ps1 -Action com
 
 ## 交接备注
 
-本次会话完成了 TRAE Workspace Harness 工程系统的全部基础建设以及历史交接归档机制（feat-008）。核心基础设施（协议文件、harness 状态管理、技能库、代理角色体系、缓存策略、规则体系、安全防御体系、工作流门禁、历史归档）全部就绪。
+本次会话完成了 agent-workspace-infrastructure Harness 工程系统的全部基础建设以及历史交接归档机制（feat-008）。核心基础设施（协议文件、harness 状态管理、技能库、代理角色体系、缓存策略、规则体系、安全防御体系、工作流门禁、历史归档）全部就绪。
 
 项目处于"基础建设完成，等待第一个实际任务"的状态。
 

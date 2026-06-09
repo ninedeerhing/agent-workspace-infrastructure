@@ -1,4 +1,4 @@
-# Project Brief: TRAE Workspace 长期记忆体系
+# Project Brief: AWI 长期记忆体系
 
 - **描述**: 调研外部 AI 长期记忆系统（MemPalace/EverOS），回顾 4 个 Token 优化项目，自检工作区长期记忆基础设施
 - **阶段**: active

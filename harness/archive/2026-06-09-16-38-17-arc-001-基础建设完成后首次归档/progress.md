@@ -1,4 +1,4 @@
-# Progress — TRAE Workspace 会话连续性日志
+# Progress — agent-workspace-infrastructure 会话连续性日志
 
 > 本文件是人类可读的项目进度日志。每次会话结束后更新。记录完成内容、进行中内容、阻塞项和决策。
 
@@ -10,7 +10,7 @@
 
 **项目阶段：** 基础建设完成，进入运营阶段。
 
-TRAE Workspace 的 Harness 工程系统已完整搭建。基于 learn-harness-engineering 的五子系统设计（Instructions、State、Verification、Scope、Lifecycle），所有核心基础设施已就绪：
+agent-workspace-infrastructure 的 Harness 工程系统已完整搭建。基于 learn-harness-engineering 的五子系统设计（Instructions、State、Verification、Scope、Lifecycle），所有核心基础设施已就绪：
 
 - **Instructions 子系统**：AGENTS.md（代理指令主入口）、SOUL.md（核心身份）、RULES.md（规则契约）构成完整指令链。
 - **State 子系统**：harness/ 目录承载 feature_list.json（功能状态真相来源）、progress.md（本文档）、session-handoff.md（会话交接）。
@@ -326,4 +326,4 @@ TRAE Workspace 的 Harness 工程系统已完整搭建。基于 learn-harness-en
 ---
 
 **最后更新：** 2026-06-09
-**更新者：** TRAE Workspace Harness 系统初始化
+**更新者：** agent-workspace-infrastructure Harness 系统初始化

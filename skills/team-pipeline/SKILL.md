@@ -35,7 +35,7 @@ team-plan → team-prd → team-exec(parallel) → team-verify → team-fix(loop
 | 项目 | 说明 |
 |------|------|
 | **入口条件** | 范围模糊或验收标准缺失 |
-| **代理** | `analyst` 提取需求，可选 `critic` 挑战范围 |
+| **代理** | `planner` 提取需求，可选 `critic` 挑战范围 |
 | **出口条件** | 验收标准和边界明确 |
 
 ### 阶段 3：team-exec（并行执行）
@@ -77,8 +77,8 @@ team-plan → team-prd → team-exec(parallel) → team-verify → team-fix(loop
 
 | 阶段 | 必需代理 | 可选代理 |
 |------|---------|---------|
-| **team-plan** | `explore`、`planner` | `analyst`、`architect` |
-| **team-prd** | `analyst` | `critic` |
+| **team-plan** | `explore`、`planner` | `architect`、`critic` |
+| **team-prd** | `planner` | `critic` |
 | **team-exec** | `executor` | `debugger`、`designer`、`writer`、`test-engineer` |
 | **team-verify** | `verifier` | `test-engineer`、`security-reviewer`、`code-reviewer` |
 | **team-fix** | `executor` | `debugger` |

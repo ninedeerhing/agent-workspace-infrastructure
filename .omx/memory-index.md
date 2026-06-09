@@ -1,6 +1,6 @@
 # OMX Memory Index — 语义搜索规范
 
-OMX Memory Index 是 `trae_workspace` 的语义搜索子系统规范，定义记忆索引的结构、检索算法、相关性排序和集成方式。与 `memory.md` 共同构成完整的记忆管理栈。
+OMX Memory Index 是 `AWI` 的语义搜索子系统规范，定义记忆索引的结构、检索算法、相关性排序和集成方式。与 `memory.md` 共同构成完整的记忆管理栈。
 
 **版本:** 1.0.0
 
