@@ -1,0 +1,261 @@
+{
+  "_说明": "TDD 实现流模板。激活时复制到 workflow-state.json 的 active_workflow 字段中，逐阶段填写。",
+  "metadata": {
+    "template_version": "1.0.0",
+    "workflow_type": "tdd",
+    "workflow_name": "TDD 实现流",
+    "description": "严格测试驱动开发和质量控制流程，适用于新功能开发、Bug 修复（需先写复现测试）。",
+    "phase_sequence": "BRAINSTORMING → WRITING_PLANS → RED → GREEN → REFACTOR → CODE_REVIEW → VERIFY → FINISH"
+  },
+  "context": {
+    "task_id": "",
+    "task_title": "",
+    "feature_id": "",
+    "started_at": "",
+    "completed_at": "",
+    "scope": {
+      "what_to_do": "",
+      "what_not_to_do": "",
+      "affected_files": []
+    },
+    "interface_contract": {
+      "function_signature": "",
+      "input_types": "",
+      "output_types": "",
+      "side_effects": ""
+    },
+    "test_framework": "",
+    "test_file_paths": []
+  },
+  "test_scenarios": {
+    "positive_cases": [],
+    "negative_cases": [],
+    "boundary_cases": []
+  },
+  "coverage_target": 80,
+  "phases": [
+    {
+      "id": "brainstorming",
+      "name": "BRAINSTORMING",
+      "index": 1,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-TDD-01",
+      "artifacts": []
+    },
+    {
+      "id": "writing_plans",
+      "name": "WRITING_PLANS",
+      "index": 2,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-TDD-02",
+      "artifacts": []
+    },
+    {
+      "id": "red",
+      "name": "RED",
+      "index": 3,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-TDD-03",
+      "artifacts": []
+    },
+    {
+      "id": "green",
+      "name": "GREEN",
+      "index": 4,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-TDD-04",
+      "artifacts": []
+    },
+    {
+      "id": "refactor",
+      "name": "REFACTOR",
+      "index": 5,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-TDD-05",
+      "artifacts": []
+    },
+    {
+      "id": "code_review",
+      "name": "CODE_REVIEW",
+      "index": 6,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-TDD-06",
+      "artifacts": []
+    },
+    {
+      "id": "verify",
+      "name": "VERIFY",
+      "index": 7,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-TDD-07",
+      "artifacts": []
+    },
+    {
+      "id": "finish",
+      "name": "FINISH",
+      "index": 8,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-TDD-08",
+      "artifacts": []
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "G-TDD-01",
+      "transition": "BRAINSTORMING → WRITING_PLANS",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-TDD-01.1", "label": "需求已从多角度探索（正常路径、边界条件、错误路径）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-01.2", "label": "接口契约已草拟（函数签名、输入类型、输出类型、副作用）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-01.3", "label": "测试场景清单已列出（正面 + 负面 + 边界）", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-TDD-02",
+      "transition": "WRITING_PLANS → RED",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-TDD-02.1", "label": "实现计划已分步（每一步对应一组测试）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-02.2", "label": "测试框架和工具已确定（使用已有框架）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-02.3", "label": "测试文件路径已确定（遵循项目约定）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-02.4", "label": "实现步骤不包含'顺便重构'", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-TDD-03",
+      "transition": "RED → GREEN",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-TDD-03.1", "label": "测试已编写完成", "severity": "必须", "passed": null},
+        {"id": "G-TDD-03.2", "label": "测试当前全部失败（RED 状态确认）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-03.3", "label": "测试覆盖了所有预期场景", "severity": "必须", "passed": null},
+        {"id": "G-TDD-03.4", "label": "测试本身无逻辑错误", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-TDD-04",
+      "transition": "GREEN → REFACTOR",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-TDD-04.1", "label": "所有测试通过（100%）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-04.2", "label": "覆盖率达到目标（80%+）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-04.3", "label": "实现逻辑正确且完整", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-TDD-05",
+      "transition": "REFACTOR → CODE_REVIEW",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-TDD-05.1", "label": "重构后所有测试仍然通过", "severity": "必须", "passed": null},
+        {"id": "G-TDD-05.2", "label": "代码清晰度改善（无过度抽象）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-05.3", "label": "无新增死代码", "severity": "必须", "passed": null},
+        {"id": "G-TDD-05.4", "label": "无'顺手重构'越界", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-TDD-06",
+      "transition": "CODE_REVIEW → VERIFY",
+      "reference": "等同于 G-STD-05（REVIEW → VERIFY）",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-TDD-06.1", "label": "代码审查已完成且无阻塞问题", "severity": "必须", "passed": null},
+        {"id": "G-TDD-06.2", "label": "安全问题已审查", "severity": "必须", "passed": null},
+        {"id": "G-TDD-06.3", "label": "代码风格符合项目规范（Lint 0 错误）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-06.4", "label": "设计审查通过（如适用）", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-TDD-07",
+      "transition": "VERIFY → FINISH",
+      "reference": "等同于 G-STD-06（VERIFY → HANDOFF）",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-TDD-07.1", "label": "所有测试通过", "severity": "必须", "passed": null},
+        {"id": "G-TDD-07.2", "label": "类型检查通过", "severity": "必须", "passed": null},
+        {"id": "G-TDD-07.3", "label": "Lint 检查通过", "severity": "必须", "passed": null},
+        {"id": "G-TDD-07.4", "label": "构建成功（如适用）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-07.5", "label": "验收标准已满足", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-TDD-08",
+      "transition": "FINISH → 完成",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-TDD-08.1", "label": "最终测试套件全部通过", "severity": "必须", "passed": null},
+        {"id": "G-TDD-08.2", "label": "覆盖率报告达标（80%+ 行覆盖）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-08.3", "label": "PR 已准备（含测试结果证据）", "severity": "必须", "passed": null},
+        {"id": "G-TDD-08.4", "label": "状态文件已更新", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    }
+  ],
+  "red_green_log": [],
+  "refactor_log": [],
+  "coverage_report": {
+    "lines_pct": null,
+    "branches_pct": null,
+    "functions_pct": null,
+    "statements_pct": null
+  },
+  "evidence_log": [],
+  "_使用说明": {
+    "激活": "将此模板的内容复制到 workflow-state.json 的 active_workflow 下，填写 context 字段后开始执行。",
+    "Brainstorming": "BRAINSTORMING 阶段探索需求的多角度场景，填写 interface_contract（接口契约）和 test_scenarios（正面/负面/边界场景）。",
+    "RED 阶段": "RED 阶段只写测试，不写实现代码。运行测试确认全部失败后，在 red_green_log 中记录测试名称和失败输出。",
+    "GREEN 阶段": "GREEN 阶段写最小实现代码使测试通过。每次测试通过后记录到 red_green_log。",
+    "REFACTOR 阶段": "REFACTOR 阶段在测试全部通过的前提下重构代码。重构前后运行测试确认无回归。记录到 refactor_log。",
+    "门禁引用": "G-TDD-06 引用 G-STD-05，G-TDD-07 引用 G-STD-06。检查时对照 workflow-gates.md 中的原始定义。",
+    "覆盖率": "coverage_target 默认 80%，可在 GREEN 阶段后运行覆盖率工具，填写 coverage_report 记录实际覆盖率。",
+    "阶段切换": "当前阶段完成时，将其 status 改为 'completed'，填写 completed_at；将下一阶段 status 改为 'in_progress'。",
+    "证据记录": "每次门禁检查和验证完成后，在 evidence_log 中追加一条记录，包含 gate_id、result、timestamp、verifier、details。"
+  }
+}

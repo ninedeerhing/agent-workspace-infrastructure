@@ -1,0 +1,352 @@
+---
+name: omo-health-monitor
+description: "[OMX] 代理与工作区健康监控：代理状态追踪、任务进度巡检、错误率监控、Token 用量预警。触发条件：需要监控代理健康状态、排查代理异常、评估工作区整体健康状况、多代理场景下需要统一状态视图。"
+---
+
+# OMO Health Monitor — 健康监控
+
+Clean-room OMX 健康监控技能，仅受 OMO (Oh My Openagent) 健康监控高层概念启发。本技能不复制 OMO 的实现、提示词、措辞、控制流或运行时代码。在此仓库的 MIT 许可技能约定下重新实现这一理念。
+
+Credit: 受 OMO Health Monitor (`code-yeongyu/oh-my-openagent`) 启发，从概念重新实现，遵循 MIT 许可。
+
+## 定位
+
+本技能是 OMX 工作区的"健康仪表盘"。它巡检代理状态、任务进度、资源消耗和错误模式，提供统一的工作区健康视图。在单代理场景下作为自检工具，在多代理场景下作为协调层的监控中枢。
+
+## 触发条件
+
+- 用户询问"代理状态"、"当前进度"、"有什么问题"
+- 多代理协作场景下需要统一状态视图
+- 代理行为异常，需要排查根因
+- 错误率上升，需要诊断
+- Token 用量接近预算上限
+- 定期健康巡检（建议每 10 个操作或每次会话开始时）
+- 任务长时间无进展，需要排查阻塞原因
+
+## 不触发条件
+
+- 具体某个 bug 的调查 → 使用 `$systematic-debugging`
+- 安全漏洞扫描 → 使用 `$security-review`
+- 代码质量检查 → 使用 `$code-review`
+- 单次验证检查 → 使用 `$verification-before-completion`
+
+## 核心概念
+
+### 健康维度
+
+健康监控覆盖四个维度：
+
+```
+┌─────────────────────────────────────────────────┐
+│                WORKSPACE HEALTH                   │
+├─────────────┬─────────────┬───────────┬──────────┤
+│ AGENT       │ TASK        │ RESOURCE  │ ERROR    │
+│ 代理状态     │ 任务进度     │ 资源消耗   │ 错误监控  │
+├─────────────┼─────────────┼───────────┼──────────┤
+│ • 活跃/空闲  │ • 完成率     │ • Token   │ • 错误率  │
+│ • 阻塞/错误  │ • 阻塞项     │ • 上下文   │ • 错误模式 │
+│ • 响应延迟  │ • 里程碑     │ • 文件数   │ • 恢复率  │
+│ • 代理数量  │ • 预估剩余   │ • API 成本 │ • 根因分布 │
+└─────────────┴─────────────┴───────────┴──────────┘
+```
+
+### 健康状态定义
+
+| 状态 | 图标 | AGENT | TASK | RESOURCE | ERROR |
+|------|------|-------|------|----------|-------|
+| **HEALTHY** | 🟢 | 正常响应 | 按计划推进 | 低于 50% 预算 | 无错误 |
+| **WARNING** | 🟡 | 响应延迟 | 轻微延期 | 50-80% 预算 | 偶发错误（已恢复） |
+| **DEGRADED** | 🟠 | 间歇异常 | 明显延期 | 80-95% 预算 | 重复错误（影响进度） |
+| **CRITICAL** | 🔴 | 无响应/崩溃 | 严重阻塞 | 95%+ 预算 | 持续错误（阻塞任务） |
+
+## 执行流程
+
+### 第 1 步：收集状态快照
+
+#### AGENT 维度
+
+- 检查代理响应状态（最近 N 次交互的响应时间）
+- 识别代理当前模式：主动执行 / 等待输入 / 阻塞 / 错误
+- 多代理场景下统计各代理状态分布
+- 检查是否有代理长时间（>5 分钟）无响应
+
+#### TASK 维度
+
+- 读取 `harness/feature_list.json` 获取活跃任务列表
+- 读取 `harness/progress.md` 获取最近进度条目
+- 读取 `skills/ultragoal/brief.md`（如存在）获取目标状态
+- 对比计划时间和实际进度，识别延期任务
+- 统计：完成率、进行中、阻塞、未开始
+
+#### RESOURCE 维度
+
+- 估算当前上下文窗口使用率（Token 占比）
+- 检查 API 调用频率和累计成本
+- 统计当前会话修改的文件数量
+- 监控对话轮数和有效操作比
+
+#### ERROR 维度
+
+- 回顾最近错误（类型检查失败、测试失败、运行时错误）
+- 识别错误模式：同一错误重复出现？新错误类型？
+- 统计错误恢复率：哪些错误已被解决？哪些持续存在？
+- 检查是否有静默吞掉的错误（空 catch 块、未处理的 Promise rejection）
+
+### 第 2 步：计算健康分数
+
+每个维度独立评分（0-100），综合得分为各维度加权平均：
+
+| 维度 | 权重 | 评分依据 |
+|------|------|----------|
+| AGENT | 25% | 响应延迟、状态分布 |
+| TASK | 30% | 完成率、阻塞项数量、延期程度 |
+| RESOURCE | 20% | Token 使用率、文件变更量 |
+| ERROR | 25% | 错误率、错误恢复率、错误模式 |
+
+**评分公式**：
+
+```
+HEALTH_SCORE = AGENT × 0.25 + TASK × 0.30 + RESOURCE × 0.20 + ERROR × 0.25
+```
+
+**评分区间**：
+
+| 分数区间 | 等级 | 建议操作 |
+|----------|------|----------|
+| 90-100 | 🟢 HEALTHY | 继续正常执行 |
+| 70-89 | 🟡 WARNING | 关注弱项维度，准备预案 |
+| 50-69 | 🟠 DEGRADED | 主动干预弱项维度 |
+| 0-49 | 🔴 CRITICAL | 暂停新任务，修复关键问题 |
+
+### 第 3 步：生成健康报告
+
+按模板生成结构化健康报告（见下方模板）。
+
+### 第 4 步：生成建议操作
+
+根据健康评估结果，生成优先级排序的建议操作：
+
+- **CRITICAL 项**：立即处理，阻塞所有新任务
+- **WARNING 项**：在当前任务完成后处理
+- **INFO 项**：记录但不阻塞
+
+### 第 5 步：持久化健康记录
+
+- 将健康报告追加到 `harness/progress.md`
+- 如需持续监控，创建或更新 `harness/health-log.json`
+
+## 健康报告模板
+
+```markdown
+## HEALTH REPORT — [日期时间]
+
+### 综合评分: [分数]/100 — [HEALTHY/WARNING/DEGRADED/CRITICAL]
+
+---
+
+### AGENT 状态 (权重 25%, 得分: [X]/100)
+- **当前模式**: [主动执行/等待输入/阻塞/错误]
+- **最近响应延迟**: [ms]
+- **代理数量**: [活跃/总数]
+- **状态分布**: 🟢[N] 🟡[N] 🟠[N] 🔴[N]
+
+### TASK 进度 (权重 30%, 得分: [X]/100)
+- **活跃任务数**: [N]
+- **完成率**: [X]%
+- **阻塞项**: [列出]
+- **延期任务**: [列出]
+- **最近完成**: [描述]
+
+### RESOURCE 消耗 (权重 20%, 得分: [X]/100)
+- **Token 使用率**: [X]%
+- **上下文窗口**: [已用/总量]
+- **本轮文件变更**: [N] 文件
+- **累计 API 成本**: [估算]
+
+### ERROR 状态 (权重 25%, 得分: [X]/100)
+- **本轮错误数**: [N]
+- **未解决错误**: [N]
+- **错误模式**: [重复类型 / 新类型]
+- **恢复率**: [X]%
+
+---
+
+### 建议操作
+
+| 优先级 | 维度 | 操作 | 阻塞新任务？ |
+|--------|------|------|-------------|
+| CRITICAL | [维度] | [具体操作] | 是 |
+| WARNING | [维度] | [具体操作] | 否 |
+| INFO | [维度] | [具体操作] | 否 |
+
+---
+
+### 趋势（如有历史记录）
+- [与上次相比的变化]
+```
+
+## 异常诊断协议
+
+当检测到 DEGRADED 或 CRITICAL 状态时，启动诊断：
+
+### AGENT 异常诊断
+
+1. **响应延迟**：检查是否过度并行调用、是否等待用户输入
+2. **无响应**：检查是否陷入无限循环、是否卡在长时间操作
+3. **频繁错误**：检查错误是否由代码变更引起、是否为环境问题
+
+### TASK 异常诊断
+
+1. **进度停滞**：检查是否有未标记的阻塞项、是否范围蔓延
+2. **频繁返工**：检查需求是否不清晰、测试是否不稳定
+3. **任务膨胀**：检查是否超出原始范围
+
+### RESOURCE 异常诊断
+
+1. **Token 过高**：建议启动 `$omc-conversation-continuity` 手交
+2. **文件变更过多**：检查是否超出任务范围、是否需要拆分子任务
+3. **API 成本异常**：检查是否有冗余调用
+
+### ERROR 异常诊断
+
+1. **重复错误**：检查修复是否未触及根因
+2. **新错误类型**：检查最近的代码变更
+3. **静默错误**：检查 try-catch 块和 Promise 处理
+
+## 与 OMX 系统的集成
+
+| 集成点 | 触发时机 | 操作 |
+|--------|----------|------|
+| `harness/progress.md` | 每次巡检结束 | 追加健康报告摘要 |
+| `harness/health-log.json` | 每次巡检结束 | 追加健康记录条目 |
+| `harness/feature_list.json` | TASK 维度异常时 | 更新阻塞项标记 |
+| `.omx/memory.md` | 状态变化时 | 写入 HEALTH_STATUS 条目 |
+| `.omx/notepad.md` | CRITICAL 状态时 | 更新 PRIORITY 区 |
+
+## 与其他技能的协作
+
+| 技能 | 关系 |
+|------|------|
+| `$omo-agent-router` | 健康报告可作为路由决策的输入 |
+| `$omc-conversation-continuity` | Token 过高时建议手交 |
+| `$systematic-debugging` | 错误异常时切换到调试流程 |
+| `$token-budget` | Token 过高时先尝试预算优化 |
+| `$verification-before-completion` | 健康检查可作为完成前验证的一部分 |
+| `$session-retro` | 健康趋势可作为复盘输入 |
+
+## 反模式 / 红牌
+
+| 反模式 | 严重性 | 说明 |
+|--------|--------|------|
+| 忽略 CRITICAL 信号 | **FATAL** | CRITICAL 状态必须立即响应 |
+| 健康报告无具体数字 | **FATAL** | 必须包含具体数值，不能只有主观判断 |
+| 不持久化健康记录 | **FATAL** | 健康报告必须写入 `harness/` |
+| 巡检频率过高 | **WARNING** | 至少间隔 5 个有效操作 |
+| 巡检频率过低 | **WARNING** | 超过 20 个操作未巡检视为失职 |
+| 诊断无根因分析 | **FATAL** | 异常诊断必须追查根因，不能只描述表象 |
+| 忽视趋势数据 | **WARNING** | 有历史数据时，需对比趋势而非只看单点 |
+
+## 健康日志格式 (`harness/health-log.json`)
+
+```json
+{
+  "entries": [
+    {
+      "timestamp": "2026-06-09T10:00:00+08:00",
+      "health_score": 85,
+      "level": "HEALTHY",
+      "dimensions": {
+        "agent": { "score": 90, "status": "HEALTHY" },
+        "task": { "score": 80, "status": "WARNING" },
+        "resource": { "score": 85, "status": "HEALTHY" },
+        "error": { "score": 85, "status": "HEALTHY" }
+      },
+      "blockers": [],
+      "warnings": ["task_progress_slight_delay"],
+      "diagnosis_results": []
+    }
+  ],
+  "trends": {
+    "last_7_scores": [85, 82, 80, 78, 83, 85, 85],
+    "trend_direction": "improving"
+  }
+}
+```
+
+---
+
+## 实现文件
+
+本技能包含以下可执行 PowerShell 脚本：
+
+| 文件 | 功能 | 独立运行？ |
+|------|------|-----------|
+| `monitor.ps1` | 主入口编排器，协调三模块 | ✅ |
+| `heartbeat.ps1` | 心跳采集器，四维快照+评分+持久化 | ✅ |
+| `degradation.ps1` | 降级检测器，四级策略+状态追踪+恢复检测 | ✅ |
+| `self-healing.ps1` | 自愈引擎，诊断+自动修复+技能推荐 | ✅ |
+
+### 快速调用
+
+```powershell
+# 主入口 — 推荐使用
+powershell -ExecutionPolicy Bypass -File ".trae\skills\omo-health-monitor\monitor.ps1" -Action check
+powershell -ExecutionPolicy Bypass -File ".trae\skills\omo-health-monitor\monitor.ps1" -Action full
+powershell -ExecutionPolicy Bypass -File ".trae\skills\omo-health-monitor\monitor.ps1" -Action full -AutoHeal
+powershell -ExecutionPolicy Bypass -File ".trae\skills\omo-health-monitor\monitor.ps1" -Action report
+
+# 独立模块调用
+powershell -ExecutionPolicy Bypass -File ".trae\skills\omo-health-monitor\heartbeat.ps1" -Action collect
+powershell -ExecutionPolicy Bypass -File ".trae\skills\omo-health-monitor\degradation.ps1" -Action check
+powershell -ExecutionPolicy Bypass -File ".trae\skills\omo-health-monitor\self-healing.ps1" -Action diagnose
+powershell -ExecutionPolicy Bypass -File ".trae\skills\omo-health-monitor\self-healing.ps1" -Action heal -AutoApply
+```
+
+### 数据流
+
+```
+monitor.ps1 (编排)
+  ├── heartbeat.ps1     → 读取 harness/*  → 写入 harness/health-log.json
+  ├── degradation.ps1   → 读取 health-log  → 写入 harness/degradation-state.json
+  └── self-healing.ps1  → 读取 health-log  → 写入 harness/heal-log.json
+```
+
+### 操作模式
+
+| Action | 心跳 | 降级检测 | 自愈 | 报告 |
+|--------|------|---------|------|------|
+| `check` | ✅ | ✅ | - | - |
+| `full` | ✅ | ✅ | ✅ (诊断) | ✅ |
+| `full -AutoHeal` | ✅ | ✅ | ✅ (修复) | ✅ |
+| `report` | - | - | - | ✅ |
+| `watch` | 持续 | 持续 | - | - |
+
+### 降级响应策略
+
+| 等级 | 分数 | 自动操作 | 阻塞新任务 |
+|------|------|---------|-----------|
+| HEALTHY | 90-100 | 正常执行 | 否 |
+| WARNING | 70-89 | 记录警告、建议 Token 优化 | 否 |
+| DEGRADED | 50-69 | 建议会话手交、检查错误模式 | 否 |
+| CRITICAL | 0-49 | 暂停新任务、强制手交、触发自愈 | 是 |
+
+### 自愈方案
+
+| 方案 ID | 维度 | 触发条件 | 自动修复 | 推荐技能 |
+|---------|------|---------|---------|---------|
+| heal-token-high | resource | Token 分 < 50 | ✅ 建议手交 | `$token-budget`, `$omc-conversation-continuity` |
+| heal-error-repeat | error | 有未解决错误 + 分数 < 70 | ❌ | `$systematic-debugging`, `$code-review` |
+| heal-agent-idle | agent | 代理分数 < 60 | ✅ 标记空闲 | `$session-retro` |
+| heal-task-stall | task | 任务分数 < 30 | ❌ | `$planner`, `$writing-plans` |
+| heal-file-churn | resource | 文件变更 > 30 | ❌ | `$code-review` |
+
+---
+
+## 版本
+
+**当前版本:** 1.0.0
+**最后更新:** 2026-06-09
+**实现状态:** ✅ 完整实现（heartbeat + degradation + self-healing + orchestrator）
+**脚本文件:** monitor.ps1, heartbeat.ps1, degradation.ps1, self-healing.ps1
+**状态文件:** harness/health-log.json, harness/degradation-state.json, harness/heal-log.json
+**依赖技能:** `$omo-agent-router`（建议）、`$omc-conversation-continuity`

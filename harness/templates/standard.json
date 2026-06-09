@@ -1,0 +1,214 @@
+{
+  "_说明": "标准工作流模板。激活时复制到 workflow-state.json 的 active_workflow 字段中，逐阶段填写。",
+  "metadata": {
+    "template_version": "1.0.0",
+    "workflow_type": "standard",
+    "workflow_name": "标准工作流",
+    "description": "常规单任务的标准开发流程，适用于单文件修改、Bug 修复、小功能开发。",
+    "phase_sequence": "INTAKE → RESEARCH → PLAN → EXECUTE → REVIEW → VERIFY → HANDOFF"
+  },
+  "context": {
+    "task_id": "",
+    "task_title": "",
+    "feature_id": "",
+    "started_at": "",
+    "completed_at": "",
+    "scope": {
+      "what_to_do": "",
+      "what_not_to_do": "",
+      "affected_files": []
+    },
+    "acceptance_criteria": [],
+    "risks": [],
+    "constraints": []
+  },
+  "phases": [
+    {
+      "id": "intake",
+      "name": "INTAKE",
+      "index": 1,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-STD-01",
+      "artifacts": []
+    },
+    {
+      "id": "research",
+      "name": "RESEARCH",
+      "index": 2,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-STD-02",
+      "artifacts": []
+    },
+    {
+      "id": "plan",
+      "name": "PLAN",
+      "index": 3,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-STD-03",
+      "artifacts": []
+    },
+    {
+      "id": "execute",
+      "name": "EXECUTE",
+      "index": 4,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-STD-04",
+      "artifacts": []
+    },
+    {
+      "id": "review",
+      "name": "REVIEW",
+      "index": 5,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-STD-05",
+      "artifacts": []
+    },
+    {
+      "id": "verify",
+      "name": "VERIFY",
+      "index": 6,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-STD-06",
+      "artifacts": []
+    },
+    {
+      "id": "handoff",
+      "name": "HANDOFF",
+      "index": 7,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-STD-07",
+      "artifacts": []
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "G-STD-01",
+      "transition": "INTAKE → RESEARCH",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-STD-01.1", "label": "用户目标已明确记录", "severity": "必须", "passed": null},
+        {"id": "G-STD-01.2", "label": "任务范围已界定（做什么、不做什么）", "severity": "必须", "passed": null},
+        {"id": "G-STD-01.3", "label": "验收标准已定义（至少 1 条）", "severity": "必须", "passed": null},
+        {"id": "G-STD-01.4", "label": "风险点已初步识别", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-STD-02",
+      "transition": "RESEARCH → PLAN",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-STD-02.1", "label": "相关代码文件已定位", "severity": "必须", "passed": null},
+        {"id": "G-STD-02.2", "label": "外部依赖（SDK/API/框架）用法已确认", "severity": "必须", "passed": null},
+        {"id": "G-STD-02.3", "label": "项目中已有类似模式的实现已理解", "severity": "建议", "passed": null},
+        {"id": "G-STD-02.4", "label": "已知限制和约束已记录", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-STD-03",
+      "transition": "PLAN → EXECUTE",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-STD-03.1", "label": "任务已拆分为可执行的子步骤", "severity": "必须", "passed": null},
+        {"id": "G-STD-03.2", "label": "每个步骤有明确的完成定义", "severity": "必须", "passed": null},
+        {"id": "G-STD-03.3", "label": "文件变更范围已预估", "severity": "必须", "passed": null},
+        {"id": "G-STD-03.4", "label": "测试策略已确定", "severity": "必须", "passed": null},
+        {"id": "G-STD-03.5", "label": "依赖关系已排序", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-STD-04",
+      "transition": "EXECUTE → REVIEW",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-STD-04.1", "label": "所有计划步骤已执行", "severity": "必须", "passed": null},
+        {"id": "G-STD-04.2", "label": "代码已保存且无语法错误", "severity": "必须", "passed": null},
+        {"id": "G-STD-04.3", "label": "无遗留的 TODO/FIXME", "severity": "建议", "passed": null},
+        {"id": "G-STD-04.4", "label": "无硬编码密钥", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-STD-05",
+      "transition": "REVIEW → VERIFY",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-STD-05.1", "label": "代码审查已完成且无阻塞问题", "severity": "必须", "passed": null},
+        {"id": "G-STD-05.2", "label": "安全问题已审查", "severity": "必须", "passed": null},
+        {"id": "G-STD-05.3", "label": "代码风格符合项目规范（Lint 0 错误）", "severity": "必须", "passed": null},
+        {"id": "G-STD-05.4", "label": "设计审查通过（如适用）", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-STD-06",
+      "transition": "VERIFY → HANDOFF",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-STD-06.1", "label": "所有测试通过", "severity": "必须", "passed": null},
+        {"id": "G-STD-06.2", "label": "类型检查通过", "severity": "必须", "passed": null},
+        {"id": "G-STD-06.3", "label": "Lint 检查通过", "severity": "必须", "passed": null},
+        {"id": "G-STD-06.4", "label": "构建成功（如适用）", "severity": "必须", "passed": null},
+        {"id": "G-STD-06.5", "label": "验收标准已满足", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-STD-07",
+      "transition": "HANDOFF → 完成",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-STD-07.1", "label": "workflow-state.json 已重置为 null active_workflow", "severity": "必须", "passed": null},
+        {"id": "G-STD-07.2", "label": "feature_list.json 状态和证据已更新", "severity": "必须", "passed": null},
+        {"id": "G-STD-07.3", "label": "progress.md 已完成内容已更新", "severity": "必须", "passed": null},
+        {"id": "G-STD-07.4", "label": "session-handoff.md 已更新", "severity": "必须", "passed": null},
+        {"id": "G-STD-07.5", "label": "完成声明已发出", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    }
+  ],
+  "evidence_log": [],
+  "_使用说明": {
+    "激活": "将此模板的内容复制到 workflow-state.json 的 active_workflow 下，填写 context 字段后开始执行。",
+    "阶段切换": "当前阶段完成时，将其 status 改为 'completed'，填写 completed_at；将下一阶段 status 改为 'in_progress'。",
+    "门禁检查": "阶段切换前，找到对应 exit_gate，逐项检查 conditions 并填写 passed（true/false），全部必须项 passed=true 后填写 result='PASS'。",
+    "证据记录": "每次门禁检查和验证完成后，在 evidence_log 中追加一条记录，包含 gate_id、result、timestamp、verifier、details。"
+  }
+}

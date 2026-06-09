@@ -1,0 +1,248 @@
+{
+  "_说明": "产品/创业流模板。激活时复制到 workflow-state.json 的 active_workflow 字段中，逐阶段填写。",
+  "metadata": {
+    "template_version": "1.0.0",
+    "workflow_type": "product",
+    "workflow_name": "产品/创业流",
+    "description": "从想法到交付的完整产品流程，适用于新产品开发、重大功能设计、MVP 验证。",
+    "phase_sequence": "OFFICE_HOURS → CEO_REVIEW → ENG_REVIEW → DESIGN_REVIEW → BUILD → QA → SHIP → RETRO"
+  },
+  "context": {
+    "product_id": "",
+    "product_name": "",
+    "feature_id": "",
+    "started_at": "",
+    "completed_at": "",
+    "problem_statement": "",
+    "value_proposition": "",
+    "target_users": []
+  },
+  "mvp": {
+    "scope": [],
+    "out_of_scope": [],
+    "success_metrics": {
+      "quantifiable_indicators": [],
+      "target_values": {}
+    }
+  },
+  "phases": [
+    {
+      "id": "office_hours",
+      "name": "OFFICE_HOURS",
+      "index": 1,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-PRD-01",
+      "artifacts": []
+    },
+    {
+      "id": "ceo_review",
+      "name": "CEO_REVIEW",
+      "index": 2,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-PRD-02",
+      "artifacts": []
+    },
+    {
+      "id": "eng_review",
+      "name": "ENG_REVIEW",
+      "index": 3,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-PRD-03",
+      "artifacts": []
+    },
+    {
+      "id": "design_review",
+      "name": "DESIGN_REVIEW",
+      "index": 4,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-PRD-04",
+      "artifacts": []
+    },
+    {
+      "id": "build",
+      "name": "BUILD",
+      "index": 5,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-PRD-05",
+      "artifacts": []
+    },
+    {
+      "id": "qa",
+      "name": "QA",
+      "index": 6,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-PRD-06",
+      "artifacts": []
+    },
+    {
+      "id": "ship",
+      "name": "SHIP",
+      "index": 7,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-PRD-07",
+      "artifacts": []
+    },
+    {
+      "id": "retro",
+      "name": "RETRO",
+      "index": 8,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-PRD-08",
+      "artifacts": []
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "G-PRD-01",
+      "transition": "OFFICE_HOURS → CEO_REVIEW",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-PRD-01.1", "label": "问题定义清晰（解决谁的什么问题）", "severity": "必须", "passed": null},
+        {"id": "G-PRD-01.2", "label": "目标用户画像已定义", "severity": "必须", "passed": null},
+        {"id": "G-PRD-01.3", "label": "价值主张已说明", "severity": "必须", "passed": null},
+        {"id": "G-PRD-01.4", "label": "市场/竞品简要分析", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-PRD-02",
+      "transition": "CEO_REVIEW → ENG_REVIEW",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-PRD-02.1", "label": "商业可行性已确认", "severity": "必须", "passed": null},
+        {"id": "G-PRD-02.2", "label": "MVP 范围已切分", "severity": "必须", "passed": null},
+        {"id": "G-PRD-02.3", "label": "成功指标已定义", "severity": "必须", "passed": null},
+        {"id": "G-PRD-02.4", "label": "时间与成本粗略估算", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-PRD-03",
+      "transition": "ENG_REVIEW → DESIGN_REVIEW",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-PRD-03.1", "label": "技术可行性已确认", "severity": "必须", "passed": null},
+        {"id": "G-PRD-03.2", "label": "技术选型已决策", "severity": "必须", "passed": null},
+        {"id": "G-PRD-03.3", "label": "系统边界和接口已定义", "severity": "必须", "passed": null},
+        {"id": "G-PRD-03.4", "label": "技术风险评估已完成", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-PRD-04",
+      "transition": "DESIGN_REVIEW → BUILD",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-PRD-04.1", "label": "UI/UX 设计审查通过", "severity": "必须", "passed": null},
+        {"id": "G-PRD-04.2", "label": "信息架构已确认", "severity": "必须", "passed": null},
+        {"id": "G-PRD-04.3", "label": "交互设计已定义", "severity": "必须", "passed": null},
+        {"id": "G-PRD-04.4", "label": "设计系统对齐", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-PRD-05",
+      "transition": "BUILD → QA",
+      "reference": "等同于 G-STD-04（EXECUTE → REVIEW）",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-PRD-05.1", "label": "所有计划步骤已执行", "severity": "必须", "passed": null},
+        {"id": "G-PRD-05.2", "label": "代码已保存且无语法错误", "severity": "必须", "passed": null},
+        {"id": "G-PRD-05.3", "label": "无遗留的 TODO/FIXME", "severity": "建议", "passed": null},
+        {"id": "G-PRD-05.4", "label": "无硬编码密钥", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-PRD-06",
+      "transition": "QA → SHIP",
+      "reference": "等同于 G-CPX-04（QA_SECURITY_REVIEW → RELEASE_HANDOFF）",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-PRD-06.1", "label": "全面 QA 测试通过（功能 + 回归 + 边界）", "severity": "必须", "passed": null},
+        {"id": "G-PRD-06.2", "label": "全面安全审查通过（无 CRITICAL/HIGH 问题）", "severity": "必须", "passed": null},
+        {"id": "G-PRD-06.3", "label": "性能基准无退化", "severity": "建议", "passed": null},
+        {"id": "G-PRD-06.4", "label": "文档已全面更新", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-PRD-07",
+      "transition": "SHIP → RETRO",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-PRD-07.1", "label": "功能已成功部署/发布", "severity": "必须", "passed": null},
+        {"id": "G-PRD-07.2", "label": "监控无异常告警（观察期）", "severity": "建议", "passed": null},
+        {"id": "G-PRD-07.3", "label": "用户反馈已收集（如适用）", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-PRD-08",
+      "transition": "RETRO → 完成",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-PRD-08.1", "label": "回顾总结已完成", "severity": "必须", "passed": null},
+        {"id": "G-PRD-08.2", "label": "经验教训已记录", "severity": "必须", "passed": null},
+        {"id": "G-PRD-08.3", "label": "后续行动项已列出", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    }
+  ],
+  "retrospective": {
+    "what_went_well": [],
+    "what_to_improve": [],
+    "lessons_learned": [],
+    "next_actions": []
+  },
+  "evidence_log": [],
+  "_使用说明": {
+    "激活": "将此模板的内容复制到 workflow-state.json 的 active_workflow 下，填写 context 字段后开始执行。",
+    "Office Hours": "OFFICE_HOURS 阶段使用 6 个强制性问题挑战产品想法，评估可行性。填写 product_id、problem_statement、value_proposition 和 target_users。",
+    "MVP 切分": "CEO_REVIEW 阶段确定 MVP 范围，填写 mvp.scope 和 mvp.out_of_scope，定义可量化的 success_metrics。",
+    "门禁引用": "G-PRD-05 引用 G-STD-04 的条件，G-PRD-06 引用 G-CPX-04 的条件。检查时对照原始定义。",
+    "阶段切换": "当前阶段完成时，将其 status 改为 'completed'，填写 completed_at；将下一阶段 status 改为 'in_progress'。",
+    "回顾总结": "RETRO 阶段填写 retrospective 字段：什么做得好、什么可改进、经验教训、后续行动。",
+    "证据记录": "每次门禁检查和验证完成后，在 evidence_log 中追加一条记录，包含 gate_id、result、timestamp、verifier、details。"
+  }
+}

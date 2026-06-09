@@ -1,0 +1,68 @@
+{
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Harness 基础架构",
+      "description": "搭建完整的五子系统 harness：Instructions（指令系统）、State（状态管理）、Verification（验证体系）、Scope（范围控制）、Lifecycle（生命周期管理）",
+      "dependencies": [],
+      "status": "done",
+      "evidence": "所有 harness 文件已创建并验证：feature_list.json、progress.md、session-handoff.md、init.ps1、clean-state-checklist.md"
+    },
+    {
+      "id": "feat-002",
+      "name": "技能底座",
+      "description": "基于 superpowers / gstack / andrej-karpathy-skills / Anthropics 最佳实践构建可复用技能库，覆盖 brainstorming、tdd、review、security-review、debug、refactor、test、docs、explore、research、deploy 等工作流",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "30+ 技能 SKILL.md 文件已创建，每个技能包含触发条件、操作流程、输入要求、输出规范、验证标准和使用样例"
+    },
+    {
+      "id": "feat-003",
+      "name": "代理角色体系",
+      "description": "构建完整的多层代理角色定义体系：规划层（orchestrator、planner、architect、critic）、执行层（explore、researcher、executor、debugger）、质量层（test-engineer、verifier、code-reviewer、security-reviewer）、产品层（designer、qa-tester、writer）",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "所有代理角色提示词文件已创建，遵循 YAML frontmatter + 内容规范，职责边界明确"
+    },
+    {
+      "id": "feat-004",
+      "name": "命中缓存与省 Token 底架",
+      "description": "基于 caveman / rtk / headroom / reasonix 方法论构建缓存策略：上下文压缩、会话恢复、重复计算缓存、路由决策缓存、agent-as-tool 复用",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "skills/caveman-token-compress 技能已创建；系统级 Token 优化技能（rtk-strategy、headroom-strategy、reasonix-cache、token-budget、conversation-continuity）已就绪；会话压缩与恢复策略已集成到 session-handoff.md"
+    },
+    {
+      "id": "feat-005",
+      "name": "规则与约束体系",
+      "description": "基于 ECC（Enterprise Coding Conventions）构建分层规则系统：通用规则（RULES.md）+ 语言特定规则 + 安全规则 + 代理/技能格式规范 + 提交风格规范",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "RULES.md 包含 10 条必须遵守规则、10 条禁止事项、代理格式规范、技能格式规范、提交风格规范；AGENTS.md 包含 14 条核心操作原则和 Prompt Defense Baseline"
+    },
+    {
+      "id": "feat-006",
+      "name": "安全防御体系",
+      "description": "构建纵深防御安全体系：Prompt Defense Baseline（6 条不可协商规则）、SECURITY.md 安全策略、密钥处理指南、外部内容安全护栏、三不原则（不信任、不泄露、不越权）、安全开发检查清单、漏洞报告流程",
+      "dependencies": ["feat-005"],
+      "status": "done",
+      "evidence": "SECURITY.md + Prompt Defense Baseline 已部署；安全规则覆盖凭证防护、注入防御、破坏性操作确认、外部内容隔离"
+    },
+    {
+      "id": "feat-007",
+      "name": "工作流状态与门禁系统",
+      "description": "在 harness/ 目录下创建 workflow-state.json（工作流状态追踪器）和 workflow-gates.md（质量门禁定义），覆盖四种工作流（标准/复杂/产品/TDD）的完整阶段转换门禁，与 AGENTS.md 的工作流定义和 clean-state-checklist.md 的检查清单形成互补",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "workflow-state.json: 4 种工作流定义 + 阶段门禁状态记录结构 + 验证日志; workflow-gates.md: 30+ 条门禁定义覆盖所有 4 种工作流 + 门禁失败处理协议 + 快速参考速查表"
+    },
+    {
+      "id": "feat-008",
+      "name": "历史交接归档机制",
+      "description": "在 harness/archive/ 目录下创建历史交接归档引擎（store.ps1），支持对 harness/ 状态文件进行时间点快照归档、列出、查看详情、还原、比较、验证完整性和清理过期归档。归档索引（index.json）追踪所有归档记录。init.ps1 集成归档目录完整性检查。session-handoff.md 集成归档操作引用。",
+      "dependencies": ["feat-001", "feat-007"],
+      "status": "done",
+      "evidence": "store.ps1: 8 种操作（new/list/info/restore/remove/compare/verify/cleanup）+ 安全还原（DryRun/BackupFirst）+ 完整性验证; index.json: 归档索引追踪; init.ps1: 集成 archive/ 目录检查; session-handoff.md: 归档操作引用"
+    }
+  ]
+}

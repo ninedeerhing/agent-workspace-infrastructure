@@ -1,0 +1,27 @@
+{
+  "name": "design-architecture",
+  "version": "1.0.0",
+  "description": "前端设计底层架构 — 融合 Open Design / CopilotKit / Taste Skill / Awesome DESIGN.md / Anime.js / Impeccable 的六层设计系统",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "design-system",
+    "design-tokens",
+    "animation",
+    "copilot",
+    "ai-design",
+    "anti-slop"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "animejs": "^4.4.0"
+  }
+}

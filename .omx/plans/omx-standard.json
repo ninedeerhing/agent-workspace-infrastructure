@@ -1,0 +1,245 @@
+{
+  "_schema": "omx-plan/1.0.0",
+  "_description": "OMX 标准开发工作流模板。适用于单文件修改、Bug 修复、小功能开发。激活时复制到 .omx/plans/active/ 下填写。",
+  "metadata": {
+    "plan_id": "",
+    "plan_title": "",
+    "plan_type": "standard",
+    "plan_name": "OMX 标准工作流",
+    "description": "INTAKE → RESEARCH → PLAN → EXECUTE → REVIEW → VERIFY → HANDOFF 七阶段标准开发流程",
+    "created_at": "",
+    "completed_at": "",
+    "omx_version": "1.0.0"
+  },
+  "context": {
+    "task_id": "",
+    "task_title": "",
+    "feature_id": "",
+    "scope": {
+      "what_to_do": "",
+      "what_not_to_do": "",
+      "affected_files": []
+    },
+    "acceptance_criteria": [],
+    "risks": [],
+    "constraints": []
+  },
+  "phases": [
+    {
+      "id": "intake",
+      "name": "INTAKE",
+      "index": 1,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-STD-01",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["techStack", "build", "conventions"],
+        "write_on_exit": false
+      }
+    },
+    {
+      "id": "research",
+      "name": "RESEARCH",
+      "index": 2,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-STD-02",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["all"],
+        "write_on_exit": true,
+        "write_categories": ["NOTE", "TECH_STACK"]
+      }
+    },
+    {
+      "id": "plan",
+      "name": "PLAN",
+      "index": 3,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-STD-03",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["build", "conventions", "structure"],
+        "write_on_exit": false
+      }
+    },
+    {
+      "id": "execute",
+      "name": "EXECUTE",
+      "index": 4,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-STD-04",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["build", "conventions"],
+        "write_on_exit": false
+      }
+    },
+    {
+      "id": "review",
+      "name": "REVIEW",
+      "index": 5,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-STD-05",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["conventions", "notes"],
+        "write_on_exit": true,
+        "write_categories": ["NOTE"]
+      }
+    },
+    {
+      "id": "verify",
+      "name": "VERIFY",
+      "index": 6,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-STD-06",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["build"],
+        "write_on_exit": false
+      }
+    },
+    {
+      "id": "handoff",
+      "name": "HANDOFF",
+      "index": 7,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-STD-07",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["all"],
+        "write_on_exit": true,
+        "write_categories": ["NOTE", "DECISION"]
+      }
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "G-OMX-STD-01",
+      "transition": "INTAKE → RESEARCH",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-STD-01.1", "label": "用户目标已明确记录", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-01.2", "label": "任务范围已界定（做什么、不做什么）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-01.3", "label": "验收标准已定义（至少 1 条）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-01.4", "label": "OMX 项目记忆已加载（techStack、build、conventions）", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-STD-02",
+      "transition": "RESEARCH → PLAN",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-STD-02.1", "label": "相关代码文件已定位（绝对路径）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-02.2", "label": "外部依赖用法已确认（官方文档/源码证据）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-02.3", "label": "已有类似模式已理解", "severity": "建议", "passed": null},
+        {"id": "G-OMX-STD-02.4", "label": "研究发现已写入 OMX 记忆（NOTE + TECH_STACK）", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-STD-03",
+      "transition": "PLAN → EXECUTE",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-STD-03.1", "label": "任务已拆分为可执行的子步骤", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-03.2", "label": "每个步骤有明确的完成定义", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-03.3", "label": "文件变更范围已预估", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-03.4", "label": "测试策略已确定", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-STD-04",
+      "transition": "EXECUTE → REVIEW",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-STD-04.1", "label": "所有计划步骤已执行", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-04.2", "label": "代码已保存且无语法错误", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-04.3", "label": "无硬编码密钥/凭证", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-04.4", "label": "无遗留的 TODO/FIXME", "severity": "建议", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-STD-05",
+      "transition": "REVIEW → VERIFY",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-STD-05.1", "label": "代码审查已完成且无阻塞问题", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-05.2", "label": "安全问题已审查（无 CRITICAL）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-05.3", "label": "代码风格符合项目规范（Lint 0 错误）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-05.4", "label": "审查发现已写入 OMX 记忆", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-STD-06",
+      "transition": "VERIFY → HANDOFF",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-STD-06.1", "label": "所有测试通过", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-06.2", "label": "类型检查通过", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-06.3", "label": "Lint 检查通过", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-06.4", "label": "构建成功（如适用）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-06.5", "label": "验收标准已满足", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-STD-07",
+      "transition": "HANDOFF → 完成",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-STD-07.1", "label": "计划状态已更新为 completed", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-07.2", "label": "OMX 项目记忆已更新（NOTE + DECISION）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-STD-07.3", "label": "完成声明已发出（含验证证据）", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    }
+  ],
+  "evidence_log": [],
+  "_使用说明": {
+    "激活": "复制此文件到 .omx/plans/active/<plan_id>.json，填写 context 和 metadata 字段后开始执行。",
+    "阶段切换": "当前阶段完成时将其 status 改为 'completed'，填写 completed_at；将下一阶段 status 改为 'in_progress'。",
+    "门禁检查": "阶段切换前逐项检查 exit_gate.conditions，全部必须条件 passed=true 后填写 result='PASS'。",
+    "证据记录": "每次门禁通过后在 evidence_log 中追加 {gate_id, result, timestamp, verifier, details}。",
+    "OMX 记忆": "每阶段通过 omx_memory_context 声明需要加载和写入的记忆分区。遵循 .omx/memory.md 的读写规范。"
+  }
+}
