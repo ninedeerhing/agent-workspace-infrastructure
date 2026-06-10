@@ -1,0 +1,109 @@
+AWI IMPORT FLOW v1.0.0
+===============================================
+
+                         START
+
+                   Is target directory
+                   empty or new project?
+                    /                  \
+                   / YES                \ NO
+                  /                      \
+                 v                        v
+    ┌─────────────────────┐    ┌───────────────────────┐
+    │  INITIAL PROJECT     │    │  EXISTING PROJECT      │
+    │  IMPORT FLOW         │    │  IMPORT FLOW            │
+    └─────────────────────┘    └───────────────────────┘
+              │                            │
+              │                            │  Step 1: Audit (read-only)
+              │                            │  .\bootstrap.ps1 -Mode audit
+              │                            │
+              v                            │  Scans: project features,
+    ┌─────────────────────┐               │  file conflicts, compatibility
+    │  -Mode full          │               │  score. Zero files modified.
+    │  (auto-selected)     │               │
+    └─────────────────────┘               │
+              │                            │
+              │ Deploys everything:         │  ┌────────────────────┐
+              │  - agents/ (18 roles)       │  │  COMPATIBILITY     │
+              │  - skills/ (46 skills)      │  │  SCORE REPORT      │
+              │  - harness/ (state mgmt)    │  └────────────────────┘
+              │  - .omx/ (memory system)    │           │
+              │  - docs/ (ADR + guides)     │           │
+              │  - rules/common/            │           │  User chooses:
+              │                             │           │
+              │                             │    80%+    40-79%    0-39%
+              │                             │     │       │         │
+              │  ┌───────────────────────┐  │     v       v         v
+              │  │  After import:        │  │  MINIMUM  MINIMUM    FULL
+              │  │  1. Open AI tool      │  │  +        +          +
+              │  │  2. "Load workspace,  │  │  AUDIT     WARN      FORCE
+              │  │     tell me status"   │  │
+              │  │  3. Start coding      │  │
+              │  └───────────────────────┘  │
+              │                             │
+              v                             v
+    ┌─────────────┐               ┌─────────────────────────────────────┐
+    │    FULL     │               │              MINIMUM                 │
+    │    MODE     │               │              MODE                    │
+    └─────────────┘               └─────────────────────────────────────┘
+                                              │
+                                              │  Adds only (never overwrites):
+                                              │  - CONSTITUTION.md
+                                              │  - AGENTS.md / AGENTS-lite.md
+                                              │  - SOUL.md / RULES.md
+                                              │  - SECURITY.md / SECURITY-ZONES.md
+                                              │  - harness/ (init + audit + gates)
+                                              │  - .omx/ (memory + search)
+                                              │  - docs/ (guides + specs)
+                                              │  - .gitignore (augmented, not replaced)
+                                              │
+                                              │  Your existing code: UNTOUCHED
+                                              │  Your package.json:  UNTOUCHED
+                                              │  Your src/:          UNTOUCHED
+                                              │
+                                              v
+                                   ┌─────────────────────────────────┐
+                                   │  After minimum import:            │
+                                   │  1. Your code is unchanged        │
+                                   │  2. Agent gets AWI governance     │
+                                   │  3. Agent reads your codebase     │
+                                   │  4. Agent starts helping with      │
+                                   │     planning, reviews, debugging   │
+                                   └─────────────────────────────────┘
+
+
+===============================================
+THREE MODES SUMMARY
+===============================================
+
+  MODE      | COMMAND                        | MODIFIES FILES?
+  ----------|--------------------------------|-----------------
+  audit     | .\bootstrap.ps1 -Mode audit    | NO (read-only scan)
+  minimum   | .\bootstrap.ps1 -Mode minimum  | ADD only (never overwrite)
+  full      | .\bootstrap.ps1 -Mode full     | YES (deploy all framework files)
+
+
+===============================================
+AUTO-DETECTION LOGIC (no -Mode specified)
+===============================================
+
+  Target directory empty? ──YES──> auto-select: full mode
+                                
+  Target has existing files? ──> run audit ──> auto-select: minimum mode
+
+  Result: you never accidentally overwrite your project.
+
+
+===============================================
+EXAMPLE COMMANDS
+===============================================
+
+  New project:
+    .\bootstrap.ps1 -TargetPath "D:\my-new-app" -ProjectName "MyApp"
+
+  Existing project (audit first):
+    .\bootstrap.ps1 -TargetPath "D:\my-existing-app" -Mode audit
+    .\bootstrap.ps1 -TargetPath "D:\my-existing-app" -ProjectName "MyApp" -Mode minimum
+
+  Existing project (full install):
+    .\bootstrap.ps1 -TargetPath "D:\my-existing-app" -ProjectName "MyApp" -Mode full -Force

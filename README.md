@@ -70,6 +70,8 @@ your-project/
 
 The agent can then participate in your ongoing development — it reads your existing code, learns its structure, and starts helping with planning, implementation, and review using AWI's governance layer.
 
+> Full import flow diagram: see [IMPORT-FLOW.txt](IMPORT-FLOW.txt)
+
 ---
 
 ## Architecture Overview
