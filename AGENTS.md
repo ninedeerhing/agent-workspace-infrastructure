@@ -7,7 +7,7 @@
 
 # AWI — 代理指令主入口
 
-这是 **AWI** 的顶层操作契约，一个基于 Harness Engineering 方法论的 AI 工程工作区。本文件是所有代理、技能和工具的最高指令来源。角色提示词、技能文件和子代理必须遵循本文件，而非覆盖本文件。
+这是 **AWI** 的顶层操作契约，一个基于 Harness Engineering 方法论 + Loop Engineering 自动化循环的 AI 工程工作区。本文件是所有代理、技能和工具的最高指令来源。角色提示词、技能文件和子代理必须遵循本文件，而非覆盖本文件。
 
 **版本:** 1.0.0
 
@@ -23,7 +23,7 @@
 - 用 `skills/` 承载可复用工作流。
 - 用 `docs/` 承载调研、架构、决策和长期知识。
 
-**核心方法论文本**: 结果优先 → 技能优先 → 证据驱动 → TDD 强制 → 安全内建。
+**核心方法论文本**: 结果优先 → 技能优先 → 证据驱动 → TDD 强制 → 安全内建 → Loop Engineering（Automations + Sub-Agents + Verification）。
 
 ---
 
@@ -161,7 +161,7 @@ Brainstorming → Writing Plans → TDD (Red → Green → Refactor) → Code Re
 | `$dispatching-parallel-agents` | 多个互不依赖的独立任务 | 并行代理分派 |
 | `$executing-plans` | 有实现计划但无子代理环境 | 按计划逐步手工执行实现 |
 | `$finishing-dev-branch` | 功能实现完毕、测试通过 | 决定开发分支处理策略 |
-| `git-publish` | 需要提交变更、推送到 GitHub、发布新版本 | 自动变更检测 + Conventional Commits + push |
+| `$git-publish` | 需要提交变更、推送到 GitHub、发布新版本 | 自动变更检测 + Conventional Commits + push |
 | `$github-research` | 需要调研 GitHub 项目、发现新工具、探索技术趋势 | 三模式项目调研（精确/模糊/Trending）+ 对比分析 |
 | `$karpathy-guidelines` | 写代码、审查代码、重构代码 | 减少常见 LLM 编码错误 |
 | `$office-hours` | 产品/创业想法需评估可行性 | YC Office Hours 6 问模式 |
@@ -179,6 +179,7 @@ Brainstorming → Writing Plans → TDD (Red → Green → Refactor) → Code Re
 | `$release-omc` | 自动化发布工作流 | 发布、打 tag、推送 |
 | `$requesting-code-review` | 完成任务/功能实现 | 请求客观的代码质量评估 |
 | `$sciomc` | 需并行科学研究、多维度分析 | 多 scientist 代理并行调查 |
+| `$schedule` | 需要配置周期性自动化任务、无人值守循环 | 读取 harness/schedule.json 输出到期任务列表 |
 | `$security-review` | 安全敏感代码、提交前 | 首席安全官视角安全审查 |
 | `$session-retro` | 会话即将结束、一组任务完成、需要回顾总结 | 自动提取可复用模式、记录经验教训、更新学习记录 |
 | `$ship-release` | 代码已就绪需标准化发布 | 发布工程师视角的发布流程 |
@@ -319,9 +320,9 @@ SECURITY.md        — 安全策略文件
 SECURITY-ZONES.md  — 运行时安全区定义
 agents/            — 专业代理角色定义
 skills/            — 可复用工作流技能
-harness/           — 任务状态与交接记录
+harness/           — 任务状态、交接记录、定时调度
 docs/              — 调研、架构、决策记录
-.trae/rules/       — Trae IDE 专用规则
+注：.trae/ 目录用于 Trae IDE 本地技能注册，不包含在仓库中。导入后运行 bootstrap.ps1 可重新生成。
 ```
 
 ---

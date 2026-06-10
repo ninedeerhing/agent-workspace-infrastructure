@@ -107,3 +107,32 @@ EXAMPLE COMMANDS
 
   Existing project (full install):
     .\bootstrap.ps1 -TargetPath "D:\my-existing-app" -ProjectName "MyApp" -Mode full -Force
+
+
+===============================================
+LOOP ENGINEERING — SCHEDULE ENGINE
+===============================================
+
+  After import, AWI includes a cron-based schedule engine:
+
+  View due tasks:
+    .\harness\schedule.ps1
+    → Outputs JSON array of tasks due now
+
+  Configure tasks:
+    Edit harness\schedule.json
+    Standard 5-field cron (minute hour dom month dow)
+
+  Default tasks (4):
+    daily-health-check      — Every weekday 9am
+    weekly-curator-cycle    — Every Monday 10am
+    session-retro-trigger   — Every weekday 6pm (disabled by default)
+    weekly-progress-summary — Every Friday 4pm
+
+  Mark task as run:
+    .\harness\schedule.ps1 -MarkRun "daily-health-check"
+
+  Integration:
+    - GitHub Actions: run schedule.ps1 on cron trigger
+    - Agent automations: agent reads JSON output, invokes skills
+    - Manual: run schedule.ps1 anytime to see what's due

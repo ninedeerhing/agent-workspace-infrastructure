@@ -141,6 +141,8 @@ my-project/
 │   ├── workflow-state.json   #   4 workflow state machines
 │   ├── workflow-gates.md     #   28 stage quality gates
 │   ├── grader-types.md       #   5 grader types + 25 check items + pass@k
+│   ├── schedule.json         #   Recurring task definitions (Loop Engineering automations)
+│   ├── schedule.ps1          #   Cron-based task dispatcher
 │   ├── clean-state-checklist.md  # Session start/end/feature-complete three-tier checklists
 │   ├── ci-cd-template.yml    #   GitHub Actions 6-stage pipeline
 │   ├── audit.ps1             #   Compatibility audit for existing projects
@@ -252,6 +254,20 @@ skillify               →  experience → reusable skill
 capability-accumulation  →  six-layer capability growth framework
 growth-engineer        →  7-day curation cycle + capability metrics
 ```
+
+### 🔁 Loop Engineering — Agentic Automations
+
+AWI implements all five building blocks of the Loop Engineering methodology (June 2026):
+
+```
+Automations  →  harness/schedule.json + schedule.ps1 (cron-based recurring dispatch)
+Worktrees    →  $using-git-worktrees + subagent-driven-dev (isolated parallel agents)
+Skills       →  46 skills with SKILL.md (stop re-explaining your project)
+Sub-Agents   →  18-agent 5-layer hierarchy (maker/checker separation)
+Verification →  28 quality gates + 5 grader types + pass@k + TDD loop
+```
+
+Schedule engine (`harness/schedule.ps1`) reads task definitions from `harness/schedule.json`, determines which tasks are due via cron matching, and outputs them for the agent to execute. Four default tasks: daily health check, weekly curator cycle, post-session retro, weekly progress summary.
 
 ---
 

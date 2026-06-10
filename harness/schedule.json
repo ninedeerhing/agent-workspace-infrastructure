@@ -1,0 +1,52 @@
+{
+  "version": "1.0.0",
+  "tasks": [
+    {
+      "id": "daily-health-check",
+      "name": "Daily Health Check",
+      "description": "Run omo-health-monitor heartbeat, check for degraded agents, log status",
+      "skill_to_invoke": "omo-health-monitor",
+      "prompt": "Run health check: scan harness/progress.md for stalled tasks, check harness/feature_list.json for stuck features, report any anomalies.",
+      "cron": "0 9 * * 1-5",
+      "max_duration_minutes": 5,
+      "retry_on_failure": false,
+      "enabled": true,
+      "last_run": null
+    },
+    {
+      "id": "weekly-curator-cycle",
+      "name": "Weekly Capability Curation",
+      "description": "Run capability-accumulation curator cycle: review, grade, merge, prune skills",
+      "skill_to_invoke": "capability-accumulation",
+      "prompt": "Run the curator cycle: review all capability cards, grade their current value, merge overlapping ones, prune low-value ones.",
+      "cron": "0 10 * * 1",
+      "max_duration_minutes": 15,
+      "retry_on_failure": false,
+      "enabled": true,
+      "last_run": null
+    },
+    {
+      "id": "session-retro-trigger",
+      "name": "Post-Session Retrospective",
+      "description": "After each development session, extract patterns and update learning records",
+      "skill_to_invoke": "session-retro",
+      "prompt": "Review the latest entries in harness/progress.md, extract reusable patterns, update skills if patterns have appeared 3+ times.",
+      "cron": "0 18 * * 1-5",
+      "max_duration_minutes": 10,
+      "retry_on_failure": true,
+      "enabled": false,
+      "last_run": null
+    },
+    {
+      "id": "weekly-progress-summary",
+      "name": "Weekly Progress Summary",
+      "description": "Summarize the week's progress: features completed, blockers, next priorities",
+      "prompt": "Read harness/progress.md and harness/feature_list.json. Summarize: what was completed this week, what is blocked, what should be the top 3 priorities next week. Write to harness/progress.md.",
+      "cron": "0 16 * * 5",
+      "max_duration_minutes": 10,
+      "retry_on_failure": false,
+      "enabled": true,
+      "last_run": null
+    }
+  ]
+}

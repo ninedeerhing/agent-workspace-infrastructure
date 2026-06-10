@@ -158,6 +158,8 @@ Write-Host "[OK] Directories created ($($dirs.Count))" -ForegroundColor Green
 $MinimumFiles = @(
     "harness/init.ps1",
     "harness/audit.ps1",
+    "harness/schedule.ps1",
+    "harness/schedule.json",
     "harness/workflow-gates.md",
     "harness/workflow-state.json",
     "harness/grader-types.md",
