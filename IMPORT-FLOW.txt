@@ -1,4 +1,4 @@
-AWI IMPORT FLOW v1.0.0
+AWI IMPORT FLOW v1.0.0-raindeer
 ===============================================
 
                          START
@@ -136,3 +136,33 @@ LOOP ENGINEERING — SCHEDULE ENGINE
     - GitHub Actions: run schedule.ps1 on cron trigger
     - Agent automations: agent reads JSON output, invokes skills
     - Manual: run schedule.ps1 anytime to see what's due
+
+
+===============================================
+RAINDEER FUSION — ADDITIONAL MODULES
+===============================================
+
+  This branch adds 9 new capabilities on top of AWI:
+
+  Task Tree Governance:
+    docs/TASK_TREES.md — task tree ledger + parking_lot + per-tree commits
+
+  Flow Mode:
+    docs/FLOW-MODE.md — stop whitelist + single output constraint + turn log
+
+  Absolute Traceability:
+    docs/PROJECT_STATUS.md Section 5 — everything recorded, nothing lost
+
+  Continuation Prompt:
+    docs/CONTINUATION_PROMPT.md — cross-session recovery via fixed handoff copy
+
+  Sandbox Adapter:
+    harness/sandbox.ps1 — restricted-write environment tool wrapping
+
+  Security Zone Upgrade:
+    SECURITY-ZONES.md — Zone 0-4 five-level concentric model
+
+  Engineering Templates:
+    docs/ENGINEERING/HARNESS_CHANGE_TEMPLATE.md — high-risk change template
+    docs/ENGINEERING/HARNESS_REVIEW_CHECKLIST.md — review checklist
+    docs/ENGINEERING/DIRTY_WORKTREE_CLEANUP_LEDGER.md — worktree governance

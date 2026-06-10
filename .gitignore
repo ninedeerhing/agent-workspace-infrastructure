@@ -9,3 +9,4 @@ harness/task-queue.json
 docs/research/
 .trae/
 _research/
+.sandbox_cache/

@@ -81,7 +81,7 @@ if ($Mode -eq "auto") {
 $Banner = @"
 
   ╔══════════════════════════════════════════════════════╗
-  ║   AWI v1.0.0 — Mode: $($Mode.ToUpper().PadRight(23)) ║
+  ║   AWI v1.0.0-raindeer — Mode: $($Mode.ToUpper().PadRight(23)) ║
   ║   AI Engineering Workspace Infrastructure            ║
   ╚══════════════════════════════════════════════════════╝
 
@@ -184,6 +184,14 @@ $MinimumFiles = @(
     "docs/frontend-architecture.md",
     "docs/task-queue.md",
     "docs/inter-agent-comm.md",
+    "docs/TASK_TREES.md",
+    "docs/FLOW-MODE.md",
+    "docs/PROJECT_STATUS.md",
+    "docs/CONTINUATION_PROMPT.md",
+    "docs/ENGINEERING/HARNESS_CHANGE_TEMPLATE.md",
+    "docs/ENGINEERING/HARNESS_REVIEW_CHECKLIST.md",
+    "docs/ENGINEERING/DIRTY_WORKTREE_CLEANUP_LEDGER.md",
+    "harness/sandbox.ps1",
     "bootstrap.ps1"
 )
 

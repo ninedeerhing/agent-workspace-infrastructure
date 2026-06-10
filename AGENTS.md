@@ -7,9 +7,9 @@
 
 # AWI — 代理指令主入口
 
-这是 **AWI** 的顶层操作契约，一个基于 Harness Engineering 方法论 + Loop Engineering 自动化循环的 AI 工程工作区。本文件是所有代理、技能和工具的最高指令来源。角色提示词、技能文件和子代理必须遵循本文件，而非覆盖本文件。
+这是 **AWI** 的顶层操作契约，一个基于 Harness Engineering 方法论 + Loop Engineering 自动化循环 + Raindeer 任务树治理的 AI 工程工作区。本文件是所有代理、技能和工具的最高指令来源。角色提示词、技能文件和子代理必须遵循本文件，而非覆盖本文件。
 
-**版本:** 1.0.0
+**版本:** 1.0.0-raindeer
 
 ---
 
@@ -45,6 +45,9 @@
 14. **永不越界** — 不盲目混装不相关的功能；不把外部研究项目作为生产依赖；只吸收可解释、可验证、可维护的模式。
 15. **闭环学习** — 每次任务完成（≥3 个相关文件变更 或 ≥1 个功能标记 done）后，自动触发 `$session-retro` 进行模式提取；当同一个模式被提取 3 次后，自动触发 `$skillify` 创建新技能；不需要等用户显式要求。
 16. **上下文预加载** — 新会话启动时，按以下顺序自动加载上下文（不需要等用户指示）：CONSTITUTION.md → AGENTS-lite.md → AGENTS.md（§3 §5 §6 §7）→ .omx/memory.md → workflow-state.json → session-handoff.md → progress.md。详见 docs/context-preload.md。
+17. **任务树治理** — 任何新想法、新切片、新并发主题，先登记到 `docs/TASK_TREES.md`，再决定是否实现。单前台主线，parking_lot 机制，按任务树闭环分组提交。
+18. **绝对可追溯** — 每个操作必须记录状态到 `docs/PROJECT_STATUS.md` 第 5 节台账，做到绝对可追溯。没有文件 / 测试 / 审查 / 运行态记录的动作，一律视为未完成。
+19. **心流模式** — 未命中停止白名单时，持续自动推进，不等待人工审核，不做"是否继续"的停顿式询问。详见 `docs/FLOW-MODE.md`。
 
 ---
 
@@ -137,6 +140,12 @@ Brainstorming → Writing Plans → TDD (Red → Green → Refactor) → Code Re
 ```
 
 适用于：需要严格测试驱动和 PR 质量控制的功能开发。
+
+### 5.5 心流模式 (Raindeer Flow Mode)
+```
+spec → plan → subagent-driven 循环推进
+```
+详见 `docs/FLOW-MODE.md`（停止白名单、单输出约束、轮次日志滚动、协议校准）。
 
 ---
 
@@ -291,6 +300,10 @@ Brainstorming → Writing Plans → TDD (Red → Green → Refactor) → Code Re
 | `harness/feature_list.json` | 当前功能、状态、证据、下一步 |
 | `harness/progress.md` | 人类可读进度日志 |
 | `harness/session-handoff.md` | 会话压缩/恢复交接 |
+| `docs/PROJECT_STATUS.md` | 项目状态单一事实源 + 第 5 节绝对可追溯台账 |
+| `docs/TASK_TREES.md` | 任务树台账 + parking_lot + 按树提交 |
+| `docs/CONTINUATION_PROMPT.md` | 跨会话续接副本（冲突时以 PROJECT_STATUS.md 为准） |
+| `docs/FLOW-MODE.md` | 心流模式执行协议 + 停止白名单 + 单槽位轮次日志 |
 
 **状态规则**：
 - 一个活跃目标优先；并行任务必须有明确文件边界。
@@ -315,6 +328,7 @@ Brainstorming → Writing Plans → TDD (Red → Green → Refactor) → Code Re
 CONSTITUTION.md    — 宪法级系统提示：不可变原则、文档优先级链
 SOUL.md            — 核心身份与跨 Harness 愿景
 AGENTS.md          — 本文件：代理指令主入口
+AGENTS-lite.md     — 精简版代理契约
 RULES.md           — 规则契约文件
 SECURITY.md        — 安全策略文件
 SECURITY-ZONES.md  — 运行时安全区定义
@@ -322,6 +336,11 @@ agents/            — 专业代理角色定义
 skills/            — 可复用工作流技能
 harness/           — 任务状态、交接记录、定时调度
 docs/              — 调研、架构、决策记录
+  docs/FLOW-MODE.md            — 心流模式执行协议
+  docs/PROJECT_STATUS.md       — 项目状态单一事实源
+  docs/TASK_TREES.md           — 任务树台账
+  docs/CONTINUATION_PROMPT.md  — 跨会话续接副本
+  docs/ENGINEERING/            — 工程模板与治理
 注：.trae/ 目录用于 Trae IDE 本地技能注册，不包含在仓库中。导入后运行 bootstrap.ps1 可重新生成。
 ```
 

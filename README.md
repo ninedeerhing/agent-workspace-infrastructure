@@ -1,6 +1,28 @@
-# AWI
+# AWI — Raindeer Fusion
+
+> **Branch: `raindeer-AWI`** — AWI enhanced with task tree governance, flow mode, absolute traceability, and sandbox adaptation from Raindeer.
 
 > A production-grade AI engineering workspace infrastructure for large-scale, long-term projects. Integrates 21+ open-source project methodologies into a unified foundation — one command to bootstrap, instantly ready for development.
+
+---
+
+## raindeer-AWI Branch Additions
+
+This branch adds Raindeer-specific methodology on top of AWI:
+
+| Addition | File | Problem Solved |
+|----------|------|---------------|
+| **Task Tree System** | `docs/TASK_TREES.md` | Prevents dirty workspace chaos — any idea must be registered in a TREE before implementation |
+| **Flow Mode** | `docs/FLOW-MODE.md` | Eliminates "agent stops, user doesn't push, context is lost" dead loop — continuous automatic advancement |
+| **Absolute Traceability** | `docs/PROJECT_STATUS.md` §5 | Turns "is it done?" from verbal claims into auditable file evidence |
+| **Continuation Prompt** | `docs/CONTINUATION_PROMPT.md` | Cross-session recovery via fixed handoff copy, not memory |
+| **Sandbox Adapter** | `harness/sandbox.ps1` | IDE restricted-write environments — isolated cache within project |
+| **Security Zone Upgrade** | `SECURITY-ZONES.md` | Zone 0-4 five-level concentric model + data classification flow rules |
+| **Dirty Worktree Ledger** | `docs/ENGINEERING/DIRTY_WORKTREE_CLEANUP_LEDGER.md` | Explicit multi-worktree background process management |
+| **High-Risk Change Template** | `docs/ENGINEERING/HARNESS_CHANGE_TEMPLATE.md` | Mandatory invariants, failure modes, rollback path for risky changes |
+| **Review Checklist** | `docs/ENGINEERING/HARNESS_REVIEW_CHECKLIST.md` | Structured review questions for engineering quality |
+
+> For the base AWI without Raindeer features, see the `main` branch.
 
 ---
 
