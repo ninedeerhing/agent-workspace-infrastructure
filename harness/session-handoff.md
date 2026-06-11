@@ -6,11 +6,11 @@
 
 ## Current Objective（当前目标）
 
-**构建 AWI Harness 工程系统**
+**AWI Harness 工程系统 — P3 调研驱动增强**
 
-基于 learn-harness-engineering 的五子系统设计（Instructions / State / Verification / Scope / Lifecycle），在 `E:\AWI\` 下搭建完整的 AI 工程工作区基础设施。目标是将多个来源项目的最佳实践（oh-my-claudecode、oh-my-codex、gstack、superpowers、learn-harness-engineering、oh-my-openagent、ECC、andrej-karpathy-skills）整合为一套可移植的操作系统级代理协作协议。
+基于对 Understand-Anything 和 GitNexus 的深度调研，将优秀设计模式以协议级方式融入 AWI 底层架构。
 
-**阶段：** 基础建设 ✅ 已完成
+**阶段：** P3 调研驱动增强 ✅ 已完成 —— DAG 流水线定义、代理工具契约、增量状态追踪、代码库理解 Provider 技能已落地。
 
 ---
 
@@ -69,21 +69,20 @@
 ### 新建文件
 
 ```
-E:\AWI\AGENTS.md                    — 代理指令主入口
-E:\AWI\SOUL.md                      — 核心身份声明
-E:\AWI\RULES.md                     — 规则契约
-E:\AWI\SECURITY.md                  — 安全策略
-E:\AWI\harness\feature_list.json    — 功能状态追踪器
-E:\AWI\harness\progress.md          — 会话连续性日志
-E:\AWI\harness\session-handoff.md   — 会话交接模板（本文件）
-E:\AWI\harness\init.ps1             — 启动验证脚本
-E:\AWI\harness\clean-state-checklist.md — 干净状态检查清单
-E:\AWI\.trae\rules\project_rules.md — Trae IDE 专用规则
+harness/pipeline-dag.json                          — DAG 流水线定义（标准 + 复杂工作流）
+harness/incremental-state.json                      — 增量状态追踪（指纹 + 变更感知 + 过期检测）
+agents/contracts/agent-tool-contracts.json          — 代理工具契约（4 组契约 10 工具 + 5 数据模型）
+skills/codebase-intel/SKILL.md                      — 代码库理解 Provider 技能（5 查询原语 + 3 层 Provider）
 ```
 
-### 未修改的已有文件
+### 修改的文件
 
-无。本次为全新创建，无已有文件被修改。
+| 文件路径 | 变更内容 |
+|----------|----------|
+| `AGENTS.md` | §11 状态管理表新增 4 个 harness 文件；§6 技能路由表新增 `$codebase-intel` 条目 |
+| `harness/feature_list.json` | 新增 feat-012 至 feat-015 四个功能条目 |
+| `harness/progress.md` | 新增 P3 调研驱动增强章节和 feat-012~015 完成记录 |
+| `harness/session-handoff.md` | 本文件：更新当前目标、文件变更列表、推荐下一步 |
 
 ---
 
@@ -198,38 +197,37 @@ powershell -ExecutionPolicy Bypass -File .\harness\archive\store.ps1 -Action com
 
 ## Recommended Next Step（推荐下一步）
 
-### 优先级 1：CI/CD 集成（feat-009）
+### 优先级 1：在实际项目中验证 P3 增强（feat-016）
 
-将 `harness/init.ps1` 验证脚本集成到 CI 流水线中，添加自动化质量门禁。这将：
+将 P3 的协议级增强应用到实际开发任务中，验证 DAG 流水线、代理工具契约和增量状态追踪的实战可用性。
 
-- 确保每次提交自动运行 lint / typecheck / test
-- 防止回归（特别是安全规则回归）
-- 为未来的 agent-as-tool 自动化测试奠定 CI 基础
+1. 选取一个真实功能开发任务
+2. 按 `pipeline-dag.json` 标准工作流 DAG 执行（含阶段间类型化数据传递）
+3. 使用 `incremental-state.json` 追踪变更和增量验证
+4. 执行代理在实现前加载 `$codebase-intel` 进行代码库理解
+5. 根据实战反馈迭代协议
 
-**预计工作量：** 小（创建 CI 配置文件 + 验证 init.ps1 在 CI 环境可用）
+### 优先级 2：持续丰富技能库
 
-### 优先级 2：项目模板（feat-007）
+- 为 `$codebase-intel` 添加 GitNexus MCP Adapter 子技能（当前仅有协议定义，无具体实现）
+- 基于实战经验补充新的代理工具契约
 
-创建项目初始化和模板系统，使新项目可快速应用 Harness 体系。包括：
+### 优先级 3：CI/CD 集成（原 feat-009）
 
-- 模板项目生成脚本
-- .gitignore / .trae / harness/ 目录模板
-- 初始化向导（交互式配置项目名称、语言、技能集等）
-
-**预计工作量：** 中
+将 `harness/init.ps1` 验证脚本集成到 CI 流水线，添加自动化质量门禁。
 
 ---
 
 ## 交接备注
 
-本次会话完成了 AWI Harness 工程系统的全部基础建设以及历史交接归档机制（feat-008）。核心基础设施（协议文件、harness 状态管理、技能库、代理角色体系、缓存策略、规则体系、安全防御体系、工作流门禁、历史归档）全部就绪。
+本次会话完成了基于 Understand-Anything 和 GitNexus 深度调研的 P3 协议级增强（feat-012 至 feat-015）：DAG 流水线定义、代理工具契约、增量状态追踪、代码库理解 Provider 技能已全部落地。
 
-项目处于"基础建设完成，等待第一个实际任务"的状态。
+项目处于"P3 调研驱动增强完成，等待实战验证"的状态。
 
-下次会话开始时，建议优先处理实操性任务（如在一个实际项目中应用 TDD 技能、使用 code-reviewer 审查已有代码等），以验证技能和工作流的实战可用性。
+下次会话开始时，建议选取一个实际开发任务，运用 P3 增强的 DAG 流水线和代码库理解能力进行实战验证。
 
 ---
 
-**会话结束时间：** 2026-06-09
-**交接状态：** ✅ 基础建设 + 归档机制完成，无阻塞项
+**会话结束时间：** 2026-06-11
+**交接状态：** ✅ P3 调研驱动增强完成，feat-012~015 已落地，无阻塞项
 **下次会话预计：** 待定

@@ -87,6 +87,38 @@
       "dependencies": ["feat-009", "feat-010"],
       "status": "done",
       "evidence": "skills/autoresearch-goal/SKILL.md 已创建：4 阶段完整流程定义 + 4 道门禁（每道 5-7 条条件）+ 并行研究模式（最多 3 分支）+ 研究档位映射（quick/standard/deep → P0/P1/P2）+ 7 类必须交付物 + ledger 条目模板 + 完整反模式列表（11 条）"
+    },
+    {
+      "id": "feat-012",
+      "name": "P3-1: DAG 流水线定义",
+      "description": "借鉴 GitNexus 12 阶段 DAG 流水线设计模式，为 AWI 的每种工作流定义显式的阶段依赖图、输入/输出类型契约和并行规则。每个阶段声明 deps + typed output，runner 基于 Kahn 拓扑排序验证。纯协议级实现，无运行时依赖。",
+      "dependencies": ["feat-007"],
+      "status": "done",
+      "evidence": "harness/pipeline-dag.json 已创建：标准工作流 7 阶段 + 复杂任务流 5 阶段 DAG 定义；每阶段含 deps、inputs schema、outputs schema、gates；phase_execution_rules 含 validation/execution/parallelism 规则；AGENTS.md §11 状态管理表已同步"
+    },
+    {
+      "id": "feat-013",
+      "name": "P3-2: 代理工具契约",
+      "description": "借鉴 GitNexus MCP 16 工具设计模式，为 AWI 代理之间的数据交换定义类型化契约。将代理间通信从自由文本升级为类型化 I/O 契约，减少歧义。包含 4 组核心契约（explore→executor、executor→verifier、security-reviewer→executor、orchestrator→all）+ 统一数据模型定义。",
+      "dependencies": ["feat-003"],
+      "status": "done",
+      "evidence": "agents/contracts/agent-tool-contracts.json 已创建：4 组契约 10 个工具定义 + 5 个统一数据模型（FileMatch/DepEdge/FileChange/SecretFinding）+ contract_lifecycle 生命周期管理规则"
+    },
+    {
+      "id": "feat-014",
+      "name": "P3-3: 增量状态追踪",
+      "description": "借鉴 Understand-Anything 的增量分析机制（fingerprint-based change detection）和 GitNexus 的 staleness.ts，为 AWI 加入变更感知能力。通过文件指纹比较实现增量验证，避免每次全量回归。定义验证策略矩阵和全量验证触发条件。",
+      "dependencies": ["feat-001"],
+      "status": "done",
+      "evidence": "harness/incremental-state.json 已创建：last_full_verification 基准 + change_tracking 变更追踪 + fingerprints 文件指纹 + verification_strategy 增量策略（4 条规则）+ staleness_model 过期检测 + 3 类 operations（mark_verified/record_change/check_staleness）"
+    },
+    {
+      "id": "feat-015",
+      "name": "P3-4: 代码库理解 Provider 技能",
+      "description": "以 GitNexus/Understand-Anything 为参考，定义 AWI 代理消费代码库深度分析的标准化接口。遵循 Provider Plugin 模式：AWI 保持协议级纯粹，通过标准化接口消费外部工具输出。定义 5 个查询原语（query_symbol/trace_dependency/impact_analysis/code_structure/api_surface）、3 级 Provider 选择策略（GitNexus MCP → UA JSON → Native Fallback）和完整降级实现方法。",
+      "dependencies": ["feat-002"],
+      "status": "done",
+      "evidence": "skills/codebase-intel/SKILL.md 已创建：5 个标准化查询接口（含输入/输出 schema）+ 3 层 Provider 适配器架构 + Native Fallback 降级实现表 + 6 个代理角色使用场景 + Provider 合并策略；AGENTS.md 技能路由表需手动添加条目"
     }
   ]
 }

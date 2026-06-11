@@ -1,0 +1,92 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2026-06-11",
+    "description": "AWI 增量状态追踪。借鉴 Understand-Anything 的增量分析机制（fingerprint-based change detection），为 Harness 系统加入变更感知能力，避免每次全量验证。与 feature_list.json 的功能状态和 pipeline-dag.json 的阶段执行配合使用。",
+    "design_reference": "Understand-Anything hooks/ — git post-commit hook 通过文件指纹检测变更，仅重新分析变化文件；GitNexus staleness.ts — 比较 indexed lastCommit 与 HEAD。"
+  },
+  "state": {
+    "last_full_verification": {
+      "date": null,
+      "verified_commit": null,
+      "verified_features": [],
+      "evidence_file": null
+    },
+    "change_tracking": {
+      "description": "自上次全量验证以来的变更追踪。在每次操作后更新。",
+      "changed_files": [],
+      "stale_features": [],
+      "pending_verifications": []
+    },
+    "fingerprints": {
+      "description": "关键文件的校验指纹。变更检测时比较指纹判定是否需要重新验证。",
+      "files": {
+        "AGENTS.md": null,
+        "SOUL.md": null,
+        "RULES.md": null,
+        "SECURITY.md": null,
+        "harness/feature_list.json": null,
+        "harness/workflow-state.json": null,
+        "harness/pipeline-dag.json": null,
+        "harness/session-handoff.md": null,
+        "harness/progress.md": null
+      }
+    }
+  },
+  "verification_strategy": {
+    "description": "增量验证策略：仅对变更文件关联的功能和规则运行验证，而非全量回归。",
+    "rules": [
+      {
+        "match": "agents/*.md 变更",
+        "requires": ["检查代理角色定义一致性", "检查 AGENTS.md 代理分层引用"],
+        "skip": ["技能 SKILL.md 回归"]
+      },
+      {
+        "match": "skills/*/SKILL.md 变更",
+        "requires": ["检查技能路由表引用", "检查触发条件冲突"],
+        "skip": ["代理角色回归"]
+      },
+      {
+        "match": "harness/*.json 变更",
+        "requires": ["JSON Schema 验证", "引用完整性检查"],
+        "skip": ["内容风格检查"]
+      },
+      {
+        "match": "harness/*.md 变更",
+        "requires": ["Markdown 格式检查", "交叉引用一致性"],
+        "skip": ["JSON Schema 验证"]
+      }
+    ],
+    "full_verification_triggers": [
+      "当 stale_features 超过 3 个时",
+      "当 changed_files 超过 5 个时",
+      "每次主要版本发布前",
+      "发现跨层不一致时"
+    ]
+  },
+  "staleness_model": {
+    "description": "借鉴 GitNexus staleness.ts：比较 indexed 状态与 HEAD 状态，判断哪些功能的状态可能需要更新。",
+    "checks": {
+      "feature_vs_current_code": "比较 feature_list.json 中的 evidence 是否与当前文件内容一致",
+      "workflow_vs_phase_dag": "比较 workflow-state.json 的阶段状态是否与 pipeline-dag.json 的阶段定义一致",
+      "skill_vs_router": "比较 skills/ 目录内容与 AGENTS.md 技能路由表是否一致"
+    }
+  },
+  "operations": {
+    "mark_verified": {
+      "description": "标记一次全量验证完成，更新所有指纹和基准。",
+      "trigger": "$verification-before-completion 完成且所有检查通过",
+      "action": "更新 last_full_verification 和所有 fingerprints，清空 change_tracking"
+    },
+    "record_change": {
+      "description": "记录一次文件变更（在修改文件后立即调用）。",
+      "trigger": "任何文件修改操作后",
+      "action": "追加 changed_files，检测影响的 features，追加到 stale_features"
+    },
+    "check_staleness": {
+      "description": "检查当前状态是否过期。",
+      "trigger": "会话开始时 / 阶段切换前",
+      "action": "比较 fingerprints 与当前文件内容，报告 stale 列表"
+    }
+  }
+}

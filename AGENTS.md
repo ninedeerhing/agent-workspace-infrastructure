@@ -9,7 +9,7 @@
 
 这是 **AWI** 的顶层操作契约，一个基于 Harness Engineering 方法论 + Loop Engineering 自动化循环 + Raindeer 任务树治理的 AI 工程工作区。本文件是所有代理、技能和工具的最高指令来源。角色提示词、技能文件和子代理必须遵循本文件，而非覆盖本文件。
 
-**版本:** 1.0.0-raindeer
+**版本:** 1.1.0-raindeer-p3
 
 ---
 
@@ -44,10 +44,11 @@
 13. **上下文感知** — 大型重构和多文件功能避免使用上下文窗口最后 20%；低敏感任务可容忍较高利用率。
 14. **永不越界** — 不盲目混装不相关的功能；不把外部研究项目作为生产依赖；只吸收可解释、可验证、可维护的模式。
 15. **闭环学习** — 每次任务完成（≥3 个相关文件变更 或 ≥1 个功能标记 done）后，自动触发 `$session-retro` 进行模式提取；当同一个模式被提取 3 次后，自动触发 `$skillify` 创建新技能；不需要等用户显式要求。
-16. **上下文预加载** — 新会话启动时，按以下顺序自动加载上下文（不需要等用户指示）：CONSTITUTION.md → AGENTS-lite.md → AGENTS.md（§3 §5 §6 §7）→ .omx/memory.md → workflow-state.json → session-handoff.md → progress.md。详见 docs/context-preload.md。
+16. **上下文预加载** — 新会话启动时，按以下顺序自动加载上下文（不需要等用户指示）：CONSTITUTION.md → AGENTS-lite.md → AGENTS.md（§3 §5 §6 §7）→ .omx/memory.md → pipeline-dag.json → workflow-state.json → incremental-state.json → session-handoff.md → progress.md → TASK_TREES.md → PROJECT_STATUS.md。详见 docs/context-preload.md。
 17. **任务树治理** — 任何新想法、新切片、新并发主题，先登记到 `docs/TASK_TREES.md`，再决定是否实现。单前台主线，parking_lot 机制，按任务树闭环分组提交。
 18. **绝对可追溯** — 每个操作必须记录状态到 `docs/PROJECT_STATUS.md` 第 5 节台账，做到绝对可追溯。没有文件 / 测试 / 审查 / 运行态记录的动作，一律视为未完成。
 19. **心流模式** — 未命中停止白名单时，持续自动推进，不等待人工审核，不做"是否继续"的停顿式询问。详见 `docs/FLOW-MODE.md`。
+20. **流水线纪律** — 阶段切换前对照 `harness/pipeline-dag.json` 验证依赖关系、I/O 类型契约和门禁条件；心流模式下的 spec → plan → execute 循环按 DAG 定义的阶段输出类型传递数据。DAG 与 FLOW-MODE.md 互补：DAG 管"阶段间能传什么"，心流管"不要停"。
 
 ---
 
@@ -164,6 +165,7 @@ spec → plan → subagent-driven 循环推进
 | `$capability-accumulation` | 能力复盘、经验沉淀、技能创建、成长规划 | 六层能力累积框架：经验→技能→网络→度量→自动化→生态 |
 | `$caveman-token-compress` | Token 成本高、对话过长 | 极限 Token 压缩通信协议 |
 | `$ccg` | 需多模型并行审查或对比分析 | Claude、Codex、Gemini 三模型协作 |
+| `$codebase-intel` | 代码库理解、依赖追踪、影响分析、架构探索 | 标准化 Provider Plugin 接口，消费 GitNexus/UA 输出 |
 | `$code-review` | 代码需从工程质量和架构角度审查 | 员工工程师视角的 PR 代码审查 |
 | `$deep-interview` | 复杂、模糊或高风险项目需求 | 苏格拉底式深度访谈 |
 | `$deepinit` | 需要 AGENTS.md 项目指令体系 | 层次化项目指令初始化 |
@@ -300,6 +302,11 @@ spec → plan → subagent-driven 循环推进
 | `harness/feature_list.json` | 当前功能、状态、证据、下一步 |
 | `harness/progress.md` | 人类可读进度日志 |
 | `harness/session-handoff.md` | 会话压缩/恢复交接 |
+| `harness/workflow-state.json` | 工作流状态追踪（活跃阶段、门禁状态、验证日志） |
+| `harness/workflow-gates.md` | 工作流质量门禁定义（4 种工作流 28+ 条门禁） |
+| `harness/pipeline-dag.json` | 流水线 DAG 定义（阶段依赖图、I/O 类型契约、并行规则） |
+| `harness/incremental-state.json` | 增量状态追踪（文件指纹、变更感知、过期检测） |
+| `harness/archive/` | 历史交接归档（快照、还原、比较、完整性验证） |
 | `docs/PROJECT_STATUS.md` | 项目状态单一事实源 + 第 5 节绝对可追溯台账 |
 | `docs/TASK_TREES.md` | 任务树台账 + parking_lot + 按树提交 |
 | `docs/CONTINUATION_PROMPT.md` | 跨会话续接副本（冲突时以 PROJECT_STATUS.md 为准） |
@@ -310,6 +317,8 @@ spec → plan → subagent-driven 循环推进
 - 任务完成必须记录验证证据。
 - 会话结束必须留下下一步和阻塞项。
 - 不把可从代码重新推导的信息塞进长期记忆。
+- 阶段切换前检查 `pipeline-dag.json` 的阶段依赖和门禁条件。
+- 文件变更后更新 `incremental-state.json`，避免无效的全量验证。
 
 ---
 

@@ -325,5 +325,40 @@ AWI 的 Harness 工程系统已完整搭建。基于 learn-harness-engineering �
 
 ---
 
-**最后更新：** 2026-06-09
-**更新者：** AWI Harness 系统初始化
+**最后更新：** 2026-06-11
+**更新者：** AWI — P3 调研驱动增强（GitNexus + Understand-Anything 调研成果落地）
+
+---
+
+## P3: 调研驱动增强（2026-06-11）
+
+基于对 [Egonex-AI/Understand-Anything](https://github.com/Egonex-AI/Understand-Anything) 和 [abhigyanpatwari/GitNexus](https://github.com/abhigyanpatwari/GitNexus) 的深度调研，将两个项目的优秀设计模式以协议级（零运行时依赖）方式融入 AWI 底层架构。
+
+### feat-012: DAG 流水线定义 ✅
+
+- `harness/pipeline-dag.json` — 标准工作流 7 阶段 + 复杂任务流 5 阶段 DAG 定义
+- 借鉴 GitNexus pipeline-phases/runner.ts：每阶段声明 deps + typed input/output + gates
+- phase_execution_rules：Kahn 拓扑验证 + 顺序执行 + 并行约束（max 6 workers）
+- AGENTS.md §11 状态管理表已同步新增 pipeline-dag.json 条目
+
+### feat-013: 代理工具契约 ✅
+
+- `agents/contracts/agent-tool-contracts.json` — 4 组契约 10 个工具 + 5 个统一数据模型
+- 借鉴 GitNexus MCP tools.ts：每个工具定义清晰的 name/inputs/outputs
+- 代理间通信从"自由文本"升级为"类型化 I/O 契约"
+- 含 contract_lifecycle（所有权、版本化、验证、回退）
+
+### feat-014: 增量状态追踪 ✅
+
+- `harness/incremental-state.json` — 指纹变更检测 + 增量验证策略 + 过期检测模型
+- 借鉴 Understand-Anything fingerprint-based change detection + GitNexus staleness.ts
+- 4 条增量验证策略规则 + 4 条全量验证触发条件
+- 3 类 operations：mark_verified/record_change/check_staleness
+
+### feat-015: 代码库理解 Provider 技能 ✅
+
+- `skills/codebase-intel/SKILL.md` — 5 个标准化查询原语 + 3 层 Provider 架构
+- Provider Plugin 模式：GitNexus MCP → UA JSON → Native Fallback
+- 6 个代理角色的使用场景描述
+- Provider 合并策略：结构事实以 GitNexus 为准，语义解释以 UA 为准
+- AGENTS.md 技能路由表新增 `$codebase-intel` 条目
