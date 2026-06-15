@@ -1,0 +1,13 @@
+{
+  "version": "0.1.0",
+  "thresholds": {
+    "warn_percent": 70,
+    "handoff_percent": 85
+  },
+  "skills": {
+    "warn": ["$omc-conversation-continuity"],
+    "handoff": ["$omc-conversation-continuity", "$caveman-token-compress"]
+  },
+  "worker_mailbox_default_compress": "lite",
+  "notes": "Compliance Kernel 读取本文件；用户无需手动触发压缩技能。"
+}

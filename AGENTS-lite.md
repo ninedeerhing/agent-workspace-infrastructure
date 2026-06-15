@@ -129,6 +129,20 @@ INTAKE → RESEARCH → PLAN → EXECUTE → REVIEW → VERIFY → HANDOFF
 
 ---
 
+## 启动要求
+
+新会话开始时，最少按以下顺序读取：
+
+1. `AGENTS-lite.md`
+2. `docs/PROJECT_STATUS.md` 第 5、6 节
+3. `docs/TASK_TREES.md` 当前主线
+4. `harness/workflow-state.json`
+5. `docs/SESSION_BOOT.md`
+
+`orchestrator` 是唯一对用户说话的会话；其余 `agents/*.md` 均视为 worker。
+
+---
+
 ## 状态管理
 
 | 文件 | 作用 |
@@ -137,7 +151,7 @@ INTAKE → RESEARCH → PLAN → EXECUTE → REVIEW → VERIFY → HANDOFF
 | `harness/progress.md` | 进度日志 |
 | `harness/session-handoff.md` | 会话交接 |
 
-规则：一个活跃目标优先；任务完成必有验证证据；会话结束留下下一步和阻塞项。
+规则：一个活跃目标优先；任务完成必有验证证据；有变更/测试/决策必须同步到 `docs/PROJECT_STATUS.md` §5；会话结束留下下一步和阻塞项。
 
 ---
 

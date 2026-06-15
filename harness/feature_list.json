@@ -119,6 +119,14 @@
       "dependencies": ["feat-002"],
       "status": "done",
       "evidence": "skills/codebase-intel/SKILL.md 已创建：5 个标准化查询接口（含输入/输出 schema）+ 3 层 Provider 适配器架构 + Native Fallback 降级实现表 + 6 个代理角色使用场景 + Provider 合并策略；AGENTS.md 技能路由表需手动添加条目"
+    },
+    {
+      "id": "feat-016",
+      "name": "Raindeer-AWI 运行时操作系统",
+      "description": "orchestrator-Only 中枢 + 17 worker、Compliance Kernel、mailbox 文件总线、PAL 跨平台适配、bootstrap -ProvisionTeam、gate-runner、hooks、token budget",
+      "dependencies": ["feat-003", "feat-007"],
+      "status": "done",
+      "evidence": "harness/compliance-check.ps1、gate-runner.ps1、agent-registry.json、mailbox/、adapters/、hooks/、skills/agent-team-bootstrap、skills/workflow-phase-advance；bootstrap -ProvisionTeam smoke + post-bootstrap findings=0"
     }
   ]
 }

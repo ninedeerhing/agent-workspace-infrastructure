@@ -11,13 +11,15 @@
 ```
 会话启动 → 自动执行（按顺序）
 
+0. docs/SESSION_BOOT.md    # Raindeer-AWI 统一启动契约（orchestrator-Only + worker 边界）
 1. CONSTITUTION.md       # 宪法级规则（最高优先级）
 2. AGENTS-lite.md        # 精简操作契约（< 500 tokens）
 3. AGENTS.md             # 完整操作契约（§3 §5 §6 §7）
-4. .omx/memory.md        # 持久记忆（项目架构 + 编码规范 + 关键决策）
-5. workflow-state.json   # 当前工作流阶段
-6. session-handoff.md    # 上次会话的完成状态和下一步
-7. progress.md           # 完整进度日志（最后 200 行）
+4. harness/agent-registry.json  # 团队 roster（若已 ProvisionTeam）
+5. .omx/memory.md        # 持久记忆（项目架构 + 编码规范 + 关键决策）
+6. workflow-state.json   # 当前工作流阶段
+7. session-handoff.md    # 上次会话的完成状态和下一步
+8. progress.md           # 完整进度日志（最后 200 行）
 ```
 
 ## Token 预算
@@ -27,6 +29,7 @@
 | 文件 | 预算 | 读取策略 |
 |------|------|----------|
 | CONSTITUTION.md | ~200 tokens | 全文 |
+| SESSION_BOOT.md | ~300 tokens | 全文 |
 | AGENTS-lite.md | ~300 tokens | 全文 |
 | AGENTS.md | ~500 tokens | §3 §5 §6 §7 摘取 |
 | .omx/memory.md | ~800 tokens | 全文 |

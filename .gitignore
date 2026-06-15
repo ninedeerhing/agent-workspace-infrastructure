@@ -10,3 +10,8 @@ docs/research/
 .trae/
 _research/
 .sandbox_cache/
+
+# Raindeer-AWI runtime (generated at bootstrap)
+harness/platform-binding.json
+harness/mailbox/*/inbox/*.json
+harness/mailbox/*/processed/*.json

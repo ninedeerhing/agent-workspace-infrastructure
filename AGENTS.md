@@ -197,6 +197,8 @@ spec → plan → subagent-driven 循环推进
 | `$skillify` | 需从会话中提取可复用工作流 | 经验沉淀为技能文件 |
 | `$subagent-driven-dev` | 有完整实现计划且有子代理环境 | 并行子代理分派实现 |
 | `$systematic-debugging` | Bug、测试失败、异常行为 | 根因调查驱动调试 |
+| `$agent-team-bootstrap` | bootstrap -ProvisionTeam、建队/registry/mailbox | Raindeer-AWI 团队初始化 |
+| `$workflow-phase-advance` | 切换工作流阶段、gate-runner 门禁 | 阶段推进与 workflow-state 更新 |
 | `$team-pipeline` | 需多代理结构化团队协作 | 5 阶段流水线 |
 | `$test-driven-development` | 准备写任何生产代码 | Red-Green-Refactor TDD 流程 |
 | `$ultragoal` | 项目包含多个长期目标 | 多目标持久化跟踪执行 |

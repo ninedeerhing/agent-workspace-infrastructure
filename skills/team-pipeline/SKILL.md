@@ -5,6 +5,15 @@ description: 当需要多代理结构化团队协作的 5 阶段流水线时使�
 
 # Team Pipeline — 团队流水线
 
+## Raindeer-AWI 中枢模式（默认）
+
+当项目已执行 `bootstrap -ProvisionTeam` 时：
+
+1. **用户只与 orchestrator 对话**；本流水线由 orchestrator 驱动，不向用户暴露 worker 会话。
+2. 阶段分派通过 `harness/scripts/Send-MailboxMessage.ps1`（或平台原生消息 API）。
+3. worker 完成后写 worklog + mailbox 回报 orchestrator。
+4. 阶段切换前运行 `harness/gate-runner.ps1`（见 `$workflow-phase-advance`）。
+
 ## 定位
 
 通过 5 阶段结构化流水线协调多个代理协同工作：规划 → 需求 → 并行执行 → 验证 → 修复循环。每个阶段使用专门的代理角色，阶段间通过 handoff 文档交接上下文。

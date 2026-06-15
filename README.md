@@ -21,6 +21,8 @@ This branch adds Raindeer-specific methodology on top of AWI:
 | **Dirty Worktree Ledger** | `docs/ENGINEERING/DIRTY_WORKTREE_CLEANUP_LEDGER.md` | Explicit multi-worktree background process management |
 | **High-Risk Change Template** | `docs/ENGINEERING/HARNESS_CHANGE_TEMPLATE.md` | Mandatory invariants, failure modes, rollback path for risky changes |
 | **Review Checklist** | `docs/ENGINEERING/HARNESS_REVIEW_CHECKLIST.md` | Structured review questions for engineering quality |
+| **Runtime OS** | `harness/compliance-check.ps1`, `harness/adapters/`, `harness/mailbox/` | orchestrator-Only 团队 + 跨平台 PAL + Compliance Kernel |
+| **Usage Guide** | `docs/USAGE.md` | 一条命令导入 + 日常使用说明 |
 
 > For the base AWI without Raindeer features, see the `main` branch.
 
@@ -36,27 +38,41 @@ After importing, just tell the AI agent what you want to build, and it automatic
 
 ## Quick Start
 
-### Import (2 steps)
+> 完整使用说明见 **[docs/USAGE.md](docs/USAGE.md)**
 
-```bash
-# 1. Clone
-git clone https://github.com/ninedeerhing/agent-workspace-infrastructure.git my-project
-cd my-project
+### 一条命令导入（新项目）
 
-# 2. One-command bootstrap
-.\bootstrap.ps1 -TargetPath . -ProjectName "MyProject"
+```powershell
+git clone -b raindeer-AWI https://github.com/ninedeerhing/agent-workspace-infrastructure.git my-project; cd my-project; .\bootstrap.ps1 -TargetPath . -ProjectName my-project -Mode full -ProvisionTeam -Platform auto
 ```
 
-### Then tell your AI agent
+### 一条命令导入（已有项目）
+
+将 `D:\your-project` 换成你的项目路径：
+
+```powershell
+git clone -b raindeer-AWI https://github.com/ninedeerhing/agent-workspace-infrastructure.git _awi; .\_awi\bootstrap.ps1 -TargetPath "D:\your-project" -SourcePath .\_awi -ProjectName YourApp -Mode full -ProvisionTeam -Platform auto -Force
+```
+
+### 已 clone 本仓库，在当前目录配置
+
+```powershell
+.\bootstrap.ps1 -TargetPath . -ProjectName MyProject -Mode full -ProvisionTeam -Platform auto
+```
+
+### 导入后
+
+1. 阅读 **`docs/SESSION_SETUP.md`**（bootstrap 自动生成）
+2. **只日常打开 orchestrator 会话**，首条消息粘贴 `harness/templates/orchestrator-init-prompt.md`
+3. 验证：`.\harness\compliance-check.ps1 -Mode post-bootstrap`（期望 findings=0）
+
+### 对 orchestrator 说
 
 ```
-"Load the workspace, tell me the current project status"
-"I want to build an e-commerce platform with React + Node.js + PostgreSQL"
-"Here's my PRD: [paste detailed design doc]"
-"Continue from where we left off"
+加载工作区，告诉我当前项目状态和主线任务
 ```
 
-The agent will automatically execute the context preload sequence (CONSTITUTION.md → AGENTS-lite.md → .omx/memory.md → workflow-state.json → session-handoff.md), then report current status and start working.
+Agent 会自动执行上下文预加载（`docs/SESSION_BOOT.md` → `AGENTS-lite.md` → `workflow-state.json` → …），然后汇报状态并开始工作。
 
 ---
 

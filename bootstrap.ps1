@@ -1,4 +1,4 @@
-<#
+﻿<#
 .SYNOPSIS
     AWI 导入脚本 — 支持新项目初始化、已有项目最小导入、已有项目完整导入
 .DESCRIPTION
@@ -40,7 +40,11 @@ param(
     [string]$SourcePath = $PSScriptRoot,
     [ValidateSet("auto","audit","minimum","full")]
     [string]$Mode = "auto",
-    [switch]$Force
+    [switch]$Force,
+    [switch]$ProvisionTeam,
+    [ValidateSet("auto","generic","cursor","codex","claude-code","trae")]
+    [string]$Platform = "auto",
+    [string]$HubModel = "opus"
 )
 
 $ErrorActionPreference = "Continue"
@@ -128,6 +132,9 @@ if (-not (Test-Path $TargetPath)) {
 # ═══════════════════════════════════════════════════════════════
 $MinimumDirs = @(
     "harness/archive",
+    "harness/scripts",
+    "harness/templates",
+    "harness/hooks",
     ".omx/plans"
 )
 
@@ -191,12 +198,33 @@ $MinimumFiles = @(
     "docs/ENGINEERING/HARNESS_CHANGE_TEMPLATE.md",
     "docs/ENGINEERING/HARNESS_REVIEW_CHECKLIST.md",
     "docs/ENGINEERING/DIRTY_WORKTREE_CLEANUP_LEDGER.md",
+    "docs/SESSION_BOOT.md",
     "harness/sandbox.ps1",
+    "harness/compliance-check.ps1",
+    "harness/gate-runner.ps1",
+    "harness/token-budget.json",
+    "harness/mailbox/README.md",
+    "harness/scripts/Build-AgentRegistryFromAgentsDir.ps1",
+    "harness/scripts/Apply-WorkerBoundaryToAgents.ps1",
+    "harness/scripts/Send-MailboxMessage.ps1",
+    "harness/scripts/Read-MailboxInbox.ps1",
+    "harness/adapters/Invoke-PlatformAdapter.ps1",
+    "harness/templates/orchestrator-init-prompt.md",
+    "harness/templates/worker-init-prompt.md",
+    "harness/templates/ledger-entry.md",
+    "docs/ENGINEERING/AGENT-REGISTRY-SPEC.md",
+    "docs/ENGINEERING/WORKFLOW-STATE-GUIDE.md",
+    "docs/ENGINEERING/AWI-COMPLIANCE-BASELINE.md",
+    ".cursor/hooks.json",
+    ".cursor/rules/raindeer-awi-orchestrator.mdc",
+    ".cursor/rules/raindeer-awi-worker.mdc",
     "bootstrap.ps1"
 )
 
 $FullFiles = @(
     @{ SrcDir = "agents"; Exclude = $null; Recursive = $false },
+    @{ SrcDir = "harness/adapters"; Exclude = $null; Recursive = $true },
+    @{ SrcDir = "harness/hooks"; Exclude = $null; Recursive = $false },
     @{ SrcDir = "skills"; Exclude = $null; Recursive = $true },
     @{ SrcDir = "docs/adr"; Exclude = $null; Recursive = $false },
     @{ SrcDir = "cache"; Exclude = $null; Recursive = $true },
@@ -258,7 +286,7 @@ if ($Mode -eq "full") {
         $files = Get-ChildItem -Path $srcDir
         foreach ($fi in $files) {
             $dst = Join-Path $dstDir $fi.Name
-            if (Test-Path $dst -and -not $Force) { continue }
+            if ((Test-Path $dst) -and (-not $Force)) { continue }
             Copy-Item -Path $fi.FullName -Destination $dst -Recurse -Force
         }
     }
@@ -339,6 +367,62 @@ foreach ($key in $stateFiles.Keys) {
 Write-Host "[OK] State files initialized (preserving existing)" -ForegroundColor Green
 
 # ═══════════════════════════════════════════════════════════════
+# Team provisioning (full mode only)
+# ═══════════════════════════════════════════════════════════════
+if ($ProvisionTeam) {
+    Write-Host ""
+    Write-Host "=== Team provisioning ===" -ForegroundColor Yellow
+
+    if ($Mode -ne "full") {
+        Write-Host "[WARN] -ProvisionTeam 需要 full 模式以确保 agents/ 与 skills/ 已部署；当前跳过。" -ForegroundColor Yellow
+    }
+    else {
+        $builderScript = Join-Path $harnessDir "scripts\Build-AgentRegistryFromAgentsDir.ps1"
+        if (Test-Path $builderScript) {
+            try {
+                & $builderScript -TargetPath $TargetPath -HubModel $HubModel -WriteFiles -EnsureScaffold | Out-Null
+                Write-Host "[OK] agent registry / team manifest / mailbox / worklog 已生成" -ForegroundColor Green
+
+                $boundaryScript = Join-Path $harnessDir "scripts\Apply-WorkerBoundaryToAgents.ps1"
+                if (Test-Path $boundaryScript) {
+                    $boundaryResult = & $boundaryScript -TargetPath $TargetPath | ConvertFrom-Json
+                    Write-Host "[OK] worker 会话边界已注入 (updated=$($boundaryResult.updated))" -ForegroundColor Green
+                }
+
+                $palScript = Join-Path $harnessDir "adapters\Invoke-PlatformAdapter.ps1"
+                if (Test-Path $palScript) {
+                    & $palScript -TargetPath $TargetPath -Platform $Platform -HubModel $HubModel | Out-Null
+                    Write-Host "[OK] 平台适配器已安装 (platform: $Platform)" -ForegroundColor Green
+                }
+
+                $complianceScript = Join-Path $harnessDir "compliance-check.ps1"
+                if (Test-Path $complianceScript) {
+                    Push-Location $TargetPath
+                    try {
+                        & $complianceScript -Mode post-bootstrap -Quiet
+                        if ($LASTEXITCODE -eq 0) {
+                            Write-Host "[OK] post-bootstrap 合规检查通过" -ForegroundColor Green
+                        }
+                        else {
+                            Write-Host "[WARN] post-bootstrap 合规检查有 findings，请查看 harness/compliance-check.ps1 输出" -ForegroundColor Yellow
+                        }
+                    }
+                    finally {
+                        Pop-Location
+                    }
+                }
+            }
+            catch {
+                Write-Host "[WARN] Team provisioning 失败: $($_.Exception.Message)" -ForegroundColor Yellow
+            }
+        }
+        else {
+            Write-Host "[WARN] 缺少 registry builder：$builderScript" -ForegroundColor Yellow
+        }
+    }
+}
+
+# ═══════════════════════════════════════════════════════════════
 # .gitignore — merge, never overwrite
 # ═══════════════════════════════════════════════════════════════
 $gitignorePath = Join-Path $TargetPath ".gitignore"
@@ -396,6 +480,11 @@ Write-Host ""
 Write-Host "Next:" -ForegroundColor Yellow
 Write-Host "  1. Open your AI coding tool in this directory" -ForegroundColor White
 Write-Host '  2. Tell the agent: "Load workspace, tell me current status"' -ForegroundColor White
+
+if ($ProvisionTeam) {
+    Write-Host '  3. Read `docs/SESSION_SETUP.md` and open the orchestrator session (only user-facing agent)' -ForegroundColor White
+    Write-Host '  4. Paste `harness/templates/orchestrator-init-prompt.md` into orchestrator; workers use worker-init-prompt.md' -ForegroundColor White
+}
 
 if ($Mode -eq "minimum") {
     Write-Host ""

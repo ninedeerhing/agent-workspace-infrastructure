@@ -4,13 +4,15 @@
     "created": "2026-06-09",
     "description": "AWI 工作流状态追踪器。记录当前活跃的工作流类型、阶段、任务上下文和阶段转换验证状态。与 feature_list.json（功能真相来源）互补，聚焦于过程状态而非结果状态。"
   },
-  "active_workflow": null,
+  "active_workflow": "standard",
   "workflow_history": [],
   "current_context": {
     "session_id": null,
     "active_feature_id": null,
-    "active_task": null,
-    "started_at": null
+    "active_task": "TREE-RT Phase 0/1/7 initial runtime scaffolding",
+    "started_at": "2026-06-15T22:26:00+08:00",
+    "tree_id": "TREE-RT",
+    "active_phase": "EXECUTE"
   },
   "workflows": {
     "standard": {

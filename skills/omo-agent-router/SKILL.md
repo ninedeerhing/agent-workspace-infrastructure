@@ -31,6 +31,12 @@ Credit: 受 OMO Agent Router (`code-yeongyu/oh-my-openagent`) 启发，从概念
 
 ## 核心概念
 
+### Raindeer-AWI 路由铁律
+
+1. **用户入口固定为 orchestrator** — 任何「对用户说话」的路由决策必须回到 orchestrator。
+2. **worker 不可用户可见** — 路由到 worker 的任务通过 mailbox 投递，结果由 orchestrator 汇总。
+3. **registry 为权威 roster** — 读取 `harness/agent-registry.json`，不臆造角色名。
+
 ### 能力矩阵
 
 代理能力按四个维度分类：

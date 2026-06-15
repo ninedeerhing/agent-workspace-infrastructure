@@ -2,7 +2,16 @@
   "version": "1.0.0",
   "tasks": [
     {
-      "id": "daily-health-check",
+      "id": "daily-compliance-check",
+      "name": "Daily Compliance Check",
+      "description": "Run Raindeer-AWI compliance-check baseline to catch ledger/gate/registry drift",
+      "prompt": "Run .\\harness\\compliance-check.ps1 -Mode baseline -Format text. If findings > 0, append a §5 ledger entry with remediation plan.",
+      "cron": "0 8 * * 1-5",
+      "max_duration_minutes": 5,
+      "retry_on_failure": false,
+      "enabled": true,
+      "last_run": null
+    },
       "name": "Daily Health Check",
       "description": "Run omo-health-monitor heartbeat, check for degraded agents, log status",
       "skill_to_invoke": "omo-health-monitor",

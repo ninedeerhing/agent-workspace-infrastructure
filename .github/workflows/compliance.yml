@@ -1,0 +1,19 @@
+name: Raindeer-AWI Compliance
+
+on:
+  push:
+    branches: [main, raindeer-AWI]
+  pull_request:
+    branches: [main, raindeer-AWI]
+
+jobs:
+  compliance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run baseline compliance check
+        shell: pwsh
+        run: |
+          ./harness/compliance-check.ps1 -Mode baseline -Format text
+          if ($LASTEXITCODE -ne 0) { exit 1 }
