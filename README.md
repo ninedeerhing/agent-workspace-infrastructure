@@ -1,12 +1,12 @@
 # AWI — Raindeer Fusion
 
-> **Branch: `raindeer-AWI`** — AWI enhanced with task tree governance, flow mode, absolute traceability, and sandbox adaptation from Raindeer.
+> **Default branch: `main`** — AWI enhanced with Raindeer task tree governance, flow mode, absolute traceability, runtime OS, and sandbox adaptation.
 
 > A production-grade AI engineering workspace infrastructure for large-scale, long-term projects. Integrates 21+ open-source project methodologies into a unified foundation — one command to bootstrap, instantly ready for development.
 
 ---
 
-## raindeer-AWI Branch Additions
+## Raindeer-AWI Additions (on `main`)
 
 This branch adds Raindeer-specific methodology on top of AWI:
 
@@ -23,8 +23,6 @@ This branch adds Raindeer-specific methodology on top of AWI:
 | **Review Checklist** | `docs/ENGINEERING/HARNESS_REVIEW_CHECKLIST.md` | Structured review questions for engineering quality |
 | **Runtime OS** | `harness/compliance-check.ps1`, `harness/adapters/`, `harness/mailbox/` | orchestrator-Only 团队 + 跨平台 PAL + Compliance Kernel |
 | **Usage Guide** | `docs/USAGE.md` | 一条命令导入 + 日常使用说明 |
-
-> For the base AWI without Raindeer features, see the `main` branch.
 
 ---
 
@@ -43,7 +41,7 @@ After importing, just tell the AI agent what you want to build, and it automatic
 ### 一条命令导入（新项目）
 
 ```powershell
-git clone -b raindeer-AWI https://github.com/ninedeerhing/agent-workspace-infrastructure.git my-project; cd my-project; .\bootstrap.ps1 -TargetPath . -ProjectName my-project -Mode full -ProvisionTeam -Platform auto
+git clone https://github.com/ninedeerhing/agent-workspace-infrastructure.git my-project; cd my-project; .\bootstrap.ps1 -TargetPath . -ProjectName my-project -Mode full -ProvisionTeam -Platform auto
 ```
 
 ### 一条命令导入（已有项目）
@@ -51,7 +49,7 @@ git clone -b raindeer-AWI https://github.com/ninedeerhing/agent-workspace-infras
 将 `D:\your-project` 换成你的项目路径：
 
 ```powershell
-git clone -b raindeer-AWI https://github.com/ninedeerhing/agent-workspace-infrastructure.git _awi; .\_awi\bootstrap.ps1 -TargetPath "D:\your-project" -SourcePath .\_awi -ProjectName YourApp -Mode full -ProvisionTeam -Platform auto -Force
+git clone https://github.com/ninedeerhing/agent-workspace-infrastructure.git _awi; .\_awi\bootstrap.ps1 -TargetPath "D:\your-project" -SourcePath .\_awi -ProjectName YourApp -Mode full -ProvisionTeam -Platform auto -Force
 ```
 
 ### 已 clone 本仓库，在当前目录配置

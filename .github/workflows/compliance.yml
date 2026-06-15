@@ -2,9 +2,9 @@ name: Raindeer-AWI Compliance
 
 on:
   push:
-    branches: [main, raindeer-AWI]
+    branches: [main]
   pull_request:
-    branches: [main, raindeer-AWI]
+    branches: [main]
 
 jobs:
   compliance:

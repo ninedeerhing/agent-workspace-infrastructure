@@ -1,7 +1,7 @@
 # Raindeer-AWI 使用指南
 
 > 仓库：[agent-workspace-infrastructure](https://github.com/ninedeerhing/agent-workspace-infrastructure)  
-> 分支：**`raindeer-AWI`**
+> 默认分支：**`main`**
 
 ## 核心原则
 
@@ -19,12 +19,12 @@
 在 **PowerShell** 中执行（Windows / macOS / Linux 均可用 `pwsh`）：
 
 ```powershell
-git clone -b raindeer-AWI https://github.com/ninedeerhing/agent-workspace-infrastructure.git my-project; cd my-project; .\bootstrap.ps1 -TargetPath . -ProjectName my-project -Mode full -ProvisionTeam -Platform auto
+git clone https://github.com/ninedeerhing/agent-workspace-infrastructure.git my-project; cd my-project; .\bootstrap.ps1 -TargetPath . -ProjectName my-project -Mode full -ProvisionTeam -Platform auto
 ```
 
 **这一条命令会：**
 
-1. 拉取 `raindeer-AWI` 分支
+1. 拉取 `main` 分支（默认）
 2. 完整部署 agents / skills / harness / 规则
 3. 生成 18 角色 registry、mailbox 脚手架、worklog
 4. 注入 17 个 Worker 会话边界
@@ -37,13 +37,13 @@ git clone -b raindeer-AWI https://github.com/ninedeerhing/agent-workspace-infras
 先审计（**不修改任何文件**）：
 
 ```powershell
-git clone -b raindeer-AWI https://github.com/ninedeerhing/agent-workspace-infrastructure.git _awi; .\_awi\bootstrap.ps1 -TargetPath "D:\your-existing-project" -SourcePath .\_awi -ProjectName YourApp -Mode audit
+git clone https://github.com/ninedeerhing/agent-workspace-infrastructure.git _awi; .\_awi\bootstrap.ps1 -TargetPath "D:\your-existing-project" -SourcePath .\_awi -ProjectName YourApp -Mode audit
 ```
 
 确认无冲突后，一条命令完整导入 + 建队：
 
 ```powershell
-git clone -b raindeer-AWI https://github.com/ninedeerhing/agent-workspace-infrastructure.git _awi; .\_awi\bootstrap.ps1 -TargetPath "D:\your-existing-project" -SourcePath .\_awi -ProjectName YourApp -Mode full -ProvisionTeam -Platform auto -Force
+git clone https://github.com/ninedeerhing/agent-workspace-infrastructure.git _awi; .\_awi\bootstrap.ps1 -TargetPath "D:\your-existing-project" -SourcePath .\_awi -ProjectName YourApp -Mode full -ProvisionTeam -Platform auto -Force
 ```
 
 > `-Force` 仅覆盖 AWI 框架文件，不会删除你的业务代码。若需最安全模式，先用 `-Mode minimum` 只加 harness 层，再手动 `-Mode full -ProvisionTeam`。
@@ -154,15 +154,6 @@ $h = @{ goal = "实现某功能" }
 
 ---
 
-## 与 main 分支的区别
+## 与历史分支的关系
 
-| | `main` | `raindeer-AWI` |
-|---|--------|----------------|
-| 任务树治理 | 无 | `docs/TASK_TREES.md` |
-| 心流模式 | 无 | `docs/FLOW-MODE.md` |
-| §5 绝对台账 | 无 | 硬约束 |
-| orchestrator-Only 团队 | 无 | 1 hub + 17 worker + mailbox |
-| bootstrap 建队 | 无 | `-ProvisionTeam` |
-| 跨平台 PAL | 无 | `harness/adapters/` |
-
-需要纯 AWI 不含 Raindeer 扩展，请用 `main` 分支。
+`main` 即 Raindeer-AWI 正式主线（原 `raindeer-AWI` 分支内容已并入）。直接 `git clone` 即可，无需指定 `-b`。
