@@ -1,10 +1,10 @@
 # Session Handoff
 
-updated_at: 2026-06-19T17:08:37Z
+updated_at: 2026-06-19T17:14:03Z
 
 ## Current Objective
 
-backfill_runner 补 index_master 前置 stage + index_weight continuous 续跑（94 月 remaining）
+index_weight continuous 续跑至 remaining=0 + save_status_snapshot
 
 ## Next Step
 
@@ -14,7 +14,7 @@ BENCH-2 ② QuantaAlpha 完整安装 step2（env deferred · 需用户授权 Ubu
 
 - tree: TREE-2
 - slice: index-weight-continuous
-- last_tick: loop65-tree2-watermark-snapshot
+- last_tick: loop66-tree2-index-master-stage
 - stop: none
 
 ## Resume Command

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T02:00:00Z",
+  "updated_at": "2026-06-20T02:15:00Z",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-2",
@@ -14,11 +14,11 @@
       "note": "BENCH-2 顺序（用户权威）：① WSL+stub SOP closed/env deferred · wsl -l -v 仍仅 docker-desktop · ② QuantaAlpha 需用户授权"
     }
   ],
-  "last_tick": "loop66-tree2-index-master-stage",
+  "last_tick": "loop67-tree2-index-weight-continuous",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
-    "PROJECT_STATUS.md §5.378",
+    "PROJECT_STATUS.md §5.379",
     "METHODOLOGY_MEMORY.md",
     "WORKFLOWS.md",
     "TREE-2-gap-list.yaml",
@@ -29,7 +29,7 @@
     "status": "resumed",
     "verdict": "partial_closed",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop66 INDEX-MASTER-PREREQ closed · index_weight 3mo/1497 rows · 93 remaining"
+    "note": "loop66 INDEX-MASTER-PREREQ closed · loop67 index_weight 15mo/7494 rows · 81 remaining"
   },
-  "last_completed_note": "loop66 index_master stage wired · bounded smoke 1mo · commit C1 TREE-2"
+  "last_completed_note": "loop67 bounded 12-iter index_weight · snapshot · gap refresh · C1 TREE-2 at 95725b4"
 }
