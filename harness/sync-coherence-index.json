@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-19T17:01:26Z",
+  "updated_at": "2026-06-19T17:03:44Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
@@ -15,22 +15,11 @@
   "top_summary_section5_ref": "375",
   "top_summary_last_tick": "loop64-tree2-index-weight-wiring",
   "loop_last_tick": "loop64-tree2-index-weight-wiring",
-  "findings": [
-    {
-      "severity": "warning",
-      "code": "SYNC-TOP-NEXT",
-      "paths": [
-        "apps\\quant_assistant\\docs\\PROJECT_STATUS.md",
-        "harness\\loop-state.json"
-      ],
-      "detail": "顶部摘要未体现 loop-state 下一动作：'TREE-2 月切片 watermark 续跑 + show_backfill_status.ps1 / save_status_snapshot（需 TREE2_QA_POSTGRES_DSN）'",
-      "recommendation": "更新顶部「下一方向」与 next_atomic_action 一致。"
-    }
-  ],
+  "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-19T17:01:26Z",
-    "finding_count": 1,
-    "warning_count": 1,
+    "at": "2026-06-19T17:03:44Z",
+    "finding_count": 0,
+    "warning_count": 0,
     "error_count": 0
   }
 }
