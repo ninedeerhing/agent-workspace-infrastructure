@@ -1,20 +1,20 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-19T16:58:07Z",
+  "updated_at": "2026-06-19T17:01:26Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "TREE-2 index_weight 接线收尾 — executor loop64（backfill_runner 已接线 · 2 unit tests fail · 勿重复）",
-  "continuation_next_action": "TREE-2 index_weight 接线收尾",
+  "loop_next_atomic_action": "TREE-2 月切片 watermark 续跑 + show_backfill_status.ps1 / save_status_snapshot（需 TREE2_QA_POSTGRES_DSN）",
+  "continuation_next_action": "",
   "task_trees_next_hint": "",
   "foreground_tree": "PL-C-MINE",
   "foreground_slice": "",
-  "latest_section5_id": "374",
-  "latest_section5_title": "loop64 用户权威 park + TREE-2 index_weight 状态检（2026-06-20 · loop64 · governance-coordinator）",
-  "top_summary_section5_ref": "374",
-  "top_summary_last_tick": "loop64-governance-park-corpus",
-  "loop_last_tick": "loop64-governance-park-corpus",
+  "latest_section5_id": "375",
+  "latest_section5_title": "loop64 TREE-2 index_weight continuous 链接线（2026-06-20 · loop64 · executor）",
+  "top_summary_section5_ref": "375",
+  "top_summary_last_tick": "loop64-tree2-index-weight-wiring",
+  "loop_last_tick": "loop64-tree2-index-weight-wiring",
   "findings": [
     {
       "severity": "warning",
@@ -23,12 +23,12 @@
         "apps\\quant_assistant\\docs\\PROJECT_STATUS.md",
         "harness\\loop-state.json"
       ],
-      "detail": "顶部摘要未体现 loop-state 下一动作：'TREE-2 index_weight 接线收尾 — executor loop64（backfill_runner 已接线 · 2 unit tests fail · 勿重复）'",
+      "detail": "顶部摘要未体现 loop-state 下一动作：'TREE-2 月切片 watermark 续跑 + show_backfill_status.ps1 / save_status_snapshot（需 TREE2_QA_POSTGRES_DSN）'",
       "recommendation": "更新顶部「下一方向」与 next_atomic_action 一致。"
     }
   ],
   "last_lifecycle": {
-    "at": "2026-06-19T16:58:07Z",
+    "at": "2026-06-19T17:01:26Z",
     "finding_count": 1,
     "warning_count": 1,
     "error_count": 0
