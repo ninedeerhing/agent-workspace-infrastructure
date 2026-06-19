@@ -1,19 +1,27 @@
 # Worker Report — governance-coordinator
 
-**Updated**: 2026-06-20 · loop62-bench2-tree2-gap
+**Updated**: 2026-06-20 · loop66-worker-skill-governance
 
 ## Task
 
-Orchestrator tick: parallel status check · BENCH-2 stub · TREE-2 gap list · six-source sync
+用户权威 Worker/Skill 治理策略落盘 — 轻量审计 · M-31/GP-05 · AskQuestion 门控
 
 ## Outcomes
 
-- GEN-P2 QA-61-1: **pending** (no duplicate fix)
-- BENCH-2: wsl blocked · stub 8/8 pass
-- TREE-2: gap list YAML created
-- §5.369 · loop-state · CONTINUATION_PROMPT synced
+- `WORKER_SKILL_GOVERNANCE.md` v1.0 created
+- METHODOLOGY: M-31 + GP-05 + active digest
+- orchestrator rule: load balance + no auto worker/skill creation
+- Overloaded flagged (no new workers): executor · qa-tester · governance-coordinator
+- 13 idle bootstrap workers identified for rebalancing
+- **No** new `agents/*.md` or `skills/*/SKILL.md`
+- loop-state `next_atomic_action` unchanged (index_master still executor)
 
 ## Evidence
 
-- `docs/ENGINEERING/TREE-2-gap-list.yaml`
-- `tests/test_quanta_alpha_comparison_harness_unit.py` 8 passed
+- `docs/ENGINEERING/WORKER_SKILL_GOVERNANCE.md`
+- §5.377 · TASK_TREES §治理
+- Worker reports LastWriteTime audit 2026-06-20
+
+## Status
+
+success
