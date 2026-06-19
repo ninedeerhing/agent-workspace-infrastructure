@@ -1,30 +1,24 @@
-# Orchestrator Report — loop59 handoff
+# Orchestrator Report — loop61 gen-p2 e2e
 
-**Updated**: 2026-06-19 · loop59-handoff-wait
+**Updated**: 2026-06-20 · loop61-gen-p2-e2e-live
 
 ## Status
 
-- **Tree**: PL-C-MINE · slice handoff-wait
-- **closure_gate**: closed (partial_closed)
-- **Mode**: handoff only — no new executor slices
+- **Tree**: PL-C-MINE · slice BENCH-2-wsl-stub-sop
+- **closure_gate**: resumed (partial_closed)
+- **Mode**: autonomous · qa-tester E2E tick complete
 
-## Delivered (cumulative · quant-only)
+## Delivered (loop61)
 
-- MINE-0…8 MVP+deepen impl closed · pytest 1839
-- M2 zero-human ✅ · QuantaAlpha deferred (WSL blocked)
-- M4 phase partial_closed loop58 — M4.1/M4.2/M4.3 contract closed
+- GEN-P2 E2E **partial** — corpus/coverage/library pass · Chat dispatch gap QA-61-1
+- Evidence: `tmp/gen_p2_e2e_loop61_result.json` · §5.367
+- Git: quant_assistant main ahead 15 · no commit this tick
 
 ## Blockers
 
-- `WSL2-BENCH-1` — BENCH-2 QuantaAlpha env
-- `GIT-COMMIT-PENDING` — 428 dirty files · git-master.md bundles
-
-## User can trigger
-
-1. git commit (C-foundation→C14)
-2. WSL Ubuntu + QuantaAlpha install
-3. parking_lot LAB-BROWSER-E2E Co-STEER badge
+- `WSL2-BENCH-1` — BENCH-2 WSL env
+- `GEN-P2-ROUTE-GAP` — live Chat misses factor_library_search / trial_compare dispatch
 
 ## Next
 
-handoff only · await user unblock
+BENCH-2 ① WSL+stub SOP · env deferred → TREE-2 gap list · GEN-P2 route fix (executor)
