@@ -10,3 +10,4 @@
 {"recorded_at": "2026-06-19T15:05:15Z", "last_tick": "loop55-mine7-bandit-reward-prod", "pytest_passed": 1833, "ruff": "ok", "evidence_paths": [], "section5_ref": "5.9", "source": "manual"}
 {"recorded_at": "2026-06-19T15:25:34Z", "last_tick": "loop58-m4-phase-partial-closure", "pytest_passed": 1839, "ruff": "ok", "evidence_paths": [], "section5_ref": "5.14", "source": "manual"}
 {"recorded_at": "2026-06-19T17:03:44Z", "last_tick": "loop64-tree2-index-weight-wiring", "pytest_passed": 1849, "ruff": "ok", "evidence_paths": [], "section5_ref": "5.15", "source": "manual"}
+{"recorded_at": "2026-06-19T17:29:24Z", "last_tick": "loop69-tree2-index-weight-continuous", "pytest_passed": 12, "ruff": "ok", "evidence_paths": [], "section5_ref": "5.12", "source": "manual"}

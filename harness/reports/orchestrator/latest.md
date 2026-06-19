@@ -1,30 +1,20 @@
-# Orchestrator Report — loop64 governance park + index_weight in progress
+# Orchestrator Report — latest
 
-**Updated**: 2026-06-20 · loop64-governance-park-corpus
+**Updated**: 2026-06-20 · loop74-tree2-index-weight-complete
 
-## Status
+## Tick Summary
 
-- **Tree**: PL-C-MINE · slice TREE-2-index-weight-wiring
-- **closure_gate**: resumed (partial_closed)
-- **Mode**: autonomous · governance-coordinator tick
-
-## Delivered (loop64)
-
-- User park: **CORPUS-EXPR-QUALITY** + **PDF-INSIGHT-FIRST** → TASK_TREES parking_lot
-- §5.374 user guidance ledger · CONTINUATION refresh
-- index_weight status check: backfill_runner wired · executor loop64 running · 2 unit tests fail
-- TREE-2-gap-list.yaml: index_weight → `in_progress`
-
-## Parked (user authoritative)
-
-- CORPUS-EXPR-QUALITY — symbol/bundled expr quality (MinerU) · after MINE+GEN
-- PDF-INSIGHT-FIRST — insight before extract routing · after 挖掘回测+意图机
-
-## Blockers
-
-- `WSL2-BENCH-1` — Ubuntu install needs user auth (env · non-stop)
-- `INDEX-WEIGHT-UNIT-TESTS` — 2 fail · executor loop64 收尾
+- **slice**: TREE-2 index_weight final continuous
+- **executor**: bounded 24-iter backfill + snapshot + GAP complete
+- bounded 24-iter `run_index_weight_backfill_job` · 24→0 remaining · 7200 rows
+- snapshot `20260620-013952-a-share-history-status.json`
+- GAP-20260620-001: index_weight_daily **complete** (96月 · 32994 rows)
+- 五 lifecycle `run --apply` exit 0
 
 ## Next
 
-Executor: finish index_weight unit tests + gap closure · do not duplicate ce21e6dd slice
+- BENCH-2 ② QuantaAlpha step2 (env deferred · 需用户授权 Ubuntu)
+
+## Blockers
+
+- WSL2-BENCH-1 (env)
