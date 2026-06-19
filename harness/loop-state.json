@@ -1,45 +1,35 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T20:10:00Z",
+  "updated_at": "2026-06-20T20:30:00Z",
   "mode": "autonomous",
   "stop_reason": null,
-  "current_tree": "PL-C-MINE",
-  "current_slice": "TREE-2-index-weight-wiring",
-  "next_atomic_action": "TREE-2 index_weight 接线收尾 — executor loop64（backfill_runner 已接线 · 2 unit tests fail · 勿重复）",
-  "next_after": "月切片 watermark 续跑 + gap list 刷新 · 后接 BENCH-2 ②（env deferred）",
+  "current_tree": "TREE-2",
+  "current_slice": "monthly-watermark-continued",
+  "next_atomic_action": "TREE-2 月切片 watermark 续跑 + show_backfill_status.ps1 / save_status_snapshot（需 TREE2_QA_POSTGRES_DSN）",
+  "next_after": "BENCH-2 ② QuantaAlpha 完整安装 step2（env deferred · 需用户授权 Ubuntu）",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
       "severity": "env",
       "note": "BENCH-2 顺序（用户权威）：① WSL+stub SOP closed/env deferred · wsl -l -v 仍仅 docker-desktop · ② QuantaAlpha 需用户授权"
-    },
-    {
-      "id": "INDEX-WEIGHT-UNIT-TESTS",
-      "severity": "code",
-      "note": "index_weight_backfill 2 unit tests fail — executor loop64 收尾中"
     }
   ],
-  "last_tick": "loop64-governance-park-corpus",
+  "last_tick": "loop64-tree2-index-weight-wiring",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
-    "PROJECT_STATUS.md §5.374",
+    "PROJECT_STATUS.md §5.375",
     "METHODOLOGY_MEMORY.md",
     "WORKFLOWS.md",
-    "git status / branch",
-    "harness/reports/orchestrator/latest.md",
-    "TREE-2-gap-list.yaml"
+    "TREE-2-gap-list.yaml",
+    "git status / branch"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
     "status": "resumed",
     "verdict": "partial_closed",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "GEN-P2 closed loop63b · CORPUS/PDF-INSIGHT user-parked · index_weight in_progress loop64"
+    "note": "loop64 GAP-20260620-001 index_weight wired_partial · next monthly watermark + status snapshot"
   },
-  "last_completed_note": "loop64 governance park CORPUS-EXPR-QUALITY + PDF-INSIGHT-FIRST · §5.374 user guidance",
-  "parking_lot_added": [
-    "CORPUS-EXPR-QUALITY",
-    "PDF-INSIGHT-FIRST"
-  ]
+  "last_completed_note": "loop64 index_weight_backfill → backfill_runner/continuous + watermark/status · 15 targeted unit pass"
 }
