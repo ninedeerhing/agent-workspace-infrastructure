@@ -1,0 +1,20 @@
+{
+  "workflow_id": "quant_trading_direct_formula",
+  "domain": "quant_trading",
+  "description": "用户直接给出公式：F3 确认→F4/F5/F6→可选回测",
+  "source_kinds": ["direct_formula"],
+  "stages": [
+    {"id": "F1", "name": "分类", "hint": "expression_ast / 公式挖掘"},
+    {"id": "F3", "capability": "factor_draft_dispatch", "hint": "复述公式与分类"},
+    {"id": "F4", "capability": "factor_compile_dispatch", "hint": "注册表达式"},
+    {"id": "F5", "capability": "factor_compute_dispatch", "hint": "计算因子值"},
+    {"id": "F6", "capability": "factor_evaluation_dispatch", "hint": "因子检验"},
+    {"id": "S2", "capability": "strategy_draft_dispatch", "hint": "用户明确要回测"},
+    {"id": "S4", "capability": "backtest_dispatch", "hint": "历史回测"}
+  ],
+  "gates": [
+    "跳过 F2 搜索/阅读",
+    "F4 前须 factor_confirmed",
+    "backtest 前须 strategy_confirmed"
+  ]
+}

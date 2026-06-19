@@ -1,0 +1,251 @@
+{
+  "metadata": {
+    "version": "1.0.0-raindeer",
+    "created": "2026-06-11",
+    "description": "raindeer DAG 流水线定义。借鉴 GitNexus 12 阶段 DAG 设计模式，为每种工作流定义显式的阶段依赖图、输入/输出类型契约和门禁条件。与 workflow-state.json 的阶段追踪和 workflow-gates.md 的门禁定义互补。已适配 raindeer 的 Python + Streamlit + PostgreSQL/TimescaleDB 技术栈。",
+    "design_reference": "GitNexus pipeline-phases/runner.ts — 基于 Kahn 拓扑排序的 DAG 执行器；每阶段声明 deps + 类型化输出",
+    "integration_note": "本文件为纯协议级定义，不需要任何运行时依赖。执行时由技能链式调用（$research → $plan → $execute）驱动，DAG 用于验证依赖顺序。"
+  },
+  "pipelines": {
+    "standard": {
+      "name": "标准工作流 DAG",
+      "description": "常规单任务的标准开发流程，从接受到交接的 7 阶段",
+      "phases": {
+        "intake": {
+          "order": 0,
+          "name": "需求接收",
+          "skill": "$deep-interview",
+          "deps": [],
+          "inputs": {
+            "required": ["user_request: string"],
+            "optional": ["existing_context: string", "constraints: string[]"]
+          },
+          "outputs": {
+            "produces": "intake_brief",
+            "schema": {
+              "goal": "string",
+              "scope": "string[]",
+              "non_goals": "string[]",
+              "risks": "string[]",
+              "acceptance_criteria": "string[]"
+            }
+          },
+          "gates": [
+            {"id": "G-STD-01", "name": "需求清晰度检查", "description": "目标、范围、验收标准必须明确"}
+          ]
+        },
+        "research": {
+          "order": 1,
+          "name": "调研分析",
+          "skill": "$autoresearch | $best-practice-research",
+          "deps": ["intake"],
+          "inputs": {
+            "required": ["intake_brief"],
+            "preload": ["docs/context-preload.md", "apps/quant_assistant/docs/ARCHITECTURE.md"]
+          },
+          "outputs": {
+            "produces": "research_output",
+            "schema": {
+              "findings": "Finding[]",
+              "code_locations": "CodeLocation[]",
+              "external_references": "Reference[]",
+              "confidence": "enum(high|medium|low)"
+            }
+          },
+          "gates": [
+            {"id": "G-STD-02", "name": "调研充分性检查", "description": "必须有新鲜证据支撑，无基于记忆的假设"}
+          ]
+        },
+        "plan": {
+          "order": 2,
+          "name": "方案设计",
+          "skill": "$writing-plans | $ralplan",
+          "deps": ["research"],
+          "inputs": {
+            "required": ["intake_brief", "research_output"],
+            "raindeer_constraints": {
+              "domain_models": "@dataclass(frozen=True, slots=True) + to_json/from_json",
+              "database": "psycopg2 参数化查询 + DSN 脱敏",
+              "testing": "pytest marker 分层 (db/external)",
+              "lint": "ruff (E4, E7, E9, F)"
+            }
+          },
+          "outputs": {
+            "produces": "plan_output",
+            "schema": {
+              "tasks": "Task[]",
+              "milestones": "Milestone[]",
+              "dependencies": "DepEdge[]",
+              "verification_commands": "string[]"
+            }
+          },
+          "gates": [
+            {"id": "G-STD-03", "name": "方案审查", "description": "设计已审查通过，任务已分解为可验证步骤"}
+          ]
+        },
+        "execute": {
+          "order": 3,
+          "name": "代码实现",
+          "skill": "$executing-plans | $subagent-driven-dev",
+          "deps": ["plan"],
+          "inputs": {
+            "required": ["plan_output"],
+            "optional": ["codebase_context: CodebaseIntel"]
+          },
+          "outputs": {
+            "produces": "implementation",
+            "schema": {
+              "modified_files": "string[]",
+              "created_files": "string[]",
+              "test_results": "TestResult[]",
+              "ruff_results": "string"
+            }
+          },
+          "gates": [
+            {"id": "G-STD-04", "name": "实现检查", "description": "只修改了相关文件，ruff check 和 pytest 通过"}
+          ]
+        },
+        "review": {
+          "order": 4,
+          "name": "代码审查",
+          "skill": "$code-review",
+          "deps": ["execute"],
+          "inputs": {
+            "required": ["implementation"]
+          },
+          "outputs": {
+            "produces": "review_output",
+            "schema": {
+              "issues": "ReviewIssue[]",
+              "severity": "enum(pass|minor|major|blocker)",
+              "recommendations": "string[]"
+            }
+          },
+          "gates": [
+            {"id": "G-STD-05", "name": "审查门禁", "description": "无 blocker/major 问题滞留"}
+          ]
+        },
+        "verify": {
+          "order": 5,
+          "name": "验证确认",
+          "skill": "$verification-before-completion",
+          "deps": ["execute", "review"],
+          "inputs": {
+            "required": ["implementation", "review_output"],
+            "raindeer_verification": ["uv run ruff check", "uv run pytest -q -m \"not db and not external\""]
+          },
+          "outputs": {
+            "produces": "verification_evidence",
+            "schema": {
+              "checks": "CheckResult[]",
+              "overall": "enum(pass|fail|partial)",
+              "unverified_risks": "string[]"
+            }
+          },
+          "gates": [
+            {"id": "G-STD-06", "name": "验证门禁", "description": "ruff+pytest 通过，证据新鲜可复现"}
+          ]
+        },
+        "handoff": {
+          "order": 6,
+          "name": "会话交接",
+          "skill": null,
+          "deps": ["verify"],
+          "inputs": {
+            "required": ["implementation", "verification_evidence"]
+          },
+          "outputs": {
+            "produces": "handoff_package",
+            "schema": {
+              "progress_updated": "boolean",
+              "session_handoff_updated": "boolean",
+              "archive_snapshot_created": "boolean",
+              "next_steps": "string[]"
+            }
+          },
+          "gates": [
+            {"id": "G-STD-07", "name": "交接门禁", "description": "progress.md、session-handoff.md 已更新，归档已保存"}
+          ]
+        }
+      }
+    },
+    "complex": {
+      "name": "复杂任务流 DAG",
+      "description": "多文件实现、架构变更、迁移等复杂任务，支持并行执行分支",
+      "phases": {
+        "deep_interview": {
+          "order": 0,
+          "name": "深度访谈",
+          "skill": "$deep-interview",
+          "deps": [],
+          "inputs": { "required": ["user_request: string"] },
+          "outputs": { "produces": "clarity_brief" },
+          "gates": [{"id": "G-CPX-01", "name": "意图清晰度"}]
+        },
+        "consensus_plan": {
+          "order": 1,
+          "name": "共识规划",
+          "skill": "$ralplan | $prometheus-strict",
+          "deps": ["deep_interview"],
+          "inputs": { "required": ["clarity_brief"] },
+          "outputs": { "produces": "consensus_plan" },
+          "gates": [{"id": "G-CPX-02", "name": "方案共识"}]
+        },
+        "team_execution": {
+          "order": 2,
+          "name": "团队执行",
+          "skill": "$team-pipeline | $dispatching-parallel-agents",
+          "deps": ["consensus_plan"],
+          "inputs": { "required": ["consensus_plan"] },
+          "outputs": { "produces": "team_results" },
+          "gates": [{"id": "G-CPX-03", "name": "执行完成度"}],
+          "parallelism": {"max_workers": 6, "strategy": "independent_by_file"}
+        },
+        "qa_security_review": {
+          "order": 3,
+          "name": "质量与安全审查",
+          "skill": "$security-review | $qa-testing",
+          "deps": ["team_execution"],
+          "inputs": { "required": ["team_results"] },
+          "outputs": { "produces": "qa_security_report" },
+          "gates": [{"id": "G-CPX-04", "name": "质量安全门禁"}]
+        },
+        "release_handoff": {
+          "order": 4,
+          "name": "发布与交接",
+          "skill": "$ship-release",
+          "deps": ["qa_security_review"],
+          "inputs": { "required": ["team_results", "qa_security_report"] },
+          "outputs": { "produces": "release_package" },
+          "gates": [{"id": "G-CPX-05", "name": "发布就绪"}]
+        }
+      }
+    }
+  },
+  "phase_execution_rules": {
+    "validation": {
+      "description": "借鉴 GitNexus runner.ts 的 Kahn 拓扑排序验证",
+      "checks": [
+        "所有阶段名称必须唯一",
+        "所有 deps 必须引用已定义阶段",
+        "无循环依赖（检测并报告具体环路路径）",
+        "被阻断的传递依赖计数"
+      ]
+    },
+    "execution": {
+      "strategy": "sequential_in_topological_order",
+      "context_isolation": "每阶段仅接收其声明的 deps 输出（防止隐藏耦合）",
+      "error_handling": "阶段错误包装阶段名称；不吞掉原始原因"
+    },
+    "parallelism": {
+      "description": "同一 topo 层的互不依赖阶段可并行执行",
+      "max_concurrent": 6,
+      "constraint": "并行阶段不得修改同一文件"
+    }
+  },
+  "notes": {
+    "runtime_implementation": "本 DAG 为协议级定义。在单代理模式下，通过技能链式调用（$skill1 $skill2）模拟 DAG 执行，不保证并行性。多代理模式下可用于编排层自动调度。",
+    "extensibility": "新增流水线：在 pipelines 下添加新条目。新增阶段：在对应 pipeline 的 phases 下添加，正确声明 deps 和 I/O。",
+    "synergy_with_workflow_state": "本文件定义流水线结构，workflow-state.json 追踪当前执行状态。两者配合：DAG 检查 '能否进入下一阶段'，workflow-state 记录 '当前在哪个阶段'。"
+  }
+}

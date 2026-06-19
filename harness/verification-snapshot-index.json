@@ -1,0 +1,26 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-06-19T16:34:53Z",
+  "snapshot_path": "harness/verification-latest.json",
+  "archive_path": "harness/verification-archive.jsonl",
+  "latest": {
+    "recorded_at": "2026-06-19T15:25:34Z",
+    "last_tick": "loop58-m4-phase-partial-closure",
+    "pytest_passed": 1839,
+    "ruff": "ok",
+    "evidence_paths": [],
+    "section5_ref": "5.14",
+    "source": "manual"
+  },
+  "git_dirty": true,
+  "age_hours": 1.1554455861111113,
+  "stale": false,
+  "findings": [],
+  "last_lifecycle": {
+    "at": "2026-06-19T16:34:53Z",
+    "apply": true,
+    "stale": false,
+    "git_dirty": true,
+    "age_hours": 1.1554455861111113
+  }
+}

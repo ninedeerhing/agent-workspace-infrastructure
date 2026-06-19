@@ -1,0 +1,452 @@
+{
+  "version": "0.1.0",
+  "generated_at": "2026-06-15T23:04:33+08:00",
+  "source": "harness/scripts/Build-AgentRegistryFromAgentsDir.ps1",
+  "project_root": "E:\\raindeer",
+  "orchestrator_role": "orchestrator",
+  "user_facing_role": "orchestrator",
+  "role_count": 22,
+  "worker_count": 21,
+  "roles": [
+    {
+      "role_id": "orchestrator",
+      "kind": "orchestrator",
+      "user_facing": true,
+      "enabled": true,
+      "source_file": "agents/orchestrator.md",
+      "session_name": "AWI / orchestrator",
+      "model": "opus",
+      "description": "name: orchestrator",
+      "mailbox": {
+        "inbox": "harness/mailbox/orchestrator/inbox",
+        "processed": "harness/mailbox/orchestrator/processed"
+      },
+      "worklog": "harness/worklogs/orchestrator.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "architect",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/architect.md",
+      "session_name": "AWI / architect",
+      "model": "opus",
+      "description": "name: architect",
+      "mailbox": {
+        "inbox": "harness/mailbox/architect/inbox",
+        "processed": "harness/mailbox/architect/processed"
+      },
+      "worklog": "harness/worklogs/architect.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "code-reviewer",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/code-reviewer.md",
+      "session_name": "AWI / code-reviewer",
+      "model": "sonnet",
+      "description": "代码审查与简化专家。对代码进行逻辑缺陷、可维护性、性能、风格审查，并可按需执行保持功能不变的代码简化。",
+      "mailbox": {
+        "inbox": "harness/mailbox/code-reviewer/inbox",
+        "processed": "harness/mailbox/code-reviewer/processed"
+      },
+      "worklog": "harness/worklogs/code-reviewer.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "constitution-guardian",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/constitution-guardian.md",
+      "session_name": "AWI / constitution-guardian",
+      "model": "inherit",
+      "description": "Constitution Guardian - ensures all agent actions comply with CONSTITUTION.md and maintains governance document integrity",
+      "mailbox": {
+        "inbox": "harness/mailbox/constitution-guardian/inbox",
+        "processed": "harness/mailbox/constitution-guardian/processed"
+      },
+      "worklog": "harness/worklogs/constitution-guardian.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "critic",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/critic.md",
+      "session_name": "AWI / critic",
+      "model": "opus",
+      "description": "批评者代理。对计划和设计做反方挑战，发现盲点和缺口，提出建设性反例。",
+      "mailbox": {
+        "inbox": "harness/mailbox/critic/inbox",
+        "processed": "harness/mailbox/critic/processed"
+      },
+      "worklog": "harness/worklogs/critic.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "debugger",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/debugger.md",
+      "session_name": "AWI / debugger",
+      "model": "sonnet",
+      "description": "系统化调试专家。负责根因分析、问题复现、回归隔离。",
+      "mailbox": {
+        "inbox": "harness/mailbox/debugger/inbox",
+        "processed": "harness/mailbox/debugger/processed"
+      },
+      "worklog": "harness/worklogs/debugger.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "designer",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/designer.md",
+      "session_name": "AWI / designer",
+      "model": "sonnet",
+      "description": "UI/UX 设计代理。负责信息架构、交互设计、设计系统和视觉规范。",
+      "mailbox": {
+        "inbox": "harness/mailbox/designer/inbox",
+        "processed": "harness/mailbox/designer/processed"
+      },
+      "worklog": "harness/worklogs/designer.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "executor",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/executor.md",
+      "session_name": "AWI / executor",
+      "model": "sonnet",
+      "description": "name: executor",
+      "mailbox": {
+        "inbox": "harness/mailbox/executor/inbox",
+        "processed": "harness/mailbox/executor/processed"
+      },
+      "worklog": "harness/worklogs/executor.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "explore",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/explore.md",
+      "session_name": "AWI / explore",
+      "model": null,
+      "description": "name: explorer",
+      "mailbox": {
+        "inbox": "harness/mailbox/explore/inbox",
+        "processed": "harness/mailbox/explore/processed"
+      },
+      "worklog": "harness/worklogs/explore.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "explorer",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/explorer.md",
+      "session_name": "AWI / explorer",
+      "model": "inherit",
+      "description": "Codebase explorer - fast exploration of codebases, locating files/symbols/patterns, adapted for raindeer's Python codebase",
+      "mailbox": {
+        "inbox": "harness/mailbox/explorer/inbox",
+        "processed": "harness/mailbox/explorer/processed"
+      },
+      "worklog": "harness/worklogs/explorer.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "git-master",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/git-master.md",
+      "session_name": "AWI / git-master",
+      "model": "sonnet",
+      "description": "Git 操作代理。负责提交、分支管理、rebase、历史清理，遵循 Conventional Commits。",
+      "mailbox": {
+        "inbox": "harness/mailbox/git-master/inbox",
+        "processed": "harness/mailbox/git-master/processed"
+      },
+      "worklog": "harness/worklogs/git-master.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "governance-coordinator",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/governance-coordinator.md",
+      "session_name": "AWI / governance-coordinator",
+      "model": "inherit",
+      "description": "Governance Coordinator - coordinates cross-references between governance documents, orchestrates constitution amendment flow, and ensures documentation freshness",
+      "mailbox": {
+        "inbox": "harness/mailbox/governance-coordinator/inbox",
+        "processed": "harness/mailbox/governance-coordinator/processed"
+      },
+      "worklog": "harness/worklogs/governance-coordinator.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "growth-engineer",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/growth-engineer.md",
+      "session_name": "AWI / growth-engineer",
+      "model": "sonnet",
+      "description": "name: growth-engineer",
+      "mailbox": {
+        "inbox": "harness/mailbox/growth-engineer/inbox",
+        "processed": "harness/mailbox/growth-engineer/processed"
+      },
+      "worklog": "harness/worklogs/growth-engineer.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "planner",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/planner.md",
+      "session_name": "AWI / planner",
+      "model": "opus",
+      "description": "name: planner",
+      "mailbox": {
+        "inbox": "harness/mailbox/planner/inbox",
+        "processed": "harness/mailbox/planner/processed"
+      },
+      "worklog": "harness/worklogs/planner.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "qa-tester",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/qa-tester.md",
+      "session_name": "AWI / qa-tester",
+      "model": "sonnet",
+      "description": "QA 测试代理。负责 CLI/服务运行时验证、浏览器测试、交互式质量检查。",
+      "mailbox": {
+        "inbox": "harness/mailbox/qa-tester/inbox",
+        "processed": "harness/mailbox/qa-tester/processed"
+      },
+      "worklog": "harness/worklogs/qa-tester.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "researcher",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/researcher.md",
+      "session_name": "AWI / researcher",
+      "model": "inherit",
+      "description": "Researcher - gathers official documentation, reference implementations, and external evidence for informed decisions",
+      "mailbox": {
+        "inbox": "harness/mailbox/researcher/inbox",
+        "processed": "harness/mailbox/researcher/processed"
+      },
+      "worklog": "harness/worklogs/researcher.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "scientist",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/scientist.md",
+      "session_name": "AWI / scientist",
+      "model": "opus",
+      "description": "科学分析代理。负责数据分析、统计研究、多假设验证，以实验驱动结论。",
+      "mailbox": {
+        "inbox": "harness/mailbox/scientist/inbox",
+        "processed": "harness/mailbox/scientist/processed"
+      },
+      "worklog": "harness/worklogs/scientist.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "security-reviewer",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/security-reviewer.md",
+      "session_name": "AWI / security-reviewer",
+      "model": "sonnet",
+      "description": "安全审查专家。负责秘密检测、注入漏洞、授权绕过、供应链安全分析。",
+      "mailbox": {
+        "inbox": "harness/mailbox/security-reviewer/inbox",
+        "processed": "harness/mailbox/security-reviewer/processed"
+      },
+      "worklog": "harness/worklogs/security-reviewer.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "test-engineer",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/test-engineer.md",
+      "session_name": "AWI / test-engineer",
+      "model": "sonnet",
+      "description": "Test strategy, integration/e2e coverage, flaky test hardening, TDD workflows",
+      "mailbox": {
+        "inbox": "harness/mailbox/test-engineer/inbox",
+        "processed": "harness/mailbox/test-engineer/processed"
+      },
+      "worklog": "harness/worklogs/test-engineer.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "tracer",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/tracer.md",
+      "session_name": "AWI / tracer",
+      "model": "sonnet",
+      "description": "Evidence-driven causal tracing with competing hypotheses, evidence for/against, uncertainty tracking, and next-probe recommendations",
+      "mailbox": {
+        "inbox": "harness/mailbox/tracer/inbox",
+        "processed": "harness/mailbox/tracer/processed"
+      },
+      "worklog": "harness/worklogs/tracer.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "verifier",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/verifier.md",
+      "session_name": "AWI / verifier",
+      "model": "sonnet",
+      "description": "验证审查专家。负责完成证据收集、验收确认、风险报告生成。",
+      "mailbox": {
+        "inbox": "harness/mailbox/verifier/inbox",
+        "processed": "harness/mailbox/verifier/processed"
+      },
+      "worklog": "harness/worklogs/verifier.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "writer",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/writer.md",
+      "session_name": "AWI / writer",
+      "model": "sonnet",
+      "description": "文档撰写与外部文档研究代理。负责技术文档、迁移指南、发布说明（遵循 Diataxis 框架），以及外部文档、SDK 参考和 API 规格的查找与综合。",
+      "mailbox": {
+        "inbox": "harness/mailbox/writer/inbox",
+        "processed": "harness/mailbox/writer/processed"
+      },
+      "worklog": "harness/worklogs/writer.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    }
+  ]
+}

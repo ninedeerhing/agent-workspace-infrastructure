@@ -1,0 +1,16 @@
+domains:
+  quant_trading:
+    workflow_default: quant_trading_factor_dual_track
+    subgraph: quant_trading
+  general_chat:
+    workflow_default: general_chat
+    subgraph: general_chat
+  market_data:
+    workflow_default: market_data_quote
+    subgraph: market_data
+  board_research:
+    workflow_default: board_research_constituents
+    subgraph: board_research
+  stock_research:
+    workflow_default: stock_research_basic
+    subgraph: stock_research

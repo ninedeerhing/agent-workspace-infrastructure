@@ -1,0 +1,49 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2026-06-09",
+    "description": "AWI 工作流状态追踪器。记录当前活跃的工作流类型、阶段、任务上下文和阶段转换验证状态。与 feature_list.json（功能真相来源）互补，聚焦于过程状态而非结果状态。"
+  },
+  "active_workflow": "standard",
+  "workflow_history": [],
+  "current_context": {
+    "session_id": null,
+    "active_feature_id": null,
+    "active_task": "TREE-RT Phase 0/1/7 initial runtime scaffolding",
+    "started_at": "2026-06-15T22:26:00+08:00",
+    "tree_id": "TREE-RT",
+    "active_phase": "EXECUTE"
+  },
+  "workflows": {
+    "standard": {
+      "name": "标准工作流",
+      "phases": ["INTAKE", "RESEARCH", "PLAN", "EXECUTE", "REVIEW", "VERIFY", "HANDOFF"],
+      "description": "常规单任务的标准开发流程"
+    },
+    "complex": {
+      "name": "复杂任务流",
+      "phases": ["DEEP_INTERVIEW", "CONSENSUS_PLAN", "TEAM_EXECUTION", "QA_SECURITY_REVIEW", "RELEASE_HANDOFF"],
+      "description": "多文件实现、架构变更、迁移等复杂任务"
+    },
+    "product": {
+      "name": "产品/创业流",
+      "phases": ["OFFICE_HOURS", "CEO_REVIEW", "ENG_REVIEW", "DESIGN_REVIEW", "BUILD", "QA", "SHIP", "RETRO"],
+      "description": "从想法到交付的完整产品流程"
+    },
+    "tdd": {
+      "name": "TDD 实现流",
+      "phases": ["BRAINSTORMING", "WRITING_PLANS", "RED", "GREEN", "REFACTOR", "CODE_REVIEW", "VERIFY", "FINISH"],
+      "description": "严格测试驱动开发和质量控制流程"
+    }
+  },
+  "phase_gate_status": {
+    "description": "记录各阶段门禁的通过状态。门禁定义见 workflow-gates.md。",
+    "gates": {}
+  },
+  "validation_log": [],
+  "notes": {
+    "startup": "新会话启动时，读取本文件以了解当前工作流状态和下一步",
+    "update_rule": "每次阶段切换时更新 active_workflow 和 phase_gate_status",
+    "handoff_rule": "会话结束时确保本文件与 progress.md 和 session-handoff.md 状态一致"
+  }
+}

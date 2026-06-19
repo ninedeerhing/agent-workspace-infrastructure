@@ -1,0 +1,317 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-06-19T16:34:53Z",
+  "candidates": [
+    {
+      "task_ref": "R0-M1",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "gen-r0-r1",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "R2-M4",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "mine4-r2m4",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "MINE-4",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "mine4-r2m4",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "R1-M2",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "gen-r0-r1",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "R1-M5",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "gen-r0-r1",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "MINE-5",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "mine5-costeer",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "MINE-6",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "mine6",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "R0-M5",
+      "source": "trees|loop|section5",
+      "has_synthesis": false,
+      "synthesis_id": "",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "synthesize_closure_or_explicit_none"
+    },
+    {
+      "task_ref": "R2-M5",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "kb-m2",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "KB-M1",
+      "source": "trees|loop|section5",
+      "has_synthesis": false,
+      "synthesis_id": "",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "synthesize_closure_or_explicit_none"
+    },
+    {
+      "task_ref": "BENCH-1",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "pl-c-mine",
+      "has_permanent_entry": true,
+      "permanent_ids": [
+        "M-30"
+      ],
+      "recommendation": "closed"
+    },
+    {
+      "task_ref": "R1-M1",
+      "source": "trees|loop|section5",
+      "has_synthesis": false,
+      "synthesis_id": "",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "synthesize_closure_or_explicit_none"
+    },
+    {
+      "task_ref": "KB-M2",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "kb-m2",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "MINE-0",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "kb-1",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "MINE-1",
+      "source": "trees|loop|section5",
+      "has_synthesis": false,
+      "synthesis_id": "",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "synthesize_closure_or_explicit_none"
+    },
+    {
+      "task_ref": "MINE-2",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "mine2-genp1n2",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "MINE-3",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "mine3",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
+    },
+    {
+      "task_ref": "MINE-7",
+      "source": "trees|loop|section5",
+      "has_synthesis": false,
+      "synthesis_id": "",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "synthesize_closure_or_explicit_none"
+    },
+    {
+      "task_ref": "MINE-8",
+      "source": "trees|loop|section5",
+      "has_synthesis": false,
+      "synthesis_id": "",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "synthesize_closure_or_explicit_none"
+    }
+  ],
+  "open_count": 18,
+  "closed_count": 1,
+  "explicit_none_count": 0,
+  "findings": [
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "R0-M1",
+      "detail": "synthesis-gen-r0-r1 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "R2-M4",
+      "detail": "synthesis-mine4-r2m4 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "MINE-4",
+      "detail": "synthesis-mine4-r2m4 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "R1-M2",
+      "detail": "synthesis-gen-r0-r1 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "R1-M5",
+      "detail": "synthesis-gen-r0-r1 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "MINE-5",
+      "detail": "synthesis-mine5-costeer closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "MINE-6",
+      "detail": "synthesis-mine6 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "warning",
+      "code": "CLO-MISSING-SYNTH",
+      "task_ref": "R0-M5",
+      "detail": "task R0-M5 marked done but no synthesis-* section",
+      "recommendation": "Add ## 收口 synthesis-r0-m5 or record explicit 没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "R2-M5",
+      "detail": "synthesis-kb-m2 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "warning",
+      "code": "CLO-MISSING-SYNTH",
+      "task_ref": "KB-M1",
+      "detail": "task KB-M1 marked done but no synthesis-* section",
+      "recommendation": "Add ## 收口 synthesis-kb-m1 or record explicit 没有"
+    },
+    {
+      "severity": "warning",
+      "code": "CLO-MISSING-SYNTH",
+      "task_ref": "R1-M1",
+      "detail": "task R1-M1 marked done but no synthesis-* section",
+      "recommendation": "Add ## 收口 synthesis-r1-m1 or record explicit 没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "KB-M2",
+      "detail": "synthesis-kb-m2 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "MINE-0",
+      "detail": "synthesis-kb-1 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "warning",
+      "code": "CLO-MISSING-SYNTH",
+      "task_ref": "MINE-1",
+      "detail": "task MINE-1 marked done but no synthesis-* section",
+      "recommendation": "Add ## 收口 synthesis-mine-1 or record explicit 没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "MINE-2",
+      "detail": "synthesis-mine2-genp1n2 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "MINE-3",
+      "detail": "synthesis-mine3 closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
+    },
+    {
+      "severity": "warning",
+      "code": "CLO-MISSING-SYNTH",
+      "task_ref": "MINE-7",
+      "detail": "task MINE-7 marked done but no synthesis-* section",
+      "recommendation": "Add ## 收口 synthesis-mine-7 or record explicit 没有"
+    },
+    {
+      "severity": "warning",
+      "code": "CLO-MISSING-SYNTH",
+      "task_ref": "MINE-8",
+      "detail": "task MINE-8 marked done but no synthesis-* section",
+      "recommendation": "Add ## 收口 synthesis-mine-8 or record explicit 没有"
+    }
+  ],
+  "last_lifecycle": {
+    "at": "2026-06-19T16:34:53Z",
+    "open_count": 18,
+    "closed_count": 1,
+    "explicit_none_count": 0,
+    "candidate_count": 19
+  }
+}

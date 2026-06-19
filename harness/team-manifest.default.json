@@ -1,0 +1,191 @@
+{
+  "version": "0.1.0",
+  "template_id": "default-full-roster",
+  "generated_at": "2026-06-15T23:04:33+08:00",
+  "orchestrator_role": "orchestrator",
+  "user_facing_role": "orchestrator",
+  "roles": [
+    {
+      "role_id": "orchestrator",
+      "kind": "orchestrator",
+      "enabled": true,
+      "session_name": "AWI / orchestrator",
+      "model": "opus",
+      "source_file": "agents/orchestrator.md"
+    },
+    {
+      "role_id": "architect",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / architect",
+      "model": "opus",
+      "source_file": "agents/architect.md"
+    },
+    {
+      "role_id": "code-reviewer",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / code-reviewer",
+      "model": "sonnet",
+      "source_file": "agents/code-reviewer.md"
+    },
+    {
+      "role_id": "constitution-guardian",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / constitution-guardian",
+      "model": "inherit",
+      "source_file": "agents/constitution-guardian.md"
+    },
+    {
+      "role_id": "critic",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / critic",
+      "model": "opus",
+      "source_file": "agents/critic.md"
+    },
+    {
+      "role_id": "debugger",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / debugger",
+      "model": "sonnet",
+      "source_file": "agents/debugger.md"
+    },
+    {
+      "role_id": "designer",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / designer",
+      "model": "sonnet",
+      "source_file": "agents/designer.md"
+    },
+    {
+      "role_id": "executor",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / executor",
+      "model": "sonnet",
+      "source_file": "agents/executor.md"
+    },
+    {
+      "role_id": "explore",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / explore",
+      "model": null,
+      "source_file": "agents/explore.md"
+    },
+    {
+      "role_id": "explorer",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / explorer",
+      "model": "inherit",
+      "source_file": "agents/explorer.md"
+    },
+    {
+      "role_id": "git-master",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / git-master",
+      "model": "sonnet",
+      "source_file": "agents/git-master.md"
+    },
+    {
+      "role_id": "governance-coordinator",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / governance-coordinator",
+      "model": "inherit",
+      "source_file": "agents/governance-coordinator.md"
+    },
+    {
+      "role_id": "growth-engineer",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / growth-engineer",
+      "model": "sonnet",
+      "source_file": "agents/growth-engineer.md"
+    },
+    {
+      "role_id": "planner",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / planner",
+      "model": "opus",
+      "source_file": "agents/planner.md"
+    },
+    {
+      "role_id": "qa-tester",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / qa-tester",
+      "model": "sonnet",
+      "source_file": "agents/qa-tester.md"
+    },
+    {
+      "role_id": "researcher",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / researcher",
+      "model": "inherit",
+      "source_file": "agents/researcher.md"
+    },
+    {
+      "role_id": "scientist",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / scientist",
+      "model": "opus",
+      "source_file": "agents/scientist.md"
+    },
+    {
+      "role_id": "security-reviewer",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / security-reviewer",
+      "model": "sonnet",
+      "source_file": "agents/security-reviewer.md"
+    },
+    {
+      "role_id": "test-engineer",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / test-engineer",
+      "model": "sonnet",
+      "source_file": "agents/test-engineer.md"
+    },
+    {
+      "role_id": "tracer",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / tracer",
+      "model": "sonnet",
+      "source_file": "agents/tracer.md"
+    },
+    {
+      "role_id": "verifier",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / verifier",
+      "model": "sonnet",
+      "source_file": "agents/verifier.md"
+    },
+    {
+      "role_id": "writer",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / writer",
+      "model": "sonnet",
+      "source_file": "agents/writer.md"
+    }
+  ],
+  "defaults": {
+    "register_skills": true,
+    "ensure_mailbox": true,
+    "ensure_worklogs": true,
+    "platform": "auto"
+  }
+}

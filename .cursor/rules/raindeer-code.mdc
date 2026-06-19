@@ -1,0 +1,291 @@
+---
+description: >-
+  raindeer Python 代码标准。派生自 RULES.md v1.0.0 + CONSTITUTION.md 第四条(手术式变更)、第六条(不可变领域模型)、第十三条(模块组织原则)。
+  包含 10 条必须遵守、10 条禁止事项、5 条 Python 特有规则。
+  违反任何一条均构成合并阻断。
+globs: apps/quant_assistant/**/*.py, tests/**/*.py, scripts/**/*.py, tools/**/*.py
+alwaysApply: false
+---
+
+# raindeer 代码标准
+
+> **效力**：本规则中的全部 25 条均为硬约束。违反任一条 → 变更不得合并。
+> **派生自**：RULES.md v1.0.0、CONSTITUTION.md 第四/六/十三条。
+
+---
+
+## 第〇条：`from __future__ import annotations`
+
+每个 `.py` 模块文件的第一行可执行代码必须是：
+
+```python
+from __future__ import annotations
+```
+
+**理由**（CONSTITUTION 13.3）：惰性求值类型注解，消除循环导入。**无例外。** 即使文件中不使用类型注解也需要此行。
+
+---
+
+## 第一部分：必须遵守（10 条）
+
+### R-001：Frozen Dataclass 领域模型
+
+所有承载业务数据的类（跨模块传递或持久化的对象）必须使用不可变数据类：
+
+```python
+from dataclasses import dataclass
+from typing import Any
+
+@dataclass(frozen=True, slots=True)
+class MyModel:
+    field1: str
+    field2: int
+
+    def to_json(self) -> dict[str, Any]:
+        return {"field1": self.field1, "field2": self.field2}
+
+    @classmethod
+    def from_json(cls, payload):
+        # 必须：检查不允许的额外字段
+        # 必须：逐字段类型/值域校验
+        # 必须：校验失败抛出 ValueError 并指明字段名
+        ...
+```
+
+**参照**：CONSTITUTION 第六条、RULES.md RULE-005。
+**例外**：Streamlit `session_state` 中的 UI 临时状态。
+**反例**：使用普通 `class`、可变 `@dataclass`、或不实现 `to_json/from_json`。
+
+### R-002：参数化 SQL
+
+所有数据库查询必须使用 psycopg2 参数绑定，禁止任何形式的字符串拼接：
+
+```python
+# ✅ 正确——命名占位符
+cur.execute("SELECT * FROM t WHERE id = %(id)s", {"id": val})
+
+# ✅ 正确——位置占位符
+cur.execute("SELECT * FROM t WHERE id = %s", (val,))
+
+# ❌ 禁止——f-string
+cur.execute(f"SELECT * FROM t WHERE id = {val}")
+
+# ❌ 禁止——+ 拼接
+cur.execute("SELECT * FROM t WHERE id = " + str(val))
+
+# ❌ 禁止——% 格式化
+cur.execute("SELECT * FROM t WHERE id = %s" % val)
+```
+
+**参照**：CONSTITUTION 3.2、RULES.md RULE-003/103。
+**例外**：`schema.sql` 中的静态 DDL（无外部参数注入风险）。
+
+### R-003：DSN 脱敏
+
+任何将数据库连接字符串输出到日志、异常、UI 的代码，必须先脱敏：
+
+```python
+from qa.db.engine import mask_dsn
+
+# ✅ 正确
+logger.error("DB connection failed: %s", mask_dsn(dsn))
+
+# ❌ 禁止——明文 DSN 输出
+logger.error("DB connection failed: %s", dsn)
+print(f"Connecting to {dsn}")
+raise RuntimeError(f"Failed: {dsn}")
+```
+
+**参照**：CONSTITUTION 3.4、RULE-004。**无例外。** 即使在 `DEBUG` 级别日志中也不得暴露密码。
+
+### R-004：显式边界条件处理
+
+所有边界条件必须显式处理，不依赖隐式假设：
+
+```python
+# ✅ 正确
+if value is None:
+    raise ValueError("value must not be None")
+result = process(value)
+
+# ❌ 禁止——隐式依赖
+result = process(value)  # 假设 value 非 None
+```
+
+必须处理的边界条件：
+- `None`、空字符串 `""`、空列表 `[]`、零值 `0`
+- `KeyError`、`TypeError`、`JSONDecodeError`
+- 数据库查询返回零行
+- HTTP 非 200 状态码、网络超时
+- 文件不存在、权限不足
+
+**参照**：RULES.md RULE-007。**无例外。**
+
+### R-005：禁止静默吞异常
+
+```python
+# ❌ 禁止
+try:
+    do_something()
+except Exception:
+    pass
+
+# ❌ 禁止
+try:
+    do_something()
+except Exception as e:
+    print(e)  # 仅 print 不算处理
+
+# ✅ 正确
+try:
+    do_something()
+except Exception as e:
+    logger.error("do_something failed: %s", e)
+    raise
+```
+
+**参照**：RULES.md RULE-106。
+**例外**：文档化的降级策略（需在注释中写明降级原因和技术理由）。
+
+### R-006：Ruff 零错误
+
+```powershell
+uv run ruff check     # 必须零错误
+uv run ruff check .   # CI 中使用的等效形式
+```
+
+当前启用的规则集：`E4`（Import 格式/排序）、`E7`（语句格式）、`E9`（语法/运行时错误）、`F`（Pyflakes：未使用变量、未定义名称等）。
+**例外**：`pages/*.py` 和 `streamlit_app.py` 已配置豁免 E402（import 不在文件顶部）。
+
+### R-007：Pytest 分层验证
+
+| 变更范围 | 必须通过的测试 |
+|----------|---------------|
+| 通用变更 | `uv run pytest -q -m "not db and not external"` |
+| `src/qa/db/` 变更 | 额外 + `uv run pytest -q -m "db"` |
+| `src/qa/external/` 变更 | 额外 + `uv run pytest -q -m "external"` |
+| Bug 修复 | **先写**复现测试（红），再修复（绿） |
+| 新功能 | **先写**验收测试（红），再实现（绿） |
+
+**参照**：RULES.md RULE-008、TEST_STRATEGY.md。
+
+### R-008：uv 依赖管理
+
+```powershell
+uv add <package>       # 添加依赖（自动更新 pyproject.toml + uv.lock）
+uv sync --frozen --dev # 同步依赖（CI 和开发环境）
+uv lock                # 更新锁文件
+```
+
+- 禁止直接使用 `pip install`
+- `uv.lock` 必须提交到版本控制
+- 新增依赖前评估必要性（见 CONSTITUTION 15.1 的评估标准）
+
+**参照**：RULES.md RULE-009、CONSTITUTION 第十二、十五条。
+
+### R-009：文档同步
+
+| 变更类型 | 必须同步更新的文档 |
+|----------|-------------------|
+| 架构边界变化 | `docs/ARCHITECTURE.md` |
+| 运行方式变化 | `docs/OPERATIONS.md` + `docs/SETUP.md` |
+| 测试命令/分层变化 | `docs/TEST_STRATEGY.md` + `docs/QUALITY_GATES.md` |
+| 安全边界变化 | `docs/SECURITY.md` |
+| 任务完成 | `docs/PROJECT_STATUS.md` 台账 |
+| 跨对话续接变化 | `docs/CONTINUATION_PROMPT.md` |
+
+**参照**：RULES.md RULE-010。**无例外**——文档同步不是可选项。
+
+### R-010：单一关注点变更
+
+每次变更聚焦**一个问题**。禁止在同一变更中：
+- 修复 bug 时顺手重构无关代码
+- 添加新功能时调整无关模块的格式
+- 优化性能时修改 UI 样式
+
+**例外**：Ruff/格式化批量修复可批量处理。
+
+---
+
+## 第二部分：禁止事项（10 条）
+
+| 编号 | 禁止事项 | 例外 |
+|------|---------|------|
+| **P-001** | **硬编码密钥**：禁止在源码/日志/测试中写入密码、Token、含密码的 DSN | `.env.example` 可用占位值 |
+| **P-002** | **提交 `.env`**：`.env`、`.env.local` 已在 `.gitignore` 排除 | `.env.example` 模板 |
+| **P-003** | **拼接 SQL**：f-string / `+` / `%` / `.format()` 构造 SQL | `schema.sql` 静态 DDL |
+| **P-004** | **跳过校验**：`qa.ui.auth` 认证、`from_json()` 字段校验、`_require_*()` 输入校验 | 测试 mock 认证 |
+| **P-005** | **混改无关代码** | Lint 批量修复 |
+| **P-006** | **裸 `except:` 或 `except Exception: pass`** | 文档化的降级策略 |
+| **P-007** | **未声明依赖**：import 未在 `pyproject.toml` 声明的包 | 标准库 |
+| **P-008** | **未验证的 AI 输出入生产路径**：LLM 输出用于 SQL/文件/网络/渲染前必须通过合同校验 | 纯文本展示 |
+| **P-009** | **无视台账断档**：先补台账再推进 | 不可追溯时标注 |
+| **P-010** | **无水位的量化结论**：所有需要数据支撑的结论必须附带 `data_watermark_json` | 纯理论探讨 |
+
+---
+
+## 第三部分：Python 特有规则
+
+### PYR-001：类型注解
+
+- 所有公开函数必须有完整的参数类型和返回类型注解
+- 使用 `str | None` 替代 `Optional[str]`
+- 使用 `typing.Any` 时在注释中说明原因
+
+### PYR-002：Frozen Dataclass 优先
+
+`@dataclass(frozen=True, slots=True)` 是默认选择。仅以下情况使用可变类型：
+- Streamlit `session_state` 管理
+- 需就地修改的 `numpy` 数组
+
+### PYR-003：测试标记约束
+
+- `@pytest.mark.db` — 需要 `QA_TEST_POSTGRES_DSN` 指向隔离测试库（**禁止误连开发库**）
+- `@pytest.mark.external` — 需要外部网络或第三方服务
+- 不为不存在的标记创建临时标记
+
+### PYR-004：新增测试四路径
+
+每个新增或修改的功能至少覆盖：
+1. happy path
+2. invalid input（无效输入）
+3. missing input（缺失输入）
+4. regression path（回归路径——原 bug 的复现场景）
+
+**参照**：TEST_STRATEGY.md 第 6 节。
+
+### PYR-005：模块分层依赖
+
+```
+上层可依赖下层，下层不得依赖上层。
+同层通过 qa.models 中定义的 frozen dataclass 通信。
+```
+
+分层顺序（从底到顶）：基础设施 (`qa.db/config/env`) → 数据采集 (`qa.datasources/ingest`) → 数据加工 (`qa.factors/resolve`) → 分析引擎 (`qa.backtest/research/filings/reports`) → AI 编排 (`qa.llm/ai.tools/brain`) → 调度 (`qa.jobs`) → 展示 (`qa.ui/external`)。
+
+**参照**：CONSTITUTION 第十三条。
+
+---
+
+## 附录：快速检查清单
+
+每次 `git commit` 前逐条核对：
+
+```
+[ ] from __future__ import annotations 已添加
+[ ] 领域模型使用 @dataclass(frozen=True, slots=True) + to_json/from_json
+[ ] SQL 使用参数化 %(name)s 或 %s 占位符
+[ ] DSN 输出已 mask_dsn() 脱敏
+[ ] 边界条件显式处理（None、空值、异常格式）
+[ ] 异常已记录日志且未静默吞掉
+[ ] uv run ruff check 零错误
+[ ] uv run pytest -q -m "not db and not external" 全通过
+[ ] 未硬编码任何密钥/密码/Token
+[ ] .env/.env.local 不在变更中
+[ ] 新增依赖已在 pyproject.toml 中声明
+[ ] 相关文档已同步更新
+[ ] 变更聚焦单一关注点
+[ ] AI 输出进入敏感路径前已通过合同校验
+[ ] docs/PROJECT_STATUS.md 台账已更新
+[ ] 量化结论附带了 data_watermark_json
+```

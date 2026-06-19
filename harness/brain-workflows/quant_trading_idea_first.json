@@ -1,0 +1,19 @@
+{
+  "workflow_id": "quant_trading_idea_first",
+  "domain": "quant_trading",
+  "description": "模糊因子思路：可选 F0′ 引导→F1→挖掘→F3…",
+  "source_kinds": ["vague_idea"],
+  "stages": [
+    {"id": "F0", "capability": "idea_guidance", "hint": "LLM 给出 2-3 可编制方向（可选）"},
+    {"id": "F1", "name": "分类", "hint": "强制 taxonomy 分类"},
+    {"id": "F2", "capability": "strategy_extraction_dispatch", "hint": "从对话/视频转写提取方案"},
+    {"id": "F3", "capability": "factor_draft_dispatch", "hint": "FactorDraft 确认"},
+    {"id": "F4", "capability": "factor_compile_dispatch"},
+    {"id": "F5", "capability": "factor_compute_dispatch"},
+    {"id": "F6", "capability": "factor_evaluation_dispatch"}
+  ],
+  "gates": [
+    "禁止 candidate_batch_plan（非研报全量路径）",
+    "F4 前须 factor_confirmed"
+  ]
+}

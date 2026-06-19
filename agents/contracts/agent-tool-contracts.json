@@ -1,0 +1,179 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2026-06-11",
+    "description": "AWI 代理间工具契约定义。借鉴 GitNexus MCP 工具设计模式（16 个工具，每个有清晰的输入/输出语义），为 AWI 代理之间的数据交换定义类型化契约。将代理间通信从 '自由文本' 升级为 '类型化契约'，减少歧义和信息丢失。",
+    "design_reference": "GitNexus MCP tools.ts — 每个工具定义清晰的 name、purpose、input schema、output schema。工具间通过 repo 参数实现无状态路由。"
+  },
+  "contracts": {
+    "explore_to_executor": {
+      "id": "CTR-001",
+      "description": "探索代理向执行代理传递代码库上下文",
+      "from": "explore",
+      "to": ["executor", "planner", "architect"],
+      "tools": {
+        "locate_files": {
+          "description": "按名称/模式/语义定位文件",
+          "inputs": {
+            "query": "string — 文件名模式或自然语言描述",
+            "scope": "string[] — 搜索范围（目录列表），默认项目根目录",
+            "type": "enum(file|folder|any)"
+          },
+          "outputs": {
+            "matches": "FileMatch[] — 包含 path, relevance_score, snippet",
+            "total_count": "number"
+          }
+        },
+        "trace_dependency": {
+          "description": "追踪一个符号的依赖关系（导入/调用/继承）",
+          "inputs": {
+            "symbol": "string — 符号名称或路径#行号",
+            "direction": "enum(upstream|downstream|both)",
+            "depth": "number — 追踪深度，默认 2"
+          },
+          "outputs": {
+            "edges": "DepEdge[] — 包含 from, to, relation_type, confidence",
+            "graph_summary": "string — 人类可读的依赖摘要"
+          }
+        },
+        "detect_patterns": {
+          "description": "识别代码中的架构模式",
+          "inputs": {
+            "target": "string — 文件或目录",
+            "pattern_types": "enum(mvc|factory|observer|singleton|...)[]"
+          },
+          "outputs": {
+            "patterns": "PatternMatch[] — 包含 pattern_name, locations, confidence",
+            "style_deviations": "string[] — 与项目约定的偏差"
+          }
+        }
+      }
+    },
+    "executor_to_verifier": {
+      "id": "CTR-002",
+      "description": "执行代理向验证代理传递实现结果",
+      "from": "executor",
+      "to": ["verifier", "test-engineer"],
+      "tools": {
+        "report_changes": {
+          "description": "报告本次会话的所有文件变更",
+          "inputs": {
+            "session_id": "string",
+            "task_description": "string"
+          },
+          "outputs": {
+            "modified_files": "FileChange[] — 包含 path, change_type, lines_changed",
+            "created_files": "string[]",
+            "deleted_files": "string[]"
+          }
+        },
+        "report_verification_commands": {
+          "description": "报告本次实现可用的验证命令",
+          "inputs": {
+            "files": "string[]"
+          },
+          "outputs": {
+            "commands": "VerificationCommand[] — 包含 type(lint|typecheck|test|build), command, expected_output",
+            "coverage": "number — 验证覆盖率估计"
+          }
+        }
+      }
+    },
+    "security_reviewer_to_executor": {
+      "id": "CTR-003",
+      "description": "安全审查代理向执行代理传递发现的安全问题",
+      "from": "security-reviewer",
+      "to": ["executor", "orchestrator"],
+      "tools": {
+        "audit_secrets": {
+          "description": "扫描代码中的硬编码凭证",
+          "inputs": {
+            "files": "string[]",
+            "severity_threshold": "enum(critical|high|medium|low)"
+          },
+          "outputs": {
+            "findings": "SecretFinding[] — 包含 location, secret_type, severity, masked_value",
+            "recommendations": "string[]"
+          }
+        },
+        "audit_injection": {
+          "description": "检查注入漏洞（SQL/XSS/命令注入）",
+          "inputs": {
+            "files": "string[]"
+          },
+          "outputs": {
+            "findings": "InjectionFinding[] — 包含 location, injection_type, vulnerable_input, severity",
+            "safe_count": "number"
+          }
+        }
+      }
+    },
+    "orchestrator_to_all": {
+      "id": "CTR-004",
+      "description": "编排层向所有执行代理广播任务上下文和约束",
+      "from": "orchestrator",
+      "to": ["*"],
+      "tools": {
+        "dispatch_task": {
+          "description": "向目标代理分派子任务",
+          "inputs": {
+            "target_agent": "string — 目标代理角色名",
+            "task": "TaskSpec — 包含 goal, scope, constraints, deadline",
+            "dependencies": "string[] — 前置任务 ID 列表"
+          },
+          "outputs": {
+            "task_id": "string",
+            "acknowledged": "boolean"
+          }
+        },
+        "broadcast_context": {
+          "description": "向所有活跃代理广播共享上下文",
+          "inputs": {
+            "context_type": "enum(file_changed|blocker_resolved|scope_updated|priority_changed)",
+            "payload": "object"
+          },
+          "outputs": {
+            "recipients": "number — 接收代理数量",
+            "delivered": "boolean"
+          }
+        }
+      }
+    }
+  },
+  "data_models": {
+    "description": "类型化数据模型定义，统一代理间交换的数据格式。",
+    "FileMatch": {
+      "path": "string — 文件的绝对或相对路径",
+      "relevance_score": "number — 0.0 到 1.0 的相关性评分",
+      "snippet": "string — 匹配上下文的代码片段"
+    },
+    "DepEdge": {
+      "from": "string — 源符号标识（路径#名称）",
+      "to": "string — 目标符号标识",
+      "relation_type": "enum(imports|calls|extends|implements|references)",
+      "confidence": "enum(high|medium|low)"
+    },
+    "FileChange": {
+      "path": "string",
+      "change_type": "enum(modified|created|deleted)",
+      "lines_changed": "number"
+    },
+    "SecretFinding": {
+      "location": "string — 文件路径#行号",
+      "secret_type": "enum(api_key|password|token|private_key|connection_string)",
+      "severity": "enum(critical|high|medium|low)",
+      "masked_value": "string — 脱敏后的值，仅显示前缀+后缀"
+    }
+  },
+  "contract_lifecycle": {
+    "ownership": "契约由输出方代理维护，消费方代理可提交变更请求",
+    "versioning": "每次契约变更递增版本号，旧版本保留 2 个会话周期作为兼容期",
+    "validation": "代理在启动时验证自身支持的契约版本是否与依赖方兼容",
+    "fallback": "当契约不匹配时，回退到非结构化的自然语言通信"
+  },
+  "notes": {
+    "runtime_implementation": "本契约文件为协议级定义。在当前单代理模式下用于规范代理提示词中的 I/O 格式。多代理模式下可由编排层用于自动验证代理间数据交换。",
+    "extensibility": "新增契约：在 contracts 下添加新条目。新增工具：在对应契约的 tools 下添加，声明 inputs 和 outputs。",
+    "relation_to_agent_definitions": "本文件与 agents/*.md 的角色定义互补。agents/*.md 定义 '谁做什么'，本文件定义 '如何交换数据'。"
+  }
+}

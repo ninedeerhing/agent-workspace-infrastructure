@@ -1,0 +1,27 @@
+{
+  "workflow_id": "quant_trading_factor_dual_track",
+  "domain": "quant_trading",
+  "description": "文献/研报类因子复刻：搜索→选文→阅读→候选→F3 确认→F4/F5/F6→可选 S2/S4",
+  "source_kinds": ["literature", "research_report", "none"],
+  "stages": [
+    {"id": "F1", "name": "分类", "hint": "因子须明确 style_family / subclass，禁止跳过"},
+    {"id": "F2", "capability": "web_search_dispatch", "hint": "联网搜索论文/研报/PDF"},
+    {"id": "F2a", "capability": "article_reading", "hint": "深度阅读用户选定 URL，抽取 factor_definitions"},
+    {"id": "F2b", "capability": "factor_candidate_creation", "hint": "将 methodology 编排为候选池"},
+    {"id": "F2c", "checkpoint": "candidate_batch_plan", "hint": "仅 literature/research_report 且候选 N>1 时询问批量"},
+    {"id": "F3", "capability": "factor_draft_dispatch", "hint": "FactorDraft 复述，须用户确认"},
+    {"id": "F4", "capability": "factor_compile_dispatch", "hint": "注册表达式"},
+    {"id": "F5", "capability": "factor_compute_dispatch", "hint": "计算 factor_value_daily"},
+    {"id": "F6", "capability": "factor_evaluation_dispatch", "hint": "IC/分层检验，不含回测"},
+    {"id": "S2", "capability": "strategy_draft_dispatch", "hint": "用户要回测时进入策略轨"},
+    {"id": "S4", "capability": "backtest_dispatch", "hint": "须 strategy_confirmed"},
+    {"id": "F7", "capability": "personal_asset_archival", "hint": "用户要构造思路时归档"}
+  ],
+  "gates": [
+    "factor_compile_dispatch 须 factor_confirmed",
+    "factor_compute_dispatch 须 factor_confirmed 且已有 factor_version_id",
+    "factor_evaluation_dispatch 须 factor_confirmed",
+    "backtest_dispatch 须 strategy_confirmed",
+    "禁止在 F3 未确认时进入 F4"
+  ]
+}

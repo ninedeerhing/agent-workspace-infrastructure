@@ -1,0 +1,23 @@
+{
+    "version":  "1.0.0",
+    "archives":  [
+                     {
+                         "id":  "arc-001",
+                         "timestamp":  "2026-06-09T16:38:17+08:00",
+                         "directory":  "2026-06-09-16-38-17-arc-001-基础建设完成后首次归档",
+                         "feature_ids":  {
+
+                                         },
+                         "files_snapshot":  [
+                                                "feature_list.json",
+                                                "progress.md",
+                                                "session-handoff.md",
+                                                "workflow-state.json",
+                                                "workflow-gates.md",
+                                                "clean-state-checklist.md"
+                                            ],
+                         "reason":  "基础建设完成后首次归档",
+                         "file_count":  6
+                     }
+                 ]
+}

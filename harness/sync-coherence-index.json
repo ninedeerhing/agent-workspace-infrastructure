@@ -1,0 +1,25 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-06-19T16:36:51Z",
+  "loop_state_path": "harness/loop-state.json",
+  "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
+  "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
+  "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
+  "loop_next_atomic_action": "GEN-P2 因子库 E2E live：/library + Chat factor_library_search / C_COMPARE 浏览器复验与 API 证据（qa-tester + agent-browser）",
+  "continuation_next_action": "GEN-P2 因子库 E2E live",
+  "task_trees_next_hint": "",
+  "foreground_tree": "PL-C-MINE",
+  "foreground_slice": "",
+  "latest_section5_id": "365",
+  "latest_section5_title": "loop60 user decisions sync · exit handoff-wait（2026-06-20 · loop60 · governance-coordinator）",
+  "top_summary_section5_ref": "365",
+  "top_summary_last_tick": "loop60-user-unblock-resume",
+  "loop_last_tick": "loop60-user-unblock-resume",
+  "findings": [],
+  "last_lifecycle": {
+    "at": "2026-06-19T16:36:51Z",
+    "finding_count": 0,
+    "warning_count": 0,
+    "error_count": 0
+  }
+}

@@ -1,0 +1,290 @@
+{
+  "version": "1.0.0",
+  "updated_at": "2026-06-19T16:34:53Z",
+  "orchestrator_path": "harness/reports/orchestrator",
+  "workers_dir": "harness/reports/workers",
+  "worker_count": 21,
+  "records": {
+    "orchestrator:orchestrator-latest": {
+      "report_id": "orchestrator-latest",
+      "worker_id": "orchestrator",
+      "task_id": "",
+      "tree": "",
+      "action": "",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T16:34:53Z",
+      "source_path": "harness\\reports\\orchestrator\\latest.md"
+    },
+    "architect:architect-idle": {
+      "report_id": "architect-idle",
+      "worker_id": "architect",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\architect.md"
+    },
+    "code-reviewer:code-reviewer-idle": {
+      "report_id": "code-reviewer-idle",
+      "worker_id": "code-reviewer",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\code-reviewer.md"
+    },
+    "constitution-guardian:constitution-guardian-idle": {
+      "report_id": "constitution-guardian-idle",
+      "worker_id": "constitution-guardian",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\constitution-guardian.md"
+    },
+    "critic:critic-idle": {
+      "report_id": "critic-idle",
+      "worker_id": "critic",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\critic.md"
+    },
+    "debugger:loop22-kb-m2-sse": {
+      "report_id": "loop22-kb-m2-sse",
+      "worker_id": "debugger",
+      "task_id": "KB-M2 live Chat SSE timeout",
+      "tree": "PL-C-GEN / PL-C-KB",
+      "action": "根因分析 — `guards_degraded_to_hints_only` 跳过 corpus guard；corpus 后 `rule_route_decision` 仍回退 WR",
+      "files": [
+        "`quant_loop.py` · `rule_route.py` · `test_brain_quant_loop_unit.py`"
+      ],
+      "verification": "live API 复现 **5.2s**（`tmp/kb_m2_sse_repro_loop22_result.json`）",
+      "status": "resolved（executor 已落地修复）",
+      "last_updated_at": "2026-06-19T16:34:53Z",
+      "source_path": "harness\\reports\\workers\\debugger.md"
+    },
+    "designer:designer-ui-a-2-spec": {
+      "report_id": "designer-ui-a-2-spec",
+      "worker_id": "designer",
+      "task_id": "PL-C-UI-A · UI-A-1 动画模块 ①–⑦",
+      "tree": "PL-C-UI-A（并行 · 不阻塞 PL-C-GEN R1-M5）",
+      "action": "调研 `web/src` 现有 motion.css / MessageRow / ToolCallCard / SidebarNav；输出 executor 可执行的动效设计规范",
+      "files": [
+        "`web/src/pages/LabPage.tsx`（executor 落地）"
+      ],
+      "verification": "npm build pass · Tab 切换 + stage badge + settings grid",
+      "status": "**design + impl done**",
+      "last_updated_at": "2026-06-19T16:45:00Z",
+      "source_path": "harness\\reports\\workers\\designer.md"
+    },
+    "executor:executor-latest": {
+      "report_id": "executor-latest",
+      "worker_id": "executor",
+      "task_id": "",
+      "tree": "",
+      "action": "",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T16:34:53Z",
+      "source_path": "harness\\reports\\workers\\executor.md"
+    },
+    "explore:explore-idle": {
+      "report_id": "explore-idle",
+      "worker_id": "explore",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\explore.md"
+    },
+    "explorer:explorer-idle": {
+      "report_id": "explorer-idle",
+      "worker_id": "explorer",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\explorer.md"
+    },
+    "git-master:loop25-git-prep": {
+      "report_id": "loop25-git-prep",
+      "worker_id": "git-master",
+      "task_id": "loop25-git-prep",
+      "tree": "跨树 · git-master",
+      "action": "428 脏文件按 TASK_TREES 分组 · 16+1 commit bundle · **未执行 commit**",
+      "files": [
+        "`harness/reports/workers/git-master.md` · `docs/PROJECT_STATUS.md` §5.323 · `loop-state.json`"
+      ],
+      "verification": "`git status` 428 行 · bundle 文档就绪 · 五 lifecycle 待跑",
+      "status": "**done（prep only）**",
+      "last_updated_at": "2026-06-19T08:15:00Z",
+      "source_path": "harness\\reports\\workers\\git-master.md"
+    },
+    "governance-coordinator:governance-coordinator-latest": {
+      "report_id": "governance-coordinator-latest",
+      "worker_id": "governance-coordinator",
+      "task_id": "",
+      "tree": "",
+      "action": "",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T16:34:53Z",
+      "source_path": "harness\\reports\\workers\\governance-coordinator.md"
+    },
+    "growth-engineer:growth-engineer-idle": {
+      "report_id": "growth-engineer-idle",
+      "worker_id": "growth-engineer",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\growth-engineer.md"
+    },
+    "planner:planner-idle": {
+      "report_id": "planner-idle",
+      "worker_id": "planner",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\planner.md"
+    },
+    "qa-tester:loop51-lab-browser-e2e": {
+      "report_id": "loop51-lab-browser-e2e",
+      "worker_id": "qa-tester",
+      "task_id": "LAB-BROWSER-E2E · critic CH-2",
+      "tree": "PL-C-MINE · parking_lot LAB-BROWSER-E2E",
+      "action": "/lab 浏览器复验 — FastAPI snapshot 四 Tab 合同 · Vite 四 Tab UI · agent-browser 截图",
+      "files": [
+        "`tmp/lab-browser-loop51/*.png` · §5.354 · `loop-state.json`"
+      ],
+      "verification": "",
+      "status": "done（partial Co-STEER round badge）",
+      "last_updated_at": "2026-06-19T33:00:00Z",
+      "source_path": "harness\\reports\\workers\\qa-tester.md"
+    },
+    "researcher:researcher-idle": {
+      "report_id": "researcher-idle",
+      "worker_id": "researcher",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\researcher.md"
+    },
+    "scientist:scientist-idle": {
+      "report_id": "scientist-idle",
+      "worker_id": "scientist",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\scientist.md"
+    },
+    "security-reviewer:security-reviewer-idle": {
+      "report_id": "security-reviewer-idle",
+      "worker_id": "security-reviewer",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\security-reviewer.md"
+    },
+    "test-engineer:test-engineer-idle": {
+      "report_id": "test-engineer-idle",
+      "worker_id": "test-engineer",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\test-engineer.md"
+    },
+    "tracer:tracer-idle": {
+      "report_id": "tracer-idle",
+      "worker_id": "tracer",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\tracer.md"
+    },
+    "verifier:verifier-idle": {
+      "report_id": "verifier-idle",
+      "worker_id": "verifier",
+      "task_id": "",
+      "tree": "",
+      "action": "待委派",
+      "files": [],
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-06-19T05:00:59Z",
+      "source_path": "harness\\reports\\workers\\verifier.md"
+    },
+    "writer:writer-gp03-lifecycle-doc": {
+      "report_id": "writer-gp03-lifecycle-doc",
+      "worker_id": "writer",
+      "task_id": "GP-03-lifecycle-mandatory-doc",
+      "tree": "Harness · METHODOLOGY_MEMORY",
+      "action": "永久库追加 **GP-03**（每轮 lifecycle 与 §5 同级）；配合 governance-coordinator §5.311 台账",
+      "files": [
+        "`apps/quant_assistant/docs/METHODOLOGY_MEMORY.md` · PROJECT_STATUS §5.311 · CONTINUATION_PROMPT"
+      ],
+      "verification": "methodology_memory_lifecycle run --apply 索引含 GP-03",
+      "status": "done",
+      "last_updated_at": "2026-06-19T18:30:00Z",
+      "source_path": "harness\\reports\\workers\\writer.md"
+    }
+  },
+  "last_lifecycle": {
+    "at": "2026-06-19T16:34:53Z",
+    "apply": true,
+    "dedupe_actions": 0,
+    "record_count": 22,
+    "created": []
+  }
+}

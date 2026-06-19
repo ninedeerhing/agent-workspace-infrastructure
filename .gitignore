@@ -1,0 +1,62 @@
+# ============================================================
+# raindeer 融合架构 .gitignore
+# ============================================================
+
+# --- AWI 治理层排除 ---
+# OMX 运行时数据（种子记忆除外）
+.omx/project-memory.json
+.omx/memory-index.json
+.omx/memory-index.db
+
+# Harness 运行时数据
+harness/health-log.json
+harness/task-queue.json
+
+# Sandbox 缓存
+.sandbox_cache/
+
+# --- Python ---
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.uv_cache/
+.venv/
+*.egg-info/
+dist/
+build/
+
+# --- 环境变量 ---
+.env
+.env.local
+.env.*.local
+
+# --- 日志 ---
+*.log
+logs/
+
+# --- IDE ---
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- 项目特定 ---
+.qa/
+.qa-data/
+.worktrees/
+tools/_scratch/*
+!tools/_scratch/.gitkeep
+
+# --- 临时文件 ---
+tmp/
+*.tmp
+
+# --- Node ---
+node_modules/
+
+# --- Docker ---
+# (docker-compose.yml 和 Dockerfile 保留)

@@ -1,0 +1,787 @@
+{
+  "version": "1.1.0",
+  "updated_at": "2026-06-19T16:34:53Z",
+  "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
+  "active_entry_count": 32,
+  "archived_round_count": 0,
+  "entries": {
+    "M-01": {
+      "entry_id": "M-01",
+      "title": "单一事实源写台账",
+      "scenario": "任何代码/测试/浏览器/进程变更",
+      "rule": "先写 `PROJECT_STATUS.md` §5，再声称完成",
+      "trigger": "always",
+      "source": "",
+      "fingerprint": "92945a692979de9c",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-02": {
+      "entry_id": "M-02",
+      "title": "浏览器验收先分离工具故障与业务回归",
+      "scenario": "Streamlit/Web E2E",
+      "rule": "agent-browser ref 失败时，用第二工具或 curl API 交叉验证",
+      "trigger": "UI 验收出现 timeout/ref 错误",
+      "source": "",
+      "fingerprint": "19492a48460ef0b8",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-03": {
+      "entry_id": "M-03",
+      "title": "关键事实以 DB/命令输出为准",
+      "scenario": "覆盖率、入库条数、IC 指标",
+      "rule": "LLM 不做事实源；必须 fresh query / pytest 输出",
+      "trigger": "任何「应该已经 101/191」类断言",
+      "source": "",
+      "fingerprint": "b753e5142d63cca6",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-04": {
+      "entry_id": "M-04",
+      "title": "Web 语料库验收前置 Docker PG",
+      "scenario": "`/library`、Chat 语料库路径、corpus_formula_lookup",
+      "rule": "先 `docker info`；端口 55432 已占用可能表示 **PG 已在跑** → 用 `curl /api/v1/corpus/libraries/*/coverage` 验证，勿盲目 `docker compose up`",
+      "trigger": "Postgres 连接错误 vs 端口 already allocated",
+      "source": "轮次-20260619-loop1 · KB-M1；loop2 API 验证 101/101 + 191/191 ✅",
+      "fingerprint": "8252872344a6a1aa",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-05": {
+      "entry_id": "M-05",
+      "title": "热路径改 import 后立即跑相关单测",
+      "scenario": "`intent_signals.py` 等 graph 热路径",
+      "rule": "改完跑 `pytest tests/test_signal_extraction_unit.py -q` 再扩扫",
+      "trigger": "动 N1/N0 信号或 intake 链",
+      "source": "轮次-20260619-loop1 · 漏 `import re`",
+      "fingerprint": "b0a78e119c2a978d",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-06": {
+      "entry_id": "M-06",
+      "title": "Mock 实际调用链末端",
+      "scenario": "外部 API 单测",
+      "rule": "`search_web()` 走 `search_web_outcome` 时，mock `_search_duckduckgo_outcome` 而非 `_search_duckduckgo`",
+      "trigger": "web_search  Provider 重构后",
+      "source": "轮次-20260619-loop1 · 漂移单测",
+      "fingerprint": "466b92547c39ab98",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-07": {
+      "entry_id": "M-07",
+      "title": "PowerShell 链式命令",
+      "scenario": "Windows 本机 shell",
+      "rule": "用 `;` 或 `Set-Location` 分行，**不用** `&&`",
+      "trigger": "多命令一行执行",
+      "source": "轮次-20260619-loop1 · uvicorn 启动失败",
+      "fingerprint": "514ac18df80f3270",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-08": {
+      "entry_id": "M-08",
+      "title": "U 轨早退须条件化",
+      "scenario": "`research_outcome=U`",
+      "rule": "无 URL/文件/carry_over 材料 → `build_understand_reply`；有材料 → 允许 `article_reading` + `insight_extraction_dispatch`，仅阻断因子轨",
+      "trigger": "U 轨 + 用户贴链接",
+      "source": "轮次-20260619-loop1 · GEN-P1",
+      "fingerprint": "127f609b9d336749",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-09": {
+      "entry_id": "M-09",
+      "title": "material_plan corpus 优先于 WR",
+      "scenario": "Alpha101/191、券商系列名",
+      "rule": "canonical → `corpus_formula`/`corpus_hit`；有 URL → `url_direct`；否则才 `web_research`",
+      "trigger": "intake material_plan 推导",
+      "source": "轮次-20260619-loop1 · KB-1.1",
+      "fingerprint": "699fe149e07dadd7",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-10": {
+      "entry_id": "M-10",
+      "title": "先锁合同再扩页面",
+      "scenario": "MINE / Trial / Insight 合同",
+      "rule": "schema YAML + dataclass + 单测 → 再 executor/UI",
+      "trigger": "新 capability 或实验治理",
+      "source": "轮次-20260619-loop1 · MINE-0",
+      "fingerprint": "042b0ee40d795387",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-11": {
+      "entry_id": "M-11",
+      "title": "C_COMPARE 路由先于 WR loop",
+      "scenario": "`rule_route_decision` 首轮、用户「对比因子库」",
+      "rule": "在 `web_research_loop` 门禁之前，对 `not executions` 检查 compare/search 目标",
+      "trigger": "GEN-P2 / research_outcome=C",
+      "source": "轮次-20260619-loop2",
+      "fingerprint": "0b8339a1a4ee0815",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-12": {
+      "entry_id": "M-12",
+      "title": "Loop 真循环需 Automation 桥接",
+      "scenario": "心流/Loop 协议已写但会话 turn 结束即停",
+      "rule": "跨会话续跑必须：`harness/loop-state.json` + `loop-tick-prompt` +（可选）`schedule.json` loop-tick；单 LLM 会话不能 OS 级自唤醒",
+      "trigger": "用户要求「无需 prompt 无限循环」",
+      "source": "轮次-20260619-loop3 · LOOP §9",
+      "fingerprint": "0b8532fed9ce4d33",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-15": {
+      "entry_id": "M-15",
+      "title": "Loop 续跑靠 L0 规则 + loop_tick 机器态",
+      "scenario": "Markdown Loop 协议跨 turn 失忆、agent 停顿问用户",
+      "rule": "`.cursor/rules/raindeer-loop-autonomous.mdc` + `python harness/loop_tick.py prepare`；禁止「是否继续」",
+      "trigger": "用户要求无限 Loop / 自派任务",
+      "source": "轮次-20260619-loop5",
+      "fingerprint": "da847d8aeda5f49a",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-16": {
+      "entry_id": "M-16",
+      "title": "N1 mixed 必须进 input_completeness + secondary_queue",
+      "scenario": "batch+公式 / file+URL 混合输入",
+      "rule": "`enrich_intake_from_n1`；C1 → `secondary_queue` 不静默丢弃",
+      "trigger": "GEN-P1 N1",
+      "source": "轮次-20260619-loop6",
+      "fingerprint": "a124342e3487cc07",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-17": {
+      "entry_id": "M-17",
+      "title": "方法论微步骤 digest 门控",
+      "scenario": "Loop 每原子动作收工",
+      "rule": "自问是否新增方法论；**无则零写入** METHODOLOGY 但 §5 **须留痕** `方法论门控：M-17 零写入 · 见 METHODOLOGY §轮次-…`；**有则**步骤 digest；关键任务 done 时收口 synthesis → M-xx/GP-xx",
+      "trigger": "所有 Loop tick / worker tick",
+      "source": "收口 synthesis-loop10-methodology · loop10",
+      "fingerprint": "61b08a325d7f74eb",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-18": {
+      "entry_id": "M-18",
+      "title": "secondary queue 测 merge 层而非全链路 clarify",
+      "scenario": "GEN-P1 N2 secondary_queue 单测",
+      "rule": "batch_mining clarify 会抢先返回时，patch `_run_quant_trading_loop_impl` 测 merge 层",
+      "trigger": "quant_loop secondary overlay 集成测",
+      "source": "轮次-20260619-loop8",
+      "fingerprint": "9df0d5bdaaeb1d34",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-19": {
+      "entry_id": "M-19",
+      "title": "MiningLoop VALID 未过则 skip L3b",
+      "scenario": "MINE-2 MiningLoopController",
+      "rule": "`run_mining_loop_round` 先 L3a VALID；未通过则 `l3b_skipped`，不调用 L3b runner",
+      "trigger": "MINE-2 / MINE-3 编排",
+      "source": "收口 synthesis-mine2-genp1n2 · loop9",
+      "fingerprint": "7052d26bc2685cfa",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-20": {
+      "entry_id": "M-20",
+      "title": "Co-STEER 失败归档 + 成功片段注入",
+      "scenario": "MINE-5 MiningLoop trial 可观测性 / 代码修复 prompt 增强",
+      "rule": "单轮失败时 `CoSteerTraceStore.archive_failure` + `retrieve` 相似成功 DSL 片段；成功时 `archive_success`；MiningLoop 结果携带 `costeer.prompt_injection`",
+      "trigger": "MINE-5+ 多轮挖掘 loop · IMPL 阶段 LLM 修复",
+      "source": "收口 synthesis-mine5-costeer · loop15",
+      "fingerprint": "d98f2ced613ddc3d",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-21": {
+      "entry_id": "M-21",
+      "title": "API 验收前确认 uvicorn 已加载最新代码",
+      "scenario": "PL-C-GEN R0/R1/R2 API 驱动验收",
+      "rule": "代码修复后单测已绿但 API 仍 fail → 先重启 `:8350` uvicorn 再跑验收脚本；勿把 stale 进程当回归",
+      "trigger": "loop12 R2-M4 fail → loop13/14 post-restart pass",
+      "source": "收口 synthesis-gen-r0-r1 · loop12–14",
+      "fingerprint": "8962d8542b06099d",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-22": {
+      "entry_id": "M-22",
+      "title": "clarify 续接优先 resumable intent_session",
+      "scenario": "R1-M5 clarify → POST「继续」",
+      "rule": "`resolve_intent_session_for_thread` 优先 `awaiting_checkpoint`+`CLARIFY_WAIT`；`rows_to_ui_messages` 映射 `brain_intent_session`；勿被 latest done brain_run 或 IDLE 消息态覆盖",
+      "trigger": "clarify 续接 · brain_run 恢复链",
+      "source": "收口 synthesis-r1-m5-clarify · loop14",
+      "fingerprint": "f8088bb36c67760f",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-23": {
+      "entry_id": "M-23",
+      "title": "C4 实盘 REJECT 先于 C6 调仓判定",
+      "scenario": "R2-M4「帮我做实盘下单」vs「我该调仓吗」",
+      "rule": "`intent_conflict` C4 先于 C6；实盘/下单勿标 G outcome；二者 REJECT 文案须 distinct",
+      "trigger": "R2 边界验收 · live trading 关键词",
+      "source": "收口 synthesis-mine4-r2m4 · loop13",
+      "fingerprint": "5591738fdcb42c02",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-24": {
+      "entry_id": "M-24",
+      "title": "MiningLoop VALID 前 AST/IC dedup + negative_kb",
+      "scenario": "MINE-4 多轮挖掘防重复",
+      "rule": "`factor_dedup_gate`（AST Jaccard + IC_max）与 `negative_kb` 接入 VALID 前；全拒则 blocked",
+      "trigger": "MINE-4+ MiningLoop 编排",
+      "source": "收口 synthesis-mine4-r2m4 · loop13",
+      "fingerprint": "faafb47510b14881",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-25": {
+      "entry_id": "M-25",
+      "title": "浏览器 QA 前确认 dev 路由已注册",
+      "scenario": "PL-C-UI-A `/story` 组件预览验收",
+      "rule": "跑 agent-browser 对照前确认 `App.tsx` 已注册目标 Route；组件文件存在 ≠ 路由可达",
+      "trigger": "Vite dev `:5273` UI 验收",
+      "source": "收口 synthesis-pl-c-ui-a · loop15 并行",
+      "fingerprint": "47b3f516d0a32bbd",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-26": {
+      "entry_id": "M-26",
+      "title": "/lab v1 只读 snapshot 驱动",
+      "scenario": "MINE-6 /lab 实验台 UI",
+      "rule": "四 Tab 消费 `GET /api/v1/quant/mining-lab/snapshot`；写/编排仍走 Assistant；无 job 时用 demo 合成面板短 MiningLoop，勿在 UI 层伪造写 API",
+      "trigger": "/lab MVP · MINE-7+ 持久化/SSE 接入前",
+      "source": "收口 synthesis-mine6 · loop16",
+      "fingerprint": "2e8e010276b68173",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-27": {
+      "entry_id": "M-27",
+      "title": "跨 job intent_session 三层恢复",
+      "scenario": "GEN-P0'.1 clarify 续接 · job 完成与 message/DB 落盘之间的刷新窗口",
+      "rule": "`resolve_intent_session_for_thread` 顺序 — resumable message → **in-memory completed job**（`recover_intent_session_from_jobs`）→ brain_run checkpoint；`start_chat_brain_job` 须带 `thread_id`/`dsn`；worker 完成时 `_persist_job_brain_run_if_resumable` fail-open 尽早落盘",
+      "trigger": "T6 刷新 · SSE `_persist_on_done` 前 POST「继续」",
+      "source": "收口 synthesis-gen-p01 · loop26",
+      "fingerprint": "d8d82de01b96a7f2",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-28": {
+      "entry_id": "M-28",
+      "title": "quant-only 前台主线门控",
+      "scenario": "用户战略 pivot 或产品方向收窄",
+      "rule": "前台仅允许 **1 条量化主线**（`PL-C-MINE`）；非量化切片（stock_research · 通用 WR · UI cosmetic · BENCH env · KB browser polish）一律 `parking_lot` 或 **cancelled**；`loop-state.next_atomic_action` 必须指向量化切片；GEN 仅保留 **intent quant 子图** + **corpus_hit 公式**",
+      "trigger": "战略聚焦变更 · 新切片立项前",
+      "source": "步骤 digest-loop42-quant-pivot · loop42 · 用户权威指令 2026-06-19",
+      "fingerprint": "f45fb585f8e2668f",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-29": {
+      "entry_id": "M-29",
+      "title": "Co-STEER 轮间 DSL 修复优先于重复失败",
+      "scenario": "MINE-5 deepen · 多轮 MiningLoop 失败后的 IMPL 修复链",
+      "rule": "单轮失败 `costeer.prompt_injection` 经 `propose_costeer_dsl_repair` 在**下一轮开始前**更新 `current_dsl_spec`；记录 `costeer_repair` stage 与 `MiningLoopDispatchResultV1.costeer.evolution`；`experiment_graph` mutation/crossover 已改 DSL 时**跳过** costeer 轮间修复；`run_mining_loop` 默认自建 `CoSteerTraceStore`",
+      "trigger": "MINE-5+ 多轮挖掘 · `/lab` demo 快照",
+      "source": "步骤 digest-loop47-mine5-mine6-deepen · loop47",
+      "fingerprint": "07f27400a64451a8",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "M-30": {
+      "entry_id": "M-30",
+      "title": "PL-C-MINE MVP 切片集收口门控",
+      "scenario": "PL-C-MINE MINE-0…8 全切片实现完成、待 closure_gate 裁定",
+      "rule": "quant-only 下 **代码+pytest 合同**即 MVP slice-set closed；master-plan 跨 Phase 量化验收（IC 对照 · 零人工轮次 · 浏览器 E2E）**不阻塞** gate，但必须显式记入 parking_lot；M-28 已 park 项不得作为 continue 理由",
+      "trigger": "MINE 末切片 deepen 完成 · critic|constitution-guardian 双帽裁定",
+      "source": "收口 synthesis-pl-c-mine · loop48",
+      "fingerprint": "5a5e86bf23db3c6a",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    }
+  },
+  "gp_entries": {
+    "GP-01": {
+      "entry_id": "GP-01",
+      "title": "Loop 工作汇报与索引分离",
+      "scenario": "多 worker 自治 Loop",
+      "rule": "实现写 §5；orchestrator + worker 报告写 `harness/reports/`；`work_report_lifecycle.py` 维护机器索引，避免 §5 膨胀",
+      "trigger": "≥3 并行 worker 或 loop tick",
+      "source": "收口 synthesis-mine2-genp1n2 · GEN-P1 N2",
+      "fingerprint": "e2a42f0cbfb4498d",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "GP-02": {
+      "entry_id": "GP-02",
+      "title": "方法论分层写入（digest → synthesis → permanent）",
+      "scenario": "长期自治 Loop 项目",
+      "rule": "微步骤 digest 门控 → 任务收口 synthesis → M-xx/GP-xx 永久库；避免每步写完整复盘",
+      "trigger": "Loop Engineering / Ralph Loop 类项目",
+      "source": "收口 synthesis-loop10-methodology · loop10",
+      "fingerprint": "614ede829cca904f",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "GP-03": {
+      "entry_id": "GP-03",
+      "title": "每轮 lifecycle 与 §5 台账同级",
+      "scenario": "Loop Engineering / 多 worker 自治 Harness",
+      "rule": "每原子任务收工 **必跑** `methodology_memory_lifecycle.py run --apply` + `work_report_lifecycle.py run --apply`；`loop_tick.py prepare/advance` subprocess 桥接；失败写 `loop-lifecycle-errors.log`（fail-closed 可见，不阻断 loop）；禁止 `--dry-run` 替代或等用户提醒",
+      "trigger": "orchestrator tick · worker 回填 · compliance MEM-004（`last_lifecycle.at` ≤24h）",
+      "source": "收口 synthesis-arch-harden-lifecycle · governance-coordinator · 2026-06-19",
+      "fingerprint": "6cf6c017a8fcc86c",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    },
+    "GP-04": {
+      "entry_id": "GP-04",
+      "title": "五真源同步 + 三治理 lifecycle",
+      "scenario": "Loop tick 后 prose 真源与机器索引漂移",
+      "rule": "每原子任务除 §5 外 **必更新** `PROJECT_STATUS.md` 顶部「心流模式当前轮」现状概述（1–3 句）；每 tick **必跑** `sync_coherence_lifecycle` + `verification_snapshot_lifecycle` + `closure_gate_lifecycle`（`run --apply`）；`sync_coherence` 只读校验、不自动改 prose；验证后 `verification_snapshot record`",
+      "trigger": "orchestrator/worker 收工 · `loop_tick prepare/advance` · compliance SYNC/VER/CLO",
+      "source": "步骤 digest-20260619-governance-lifecycles · governance-coordinator · 2026-06-19",
+      "fingerprint": "6f112435ad5b561f",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-19T16:34:53Z",
+      "mention_count": 1
+    }
+  },
+  "rounds": {
+    "轮次-20260619-loop1": {
+      "round_id": "轮次-20260619-loop1",
+      "title": "Loop 协议建立 + R0 批次",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop2": {
+      "round_id": "轮次-20260619-loop2",
+      "title": "Loop 协议 + GEN-P2",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop3": {
+      "round_id": "轮次-20260619-loop3",
+      "title": "记忆生命周期 + 真循环桥接",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop4": {
+      "round_id": "轮次-20260619-loop4",
+      "title": "AWI 自检 + KB-M2 + MINE-1",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop5": {
+      "round_id": "轮次-20260619-loop5",
+      "title": "Loop 三层桥接 + MINE-2",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop6": {
+      "round_id": "轮次-20260619-loop6",
+      "title": "GEN-P1 N1 + MINE-2 VALID 门禁",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop8": {
+      "round_id": "轮次-20260619-loop8",
+      "title": "GEN-P1 N2 + 工作汇报架构",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop9": {
+      "round_id": "轮次-20260619-loop9",
+      "title": "MINE-2 MiningLoop orchestrator",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop10": {
+      "round_id": "轮次-20260619-loop10",
+      "title": "方法论规则升级 + 全量状态同步",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop11": {
+      "round_id": "轮次-20260619-loop11",
+      "title": "MINE-3 MiningLoop dispatch 接线",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop12": {
+      "round_id": "轮次-20260619-loop12",
+      "title": "GEN-R0 API 验收",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop13": {
+      "round_id": "轮次-20260619-loop13",
+      "title": "R2-M4 C4 + MINE-4 dedup",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop14": {
+      "round_id": "轮次-20260619-loop14",
+      "title": "GEN-R1 验收 + R1-M5 修复",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop15": {
+      "round_id": "轮次-20260619-loop15",
+      "title": "R1 闭环确认 + MINE-5 Co-STEER",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop16": {
+      "round_id": "轮次-20260619-loop16",
+      "title": "MINE-6 /lab UI",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop17": {
+      "round_id": "轮次-20260619-loop17",
+      "title": "GEN-R0 残余验收",
+      "archived": false,
+      "archived_at": null
+    },
+    "轮次-20260619-loop49-56": {
+      "round_id": "轮次-20260619-loop49-56",
+      "title": "M2/M4 hardening batch（M-17 门控审计）",
+      "archived": false,
+      "archived_at": null
+    }
+  },
+  "step_digests": {
+    "YYYYMMDD-{slice}": {
+      "digest_id": "YYYYMMDD-{slice}",
+      "title": "{简短标题}",
+      "task_ref": "{task_id} · {tree}",
+      "fingerprint": "{lifecycle 自动填充或手工摘要 hash}",
+      "status": "active",
+      "superseded_by": null
+    },
+    "20260619-loop10": {
+      "digest_id": "20260619-loop10",
+      "title": "METHODOLOGY-UPGRADE",
+      "task_ref": "loop10 · PL-C-MINE / Harness",
+      "fingerprint": "methodology-v1.1-digest-gate",
+      "status": "superseded",
+      "superseded_by": "收口 synthesis-loop10-methodology"
+    },
+    "20260619-r0m5-accept": {
+      "digest_id": "20260619-r0m5-accept",
+      "title": "R0-M5 验收输入路径",
+      "task_ref": "PL-C-GEN R0-M5 · loop17 qa-tester",
+      "fingerprint": "r0-m5-cl-outcome-vague-idea",
+      "status": "active",
+      "superseded_by": null
+    },
+    "loop47-mine5-mine6-deepen（2026-06-19": {
+      "digest_id": "loop47-mine5-mine6-deepen（2026-06-19",
+      "title": "loop47 · executor）",
+      "task_ref": "PL-C-MINE-closure · MINE-5/MINE-6 deepen · §5.350",
+      "fingerprint": "mine5-inter-round-repair-v0",
+      "status": "active",
+      "superseded_by": null
+    },
+    "loop42-quant-pivot（2026-06-19": {
+      "digest_id": "loop42-quant-pivot（2026-06-19",
+      "title": "loop42 · governance-coordinator）",
+      "task_ref": "quant-only strategic pivot · PL-C-MINE · TASK_TREES",
+      "fingerprint": "quant-only-pivot-20260619",
+      "status": "active",
+      "superseded_by": null
+    },
+    "loop33-kb1-policy（2026-06-19": {
+      "digest_id": "loop33-kb1-policy（2026-06-19",
+      "title": "loop33 · governance-coordinator）",
+      "task_ref": "",
+      "fingerprint": "7d64b5359af2e813",
+      "status": "active",
+      "superseded_by": null
+    },
+    "loop32-kb1-accept（2026-06-19": {
+      "digest_id": "loop32-kb1-accept（2026-06-19",
+      "title": "loop32 · qa-tester）",
+      "task_ref": "",
+      "fingerprint": "201107ef04d3bd0a",
+      "status": "active",
+      "superseded_by": null
+    },
+    "gen-p01（2026-06-19": {
+      "digest_id": "gen-p01（2026-06-19",
+      "title": "loop26）",
+      "task_ref": "",
+      "fingerprint": "8acd337ef2b8c1ce",
+      "status": "active",
+      "superseded_by": null
+    },
+    "ui-a-2（2026-06-19": {
+      "digest_id": "ui-a-2（2026-06-19",
+      "title": "loop24）",
+      "task_ref": "",
+      "fingerprint": "7757a867185a7930",
+      "status": "active",
+      "superseded_by": null
+    }
+  },
+  "closures": {
+    "{task-slug}": {
+      "closure_id": "{task-slug}",
+      "title": "{任务名}",
+      "task_refs": [],
+      "status": "closed",
+      "archived_digests": [
+        "xxx:",
+        "xxx"
+      ]
+    },
+    "loop10-methodology": {
+      "closure_id": "loop10-methodology",
+      "title": "方法论规则升级",
+      "task_refs": [
+        "digest-20260619-loop10: digest 门控 + lifecycle v1.1",
+        "digest-20260619-loop10 → superseded"
+      ],
+      "status": "closed",
+      "archived_digests": [
+        "20260619-loop10:",
+        "20260619-loop10"
+      ]
+    },
+    "mine2-genp1n2": {
+      "closure_id": "mine2-genp1n2",
+      "title": "MINE-2 + GEN-P1 N2",
+      "task_refs": [
+        "loop8: secondary_queue_runtime + work_report 架构",
+        "loop9: mining_loop_controller VALID→L3b",
+        "（loop8/9 以轮次节保留；无独立 digest 节）"
+      ],
+      "status": "closed",
+      "archived_digests": []
+    },
+    "mine3": {
+      "closure_id": "mine3",
+      "title": "MINE-3 多轮 dispatch 接线",
+      "task_refs": [
+        "loop11: `run_mining_loop` + `mining_loop_dispatch` Brain 全链接线（无独立 digest）",
+        "没有 — M-19 VALID→L3b 编排已覆盖单轮；MINE-3 为 capability 接线扩展"
+      ],
+      "status": "closed",
+      "archived_digests": []
+    },
+    "mine4-r2m4": {
+      "closure_id": "mine4-r2m4",
+      "title": "MINE-4 dedup + R2-M4 C4 边界",
+      "task_refs": [
+        "loop13: R2-M4 C4/C6 分离 + factor_dedup_gate + negative_kb"
+      ],
+      "status": "closed",
+      "archived_digests": []
+    },
+    "gen-r0-r1": {
+      "closure_id": "gen-r0-r1",
+      "title": "PL-C-GEN R0/R1 验收闭环",
+      "task_refs": [
+        "loop12: R0-M1…R2-M4 API 验收 · 9/10 pass · R2-M4 fail（stale 进程）",
+        "loop14: R1-M2/M4/M5/M6 · R1-M5 fail → §5.305 修复",
+        "loop15: R1 全量复测 **5/5 pass**"
+      ],
+      "status": "closed",
+      "archived_digests": []
+    },
+    "r1-m5-clarify": {
+      "closure_id": "r1-m5-clarify",
+      "title": "R1-M5 brain_run 续接修复",
+      "task_refs": [
+        "loop14 §5.305: clarify →「继续」误路由 general_chat T0"
+      ],
+      "status": "closed",
+      "archived_digests": []
+    },
+    "pl-c-ui-a": {
+      "closure_id": "pl-c-ui-a",
+      "title": "动效 ①–⑦ 并行切片",
+      "task_refs": [],
+      "status": "closed",
+      "archived_digests": []
+    },
+    "mine5-costeer": {
+      "closure_id": "mine5-costeer",
+      "title": "MINE-5 Co-STEER trace",
+      "task_refs": [
+        "loop15 §5.307: `costeer_trace.py` + MiningLoop observability"
+      ],
+      "status": "closed",
+      "archived_digests": []
+    },
+    "mine6": {
+      "closure_id": "mine6",
+      "title": "MINE-6 /lab 实验台 UI",
+      "task_refs": [
+        "loop16 §5.310: `/lab` 四 Tab + `mining-lab/snapshot` API + demo MiningLoop",
+        "**M-26**：/lab v1 只读 snapshot；写/编排仍走 Assistant；demo 用合成面板短 loop"
+      ],
+      "status": "closed",
+      "archived_digests": []
+    },
+    "kb-m2": {
+      "closure_id": "kb-m2",
+      "title": "KB-M2 corpus 短路 WR live SSE",
+      "task_refs": [
+        "`quant_loop.py`：corpus guard 移出 `guards_degraded_to_hints_only`；dedupe 覆盖 `web_research_loop`",
+        "live Chat SSE Alpha191 **5.2s**（`corpus_formula_lookup_dispatch` · 无 WR）· loop22 §5.320",
+        "loop23 R2-M5/M6 复验 **2/2 pass** — KB-M2 变更未回归 C2 冲突卡 / PD-03",
+        "`tests/test_brain_quant_loop_unit.py::test_quant_loop_alpha191_corpus_short_circuits_wr_loop_when_ready`",
+        "`tmp/kb_m2_sse_repro_loop22_result.json` · `tmp/r0_r2_acceptance_loop17_result.json`（R2-M5/M6）",
+        "**晋升**：**没有** — 扩展 **M-09**（material_plan corpus 优先于 WR）；quant_loop 三层 guard 为 M-09 实现清单，不另立 M-xx"
+      ],
+      "status": "closed",
+      "archived_digests": []
+    },
+    "kb-1": {
+      "closure_id": "kb-1",
+      "title": "Phase KB-1 material_plan 全链路",
+      "task_refs": [
+        "**KB-1.1** `material_plan=corpus_hit`：`material_plan_resolver` + quant_loop corpus_hit guard → 语料库有系列时可库内目录（跳过 WR）· loop28 §5.326",
+        "**KB-1.2** `corpus_search_dispatch` + CL-MISSING 选项 D：无 URL 时库内检索 → 序号 picker → 读文复现 · loop29 §5.327",
+        "**KB-1.3** Activity Rail `corpus_source`：corpus_hit/formula/search/upload 四条路径 SSE + 持久化徽章 · loop30 §5.328",
+        "**loop32 收口验收**：T6 ✅ · T1-191 ✅（191/191）· KB-1「中金最新一期」loop32 实测 WR 54s → CL-MISSING",
+        "**loop33 产品边界裁定**：研报不由 Web 抓取；无材料 CL-MISSING 为正常出口；KB-1 验收口径修订 · Phase **closed** · §5.332",
+        "`tests/test_brain_quant_loop_unit.py` — corpus_hit / corpus_formula guard · browse fast-fail",
+        "fast gate **1711+ passed**（loop33 browse fast-fail 单测）",
+        "live：`tmp/kb1_closure_acceptance_loop32_result.json` — 按旧口径 2/3；按新口径 **pass**（终态 CL-MISSING 合格）",
+        "**晋升**：**没有** — 扩展 **M-09**（material_plan corpus 优先于 WR）：KB-1.2 库内检索/序号 picker、KB-1.3 Activity Rail 可观测性归入 M-09 实现清单"
+      ],
+      "status": "open",
+      "archived_digests": []
+    },
+    "mine5-mine6-deepen": {
+      "closure_id": "mine5-mine6-deepen",
+      "title": "MINE-5/MINE-6 轮间注入 + /lab",
+      "task_refs": [
+        "loop47 §5.350: `inter_round_repair_v0` · `/lab` API+UI costeer 徽章",
+        "**M-29**（步骤 digest-loop47-mine5-mine6-deepen）"
+      ],
+      "status": "open",
+      "archived_digests": [
+        "loop47-mine5-mine6-deepen）"
+      ]
+    },
+    "pl-c-mine": {
+      "closure_id": "pl-c-mine",
+      "title": "PL-C-MINE MVP 切片集收口（quant-only）",
+      "task_refs": [
+        "**verdict**：`partial_closed` — MINE-0…8 **实现切片**全部交付（pytest **1808 passed**）；master-plan Phase M2–M4 **量化验收**未达（已 park/defer，不阻塞 quant-only gate）",
+        "**残余 acceptance 缺口**（parking_lot / 后续 hardening）：`/lab` 浏览器复验 loop48 未跑 · M4.2「同预算 IC 提升可证」· M2「10 轮零人工」· QuantaAlpha 对照"
+      ],
+      "status": "open",
+      "archived_digests": []
+    },
+    "m2-m4-hardening": {
+      "closure_id": "m2-m4-hardening",
+      "title": "M2/M4 master-plan 验收 hardening",
+      "task_refs": [
+        "**verdict**：`partial_closed` — M-30 parking_lot 中 **M2 zero-human**（loop54）· **M4.1 bandit joint metrics**（loop56）· **M4.2 crossover positive_delta**（loop57）· **M4.3 QuantaAlpha stub**（loop52）已 **quant-only 合同闭合**",
+        "**closed 范围**：`M2ZeroHumanMiningAcceptanceEvidenceV1` · `M4BanditJointMetricsAcceptanceEvidenceV1` · `run_m4_2_evolution_panel_ic_evidence` · `QuantaAlphaComparisonEvidenceV1`（stub）· `/lab` 浏览器四 Tab（loop51）",
+        "**M-30 更新**：master-plan M4 phase **partial_closed** loop58；parking_lot 残余 = WSL bench · LightGBM · mutation hardening"
+      ],
+      "status": "open",
+      "archived_digests": []
+    }
+  },
+  "dream_candidates": [],
+  "closure_candidates": [],
+  "last_lifecycle": {
+    "at": "2026-06-19T16:34:53Z",
+    "apply": true,
+    "dedupe_actions": 0,
+    "dream_candidates": 0,
+    "closure_candidates": 0,
+    "archived_rounds": [],
+    "active_step_digests": 8,
+    "completed_tasks_hint": [
+      "loop60 user decisions sync · exit handoff-wait · priority 因子库 E2E → TREE-2 · DATA_RELIABILITY_CHARTER v1 · 六真源含 git",
+      "GEN-P2-factor-library-e2e-live",
+      "loop60-user-unblock-resume"
+    ],
+    "ttl_days": 180
+  }
+}

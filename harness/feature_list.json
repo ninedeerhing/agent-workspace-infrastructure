@@ -1,0 +1,24 @@
+{
+  "features": [],
+  "current_feature": null,
+  "last_updated": "2026-06-10T12:00:00+08:00",
+  "project": "raindeer",
+  "description": "AWI 治理层功能状态追踪器。记录所有功能特性的开发状态、负责人、时间线和依赖关系。",
+  "schema_version": "1.0.0",
+  "status_enum": ["planned", "in_progress", "completed", "blocked", "archived"],
+  "governance": {
+    "feature_entry_schema": {
+      "id": "string - 功能唯一标识",
+      "name": "string - 功能名称",
+      "description": "string - 功能描述",
+      "status": "string - 见 status_enum",
+      "tree": "string - 所属任务树 (TREE-1/2/3...)",
+      "started_at": "string - ISO8601 开始时间",
+      "completed_at": "string|null - ISO8601 完成时间",
+      "blocked_reason": "string|null - 阻塞原因",
+      "depends_on": "array - 依赖功能 ID 列表",
+      "evidence_links": "array - 验证证据链接",
+      "notes": "string - 备注"
+    }
+  }
+}
