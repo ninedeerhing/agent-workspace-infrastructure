@@ -1,25 +1,30 @@
-# Orchestrator Report — loop63b GEN-P2 live E2E pass
+# Orchestrator Report — loop64 governance park + index_weight in progress
 
-**Updated**: 2026-06-20 · loop63b-gen-p2-live-e2e-pass
+**Updated**: 2026-06-20 · loop64-governance-park-corpus
 
 ## Status
 
 - **Tree**: PL-C-MINE · slice TREE-2-index-weight-wiring
 - **closure_gate**: resumed (partial_closed)
-- **Mode**: autonomous · qa-tester tick
+- **Mode**: autonomous · governance-coordinator tick
 
-## Delivered (loop63b)
+## Delivered (loop64)
 
-- Stale `:8350` uvicorn killed (PID 296748) · fresh restart with LangGraph env
-- GEN-P2 live E2E **4/4 pass** — `factor_library_search_dispatch` + `trial_compare_dispatch`
-- `GEN-P2-ROUTE-GAP` **cleared (live)**
-- Git commit `f25c043` — `feat(brain): GEN-P2 factor library route priority M-11`
-- §5.371 qa-tester · §5.372 executor guard (same bundle)
+- User park: **CORPUS-EXPR-QUALITY** + **PDF-INSIGHT-FIRST** → TASK_TREES parking_lot
+- §5.374 user guidance ledger · CONTINUATION refresh
+- index_weight status check: backfill_runner wired · executor loop64 running · 2 unit tests fail
+- TREE-2-gap-list.yaml: index_weight → `in_progress`
+
+## Parked (user authoritative)
+
+- CORPUS-EXPR-QUALITY — symbol/bundled expr quality (MinerU) · after MINE+GEN
+- PDF-INSIGHT-FIRST — insight before extract routing · after 挖掘回测+意图机
 
 ## Blockers
 
 - `WSL2-BENCH-1` — Ubuntu install needs user auth (env · non-stop)
+- `INDEX-WEIGHT-UNIT-TESTS` — 2 fail · executor loop64 收尾
 
 ## Next
 
-TREE-2 index_weight wiring — `cn_index_weight.ingest_default_index_weights` → backfill_runner / continuous_runner (GAP-20260620-001)
+Executor: finish index_weight unit tests + gap closure · do not duplicate ce21e6dd slice

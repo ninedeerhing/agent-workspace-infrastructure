@@ -1,36 +1,45 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T19:25:00Z",
+  "updated_at": "2026-06-20T20:10:00Z",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "PL-C-MINE",
   "current_slice": "TREE-2-index-weight-wiring",
-  "next_atomic_action": "TREE-2 index_weight 接线 — cn_index_weight.ingest_default_index_weights → backfill_runner / continuous_runner stages（gap GAP-20260620-001）",
-  "next_after": "BENCH-2 ② QuantaAlpha 完整安装 step2（env deferred · 需用户授权 Ubuntu）",
+  "next_atomic_action": "TREE-2 index_weight 接线收尾 — executor loop64（backfill_runner 已接线 · 2 unit tests fail · 勿重复）",
+  "next_after": "月切片 watermark 续跑 + gap list 刷新 · 后接 BENCH-2 ②（env deferred）",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
       "severity": "env",
       "note": "BENCH-2 顺序（用户权威）：① WSL+stub SOP closed/env deferred · wsl -l -v 仍仅 docker-desktop · ② QuantaAlpha 需用户授权"
+    },
+    {
+      "id": "INDEX-WEIGHT-UNIT-TESTS",
+      "severity": "code",
+      "note": "index_weight_backfill 2 unit tests fail — executor loop64 收尾中"
     }
   ],
-  "last_tick": "loop63b-gen-p2-live-e2e-pass",
+  "last_tick": "loop64-governance-park-corpus",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
-    "PROJECT_STATUS.md §5.372",
+    "PROJECT_STATUS.md §5.374",
     "METHODOLOGY_MEMORY.md",
     "WORKFLOWS.md",
     "git status / branch",
     "harness/reports/orchestrator/latest.md",
-    "harness/reports/workers/qa-tester.md"
+    "TREE-2-gap-list.yaml"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
     "status": "resumed",
     "verdict": "partial_closed",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop63b GEN-P2 live E2E 4/4 pass · GEN-P2-ROUTE-GAP cleared · next TREE-2 index_weight"
+    "note": "GEN-P2 closed loop63b · CORPUS/PDF-INSIGHT user-parked · index_weight in_progress loop64"
   },
-  "last_completed_note": "loop63b qa-tester live E2E 4/4 · factor_library_search_dispatch + trial_compare_dispatch · commit f25c043"
+  "last_completed_note": "loop64 governance park CORPUS-EXPR-QUALITY + PDF-INSIGHT-FIRST · §5.374 user guidance",
+  "parking_lot_added": [
+    "CORPUS-EXPR-QUALITY",
+    "PDF-INSIGHT-FIRST"
+  ]
 }

@@ -1,20 +1,20 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-19T16:53:57Z",
+  "updated_at": "2026-06-19T16:58:07Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "TREE-2 index_weight 接线 — cn_index_weight.ingest_default_index_weights → backfill_runner / continuous_runner stages（gap GAP-20260620-001）",
-  "continuation_next_action": "TREE-2 index_weight 接线",
+  "loop_next_atomic_action": "TREE-2 index_weight 接线收尾 — executor loop64（backfill_runner 已接线 · 2 unit tests fail · 勿重复）",
+  "continuation_next_action": "TREE-2 index_weight 接线收尾",
   "task_trees_next_hint": "",
   "foreground_tree": "PL-C-MINE",
   "foreground_slice": "",
-  "latest_section5_id": "372",
-  "latest_section5_title": "loop63 GEN-P2 M-11 intake guard + capability registry（2026-06-20 · loop63 · executor）",
-  "top_summary_section5_ref": "372",
-  "top_summary_last_tick": "loop63-gen-p2-qa61-guard",
-  "loop_last_tick": "loop63-gen-p2-qa61-guard",
+  "latest_section5_id": "374",
+  "latest_section5_title": "loop64 用户权威 park + TREE-2 index_weight 状态检（2026-06-20 · loop64 · governance-coordinator）",
+  "top_summary_section5_ref": "374",
+  "top_summary_last_tick": "loop64-governance-park-corpus",
+  "loop_last_tick": "loop64-governance-park-corpus",
   "findings": [
     {
       "severity": "warning",
@@ -23,12 +23,12 @@
         "apps\\quant_assistant\\docs\\PROJECT_STATUS.md",
         "harness\\loop-state.json"
       ],
-      "detail": "顶部摘要未体现 loop-state 下一动作：'TREE-2 index_weight 接线 — cn_index_weight.ingest_default_index_weights → backfill_runner / continuous_runner stages（gap GAP-20260620-001）'",
+      "detail": "顶部摘要未体现 loop-state 下一动作：'TREE-2 index_weight 接线收尾 — executor loop64（backfill_runner 已接线 · 2 unit tests fail · 勿重复）'",
       "recommendation": "更新顶部「下一方向」与 next_atomic_action 一致。"
     }
   ],
   "last_lifecycle": {
-    "at": "2026-06-19T16:53:57Z",
+    "at": "2026-06-19T16:58:07Z",
     "finding_count": 1,
     "warning_count": 1,
     "error_count": 0
