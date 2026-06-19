@@ -1,27 +1,33 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T01:40:00Z",
+  "updated_at": "2026-06-20T02:25:00Z",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-2",
-  "current_slice": "index-weight-complete",
-  "next_atomic_action": "BENCH-2 ② QuantaAlpha 完整安装 step2（env deferred · 需用户授权 Ubuntu）",
-  "next_after": "TREE-2 残余 gap（daily_bar cnt=0 · financials partial）· parking_lot 数据增强",
+  "current_slice": "daily-bar-gap-repair",
+  "next_atomic_action": "daily_bar repair Phase B batch_24mo 下一 chunk（2012-06-01→2014-05-31 · job_ingest_daily_bar_range）或 BENCH-2 ②（env deferred · 需用户 Ubuntu）",
+  "next_after": "daily_bar 全历史 repair 完成（day_cnt≈3995）· adj_factor 续跑 · optional daily_bar_repair stage",
   "blockers": [
+    {
+      "id": "GAP-20260620-002",
+      "severity": "blocker",
+      "note": "daily_bar OHLCV repair 进行中 · cnt=1230168 day_cnt=585/3995（≈14.6%）· 2010-01→2012-05 complete · batch_24mo policy · GAP-20260620-daily-bar-blocker-report.md · ETA ~7 ticks @ 24mo/tick"
+    },
     {
       "id": "WSL2-BENCH-1",
       "severity": "env",
-      "note": "BENCH-2 顺序（用户权威）：① WSL+stub SOP closed/env deferred · wsl -l -v 仍仅 docker-desktop · ② QuantaAlpha 需用户授权"
+      "note": "BENCH-2 ② QuantaAlpha 需用户授权 Ubuntu · loop81 skip · 禁止代理安装 WSL"
     }
   ],
-  "last_tick": "loop74-tree2-index-weight-complete",
+  "last_tick": "loop81-tree2-daily-bar-repair-batch24mo-2010-06-2012-05",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
-    "PROJECT_STATUS.md §5.386",
+    "PROJECT_STATUS.md §5.393",
     "METHODOLOGY_MEMORY.md",
     "WORKFLOWS.md",
     "TREE-2-gap-list.yaml",
+    "GAP-20260620-daily-bar-blocker-report.md",
     "git status / branch"
   ],
   "closure_gate": {
@@ -29,7 +35,7 @@
     "status": "resumed",
     "verdict": "partial_closed",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop74 index_weight GAP complete · 96月/32994 rows · remaining=0 · BENCH-2 next"
+    "note": "loop81 batch_24mo 2010-06→2012-05 complete · day_cnt 585/3995（≈14.6%）· GAP-002 repair 进行中 · ETA ~7 ticks @ 24mo/tick · 649a145c partial reconciled"
   },
-  "last_completed_note": "loop74 bounded 24-iter index_weight · remaining=0 · GAP complete · snapshot 20260620-013952"
+  "last_completed_note": "loop81 batch_24mo 484 days · cnt=1230168 · snapshot 20260620-022242 · user batch_24mo policy · BENCH-2 skip"
 }
