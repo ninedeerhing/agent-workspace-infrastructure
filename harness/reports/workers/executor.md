@@ -1,17 +1,21 @@
 # Worker Report — executor
 
-**Updated**: 2026-06-20 · loop74-tree2-index-weight-complete
+**Updated**: 2026-06-20 · loop85-tree2-daily-bar-repair-batch24mo-2018-06-2020-05
 
-## Completed
+## Delivered
 
-- PG preflight: remaining=24 · cnt=25794 · last_success 2024-06-03
-- bounded 24-iter `run_index_weight_backfill_job` (batch_size=1)
-- final: remaining=0 · cnt=32994 · last_success 2026-06-01
-- save_status_snapshot: `20260620-013952-a-share-history-status.json`
-- GAP-20260620-001 index_weight_daily → **complete**
-- ruff check pass · pytest 14 passed
-- docs: §5.386 · loop-state · gap list · CONTINUATION · WORKFLOWS · TASK_TREES · METHODOLOGY M-32
+- PRE-FLIGHT PG @55432 · daily_bar 5313540/2045 → 7084268/2530
+- `run_ingest_daily_bar_range` 2018-06-01→2020-05-31 · 485/485 days · 1770728 rows · ≈1825s
+- 无 Tushare 断连 retry
+- save_status_snapshot `20260620-041811-a-share-history-status.json`
+- §5.397 · gap list · blocker report · loop-state · 六真源
+
+## Verification
+
+- chunk idempotent complete 485/485 open days
+- 五 lifecycle `run --apply` ✅
+- docs-only · no code change
 
 ## Next
 
-- BENCH-2 ② QuantaAlpha step2 (env deferred)
+- batch_24mo 2020-06→2022-05
