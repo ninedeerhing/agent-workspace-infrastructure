@@ -1,24 +1,26 @@
 # Loop Tick Brief
 
-generated_at: 2026-06-19T15:30:36Z
+generated_at: 2026-06-19T16:51:43Z
 mode: autonomous
 current_tree: PL-C-MINE
-current_slice: m4-phase-partial-closure
-last_tick: loop58-m4-phase-partial-closure
+current_slice: GEN-P2-factor-library-e2e
+last_tick: loop61b-gen-p2-route-fix
 
 ## Execute Now
 
-parking_lot LAB-BROWSER-E2E 补 demo 失败轮 Co-STEER 徽章（可选）或用户 git commit bundles
+重启 :8350 API 后 qa-tester 复跑 tmp/gen_p2_e2e_loop61.py · 确认 live SSE 含 factor_library_search_dispatch / trial_compare_dispatch
 
 ## Then
 
-master-plan M3 立项评估或 TREE-2 运行证据同步 §5
+TREE-2 index_weight 接线（gap list GAP-20260620-001）· BENCH-2 ② QuantaAlpha 完整安装 step2（env deferred · 需用户授权 Ubuntu）
 
 ## Blockers
 
-- [env] WSL2-BENCH-1: loop52 复验仍 blocked：wsl -l -v 仅 docker-desktop（WSL2 Running）；无 Ubuntu/python3/QuantaAlpha。BENCH-1/BENCH-2 按 SOP skip；M2 IC gap <20% claim deferred。
-- [user] GIT-COMMIT-PENDING: 428 脏文件 commit bundles 已写入 harness/reports/workers/git-master.md；awaiting user git commit（C-foundation→C14）。
+- [env] WSL2-BENCH-1: BENCH-2 顺序（用户权威）：① WSL+stub SOP closed/env deferred · wsl -l -v 仍仅 docker-desktop · ② QuantaAlpha 需用户授权
 
-## STOP
+## Agent Instruction
 
-closure_gate=closed
+Do NOT ask the user to continue. Execute `next_atomic_action`, sync five sources,
+update loop-state.json, then immediately start the next item in the same session.
+
+Full protocol: harness/templates/loop-tick-prompt.md

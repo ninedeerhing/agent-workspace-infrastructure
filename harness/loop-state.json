@@ -1,29 +1,24 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T16:45:00Z",
+  "updated_at": "2026-06-20T19:20:00Z",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "PL-C-MINE",
-  "current_slice": "BENCH-2-wsl-stub-sop",
-  "next_atomic_action": "BENCH-2 ① WSL+stub SOP（docs/SOP/05_wsl2_bench2_quanta_alpha.md）· wsl -l -v 探活 · env deferred 则 TREE-2 DATA_RELIABILITY gap list",
-  "next_after": "TREE-2 数据层续跑（DATA_RELIABILITY_CHARTER 合规 · gap list 驱动）· BENCH-2 ② QuantaAlpha 完整安装 step2 · GEN-P2 Chat 路由 gap（QA-61-1）executor 修复",
+  "current_slice": "TREE-2-index-weight-wiring",
+  "next_atomic_action": "TREE-2 index_weight 接线 — cn_index_weight.ingest_default_index_weights → backfill_runner / continuous_runner stages（gap GAP-20260620-001）",
+  "next_after": "BENCH-2 ② QuantaAlpha 完整安装 step2（env deferred · 需用户授权 Ubuntu）",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
       "severity": "env",
-      "note": "BENCH-2 顺序（用户权威）：① WSL+stub SOP 先 · wsl -l -v 仍仅 docker-desktop · M2 IC gap deferred"
-    },
-    {
-      "id": "GEN-P2-ROUTE-GAP",
-      "severity": "functional",
-      "note": "loop61 QA-61-1：live Chat 未命中 factor_library_search_dispatch / trial_compare_dispatch · unit 5/5 pass · M-11 intake 覆盖"
+      "note": "BENCH-2 顺序（用户权威）：① WSL+stub SOP closed/env deferred · wsl -l -v 仍仅 docker-desktop · ② QuantaAlpha 需用户授权"
     }
   ],
-  "last_tick": "loop61-gen-p2-e2e-live",
+  "last_tick": "loop63-gen-p2-qa61-guard",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
-    "PROJECT_STATUS.md §5.367",
+    "PROJECT_STATUS.md §5.372",
     "METHODOLOGY_MEMORY.md",
     "WORKFLOWS.md",
     "git status / branch",
@@ -35,34 +30,7 @@
     "status": "resumed",
     "verdict": "partial_closed",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop61 GEN-P2 E2E partial — library/coverage pass · Chat dispatch gap QA-61-1 · advance BENCH-2"
+    "note": "loop63 GEN-P2 QA-61-1 closed · M-11 intake guard · live E2E 4/4 · next TREE-2 index_weight"
   },
-  "git_complete": {
-    "status": "complete",
-    "quant_assistant_head": "62e87c3",
-    "raindeer_head": "a7c2637",
-    "bundles": "C-foundation→C14+R0",
-    "bundle_shas": {
-      "C-foundation": "53b55c3",
-      "C1": "25126b8",
-      "C2": "d127d11",
-      "C3": "e7e5c23",
-      "C4": "970406c",
-      "C5": "8fbfe09",
-      "C6": "461a03f",
-      "C7": "3facff7",
-      "C8": "1d5ff32",
-      "C9": "963e718",
-      "C10": "599bfbe",
-      "C11": "d6cd786",
-      "C12": "653a84b",
-      "C13": "1e757cc",
-      "C14": "605213d",
-      "R0-harness": "504b565",
-      "R0-cursor": "3fe0fb3"
-    },
-    "pushed": false,
-    "ledger_ref": "apps/quant_assistant/docs/PROJECT_STATUS.md §5.366"
-  },
-  "last_completed_note": "loop61 git-master complete · C-foundation→C14 · R0 a7c2637 · GIT-COMMIT-PENDING cleared · 未 push"
+  "last_completed_note": "loop63 apply_factor_library_intake_guard · 15 unit · live E2E 4/4 · GEN-P2-ROUTE-GAP cleared"
 }

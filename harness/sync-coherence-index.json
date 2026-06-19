@@ -1,25 +1,36 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-19T16:36:51Z",
+  "updated_at": "2026-06-19T16:53:57Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "GEN-P2 因子库 E2E live：/library + Chat factor_library_search / C_COMPARE 浏览器复验与 API 证据（qa-tester + agent-browser）",
-  "continuation_next_action": "GEN-P2 因子库 E2E live",
+  "loop_next_atomic_action": "TREE-2 index_weight 接线 — cn_index_weight.ingest_default_index_weights → backfill_runner / continuous_runner stages（gap GAP-20260620-001）",
+  "continuation_next_action": "TREE-2 index_weight 接线",
   "task_trees_next_hint": "",
   "foreground_tree": "PL-C-MINE",
   "foreground_slice": "",
-  "latest_section5_id": "365",
-  "latest_section5_title": "loop60 user decisions sync · exit handoff-wait（2026-06-20 · loop60 · governance-coordinator）",
-  "top_summary_section5_ref": "365",
-  "top_summary_last_tick": "loop60-user-unblock-resume",
-  "loop_last_tick": "loop60-user-unblock-resume",
-  "findings": [],
+  "latest_section5_id": "372",
+  "latest_section5_title": "loop63 GEN-P2 M-11 intake guard + capability registry（2026-06-20 · loop63 · executor）",
+  "top_summary_section5_ref": "372",
+  "top_summary_last_tick": "loop63-gen-p2-qa61-guard",
+  "loop_last_tick": "loop63-gen-p2-qa61-guard",
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "SYNC-TOP-NEXT",
+      "paths": [
+        "apps\\quant_assistant\\docs\\PROJECT_STATUS.md",
+        "harness\\loop-state.json"
+      ],
+      "detail": "顶部摘要未体现 loop-state 下一动作：'TREE-2 index_weight 接线 — cn_index_weight.ingest_default_index_weights → backfill_runner / continuous_runner stages（gap GAP-20260620-001）'",
+      "recommendation": "更新顶部「下一方向」与 next_atomic_action 一致。"
+    }
+  ],
   "last_lifecycle": {
-    "at": "2026-06-19T16:36:51Z",
-    "finding_count": 0,
-    "warning_count": 0,
+    "at": "2026-06-19T16:53:57Z",
+    "finding_count": 1,
+    "warning_count": 1,
     "error_count": 0
   }
 }

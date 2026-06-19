@@ -1,24 +1,25 @@
-# Orchestrator Report — loop61 gen-p2 e2e
+# Orchestrator Report — loop63b GEN-P2 live E2E pass
 
-**Updated**: 2026-06-20 · loop61-gen-p2-e2e-live
+**Updated**: 2026-06-20 · loop63b-gen-p2-live-e2e-pass
 
 ## Status
 
-- **Tree**: PL-C-MINE · slice BENCH-2-wsl-stub-sop
+- **Tree**: PL-C-MINE · slice TREE-2-index-weight-wiring
 - **closure_gate**: resumed (partial_closed)
-- **Mode**: autonomous · qa-tester E2E tick complete
+- **Mode**: autonomous · qa-tester tick
 
-## Delivered (loop61)
+## Delivered (loop63b)
 
-- GEN-P2 E2E **partial** — corpus/coverage/library pass · Chat dispatch gap QA-61-1
-- Evidence: `tmp/gen_p2_e2e_loop61_result.json` · §5.367
-- Git: quant_assistant main ahead 15 · no commit this tick
+- Stale `:8350` uvicorn killed (PID 296748) · fresh restart with LangGraph env
+- GEN-P2 live E2E **4/4 pass** — `factor_library_search_dispatch` + `trial_compare_dispatch`
+- `GEN-P2-ROUTE-GAP` **cleared (live)**
+- Git commit `f25c043` — `feat(brain): GEN-P2 factor library route priority M-11`
+- §5.371 qa-tester · §5.372 executor guard (same bundle)
 
 ## Blockers
 
-- `WSL2-BENCH-1` — BENCH-2 WSL env
-- `GEN-P2-ROUTE-GAP` — live Chat misses factor_library_search / trial_compare dispatch
+- `WSL2-BENCH-1` — Ubuntu install needs user auth (env · non-stop)
 
 ## Next
 
-BENCH-2 ① WSL+stub SOP · env deferred → TREE-2 gap list · GEN-P2 route fix (executor)
+TREE-2 index_weight wiring — `cn_index_weight.ingest_default_index_weights` → backfill_runner / continuous_runner (GAP-20260620-001)

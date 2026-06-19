@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-19T16:42:45Z",
+  "updated_at": "2026-06-19T16:53:57Z",
   "orchestrator_path": "harness/reports/orchestrator",
   "workers_dir": "harness/reports/workers",
   "worker_count": 21,
@@ -14,7 +14,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-19T16:42:45Z",
+      "last_updated_at": "2026-06-19T16:53:57Z",
       "source_path": "harness\\reports\\orchestrator\\latest.md"
     },
     "architect:architect-idle": {
@@ -76,7 +76,7 @@
       ],
       "verification": "live API 复现 **5.2s**（`tmp/kb_m2_sse_repro_loop22_result.json`）",
       "status": "resolved（executor 已落地修复）",
-      "last_updated_at": "2026-06-19T16:42:45Z",
+      "last_updated_at": "2026-06-19T16:53:57Z",
       "source_path": "harness\\reports\\workers\\debugger.md"
     },
     "designer:designer-ui-a-2-spec": {
@@ -102,7 +102,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-19T16:42:45Z",
+      "last_updated_at": "2026-06-19T16:53:57Z",
       "source_path": "harness\\reports\\workers\\executor.md"
     },
     "explore:explore-idle": {
@@ -152,7 +152,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-19T16:42:45Z",
+      "last_updated_at": "2026-06-19T16:53:57Z",
       "source_path": "harness\\reports\\workers\\governance-coordinator.md"
     },
     "growth-engineer:growth-engineer-idle": {
@@ -179,8 +179,8 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\planner.md"
     },
-    "qa-tester:loop51-lab-browser-e2e": {
-      "report_id": "loop51-lab-browser-e2e",
+    "qa-tester:loop61-gen-p2-e2e-live": {
+      "report_id": "loop61-gen-p2-e2e-live",
       "worker_id": "qa-tester",
       "task_id": "LAB-BROWSER-E2E · critic CH-2",
       "tree": "PL-C-MINE · parking_lot LAB-BROWSER-E2E",
@@ -281,7 +281,7 @@
     }
   },
   "last_lifecycle": {
-    "at": "2026-06-19T16:42:45Z",
+    "at": "2026-06-19T16:53:57Z",
     "apply": true,
     "dedupe_actions": 0,
     "record_count": 22,

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-19T16:34:53Z",
+  "updated_at": "2026-06-19T16:53:57Z",
   "candidates": [
     {
       "task_ref": "R0-M1",
@@ -174,9 +174,18 @@
       "has_permanent_entry": false,
       "permanent_ids": [],
       "recommendation": "synthesize_closure_or_explicit_none"
+    },
+    {
+      "task_ref": "BENCH-2",
+      "source": "trees|loop|section5",
+      "has_synthesis": true,
+      "synthesis_id": "m2-m4-hardening",
+      "has_permanent_entry": false,
+      "permanent_ids": [],
+      "recommendation": "extract_m_or_gp"
     }
   ],
-  "open_count": 18,
+  "open_count": 19,
   "closed_count": 1,
   "explicit_none_count": 0,
   "findings": [
@@ -305,13 +314,20 @@
       "task_ref": "MINE-8",
       "detail": "task MINE-8 marked done but no synthesis-* section",
       "recommendation": "Add ## 收口 synthesis-mine-8 or record explicit 没有"
+    },
+    {
+      "severity": "info",
+      "code": "CLO-NO-PERMANENT",
+      "task_ref": "BENCH-2",
+      "detail": "synthesis-m2-m4-hardening closed without M-xx/GP-xx",
+      "recommendation": "Extract permanent entry or mark 状态：没有"
     }
   ],
   "last_lifecycle": {
-    "at": "2026-06-19T16:34:53Z",
-    "open_count": 18,
+    "at": "2026-06-19T16:53:57Z",
+    "open_count": 19,
     "closed_count": 1,
     "explicit_none_count": 0,
-    "candidate_count": 19
+    "candidate_count": 20
   }
 }
