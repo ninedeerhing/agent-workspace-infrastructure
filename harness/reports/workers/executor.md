@@ -1,21 +1,25 @@
 # Worker Report — executor
 
-**Updated**: 2026-06-20 · loop85-tree2-daily-bar-repair-batch24mo-2018-06-2020-05
+**Updated**: 2026-06-20 · loop96
 
-## Delivered
+## Completed
 
-- PRE-FLIGHT PG @55432 · daily_bar 5313540/2045 → 7084268/2530
-- `run_ingest_daily_bar_range` 2018-06-01→2020-05-31 · 485/485 days · 1770728 rows · ≈1825s
-- 无 Tushare 断连 retry
-- save_status_snapshot `20260620-041811-a-share-history-status.json`
-- §5.397 · gap list · blocker report · loop-state · 六真源
-
-## Verification
-
-- chunk idempotent complete 485/485 open days
+- PG connectivity check ✅
+- adj_factor preflight audit (3500/3995) ✅
+- bounded ingest 2024-06-01→2026-05-31 (482 days · 2611228 rows) ✅
+- tail ingest 2026-06-01→2026-06-18 (13 days · 71842 rows) ✅
+- post audit day_ok=**3995/3995** ✅
+- save_status_snapshot 20260620-111321 ✅
+- GAP-20260620-003 **complete** ✅
 - 五 lifecycle `run --apply` ✅
-- docs-only · no code change
+
+## Evidence
+
+- `tmp/adj_factor_batch_2024-06_2026-05.log`
+- `tmp/adj_factor_batch_tail_2026-06.log`
+- `tmp/a_share_history_status_snapshots/20260620-111321-a-share-history-status.json`
+- §5.408
 
 ## Next
 
-- batch_24mo 2020-06→2022-05
+- daily_trade_status repair
