@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "tasks": [
     {
       "id": "daily-compliance-check",
@@ -76,6 +76,28 @@
       "description": "Summarize the week's progress: features completed, blockers, next priorities",
       "prompt": "Read harness/progress.md and harness/feature_list.json. Summarize: what was completed this week, what is blocked, what should be the top 3 priorities next week. Write to harness/progress.md.",
       "cron": "0 16 * * 5",
+      "max_duration_minutes": 10,
+      "retry_on_failure": false,
+      "enabled": true,
+      "last_run": null
+    },
+    {
+      "id": "daily-compliance",
+      "name": "Daily Compliance (End of Day)",
+      "description": "EOD full compliance: compliance-check, five lifecycles, sync/verification summary, dual git status, gap blockers → harness/reports/daily-compliance-YYYYMMDD.md",
+      "prompt": "Read harness/templates/daily-compliance-prompt.md and execute fully. Machine wrapper: .\\harness\\scripts\\daily-compliance.ps1 from repo root. Do NOT change loop-state next_atomic_action.",
+      "cron": "0 20 * * *",
+      "max_duration_minutes": 20,
+      "retry_on_failure": false,
+      "enabled": true,
+      "last_run": null
+    },
+    {
+      "id": "daily-git-push",
+      "name": "Daily Git Push (End of Day)",
+      "description": "After daily-compliance: push raindeer root + quant_assistant if ahead of origin; fail-closed on .env staged; no force; user confirmed 2026-06-20",
+      "prompt": "Read harness/templates/daily-git-push-prompt.md and run .\\harness\\scripts\\daily-git-push.ps1 from repo root. Push only when commits exist (ahead > 0).",
+      "cron": "30 20 * * *",
       "max_duration_minutes": 10,
       "retry_on_failure": false,
       "enabled": true,

@@ -207,13 +207,28 @@ PROJECT_STATUS §5 每条台账末尾只保留一句：
 
 ### 9.3 Automation 配置
 
+真源：`harness/schedule.json`（v1.1.0+）。在 Cursor **Automations** 中为每个 `id` 创建对应定时任务；cron 以**本地时区**为准。
+
+| task id | cron | prompt 模板 | 说明 |
+|---------|------|-------------|------|
+| `loop-tick` | `*/30 * * * *` | `harness/templates/loop-tick-prompt.md` · `loop_tick.py emit-prompt` | Loop 自治续跑 · **enabled** |
+| `daily-compliance` | `0 20 * * *` | `harness/templates/daily-compliance-prompt.md` | 日末合规 · compliance-check + 五 lifecycle + 双 git + gap → `harness/reports/daily-compliance-YYYYMMDD.md` |
+| `daily-git-push` | `30 20 * * *` | `harness/templates/daily-git-push-prompt.md` | 日末 push（**在 compliance 之后**）· `harness/scripts/daily-git-push.ps1` · 仅 ahead>0 · 无 force · `.env` staged fail-closed |
+| `daily-compliance-check` | `0 8 * * 1-5` | inline prompt | 工作日早间 baseline 快检 |
+| `methodology-lifecycle` | `0 7 * * *` | inline prompt | 方法论索引维护 |
+
+**loop-tick 停止条件**：
+
 ```text
-Cron: */30 * * * *
-Repo: raindeer
-Prompt: python harness/loop_tick.py emit-prompt  # 或直接读 loop-tick-prompt.md
 Stop: loop-state.closure_gate.status == "closed" 或 stop_reason 非空
 Tools: 仓库读写 + terminal
 ```
+
+**日末 ops 约束（用户确认 2026-06-20）**：
+
+- `daily-compliance` / `daily-git-push` 为 **scheduled ops**，**不是**新 worker（见 `WORKER_SKILL_GOVERNANCE.md` §3.3）
+- **禁止**修改 `loop-state.json` 的 `next_atomic_action`（TREE-2 续跑不受影响）
+- `daily-git-push` 只 push 已有 commit；不自动 commit
 
 CLI::
 
@@ -221,6 +236,8 @@ CLI::
 python harness/loop_tick.py status
 python harness/loop_tick.py prepare
 .\scripts\ps\loop_tick.ps1 advance -Next "..." -TickId loop5
+.\harness\scripts\daily-compliance.ps1
+.\harness\scripts\daily-git-push.ps1 -DryRun
 ```
 
 ### 9.4 与 TypeScript 的关系
