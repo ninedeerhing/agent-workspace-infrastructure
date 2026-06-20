@@ -1,22 +1,22 @@
 # Loop Tick Brief
 
-generated_at: 2026-06-19T17:14:03Z
+generated_at: 2026-06-20T10:37:18Z
 mode: autonomous
-current_tree: TREE-2
-current_slice: index-weight-continuous
-last_tick: loop66-tree2-index-master-stage
+current_tree: PL-C-MINE
+current_slice: tree2-data-layer-partial-closed-gap-refresh
+last_tick: loop105-tree2-data-layer-partial-closed-gap-refresh
 
 ## Execute Now
 
-index_weight continuous 续跑至 remaining=0 + save_status_snapshot
+PL-C-MINE real panel mining E2E verify（MINE panel · fail-closed · daily_bar/adj_factor/daily_trade_status 3995/3995 unblock）
 
 ## Then
 
-BENCH-2 ② QuantaAlpha 完整安装 step2（env deferred · 需用户授权 Ubuntu）
+stk_week_month history backfill wiring · optional daily_bar_repair stage · BENCH-2 stub re-verify（env deferred）
 
 ## Blockers
 
-- [env] WSL2-BENCH-1: BENCH-2 顺序（用户权威）：① WSL+stub SOP closed/env deferred · wsl -l -v 仍仅 docker-desktop · ② QuantaAlpha 需用户授权
+- [env] WSL2-BENCH-1: BENCH-2 ② QuantaAlpha 需用户授权 Ubuntu · loop105 skip · 禁止代理安装 WSL
 
 ## Agent Instruction
 

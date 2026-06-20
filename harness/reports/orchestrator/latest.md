@@ -1,22 +1,27 @@
-# Orchestrator Report — latest
+# Orchestrator Report — loop108
 
-**Updated**: 2026-06-20 · loop99
+**Updated**: 2026-06-20 · loop108-mine-tree2-closure-gate
 
-## Status
+## Tick Summary
 
-- **slice**: TREE-2 daily_trade_status Phase D batch_24mo
-- **last_tick**: loop99-tree2-daily-trade-status-batch24mo-gap004
-- **daily_trade_status**: **1557/3995**（≈39.0%）· cnt=9122463
-- GAP-20260620-004: daily_trade_status **续跑中** · chunk3 complete
-- GAP-20260620-003: adj_factor **complete**
-- GAP-20260620-002: daily_bar **complete**
+- **slice**: MINE + TREE-2 data closure gate review
+- **agent**: critic|constitution-guardian
+- **result**: success · PL-C-MINE **closed** · TREE-2 data **partial_closed retained**
+- **evidence**: loop106 real-panel E2E · loop105 snapshot · loop107 stk_week_month wired
+- **closure_gate**: **closed** (review complete)
+
+## Verdicts
+
+| Object | Verdict |
+|--------|---------|
+| PL-C-MINE | **closed** (quant-only MVP · M-30) |
+| TREE-2 data layer | **partial_closed** (blockers done · degraded open) |
+
+## Sync
+
+- §5.421 · CONTINUATION_PROMPT · loop-state.json · WORKFLOWS.md · METHODOLOGY synthesis-pl-c-mine
+- five lifecycles run --apply: executed this tick
 
 ## Next
 
-- daily_trade_status batch_24mo 2016-06→2018-05
-- optional daily_bar_repair stage 接线
-
-## Blockers (non-stop)
-
-- GAP-20260620-004 (daily_trade_status 2438 days remaining)
-- WSL2-BENCH-1 (env deferred)
+**GEN-P2 regression · stability re-verify** · CORPUS-EXPR-QUALITY（parked）· optional daily_bar_repair · BENCH-2 stub（env deferred）

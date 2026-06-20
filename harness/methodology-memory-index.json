@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-06-20T10:28:44Z",
+  "updated_at": "2026-06-20T10:45:05Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
   "active_entry_count": 35,
   "archived_round_count": 0,
@@ -15,7 +15,7 @@
       "fingerprint": "92945a692979de9c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-02": {
@@ -28,7 +28,7 @@
       "fingerprint": "19492a48460ef0b8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-03": {
@@ -41,7 +41,7 @@
       "fingerprint": "b753e5142d63cca6",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-04": {
@@ -54,7 +54,7 @@
       "fingerprint": "8252872344a6a1aa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-05": {
@@ -67,7 +67,7 @@
       "fingerprint": "b0a78e119c2a978d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-06": {
@@ -80,7 +80,7 @@
       "fingerprint": "466b92547c39ab98",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-07": {
@@ -93,7 +93,7 @@
       "fingerprint": "514ac18df80f3270",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-08": {
@@ -106,7 +106,7 @@
       "fingerprint": "127f609b9d336749",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-09": {
@@ -119,7 +119,7 @@
       "fingerprint": "699fe149e07dadd7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-10": {
@@ -132,7 +132,7 @@
       "fingerprint": "042b0ee40d795387",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-11": {
@@ -145,7 +145,7 @@
       "fingerprint": "0b8339a1a4ee0815",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-12": {
@@ -158,7 +158,7 @@
       "fingerprint": "0b8532fed9ce4d33",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-15": {
@@ -171,7 +171,7 @@
       "fingerprint": "da847d8aeda5f49a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-16": {
@@ -184,7 +184,7 @@
       "fingerprint": "a124342e3487cc07",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-17": {
@@ -197,7 +197,7 @@
       "fingerprint": "61b08a325d7f74eb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-18": {
@@ -210,7 +210,7 @@
       "fingerprint": "9df0d5bdaaeb1d34",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-19": {
@@ -223,7 +223,7 @@
       "fingerprint": "7052d26bc2685cfa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-20": {
@@ -236,7 +236,7 @@
       "fingerprint": "d98f2ced613ddc3d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-21": {
@@ -249,7 +249,7 @@
       "fingerprint": "8962d8542b06099d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-22": {
@@ -262,7 +262,7 @@
       "fingerprint": "f8088bb36c67760f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-23": {
@@ -275,7 +275,7 @@
       "fingerprint": "5591738fdcb42c02",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-24": {
@@ -288,7 +288,7 @@
       "fingerprint": "faafb47510b14881",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-25": {
@@ -301,7 +301,7 @@
       "fingerprint": "47b3f516d0a32bbd",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-26": {
@@ -314,7 +314,7 @@
       "fingerprint": "2e8e010276b68173",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-27": {
@@ -327,7 +327,7 @@
       "fingerprint": "d8d82de01b96a7f2",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-28": {
@@ -340,7 +340,7 @@
       "fingerprint": "f45fb585f8e2668f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-29": {
@@ -353,7 +353,7 @@
       "fingerprint": "07f27400a64451a8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-30": {
@@ -366,7 +366,7 @@
       "fingerprint": "5a5e86bf23db3c6a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-31": {
@@ -379,7 +379,7 @@
       "fingerprint": "eba7c675aa3600bc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "M-32": {
@@ -392,7 +392,7 @@
       "fingerprint": "05605bd00cfcb5d9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     }
   },
@@ -407,7 +407,7 @@
       "fingerprint": "e2a42f0cbfb4498d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "GP-02": {
@@ -420,7 +420,7 @@
       "fingerprint": "614ede829cca904f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "GP-03": {
@@ -433,7 +433,7 @@
       "fingerprint": "6cf6c017a8fcc86c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "GP-04": {
@@ -446,7 +446,7 @@
       "fingerprint": "6f112435ad5b561f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     },
     "GP-05": {
@@ -459,7 +459,7 @@
       "fingerprint": "f0a08a8433aca1de",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-20T10:28:44Z",
+      "last_seen_at": "2026-06-20T10:45:05Z",
       "mention_count": 1
     }
   },
@@ -796,8 +796,9 @@
       "closure_id": "pl-c-mine",
       "title": "PL-C-MINE MVP 切片集收口（quant-only）",
       "task_refs": [
-        "**verdict**：`partial_closed` — MINE-0…8 **实现切片**全部交付（pytest **1808 passed**）；master-plan Phase M2–M4 **量化验收**未达（已 park/defer，不阻塞 quant-only gate）",
-        "**残余 acceptance 缺口**（parking_lot / 后续 hardening）：`/lab` 浏览器复验 loop48 未跑 · M4.2「同预算 IC 提升可证」· M2「10 轮零人工」· QuantaAlpha 对照"
+        "**verdict**：**closed**（loop108 自 loop48 `partial_closed` 升级）— MINE-0…8 **实现切片**全部交付 · M2/M4 **合同 hardening** loop49–58 ✅ · **real-panel E2E pass** loop106（postgres_live · 2285 rows · l3b_ran）· pytest **1858 passed** · **M-30** quant-only MVP 门控满足",
+        "**parked（M-28 外域 · 不阻塞 closed）**：BENCH-1/2 WSL2 · QuantaAlpha 真跑 · LightGBM M5+ · MINE-PANEL-SCALE 全 A 生产 panel · brain alpha101 3 fail · mutation IC 生产分化",
+        "**下一前台**：**PL-C-GEN GEN-P2 regression** · CORPUS-EXPR-QUALITY（parked · after GEN stable）"
       ],
       "status": "open",
       "archived_digests": []
@@ -850,12 +851,27 @@
       ],
       "status": "closed",
       "archived_digests": []
+    },
+    "tree2-data-layer": {
+      "closure_id": "tree2-data-layer",
+      "title": "TREE-2 数据层 blocker 全闭合",
+      "task_refs": [
+        "loop64–loop74：index_weight_daily bounded tick · remaining=0 · GAP-001 **complete**",
+        "loop76–loop88：daily_bar Phase B batch_24mo · day_cnt **3995/3995** · GAP-002 **complete**",
+        "loop89–loop96：adj_factor Phase C batch_24mo · day_ok **3995/3995** · GAP-003 **complete**",
+        "loop97–loop104：daily_trade_status Phase D batch_24mo · day_cnt **3995/3995** · GAP-004 **complete**",
+        "loop105：snapshot 20260620-182655 对账 · gap list refresh · blocker_count **0** · quant mainline → PL-C-MINE E2E",
+        "**M-28**：quant-only 前台切换至 PL-C-MINE real-panel E2E（数据层 blocker unblock 后最高价值切片）",
+        "**GP-02**：loop105 应用 synthesis 晋升 · loop64–104 各 Phase M-17/M-32 门控"
+      ],
+      "status": "open",
+      "archived_digests": []
     }
   },
   "dream_candidates": [],
   "closure_candidates": [],
   "last_lifecycle": {
-    "at": "2026-06-20T10:28:44Z",
+    "at": "2026-06-20T10:45:05Z",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
@@ -863,9 +879,9 @@
     "archived_rounds": [],
     "active_step_digests": 9,
     "completed_tasks_hint": [
-      "loop104 batch_24mo 482+13 days daily_trade_status · cnt=23406705 · snapshot 20260620-182655 · GAP-004 complete",
-      "daily-trade-status-complete-gap004",
-      "loop104-tree2-daily-trade-status-complete-gap004"
+      "loop108 MINE+TREE-2 closure gate review · critic|constitution-guardian · PL-C-MINE closed · TREE-2 data partial_closed",
+      "gen-p2-regression",
+      "loop108-mine-tree2-closure-gate"
     ],
     "ttl_days": 180
   }

@@ -1,20 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-06-19T17:14:03Z
+updated_at: 2026-06-20T10:37:18Z
 
 ## Current Objective
 
-index_weight continuous 续跑至 remaining=0 + save_status_snapshot
+PL-C-MINE real panel mining E2E verify（MINE panel · fail-closed · daily_bar/adj_factor/daily_trade_status 3995/3995 unblock）
 
 ## Next Step
 
-BENCH-2 ② QuantaAlpha 完整安装 step2（env deferred · 需用户授权 Ubuntu）
+stk_week_month history backfill wiring · optional daily_bar_repair stage · BENCH-2 stub re-verify（env deferred）
 
 ## Loop Machine State
 
-- tree: TREE-2
-- slice: index-weight-continuous
-- last_tick: loop66-tree2-index-master-stage
+- tree: PL-C-MINE
+- slice: tree2-data-layer-partial-closed-gap-refresh
+- last_tick: loop105-tree2-data-layer-partial-closed-gap-refresh
 - stop: none
 
 ## Resume Command
