@@ -60,3 +60,7 @@ node_modules/
 
 # --- Docker ---
 # (docker-compose.yml 和 Dockerfile 保留)
+
+# --- Local IDE agent config (not published to GitHub) ---
+.cursor/
+.trae/
