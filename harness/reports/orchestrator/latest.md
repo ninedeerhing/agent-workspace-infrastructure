@@ -1,27 +1,29 @@
-# Orchestrator Report — loop108
+# Orchestrator Report — loop126-employee-roster-codex-adapter
 
-**Updated**: 2026-06-20 · loop108-mine-tree2-closure-gate
+**Updated**: 2026-06-21 · loop126-employee-roster-codex-adapter
 
 ## Tick Summary
 
-- **slice**: MINE + TREE-2 data closure gate review
-- **agent**: critic|constitution-guardian
-- **result**: success · PL-C-MINE **closed** · TREE-2 data **partial_closed retained**
-- **evidence**: loop106 real-panel E2E · loop105 snapshot · loop107 stk_week_month wired
-- **closure_gate**: **closed** (review complete)
+- **slice**: TREE-4 employee roster for CodeX zero-config
+- **agent**: executor
+- **result**: employee roster added and wired into CodeX handoff, prompts, adapter template, and methodology GP-07
+- **evidence**: §5.445 · `harness/reports/EMPLOYEE_ROSTER.md`
 
-## Verdicts
+## Progress
 
-| Object | Verdict |
-|--------|---------|
-| PL-C-MINE | **closed** (quant-only MVP · M-30) |
-| TREE-2 data layer | **partial_closed** (blockers done · degraded open) |
-
-## Sync
-
-- §5.421 · CONTINUATION_PROMPT · loop-state.json · WORKFLOWS.md · METHODOLOGY synthesis-pl-c-mine
-- five lifecycles run --apply: executed this tick
+| Metric | Value |
+|--------|-------|
+| roster path | `harness/reports/EMPLOYEE_ROSTER.md` |
+| manager count | **1** orchestrator |
+| worker count | **21** initialized workers |
+| dispatch fields | identity, responsibility, report path, status, workload, intensity, performance, mistakes, lessons, task, handoff, risk |
+| adapter behavior | generates roster template without overwriting existing files |
+| methodology | **GP-07** employee roster dispatch index |
+| daily_trade_status | tick2 remains existing running task; not restarted |
+| daily_bar chain | **not touched** |
 
 ## Next
 
-**GEN-P2 regression · stability re-verify** · CORPUS-EXPR-QUALITY（parked）· optional daily_bar_repair · BENCH-2 stub（env deferred）
+- Monitor tick2 completion from log/DB snapshot
+- If complete and no duplicate process, start tick3 (2014-06→2016-05) as a single instance
+- Keep daily_bar untouched; it is complete

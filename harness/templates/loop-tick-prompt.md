@@ -22,9 +22,9 @@
 - 执行 **一条** `next_atomic_action`（TDD → 实现 → 最小验证）
 - 环境阻塞时：按 METHODOLOGY **M-04** 交叉验证；转做不依赖该环境的下一切片
 
-## 3. 同步（五真源 + 机器态）
+## 3. 同步（六真源 + 机器态）
 
-- 更新 §5 台账、`CONTINUATION_PROMPT`、`WORKFLOWS` 轮次日志 + **`PROJECT_STATUS.md` 顶部现状概述**（与 §5 最新 / loop-state 对齐）
+- 更新 §5 台账、`CONTINUATION_PROMPT`、`WORKFLOWS` 轮次日志 + **`PROJECT_STATUS.md` 顶部「心流模式当前轮」**（与 §5 最新 / loop-state 对齐）+ **Git 快照**（branch · ahead/behind · 脏文件数）
 - **方法论门控**：本步有新增方法论？→ 写步骤 digest；关键任务 done？→ 收口 synthesis；否则 **不写** METHODOLOGY
 - **§5 末尾强制行**：零写入时须加 `方法论门控：M-17 零写入 · 见 METHODOLOGY §轮次-…`；有 digest/synthesis 则改为对应 `§步骤-digest-*` / `§收口 synthesis-*`（`loop_tick.py` → `format_methodology_gate_tail()`）
 - 更新 `harness/reports/orchestrator/latest.md` + 活跃 worker 报告
@@ -37,7 +37,7 @@
 - 验证后可选：`python harness/verification_snapshot_lifecycle.py record --pytest-passed N --ruff ok --apply`
 - 更新 `harness/loop-state.json`：`last_tick`、`next_atomic_action`、`blockers`
 
-> `loop_tick.py prepare` / `advance` 亦自动 subprocess 上述两脚本；失败见 `harness/loop-lifecycle-errors.log`。
+> `loop_tick.py prepare` / `advance` 亦自动 subprocess 上述五 lifecycle；失败见 `harness/loop-lifecycle-errors.log`。
 
 ## 4. 停止判定
 

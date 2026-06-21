@@ -1,41 +1,35 @@
-# QA-Tester Report — loop63b GEN-P2 live E2E
+# Worker Report — qa-tester
 
-**Updated**: 2026-06-20 · loop63b-gen-p2-live-e2e-pass
+**Updated**: 2026-06-20 · loop109-gen-p2-regression
 
-## Summary
+## Task
 
-GEN-P2 live E2E **pass** — 4/4 scenarios after stale `:8350` restart.
+GEN-P2 regression · stability re-verify（4/4 live SSE + optional /library smoke）
 
-## Duplicate check (25d9bfe4)
+## Result
 
-Executor agent `25d9bfe4` implemented QA-61-1 route fix (§5.370–372); this tick was **live verification only** — not duplicate implementation work.
+**pass** — 4/4 · 0 partial · 0 fail
 
-## Environment
+## Actions
 
-| Service | Endpoint | Status |
-|---------|----------|--------|
-| FastAPI | `127.0.0.1:8350` | fresh restart PID 483640 · full LangGraph env |
-| Vite | `127.0.0.1:5273` | 200 |
-| Postgres | corpus API | wq_alpha101 101/101 · gtja_alpha191 191/191 |
+1. Kill stale `:8350` uvicorn (PID 93896)
+2. Fresh restart with standard env (PID 389140)
+3. Run `tmp/gen_p2_e2e_loop61.py`
+4. Save evidence to `tmp/gen_p2_e2e_loop109_result.json`
 
 ## Scenarios
 
-| ID | Status | Key evidence |
-|----|--------|--------------|
-| LIB-API | pass | coverage 100% both libraries |
-| SEARCH | pass | `factor_library_search_dispatch` · SSE 0.7s · no WR loop |
-| C_COMPARE | pass | `trial_compare_dispatch` · SSE 0.5s · compare_note ok |
-| BROWSER | pass | `/library` HTTP 200 |
+| ID | Status | Detail |
+|----|--------|--------|
+| LIB-API | pass | wq_alpha101 101/101 · gtja_alpha191 191/191 |
+| SEARCH | pass | factor_library_search_dispatch · 0.6s · no WR |
+| C_COMPARE | pass | trial_compare_dispatch · 0.4s · compare_note 不足 2 条 |
+| BROWSER | pass | /library HTTP 200 |
 
-## Artifacts
+## Code Changes
 
-- `tmp/gen_p2_e2e_loop61_result.json` — overall pass 4/4
-- Stale process killed: PID 296748
-
-## Issues
-
-None — `GEN-P2-ROUTE-GAP` cleared (live).
+None (qa-only tick)
 
 ## Next
 
-TREE-2 index_weight wiring per GAP-20260620-001.
+CORPUS-EXPR-QUALITY（parked）

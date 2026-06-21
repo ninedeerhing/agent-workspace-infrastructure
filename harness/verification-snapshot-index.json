@@ -1,26 +1,29 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T10:45:05Z",
+  "updated_at": "2026-06-21T05:04:16Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-19T17:29:24Z",
-    "last_tick": "loop69-tree2-index-weight-continuous",
-    "pytest_passed": 12,
-    "ruff": "ok",
-    "evidence_paths": [],
-    "section5_ref": "5.12",
+    "recorded_at": "2026-06-21T04:43:32Z",
+    "last_tick": "loop124-codex-zero-config-adapter",
+    "pytest_passed": null,
+    "ruff": "docs-powershell-validated",
+    "evidence_paths": [
+      "docs/CODEX_ZERO_CONFIG_HANDOFF.md",
+      "harness/scripts/prepare-codex-adapter.ps1"
+    ],
+    "section5_ref": "",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 17.26158382166667,
+  "age_hours": 0.3455658263888889,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-20T10:45:05Z",
+    "at": "2026-06-21T05:04:16Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 17.26158382166667
+    "age_hours": 0.3455658263888889
   }
 }

@@ -1,9 +1,11 @@
 {
-  "recorded_at": "2026-06-19T17:29:24Z",
-  "last_tick": "loop69-tree2-index-weight-continuous",
-  "pytest_passed": 12,
-  "ruff": "ok",
-  "evidence_paths": [],
-  "section5_ref": "5.12",
+  "recorded_at": "2026-06-21T05:04:31Z",
+  "last_tick": "loop126-employee-roster-codex-adapter",
+  "pytest_passed": null,
+  "ruff": "docs-powershell-validated",
+  "evidence_paths": [
+    "harness/reports/EMPLOYEE_ROSTER.md;docs/CODEX_ZERO_CONFIG_HANDOFF.md;harness/scripts/prepare-codex-adapter.ps1;harness/templates/codex-zero-config-prompt.md;harness/templates/codex-subagent-prompt.md"
+  ],
+  "section5_ref": "",
   "source": "manual"
 }

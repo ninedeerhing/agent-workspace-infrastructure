@@ -1,28 +1,36 @@
-# Executor Worker Report — loop104
+# Executor Worker Report — loop126-employee-roster-codex-adapter
 
-**Updated**: 2026-06-20 · loop104-tree2-daily-trade-status-complete-gap004
+**Updated**: 2026-06-21 · loop126-employee-roster-codex-adapter
 
 ## Task
 
-GAP-004 Phase D **complete**: daily_trade_status batch_24mo 2024-06→2026-05 + tail
+Implement TREE-4 employee roster for raindeer-AWI / CodeX zero-config cross-chat worker management while preserving the running TREE-2 `daily_trade_status` tick2 process.
 
-## Result
+## Changes
 
-- **status**: success
-- **days**: 482/482 main + 13/13 tail
-- **rows**: +2900205 (cnt 20506500 → 23406705)
-- **day_cnt**: 3500 → **3995/3995** (100%)
-- **snapshot**: 20260620-182655
-- **elapsed**: 3131s main + 87s tail (~53m38s)
-- **tushare_retries**: 1 (@2026-03-19)
+- Added `harness/reports/EMPLOYEE_ROSTER.md` with orchestrator manager plus 21 workers.
+- Updated CodeX handoff, orchestrator prompt, subagent prompt, and adapter template to read and update the roster.
+- Synced `PROJECT_STATUS.md`, `CONTINUATION_PROMPT.md`, `METHODOLOGY_MEMORY.md`, `loop-state.json`, and harness reports.
 
-## Quality
+## Verification
 
-- PG preflight: pass
-- save_status_snapshot: pass
-- five lifecycles run --apply: ok
-- GAP-20260620-004: **complete** · M-32 三件套齐备
+- PowerShell Parser: **Parse OK** for `harness/scripts/prepare-codex-adapter.ps1`
+- Adapter `-WhatIf`: **pass** · previewed **10** files including `harness/reports/EMPLOYEE_ROSTER.md` · no target files written
+- Five lifecycle `run --apply`: **pass** · methodology GP count now **7** · sync coherence finding_count **0**
+- Verification snapshot record: **pass** · last_tick `loop126-employee-roster-codex-adapter`
+- IDE diagnostics: **No linter errors found** for edited files
+
+## Runtime Notes
+
+- `.env.local` not modified
+- No commit created
+- No daily_bar chain restart
+- No new `daily_trade_status` process launched; tick2 remains the existing running background task from loop125.
+
+## Blockers
+
+- None for roster integration. `WSL2-BENCH-1` remains env deferred; adj_factor column path remains deferred.
 
 ## Next
 
-optional daily_bar_repair stage 接线 · BENCH-2 ② (env deferred)
+- Monitor tick2 completion from log/DB snapshot, then start tick3 (2014-06→2016-05) only if complete and no duplicate process is running.

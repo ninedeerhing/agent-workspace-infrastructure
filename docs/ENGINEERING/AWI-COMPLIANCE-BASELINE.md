@@ -48,9 +48,9 @@ post-bootstrap 复检剩余 1 个告警：
 - `schedule.json` 已接入 loop-tick / methodology-lifecycle（2026-06-19）；**启用 Automation 后**方为真跨会话循环
 - worker 契约批量补强、mailbox 协议文档、平台 adapter 仍待后续 Phase
 
-## Loop / 方法论自检扩展（2026-06-19）
+## Loop / 方法论 / 治理 lifecycle 自检扩展（2026-06-20）
 
-`compliance-check.ps1` baseline 追加：
+`compliance-check.ps1` baseline 追加（2026-06-19 起 MEM/LOOP；2026-06-20 起 SYNC/VER/CLO）：
 
 | Code | 检查 |
 |------|------|
@@ -58,10 +58,13 @@ post-bootstrap 复检剩余 1 个告警：
 | CFG-007 | `harness/loop-state.json` |
 | CFG-008 | `apps/quant_assistant/docs/METHODOLOGY_MEMORY.md` |
 | LEDGER-003/004 | 业务 `PROJECT_STATUS` §5 |
-| MEM-001…003 | 方法论轮次 / index |
-| LOOP-001…003 | next_atomic_action |
+| MEM-001…004 | 方法论轮次 / index / last_lifecycle |
+| LOOP-001…005 | next_atomic_action · orchestrator/worker 汇报 |
+| SYNC-001/002 | sync-coherence-index 新鲜度 · 五真源 drift |
+| VER-001 | verification-snapshot-index 新鲜度 |
+| CLO-001/002 | closure-gate-index · open_count |
 
-日度审计 prompt：`harness/templates/awi-daily-audit-prompt.md`（含 METHODOLOGY + loop-state）。
+日度审计 prompt：`harness/templates/awi-daily-audit-prompt.md`（六真源 + 五 lifecycle + compliance 矩阵 + 八段输出；2026-06-20 架构对齐）。
 
 ## Bootstrap Smoke Test
 

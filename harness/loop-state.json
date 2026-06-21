@@ -1,31 +1,32 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-20T22:30:00Z",
+  "updated_at": "2026-06-21T13:18:00+08:00",
   "mode": "autonomous",
   "stop_reason": null,
-  "current_tree": "PL-C-GEN",
-  "current_slice": "gen-p2-regression",
-  "next_atomic_action": "GEN-P2 regression · stability re-verify（4/4 live + quant dispatch smoke）",
-  "next_after": "CORPUS-EXPR-QUALITY（parked · after GEN stable）· optional daily_bar_repair · BENCH-2 stub（env deferred）",
+  "current_tree": "TREE-2",
+  "current_slice": "employee-roster-codex-adapter",
+  "next_atomic_action": "Monitor daily_trade_status tick2 completion from log/DB snapshot (PID 25040 · range 2012-06-01→2014-05-31 · pending=483) · if complete and no duplicate process, start tick3 2014-06→2016-05 as a single instance · adj_factor column deferred · no duplicate daily_bar chain.",
+  "next_after": "daily_trade_status chain ticks 2–17 · adj_factor column ingest path · optional daily_bar_repair · GEN-P2 regression · CORPUS-EXPR-QUALITY (parked) · BENCH-2 (env deferred)",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
       "severity": "env",
       "note": "BENCH-2 ② QuantaAlpha 需用户授权 Ubuntu · loop105 skip · 禁止代理安装 WSL"
+    },
+    {
+      "id": "MINE-PANEL-PROD-PG",
+      "severity": "data",
+      "note": "IC smoke pass loop123 · daily_trade_status tick2 started loop125 as single instance (PID 25040 · pending=483) · adj_factor column path deferred · trade_status/adj degraded tier open"
     }
   ],
-  "last_tick": "loop108-mine-tree2-closure-gate",
+  "last_tick": "loop126-employee-roster-codex-adapter",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
-    "PROJECT_STATUS.md §5.421",
+    "PROJECT_STATUS.md §5.445",
     "METHODOLOGY_MEMORY.md",
-    "WORKFLOWS.md",
-    "git status / branch",
-    "17140d2",
-    "5e7f1f3",
-    "loop106 E2E evidence",
-    "loop105 snapshot 20260620-182655"
+    "EMPLOYEE_ROSTER.md",
+    "git status / branch"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -33,8 +34,9 @@
     "verdict": "partial_closed",
     "pl_c_mine_verdict": "closed",
     "tree2_data_verdict": "partial_closed",
+    "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop108 双帽裁定 · PL-C-MINE quant-only MVP closed（real-panel E2E pass loop106 · M-30）· TREE-2 data layer partial_closed retained（degraded tier open）· closure_gate review closed"
+    "note": "loop126 employee roster integrated into CodeX zero-config adapter · daily_trade_status tick2 remains running · tick1 DB snapshot day_cnt=583 · daily_bar complete 3995/3995"
   },
-  "last_completed_note": "loop108 MINE+TREE-2 closure gate review · critic|constitution-guardian · PL-C-MINE closed · TREE-2 data partial_closed"
+  "last_completed_note": "loop126 added harness/reports/EMPLOYEE_ROSTER.md with orchestrator plus 21 workers; updated CodeX handoff, orchestrator/subagent prompts, adapter template, PROJECT_STATUS, CONTINUATION_PROMPT, and METHODOLOGY GP-07; did not restart daily_trade_status or daily_bar."
 }

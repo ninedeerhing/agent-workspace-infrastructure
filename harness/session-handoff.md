@@ -1,21 +1,21 @@
 # Session Handoff
 
-updated_at: 2026-06-20T10:37:18Z
+updated_at: 2026-06-21T04:36:00+08:00
 
 ## Current Objective
 
-PL-C-MINE real panel mining E2E verify（MINE panel · fail-closed · daily_bar/adj_factor/daily_trade_status 3995/3995 unblock）
+TREE-4: CodeX zero-config AWI handoff landed for generic project takeover. Quant mainline remains closed/partial_closed; daily_trade_status tick1 log shows status=ok and post day_cnt=583. No tick2 was started in loop124.
 
 ## Next Step
 
-stk_week_month history backfill wiring · optional daily_bar_repair stage · BENCH-2 stub re-verify（env deferred）
+Reconcile daily_trade_status tick1 completion with a fresh DB/status snapshot, then start tick2 (2012-06→2014-05) as a single instance. Do not restart daily_bar chain.
 
 ## Loop Machine State
 
-- tree: PL-C-MINE
-- slice: tree2-data-layer-partial-closed-gap-refresh
-- last_tick: loop105-tree2-data-layer-partial-closed-gap-refresh
-- stop: none
+- tree: PL-C-MINE / TREE-4 docs
+- slice: codex-zero-config-adapter
+- last_tick: loop124-codex-zero-config-adapter
+- stop: closure_gate=closed · user-facing deliverable ready
 
 ## Resume Command
 
