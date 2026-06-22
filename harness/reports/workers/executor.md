@@ -1,6 +1,24 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-22T19:27:27+08:00
+**Updated**: 2026-06-22T19:49:30+08:00
+
+## Tick loop207-explicit-approval-runner-preflight
+
+- **任务 ID**：loop207-explicit-approval-runner-preflight-scope-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：只读复核 loop207 implementation scope，确认 explicit approval / runner readiness / PL-H eligibility preflight 应保持 fixture/tests-only，避免触碰真实 JobsPage runner wiring。
+- **结论**：建议三文件 fixture/test-only implementation 足够；不需要修改 `web/src/pages/JobsPage.tsx`，不应接入真实 runner、PL-H 或 DB-backed execution。为避免跨对话共享文件写冲突，最终 patch 由 orchestrator 按 RED/GREEN 本地应用。
+- **变更**：
+  - worker 未改文件。
+  - orchestrator final patch 涉及 `tests/test_route_evidence_cross_surface_contract_unit.py`、`tests/test_jobs_page_acceptance_smoke_unit.py`、`web/scripts/smoke-jobs-page-fixture.mjs`。
+- **验证**：
+  - executor report: scope review success; recommended fixture/tests-only and negative preflight markers。
+  - orchestrator verification after patch: RED **2 failed / 14 passed** expected, GREEN focused pytest **16 passed**, smoke/build/eslint/ruff/scans pass。
+- **roster_update**：workload cleared；mistakes unchanged；lesson: preflight implementation can be owned by source/UI fixture tests until a later authorization gate defines real runner wiring boundaries。
+- **残余风险**：mocked-only；real runner/PL-H/DB-backed path remains intentionally deferred。
+- **next**：real runner wiring demand/authorization gate planning.
 
 ## Tick loop206-observability-demand-gate-review
 

@@ -1,6 +1,26 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-22T19:27:27+08:00
+更新时间：2026-06-22T19:49:30+08:00
+
+## Tick loop207-explicit-approval-runner-preflight
+
+- **任务 ID**：loop207-explicit-approval-runner-preflight-verification-plan / loop207-explicit-approval-runner-preflight-final-verification
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：partial（behavioral verification success; clean-worktree gate pending orchestrator sync/commit）
+- **任务**：只读复核 explicit approval / runner readiness / PL-H eligibility preflight mocked-only 的验收证据。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：
+  - `$env:PYTHONPATH='src'; uv run pytest tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py -q` -> **16 passed in 0.08s**。
+  - `uv run ruff check tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py` -> **All checks passed**。
+  - `npx eslint scripts/smoke-jobs-page-fixture.mjs` -> pass exit 0。
+  - `npm run smoke:jobs-page` -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`、`approval_readiness_preflight_*` markers present、PL-H remains deferred。
+  - `npm run build` -> pass。
+  - stale family / execution-permission scan -> pass；safety marker scan -> pass。
+  - CodeX self-check -> **46 checks / 0 findings**；compliance -> **36 checks / 0 findings** with pre-commit dirty warning。
+- **roster_update**：workload cleared；mistakes none；lesson: loop207 behavioral verification can pass while clean-worktree remains pending; report that as partial rather than hiding the gate state。
+- **残余风险**：mocked-only；real runner/default DB-backed backtest/PL-H execution remain intentionally deferred behind future explicit gates。
+- **next**：orchestrator must close truth-source/commit/clean-worktree gates before final loop207 completion claim.
 
 ## Tick loop206-observability-demand-gate-review
 

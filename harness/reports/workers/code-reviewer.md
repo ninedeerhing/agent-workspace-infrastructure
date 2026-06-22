@@ -1,6 +1,21 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-22T19:27:27+08:00
+更新时间：2026-06-22T19:49:30+08:00
+
+## Tick loop207-explicit-approval-runner-preflight
+
+- **任务 ID**：loop207-explicit-approval-runner-preflight-risk-review / loop207-explicit-approval-runner-preflight-final-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success
+- **任务**：只读审查 loop207 approval readiness preflight 方向与最终三文件 diff，重点看是否把 preflight 误写成 execution permission、runner enablement、default DB-backed backtest 或 PL-H eligibility。
+- **审查结论**：通过。`approvalReadinessPreflightBundleChecks` / `assertApprovalReadinessPreflightBundle(...)` 表达 preflight blockers；required_not_granted / injected-runner-required-not-connected / not-eligible-until-real-batch-gate 语义清楚，未形成 `approvalReadinessAcceptance` / `approvalReadinessChecklist` 新家族。
+- **验证**：
+  - `git -C E:\raindeer\apps\quant_assistant diff -- tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py web/scripts/smoke-jobs-page-fixture.mjs` -> reviewed current diff。
+  - focused final review tests -> **2 passed in 0.03s**。
+  - marker scan -> no `approvalReadinessAcceptance` / `approvalReadinessChecklist` family; enablement terms only appear as `forbiddenMarkers`; no page-load auto POST/default runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution/secret risk introduced。
+- **roster_update**：workload cleared；mistakes none；lesson: explicit approval preflight should stay framed as required_not_granted and non-executing; runner readiness means injected runner required, not runner enabled。
+- **next**：orchestrator can mark code-reviewer gate passed for loop207.
 
 ## Tick loop206-observability-demand-gate-review
 

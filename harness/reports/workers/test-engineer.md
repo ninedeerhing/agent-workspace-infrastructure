@@ -1,6 +1,21 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-22T19:27:27+08:00
+更新时间：2026-06-22T19:49:30+08:00
+
+## Tick loop207-explicit-approval-runner-preflight
+
+- **任务 ID**：loop207-explicit-approval-runner-preflight-test-design
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读设计 explicit approval / runner readiness / PL-H eligibility preflight 的 RED/GREEN 验收形态，确保 preflight 证明 blockers 而不是 execution permission。
+- **变更**：worker 只读复核，未修改文件。
+- **验证建议**：
+  - 新增 `approvalReadinessPreflightBundleChecks` / `assertApprovalReadinessPreflightBundle(bodyText, submittedText, refreshedText)`。
+  - Exact markers: `approval_readiness_preflight_bundle_visible`、`approval_readiness_preflight_explicit_user_approval:required_not_granted`、`approval_readiness_preflight_runner_readiness:injected_runner_required_not_connected`、`approval_readiness_preflight_pl_h_eligibility:not_eligible_until_real_batch_gate`。
+  - Safety guards: no page-load auto POST, no default runner, no background process, no migration/backfill, no DB-backed backtest, no PL-H batch execution, no secret output。
+- **roster_update**：workload cleared；mistakes none；lesson: approval readiness preflight must encode missing permission/readiness/eligibility, not execution enablement。
+- **next**：交给 code-reviewer/verifier 汇合，下一切片进入 real runner wiring demand/authorization gate planning。
 
 ## Tick loop206-observability-demand-gate-review
 
