@@ -67,7 +67,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G route guidance transition mocked-only（TREE-2 data gate passed；loop203 completed route-evidence acceptance consolidation bundle with worker rendezvous；2026-06-22 governance repair blocks further one-marker acceptance checklist drift；见 `harness/loop-state.json` and app §5.527）
+- Current operational loop: `apps/quant_assistant` PL-G intent-quant integration / auto mining -> auto backtest readiness handoff mocked-only（TREE-2 data gate passed；loop204 completed route guidance transition with worker rendezvous；2026-06-22 governance repair blocks further one-marker acceptance checklist drift；见 `harness/loop-state.json` and app §5.528）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating and `PL-003` worker cluster / rendezvous governance are promoted into loop preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.

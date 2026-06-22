@@ -1,6 +1,21 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-22T18:19:20+08:00
+更新时间：2026-06-22T18:42:50+08:00
+
+## Tick loop204-pl-g-route-guidance-transition
+
+- **任务 ID**：loop204-pl-g-route-guidance-transition-test-design
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读设计 PL-G route guidance transition 的 RED/GREEN 验收形态，确保旧 active route 降级为 previous route，并避免新增 acceptance checklist family。
+- **变更**：worker 只读复核，未修改文件。
+- **验证建议**：
+  - 新增/调整 `routeGuidanceTransitionChecks` / `assertRouteGuidanceTransition(bodyText, deferredText)`。
+  - Exact markers: `route_guidance_transition_visible`、`route_guidance_source:acceptance_consolidation_bundle`、`route_guidance_from:pl_g_flow_hardening`、`next_route=intent_quant_integration_readiness`、`readiness_route=auto_backtest_flow_readiness`。
+  - Safety guards: `route_guidance_no_new_acceptance_checklist_family:true`、`route_guidance_no_page_load_auto_post:true`、`route_guidance_no_default_runner:true`、`route_guidance_no_pl_h_batch_execution:true`。
+- **roster_update**：workload cleared；mistakes none；lesson: route transition tests must include previous/current split and stale active marker guard。
+- **next**：交给 executor 实现，code-reviewer/verifier 汇合。
 
 ## Tick loop203-pl-g-acceptance-consolidation
 

@@ -9,12 +9,12 @@
 ## Current Continuation Entry
 
 - Current mainline: AWI CodeX-effective baseline 已验收（TREE-RT 防漂移维护）；业务主线为 `TREE-6 / PL-G` mining_job Template B
-- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop203 已完成 `PL-G route-evidence acceptance consolidation bundle mocked-only`
-- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 优先通过跨对话 `create_thread`/`send_message_to_thread`；下一拍必须先过 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate + Skill Lifecycle Gate + Worker Capacity Gate，再执行 `PL-G route guidance transition TDD mocked-only`，把 Jobs read-only next-route guidance 从 generic `pl_g_flow_hardening` transition 到 `intent_quant_integration_readiness` / `auto_backtest_flow_readiness`，不再单独追加 acceptance checklist marker
+- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop204 已完成 `PL-G route guidance transition mocked-only`
+- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 优先通过跨对话 `create_thread`/`send_message_to_thread`；下一拍必须先过 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate + Skill Lifecycle Gate + Worker Capacity Gate，再执行 `intent-quant integration / auto mining -> auto backtest readiness handoff TDD mocked-only`，用 loop204 route guidance transition evidence 连接 intent quant subgraph readiness state 与 auto mining -> auto backtest handoff surface，不再单独追加 route-evidence acceptance checklist marker
 - Post-backfill directive: 已退出 backfill-monitoring 方式，按真源连续推进 **auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph**；closure/收口表示阶段验收通过并继续下一切片，不是结束方案或停止 loop
-- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.527 loop203 consolidation 结论与 `PL-G route guidance transition TDD mocked-only` 下一原子动作）
+- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.528 loop204 route guidance transition 结论与 `intent-quant integration / auto mining -> auto backtest readiness handoff TDD mocked-only` 下一原子动作）
 - Recovery: CodeX 有效性自检 → `harness/scripts/codex-self-check.ps1 -Format markdown`
-- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.527 最新台账；loop203 worker cluster `test-engineer=019eeece-52d7-7b73-868a-7beb496ba303` / `executor=019eeece-c617-71c3-a80a-39a693ad3ac3` / `code-reviewer=019eeed1-7e14-7342-9d45-d7948aec94d2` / `verifier=019eeed2-dbc0-7313-8d64-f9c6f199c68b` 已回报 success
+- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.528 最新台账；loop204 worker cluster `test-engineer=019eeece-52d7-7b73-868a-7beb496ba303` / `executor=019eeece-c617-71c3-a80a-39a693ad3ac3` / `code-reviewer=019eeed1-7e14-7342-9d45-d7948aec94d2` / `verifier=019eeed2-dbc0-7313-8d64-f9c6f199c68b` 已回报 success
 
 ## Current Mainline Facts
 
@@ -43,7 +43,7 @@ Take over this project and build context strictly in the following order:
 Facts and constraints:
 - AWI Runtime OS is installed and CodeX-effective; orchestrator is the only user-facing agent.
 - CodeX worker threads use `create_thread` and `harness/templates/codex-subagent-prompt.md`; mailbox is fallback/audit only. Complex goal bundles require `cluster_manifest`, `worker_report_refs`, and rendezvous gate before completion.
-- quant_assistant business code is on TREE-6 / PL-G; loop203 proves the Jobs acceptance/readiness surface exposes an acceptance consolidation bundle bundling reviewer signoff, source/UI contract audit, safety-gate matrix, operator handoff packet, and exit-to-real-flow decision while keeping PL-H batch execution deferred. 2026-06-22 governance repair now routes next from repeated acceptance micro-slices to PL-G route guidance transition.
+- quant_assistant business code is on TREE-6 / PL-G; loop204 proves the Jobs read-only route guidance transition demotes old active `pl_g_flow_hardening` to `previous_route` and exposes active `intent_quant_integration_readiness` / `auto_backtest_flow_readiness` while keeping PL-H batch execution deferred. 2026-06-22 governance repair now routes next from repeated acceptance micro-slices to intent-quant / auto-backtest readiness handoff.
 - Side capability `PL-002` Codex skill routing/gating is now promoted into loop preflight governance. Phase 1 prototype lives in `harness/skill_router.py` with tests in `harness/tests/test_skill_router.py`; it does not modify global `~/.codex/skills`; telemetry goes to Git-ignored `tmp/skill-route-events.jsonl` and truth sources record only bounded summaries.
 - Verify AWI: .\harness\scripts\codex-self-check.ps1 -Format markdown; .\harness\compliance-check.ps1 -Mode post-bootstrap
 - Verify app: cd apps/quant_assistant && uv run pytest -q -m "not db and not external"

@@ -1,6 +1,27 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-22T18:19:20+08:00
+**Updated**: 2026-06-22T18:42:50+08:00
+
+## Tick loop204-pl-g-route-guidance-transition
+
+- **任务 ID**：loop204-pl-g-route-guidance-transition-implementation
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：TDD 实现 mocked-only route guidance transition，把旧 active `pl_g_flow_hardening` 降级为 previous route，并暴露 intent-quant / auto-backtest readiness active next routes。
+- **变更**：
+  - `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py`：新增 previous/transition/two-next-route source contract。
+  - `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py`：新增 fixture source/UI route transition checks。
+  - `apps/quant_assistant/web/src/pages/JobsPage.tsx`：`formatDemandGateNextRouteGuidance(...)` 输出 `previous_route=pl_g_flow_hardening`、`route_guidance_transition=pl_g_flow_hardening_to_intent_quant_auto_backtest`、`next_route=intent_quant_integration_readiness`、`next_route=auto_backtest_flow_readiness`。
+  - `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs`：新增 `routeGuidanceTransitionChecks` / `assertRouteGuidanceTransition(...)` 并保留 no-auto-execution guards。
+- **验证**：
+  - RED before implementation：focused pytest **2 failed / 11 passed** expected（缺 transition/readiness markers）。
+  - GREEN：focused pytest **13 passed**。
+  - `npm run smoke:jobs-page` -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`，route transition and both active next routes visible。
+  - `uv run ruff check ...` -> pass；`npx eslint src/pages/JobsPage.tsx scripts/smoke-jobs-page-fixture.mjs` -> pass。
+- **roster_update**：workload cleared；mistakes unchanged；lesson:旧 route 必须作为 `previous_route` 保留追溯，active next routes 才能驱动下一步。
+- **残余风险**：mocked-only；real runner/PL-H/DB-backed path remains intentionally deferred。
+- **next**：orchestrator truth sync and next intent-quant / auto-backtest readiness handoff.
 
 ## Tick loop203-pl-g-acceptance-consolidation
 

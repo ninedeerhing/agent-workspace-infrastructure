@@ -1,47 +1,48 @@
-# Orchestrator Report — loop203-pl-g-acceptance-consolidation-bundle
+# Orchestrator Report — loop204-pl-g-route-guidance-transition
 
-**Updated**: 2026-06-22T18:19:20+08:00
+**Updated**: 2026-06-22T18:42:50+08:00
 
 ## Tick Summary
 
-- **slice**: TREE-6 / PL-G route-evidence acceptance consolidation bundle mocked-only
+- **slice**: TREE-6 / PL-G route guidance transition mocked-only
 - **agent**: orchestrator
-- **result**: closed the repeated PL-G acceptance micro-slice family as one worker-backed goal bundle
-- **next**: PL-G route guidance transition mocked-only toward intent quant / auto-backtest readiness
+- **result**: transitioned Jobs read-only route guidance away from the old active `pl_g_flow_hardening` route toward intent-quant / auto-backtest readiness
+- **next**: intent-quant integration / auto mining -> auto backtest readiness handoff mocked-only
 
 ## Cluster Manifest
 
 ```yaml
 cluster_manifest:
-  cluster_id: "cluster-loop203-pl-g-acceptance-consolidation"
-  goal_id: "TREE-6-PL-G-acceptance-consolidation"
+  cluster_id: "cluster-loop204-pl-g-route-guidance-transition"
+  goal_id: "TREE-6-PL-G-route-guidance-transition"
   commander: "orchestrator"
   max_parallel_workers: 4
   worker_threads:
     - role_id: "test-engineer"
       thread_id: "019eeece-52d7-7b73-868a-7beb496ba303"
-      task_id: "loop203-pl-g-acceptance-consolidation-test-design"
+      task_id: "loop204-pl-g-route-guidance-transition-test-design"
       write_scope: []
       mode: "read-only"
       status: "reported"
     - role_id: "executor"
       thread_id: "019eeece-c617-71c3-a80a-39a693ad3ac3"
-      task_id: "loop203-pl-g-acceptance-consolidation-implementation"
+      task_id: "loop204-pl-g-route-guidance-transition-implementation"
       write_scope:
         - "apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py"
         - "apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py"
+        - "apps/quant_assistant/web/src/pages/JobsPage.tsx"
         - "apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs"
       mode: "disjoint-write"
       status: "reported"
     - role_id: "code-reviewer"
       thread_id: "019eeed1-7e14-7342-9d45-d7948aec94d2"
-      task_id: "loop203-pl-g-acceptance-consolidation-code-review"
+      task_id: "loop204-pl-g-route-guidance-transition-code-review"
       write_scope: []
       mode: "read-only"
       status: "reported"
     - role_id: "verifier"
       thread_id: "019eeed2-dbc0-7313-8d64-f9c6f199c68b"
-      task_id: "loop203-pl-g-acceptance-consolidation-verification"
+      task_id: "loop204-pl-g-route-guidance-transition-verification"
       write_scope: []
       mode: "read-only"
       status: "reported"
@@ -62,29 +63,30 @@ cluster_manifest:
 
 | Gate | Decision |
 |------|----------|
-| goal_gate | `goal_bundle_closed_for_repeated_acceptance_family` |
-| skill_route | router `decision=expose`; top-K noisy, applied `orchestrator`, `dispatching-parallel-agents`, `test-driven-development` |
+| goal_gate | `route_guidance_transition_to_next_real_flow` |
+| skill_route | router `decision=expose`; top-K noisy, applied `orchestrator`, `dispatching-parallel-agents`, `test-driven-development`, `programming` |
 | dispatch_decision | dispatched existing roster roles `test-engineer`, `executor`, `code-reviewer`, `verifier` via CodeX cross-dialogue threads |
-| cluster_manifest | `cluster-loop203-pl-g-acceptance-consolidation` |
+| cluster_manifest | `cluster-loop204-pl-g-route-guidance-transition` |
 | worker_report_refs | `test-engineer.md`, `executor.md`, `code-reviewer.md`, `verifier.md` |
-| bundle_decision | consolidated reviewer signoff, source/UI audit, safety gate, handoff packet, and exit-to-real-flow decision |
+| bundle_decision | transition to next real-flow readiness; no new acceptance checklist family |
 | capacity_review | existing 21-worker roster sufficient; no new worker requested |
-| skill_lifecycle | M-35/GP-11 recorded; router precision gap carried as future tuning input |
+| skill_lifecycle | M-36/GP-12 recorded; router precision gap carried as future tuning input |
 
 ## Changes
 
 | File | Summary |
 |------|---------|
-| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Added consolidation bundle source contract and real exit marker assertions. |
-| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Added fixture source checks for consolidation bundle, source/UI audit, safety gate, handoff packet, and exit decision. |
-| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added `acceptanceConsolidationBundleChecks` and `assertAcceptanceConsolidationBundle(...)`; post-review fix binds exit-to-real-flow to page body markers. |
+| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Added route guidance transition source contract and stale active marker guard. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Added fixture source/UI assertions for previous route, transition marker, and two active next routes. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Renders `previous_route=pl_g_flow_hardening`, route transition marker, and active `intent_quant_integration_readiness` / `auto_backtest_flow_readiness`. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added `routeGuidanceTransitionChecks` / `assertRouteGuidanceTransition(...)` and transition checks in the consolidation path. |
 
 ## Review
 
-- `code-reviewer` first pass found the exit-to-real-flow check was too weak because it was only gated by `handoffPacketReady`.
-- `executor` fixed the gap with `acceptance_consolidation_exit_decision_source:read_only_next_route` and `acceptance_consolidation_exit_to_real_flow_decision:pl_g_flow_hardening`.
-- `code-reviewer` post-fix signoff: semantic gap resolved enough for mocked-only tick.
-- `verifier` post-fix rerun: focused pytest and browser smoke passed.
+- `test-engineer` required one focused RED test family, exact route transition markers, and no new acceptance checklist family.
+- `executor` implemented the transition and reported RED **2 failed / 11 passed** before GREEN **13 passed**.
+- `code-reviewer` reviewed the 4-file diff, confirmed active `next_route=pl_g_flow_hardening` is gone, and found no blocking safety regressions.
+- `verifier` confirmed focused pytest, browser smoke, required markers, stale marker scan, and preserved no-auto-execution guards.
 
 ## Verification Gates
 
@@ -92,10 +94,12 @@ cluster_manifest:
 |------|--------|
 | focused pytest | pass · 13 passed in 0.08s |
 | Python ruff | pass · touched Python tests clean |
-| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, consolidation exit markers visible |
+| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, previous/transition/two-next-route markers visible |
 | web build | pass · `npm run build` |
-| targeted eslint | pass · `scripts/smoke-jobs-page-fixture.mjs` + `src/pages/JobsPage.tsx` |
-| five lifecycle | pass · methodology 33/11/14, work_report 22, sync 0 findings §5.527, verification snapshot §5.527 pytest=13 ruff=ok, closure open_count=0 |
+| targeted eslint | pass · `src/pages/JobsPage.tsx` + `scripts/smoke-jobs-page-fixture.mjs` |
+| five lifecycle | pass · methodology 34/12/15, work_report 22, sync 0 findings §5.528, verification snapshot §5.528 pytest=13 ruff=ok, closure open_count=0 |
+| CodeX self-check | pass · 46 checks / 0 findings |
+| compliance-check | pass · 36 checks / 0 findings; dirty warning is expected before local main commits |
 
 ## Safety
 
@@ -103,4 +107,4 @@ No `.env`, `.env.local`, DSN, token, or secret was printed or persisted. No page
 
 ## Next
 
-Start PL-G route guidance transition TDD mocked-only: replace or augment Jobs read-only next-route guidance from generic `pl_g_flow_hardening` toward `intent_quant_integration_readiness` / `auto_backtest_flow_readiness`, with a real source/UI marker and worker-backed review.
+Start intent-quant integration / auto mining -> auto backtest readiness handoff TDD mocked-only using loop204 route guidance transition evidence; keep it source/UI mocked-only and continue forbidding default runner, PL-H batch execution, DB-backed backtest, backfill, migration, and secret output.

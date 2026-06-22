@@ -1,6 +1,22 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-22T18:19:20+08:00
+更新时间：2026-06-22T18:42:50+08:00
+
+## Tick loop204-pl-g-route-guidance-transition
+
+- **任务 ID**：loop204-pl-g-route-guidance-transition-verification
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读复核 PL-G route guidance transition mocked-only 的验收证据。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：
+  - `$env:PYTHONPATH='src'; uv run pytest tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py -q` -> **13 passed in 0.08s**。
+  - `npm run smoke:jobs-page` -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`，text checks include `previous_route=pl_g_flow_hardening`、`route_guidance_transition=pl_g_flow_hardening_to_intent_quant_auto_backtest`、`next_route=intent_quant_integration_readiness`、`next_route=auto_backtest_flow_readiness`。
+  - targeted marker scan -> required markers present; active `next_route=pl_g_flow_hardening` absent in touched files。
+- **roster_update**：workload cleared；mistakes none；lesson: route transition verification must confirm both positive next-route markers and stale active marker absence。
+- **残余风险**：mocked-only；real DB-backed runner, PL-H batch execution, migration/backfill, production background execution remain deferred。
+- **next**：orchestrator can mark loop204 mocked-only route guidance transition done and route to intent-quant / auto-backtest readiness handoff.
 
 ## Tick loop203-pl-g-acceptance-consolidation
 
