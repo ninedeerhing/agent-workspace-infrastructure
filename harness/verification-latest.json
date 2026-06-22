@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T06:29:08Z",
-  "last_tick": "loop190-pl-g-route-evidence-cross-surface-correlation-mocked-only",
+  "recorded_at": "2026-06-22T06:44:22Z",
+  "last_tick": "loop191-pl-g-trigger-response-route-evidence-parity-mocked-only",
   "pytest_passed": 18,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.513"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.514"
   ],
-  "section5_ref": "5.513",
+  "section5_ref": "5.514",
   "source": "manual"
 }

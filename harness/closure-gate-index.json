@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T06:29:08Z",
+  "updated_at": "2026-06-22T06:44:23Z",
   "candidates": [
     {
       "task_ref": "R0-M1",
@@ -251,7 +251,7 @@
   "explicit_none_count": 3,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T06:29:08Z",
+    "at": "2026-06-22T06:44:23Z",
     "open_count": 0,
     "closed_count": 17,
     "explicit_none_count": 3,
