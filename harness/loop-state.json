@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T12:48:51+08:00",
+  "updated_at": "2026-06-22T13:10:44+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-route-evidence-execution-propagation-mocked-only",
-  "next_atomic_action": "Start PL-G route evidence execution propagation TDD mocked-only: preserve `route_evidence` from intent quant subgraph dispatches into mocked execution / brain-run surfaces for `mining_batch_dispatch` and `backtest_dispatch`, proving auto mining -> auto backtest evidence remains observable after routing without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After route_evidence execution propagation is stable, continue PL-G flow hardening for auto mining -> auto backtest full flow observability/acceptance; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-route-evidence-persistence-recovery-mocked-only",
+  "next_atomic_action": "Start PL-G route evidence persistence/recovery TDD mocked-only: preserve execution `route_evidence` through brain_run snapshot / SSE execution payload surfaces for `mining_batch_dispatch` and `backtest_dispatch`, proving auto mining -> auto backtest observability survives persistence/resume without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After route_evidence persistence/recovery is stable, continue PL-G flow hardening for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop184-pl-g-intent-route-evidence-refresh-mocked-only",
+  "last_tick": "loop185-pl-g-route-evidence-execution-propagation-mocked-only",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -539,7 +539,18 @@
     "loop182 runtime cleanup: port 5183 not listening, port 5184 TimeWait only, no jobs-page smoke node/chrome process",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.505",
     "loop182 no .env/secret/migration execution/DB schema change/backfill/background worker/page-load trigger POST/default DB-backed backtest/real runner/PL-H batch execution",
-    "loop182 next: demand gate next-route guidance TDD mocked-only with no PL-H batch execution or real runner/background work"
+    "loop182 next: demand gate next-route guidance TDD mocked-only with no PL-H batch execution or real runner/background work",
+    "loop183 TDD red/green completed demand gate next-route guidance; focused 16 passed; adjacent 40 passed; smoke/build/eslint/ruff pass",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.506",
+    "loop184 TDD red: intent quant subgraph route evidence 3 failed / 1 passed expected due missing dispatch route_evidence",
+    "loop184 focused intent route tests 4 passed; adjacent intent/API/backtest/gate/pipeline regression 40 passed; Python ruff pass",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.507",
+    "loop185 TDD red: route evidence execution propagation 3 failed / 4 passed expected due execution/progress surfaces dropping route_evidence",
+    "loop185 focused intent execution route tests 7 passed; executor regression 142 passed; PL-G adjacent 51 passed / 2 xfailed; Python ruff pass",
+    "loop185 broader adjacent probe including test_brain_quant_loop_unit retains known Alpha101 canonical 2 old failures",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.508",
+    "loop185 no .env/secret/auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
+    "loop185 next: route evidence persistence/recovery TDD mocked-only with no real runner/background/default DB-backed backtest or secret output"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -549,7 +560,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop184 safe tick: PL-G intent quant subgraph route-evidence refresh TDD mocked-only completed. rule_route now adds read-only route_evidence to mining_batch_dispatch and mining handoff backtest_dispatch dispatches, marking flow=auto_mining_to_auto_backtest, runner_mode=injected_runner_required, auto_trigger=false, side_effects=none, and pl_h_batch_execution=deferred_until_later_gate while preserving mining_job / auto_backtest_plan / auto_backtest_execution refs. Verification: red 3 failed / 1 passed expected, focused 4 passed, adjacent regression 40 passed, Python ruff pass. This tick had no env/secret reads, auto POST/trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is route evidence execution propagation mocked-only."
+    "note": "loop185 safe tick: PL-G route evidence execution propagation TDD mocked-only completed. intent quant dispatch route_evidence now survives _coerce_dispatch(), mocked mining_batch_dispatch / backtest_dispatch execution items, result.route_evidence, and runtime dispatch_start progress payloads. Verification: red 3 failed / 4 passed expected, focused 7 passed, executor regression 142 passed, PL-G adjacent 51 passed / 2 xfailed, Python ruff pass; broader Alpha101 canonical 2 old failures remain registered residual risk. This tick had no env/secret reads, auto POST/trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is route evidence persistence/recovery mocked-only."
   },
-  "last_completed_note": "loop184: safe tick completed PL-G intent quant subgraph route-evidence refresh TDD mocked-only. Added route_evidence to intent quant subgraph dispatches in rule_route and expanded route tests to cover mixed Template B mining/backtest initial dispatch, mining_job auto_backtest_plan handoff to backtest_dispatch, and real_batch_demand_gate UI evidence not diverting the route to PL-H. Verification: expected red 3 failed / 1 passed; focused 4 passed; adjacent intent/API/backtest/gate/pipeline regression 40 passed; Python ruff pass. No .env/secret reads, auto POST/trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route evidence execution propagation TDD mocked-only."
+  "last_completed_note": "loop185: safe tick completed PL-G route evidence execution propagation TDD mocked-only. Preserved dispatch route_evidence in _coerce_dispatch(), mining_batch_dispatch / backtest_dispatch mocked execution item top-level payloads, result.route_evidence, and runtime dispatch_start progress payloads. Verification: expected red 3 failed / 4 passed; focused 7 passed; executor regression 142 passed; PL-G adjacent 51 passed / 2 xfailed; Python ruff pass; known Alpha101 canonical 2 old failures remain residual risk outside this tick. No .env/secret reads, auto POST/trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route evidence persistence/recovery TDD mocked-only."
 }

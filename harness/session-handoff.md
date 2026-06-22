@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T12:48:51+08:00
+updated_at: 2026-06-22T13:10:44+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-22T12:48:51+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-22 loop184 · PL-G intent quant subgraph route-evidence refresh TDD mocked-only 完成：先写 `tests/test_intent_quant_subgraph_handoff_unit.py` 红测（expected 3 failed / 1 passed）确认 `build_dispatch_from_route()` 缺 `route_evidence`，再在 `src/qa/brain/graph/rule_route.py` 为 `mining_batch_dispatch` 与 mining handoff `backtest_dispatch` 加只读 route_evidence：flow=auto_mining_to_auto_backtest / flow_stage=mining_job_and_plan|backtest_handoff / runner_mode=injected_runner_required / auto_trigger=false / side_effects=none / pl_h_batch_execution=deferred_until_later_gate，并保留 mining_job / auto_backtest_plan / auto_backtest_execution refs；验证 focused 4 passed、adjacent regression 40 passed、ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 auto POST/trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G route evidence execution propagation TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
+[CONTEXT] 2026-06-22 loop185 · PL-G route evidence execution propagation TDD mocked-only 完成：先写 `tests/test_intent_quant_subgraph_handoff_unit.py` 红测（expected 3 failed / 4 passed）确认 mocked execution / runtime progress surfaces 会丢掉 dispatch `route_evidence`，再在 `src/qa/brain/executors.py` 保留 `_coerce_dispatch()` evidence、在 `src/qa/brain/quant_trading_executors.py` 让 `mining_batch_dispatch` / `backtest_dispatch` execution item 顶层与 `result.route_evidence` 暴露同一 evidence、在 `src/qa/brain/runtime.py` 让 `dispatch_start` progress payload 暴露 evidence；验证 focused 7 passed、executor regression 142 passed、PL-G adjacent 51 passed / 2 xfailed、ruff pass；broader probe 含 `test_brain_quant_loop_unit.py` 仍有既有 Alpha101 canonical 2 old failures · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 auto POST/trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G route evidence persistence/recovery TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
 
 [CONTEXT] 2026-06-22 side capability · PL-002 Codex skills router / gating Phase 1 prototype completed in `harness/skill_router.py` with `harness/tests/test_skill_router.py` and `docs/ENGINEERING/2026-06-22-codex-skill-router-prototype.md`. It is advisory only: no global `~/.codex/skills` mutation, no raw query telemetry, and no quant `loop-state` change. Next optional PL-002 step is local eval set plus graph-aware rerank.
 ```
@@ -28,18 +28,18 @@ updated_at: 2026-06-22T12:48:51+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-route-evidence-execution-propagation-mocked-only |
-| `last_tick` | loop184-pl-g-intent-route-evidence-refresh-mocked-only |
+| `current_slice` | pl-g-route-evidence-persistence-recovery-mocked-only |
+| `last_tick` | loop185-pl-g-route-evidence-execution-propagation-mocked-only |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start PL-G route evidence execution propagation TDD mocked-only: preserve `route_evidence` from intent quant subgraph dispatches into mocked execution / brain-run surfaces for `mining_batch_dispatch` and `backtest_dispatch`, proving auto mining → auto backtest evidence remains observable after routing without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
+Start PL-G route evidence persistence/recovery TDD mocked-only: preserve execution `route_evidence` through brain_run snapshot / SSE execution payload surfaces for `mining_batch_dispatch` and `backtest_dispatch`, proving auto mining → auto backtest observability survives persistence/resume without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After route_evidence execution propagation is stable, continue PL-G flow hardening for auto mining → auto backtest full flow observability/acceptance; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
+After route_evidence persistence/recovery is stable, continue PL-G flow hardening for auto mining → auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -56,7 +56,7 @@ After route_evidence execution propagation is stable, continue PL-G flow hardeni
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G route evidence execution propagation TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 PL-G route evidence persistence/recovery TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -138,11 +138,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop184 已完成 PL-G intent quant subgraph route-evidence refresh TDD mocked-only；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop185 已完成 PL-G route evidence execution propagation TDD mocked-only；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 执行 `PL-G route evidence execution propagation TDD mocked-only`：把 intent quant subgraph dispatch 的 `route_evidence` 传到 mocked execution / brain-run surfaces，确认 `mining_batch_dispatch` / `backtest_dispatch` route evidence 在路由后仍可观察；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 执行 `PL-G route evidence persistence/recovery TDD mocked-only`：把 execution `route_evidence` 穿过 brain_run snapshot / SSE execution payload surfaces，确认 `mining_batch_dispatch` / `backtest_dispatch` route evidence 在持久化/恢复后仍可观察；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 
