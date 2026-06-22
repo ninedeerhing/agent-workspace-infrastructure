@@ -1,8 +1,8 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-06-22T12:25:07Z",
+  "updated_at": "2026-06-22T12:48:09Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
-  "active_entry_count": 54,
+  "active_entry_count": 56,
   "archived_round_count": 0,
   "entries": {
     "M-01": {
@@ -15,7 +15,7 @@
       "fingerprint": "92945a692979de9c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-02": {
@@ -28,7 +28,7 @@
       "fingerprint": "19492a48460ef0b8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-03": {
@@ -41,7 +41,7 @@
       "fingerprint": "b753e5142d63cca6",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-04": {
@@ -54,7 +54,7 @@
       "fingerprint": "8252872344a6a1aa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-05": {
@@ -67,7 +67,7 @@
       "fingerprint": "b0a78e119c2a978d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-06": {
@@ -80,7 +80,7 @@
       "fingerprint": "466b92547c39ab98",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-07": {
@@ -93,7 +93,7 @@
       "fingerprint": "514ac18df80f3270",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-08": {
@@ -106,7 +106,7 @@
       "fingerprint": "127f609b9d336749",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-09": {
@@ -119,7 +119,7 @@
       "fingerprint": "699fe149e07dadd7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-10": {
@@ -132,7 +132,7 @@
       "fingerprint": "042b0ee40d795387",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-11": {
@@ -145,7 +145,7 @@
       "fingerprint": "0b8339a1a4ee0815",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-12": {
@@ -158,7 +158,7 @@
       "fingerprint": "0b8532fed9ce4d33",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-15": {
@@ -171,7 +171,7 @@
       "fingerprint": "da847d8aeda5f49a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-16": {
@@ -184,7 +184,7 @@
       "fingerprint": "a124342e3487cc07",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-17": {
@@ -197,7 +197,7 @@
       "fingerprint": "61b08a325d7f74eb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-18": {
@@ -210,7 +210,7 @@
       "fingerprint": "9df0d5bdaaeb1d34",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-19": {
@@ -223,7 +223,7 @@
       "fingerprint": "7052d26bc2685cfa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-20": {
@@ -236,7 +236,7 @@
       "fingerprint": "d98f2ced613ddc3d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-21": {
@@ -249,7 +249,7 @@
       "fingerprint": "8962d8542b06099d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-22": {
@@ -262,7 +262,7 @@
       "fingerprint": "f8088bb36c67760f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-23": {
@@ -275,7 +275,7 @@
       "fingerprint": "5591738fdcb42c02",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-24": {
@@ -288,7 +288,7 @@
       "fingerprint": "faafb47510b14881",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-25": {
@@ -301,7 +301,7 @@
       "fingerprint": "47b3f516d0a32bbd",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-26": {
@@ -314,7 +314,7 @@
       "fingerprint": "2e8e010276b68173",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-27": {
@@ -327,7 +327,7 @@
       "fingerprint": "d8d82de01b96a7f2",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-28": {
@@ -340,7 +340,7 @@
       "fingerprint": "f45fb585f8e2668f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-29": {
@@ -353,7 +353,7 @@
       "fingerprint": "07f27400a64451a8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-30": {
@@ -366,7 +366,7 @@
       "fingerprint": "5a5e86bf23db3c6a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-31": {
@@ -379,7 +379,7 @@
       "fingerprint": "eba7c675aa3600bc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-32": {
@@ -392,7 +392,7 @@
       "fingerprint": "05605bd00cfcb5d9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-33": {
@@ -405,7 +405,7 @@
       "fingerprint": "5cf04c34f8ab2feb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-34": {
@@ -418,7 +418,7 @@
       "fingerprint": "3f7a4263c04fb129",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-35": {
@@ -431,7 +431,7 @@
       "fingerprint": "d94ecc47265385dc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-36": {
@@ -444,7 +444,7 @@
       "fingerprint": "8b448e0975ec52ef",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-37": {
@@ -457,7 +457,7 @@
       "fingerprint": "2b0d45889f1b2d9e",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-38": {
@@ -470,7 +470,7 @@
       "fingerprint": "ae142199142acec7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-39": {
@@ -483,7 +483,7 @@
       "fingerprint": "a274fe9bb7fd25eb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "M-40": {
@@ -496,7 +496,20 @@
       "fingerprint": "62aa63fe60556d6b",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
+      "mention_count": 1
+    },
+    "M-41": {
+      "entry_id": "M-41",
+      "title": "Implementation preflight proves fail-closed wiring before any runner call",
+      "scenario": "authorization planning gate 已完成，下一步要进入 explicit runner wiring design/implementation preflight，但真实/default runner、manual authorization artifact、rollback/audit hooks 与 PL-H eligibility 仍未落地",
+      "rule": "implementation preflight 的成功条件不是“开始接线”，而是证明 no-default-runner injected-runner-only design contract、explicit authorization inputs、rollback/audit evidence、fail-closed missing-runner boundary 与 PL-H non-eligibility recheck 已被同一证据链锁定。任何 `runner_enabled`、`authorization_granted`、`execution_started`、`pl_h_eligible` 语义只能出现在 forbidden markers 或后续显式 gate 中。",
+      "trigger": "manual authorization artifact、fail-closed injected-runner implementation plan、external runner adapter、batch execution gate、DB-backed backtest promotion、PL-H eligibility recheck 之前",
+      "source": "步骤 digest-20260622-explicit-runner-wiring-preflight · loop209 · §5.533",
+      "fingerprint": "56e1e79c9e8417b9",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     }
   },
@@ -511,7 +524,7 @@
       "fingerprint": "e2a42f0cbfb4498d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-02": {
@@ -524,7 +537,7 @@
       "fingerprint": "614ede829cca904f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-03": {
@@ -537,7 +550,7 @@
       "fingerprint": "6cf6c017a8fcc86c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-04": {
@@ -550,7 +563,7 @@
       "fingerprint": "6f112435ad5b561f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-05": {
@@ -563,7 +576,7 @@
       "fingerprint": "f0a08a8433aca1de",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-06": {
@@ -576,7 +589,7 @@
       "fingerprint": "b78507c3423d1f86",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-07": {
@@ -589,7 +602,7 @@
       "fingerprint": "2bc38c718dbbe1a9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-08": {
@@ -602,7 +615,7 @@
       "fingerprint": "89e6ae3e88559ba4",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-09": {
@@ -615,7 +628,7 @@
       "fingerprint": "02ad18f514a60193",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-10": {
@@ -628,7 +641,7 @@
       "fingerprint": "16aedb6f4157c966",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-11": {
@@ -641,7 +654,7 @@
       "fingerprint": "b30861a88f74195f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-12": {
@@ -654,7 +667,7 @@
       "fingerprint": "aab692fcadd8aee1",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-13": {
@@ -667,7 +680,7 @@
       "fingerprint": "eb10198a06f8acb5",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-14": {
@@ -680,7 +693,7 @@
       "fingerprint": "f851219a969a7a58",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-15": {
@@ -693,7 +706,7 @@
       "fingerprint": "de7615b74266d7db",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     },
     "GP-16": {
@@ -706,7 +719,20 @@
       "fingerprint": "5e6f7a297a0ff36d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T12:25:07Z",
+      "last_seen_at": "2026-06-22T12:48:09Z",
+      "mention_count": 1
+    },
+    "GP-17": {
+      "entry_id": "GP-17",
+      "title": "Implementation preflight must prove disabled defaults and fail-closed boundaries",
+      "scenario": "系统从 planning artifact 进入 implementation preflight，但真实副作用、外部 runner、DB-backed execution、batch eligibility 或 credential-bearing configuration 尚未获授权",
+      "rule": "implementation preflight 必须同时证明 injected/external executor 由调用方显式提供、default executor disabled、missing executor fail-closed、authorization inputs explicit、rollback/audit evidence required before call、batch/eligibility still deferred。验证应扫描 enabled/granted/started/eligible 语义只存在于 guard/forbidden markers，不能作为 active evidence。",
+      "trigger": "runner wiring、job launcher adapter、migration/backfill executor、payment/live-trading executor、production batch processor、任何由 mocked/preflight 转向 implementation 的副作用边界",
+      "source": "步骤 digest-20260622-explicit-runner-wiring-preflight · §5.533",
+      "fingerprint": "644180f375fe8382",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-22T12:48:09Z",
       "mention_count": 1
     }
   },
@@ -820,6 +846,14 @@
       "title": "{简短标题}",
       "task_ref": "{task_id} · {tree}",
       "fingerprint": "{lifecycle 自动填充或手工摘要 hash}",
+      "status": "active",
+      "superseded_by": null
+    },
+    "20260622-explicit-runner-wiring-preflight": {
+      "digest_id": "20260622-explicit-runner-wiring-preflight",
+      "title": "M-41/GP-17",
+      "task_ref": "TREE-6 / PL-G · explicit runner wiring design/implementation preflight · loop209 · §5.533",
+      "fingerprint": "explicit-runner-wiring-preflight-fail-closed-v1",
       "status": "active",
       "superseded_by": null
     },
@@ -1212,17 +1246,17 @@
   "dream_candidates": [],
   "closure_candidates": [],
   "last_lifecycle": {
-    "at": "2026-06-22T12:25:07Z",
+    "at": "2026-06-22T12:48:09Z",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
     "closure_candidates": 0,
     "archived_rounds": [],
-    "active_step_digests": 19,
+    "active_step_digests": 20,
     "completed_tasks_hint": [
-      "loop208 completed real runner wiring demand/authorization gate planning mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned; executor added RED tests and orchestrator applied the shared fixture GREEN patch to avoid write contention; code-reviewer and verifier final success reports passed. RED 2 failed / 15 passed expected, focused pytest 17 passed, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/ruff/stale-family enablement scan/safety scan passed. Current next_atomic_action is explicit runner wiring design/implementation preflight mocked-only. No .env/secret output, page-load auto POST/default trigger, real/default runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed.",
-      "pl-g-explicit-runner-wiring-design-implementation-preflight-mocked-only",
-      "loop208-real-runner-authorization-planning"
+      "loop209 completed explicit runner wiring design/implementation preflight mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned; orchestrator applied the shared fixture GREEN patch to avoid write contention; code-reviewer and verifier final success reports passed. RED 2 failed / 16 passed expected, focused pytest 18 passed, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/ruff/stale-family enablement scan/safety scan passed. Current next_atomic_action is fail-closed injected-runner implementation plan / manual authorization artifact mocked-only. No .env/secret output, page-load auto POST/default trigger, real/default runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed.",
+      "pl-g-fail-closed-injected-runner-implementation-plan-manual-authorization-artifact-mocked-only",
+      "loop209-explicit-runner-wiring-preflight"
     ],
     "ttl_days": 180
   }

@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T20:14:13+08:00
+updated_at: 2026-06-22T20:44:07+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -34,6 +34,8 @@ updated_at: 2026-06-22T20:14:13+08:00
 [CONTEXT] 2026-06-22 loop207 · 已完成 explicit approval / runner readiness / PL-H eligibility preflight mocked-only：同一跨对话 worker cluster 均回报；Jobs fixture 现在把 loop206 demand-gate review 转成 approval/readiness preflight bundle，绑定 explicit approval required_not_granted、injected runner required_not_connected、PL-H not eligible until real-batch gate、no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output，未新增 acceptance/checklist family。验证 RED 2 failed / 14 passed expected，focused pytest 16 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family execution-permission scan/safety scan pass。下一拍进入 real runner wiring demand/authorization gate planning mocked-only。
 
 [CONTEXT] 2026-06-22 loop208 · 已完成 real runner wiring demand/authorization gate planning mocked-only：同一跨对话 worker cluster 汇合；Jobs fixture 现在把 loop207 approval/readiness preflight 转成 `realRunnerAuthorizationGatePlanChecks` / `assertRealRunnerAuthorizationGatePlan(...)` planning-only authorization gate bundle，绑定 explicit authorization contract、injected-runner configuration boundary、rollback/observability requirements、PL-H non-eligibility guard、no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output，未新增 acceptance/checklist family。验证 RED 2 failed / 15 passed expected，focused pytest 17 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family enablement scan/safety scan pass。下一拍进入 explicit runner wiring design/implementation preflight mocked-only。
+
+[CONTEXT] 2026-06-22 loop209 · 已完成 explicit runner wiring design/implementation preflight mocked-only：同一跨对话 worker cluster 汇合；Jobs fixture 现在把 loop208 authorization gate plan 转成 `explicitRunnerWiringPreflightChecks` / `assertExplicitRunnerWiringPreflight(...)` implementation preflight bundle，绑定 no-default-runner injected-runner-only design contract、explicit authorization inputs、rollback/audit evidence、fail-closed runner boundary、PL-H non-eligibility recheck、no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output，未新增 acceptance/checklist family。验证 RED 2 failed / 16 passed expected，focused pytest 18 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family enablement scan/safety scan pass；code-reviewer/verifier final success。下一拍进入 fail-closed injected-runner implementation plan / manual authorization artifact TDD mocked-only。
 ```
 
 ### Loop Machine State
@@ -42,18 +44,18 @@ updated_at: 2026-06-22T20:14:13+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-explicit-runner-wiring-design-implementation-preflight-mocked-only |
-| `last_tick` | loop208-real-runner-authorization-planning |
+| `current_slice` | pl-g-fail-closed-injected-runner-implementation-plan-manual-authorization-artifact-mocked-only |
+| `last_tick` | loop209-explicit-runner-wiring-preflight |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start explicit runner wiring design/implementation preflight TDD mocked-only: use the loop208 real runner authorization gate plan bundle to define the no-default-runner injected-runner wiring design contract, explicit authorization inputs, rollback/audit evidence, fail-closed runner boundary, and PL-H non-eligibility recheck; forbid enabling a real/default runner, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start fail-closed injected-runner implementation plan / manual authorization artifact TDD mocked-only: use the loop209 explicit runner wiring preflight bundle to define an injected-runner-only manual authorization artifact, disabled default runner wiring, rollback/audit hooks, fail-closed missing-runner behavior, and PL-H non-eligibility guard; forbid enabling a real/default runner, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the explicit runner wiring design/implementation preflight stabilizes, continue toward fail-closed injected-runner implementation plan / manual authorization artifact. Do not enable a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization, injected runner configuration, rollback/observability, and safety boundaries.
+After the manual authorization artifact stabilizes, continue toward explicit injected-runner call boundary / rollback-observability contract. Do not enable a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization, injected runner configuration, rollback/observability, and safety boundaries.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -70,7 +72,7 @@ After the explicit runner wiring design/implementation preflight stabilizes, con
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 explicit runner wiring design/implementation preflight；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 fail-closed injected-runner implementation plan / manual authorization artifact；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -146,10 +148,10 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 - governance-coordinator report: success · read-only review confirmed missing hard gates and recommended skill_route_evidence / worker_dispatch_decision / goal_bundle detector
 - researcher thread: `019eeebf-629e-7013-bbf4-1db4d312b925` · title `researcher` · report success on edict/kimi-code orchestration evidence scan
 - architect thread: `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936` · title `architect` · report success on CodeX worker cluster governance architecture
-- test-engineer thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · report success on loop208 authorization planning RED design
-- executor thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · report partial on loop208 RED tests then stopped before shared fixture GREEN at orchestrator request
-- code-reviewer thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · report success on loop208 semantic signoff
-- verifier thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b` · title `verifier` · report success on loop208 final verification; clean-worktree closure belongs to orchestrator sync+commit gate
+- test-engineer thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · report success on loop209 explicit runner wiring preflight RED design
+- executor thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · report success on loop209 implementation scope review; final shared fixture patch serialized by orchestrator
+- code-reviewer thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · report success on loop209 final semantic signoff
+- verifier thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b` · title `verifier` · report success on loop209 final verification; clean-worktree closure belongs to orchestrator sync+commit gate
 - prompt: `harness/templates/codex-subagent-prompt.md`
 - task: read-only verification of CodeX effective constraints; latest multi-agent verifier run `019eedc6-f9c5-7c50-8170-18e415f7ce26` / nickname Lorentz reviewed loop186 target files and reported `success`
 - note: orchestrator retains final authority; worker report is data, not truth source. Cross-dialogue worker is now preferred for governance / verifier signoff; temporary multi_agent is auxiliary only.
@@ -158,11 +160,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop208 已完成 PL-G real runner wiring demand/authorization gate planning mocked-only，并用跨对话 worker cluster 完成 test design / RED implementation / code review / verifier signoff。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 explicit runner wiring design/implementation preflight mocked-only，避免把 authorization planning 误认为 execution enablement。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop209 已完成 PL-G explicit runner wiring design/implementation preflight mocked-only，并用跨对话 worker cluster 完成 test design / scope review / code review / verifier signoff。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 fail-closed injected-runner implementation plan / manual authorization artifact TDD mocked-only，避免把 implementation preflight 误认为 execution enablement。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，然后执行 `explicit runner wiring design/implementation preflight TDD mocked-only`：用 loop208 real runner authorization gate plan bundle 定义 no-default-runner injected-runner wiring design contract、explicit authorization inputs、rollback/audit evidence、fail-closed runner boundary、PL-H non-eligibility recheck；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，然后执行 `fail-closed injected-runner implementation plan / manual authorization artifact TDD mocked-only`：用 loop209 explicit runner wiring preflight bundle 定义 injected-runner-only manual authorization artifact、disabled default runner wiring、rollback/audit hooks、fail-closed missing-runner behavior、PL-H non-eligibility guard；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 

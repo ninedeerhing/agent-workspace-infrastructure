@@ -1,6 +1,25 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-22T20:22:07+08:00
+更新时间：2026-06-22T20:44:07+08:00
+
+## Tick loop209-explicit-runner-wiring-preflight
+
+- **任务 ID**：loop209-explicit-runner-wiring-preflight-verification-plan / loop209-explicit-runner-wiring-preflight-final-verification
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读复核 explicit runner wiring design/implementation preflight mocked-only 的验收证据，并确认 clean-worktree gate 由 orchestrator 收口。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：
+  - `$env:PYTHONPATH='src'; uv run pytest tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py -q` -> **18 passed**。
+  - `uv run ruff check tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py` -> **All checks passed**。
+  - `npx eslint scripts/smoke-jobs-page-fixture.mjs` -> pass exit 0。
+  - `npm run smoke:jobs-page` -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`、`explicit_runner_wiring_preflight_*` markers present、PL-H remains deferred。
+  - `npm run build` -> pass。
+  - stale/family enablement scan -> pass；safety marker scan -> pass。
+- **roster_update**：workload cleared；mistakes none；lesson: explicit runner wiring verification must accept forbidden enablement strings only when contained in `forbiddenMarkers` guard arrays。
+- **残余风险**：mocked-only；real/default runner, default DB-backed backtest, background execution, migration/backfill, and PL-H execution remain intentionally deferred behind future explicit gates。
+- **next**：orchestrator must close truth-source/commit/clean-worktree gates, then next slice is fail-closed injected-runner implementation plan / manual authorization artifact.
 
 ## Tick loop208-real-runner-authorization-planning
 

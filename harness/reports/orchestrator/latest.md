@@ -1,46 +1,44 @@
-# Orchestrator Report — loop208-real-runner-authorization-planning
+# Orchestrator Report — loop209-explicit-runner-wiring-preflight
 
-**Updated**: 2026-06-22T20:22:07+08:00
+**Updated**: 2026-06-22T20:44:07+08:00
 
 ## Tick Summary
 
-- **slice**: TREE-6 / PL-G real runner wiring demand/authorization gate planning mocked-only
+- **slice**: TREE-6 / PL-G explicit runner wiring design/implementation preflight mocked-only
 - **agent**: orchestrator
-- **result**: converted the loop207 approval/readiness preflight into a planning-only real runner authorization gate bundle without enabling execution
-- **next**: explicit runner wiring design/implementation preflight mocked-only
+- **result**: converted the loop208 authorization gate plan into a fail-closed implementation preflight bundle without enabling execution
+- **next**: fail-closed injected-runner implementation plan / manual authorization artifact mocked-only
 
 ## Cluster Manifest
 
 ```yaml
 cluster_manifest:
-  cluster_id: "cluster-loop208-real-runner-authorization-planning"
-  goal_id: "TREE-6-PL-G-real-runner-authorization-planning"
+  cluster_id: "cluster-loop209-explicit-runner-wiring-preflight"
+  goal_id: "TREE-6-PL-G-explicit-runner-wiring-preflight"
   commander: "orchestrator"
   max_parallel_workers: 4
   worker_threads:
     - role_id: "test-engineer"
       thread_id: "019eeece-52d7-7b73-868a-7beb496ba303"
-      task_id: "loop208-real-runner-authorization-planning-test-design"
+      task_id: "loop209-explicit-runner-wiring-preflight-test-design"
       write_scope: []
       mode: "read-only"
       status: "reported"
     - role_id: "executor"
       thread_id: "019eeece-c617-71c3-a80a-39a693ad3ac3"
-      task_id: "loop208-real-runner-authorization-planning-red-tests"
-      write_scope:
-        - "apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py"
-        - "apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py"
-      mode: "bounded-write"
-      status: "partial-reported; stopped before shared fixture GREEN"
+      task_id: "loop209-explicit-runner-wiring-preflight-scope-review"
+      write_scope: []
+      mode: "read-only"
+      status: "reported"
     - role_id: "code-reviewer"
       thread_id: "019eeed1-7e14-7342-9d45-d7948aec94d2"
-      task_id: "loop208-real-runner-authorization-planning-final-review"
+      task_id: "loop209-explicit-runner-wiring-preflight-final-review"
       write_scope: []
       mode: "read-only"
       status: "reported"
     - role_id: "verifier"
       thread_id: "019eeed2-dbc0-7313-8d64-f9c6f199c68b"
-      task_id: "loop208-real-runner-authorization-planning-final-verification"
+      task_id: "loop209-explicit-runner-wiring-preflight-final-verification"
       write_scope: []
       mode: "read-only"
       status: "reported"
@@ -61,38 +59,38 @@ cluster_manifest:
 
 | Gate | Decision |
 |------|----------|
-| goal_gate | `real_runner_authorization_gate_plan_bundle` |
+| goal_gate | `explicit_runner_wiring_preflight_bundle` |
 | skill_route | router `decision=expose`; top-K noisy, applied `orchestrator`, `dispatching-parallel-agents`, `test-driven-development`, `programming` |
 | dispatch_decision | dispatched existing roster roles `test-engineer`, `executor`, `code-reviewer`, `verifier` via CodeX cross-dialogue threads |
-| cluster_manifest | `cluster-loop208-real-runner-authorization-planning` |
+| cluster_manifest | `cluster-loop209-explicit-runner-wiring-preflight` |
 | worker_report_refs | `test-engineer.md`, `executor.md`, `code-reviewer.md`, `verifier.md` |
-| bundle_decision | planning-only authorization gate, not execution enablement and not a new acceptance/checklist family |
+| bundle_decision | implementation preflight, not runner implementation, not execution enablement, not a new acceptance/checklist family |
 | capacity_review | existing 21-worker roster sufficient; no new worker requested |
-| skill_lifecycle | M-40/GP-16 recorded; router precision gap carried as future tuning input |
+| skill_lifecycle | M-41/GP-17 recorded; router precision gap carried as future tuning input |
 
 ## Changes
 
 | File | Summary |
 |------|---------|
-| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Added real runner authorization gate plan source contract and forbidden-family assertions. |
-| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Added fixture source/UI assertions for planning-only authorization, injected-runner boundary, rollback/observability, PL-H non-eligibility, and no-execution guards. |
-| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added `realRunnerAuthorizationGatePlanChecks`, `assertRealRunnerAuthorizationGatePlan(...)`, and text checks. |
+| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Added explicit runner wiring preflight source contract and forbidden-family assertions. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Added fixture source/UI assertions for no-default-runner contract, authorization inputs, rollback/audit evidence, fail-closed boundary, PL-H non-eligibility, and no-execution guards. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added `explicitRunnerWiringPreflightChecks`, `assertExplicitRunnerWiringPreflight(...)`, and text checks. |
 
 ## Review
 
-- `test-engineer` required RED coverage that proves explicit authorization contract, injected-runner boundary, rollback/observability requirements, PL-H non-eligibility, and planning-only status.
-- `executor` added the RED tests and stopped before the shared fixture GREEN patch to avoid cross-dialogue write contention.
-- `code-reviewer` confirmed the final diff stays planning-only, does not create `Acceptance` / `Checklist` family drift, and does not grant runner enablement or PL-H eligibility.
+- `test-engineer` required RED coverage that proves explicit runner wiring preflight markers and forbids `explicitRunnerWiringAcceptance` / `explicitRunnerWiringChecklist` family drift.
+- `executor` confirmed the scope should remain fixture/tests-only and that `JobsPage.tsx` must not be touched for real runner wiring in this tick.
+- `code-reviewer` confirmed the final diff stays preflight-only, evidence-bound to body/submitted/refreshed surfaces, and does not grant authorization, runner enablement, default runner execution, or PL-H eligibility.
 - `verifier` reran focused pytest, ruff, eslint, smoke, build, stale/family enablement scan, and safety scan; final verification passed.
 
 ## Verification Gates
 
 | Gate | Result |
 |------|--------|
-| TDD RED | pass · expected 2 failed / 15 passed before fixture implementation |
-| focused pytest | pass · 17 passed |
+| TDD RED | pass · expected 2 failed / 16 passed before fixture implementation |
+| focused pytest | pass · 18 passed |
 | Python ruff | pass · touched Python tests clean |
-| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, authorization planning markers visible |
+| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, explicit runner wiring preflight markers visible |
 | web build | pass · `npm run build` |
 | targeted eslint | pass · `scripts/smoke-jobs-page-fixture.mjs` |
 | guard scans | pass · stale/family enablement scan ok; safety marker scan ok |
@@ -103,4 +101,4 @@ No `.env`, `.env.local`, DSN, token, or secret was printed or persisted. No page
 
 ## Next
 
-Start explicit runner wiring design/implementation preflight mocked-only using loop208 authorization gate plan evidence; keep it source/plan contract only and continue forbidding real/default runner enablement, PL-H batch execution, DB-backed backtest, backfill, migration, and secret output.
+Start fail-closed injected-runner implementation plan / manual authorization artifact mocked-only using loop209 preflight evidence; keep it source/plan contract only and continue forbidding real/default runner enablement, PL-H batch execution, DB-backed backtest, backfill, migration, and secret output.
