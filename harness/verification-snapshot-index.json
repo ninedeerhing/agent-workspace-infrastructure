@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T05:14:02Z",
+  "updated_at": "2026-06-22T05:14:50Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
@@ -14,15 +14,15 @@
     "section5_ref": "5.508",
     "source": "manual"
   },
-  "git_dirty": true,
-  "age_hours": 0.005531845277777778,
+  "git_dirty": false,
+  "age_hours": 0.01884175861111111,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T05:14:02Z",
+    "at": "2026-06-22T05:14:50Z",
     "apply": true,
     "stale": false,
-    "git_dirty": true,
-    "age_hours": 0.005531845277777778
+    "git_dirty": false,
+    "age_hours": 0.01884175861111111
   }
 }
