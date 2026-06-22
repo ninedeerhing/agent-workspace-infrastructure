@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T11:25:13+08:00",
+  "updated_at": "2026-06-22T11:37:24+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-demand-gate-displayed-decision-handoff-mocked-only",
-  "next_atomic_action": "Start PL-G demand gate displayed-decision handoff TDD mocked-only: when JobsPage renders `real_batch_demand_gate.decision=pl_h_revisit`, surface a read-only PL-H revisit evidence/handoff marker without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest or secret output.",
-  "next_after": "After displayed-decision handoff is stable, continue PL-G flow hardening for auto mining -> auto backtest full flow / intent quant subgraph; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-demand-gate-deferred-decision-suppression-mocked-only",
+  "next_atomic_action": "Start PL-G demand gate deferred-decision suppression TDD mocked-only: prove JobsPage does not surface the PL-H revisit handoff marker when `real_batch_demand_gate.decision=pl_h_deferred`, without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest or secret output.",
+  "next_after": "After deferred-decision suppression is stable, continue PL-G flow hardening for auto mining -> auto backtest full flow / intent quant subgraph; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop178-pl-g-jobs-page-demand-gate-display-mocked-only",
+  "last_tick": "loop179-pl-g-demand-gate-displayed-decision-handoff-mocked-only",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -495,7 +495,18 @@
     "loop178 runtime cleanup: port 5183 not listening, port 5184 TimeWait only, no jobs-page smoke node/chrome process",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.501",
     "loop178 no .env/secret/migration execution/DB schema change/backfill/background worker/page-load trigger POST/default DB-backed backtest or real runner",
-    "loop178 next: demand gate displayed-decision handoff TDD mocked-only with no PL-H batch execution or real runner/background work"
+    "loop178 next: demand gate displayed-decision handoff TDD mocked-only with no PL-H batch execution or real runner/background work",
+    "loop179 TDD red: displayed-decision handoff source/smoke contracts 2 failed / 10 passed as expected due missing marker",
+    "loop179 JobsPage displayed-decision handoff focused tests 12 passed",
+    "loop179 web npm run smoke:jobs-page pass with PL-H revisit handoff marker text checks, pageLoadTriggerRequests=[], duplicateTriggerUrls=[]",
+    "loop179 JobsPage+API/backtest/gate regression 36 passed",
+    "loop179 web npm run build pass",
+    "loop179 targeted eslint JobsPage + smoke fixture pass",
+    "loop179 Python ruff pass for JobsPage handoff source/smoke contract tests",
+    "loop179 runtime cleanup: port 5183 not listening, port 5184 TimeWait only, no jobs-page smoke node/chrome process",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.502",
+    "loop179 no .env/secret/migration execution/DB schema change/backfill/background worker/page-load trigger POST/default DB-backed backtest/real runner/PL-H batch execution",
+    "loop179 next: demand gate deferred-decision suppression TDD mocked-only with no PL-H batch execution or real runner/background work"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -505,7 +516,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop178 safe tick: PL-G JobsPage read-only demand gate display TDD mocked-only completed. JobsPage now renders top-level real_batch_demand_gate from the mining jobs API fixture, including gate kind, decision, pressure, ready ids, revisit reasons, and side_effects=false. Verification: red 2 failed / 9 passed expected, focused 11 passed, adjacent regression 35 passed, browser smoke ok with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], build/eslint/ruff pass. This tick had no env/secret reads, real runner/background work, migration, DB schema change, backfill, page-load trigger POST, default DB-backed backtest, or secret output. Next gap is displayed-decision handoff mocked-only."
+    "note": "loop179 safe tick: PL-G demand gate displayed-decision handoff TDD mocked-only completed. JobsPage now renders read-only PL-H revisit evidence/handoff marker when the displayed real_batch_demand_gate decision is pl_h_revisit. Verification: red 2 failed / 10 passed expected, focused 12 passed, adjacent regression 36 passed, browser smoke ok with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], build/eslint/ruff pass. This tick had no env/secret reads, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, page-load trigger POST, default DB-backed backtest, or secret output. Next gap is deferred-decision suppression mocked-only."
   },
-  "last_completed_note": "loop178: safe tick completed PL-G JobsPage read-only demand gate display TDD mocked-only. Added JobsPage RealBatchDemandGate UI contract and fixture-backed smoke checks so /jobs shows pl_g_real_batch_demand_gate, decision=pl_h_revisit, ready ids, multiple_ready_jobs, and side_effects false while preserving no page-load trigger POST. Verification: expected red 2 failed / 9 passed; focused 11 passed; adjacent JobsPage/API/backtest/gate regression 35 passed; npm run smoke:jobs-page ok with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]; npm run build pass; targeted eslint pass; Python ruff pass; runtime cleanup found port 5183 not listening, port 5184 TimeWait only, and no smoke node/chrome process. No .env/secret reads, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G demand gate displayed-decision handoff TDD mocked-only."
+  "last_completed_note": "loop179: safe tick completed PL-G demand gate displayed-decision handoff TDD mocked-only. Added shouldDisplayPlHRevisitHandoff() and fixture-backed smoke checks so /jobs shows PL-H revisit evidence, displayed_decision_handoff, handoff_mode=read_only_displayed_decision, pl_h_batch_execution=false, and requires_new_gate_before_execution=true for displayed decision=pl_h_revisit. Verification: expected red 2 failed / 10 passed; focused 12 passed; adjacent JobsPage/API/backtest/gate regression 36 passed; npm run smoke:jobs-page ok with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]; npm run build pass; targeted eslint pass; Python ruff pass; runtime cleanup found port 5183 not listening, port 5184 TimeWait only, and no smoke node/chrome process. No .env/secret reads, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G demand gate deferred-decision suppression TDD mocked-only."
 }

@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-22T11:36:00+08:00
+Updated: 2026-06-22T11:55:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -37,7 +37,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | identity_id | display_name | responsibility | report_path | status | workload | intensity | performance | mistake_count | lesson_count | last_assigned_at | last_report_at | current_task | handoff_notes | risk_notes |
 |---|---|---|---|---|---|---|---|---|---:|---:|---|---|---|---|---|
-| orchestrator | manager:orchestrator | Orchestrator | User-facing coordinator, dispatch, synthesis, verification ownership, truth-source sync | `harness/reports/orchestrator/latest.md` | active | 1 light | high | coordinating | 0 | 0 | 2026-06-22 | 2026-06-22 | loop178 completed PL-G JobsPage read-only demand gate display mocked-only; next displayed-decision handoff mocked-only | CodeX automations ACTIVE; verifier thread created; daily_bar/daily_trade_status/adj_factor complete to 2026-06-18; JobsPage now renders top-level real_batch_demand_gate from fixture-backed mining jobs API with browser smoke proving no page-load trigger POST; next gap is read-only PL-H revisit evidence/handoff marker for displayed pl_h_revisit; do not restart backfill or run migration/background process/default real DB-backed backtest/real runner/PL-H batch execution; keep secret output forbidden | Escalate destructive ops, duplicate process risk, secret exposure, missing runtime secrets, new worker/skill creation, schema migration requests, real runner wiring requests, PL-H execution requests, or unresolved Alpha101 canonical failures if they become current scope |
+| orchestrator | manager:orchestrator | Orchestrator | User-facing coordinator, dispatch, synthesis, verification ownership, truth-source sync | `harness/reports/orchestrator/latest.md` | active | 1 light | high | coordinating | 0 | 0 | 2026-06-22 | 2026-06-22 | loop179 completed PL-G displayed-decision handoff mocked-only; next deferred-decision suppression mocked-only | CodeX automations ACTIVE; verifier thread created; daily_bar/daily_trade_status/adj_factor complete to 2026-06-18; JobsPage now renders read-only PL-H revisit evidence/handoff marker for displayed pl_h_revisit with browser smoke proving no page-load trigger POST; next gap is proving pl_h_deferred suppresses the marker; do not restart backfill or run migration/background process/default real DB-backed backtest/real runner/PL-H batch execution; keep secret output forbidden | Escalate destructive ops, duplicate process risk, secret exposure, missing runtime secrets, new worker/skill creation, schema migration requests, real runner wiring requests, PL-H execution requests, or unresolved Alpha101 canonical failures if they become current scope |
 
 ## Workers
 
