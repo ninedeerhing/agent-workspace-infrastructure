@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T04:11:04Z",
-  "last_tick": "loop181-pl-g-demand-gate-pressure-summary-handoff-mocked-only",
-  "pytest_passed": 38,
+  "recorded_at": "2026-06-22T04:26:19Z",
+  "last_tick": "loop182-pl-g-demand-gate-threshold-explanation-mocked-only",
+  "pytest_passed": 39,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.504"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.505"
   ],
-  "section5_ref": "5.504",
+  "section5_ref": "5.505",
   "source": "manual"
 }

@@ -9,12 +9,12 @@
 ## Current Continuation Entry
 
 - Current mainline: AWI CodeX-effective baseline 已验收（TREE-RT 防漂移维护）；业务主线为 `TREE-6 / PL-G` mining_job Template B
-- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop181 已完成 `PL-G demand gate pressure summary handoff TDD mocked-only`
-- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 通过 `create_thread`/`send_message_to_thread`；下一拍执行 `PL-G demand gate pressure-threshold explanation TDD mocked-only`，只读解释 displayed gate decision 与 pressure/revisit reasons 的关系，不接默认真实 runner 或 PL-H 批量执行
+- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop182 已完成 `PL-G demand gate pressure-threshold explanation TDD mocked-only`
+- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 通过 `create_thread`/`send_message_to_thread`；下一拍执行 `PL-G demand gate next-route guidance TDD mocked-only`，只读显示 gate 后续路由提示，不接默认真实 runner 或 PL-H 批量执行
 - Post-backfill directive: 已退出 backfill-monitoring 方式，按真源连续推进 **auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph**；closure/收口表示阶段验收通过并继续下一切片，不是结束方案或停止 loop
-- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.504 pressure summary handoff 结论与 `PL-G demand gate pressure-threshold explanation TDD mocked-only` 下一原子动作）
+- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.505 pressure-threshold explanation 结论与 `PL-G demand gate next-route guidance TDD mocked-only` 下一原子动作）
 - Recovery: CodeX 有效性自检 → `harness/scripts/codex-self-check.ps1 -Format markdown`
-- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.504 最新台账
+- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.505 最新台账
 
 ## Current Mainline Facts
 
@@ -43,7 +43,7 @@ Take over this project and build context strictly in the following order:
 Facts and constraints:
 - AWI Runtime OS is installed and CodeX-effective; orchestrator is the only user-facing agent.
 - CodeX worker threads use `create_thread` and `harness/templates/codex-subagent-prompt.md`; mailbox is fallback/audit only.
-- quant_assistant business code is on TREE-6 / PL-G; loop181 proves read-only demand gate pressure summary is visible for revisit/deferred branches, with browser smoke proving no page-load trigger POST. Demand gate pressure-threshold explanation mocked-only remains next.
+- quant_assistant business code is on TREE-6 / PL-G; loop182 proves read-only demand gate pressure-threshold explanation is visible for revisit/deferred branches, with browser smoke proving no page-load trigger POST. Demand gate next-route guidance mocked-only remains next.
 - Side capability `PL-002` exists for Codex skill routing/gating. Phase 1 prototype lives in `harness/skill_router.py` with tests in `harness/tests/test_skill_router.py`; it is advisory only, does not modify global `~/.codex/skills`, and must not change quant `harness/loop-state.json` unless explicitly promoted.
 - Verify AWI: .\harness\scripts\codex-self-check.ps1 -Format markdown; .\harness\compliance-check.ps1 -Mode post-bootstrap
 - Verify app: cd apps/quant_assistant && uv run pytest -q -m "not db and not external"
