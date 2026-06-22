@@ -1,44 +1,44 @@
-# Orchestrator Report — loop211-explicit-injected-runner-call-boundary-rollback-observability
+# Orchestrator Report — loop212-authorized-runner-injection-seam-pl-h-eligibility
 
-**Updated**: 2026-06-22T21:21:54+08:00
+**Updated**: 2026-06-22T21:46:41+08:00
 
 ## Tick Summary
 
-- **slice**: TREE-6 / PL-G explicit injected-runner call boundary / rollback-observability contract mocked-only
+- **slice**: TREE-6 / PL-G authorized runner injection seam / PL-H eligibility re-evaluation mocked-only
 - **agent**: orchestrator
-- **result**: converted the loop210 fail-closed manual authorization artifact into a call-boundary / rollback-observability contract without invoking a runner
-- **next**: explicit authorized runner injection test seam / PL-H eligibility re-evaluation mocked-only
+- **result**: converted loop211 call-boundary / rollback-observability evidence into an authorized runner injection seam contract without granting authorization or invoking a runner
+- **next**: explicit real runner adapter dry-run planning / PL-H eligibility gate mocked-only
 
 ## Cluster Manifest
 
 ```yaml
 cluster_manifest:
-  cluster_id: "cluster-loop211-explicit-injected-runner-call-boundary-rollback-observability"
-  goal_id: "TREE-6-PL-G-explicit-injected-runner-call-boundary"
+  cluster_id: "cluster-loop212-authorized-runner-injection-seam-pl-h-eligibility"
+  goal_id: "TREE-6-PL-G-authorized-runner-injection-seam"
   commander: "orchestrator"
   max_parallel_workers: 4
   worker_threads:
     - role_id: "test-engineer"
       thread_id: "019eeece-52d7-7b73-868a-7beb496ba303"
-      task_id: "loop211-explicit-injected-runner-call-boundary-test-design"
+      task_id: "loop212-authorized-runner-injection-seam-test-design"
       write_scope: []
       mode: "read-only"
       status: "reported"
     - role_id: "executor"
       thread_id: "019eeece-c617-71c3-a80a-39a693ad3ac3"
-      task_id: "loop211-explicit-injected-runner-call-boundary-scope-review"
+      task_id: "loop212-authorized-runner-injection-seam-scope-review"
       write_scope: []
       mode: "read-only"
       status: "reported"
     - role_id: "code-reviewer"
       thread_id: "019eeed1-7e14-7342-9d45-d7948aec94d2"
-      task_id: "loop211-explicit-injected-runner-call-boundary-final-review"
+      task_id: "loop212-authorized-runner-injection-seam-final-review"
       write_scope: []
       mode: "read-only"
       status: "reported"
     - role_id: "verifier"
       thread_id: "019eeed2-dbc0-7313-8d64-f9c6f199c68b"
-      task_id: "loop211-explicit-injected-runner-call-boundary-verification"
+      task_id: "loop212-authorized-runner-injection-seam-final-verification"
       write_scope: []
       mode: "read-only"
       status: "reported"
@@ -59,41 +59,41 @@ cluster_manifest:
 
 | Gate | Decision |
 |------|----------|
-| goal_gate | `explicit_injected_runner_call_boundary_rollback_observability_contract` |
-| skill_route | router `decision=expose`; top-K noisy, applied `orchestrator`, `dispatching-parallel-agents`, `test-driven-development`, `programming` |
+| goal_gate | `authorized_runner_injection_seam_pl_h_recheck_contract` |
+| skill_route | router `decision=expose`; top-K noisy (`tdd-rust`, `github-triage`, `qa-only`, `test-engineer`, `figma-use`), applied `orchestrator`, `dispatching-parallel-agents`, `test-driven-development`, `programming` |
 | dispatch_decision | dispatched existing roster roles `test-engineer`, `executor`, `code-reviewer`, `verifier` via CodeX cross-dialogue threads |
-| cluster_manifest | `cluster-loop211-explicit-injected-runner-call-boundary-rollback-observability` |
+| cluster_manifest | `cluster-loop212-authorized-runner-injection-seam-pl-h-eligibility` |
 | worker_report_refs | `test-engineer.md`, `executor.md`, `code-reviewer.md`, `verifier.md` |
-| bundle_decision | call boundary / rollback-observability contract, not runner invocation, not runner enablement, not a new acceptance/checklist family |
+| bundle_decision | authorized runner injection seam contract, not authorization grant, not runner invocation, not a new acceptance/checklist family |
 | capacity_review | existing 21-worker roster sufficient; no new worker requested |
-| skill_lifecycle | M-43/GP-19 recorded; router precision gap carried as future tuning input |
+| skill_lifecycle | M-44/GP-20 recorded; router precision gap carried as future tuning input |
 
 ## Changes
 
 | File | Summary |
 |------|---------|
-| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Added explicit injected-runner call boundary source contract and forbidden-family assertions. |
-| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Added fixture source/UI assertions for explicit authorization handoff, rollback observability, audit before/after, missing-runner fail-closed, PL-H non-eligibility, and no-execution guards. |
-| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added `explicitInjectedRunnerCallBoundaryChecks`, `assertExplicitInjectedRunnerCallBoundary(...)`, and text checks. |
+| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Added authorized runner injection seam source contract and forbidden-family assertions. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Added fixture source/UI assertions for opaque token shape, required input shape, rollback/audit proof, PL-H recheck, and no-execution guards. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added `authorizedRunnerInjectionSeamChecks`, `assertAuthorizedRunnerInjectionSeam(...)`, and text checks. |
 
 ## Review
 
-- `test-engineer` required RED coverage that proves call boundary markers, rollback/audit requirements, fail-closed missing-runner behavior, PL-H non-eligibility, and forbidden Acceptance/Checklist family drift.
-- `executor` confirmed the scope should remain fixture/tests-only and that `JobsPage.tsx` must not be touched for real runner wiring in this tick.
-- `code-reviewer` confirmed the final diff stays contract/evidence-only, evidence-bound to body/submitted/refreshed surfaces, and does not grant authorization, runner enablement, default runner execution, DB-backed backtest, or PL-H eligibility.
+- `test-engineer` required RED coverage that proves authorized seam markers, token/input shape, rollback/audit proof, PL-H non-eligibility, and forbidden Acceptance/Checklist family drift.
+- `executor` confirmed the scope should remain fixture/tests-only and that no production `JobsPage.tsx` or real runner wiring was needed in this tick.
+- `code-reviewer` confirmed the final diff stays contract/test-seam-only, evidence-bound to body/submitted/refreshed surfaces, and does not grant authorization, enable a runner, invoke a runner, or leak PL-H eligibility.
 - `verifier` reran focused pytest, ruff, eslint, smoke, build, stale/family enablement scan, safety scan, and runtime cleanup; final verification passed.
 
 ## Verification Gates
 
 | Gate | Result |
 |------|--------|
-| TDD RED | pass · expected 2 failed / 18 passed before fixture implementation |
-| focused pytest | pass · 20 passed |
+| TDD RED | pass · expected 2 failed / 19 passed before fixture implementation |
+| focused pytest | pass · 21 passed |
 | Python ruff | pass · touched Python tests clean |
-| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, call-boundary markers visible |
+| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, authorized seam markers visible |
 | web build | pass · `npm run build` |
 | targeted eslint | pass · `scripts/smoke-jobs-page-fixture.mjs` |
-| guard scans | pass · stale/family enablement scan ok; safety marker scan ok; runtime cleanup scan ok |
+| guard scans | pass · stale/family enablement scan ok; refined safety marker scan ok; runtime cleanup scan ok |
 
 ## Safety
 
@@ -101,4 +101,4 @@ No `.env`, `.env.local`, DSN, token, or secret was printed or persisted. No page
 
 ## Next
 
-Start explicit authorized runner injection test seam / PL-H eligibility re-evaluation mocked-only using loop211 call-boundary evidence; keep it source/plan contract only and continue forbidding real/default runner enablement, PL-H batch execution, DB-backed backtest, backfill, migration, and secret output.
+Start explicit real runner adapter dry-run planning / PL-H eligibility gate mocked-only using loop212 seam evidence; keep it source/plan contract only and continue forbidding real/default runner invocation, PL-H batch execution, DB-backed backtest, backfill, migration, and secret output.

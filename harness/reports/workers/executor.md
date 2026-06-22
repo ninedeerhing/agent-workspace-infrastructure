@@ -1,6 +1,24 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-22T21:21:54+08:00
+**Updated**: 2026-06-22T21:46:41+08:00
+
+## Tick loop212-authorized-runner-injection-seam-pl-h-eligibility
+
+- **任务 ID**：loop212-authorized-runner-injection-seam-pl-h-eligibility-scope-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：只读复核 loop212 implementation scope，确认 authorized runner injection seam / PL-H eligibility re-evaluation 应保持 fixture/tests-only，避免触碰真实 JobsPage runner wiring、default runner lookup 或 PL-H execution。
+- **结论**：建议三文件 fixture/test-only implementation 足够；不需要修改 `web/src/pages/JobsPage.tsx`，authorized seam must not grant permission or invoke runner。为避免跨对话共享文件写冲突，最终 patch 由 orchestrator 按 RED/GREEN 本地应用。
+- **变更**：
+  - worker 未改文件。
+  - orchestrator final patch 涉及 `tests/test_route_evidence_cross_surface_contract_unit.py`、`tests/test_jobs_page_acceptance_smoke_unit.py`、`web/scripts/smoke-jobs-page-fixture.mjs`。
+- **验证**：
+  - executor report: scope review success; recommended fixture/tests-only and authorized seam token/input/rollback/audit/PL-H recheck markers。
+  - orchestrator verification after patch: RED **2 failed / 19 passed** expected, GREEN focused pytest **21 passed**, smoke/build/eslint/ruff/scans/runtime cleanup pass。
+- **roster_update**：workload cleared；mistakes unchanged；lesson: authorized runner injection seam can remain source evidence until a later dry-run adapter gate defines safe invocation boundaries。
+- **残余风险**：mocked-only；real runner/PL-H/DB-backed path remains intentionally deferred。
+- **next**：explicit real runner adapter dry-run planning / PL-H eligibility gate。
 
 ## Tick loop211-explicit-injected-runner-call-boundary-rollback-observability
 

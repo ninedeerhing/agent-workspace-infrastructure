@@ -1,6 +1,21 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-22T21:21:54+08:00
+更新时间：2026-06-22T21:46:41+08:00
+
+## Tick loop212-authorized-runner-injection-seam-pl-h-eligibility
+
+- **任务 ID**：loop212-authorized-runner-injection-seam-pl-h-eligibility-test-design
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读设计 authorized runner injection seam / PL-H eligibility re-evaluation 的 RED/GREEN 验收形态，确保 seam 是 source/contract evidence，而不是 authorization granted、runner enabled、runner invocation 或 PL-H eligible。
+- **变更**：worker 只读复核，未修改文件。
+- **验证建议**：
+  - 新增 `authorizedRunnerInjectionSeamChecks` / `assertAuthorizedRunnerInjectionSeam(bodyText, submittedText, refreshedText)`。
+  - Exact markers: `authorized_runner_injection_seam_visible`、`authorized_runner_injection_seam_source:explicit_injected_runner_call_boundary_contract`、`authorized_runner_injection_seam:explicit_injected_runner_only`、`authorized_runner_injection_seam_authorization_token_shape:opaque_operator_token_required_not_persisted`、`authorized_runner_injection_seam_input_shape:user_id_job_id_action_id_runner_config_required`、`authorized_runner_injection_seam_rollback_observability_proof:ready_before_authorized_call`、`authorized_runner_injection_seam_audit_observability_proof:before_after_events_required`、`authorized_runner_injection_seam_adapter_boundary:explicit_parameter_only_no_default_lookup`、`authorized_runner_injection_seam_pl_h_eligibility_recheck:not_eligible_until_authorized_real_batch_gate`。
+  - Safety guards: contract-only, no page-load auto POST, no real/default runner, no background process, no migration/backfill, no DB-backed backtest, no PL-H batch execution, no secret output。
+- **roster_update**：workload cleared；mistakes none；lesson: authorized seam tests must prove token/input shape and negative authorization state, not granted permission or runner call。
+- **next**：交给 executor/code-reviewer/verifier 汇合；下一切片进入 explicit real runner adapter dry-run planning / PL-H eligibility gate。
 
 ## Tick loop211-explicit-injected-runner-call-boundary-rollback-observability
 

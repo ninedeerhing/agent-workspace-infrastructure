@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T21:21:54+08:00
+updated_at: 2026-06-22T21:46:41+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -40,6 +40,8 @@ updated_at: 2026-06-22T21:21:54+08:00
 [CONTEXT] 2026-06-22 loop210 · 已完成 fail-closed injected-runner implementation plan / manual authorization artifact mocked-only：同一跨对话 worker cluster 汇合；Jobs fixture 现在把 loop209 explicit runner wiring preflight 转成 `failClosedManualAuthorizationArtifactChecks` / `assertFailClosedManualAuthorizationArtifact(...)` artifact bundle，绑定 injected-runner-only artifact、disabled default runner wiring、rollback/audit hooks required、missing-runner fail-closed behavior、PL-H non-eligibility guard、no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output，未新增 acceptance/checklist family，也未授予 execution permission。验证 RED 2 failed / 17 passed expected，focused pytest 19 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family enablement scan/safety scan/runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 explicit injected-runner call boundary / rollback-observability contract TDD mocked-only。
 
 [CONTEXT] 2026-06-22 loop211 · 已完成 explicit injected-runner call boundary / rollback-observability contract mocked-only：同一跨对话 worker cluster 汇合；Jobs fixture 现在把 loop210 fail-closed manual authorization artifact 转成 `explicitInjectedRunnerCallBoundaryChecks` / `assertExplicitInjectedRunnerCallBoundary(...)` contract bundle，绑定 explicit authorization handoff required、rollback observability required before call、audit events required before/after call、missing-runner fail-closed behavior、PL-H non-eligibility recheck、no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output，未新增 acceptance/checklist family，也未触发 runner invocation。验证 RED 2 failed / 18 passed expected，focused pytest 20 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family enablement scan/safety scan/runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 explicit authorized runner injection test seam / PL-H eligibility re-evaluation TDD mocked-only。
+
+[CONTEXT] 2026-06-22 loop212 · 已完成 authorized runner injection seam / PL-H eligibility re-evaluation mocked-only：同一跨对话 worker cluster 汇合；Jobs fixture 现在把 loop211 call-boundary/rollback-observability contract 转成 `authorizedRunnerInjectionSeamChecks` / `assertAuthorizedRunnerInjectionSeam(...)` seam bundle，绑定 opaque operator token required/not persisted、user/job/action/runner-config input shape、rollback/audit proof、explicit parameter-only adapter boundary、PL-H not eligible until authorized real-batch gate、no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output，未新增 acceptance/checklist family，也未授权或触发 runner invocation。验证 RED 2 failed / 19 passed expected，focused pytest 21 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family enablement scan/refined safety scan/runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 explicit real runner adapter dry-run planning / PL-H eligibility gate TDD mocked-only。
 ```
 
 ### Loop Machine State
@@ -48,18 +50,18 @@ updated_at: 2026-06-22T21:21:54+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-explicit-authorized-runner-injection-test-seam-pl-h-eligibility-re-evaluation-mocked-only |
-| `last_tick` | loop211-explicit-injected-runner-call-boundary-rollback-observability |
+| `current_slice` | pl-g-explicit-real-runner-adapter-dry-run-planning-pl-h-eligibility-gate-mocked-only |
+| `last_tick` | loop212-authorized-runner-injection-seam-pl-h-eligibility |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start explicit authorized runner injection test seam / PL-H eligibility re-evaluation TDD mocked-only: use the loop211 injected-runner call boundary / rollback-observability contract bundle to define an explicit authorized runner injection seam, authorization token/input shape, rollback/audit observability proof, and PL-H eligibility recheck gate; forbid enabling a real/default runner, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start explicit real runner adapter dry-run planning / PL-H eligibility gate TDD mocked-only: use the loop212 authorized runner injection seam / PL-H recheck bundle to plan an explicit real-runner adapter dry-run boundary, adapter contract, authorization evidence handoff, rollback/audit gates, and PL-H eligibility decision matrix; forbid invoking a real/default runner, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the authorized runner injection test seam / PL-H eligibility re-evaluation stabilizes, continue toward explicit real runner adapter dry-run planning / PL-H eligibility gate. Do not enable a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization, injected runner configuration, rollback/observability, audit before/after, and safety boundaries.
+After the real runner adapter dry-run planning / PL-H eligibility gate stabilizes, continue toward explicit adapter contract review / dry-run proof harness. Do not invoke a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization evidence, injected runner configuration, rollback/observability, audit before/after, fail-closed behavior, and PL-H eligibility decision matrix.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -76,7 +78,7 @@ After the authorized runner injection test seam / PL-H eligibility re-evaluation
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 explicit authorized runner injection test seam / PL-H eligibility re-evaluation；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 explicit real runner adapter dry-run planning / PL-H eligibility gate；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
