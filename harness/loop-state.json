@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T22:14:43+08:00",
+  "updated_at": "2026-06-22T22:37:05+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-explicit-adapter-contract-review-dry-run-proof-harness-mocked-only",
-  "next_atomic_action": "Start explicit adapter contract review / dry-run proof harness TDD mocked-only: use the loop213 real-runner adapter dry-run planning / PL-H eligibility gate bundle to define an explicit adapter contract review, dry-run proof harness, authorization evidence validation matrix, rollback/audit before-after proof harness, and fail-closed PL-H eligibility decision review; forbid invoking a real/default runner, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After the explicit adapter contract review / dry-run proof harness stabilizes, continue toward explicit dry-run proof review gate / runner-adapter readiness matrix. Do not invoke a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization evidence, injected runner configuration, rollback/observability, audit before/after, fail-closed behavior, and PL-H eligibility decision matrix.",
+  "current_slice": "pl-g-jobs-smoke-fixture-adapter-runner-proof-harness-modularization-mocked-only",
+  "next_atomic_action": "Start Jobs page smoke fixture adapter/runner proof-harness modularization TDD mocked-only: extract the loop208-loop214 runner-adapter proof/check matrices from the oversized smoke fixture into a bounded fixture module with focused tests, preserve current adapter_contract_review_* and prior runner-adapter safety evidence, then resume explicit dry-run proof review gate / runner-adapter readiness matrix; forbid invoking a real/default runner, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After the oversized Jobs smoke fixture adapter/runner proof-harness module stabilizes, continue toward explicit dry-run proof review gate / runner-adapter readiness matrix. Do not invoke a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization evidence, injected runner configuration, rollback/observability, audit before/after, fail-closed behavior, and PL-H eligibility decision matrix.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop213-real-runner-adapter-dry-run-pl-h-gate",
+  "last_tick": "loop214-adapter-contract-review-dry-run-proof-harness",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -801,7 +801,14 @@
     "loop213 review: real runner adapter dry-run planning / PL-H eligibility gate binds seam evidence to adapter contract review, authorization evidence handoff, rollback/audit gates, explicit runner config, and fail-closed PL-H decision; code-reviewer and verifier final success",
     "loop213 method: M-45/GP-21 adapter dry-run planning proves contract/proof boundaries, not dry-run execution or authorization grant",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.537",
-    "next: explicit adapter contract review / dry-run proof harness mocked-only using loop213 dry-run planning gate bundle"
+    "next: explicit adapter contract review / dry-run proof harness mocked-only using loop213 dry-run planning gate bundle",
+    "loop214 skill_route: router decision=expose but top-K noisy; applied orchestrator + dispatching-parallel-agents + test-driven-development + programming + verification-before-completion; router precision gap carried",
+    "loop214 cluster_manifest: test-engineer 019eeece-52d7-7b73-868a-7beb496ba303, executor 019eeece-c617-71c3-a80a-39a693ad3ac3, code-reviewer 019eeed1-7e14-7342-9d45-d7948aec94d2, verifier 019eeed2-dbc0-7313-8d64-f9c6f199c68b",
+    "loop214 TDD/verification: RED 1 failed expected, focused pytest 1 passed, related regression 23 passed, ruff pass, npm smoke jobs-page pass pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5, web build pass, targeted eslint pass, forbidden family scan pass, active enablement scan pass, runtime cleanup pass",
+    "loop214 review: adapter contract review / dry-run proof harness binds dry-run planning evidence to contract review only, mocked proof only not execution, authorization evidence validation, rollback/audit before-after proof, explicit runner config/no default lookup, and fail-closed PL-H decision; code-reviewer and verifier final success",
+    "loop214 method: M-46/GP-22 adapter contract review proof harness remains review/proof evidence; oversized proof fixture pure LOC=3166 requires modularization before more marker growth",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.538",
+    "next: Jobs smoke fixture adapter/runner proof-harness modularization mocked-only before continuing dry-run proof review gate / runner-adapter readiness matrix"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -811,7 +818,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop213 safe tick completed explicit real runner adapter dry-run planning / PL-H eligibility gate mocked-only with cross-dialogue test-engineer/executor/code-reviewer/verifier rendezvous. The bundle binds loop212 authorized seam evidence to adapter contract review required, authorization evidence handoff required, rollback/audit gates required, explicit runner config required, PL-H fail-closed/not eligible, planning/proof-only status, and no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output without creating a new acceptance/checklist family, granting authorization, starting dry-run execution, or invoking a runner. Next gap is explicit adapter contract review / dry-run proof harness mocked-only, still forbidding real/default runner invocation, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output."
+    "note": "loop214 safe tick completed explicit adapter contract review / dry-run proof harness mocked-only with cross-dialogue test-engineer/executor/code-reviewer/verifier rendezvous. The bundle binds loop213 dry-run planning evidence to adapter contract review only, mocked proof only not execution, authorization evidence validation required, rollback/audit before-after proof required, explicit runner config/no default lookup, PL-H fail-closed/not eligible, and no page-load auto POST/default runner/adapter invocation/dry-run execution/background/migration/backfill/DB-backed backtest/PL-H execution/secret output without creating an Acceptance/Checklist family, granting authorization, starting dry-run execution, or invoking a runner. Next gap is Jobs smoke fixture adapter/runner proof-harness modularization because the fixture reached pure LOC=3166; real/default runner invocation, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
   },
-  "last_completed_note": "loop213 completed explicit real runner adapter dry-run planning / PL-H eligibility gate mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned; orchestrator applied the shared fixture GREEN patch to avoid write contention; code-reviewer and verifier final success passed. RED 2 failed / 20 passed expected, focused pytest 22 passed, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/ruff/forbidden family scan/active enablement scan/refined secret marker scan/runtime cleanup passed. Current next_atomic_action is explicit adapter contract review / dry-run proof harness mocked-only. No .env/secret output, page-load auto POST/default trigger, real/default runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
+  "last_completed_note": "loop214 completed explicit adapter contract review / dry-run proof harness mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned; orchestrator applied the scoped GREEN patch after RED. RED 1 failed expected, focused pytest 1 passed, related regression 23 passed, ruff pass, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/forbidden family scan/active enablement scan/runtime cleanup passed. Current next_atomic_action is Jobs smoke fixture adapter/runner proof-harness modularization mocked-only because web/scripts/smoke-jobs-page-fixture.mjs reached pure LOC=3166. No .env/secret output, page-load auto POST/default trigger, real/default runner/adapter invocation/dry-run execution/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
 }
