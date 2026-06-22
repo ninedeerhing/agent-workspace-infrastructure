@@ -1,26 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T22:13:07Z",
+  "updated_at": "2026-06-22T22:37:33Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-22T22:13:03Z",
-    "last_tick": "loop228-explicit-actual-adapter-dry-run-authorization-packet",
-    "pytest_passed": 37,
+    "recorded_at": "2026-06-22T22:35:06Z",
+    "last_tick": "loop229-actual-adapter-dry-run-execution-dry-run-gate-goal-bundle",
+    "pytest_passed": 38,
     "ruff": "ok",
-    "evidence_paths": [],
-    "section5_ref": "5.552",
+    "evidence_paths": [
+      "loop229 focused pytest 1 passed; related JobsPage proof regression 38 passed; ruff ok; targeted eslint pass; web build pass; npm smoke:jobs-page pass; active/stale/secret/runtime scans pass"
+    ],
+    "section5_ref": "5.553",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.0012583666666666667,
+  "age_hours": 0.040922414444444444,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T22:13:07Z",
+    "at": "2026-06-22T22:37:33Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.0012583666666666667
+    "age_hours": 0.040922414444444444
   }
 }
