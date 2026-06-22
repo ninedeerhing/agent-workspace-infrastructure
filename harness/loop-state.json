@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T13:26:39+08:00",
+  "updated_at": "2026-06-22T13:39:09+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-route-evidence-acceptance-surface-mocked-only",
-  "next_atomic_action": "Start PL-G route evidence acceptance-surface TDD mocked-only: expose recovered `route_evidence` from `brain_executions` / SSE execution payloads in user-visible or technical chat execution surfaces for `mining_batch_dispatch` and `backtest_dispatch`, proving auto mining -> auto backtest observability is inspectable after refresh without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After route_evidence acceptance surface is stable, continue PL-G flow hardening for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-flow-hardening-gap-audit-mocked-only",
+  "next_atomic_action": "Start PL-G flow hardening gap-audit mocked-only: trace the auto mining -> auto backtest observability chain from intent route evidence through execution persistence and chat/Jobs surfaces, identify the next smallest safe TDD slice for the intent quant subgraph without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After the gap audit selects a concrete next slice, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop186-pl-g-route-evidence-persistence-recovery-mocked-only",
+  "last_tick": "loop187-pl-g-route-evidence-acceptance-surface-mocked-only",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -556,7 +556,14 @@
     "loop186 verifier worker success: target pytest 40 passed; intent route 7 passed; targeted ruff pass; residual risk moved to acceptance-surface/hydration",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.509",
     "loop186 no .env/secret/auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
-    "loop186 next: route evidence acceptance-surface TDD mocked-only with no real runner/background/default DB-backed backtest or secret output"
+    "loop186 next: route evidence acceptance-surface TDD mocked-only with no real runner/background/default DB-backed backtest or secret output",
+    "loop187 TDD red: route evidence frontend contract failed as expected because brain_executions hydration dropped top-level route_evidence",
+    "loop187 frontend route evidence contract green: npm run test:route-evidence pass",
+    "loop187 web npm run build pass",
+    "loop187 web npm run lint pass with one pre-existing Fast Refresh warning and 0 errors",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.510",
+    "loop187 no .env/secret/auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
+    "loop187 next: PL-G flow-hardening gap-audit mocked-only with no real runner/background/default DB-backed backtest or secret output"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -566,7 +573,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop186 safe tick: PL-G route evidence persistence/recovery TDD mocked-only completed. Top-level route_evidence now survives SSE execution payload projection, assistant message metadata brain_executions recovery, and mocked brain_run snapshot persistence for mining_batch_dispatch / backtest_dispatch. Verification: red 2 failed expected, focused 3 passed, API/metadata/brain_run/intent adjacent 47 passed, recovery/intent/runtime regression 69 passed / 1 skipped, Python ruff pass, verifier worker success with target pytest 40 passed and intent route 7 passed. This tick had no env/secret reads, auto POST/trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is route evidence acceptance-surface mocked-only."
+    "note": "loop187 safe tick: PL-G route evidence acceptance-surface TDD mocked-only completed. Recovered top-level route_evidence now survives React brain_executions hydration and is exposed through chat technical execution details for mining_batch_dispatch / backtest_dispatch. Verification: red contract failed as expected, green npm run test:route-evidence pass, npm run build pass, npm run lint pass with one pre-existing Fast Refresh warning and 0 errors. This tick had no env/secret reads, auto POST/trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is PL-G flow-hardening gap-audit mocked-only."
   },
-  "last_completed_note": "loop186: safe tick completed PL-G route evidence persistence/recovery TDD mocked-only. Preserved top-level route_evidence in SSE execution payloads, assistant message metadata brain_executions, and mocked brain_run snapshot persistence for mining_batch_dispatch / backtest_dispatch. Verification: expected red 2 failed; focused 3 passed; API/metadata/brain_run/intent adjacent 47 passed; recovery/intent/runtime regression 69 passed / 1 skipped; Python ruff pass; verifier worker target pytest 40 passed and intent route 7 passed. No .env/secret reads, auto POST/trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route evidence acceptance-surface TDD mocked-only."
+  "last_completed_note": "loop187: safe tick completed PL-G route evidence acceptance-surface TDD mocked-only. Recovered top-level route_evidence now survives React brain_executions hydration and appears in chat technical execution detail JSON for mining_batch_dispatch / backtest_dispatch. Verification: expected red contract failure; npm run test:route-evidence pass; npm run build pass; npm run lint pass with one pre-existing Fast Refresh warning and 0 errors. No .env/secret reads, auto POST/trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G flow hardening gap-audit mocked-only."
 }

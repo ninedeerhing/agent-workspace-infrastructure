@@ -9,12 +9,12 @@
 ## Current Continuation Entry
 
 - Current mainline: AWI CodeX-effective baseline 已验收（TREE-RT 防漂移维护）；业务主线为 `TREE-6 / PL-G` mining_job Template B
-- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop186 已完成 `PL-G route evidence persistence/recovery TDD mocked-only`
-- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 通过 `create_thread`/`send_message_to_thread`；下一拍执行 `PL-G route evidence acceptance-surface TDD mocked-only`，把 recovered `route_evidence` 从 `brain_executions` / SSE execution payloads 暴露到用户可见或 technical chat execution surfaces，不接默认真实 runner 或 PL-H 批量执行
+- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop187 已完成 `PL-G route evidence acceptance-surface TDD mocked-only`
+- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 通过 `create_thread`/`send_message_to_thread`；下一拍执行 `PL-G flow hardening gap-audit mocked-only`，从 intent route evidence -> execution persistence -> chat/Jobs observability 链路选择下一条最小安全 TDD 切片，不接默认真实 runner 或 PL-H 批量执行
 - Post-backfill directive: 已退出 backfill-monitoring 方式，按真源连续推进 **auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph**；closure/收口表示阶段验收通过并继续下一切片，不是结束方案或停止 loop
-- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.509 route evidence persistence/recovery 结论与 `PL-G route evidence acceptance-surface TDD mocked-only` 下一原子动作）
+- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.510 route evidence acceptance-surface 结论与 `PL-G flow hardening gap-audit mocked-only` 下一原子动作）
 - Recovery: CodeX 有效性自检 → `harness/scripts/codex-self-check.ps1 -Format markdown`
-- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.509 最新台账
+- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.510 最新台账
 
 ## Current Mainline Facts
 
@@ -43,7 +43,7 @@ Take over this project and build context strictly in the following order:
 Facts and constraints:
 - AWI Runtime OS is installed and CodeX-effective; orchestrator is the only user-facing agent.
 - CodeX worker threads use `create_thread` and `harness/templates/codex-subagent-prompt.md`; mailbox is fallback/audit only.
-- quant_assistant business code is on TREE-6 / PL-G; loop186 proves intent quant subgraph `route_evidence` survives SSE execution payloads, assistant message metadata `brain_executions`, and mocked brain_run snapshot persistence without PL-H execution. Route evidence acceptance-surface mocked-only remains next.
+- quant_assistant business code is on TREE-6 / PL-G; loop187 proves recovered intent quant subgraph `route_evidence` survives React `brain_executions` hydration and is exposed through chat technical execution details without PL-H execution. PL-G flow-hardening gap-audit mocked-only remains next.
 - Side capability `PL-002` exists for Codex skill routing/gating. Phase 1 prototype lives in `harness/skill_router.py` with tests in `harness/tests/test_skill_router.py`; it is advisory only, does not modify global `~/.codex/skills`, and must not change quant `harness/loop-state.json` unless explicitly promoted.
 - Verify AWI: .\harness\scripts\codex-self-check.ps1 -Format markdown; .\harness\compliance-check.ps1 -Mode post-bootstrap
 - Verify app: cd apps/quant_assistant && uv run pytest -q -m "not db and not external"
