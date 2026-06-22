@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T08:31:17Z",
-  "last_tick": "loop198-pl-g-route-evidence-acceptance-evidence-ledger-mocked-only",
-  "pytest_passed": 25,
+  "recorded_at": "2026-06-22T08:44:02Z",
+  "last_tick": "loop199-pl-g-route-evidence-acceptance-risk-register-mocked-only",
+  "pytest_passed": 26,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.521"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.522"
   ],
-  "section5_ref": "5.521",
+  "section5_ref": "5.522",
   "source": "manual"
 }
