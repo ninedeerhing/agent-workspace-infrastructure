@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T01:48:12+08:00",
+  "updated_at": "2026-06-23T02:07:34+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-adapter-invocation-dry-run-harness-contract-mocked-only",
-  "next_atomic_action": "Start adapter invocation/dry-run harness contract TDD mocked-only: use loop217 preflight implementation gate to define an invocation-harness-only contract for explicit authorization evidence handoff, injected runner adapter parameter mapping, rollback/audit before-after capture around the mocked adapter boundary, missing-runner fail-closed rejection, and PL-H eligibility recheck; forbid invoking a real/default runner, executing adapter dry-run, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After the adapter invocation/dry-run harness contract stabilizes, continue toward the minimal mocked adapter dry-run proof gate. Do not invoke a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization evidence handoff, injected adapter configuration, rollback/observability, audit before/after, fail-closed behavior, and PL-H eligibility recheck.",
+  "current_slice": "pl-g-mocked-adapter-dry-run-proof-gate-mocked-only",
+  "next_atomic_action": "Start mocked adapter dry-run proof gate TDD mocked-only: use loop218 adapter invocation/dry-run harness contract to define a proof-only dry-run artifact for explicit authorization handoff evidence, injected adapter config echo, rollback/audit before-after proof around the mocked adapter boundary, missing-runner fail-closed rejection, and PL-H eligibility recheck; forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After the mocked adapter dry-run proof gate stabilizes, continue toward the minimal real runner adapter authorization packet / dry-run execution preflight. Do not invoke a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization evidence handoff, injected adapter configuration, rollback/observability, audit before/after, fail-closed behavior, and PL-H eligibility recheck.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop217-real-runner-adapter-preflight-gate",
+  "last_tick": "loop218-adapter-invocation-dry-run-harness-contract",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -829,7 +829,14 @@
     "loop217 review: real-runner adapter preflight implementation gate binds readiness matrix evidence to authorization bundle required-not-granted, injected runner config shape required-not-connected, rollback/audit observability before adapter boundary, missing-runner fail-closed rejection, PL-H non-eligibility recheck, and adapter invocation/dry-run harness next gate; code-reviewer and verifier final success",
     "loop217 method: no new M/GP; applied M-46/GP-22 and M-17 zero-write audit; preflight gate remains proof evidence, not authorization grant, runner connection, adapter invocation, dry-run execution, or PL-H eligibility/execution",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.541",
-    "next: adapter invocation/dry-run harness contract mocked-only using loop217 preflight gate"
+    "next: adapter invocation/dry-run harness contract mocked-only using loop217 preflight gate",
+    "loop218 skill_route: router decision=expose but top-K noisy; applied orchestrator + dispatching-parallel-agents + test-driven-development + programming + verification-before-completion; router precision gap carried",
+    "loop218 cluster_manifest: test-engineer 019eeece-52d7-7b73-868a-7beb496ba303, executor 019eeece-c617-71c3-a80a-39a693ad3ac3, code-reviewer 019eeed1-7e14-7342-9d45-d7948aec94d2, verifier 019eeed2-dbc0-7313-8d64-f9c6f199c68b",
+    "loop218 TDD/verification: RED 1 failed expected, GREEN focused pytest 1 passed, related regression 27 passed, ruff pass, npm smoke jobs-page pass pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5, web build pass, targeted eslint exit 0 with known ShellLayoutContext warning, forbidden family scan pass, prefix active marker scan pass, runtime cleanup pass",
+    "loop218 review: adapter invocation/dry-run harness contract binds preflight evidence to authorization handoff, injected runner adapter mapping, rollback/audit before-after capture around mocked adapter boundary, missing-runner fail-closed rejection, PL-H non-eligibility recheck, and mocked adapter dry-run proof next gate; code-reviewer final success and verifier final success",
+    "loop218 method: no new M/GP; applied M-46/GP-22 and M-17 zero-write audit; invocation harness remains proof evidence, not authorization grant, runner connection, adapter invocation, dry-run execution, execution permission, or PL-H eligibility/execution",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.542",
+    "next: mocked adapter dry-run proof gate mocked-only using loop218 invocation harness contract"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -839,7 +846,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop217 safe tick completed real-runner adapter preflight implementation gate mocked-only with cross-dialogue test-engineer/executor/code-reviewer/verifier rendezvous. The extracted runner-adapter proof modules now expose a preflight implementation gate covering authorization evidence bundle required-not-granted, injected runner config shape required-not-connected, rollback/audit before-after observability, missing-runner fail-closed rejection, PL-H non-eligibility recheck, and adapter invocation/dry-run harness next gate. Verification passed RED/GREEN, related pytest, ruff, eslint, smoke, build, family/enablement/secret scans, runtime cleanup, code-reviewer final review, and verifier final acceptance. Next gap is adapter invocation/dry-run harness contract; real/default runner invocation, adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
+    "note": "loop218 safe tick completed adapter invocation/dry-run harness contract mocked-only with cross-dialogue test-engineer/executor/code-reviewer/verifier rendezvous. The extracted runner-adapter proof modules now expose an invocation-harness-only contract covering authorization handoff required-not-granted, injected runner adapter parameter mapping required-not-connected, rollback/audit before-after capture around a mocked adapter boundary, missing-runner fail-closed rejection, PL-H non-eligibility recheck, and mocked adapter dry-run proof next gate. Verification passed RED/GREEN, related pytest, ruff, targeted eslint, smoke, build, family/prefix-active scans, runtime cleanup, code-reviewer final review, and verifier final acceptance. Next gap is mocked adapter dry-run proof gate; real/default runner invocation, actual adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
   },
-  "last_completed_note": "loop217 completed real-runner adapter preflight implementation gate mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned; orchestrator applied the scoped RED/GREEN preflight patch. RED 2 failed / 2 passed expected, focused pytest 4 passed, related regression 26 passed, ruff pass, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/forbidden family scan/active enablement scan/secret scan/runtime cleanup passed. Current next_atomic_action is adapter invocation/dry-run harness contract mocked-only using loop217 preflight gate. No .env/secret output, page-load auto POST/default trigger, real/default runner/adapter invocation/adapter dry-run execution/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
+  "last_completed_note": "loop218 completed adapter invocation/dry-run harness contract mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned; orchestrator applied the scoped RED/GREEN invocation harness patch. RED 1 failed expected, focused pytest 1 passed, related regression 27 passed, ruff pass, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/targeted eslint/forbidden family scan/prefix active marker scan/runtime cleanup passed. Current next_atomic_action is mocked adapter dry-run proof gate mocked-only using loop218 invocation harness contract. No .env/secret output, page-load auto POST/default trigger, real/default runner/adapter invocation/actual adapter dry-run execution/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
 }

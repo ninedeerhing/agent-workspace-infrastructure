@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-23T01:48:12+08:00
+更新时间：2026-06-23T02:07:34+08:00
+
+## Tick loop218-adapter-invocation-dry-run-harness-contract
+
+- **任务 ID**：loop218-adapter-invocation-dry-run-harness-contract-test-design
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读设计 adapter invocation/dry-run harness contract 的 RED/GREEN 验收形态，确保 invocation-harness-only proof 覆盖 explicit authorization handoff、injected runner adapter parameter mapping、rollback/audit before-after capture、missing-runner fail-closed rejection、PL-H eligibility recheck，并保持 no real/default runner、no adapter invocation/dry-run execution、no page-load auto POST、no background/migration/backfill/DB-backed backtest/PL-H/secret guards。
+- **变更**：worker 只读复核，未修改文件。
+- **验证建议**：focused test 应先 RED 于缺少 `adapterInvocationDryRunHarnessContractChecks` / `assertAdapterInvocationDryRunHarnessContract(...)` / fixture wiring，再 GREEN；source contract 必须拒绝 invocation/dry-run Acceptance/Checklist family，并要求 active enablement markers 仅作为 negative guard 出现。
+- **orchestrator 本地验证**：RED **1 failed** expected；focused pytest **1 passed**；related regression **27 passed**；ruff/eslint/smoke/build/family scan/prefix active marker scan/runtime cleanup pass。
+- **roster_update**：workload cleared；mistakes none；lesson: invocation harness tests must prove required evidence and negative execution state, not readiness to invoke the adapter or execute a dry run。
+- **next**：进入 mocked adapter dry-run proof gate mocked-only。
 
 ## Tick loop217-real-runner-adapter-preflight-gate
 

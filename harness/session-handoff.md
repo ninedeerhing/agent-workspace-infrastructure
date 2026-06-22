@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T01:48:12+08:00
+updated_at: 2026-06-23T02:07:34+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -52,6 +52,8 @@ updated_at: 2026-06-23T01:48:12+08:00
 [CONTEXT] 2026-06-22 loop216 · 已完成 runner-adapter readiness matrix mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `runnerAdapterReadinessMatrixChecks` / `assertRunnerAdapterReadinessMatrix(...)`，Jobs smoke fixture 验证 authorization evidence required-not-granted、injected runner config required-not-connected、rollback/audit before-after proof、missing-runner fail-closed、PL-H not-eligible decision 与 explicit real-runner adapter preflight next gate。验证 RED 2 failed / 1 passed expected，focused pytest 3 passed，related regression 25 passed，ruff pass，targeted eslint pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / readiness markers visible，web build/family scan/active enablement scan/secret scan/runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 explicit real-runner adapter preflight implementation gate TDD mocked-only，仍禁止 real/default runner、adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 
 [CONTEXT] 2026-06-23 loop217 · 已完成 real-runner adapter preflight implementation gate mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `realRunnerAdapterPreflightImplementationGateChecks` / `assertRealRunnerAdapterPreflightImplementationGate(...)`，Jobs smoke fixture 验证 authorization evidence bundle required-not-granted、injected runner config shape required-not-connected、rollback/audit before-after observability、missing-runner fail-closed rejection、PL-H not-eligible recheck 与 adapter invocation/dry-run harness next gate。验证 RED 2 failed / 2 passed expected，focused pytest 4 passed，related regression 26 passed，ruff pass，targeted eslint pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / preflight markers visible，web build/family scan/active enablement scan/secret scan/runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 adapter invocation/dry-run harness contract TDD mocked-only，仍禁止 real/default runner、adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
+
+[CONTEXT] 2026-06-23 loop218 · 已完成 adapter invocation/dry-run harness contract mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `adapterInvocationDryRunHarnessContractChecks` / `assertAdapterInvocationDryRunHarnessContract(...)`，Jobs smoke fixture 验证 authorization handoff required-not-granted、injected runner adapter parameter mapping required-not-connected、rollback/audit before-after capture around mocked adapter boundary、missing-runner fail-closed rejection、PL-H not-eligible recheck 与 mocked adapter dry-run proof next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 27 passed，ruff pass，targeted eslint exit 0 with pre-existing ShellLayoutContext warning，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / invocation harness markers visible，web build/family scan/prefix active marker scan/runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 mocked adapter dry-run proof gate TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。用户 2026-06-23 深夜提醒：唯一核心主线是持续推进自动挖掘 → 自动回测全流程 + 意图理解状态机。
 ```
 
 ### Loop Machine State
@@ -60,18 +62,18 @@ updated_at: 2026-06-23T01:48:12+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-adapter-invocation-dry-run-harness-contract-mocked-only |
-| `last_tick` | loop217-real-runner-adapter-preflight-gate |
+| `current_slice` | pl-g-mocked-adapter-dry-run-proof-gate-mocked-only |
+| `last_tick` | loop218-adapter-invocation-dry-run-harness-contract |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start adapter invocation/dry-run harness contract TDD mocked-only: use loop217 preflight implementation gate to define an invocation-harness-only contract for explicit authorization evidence handoff, injected runner adapter parameter mapping, rollback/audit before-after capture around the mocked adapter boundary, missing-runner fail-closed rejection, and PL-H eligibility recheck; forbid invoking a real/default runner, executing adapter dry-run, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start mocked adapter dry-run proof gate TDD mocked-only: use loop218 adapter invocation/dry-run harness contract to define a proof-only dry-run artifact for explicit authorization handoff evidence, injected adapter config echo, rollback/audit before-after proof around the mocked adapter boundary, missing-runner fail-closed rejection, and PL-H eligibility recheck; forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the adapter invocation/dry-run harness contract stabilizes, continue toward the minimal mocked adapter dry-run proof gate. Do not invoke a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization evidence handoff, injected adapter configuration, rollback/observability, audit before/after, fail-closed behavior, and PL-H eligibility recheck.
+After the mocked adapter dry-run proof gate stabilizes, continue toward the minimal real runner adapter authorization packet / dry-run execution preflight. Do not invoke a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization evidence handoff, injected adapter configuration, rollback/observability, audit before/after, fail-closed behavior, and PL-H eligibility recheck.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -88,7 +90,7 @@ After the adapter invocation/dry-run harness contract stabilizes, continue towar
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 adapter invocation/dry-run harness contract；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 mocked adapter dry-run proof gate；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers
