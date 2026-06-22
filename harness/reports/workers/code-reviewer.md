@@ -1,6 +1,23 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-23T03:00:17+08:00
+更新时间：2026-06-23T03:20:38+08:00
+
+## Tick loop221-real-runner-dry-run-eligibility-reassessment
+
+- **任务 ID**：loop221-real-runner-dry-run-eligibility-reassessment-pre-review / loop221-real-runner-dry-run-eligibility-reassessment-final-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success
+- **任务**：只读预审与最终审查 minimal real-runner dry-run eligibility reassessment，重点看是否把 reassessment 误写成 auth/operator approval granted、config connected、runner/adapter invoked、actual dry-run execution started、PL-H eligible/executable，或新增 Acceptance/Checklist/Execution family。
+- **审查结论**：通过。Eligibility reassessment 通过 bounded proof modules 暴露，`assertRealRunnerDryRunEligibilityReassessment(bodyText, submittedText, refreshedText)` 显式绑定 body/submitted/refreshed evidence；authorization evidence incomplete/not granted、adapter config incomplete/not connected、rollback/audit required、missing-runner fail-closed、PL-H non-eligibility、operator approval required/not approved 与 decision:not_eligible 都保持 fail-closed proof-only 语义。
+- **验证**：
+  - scoped diff semantic review -> pass。
+  - eligibility checks/assertions source inspection -> pass。
+  - active grant/connection/invocation/execution / forbidden family / secret marker scan -> pass；风险字符串仅为 forbidden markers 或 negative assertions。
+  - focused final review test -> **1 passed**；related regression **30 passed**。
+- **roster_update**：workload cleared；mistakes none；lesson: eligibility reassessment wording must keep the current decision explicitly not eligible while only referencing the later execution design gate as next gate。
+- **残余风险**：contracts remain mocked-only and string-heavy; future execution design gate must continue fail-closed/no-execution wording。
+- **next**：orchestrator can mark code-reviewer gate passed for loop221。
 
 ## Tick loop220-real-runner-authorization-packet-preflight
 

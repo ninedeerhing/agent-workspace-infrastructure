@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T03:00:17+08:00
+updated_at: 2026-06-23T03:20:38+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -58,6 +58,8 @@ updated_at: 2026-06-23T03:00:17+08:00
 [CONTEXT] 2026-06-23 loop219 · 已完成 mocked adapter dry-run proof gate mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `mockedAdapterDryRunProofGateChecks` / `assertMockedAdapterDryRunProofGate(...)`，Jobs smoke fixture 验证 proof-only dry-run artifact、explicit authorization handoff evidence、injected adapter config echo、rollback/audit before-after proof around mocked adapter boundary、missing-runner fail-closed rejection、PL-H not-eligible recheck 与 real-runner authorization packet/preflight next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 28 passed，ruff pass，targeted eslint exit 0 with pre-existing ShellLayoutContext warning，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / mocked dry-run proof markers visible，source/runtime forbidden scans、runtime secret scan、runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 real runner adapter authorization packet / dry-run execution preflight TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 
 [CONTEXT] 2026-06-23 loop220 · 已完成 real runner authorization packet / dry-run execution preflight mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `realRunnerAuthorizationPacketPreflightChecks` / `assertRealRunnerAuthorizationPacketPreflight(...)`，Jobs smoke fixture 验证 fail-closed preflight artifact、explicit authorization evidence required-not-granted、injected adapter config validation required-not-connected、rollback/audit before-after observability、missing-runner fail-closed rejection、PL-H not-eligible recheck、operator approval boundary 与 minimal real-runner dry-run eligibility reassessment next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 29 passed，ruff pass，targeted eslint exit 0 with pre-existing ShellLayoutContext warning，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / authorization packet preflight markers visible，source/runtime forbidden scans、runtime secret scan、runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 minimal real-runner dry-run eligibility reassessment TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
+
+[CONTEXT] 2026-06-23 loop221 · 已完成 minimal real-runner dry-run eligibility reassessment mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `realRunnerDryRunEligibilityReassessmentChecks` / `assertRealRunnerDryRunEligibilityReassessment(...)`，Jobs smoke fixture 验证 authorization evidence incomplete/not granted、adapter config incomplete/not connected、rollback/audit observability required、missing-runner fail-closed、PL-H not eligible until real-batch gate、operator approval required/not approved、decision:not_eligible 与 explicit real-runner dry-run execution design next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 30 passed，ruff pass，targeted eslint exit 0 with pre-existing ShellLayoutContext warning，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / eligibility reassessment markers visible，runtime forbidden/secret scan、forbidden family source scan、runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 explicit real-runner dry-run execution design gate TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 ```
 
 ### Loop Machine State
@@ -66,18 +68,18 @@ updated_at: 2026-06-23T03:00:17+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-minimal-real-runner-dry-run-eligibility-reassessment-mocked-only |
-| `last_tick` | loop220-real-runner-authorization-packet-preflight |
+| `current_slice` | pl-g-explicit-real-runner-dry-run-execution-design-gate-mocked-only |
+| `last_tick` | loop221-real-runner-dry-run-eligibility-reassessment |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start minimal real-runner dry-run eligibility reassessment TDD mocked-only: use loop220 authorization packet / dry-run execution preflight to define an eligibility decision matrix for explicit authorization evidence completeness, injected adapter config validation, rollback/audit before-after observability, missing-runner fail-closed behavior, PL-H non-eligibility/real-batch gate, and operator approval boundary; forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start explicit real-runner dry-run execution design gate TDD mocked-only: use loop221 eligibility reassessment to define a design-only gate for explicit authorization evidence completeness, injected adapter config validation, rollback/audit before-after observability, missing-runner fail-closed behavior, PL-H non-eligibility/real-batch gate, operator approval boundary, and no-execution rollback/audit acceptance; still forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the minimal real-runner dry-run eligibility reassessment stabilizes, move to a later explicit real-runner dry-run execution design gate only if explicit authorization evidence completeness, injected adapter config validation, rollback/audit before-after observability, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, and operator approval boundary are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
+After the explicit real-runner dry-run execution design gate stabilizes, assess a later operator-authorized runner handoff gate only if explicit authorization evidence, injected adapter config validation, rollback/audit observability, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, operator approval boundary, and no-execution rollback/audit acceptance are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -94,7 +96,7 @@ After the minimal real-runner dry-run eligibility reassessment stabilizes, move 
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 minimal real-runner dry-run eligibility reassessment；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 explicit real-runner dry-run execution design gate；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers

@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-23T03:00:17+08:00
+更新时间：2026-06-23T03:20:38+08:00
+
+## Tick loop221-real-runner-dry-run-eligibility-reassessment
+
+- **任务 ID**：loop221-real-runner-dry-run-eligibility-reassessment-test-design
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读设计 minimal real-runner dry-run eligibility reassessment 的 RED/GREEN 验收形态，确保 eligibility matrix 覆盖 authorization evidence incomplete/not granted、injected adapter config incomplete/not connected、rollback/audit observability required、missing-runner fail-closed、PL-H not eligible until real-batch gate、operator approval required/not approved、decision:not_eligible，并保持 no real/default runner、no adapter invocation/actual dry-run execution、no page-load auto POST、no background/migration/backfill/DB-backed backtest/PL-H/secret guards。
+- **变更**：worker 只读复核，未修改文件。
+- **验证建议**：focused test 应先 RED 于缺少 `realRunnerDryRunEligibilityReassessmentChecks` / `assertRealRunnerDryRunEligibilityReassessment(...)` / fixture wiring，再 GREEN；source contract 必须拒绝 EligibilityAcceptance/EligibilityChecklist/DryRunExecution family，并要求 active grant/connected/invoked/executed/eligible/approved markers 仅作为 negative guard 出现。
+- **orchestrator 本地验证**：RED **1 failed** expected；focused pytest **1 passed**；related regression **30 passed**；ruff/eslint/smoke/build/runtime forbidden-secret scan/forbidden family source scan/runtime cleanup pass。
+- **roster_update**：workload cleared；mistakes none；lesson: eligibility reassessment tests must prove not-eligible/fail-closed decision state, not approval granted or readiness to execute。
+- **next**：进入 explicit real-runner dry-run execution design gate mocked-only。
 
 ## Tick loop220-real-runner-authorization-packet-preflight
 
