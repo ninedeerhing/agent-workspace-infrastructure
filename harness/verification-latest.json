@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T03:01:53Z",
-  "last_tick": "loop177-pl-g-real-batch-demand-gate-api-surface-mocked-only",
-  "pytest_passed": 34,
+  "recorded_at": "2026-06-22T03:25:40Z",
+  "last_tick": "loop178-pl-g-jobs-page-demand-gate-display-mocked-only",
+  "pytest_passed": 35,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.500"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.501"
   ],
-  "section5_ref": "5.500",
+  "section5_ref": "5.501",
   "source": "manual"
 }

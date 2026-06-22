@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T03:02:56Z",
+  "updated_at": "2026-06-22T03:25:43Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-22T03:01:53Z",
-    "last_tick": "loop177-pl-g-real-batch-demand-gate-api-surface-mocked-only",
-    "pytest_passed": 34,
+    "recorded_at": "2026-06-22T03:25:40Z",
+    "last_tick": "loop178-pl-g-jobs-page-demand-gate-display-mocked-only",
+    "pytest_passed": 35,
     "ruff": "ok",
     "evidence_paths": [
-      "apps/quant_assistant/docs/PROJECT_STATUS.md#5.500"
+      "apps/quant_assistant/docs/PROJECT_STATUS.md#5.501"
     ],
-    "section5_ref": "5.500",
+    "section5_ref": "5.501",
     "source": "manual"
   },
-  "git_dirty": false,
-  "age_hours": 0.01751725527777778,
+  "git_dirty": true,
+  "age_hours": 0.0010485852777777777,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T03:02:56Z",
+    "at": "2026-06-22T03:25:43Z",
     "apply": true,
     "stale": false,
-    "git_dirty": false,
-    "age_hours": 0.01751725527777778
+    "git_dirty": true,
+    "age_hours": 0.0010485852777777777
   }
 }
