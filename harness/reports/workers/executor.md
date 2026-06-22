@@ -1,6 +1,22 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-22T23:05:40+08:00
+**Updated**: 2026-06-22T23:23:06+08:00
+
+## Tick loop216-runner-adapter-readiness-matrix
+
+- **任务 ID**：loop216-runner-adapter-readiness-matrix-scope-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：只读复核 readiness matrix implementation scope，确认变更应保持在 extracted proof modules + smoke fixture import/call wiring + focused source contract test 内，不触碰 JobsPage runtime、runner、adapter dry-run、DB/backfill/background 或 PL-H execution。
+- **结论**：建议新增 bounded readiness checks/assertions modules，并由 aggregator re-export / setter 注入 `assertTextCheck`；最终共享 fixture patch 由 orchestrator 串行应用以避免跨对话写冲突。
+- **变更**：
+  - worker 未改文件。
+  - orchestrator final patch 涉及 `tests/test_jobs_page_adapter_contract_review_unit.py`、`web/scripts/jobs-page-fixture-runner-adapter-proofs.mjs`、`web/scripts/jobs-page-fixture-runner-adapter-readiness-checks.mjs`、`web/scripts/jobs-page-fixture-runner-adapter-readiness-assertions.mjs`、`web/scripts/smoke-jobs-page-fixture.mjs`。
+- **验证**：orchestrator verification after patch: RED **2 failed / 1 passed** expected, GREEN focused pytest **3 passed**, related regression **25 passed**, smoke/build/eslint/ruff/family scan/enablement scan/secret scan/runtime cleanup pass。
+- **roster_update**：workload cleared；mistakes unchanged；lesson: readiness matrix is safe only when it is an extracted proof module and each row is tied to body/submitted/refreshed evidence plus fail-closed guards。
+- **残余风险**：mocked-only；real runner/adapter dry-run/PL-H/DB-backed path remains intentionally deferred。
+- **next**：explicit real-runner adapter preflight implementation gate mocked-only。
 
 ## Tick loop215-jobs-smoke-fixture-runner-adapter-proof-modularization
 

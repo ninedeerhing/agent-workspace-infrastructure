@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T23:05:40+08:00",
+  "updated_at": "2026-06-22T23:23:06+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-dry-run-proof-review-runner-adapter-readiness-matrix-mocked-only",
-  "next_atomic_action": "Start explicit dry-run proof review gate / runner-adapter readiness matrix TDD mocked-only: use the extracted runner-adapter proof modules and loop208-loop215 evidence to define a compact readiness matrix covering authorization evidence, injected runner config, rollback/audit before-after proof, fail-closed missing-runner behavior, and PL-H eligibility decision; forbid invoking a real/default runner, adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After the readiness matrix stabilizes, continue toward the minimal explicit real-runner adapter preflight implementation gate. Do not invoke a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization evidence, injected runner configuration, rollback/observability, audit before/after, fail-closed behavior, and PL-H eligibility decision matrix.",
+  "current_slice": "pl-g-explicit-real-runner-adapter-preflight-implementation-gate-mocked-only",
+  "next_atomic_action": "Start explicit real-runner adapter preflight implementation gate TDD mocked-only: use the loop216 runner-adapter readiness matrix to define a preflight-only contract for authorization evidence bundle, injected runner config shape, rollback/audit before-after observability, missing-runner fail-closed rejection, and PL-H eligibility recheck; forbid invoking a real/default runner, adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After the preflight implementation gate stabilizes, continue toward the minimal adapter invocation/dry-run harness contract. Do not invoke a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization evidence bundle, injected runner configuration, rollback/observability, audit before/after, fail-closed behavior, and PL-H eligibility recheck.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop215-jobs-smoke-fixture-runner-adapter-proof-modularization",
+  "last_tick": "loop216-runner-adapter-readiness-matrix",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -814,7 +814,15 @@
     "loop215 review: runner-adapter proof/check matrices extracted into bounded pure modules, preserving adapter_contract_review and runner-adapter safety evidence without import-time side effects or execution enablement; code-reviewer and verifier final success",
     "loop215 method: no new M/GP; applied M-46/GP-22 and M-17 zero-write audit; smoke fixture pure LOC reduced 3166->2165 and extracted modules pure LOC <=214",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.539",
-    "next: explicit dry-run proof review gate / runner-adapter readiness matrix mocked-only using extracted runner-adapter proof modules"
+    "next: explicit dry-run proof review gate / runner-adapter readiness matrix mocked-only using extracted runner-adapter proof modules",
+    "loop216 skill_route: router decision=expose but top-K noisy; applied orchestrator + dispatching-parallel-agents + test-driven-development + programming + verification-before-completion; router precision gap carried",
+    "loop216 cluster_manifest: test-engineer 019eeece-52d7-7b73-868a-7beb496ba303, executor 019eeece-c617-71c3-a80a-39a693ad3ac3, code-reviewer 019eeed1-7e14-7342-9d45-d7948aec94d2, verifier 019eeed2-dbc0-7313-8d64-f9c6f199c68b",
+    "loop216 TDD/verification: RED 2 failed / 1 passed expected, GREEN focused pytest 3 passed, related regression 25 passed, ruff pass, npm smoke jobs-page pass pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5, web build pass, targeted eslint pass, forbidden family scan pass, active enablement scan pass, secret marker scan pass, runtime cleanup pass",
+    "loop216 review: runner-adapter readiness matrix binds adapter contract proof harness evidence to authorization evidence required-not-granted, injected runner config required-not-connected, rollback/audit before-after proof, missing-runner fail-closed behavior, PL-H non-eligibility decision, and explicit preflight next gate; code-reviewer and verifier final success",
+    "loop216 method: no new M/GP; applied M-46/GP-22 and M-17 zero-write audit; readiness matrix remains proof/review evidence, not runner invocation, adapter dry-run execution, authorization grant, or PL-H execution",
+    "loop216 five lifecycles pass: methodology active_entries=44 active_gp_entries=22 active_step_digests=25; work_report record_count=22; sync finding_count=0 latest_section5=540 top_section5_ref=540; verification stale=false section5_ref=5.540 pytest_passed=25 ruff=ok; closure open_count=0",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.540",
+    "next: explicit real-runner adapter preflight implementation gate mocked-only using loop216 readiness matrix"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -824,7 +832,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop215 safe tick completed Jobs smoke fixture runner-adapter proof-harness modularization mocked-only with cross-dialogue test-engineer/executor/code-reviewer/verifier rendezvous. The loop208-loop214 runner-adapter proof/check matrices were extracted from the oversized fixture into bounded pure modules while preserving adapter_contract_review and runner-adapter safety evidence. Verification passed focused/regression pytest, ruff, eslint, smoke, build, family/enablement scans, runtime cleanup, code-reviewer final review, and verifier final acceptance. Next gap is explicit dry-run proof review gate / runner-adapter readiness matrix; real/default runner invocation, adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
+    "note": "loop216 safe tick completed runner-adapter readiness matrix mocked-only with cross-dialogue test-engineer/executor/code-reviewer/verifier rendezvous. The extracted runner-adapter proof modules now expose a compact readiness matrix covering authorization evidence required-not-granted, injected runner config required-not-connected, rollback/audit before-after proof, missing-runner fail-closed behavior, PL-H non-eligibility decision, and explicit preflight next gate. Verification passed RED/GREEN, related pytest, ruff, eslint, smoke, build, family/enablement/secret scans, runtime cleanup, code-reviewer final review, and verifier final acceptance. Next gap is explicit real-runner adapter preflight implementation gate; real/default runner invocation, adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
   },
-  "last_completed_note": "loop215 completed Jobs smoke fixture runner-adapter proof-harness modularization mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned; orchestrator applied the scoped RED/GREEN extraction patch. RED 2 failed expected, focused pytest 2 passed, related regression 24 passed, ruff pass, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/forbidden family scan/active enablement scan/runtime cleanup passed. Current next_atomic_action is explicit dry-run proof review gate / runner-adapter readiness matrix mocked-only using extracted runner-adapter proof modules. No .env/secret output, page-load auto POST/default trigger, real/default runner/adapter dry-run execution/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
+  "last_completed_note": "loop216 completed runner-adapter readiness matrix mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned; orchestrator applied the scoped RED/GREEN readiness patch. RED 2 failed / 1 passed expected, focused pytest 3 passed, related regression 25 passed, ruff pass, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/forbidden family scan/active enablement scan/secret scan/runtime cleanup passed. Current next_atomic_action is explicit real-runner adapter preflight implementation gate mocked-only using loop216 readiness matrix. No .env/secret output, page-load auto POST/default trigger, real/default runner/adapter dry-run execution/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
 }

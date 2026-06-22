@@ -1,6 +1,23 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-22T23:05:40+08:00
+更新时间：2026-06-22T23:23:06+08:00
+
+## Tick loop216-runner-adapter-readiness-matrix
+
+- **任务 ID**：loop216-runner-adapter-readiness-matrix-pre-review / loop216-runner-adapter-readiness-matrix-final-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success
+- **任务**：只读预审与最终审查 runner-adapter readiness matrix，重点看是否把 review/proof coverage 误写成 authorization granted、runner connected/enabled、adapter invoked/call started、dry-run execution started、PL-H eligible/executable，或新增 Acceptance/Checklist family。
+- **审查结论**：通过。Matrix 通过 extracted proof modules 暴露，`assertRunnerAdapterReadinessMatrix(bodyText, submittedText, refreshedText)` 显式绑定 body/submitted/refreshed evidence；authorization evidence、injected runner config、rollback/audit before-after proof、missing-runner fail-closed behavior、PL-H non-eligibility decision 与 next preflight gate 都保持 proof/review-only 语义。
+- **验证**：
+  - scoped diff semantic review -> pass。
+  - readiness checks/assertions source inspection -> pass。
+  - active enablement / forbidden family / secret marker scan -> pass；风险字符串仅为 forbidden markers 或 negative assertions。
+  - focused final review test -> **3 passed**。
+- **roster_update**：workload cleared；mistakes none；lesson: readiness matrix is acceptable only when readiness means review coverage and next-gate proof, not execution eligibility。
+- **残余风险**：contracts remain mocked-only and string-heavy; future preflight work must continue fail-closed wording。
+- **next**：orchestrator can mark code-reviewer gate passed for loop216。
 
 ## Tick loop215-jobs-smoke-fixture-runner-adapter-proof-modularization
 

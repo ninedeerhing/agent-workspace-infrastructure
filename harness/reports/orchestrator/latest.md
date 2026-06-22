@@ -1,20 +1,20 @@
-# Orchestrator Report — loop215-jobs-smoke-fixture-runner-adapter-proof-modularization
+# Orchestrator Report — loop216-runner-adapter-readiness-matrix
 
-**Updated**: 2026-06-22T23:05:40+08:00
+**Updated**: 2026-06-22T23:23:06+08:00
 
 ## Tick Summary
 
-- **slice**: TREE-6 / PL-G Jobs smoke fixture runner-adapter proof-harness modularization mocked-only
+- **slice**: TREE-6 / PL-G runner-adapter readiness matrix mocked-only
 - **agent**: orchestrator
-- **result**: extracted loop208-loop214 runner-adapter proof/check matrices from the oversized Jobs smoke fixture into bounded pure modules while preserving adapter contract review and runner-adapter safety evidence
-- **next**: explicit dry-run proof review gate / runner-adapter readiness matrix mocked-only
+- **result**: added a compact runner-adapter readiness matrix on top of the extracted proof modules, covering authorization evidence, injected runner config, rollback/audit before-after proof, fail-closed missing-runner behavior, PL-H eligibility decision, and the next explicit preflight gate
+- **next**: explicit real-runner adapter preflight implementation gate mocked-only
 
 ## Cluster Manifest
 
 ```yaml
 cluster_manifest:
-  cluster_id: "cluster-loop215-jobs-smoke-fixture-modularization"
-  goal_id: "TREE-6-PL-G-runner-adapter-proof-modularization"
+  cluster_id: "cluster-loop216-runner-adapter-readiness-matrix"
+  goal_id: "TREE-6-PL-G-runner-adapter-readiness-matrix"
   commander: "orchestrator"
   max_parallel_workers: 4
   worker_threads:
@@ -38,10 +38,10 @@ cluster_manifest:
 
 | Gate | Decision |
 |------|----------|
-| goal_gate | `runner_adapter_proof_modularization` |
-| skill_route | router `decision=expose`; top-K noisy (`tdd-rust`, `start-work`, `ulw-loop`, `learner`, `conversation-continuity`), applied `orchestrator`, `dispatching-parallel-agents`, `test-driven-development`, `programming`, `refactor`, `verification-before-completion` |
+| goal_gate | `runner_adapter_readiness_matrix` |
+| skill_route | router `decision=expose`; top-K noisy (`github-triage`, `analyze`, `ios-design-review`, `verification-before-completion`, `tdd-rust`), applied `orchestrator`, `dispatching-parallel-agents`, `test-driven-development`, `programming`, `verification-before-completion` |
 | dispatch_decision | dispatched existing roster roles `test-engineer`, `executor`, `code-reviewer`, `verifier` via CodeX cross-dialogue threads |
-| bundle_decision | evidence-preserving modularization, not authorization grant, not adapter invocation, not dry-run execution, not PL-H eligibility |
+| bundle_decision | readiness matrix is proof/review evidence, not authorization grant, not runner config connection, not adapter invocation, not dry-run execution, not PL-H eligibility |
 | capacity_review | existing roster sufficient; no new worker requested |
 | skill_lifecycle | no new M/GP; applied M-46/GP-22 and M-17 zero-write audit; router precision gap carried |
 
@@ -49,33 +49,33 @@ cluster_manifest:
 
 | File | Summary |
 |------|---------|
-| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-proofs.mjs` | New 34 pure LOC aggregator for runner-adapter proof checks/assertions and assertTextCheck injection. |
-| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-*.mjs` | New bounded planning/boundary/dry-run check and assertion modules, each <=214 pure LOC. |
-| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Imports extracted proof modules and reduced pure LOC from 3166 to 2165 while preserving smoke behavior. |
-| `apps/quant_assistant/tests/test_jobs_page_adapter_contract_review_unit.py` | Added focused module/export/import wiring coverage and preserved adapter contract review guards. |
-| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Source contract scans now read fixture plus extracted modules. |
-| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Acceptance smoke source scan now includes extracted modules. |
+| `apps/quant_assistant/tests/test_jobs_page_adapter_contract_review_unit.py` | Added RED/GREEN source-contract coverage for runner-adapter readiness matrix exports, fixture wiring, required markers, forbidden family names, and active enablement guards. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-readiness-checks.mjs` | New bounded checks module for readiness matrix rows and forbidden markers. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-readiness-assertions.mjs` | New bounded assertion module binding body/submitted/refreshed evidence to readiness rows. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-proofs.mjs` | Re-exported readiness checks/assertion and wired readiness assertTextCheck setter. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Calls `assertRunnerAdapterReadinessMatrix(...)` and adds readiness checks to browser smoke `text_checks`. |
 
 ## Review
 
-- `test-engineer` required RED coverage for new module/export/import wiring, preserving `adapter_contract_review_*` and prior runner-adapter safety markers.
-- `executor` confirmed extraction should remain pure modules plus fixture import wiring, with no JobsPage/runtime/runner changes.
-- `code-reviewer` confirmed final diff preserves body/submitted/refreshed evidence binding and introduces no import-time side effects or execution enablement.
-- `verifier` accepted the verification matrix and confirmed clean-worktree closure remains orchestrator-owned after sync/commit.
+- `test-engineer` required RED coverage for matrix exports, helper wiring, exact markers, and negative execution guards.
+- `executor` confirmed implementation should stay inside extracted proof modules plus fixture wiring, leaving JobsPage/runtime/runner/DB untouched.
+- `code-reviewer` final review passed: readiness wording remains review/proof coverage, not authorization granted, runner connected, adapter invocation, dry-run execution, PL-H eligibility, or secret exposure.
+- `verifier` final verification passed with independent reruns of focused/regression tests, ruff, eslint, smoke, build, scans, and runtime cleanup.
 
 ## Verification Gates
 
 | Gate | Result |
 |------|--------|
-| TDD RED | pass · expected 2 failed before extracted module existed |
-| focused pytest | pass · 2 passed |
-| related regression | pass · 24 passed |
+| TDD RED | pass · expected 2 failed / 1 passed before readiness module/helper existed |
+| focused pytest | pass · 3 passed |
+| related regression | pass · 25 passed |
 | Python ruff | pass · touched Python tests clean |
-| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5` |
+| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, readiness markers visible |
 | web build | pass · `npm run build` |
 | targeted eslint | pass · `scripts/smoke-jobs-page-fixture.mjs` + `scripts/jobs-page-fixture-runner-adapter-*.mjs` |
-| guard scans | pass · forbidden family scan ok; active enablement scan ok; runtime cleanup scan ok |
-| LOC gate | pass · fixture pure LOC 3166 -> 2165; extracted modules <=214 pure LOC |
+| guard scans | pass · forbidden family, active enablement, secret marker scans reviewed as negative guards only |
+| runtime cleanup | pass · no LISTEN on 5183/5184 and no quant_assistant-scoped node/chrome/chromium process |
+| lifecycle | pass · verification snapshot `pytest_passed=25` / `ruff=ok`; sync finding_count=0; closure open_count=0 |
 
 ## Safety
 
@@ -87,4 +87,4 @@ Verification remains mocked-only. Real/default runner invocation, adapter dry-ru
 
 ## Next
 
-Start explicit dry-run proof review gate / runner-adapter readiness matrix mocked-only using the extracted runner-adapter proof modules and loop208-loop215 evidence.
+Start explicit real-runner adapter preflight implementation gate mocked-only using the loop216 readiness matrix.
