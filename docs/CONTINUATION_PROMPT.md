@@ -9,12 +9,12 @@
 ## Current Continuation Entry
 
 - Current mainline: AWI CodeX-effective baseline 已验收（TREE-RT 防漂移维护）；业务主线为 `TREE-6 / PL-G` mining_job Template B
-- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop197 已完成 `PL-G route-evidence acceptance source map mocked-only`
-- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 通过 `create_thread`/`send_message_to_thread`；下一拍执行 `PL-G route-evidence acceptance evidence ledger TDD mocked-only`，证明 Jobs acceptance/readiness surface 输出 compact evidence ledger，列出 source-map chain status、operator acceptance status、no-auto-execution safety status 与 next PL-G safe increment，不接默认真实 runner 或 PL-H 批量执行
+- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop198 已完成 `PL-G route-evidence acceptance evidence ledger mocked-only`
+- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 通过 `create_thread`/`send_message_to_thread`；下一拍执行 `PL-G route-evidence acceptance risk register TDD mocked-only`，证明 Jobs acceptance/readiness surface 输出 compact risk register，列出 unresolved safe-execution risks、deferred PL-H criteria、non-secret safety guard status 与 next PL-G mocked/source-contract increment，不接默认真实 runner 或 PL-H 批量执行
 - Post-backfill directive: 已退出 backfill-monitoring 方式，按真源连续推进 **auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph**；closure/收口表示阶段验收通过并继续下一切片，不是结束方案或停止 loop
-- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.520 acceptance source map 结论与 `PL-G route-evidence acceptance evidence ledger TDD mocked-only` 下一原子动作）
+- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.521 acceptance evidence ledger 结论与 `PL-G route-evidence acceptance risk register TDD mocked-only` 下一原子动作）
 - Recovery: CodeX 有效性自检 → `harness/scripts/codex-self-check.ps1 -Format markdown`
-- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.520 最新台账
+- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.521 最新台账
 
 ## Current Mainline Facts
 
@@ -24,7 +24,7 @@
 - 日末 push：`harness/scripts/daily-git-push.ps1` + CodeX `automation_update` id `awi-daily-git-push`（见 `harness/templates/daily-git-push-prompt.md`）
 - 同步方式：`bootstrap.ps1 -Mode minimum` + `-Mode full -Force -ProvisionTeam -Platform codex` 或 `harness/adapters/Invoke-PlatformAdapter.ps1 -Platform codex`
 - Runtime OS：`harness/scripts/codex-self-check.ps1`, `harness/compliance-check.ps1`, `harness/codex-automation-registry.json`, `harness/reports/EMPLOYEE_ROSTER.md`, `harness/adapters/`
-- 业务隔离：loop197 仅做 mocked/source-contract/browser-smoke route evidence acceptance source map，未输出 DSN/token；未读取 `.env`；未执行 page-load auto POST、默认 trigger、真实 runner、migration/backfill/background process/default real runner/DB-backed backtest/PL-H batch execution
+- 业务隔离：loop198 仅做 mocked/source-contract/browser-smoke route evidence acceptance evidence ledger，未输出 DSN/token；未读取 `.env`；未执行 page-load auto POST、默认 trigger、真实 runner、migration/backfill/background process/default real runner/DB-backed backtest/PL-H batch execution
 - 会话入口：`docs/SESSION_SETUP.md` + `harness/templates/codex-zero-config-prompt.md`
 
 ## Effective Continuation Prompt
@@ -43,7 +43,7 @@ Take over this project and build context strictly in the following order:
 Facts and constraints:
 - AWI Runtime OS is installed and CodeX-effective; orchestrator is the only user-facing agent.
 - CodeX worker threads use `create_thread` and `harness/templates/codex-subagent-prompt.md`; mailbox is fallback/audit only.
-- quant_assistant business code is on TREE-6 / PL-G; loop197 proves the Jobs acceptance/readiness surface exposes a compact source map while keeping PL-H batch execution deferred. PL-G route-evidence acceptance evidence ledger mocked-only remains next.
+- quant_assistant business code is on TREE-6 / PL-G; loop198 proves the Jobs acceptance/readiness surface exposes a compact evidence ledger while keeping PL-H batch execution deferred. PL-G route-evidence acceptance risk register mocked-only remains next.
 - Side capability `PL-002` exists for Codex skill routing/gating. Phase 1 prototype lives in `harness/skill_router.py` with tests in `harness/tests/test_skill_router.py`; it is advisory only, does not modify global `~/.codex/skills`, and must not change quant `harness/loop-state.json` unless explicitly promoted.
 - Verify AWI: .\harness\scripts\codex-self-check.ps1 -Format markdown; .\harness\compliance-check.ps1 -Mode post-bootstrap
 - Verify app: cd apps/quant_assistant && uv run pytest -q -m "not db and not external"

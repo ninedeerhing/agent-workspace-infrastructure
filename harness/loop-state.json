@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T16:09:33+08:00",
+  "updated_at": "2026-06-22T16:24:57+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-route-evidence-acceptance-evidence-ledger-mocked-only",
-  "next_atomic_action": "Start PL-G route-evidence acceptance evidence ledger TDD mocked-only: prove the Jobs acceptance/readiness surface emits a compact evidence ledger listing the source-map chain status, operator acceptance status, no-auto-execution safety status, and next PL-G safe increment, without page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After acceptance evidence ledger stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-route-evidence-acceptance-risk-register-mocked-only",
+  "next_atomic_action": "Start PL-G route-evidence acceptance risk register TDD mocked-only: prove the Jobs acceptance/readiness surface emits a compact risk register listing unresolved safe-execution risks, deferred PL-H criteria, non-secret safety guard status, and the next PL-G mocked/source-contract increment, without page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After acceptance risk register stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop197-pl-g-route-evidence-acceptance-source-map-mocked-only",
+  "last_tick": "loop198-pl-g-route-evidence-acceptance-evidence-ledger-mocked-only",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -680,7 +680,20 @@
     "loop197 no .env/secret/page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
     "loop197 five lifecycles pass: methodology active_entries=30 active_gp_entries=8 active_step_digests=11; work_report record_count=22; sync finding_count=0 latest_section5=520 top_section5_ref=520; verification stale=false section5_ref=5.520 pytest_passed=24 ruff=ok; closure open_count=0",
     "loop197 verification snapshot recorded pytest_passed=24 ruff=ok evidence apps/quant_assistant/docs/PROJECT_STATUS.md#5.520",
-    "loop197 next: PL-G route-evidence acceptance evidence ledger TDD mocked-only with no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output"
+    "loop197 next: PL-G route-evidence acceptance evidence ledger TDD mocked-only with no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output",
+    "loop198 TDD red: acceptance evidence ledger source/UI contracts 2 failed / 7 passed expected due missing acceptanceEvidenceLedgerChecks and assertAcceptanceEvidenceLedger helper",
+    "loop198 focused acceptance evidence ledger tests 9 passed",
+    "loop198 related source/UI regression 25 passed",
+    "loop198 Python ruff pass for JobsPage route evidence source/smoke contract tests",
+    "loop198 web npm run smoke:jobs-page pass with acceptance_evidence_ledger_* markers, pageLoadTriggerRequests=[], duplicateTriggerUrls=[], miningJobsReadCount=5",
+    "loop198 web npm run build pass",
+    "loop198 targeted eslint JobsPage + smoke fixture pass",
+    "loop198 runtime cleanup: port 5183 none, port 5184 TimeWait only, and no smoke-jobs-page-fixture node/chrome process",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.521",
+    "loop198 no .env/secret/page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
+    "loop198 five lifecycles pass: methodology active_entries=30 active_gp_entries=8 active_step_digests=11; work_report record_count=22; sync finding_count=0 latest_section5=521 top_section5_ref=521; verification stale=false section5_ref=5.521 pytest_passed=25 ruff=ok; closure open_count=0",
+    "loop198 verification snapshot recorded pytest_passed=25 ruff=ok evidence apps/quant_assistant/docs/PROJECT_STATUS.md#5.521",
+    "loop198 next: PL-G route-evidence acceptance risk register TDD mocked-only with no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -690,7 +703,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop197 safe tick: PL-G route-evidence acceptance source map mocked-only completed. Fixture-backed browser smoke now asserts a compact source map linking chat route contract source, trigger-response route evidence, refreshed Jobs route evidence, readiness checklist, and operator banner into one auditable handoff chain. Verification: source/UI contracts red 2 failed / 6 passed expected then green 8 passed; related source/UI regression 24 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] and acceptance_source_map_* checks; web build/eslint pass; runtime cleanup confirmed ports 5183/5184 none and no smoke process. This tick had no env/secret reads, page-load auto POST/default trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is PL-G route-evidence acceptance evidence ledger mocked-only."
+    "note": "loop198 safe tick: PL-G route-evidence acceptance evidence ledger mocked-only completed. Fixture-backed browser smoke now asserts a compact evidence ledger listing source-map chain status, operator acceptance status, no-auto-execution safety status, next PL-G safe increment, PL-H deferred status, no page-load auto POST, no default runner, and no secret output. Verification: source/UI contracts red 2 failed / 7 passed expected then green 9 passed; related source/UI regression 25 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] and acceptance_evidence_ledger_* checks; web build/eslint pass; runtime cleanup confirmed port 5183 none, port 5184 TimeWait only, and no smoke process. This tick had no env/secret reads, page-load auto POST/default trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is PL-G route-evidence acceptance risk register mocked-only."
   },
-  "last_completed_note": "loop197: safe tick completed PL-G route-evidence acceptance source map mocked-only. The fixture now emits a compact source map linking chat route contract source, trigger-response route evidence, refreshed Jobs route evidence, readiness checklist, and operator banner into one auditable handoff chain. Verification: source/UI contracts red 2 failed / 6 passed then green 8 passed; related source/UI 24 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] plus acceptance_source_map_* checks; web build/eslint pass; runtime cleanup confirmed ports 5183/5184 none and no smoke process. No .env/secret reads, page-load auto POST/default trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route-evidence acceptance evidence ledger TDD mocked-only."
+  "last_completed_note": "loop198: safe tick completed PL-G route-evidence acceptance evidence ledger mocked-only. The fixture now emits a compact evidence ledger listing source-map chain locked, operator acceptance ready, no auto execution, next PL-G safe increment, PL-H deferred, no page-load auto POST, no default runner, and no secret output. Verification: source/UI contracts red 2 failed / 7 passed then green 9 passed; related source/UI 25 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] plus acceptance_evidence_ledger_* checks; web build/eslint pass; runtime cleanup confirmed 5183 no listener, 5184 TimeWait only, and no smoke process. No .env/secret reads, page-load auto POST/default trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route-evidence acceptance risk register TDD mocked-only."
 }
