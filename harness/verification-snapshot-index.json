@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T14:45:00Z",
+  "updated_at": "2026-06-22T15:09:35Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-22T14:41:14Z",
-    "last_tick": "loop214-adapter-contract-review-dry-run-proof-harness",
-    "pytest_passed": 23,
+    "recorded_at": "2026-06-22T15:09:35Z",
+    "last_tick": "loop215-jobs-smoke-fixture-runner-adapter-proof-modularization",
+    "pytest_passed": 24,
     "ruff": "ok",
     "evidence_paths": [
-      "apps/quant_assistant/docs/PROJECT_STATUS.md#5.538"
+      "apps/quant_assistant/docs/PROJECT_STATUS.md#5.539"
     ],
-    "section5_ref": "5.538",
+    "section5_ref": "5.539",
     "source": "manual"
   },
-  "git_dirty": false,
-  "age_hours": 0.06301335055555556,
+  "git_dirty": true,
+  "age_hours": 0.00017552361111111112,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T14:45:00Z",
+    "at": "2026-06-22T15:09:35Z",
     "apply": true,
     "stale": false,
-    "git_dirty": false,
-    "age_hours": 0.06301335055555556
+    "git_dirty": true,
+    "age_hours": 0.00017552361111111112
   }
 }

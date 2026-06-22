@@ -1,6 +1,22 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-22T22:37:05+08:00
+**Updated**: 2026-06-22T23:05:40+08:00
+
+## Tick loop215-jobs-smoke-fixture-runner-adapter-proof-modularization
+
+- **任务 ID**：loop215-jobs-smoke-fixture-modularization-scope-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：只读复核 modularization implementation scope，确认 runner-adapter proof/check matrices 可抽成 pure modules，main smoke fixture 只负责 import/wiring，不触碰 JobsPage runtime、runner、adapter dry-run、DB/backfill/background 或 PL-H execution。
+- **结论**：建议新增 aggregator + planning/boundary/dry-run check/assertion modules，并用 setter 注入 `assertTextCheck`，避免 import-time side effects；为避免跨对话共享文件写冲突，最终 patch 由 orchestrator 按 RED/GREEN 本地应用。
+- **变更**：
+  - worker 未改文件。
+  - orchestrator final patch 涉及 `web/scripts/smoke-jobs-page-fixture.mjs`、7 个 `web/scripts/jobs-page-fixture-runner-adapter-*.mjs` modules、3 个 source contract test files。
+- **验证**：orchestrator verification after patch: RED **2 failed** expected, GREEN focused pytest **2 passed**, related regression **24 passed**, smoke/build/eslint/ruff/family scan/enablement scan/runtime cleanup pass。
+- **roster_update**：workload cleared；mistakes unchanged；lesson: proof-harness extraction is safe only when modules are pure and fixture call sites continue binding body/submitted/refreshed evidence。
+- **残余风险**：mocked-only；real runner/adapter dry-run/PL-H/DB-backed path remains intentionally deferred。
+- **next**：explicit dry-run proof review gate / runner-adapter readiness matrix。
 
 ## Tick loop214-adapter-contract-review-dry-run-proof-harness
 
