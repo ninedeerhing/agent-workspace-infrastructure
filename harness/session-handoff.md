@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T06:55:29+08:00
+updated_at: 2026-06-23T07:18:37+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -78,6 +78,8 @@ updated_at: 2026-06-23T06:55:29+08:00
 [CONTEXT] 2026-06-23 loop229 · 已完成 actual adapter dry-run execution dry-run gate goal-bundle mocked-only：复用同一 worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `actualAdapterDryRunExecutionDryRunGateGoalBundleChecks` / `assertActualAdapterDryRunExecutionDryRunGateGoalBundle(...)`，Jobs smoke fixture 验证 dry-run-gate-goal-bundle-only/not-execution gate：source=loop228 explicit actual-adapter dry-run authorization packet、fail_closed_dry_run_gate_goal_bundle_not_execution、operator authorization packet still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution dry-run-gate acceptance、reviewer signoff still required、exit-to-real-flow still blocked 与 controlled actual-adapter dry-run execution seam next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 38 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / dry-run gate goal-bundle markers visible，active_marker_runtime_surface_match_count=0，stale_family_nontest_match_count=0，guard-only secret scan 与 runtime cleanup pass；下一拍进入 controlled actual-adapter dry-run execution seam authorization review goal-bundle TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 
 [CONTEXT] 2026-06-23 loop230 · 已完成 controlled actual-adapter dry-run execution seam authorization review goal-bundle mocked-only：复用同一 worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `controlledActualAdapterDryRunExecutionSeamAuthorizationReviewGoalBundleChecks` / `assertControlledActualAdapterDryRunExecutionSeamAuthorizationReviewGoalBundle(...)`，Jobs smoke fixture 验证 controlled-seam-review-only/not-execution gate：source=loop229 actual adapter dry-run execution dry-run gate goal-bundle、fail_closed_controlled_seam_authorization_review_not_execution、operator authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution controlled seam review acceptance、reviewer signoff still_required_not_granted、exit-to-real-flow still blocked 与 real-flow authorization packet next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 39 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / controlled seam markers visible，active_marker_runtime_surface_match_count=0，stale_family_nontest_match_count=0，added_line_secret_shape_count=0 与 runtime cleanup pass；下一拍进入 real-flow authorization packet TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
+
+[CONTEXT] 2026-06-23 loop231 · 已完成 real-flow authorization packet mocked-only：复用同一 worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `realFlowAuthorizationPacketChecks` / `assertRealFlowAuthorizationPacket(...)`，Jobs smoke fixture 验证 real-flow-authorization-packet-only/not-execution gate：source=loop230 controlled actual-adapter dry-run execution seam authorization review goal-bundle、fail_closed_real_flow_authorization_packet_not_execution、operator authorization evidence package completion_still_not_granted、runner/adapter config readiness still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution real-flow packet acceptance、reviewer signoff still_required_not_granted、exit-to-real-flow still blocked until explicit operator/reviewer authorization 与 explicit real-runner/adapter dry-run execution authorization assessment next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 40 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / real-flow packet markers visible，active_marker_runtime_surface_match_count=0，stale_family_nontest_match_count=0，added_line_secret_shape_count=0 与 runtime cleanup pass；下一拍进入 explicit real-runner/adapter dry-run execution authorization assessment TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 ```
 
 ### Loop Machine State
@@ -86,18 +88,18 @@ updated_at: 2026-06-23T06:55:29+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-real-flow-authorization-packet-mocked-only |
-| `last_tick` | loop230-controlled-actual-adapter-dry-run-execution-seam-authorization-review-goal-bundle |
+| `current_slice` | pl-g-explicit-real-runner-adapter-dry-run-execution-authorization-assessment-mocked-only |
+| `last_tick` | loop231-real-flow-authorization-packet |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start real-flow authorization packet TDD mocked-only: use loop230 controlled actual-adapter dry-run execution seam authorization review goal-bundle to define a fail-closed real-flow authorization packet for operator authorization evidence package completion still not granted, injected runner/adapter config readiness still not connected, rollback/audit before-after readiness, missing-runner fail-closed rejection, PL-H non-eligibility/real-batch gate, no-execution real-flow packet acceptance, reviewer signoff still required, and exit-to-real-flow still blocked until explicit operator/reviewer authorization; still forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start explicit real-runner/adapter dry-run execution authorization assessment TDD mocked-only: use loop231 real-flow authorization packet to define a fail-closed explicit authorization assessment for operator/reviewer authorization still not granted, runner/adapter config still not connected, rollback/audit readiness required before any execution, missing-runner fail-closed rejection, PL-H still not eligible until real-batch gate, no-execution authorization-assessment acceptance, and exit-to-controlled dry-run execution still blocked until a later explicit authorization gate; still forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the real-flow authorization packet stabilizes, assess a later explicit real-runner/adapter dry-run execution authorization only if operator authorization evidence package completion, injected runner/adapter config readiness, rollback/audit before-after readiness, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, no-execution packet acceptance, and reviewer signoff / exit-to-next-real-flow decision are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
+After the explicit authorization assessment stabilizes, assess a later controlled dry-run execution seam only if operator/reviewer authorization, runner/adapter config readiness, rollback/audit before-after readiness, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, and no-execution assessment acceptance are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -114,7 +116,7 @@ After the real-flow authorization packet stabilizes, assess a later explicit rea
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 real-flow authorization packet；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 explicit real-runner/adapter dry-run execution authorization assessment；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers
