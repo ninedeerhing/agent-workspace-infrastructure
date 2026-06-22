@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T16:40:45+08:00
+updated_at: 2026-06-22T16:55:20+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-22T16:40:45+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-22 loop199 · PL-G route-evidence acceptance risk register mocked-only 完成：`apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` 现在用 `acceptanceRiskRegisterChecks` 与 `assertAcceptanceRiskRegister(routeEvidenceContractSource, bodyText, submittedText, refreshedText)` 输出 compact risk register，列出 unresolved safe-execution risks、deferred PL-H criteria、non-secret safety guard status、no-background safety guard、next PL-G mocked/source-contract increment；`tests/test_jobs_page_acceptance_smoke_unit.py` 与 `tests/test_route_evidence_cross_surface_contract_unit.py` 已锁定 source/UI contract。验证：RED expected 2 failed / 8 passed；GREEN focused 10 passed；related source/UI 26 passed；`npm run smoke:jobs-page` pass with `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `acceptance_risk_register_*` checks；web build/eslint pass；Python ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load auto POST/default trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G route-evidence acceptance mitigation plan TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
+[CONTEXT] 2026-06-22 loop200 · PL-G route-evidence acceptance mitigation plan mocked-only 完成：`apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` 现在用 `acceptanceMitigationPlanChecks` 与 `assertAcceptanceMitigationPlan(routeEvidenceContractSource, bodyText, submittedText, refreshedText)` 输出 compact mitigation plan，映射 risk-register items -> safe next action / gate owner / safety owner：keep real runner disabled、require explicit trigger、block page-load auto POST、real-batch demand gate owner、PL-H deferred gate owner、secret/background safety guard、next PL-G mocked/source-contract review；`tests/test_jobs_page_acceptance_smoke_unit.py` 与 `tests/test_route_evidence_cross_surface_contract_unit.py` 已锁定 source/UI contract。验证：RED expected 2 failed / 9 passed；GREEN focused 11 passed；related source/UI 27 passed；`npm run smoke:jobs-page` pass with `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `acceptance_mitigation_plan_*` checks；web build/eslint pass；Python ruff pass；runtime cleanup only port 5184 TimeWait and no smoke process · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load auto POST/default trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G route-evidence acceptance operator handoff packet TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
 
 [CONTEXT] 2026-06-22 side capability · PL-002 Codex skills router / gating Phase 1 prototype completed in `harness/skill_router.py` with `harness/tests/test_skill_router.py` and `docs/ENGINEERING/2026-06-22-codex-skill-router-prototype.md`. It is advisory only: no global `~/.codex/skills` mutation, no raw query telemetry, and no quant `loop-state` change. Next optional PL-002 step is local eval set plus graph-aware rerank.
 ```
@@ -28,18 +28,18 @@ updated_at: 2026-06-22T16:40:45+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-route-evidence-acceptance-mitigation-plan-mocked-only |
-| `last_tick` | loop199-pl-g-route-evidence-acceptance-risk-register-mocked-only |
+| `current_slice` | pl-g-route-evidence-acceptance-operator-handoff-packet-mocked-only |
+| `last_tick` | loop200-pl-g-route-evidence-acceptance-mitigation-plan-mocked-only |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start PL-G route-evidence acceptance mitigation plan TDD mocked-only: prove the Jobs acceptance/readiness surface emits a compact mitigation plan mapping each acceptance risk-register item to its safe next action/gate owner, while keeping PL-H deferred until a later real-batch demand gate and forbidding page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
+Start PL-G route-evidence acceptance operator handoff packet TDD mocked-only: prove the Jobs acceptance/readiness surface emits a compact operator handoff packet bundling the acceptance chain, risk register, mitigation plan, deferred PL-H gate, and next PL-G mocked/source-contract increment, while forbidding page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After acceptance mitigation plan stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
+After acceptance operator handoff packet stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -56,7 +56,7 @@ After acceptance mitigation plan stabilizes, continue PL-G mocked/source-contrac
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G route-evidence acceptance mitigation plan TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 PL-G route-evidence acceptance operator handoff packet TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
