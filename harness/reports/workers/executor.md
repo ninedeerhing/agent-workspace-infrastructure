@@ -1,36 +1,32 @@
-# Executor Worker Report — loop126-employee-roster-codex-adapter
+# Executor Worker Report — loop127-daily-trade-status-tick3
 
-**Updated**: 2026-06-21 · loop126-employee-roster-codex-adapter
+**Updated**: 2026-06-21 · loop127-daily-trade-status-tick3
 
 ## Task
 
-Implement TREE-4 employee roster for raindeer-AWI / CodeX zero-config cross-chat worker management while preserving the running TREE-2 `daily_trade_status` tick2 process.
+Continue TREE-2 `daily_trade_status` batch_24mo chain: verify tick2 complete, start tick3 single instance, sync governance docs.
 
 ## Changes
 
-- Added `harness/reports/EMPLOYEE_ROSTER.md` with orchestrator manager plus 21 workers.
-- Updated CodeX handoff, orchestrator prompt, subagent prompt, and adapter template to read and update the roster.
-- Synced `PROJECT_STATUS.md`, `CONTINUATION_PROMPT.md`, `METHODOLOGY_MEMORY.md`, `loop-state.json`, and harness reports.
+- Verified tick2 DB snapshot: day_cnt **1066**, max **2014-05-30**, pending **0**; PID 25040 gone.
+- Started tick3 via `tmp/_daily_trade_status_range_batch.py` (2014-06-01→2016-05-31), parent PID **155060**.
+- Log: `tmp/daily_trade_status_batch_2014-06_2016-05-loop127.log` with `PREFLIGHT pending=490`.
+- Synced `PROJECT_STATUS.md`, `CONTINUATION_PROMPT.md`, `loop-state.json`, orchestrator report.
 
 ## Verification
 
-- PowerShell Parser: **Parse OK** for `harness/scripts/prepare-codex-adapter.ps1`
-- Adapter `-WhatIf`: **pass** · previewed **10** files including `harness/reports/EMPLOYEE_ROSTER.md` · no target files written
-- Five lifecycle `run --apply`: **pass** · methodology GP count now **7** · sync coherence finding_count **0**
-- Verification snapshot record: **pass** · last_tick `loop126-employee-roster-codex-adapter`
-- IDE diagnostics: **No linter errors found** for edited files
+- `assert_test_dsn_isolated()`: **OK**
+- Poll once (5s): parent PID **155060** **alive**
+- Latest DB poll: cnt **6248706** · day_cnt **1068** · max **2014-06-04**
+- daily_bar: **not touched** (3995/3995 complete)
 
 ## Runtime Notes
 
 - `.env.local` not modified
 - No commit created
 - No daily_bar chain restart
-- No new `daily_trade_status` process launched; tick2 remains the existing running background task from loop125.
 
 ## Blockers
 
-- None for roster integration. `WSL2-BENCH-1` remains env deferred; adj_factor column path remains deferred.
-
-## Next
-
-- Monitor tick2 completion from log/DB snapshot, then start tick3 (2014-06→2016-05) only if complete and no duplicate process is running.
+- `WSL2-BENCH-1` env deferred
+- adj_factor column ingest path deferred

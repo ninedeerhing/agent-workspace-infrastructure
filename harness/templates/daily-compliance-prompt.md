@@ -1,7 +1,7 @@
 # Daily Compliance — 日末合规巡检 Prompt
 
-> **用途**：Cursor Automations `daily-compliance` 任务主 prompt（cron `0 20 * * *` 本地时区）。  
-> **机器包装**：`.\harness\scripts\daily-compliance.ps1`（落盘 `harness/reports/daily-compliance-YYYYMMDD.md`）  
+> **用途**：CodeX `automation_update` 的 `daily-compliance` 任务主 prompt（RRULE `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` 本地时区）。
+> **机器包装**：`.\harness\scripts\daily-compliance.ps1`（落盘 `harness/reports/daily-compliance-YYYYMMDD.md`）
 > **约束**：**不修改** `loop-state.json` 的 `next_atomic_action`（loop98/TREE-2 续跑中）；不停止 `daily_trade_status` batch_24mo。
 
 ---
@@ -12,12 +12,14 @@
 
 ```powershell
 cd E:\raindeer
+.\harness\scripts\codex-self-check.ps1 -Format markdown
 .\harness\scripts\daily-compliance.ps1
 ```
 
 若 Automation 无法跑 PS1，手动等价执行：
 
 ```powershell
+.\harness\scripts\codex-self-check.ps1 -TargetPath . -Format markdown
 .\harness\compliance-check.ps1 -TargetPath . -Mode baseline -Format markdown
 python harness/loop_tick.py status
 python harness/methodology_memory_lifecycle.py run --apply

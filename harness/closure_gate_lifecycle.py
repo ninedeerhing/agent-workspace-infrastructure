@@ -29,8 +29,14 @@ _DONE_INLINE = re.compile(r"✅\s*loop\d+", re.IGNORECASE)
 _SLICE_DONE = re.compile(r"(MINE-\d+|R0-M\d+|R1-M\d+|R2-M\d+|BENCH-\d+|KB-M\d+)", re.IGNORECASE)
 _SECTION5 = re.compile(r"^### (5\.\d+)\s+(.+)$", re.MULTILINE)
 _SYNTHESIS = re.compile(r"^## 收口 synthesis-([^\s]+)(?:\s*·\s*(.+))?$", re.MULTILINE)
-_SYNTHESIS_STATUS = re.compile(r">\s*\*\*状态\*\*：(closed|open|没有)", re.IGNORECASE)
-_M_GP_FROM_SYNTH = re.compile(r"### (M-\d+|GP-\d+)\s*[·\-]", re.MULTILINE)
+_SYNTHESIS_STATUS = re.compile(
+    r"^\s*>?\s*\*\*状态\*\*：\s*\**(closed|partial_closed|open|没有)\**",
+    re.IGNORECASE | re.MULTILINE,
+)
+_M_GP_REF = re.compile(r"\b(M-\d+|GP-\d+)\b", re.IGNORECASE)
+_MINE_RANGE = re.compile(r"\b(MINE)-(\d+)\s*(?:…|\.{2,3}|-)\s*(\d+)\b", re.IGNORECASE)
+_PERMANENT_ENTRY = re.compile(r"^### (M-\d+|GP-\d+)\s*[·\-]", re.MULTILINE | re.IGNORECASE)
+_SYNTHESIS_REF = re.compile(r"synthesis-([a-z0-9][a-z0-9\-]*)", re.IGNORECASE)
 
 
 @dataclass(slots=True)
@@ -91,6 +97,7 @@ def _extract_recent_done_from_section5(text: str, limit: int = 8) -> list[str]:
 
 
 def _parse_synthesis_map(text: str) -> dict[str, dict[str, Any]]:
+    permanent_source_map = _parse_permanent_source_map(text)
     result: dict[str, dict[str, Any]] = {}
     for match in _SYNTHESIS.finditer(text):
         sid = match.group(1).strip()
@@ -105,26 +112,73 @@ def _parse_synthesis_map(text: str) -> dict[str, dict[str, Any]]:
             if line.startswith("## ") and not line.startswith("### "):
                 break
             block_head.append(line)
-            if len(block_head) >= 50:
+            if len(block_head) >= 80:
                 break
         limited = "\n".join(block_head)
         status_m = _SYNTHESIS_STATUS.search(limited)
         status = status_m.group(1).casefold() if status_m else "open"
-        permanents = [m.group(1) for m in _M_GP_FROM_SYNTH.finditer(limited)]
+        permanents = _unique_ids(
+            [m.group(1).upper() for m in _M_GP_REF.finditer(limited)]
+            + permanent_source_map.get(sid.casefold(), [])
+        )
         result[sid] = {
             "title": title,
             "status": status,
             "permanent_ids": permanents,
             "block": limited,
+            "task_refs": _extract_task_refs(f"{sid}\n{title}\n{limited}"),
         }
     return result
+
+
+def _unique_ids(items: list[str]) -> list[str]:
+    return list(dict.fromkeys(items))
+
+
+def _parse_permanent_source_map(text: str) -> dict[str, list[str]]:
+    result: dict[str, list[str]] = {}
+    matches = list(_PERMANENT_ENTRY.finditer(text))
+    for idx, match in enumerate(matches):
+        pid = match.group(1).upper()
+        start = match.end()
+        end = matches[idx + 1].start() if idx + 1 < len(matches) else len(text)
+        block = text[start:end]
+        for syn in _SYNTHESIS_REF.finditer(block):
+            result.setdefault(syn.group(1).casefold(), []).append(pid)
+    return {key: _unique_ids(value) for key, value in result.items()}
+
+
+def _drop_next_only_lines(text: str) -> str:
+    kept: list[str] = []
+    for line in text.splitlines():
+        folded = line.casefold()
+        if "下一轮" in folded or "下一：" in folded or "next " in folded:
+            continue
+        kept.append(line)
+    return "\n".join(kept)
+
+
+def _extract_task_refs(text: str) -> list[str]:
+    searchable = _drop_next_only_lines(text)
+    refs = [m.group(1).upper() for m in _SLICE_DONE.finditer(searchable)]
+    for match in _MINE_RANGE.finditer(searchable):
+        start = int(match.group(2))
+        end = int(match.group(3))
+        if start <= end and end - start <= 50:
+            refs.extend(f"{match.group(1).upper()}-{idx}" for idx in range(start, end + 1))
+    return _unique_ids(refs)
 
 
 def _task_has_synthesis(task_ref: str, synthesis_map: dict[str, dict[str, Any]]) -> tuple[bool, str, bool, list[str]]:
     key = task_ref.casefold()
     for sid, meta in synthesis_map.items():
-        blob = f"{sid} {meta.get('title', '')} {meta.get('block', '')}".casefold()
-        if key in blob or key.replace("-", "") in blob.replace("-", ""):
+        task_refs = {str(ref).casefold() for ref in meta.get("task_refs", [])}
+        blob = _drop_next_only_lines(f"{sid} {meta.get('title', '')} {meta.get('block', '')}").casefold()
+        if (
+            key in task_refs
+            or key in blob
+            or key.replace("-", "") in blob.replace("-", "")
+        ):
             status = str(meta.get("status") or "")
             permanents = list(meta.get("permanent_ids") or [])
             if status == "没有":

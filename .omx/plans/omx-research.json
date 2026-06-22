@@ -1,0 +1,203 @@
+{
+  "_schema": "omx-plan/1.0.0",
+  "_description": "OMX 研究探索工作流模板。适用于不熟悉代码库模块、技术栈调研、API/框架工作原理研究。强制三阶段有界验证器门控流程，与 $autoresearch 技能对齐。",
+  "metadata": {
+    "plan_id": "",
+    "plan_title": "",
+    "plan_type": "research",
+    "plan_name": "OMX 研究探索工作流",
+    "description": "BOUNDARY_DEFINITION → SURFACE_SCAN → DEEP_DIVE → SYNTHESIS 四阶段有界验证器门控研究流程",
+    "created_at": "",
+    "completed_at": "",
+    "omx_version": "1.0.0",
+    "skill_alignment": "$autoresearch"
+  },
+  "context": {
+    "research_goal": "",
+    "research_question": "",
+    "scope": {
+      "include_modules": [],
+      "exclude_modules": [],
+      "max_depth": 3,
+      "max_files": 50
+    },
+    "time_budget": {
+      "per_phase_minutes": 10,
+      "total_budget_minutes": 60
+    },
+    "research_tier": "standard",
+    "success_criteria": [],
+    "parallel_mode": false,
+    "parallel_branches": 0
+  },
+  "phases": [
+    {
+      "id": "boundary_definition",
+      "name": "BOUNDARY_DEFINITION",
+      "index": 1,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-RES-01",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["techStack", "structure"],
+        "write_on_exit": false
+      },
+      "deliverables": {
+        "research_objective": "",
+        "scope_list": {"included": [], "excluded": []},
+        "max_depth": 3,
+        "time_allocation": {},
+        "success_criteria": []
+      }
+    },
+    {
+      "id": "surface_scan",
+      "name": "SURFACE_SCAN",
+      "index": 2,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-RES-02",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["all"],
+        "write_on_exit": true,
+        "write_categories": ["NOTE", "TECH_STACK"]
+      },
+      "deliverables": {
+        "key_files": [],
+        "core_symbols": [],
+        "dependency_overview": "",
+        "unresolved_questions": []
+      }
+    },
+    {
+      "id": "deep_dive",
+      "name": "DEEP_DIVE",
+      "index": 3,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-RES-03",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["all"],
+        "write_on_exit": true,
+        "write_categories": ["NOTE"]
+      },
+      "deliverables": {
+        "call_chains": [],
+        "data_flow_document": "",
+        "key_decision_points": [],
+        "edge_cases": []
+      }
+    },
+    {
+      "id": "synthesis",
+      "name": "SYNTHESIS",
+      "index": 4,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-RES-04",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["all"],
+        "write_on_exit": true,
+        "write_categories": ["NOTE", "DECISION"]
+      },
+      "deliverables": {
+        "executive_summary": "",
+        "architecture_overview": "",
+        "file_manifest": [],
+        "call_chain_diagram": "",
+        "known_unknowns": [],
+        "risks_and_recommendations": []
+      }
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "G-OMX-RES-01",
+      "transition": "BOUNDARY_DEFINITION → SURFACE_SCAN",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-RES-01.1", "label": "研究目标可用一句话说清", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-01.2", "label": "范围已明确界定（纳入 + 排除）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-01.3", "label": "深度上限已设定（默认 3）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-01.4", "label": "时间盒已分配（每阶段）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-01.5", "label": "研究档位已选择（quick/standard/deep）", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-RES-02",
+      "transition": "SURFACE_SCAN → DEEP_DIVE",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-RES-02.1", "label": "每个关键文件有绝对路径证据", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-02.2", "label": "每个核心符号有文件:行号证据", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-02.3", "label": "依赖关系有 import/require 代码证据", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-02.4", "label": "无遗漏明显入口或配置文件", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-02.5", "label": "不同来源信息交叉验证一致", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-RES-03",
+      "transition": "DEEP_DIVE → SYNTHESIS",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-RES-03.1", "label": "调用链每步有代码证据（文件:行号）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-03.2", "label": "数据流完整闭环（输入到输出无断点）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-03.3", "label": "分支逻辑可复现验证", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-03.4", "label": "核心结论有至少 2 处独立证据支撑", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-03.5", "label": "追溯层数 ≤ 深度上限", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-RES-04",
+      "transition": "SYNTHESIS → 完成",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-RES-04.1", "label": "执行摘要可独立理解", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-04.2", "label": "所有断言有可追溯证据链", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-04.3", "label": "已知未知已诚实标注", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-04.4", "label": "无过度推断（区分事实与推测）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-04.5", "label": "6 类交付物全部包含", "severity": "必须", "passed": null},
+        {"id": "G-OMX-RES-04.6", "label": "研究发现已写入 OMX 记忆", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    }
+  ],
+  "evidence_log": [],
+  "parallel_research": {
+    "enabled": false,
+    "max_branches": 3,
+    "branch_assignments": [],
+    "cross_validation_results": []
+  },
+  "_使用说明": {
+    "激活": "复制此文件到 .omx/plans/active/<plan_id>.json，填写 context 字段后开始执行。",
+    "研究档位": "quick（深度 1-2，5 分钟/阶段）、standard（深度 2-3，10 分钟/阶段）、deep（深度 3-5，15 分钟/阶段）。",
+    "并行模式": "当研究涉及多个独立模块时可启用 parallel_mode，最多 3 个分支。验证门 2 需汇总后再通过。",
+    "铁律": "NO FINDINGS WITHOUT EVIDENCE. NO DEEPER DIVE WITHOUT VERIFICATION. 所有发现必须有文件:行号或 URL 证据。",
+    "阶段切换": "当前阶段完成时将其 status 改为 'completed'；下一阶段改为 'in_progress'。门禁不通过则回退到当前阶段补充。",
+    "OMX 记忆": "SURFACE_SCAN 和 DEEP_DIVE 阶段退出时必须将研究发现写入 OMX 项目记忆，确保跨会话可恢复。"
+  }
+}

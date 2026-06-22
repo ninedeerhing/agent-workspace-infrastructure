@@ -2,7 +2,7 @@
 .SYNOPSIS
     Raindeer 日末合规巡检包装脚本（机器证据 + 报告落盘）
 .DESCRIPTION
-    运行 compliance-check、五 lifecycle、双仓库 git 状态、gap list 摘要，
+    运行 CodeX self-check、compliance-check、五 lifecycle、双仓库 git 状态、gap list 摘要，
     写入 harness/reports/daily-compliance-YYYYMMDD.md
 
     退出码：
@@ -156,6 +156,18 @@ if (-not (Test-Path $ReportsDir)) {
 Write-Log "Daily compliance wrapper · root=$ProjectRoot"
 
 $complianceScript = Join-Path $HarnessDir "compliance-check.ps1"
+$codexSelfCheckScript = Join-Path $HarnessDir "scripts/codex-self-check.ps1"
+$codexSelfCheckMd = ""
+$codexSelfCheckExit = 0
+if (Test-Path $codexSelfCheckScript) {
+    $codexSelfCheckMd = & $codexSelfCheckScript -TargetPath $ProjectRoot -Format markdown 2>&1 | Out-String
+    $codexSelfCheckExit = $LASTEXITCODE
+}
+else {
+    $codexSelfCheckMd = "codex-self-check.ps1 missing"
+    $codexSelfCheckExit = 99
+}
+
 $complianceMd = ""
 $complianceExit = 0
 if (Test-Path $complianceScript) {
@@ -204,8 +216,13 @@ $report = @"
 
 - **Checked at**: $checkedAt
 - **Project root**: $ProjectRoot
+- **codex-self-check exit**: $codexSelfCheckExit
 - **compliance-check exit**: $complianceExit
 - **Schedule task id**: ``daily-compliance`` (cron ``0 20 * * *``)
+
+## CodeX self-check
+
+$codexSelfCheckMd
 
 ## compliance-check
 

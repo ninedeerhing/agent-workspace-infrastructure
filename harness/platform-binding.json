@@ -1,10 +1,10 @@
 {
   "version": "0.1.0",
-  "generated_at": "2026-06-15T23:04:34+08:00",
-  "platform": "cursor",
-  "adapter_path": "harness/adapters/cursor",
+  "generated_at": "2026-06-21T19:39:41+08:00",
+  "platform": "codex",
+  "adapter_path": "harness/adapters/codex",
   "adapter_status": "installed",
-  "hub_model": "opus",
+  "hub_model": "inherit",
   "notes": [
     "generic mailbox baseline always available"
   ]

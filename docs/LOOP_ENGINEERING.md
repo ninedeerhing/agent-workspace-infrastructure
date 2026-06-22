@@ -213,14 +213,15 @@ PROJECT_STATUS §5 每条台账末尾只保留一句：
 |---------|------|-------------|------|
 | `loop-tick` | `*/30 * * * *` | `harness/templates/loop-tick-prompt.md` · `loop_tick.py emit-prompt` | Loop 自治续跑 · **enabled** |
 | `daily-compliance` | `0 20 * * *` | `harness/templates/daily-compliance-prompt.md` | 日末合规 · compliance-check + 五 lifecycle + 双 git + gap → `harness/reports/daily-compliance-YYYYMMDD.md` |
-| `daily-git-push` | `30 20 * * *` | `harness/templates/daily-git-push-prompt.md` | 日末 push（**在 compliance 之后**）· `harness/scripts/daily-git-push.ps1` · 仅 ahead>0 · 无 force · `.env` staged fail-closed |
+| `daily-git-push` | `30 20 * * *` | `harness/templates/daily-git-push-prompt.md` | 日末 push（**在 compliance 之后**）· 双仓库 upstream 感知 · `harness/scripts/daily-git-push.ps1` · 仅 ahead>0 · 无 force · `.env` staged fail-closed |
 | `daily-compliance-check` | `0 8 * * 1-5` | inline prompt | 工作日早间 baseline 快检 |
 | `methodology-lifecycle` | `0 7 * * *` | inline prompt | 方法论索引维护 |
 
 **loop-tick 停止条件**：
 
 ```text
-Stop: loop-state.closure_gate.status == "closed" 或 stop_reason 非空
+Stop: stop_reason 非空；或裁判明确收口且 next_atomic_action 为空/指向人工验收。
+Continue: 只要 mode=autonomous、stop_reason=null 且 next_atomic_action 存在，就继续下一原子动作；closure_gate.status=closed 只表示已收口的规划/阶段，不单独停止后续 data/backfill/next_after 链。
 Tools: 仓库读写 + terminal
 ```
 
@@ -229,6 +230,26 @@ Tools: 仓库读写 + terminal
 - `daily-compliance` / `daily-git-push` 为 **scheduled ops**，**不是**新 worker（见 `WORKER_SKILL_GOVERNANCE.md` §3.3）
 - **禁止**修改 `loop-state.json` 的 `next_atomic_action`（TREE-2 续跑不受影响）
 - `daily-git-push` 只 push 已有 commit；不自动 commit
+
+**双仓库 push 策略（2026-06-21）**：
+
+| 仓库 | 路径 | GitHub | 说明 |
+|------|------|--------|------|
+| Raindeer-AWI | 仓库根 | `agent-workspace-infrastructure` | 仅 AWI 架构；推 **upstream 跟踪分支**（如 `origin/raindeer-AWI`），非盲目 `origin/main` |
+| Quant Assistant | `apps/quant_assistant` | `raindeer-quant-assistant` | 独立产品仓库；推自身 upstream（如 `origin/main`） |
+
+ahead 计数：`git rev-list --count '@{u}..HEAD'`；推送：`git push <remote> HEAD:<upstream-branch>`。`schedule.json` 为 manifest，须在 Cursor Automations UI 创建任务（步骤见 `daily-git-push-prompt.md`）。
+
+**Git · main-only 本地分支（用户权威 · 2026-06-21）**：
+
+| 仓库 | 本地分支 MUST | Upstream 示例 | 说明 |
+|------|---------------|---------------|------|
+| AWI 根 | `main` | `origin/raindeer-AWI` | 本地名 `main` 跟踪远程 `raindeer-AWI` **合法**（非 feature 分支） |
+| quant_assistant | `main` | `origin/main` | 禁止 `cursor/*`、`feat/*` 等作为日常 worktree |
+
+- `daily-git-push.ps1`：任一仓库 `git branch --show-current` ≠ `main` → **blocked** · exit **1** · `policy: main-only development; merge/delete branch X and checkout main`
+- 脚本/代理 **不得** 自动删除用户遗留分支；仅 block + 文档指引（见 `docs/OPERATIONS.md` §1 · **GP-08**）
+- Loop 六真源 git 快照摘要应记录 `main` + upstream + ahead/behind
 
 CLI::
 

@@ -95,8 +95,8 @@
     {
       "id": "daily-git-push",
       "name": "Daily Git Push (End of Day)",
-      "description": "After daily-compliance: push raindeer root + quant_assistant if ahead of origin; fail-closed on .env staged; no force; user confirmed 2026-06-20",
-      "prompt": "Read harness/templates/daily-git-push-prompt.md and run .\\harness\\scripts\\daily-git-push.ps1 from repo root. Push only when commits exist (ahead > 0).",
+      "description": "After daily-compliance: dual-repo push — AWI root (agent-workspace-infrastructure upstream e.g. raindeer-AWI) + quant_assistant (raindeer-quant-assistant upstream); upstream-aware ahead; fail-closed on .env staged; no force",
+      "prompt": "Read harness/templates/daily-git-push-prompt.md and run .\\harness\\scripts\\daily-git-push.ps1 from repo root. Push only when ahead of upstream tracking branch (> 0). Do NOT modify loop-state next_atomic_action.",
       "cron": "30 20 * * *",
       "max_duration_minutes": 10,
       "retry_on_failure": false,

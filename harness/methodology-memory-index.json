@@ -1,8 +1,8 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-06-21T05:04:15Z",
+  "updated_at": "2026-06-22T02:34:46Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
-  "active_entry_count": 37,
+  "active_entry_count": 38,
   "archived_round_count": 0,
   "entries": {
     "M-01": {
@@ -15,7 +15,7 @@
       "fingerprint": "92945a692979de9c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-02": {
@@ -28,7 +28,7 @@
       "fingerprint": "19492a48460ef0b8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-03": {
@@ -41,7 +41,7 @@
       "fingerprint": "b753e5142d63cca6",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-04": {
@@ -54,7 +54,7 @@
       "fingerprint": "8252872344a6a1aa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-05": {
@@ -67,7 +67,7 @@
       "fingerprint": "b0a78e119c2a978d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-06": {
@@ -80,7 +80,7 @@
       "fingerprint": "466b92547c39ab98",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-07": {
@@ -93,7 +93,7 @@
       "fingerprint": "514ac18df80f3270",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-08": {
@@ -106,7 +106,7 @@
       "fingerprint": "127f609b9d336749",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-09": {
@@ -119,7 +119,7 @@
       "fingerprint": "699fe149e07dadd7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-10": {
@@ -132,7 +132,7 @@
       "fingerprint": "042b0ee40d795387",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-11": {
@@ -145,7 +145,7 @@
       "fingerprint": "0b8339a1a4ee0815",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-12": {
@@ -158,7 +158,7 @@
       "fingerprint": "0b8532fed9ce4d33",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-15": {
@@ -171,7 +171,7 @@
       "fingerprint": "da847d8aeda5f49a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-16": {
@@ -184,7 +184,7 @@
       "fingerprint": "a124342e3487cc07",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-17": {
@@ -197,7 +197,7 @@
       "fingerprint": "61b08a325d7f74eb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-18": {
@@ -210,7 +210,7 @@
       "fingerprint": "9df0d5bdaaeb1d34",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-19": {
@@ -223,7 +223,7 @@
       "fingerprint": "7052d26bc2685cfa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-20": {
@@ -236,7 +236,7 @@
       "fingerprint": "d98f2ced613ddc3d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-21": {
@@ -249,7 +249,7 @@
       "fingerprint": "8962d8542b06099d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-22": {
@@ -262,7 +262,7 @@
       "fingerprint": "f8088bb36c67760f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-23": {
@@ -275,7 +275,7 @@
       "fingerprint": "5591738fdcb42c02",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-24": {
@@ -288,7 +288,7 @@
       "fingerprint": "faafb47510b14881",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-25": {
@@ -301,7 +301,7 @@
       "fingerprint": "47b3f516d0a32bbd",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-26": {
@@ -314,7 +314,7 @@
       "fingerprint": "2e8e010276b68173",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-27": {
@@ -327,7 +327,7 @@
       "fingerprint": "d8d82de01b96a7f2",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-28": {
@@ -340,7 +340,7 @@
       "fingerprint": "f45fb585f8e2668f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-29": {
@@ -353,7 +353,7 @@
       "fingerprint": "07f27400a64451a8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-30": {
@@ -366,7 +366,7 @@
       "fingerprint": "5a5e86bf23db3c6a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-31": {
@@ -379,7 +379,7 @@
       "fingerprint": "eba7c675aa3600bc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "M-32": {
@@ -392,7 +392,7 @@
       "fingerprint": "05605bd00cfcb5d9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     }
   },
@@ -407,7 +407,7 @@
       "fingerprint": "e2a42f0cbfb4498d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "GP-02": {
@@ -420,7 +420,7 @@
       "fingerprint": "614ede829cca904f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "GP-03": {
@@ -433,7 +433,7 @@
       "fingerprint": "6cf6c017a8fcc86c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "GP-04": {
@@ -446,7 +446,7 @@
       "fingerprint": "6f112435ad5b561f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "GP-05": {
@@ -459,7 +459,7 @@
       "fingerprint": "f0a08a8433aca1de",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "GP-06": {
@@ -472,7 +472,7 @@
       "fingerprint": "b78507c3423d1f86",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     },
     "GP-07": {
@@ -485,7 +485,20 @@
       "fingerprint": "2bc38c718dbbe1a9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-21T05:04:15Z",
+      "last_seen_at": "2026-06-22T02:34:46Z",
+      "mention_count": 1
+    },
+    "GP-08": {
+      "entry_id": "GP-08",
+      "title": "Git main-only 双仓库开发",
+      "scenario": "AWI 根 + quant_assistant 双仓库日常开发与 `daily-git-push` Automation",
+      "rule": "两仓库本地分支 **MUST** 为 `main`；禁止 `cursor/*`、`feat/*` 等作为日常工作区；AWI 本地 `main` 跟踪 `origin/raindeer-AWI` 合法；quant 本地 `main` 跟踪 `origin/main`；`daily-git-push.ps1` 检测非 main → **blocked** exit 1；脚本/代理 **不得** 自动删除用户遗留分支",
+      "trigger": "Loop tick git 快照 · 日末 push · CodeX/orchestrator 接手任意仓库",
+      "source": "步骤 digest-20260621-git-main-only · 用户权威 policy · §5.446",
+      "fingerprint": "89e6ae3e88559ba4",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-22T02:34:46Z",
       "mention_count": 1
     }
   },
@@ -908,12 +921,26 @@
       ],
       "status": "open",
       "archived_digests": []
+    },
+    "legacy-explicit-none": {
+      "closure_id": "legacy-explicit-none",
+      "title": "R0-M5 / KB-M1 / R1-M1 历史切片显式无新增永久库",
+      "task_refs": [
+        "`R0-M5`：loop17 GEN-R0 残余验收，R0-M5/M6 · R2-M5/M6 API/SSE **4/4 pass**，方法论门控已指向 `步骤-digest-20260619-r0m5-accept`，结论为并入 GP-01 与 GEN R0 验收 SOP。",
+        "`KB-M1`：loop10/loop18 corpus library coverage 验收，wq_alpha101 **101/101** 与 gtja_alpha191 **191/191**，已有 **M-04** 记录 Docker PG 前置验收规则。",
+        "`R1-M1`：loop21 URL 尾随 CJK 截断修复，`tests/test_url_extract_unit.py` **8 passed**，fast gate **1676 passed**；该切片是 URL sanitizer 的产品缺陷修复，不另立方法论。",
+        "**复用**：R0-M5 复用 GP-01；KB-M1 复用 M-04；R1-M1 保留为普通缺陷修复验证证据。"
+      ],
+      "status": "open",
+      "archived_digests": [
+        "20260619-r0m5-accept"
+      ]
     }
   },
   "dream_candidates": [],
   "closure_candidates": [],
   "last_lifecycle": {
-    "at": "2026-06-21T05:04:15Z",
+    "at": "2026-06-22T02:34:46Z",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
@@ -921,9 +948,9 @@
     "archived_rounds": [],
     "active_step_digests": 11,
     "completed_tasks_hint": [
-      "loop126 added harness/reports/EMPLOYEE_ROSTER.md with orchestrator plus 21 workers; updated CodeX handoff, orchestrator/subagent prompts, adapter template, PROJECT_STATUS, CONTINUATION_PROMPT, and METHODOLOGY GP-07; did not restart daily_trade_status or daily_bar.",
-      "employee-roster-codex-adapter",
-      "loop126-employee-roster-codex-adapter"
+      "loop175: safe tick completed PL-G JobsPage post-trigger completed affordance TDD mocked-only. Added JobsPage/source and smoke fixture failing contracts first and observed expected 2 failed / 8 passed because completed audit/job observability did not outrank stale ready affordance and smoke lacked completed affordance evidence. Then added isCompletedAfterManualTrigger(), requiring latest audit result completed plus backtest_completed acceptance or completed job status before showing completed_after_manual_trigger, and kept structured trigger response feedback without rendering a stale ready submit button. Verification: focused tests 10 passed; npm run smoke:jobs-page passed with completed_after_manual_trigger, Manual trigger completed, no stale ready affordance after completed trigger, pageLoadTriggerRequests=[], duplicateTriggerUrls=[]; related regression 30 passed; web build/eslint and Python ruff passed. No .env/secret reads, page-load POST, duplicate trigger per URL, real runner/background work, migration, DB schema change, backfill, default real runner, or DB-backed backtest. Next atomic action is PL-G real batch demand gate TDD contract-only.",
+      "pl-g-real-batch-demand-gate-contract-only",
+      "loop175-pl-g-jobs-page-post-trigger-completed-affordance-mocked-only"
     ],
     "ttl_days": 180
   }

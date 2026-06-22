@@ -1,9 +1,9 @@
 # AWI 日度合规自检 Prompt
 
-> **用途**：Cursor Automations「Raindeer AWI 日度合规自检」主 prompt；也可粘贴到 orchestrator 会话做手动只读审计。  
-> **调度**：`0 6 * * *`（每日 06:00，确认本地时区）  
-> **绑定仓库**：`ninedeerhing/raindeer-quant-assistant` @ `main`  
-> **架构版本**：Loop Engineering v1.2 · 六真源 + 五 lifecycle · 2026-06-20  
+> **用途**：CodeX `automation_update` / 日度合规自检主 prompt；也可粘贴到 orchestrator 会话做手动只读审计。
+> **调度**：`0 6 * * *`（每日 06:00，确认本地时区）
+> **绑定仓库**：`ninedeerhing/raindeer-quant-assistant` @ `main`
+> **架构版本**：Loop Engineering v1.2 · 六真源 + 五 lifecycle · 2026-06-20
 > **约束**：只读审计；禁止写文件、改代码、提交 Git；禁止输出密钥/Token/DSN 密码。
 
 ---
@@ -12,9 +12,10 @@
 
 ## 0. 机器证据优先（第一步）
 
-在读取 prose 之前，**优先**收集机器态（只读命令，不写入）：
+在读取 prose 之前，**优先**收集 CodeX + AWI 机器态（只读命令，不写入）：
 
 ```powershell
+.\harness\scripts\codex-self-check.ps1 -TargetPath . -Format markdown
 .\harness\compliance-check.ps1 -TargetPath . -Format markdown
 python harness/loop_tick.py status
 ```

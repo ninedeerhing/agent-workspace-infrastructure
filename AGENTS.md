@@ -49,6 +49,8 @@
 18. **绝对可追溯** — 每个操作必须记录状态到 `docs/PROJECT_STATUS.md` 第 5 节台账，做到绝对可追溯。没有文件 / 测试 / 审查 / 运行态记录的动作，一律视为未完成。
 19. **心流模式** — 未命中停止白名单时，持续自动推进，不等待人工审核，不做"是否继续"的停顿式询问。详见 `docs/FLOW-MODE.md`。
 20. **流水线纪律** — 阶段切换前对照 `harness/pipeline-dag.json` 验证依赖关系、I/O 类型契约和门禁条件；心流模式下的 spec → plan → execute 循环按 DAG 定义的阶段输出类型传递数据。DAG 与 FLOW-MODE.md 互补：DAG 管"阶段间能传什么"，心流管"不要停"。
+21. **Git main-only** — AWI 根与 `apps/quant_assistant` 日常开发必须在本地 **`main`**（用户权威 2026-06-21）。禁止 arbitrary feature/`cursor/*` 分支作为默认工作区；AWI 本地 `main` 跟踪 `origin/raindeer-AWI` 合法；quant 须 `main` 跟踪 `origin/main`；`daily-git-push.ps1` 非 main → blocked exit 1。见 `docs/OPERATIONS.md` §1 · `docs/LOOP_ENGINEERING.md` §9.3 · **GP-08**。
+22. **Git clean-worktree gate** — AWI 根与 `apps/quant_assistant` 每轮 loop 结束前 `git status --porcelain` 必须为空（用户权威 2026-06-22）。真实源码/测试/真源文件改动提交到本地 `main`；构建产物、缓存、截图、临时 review 输出写入 `.gitignore` 后保留不入库。若因 secret 风险、冲突或破坏性清理需求无法清洁，必须标记真实阻塞；禁止把 dirty_count 当作长期正常状态。
 
 ---
 

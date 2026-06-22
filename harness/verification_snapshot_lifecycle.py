@@ -156,7 +156,7 @@ def record_snapshot(
     status_path = repo_root / DEFAULT_PROJECT_STATUS
     section5_ref = ""
     if status_path.is_file():
-        s5_num, _, _ = _scan_section5_evidence(status_path.read_text(encoding="utf-8"))
+        _, _, s5_num = _scan_section5_evidence(status_path.read_text(encoding="utf-8"))
         section5_ref = f"5.{s5_num}" if s5_num else ""
 
     snapshot = VerificationSnapshot(

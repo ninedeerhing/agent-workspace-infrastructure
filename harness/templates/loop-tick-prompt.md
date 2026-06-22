@@ -1,7 +1,7 @@
 # Loop Tick — 自治循环续跑 Prompt
 
-> **用途**：Cursor Automations / 定时任务 / orchestrator 会话**无用户输入**时触发下一 Loop 轮。  
-> **真源**：`docs/LOOP_ENGINEERING.md` · `harness/loop-state.json`  
+> **用途**：CodeX heartbeat / 定时任务 / orchestrator 会话**无用户输入**时触发下一 Loop 轮。
+> **真源**：`docs/LOOP_ENGINEERING.md` · `harness/loop-state.json`
 > **约束**：禁止问用户「是否继续」；命中停止白名单才短播报并停。
 
 ---
@@ -25,6 +25,7 @@
 ## 3. 同步（六真源 + 机器态）
 
 - 更新 §5 台账、`CONTINUATION_PROMPT`、`WORKFLOWS` 轮次日志 + **`PROJECT_STATUS.md` 顶部「心流模式当前轮」**（与 §5 最新 / loop-state 对齐）+ **Git 快照**（branch · ahead/behind · 脏文件数）
+- **Clean-worktree gate（用户权威 2026-06-22）**：每轮结束前必须让 AWI 根与 `apps/quant_assistant` 的 `git status --porcelain` 为空；真实源码/测试/真源改动提交到本地 `main`，本地缓存/构建产物写入 `.gitignore` 后保留不入库。若因冲突、secret 风险或破坏性操作无法清洁，必须把 `stop_reason` 置为真实阻塞并短报；禁止把 dirty_count 当作长期正常状态。
 - **方法论门控**：本步有新增方法论？→ 写步骤 digest；关键任务 done？→ 收口 synthesis；否则 **不写** METHODOLOGY
 - **§5 末尾强制行**：零写入时须加 `方法论门控：M-17 零写入 · 见 METHODOLOGY §轮次-…`；有 digest/synthesis 则改为对应 `§步骤-digest-*` / `§收口 synthesis-*`（`loop_tick.py` → `format_methodology_gate_tail()`）
 - 更新 `harness/reports/orchestrator/latest.md` + 活跃 worker 报告
@@ -41,7 +42,8 @@
 
 ## 4. 停止判定
 
-- 仅当：用户停止 / 真实阻塞 / 破坏性操作 / 裁判收口 → 停止
+- 仅当：用户停止 / 真实阻塞 / 破坏性操作 / 裁判明确收口且 `next_atomic_action` 为空或指向人工验收 → 停止
+- `closure_gate.status=closed` 不单独停止 loop；只要 `mode=autonomous`、`stop_reason=null` 且 `next_atomic_action` 存在，就继续推进。
 - 否则：**立即准备下一轮 tick**（不在对话里问用户）
 
 ## 5. 输出
@@ -51,4 +53,4 @@
 
 ---
 
-*本 prompt 是 LOOP L2 桥接；L0 = `.cursor/rules/raindeer-loop-autonomous.mdc`；L1 = `harness/loop_tick.py`。*
+*本 prompt 是 LOOP L2 桥接；CodeX 有效入口 = `codex_app.automation_update` heartbeat；L1 = `harness/loop_tick.py`；Cursor `.mdc` 仅作兼容说明。*

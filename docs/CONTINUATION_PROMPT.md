@@ -8,20 +8,24 @@
 
 ## Current Continuation Entry
 
-- Current mainline: AWI 基础设施已同步（TREE-RT 达标）
-- Business mainline: `apps/quant_assistant` — PL-C-KB KB-0 完成；PL-C-GEN R0 验收待跑
-- Current direction: 使用 orchestrator-Only 模式；日常只开 orchestrator 会话
-- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 Cursor 会话恢复索引 + 今日 P0/P1）
-- Recovery: AWI 日度自检 prompt → `harness/templates/awi-daily-audit-prompt.md`
-- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5 最新台账
+- Current mainline: AWI CodeX-effective baseline 已验收（TREE-RT 防漂移维护）；业务主线为 `TREE-6 / PL-G` mining_job Template B
+- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop175 已完成 `PL-G JobsPage post-trigger completed affordance TDD mocked-only`
+- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 通过 `create_thread`/`send_message_to_thread`；下一拍执行 `PL-G real batch demand gate TDD contract-only`，只增加纯只读 demand gate，不接默认真实 runner
+- Post-backfill directive: 已退出 backfill-monitoring 方式，按真源连续推进 **auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph**；closure/收口表示阶段验收通过并继续下一切片，不是结束方案或停止 loop
+- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.498 JobsPage post-trigger completed affordance 结论与 `PL-G real batch demand gate TDD contract-only` 下一原子动作）
+- Recovery: CodeX 有效性自检 → `harness/scripts/codex-self-check.ps1 -Format markdown`
+- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.498 最新台账
 
 ## Current Mainline Facts
 
-- AWI 源：`https://github.com/ninedeerhing/agent-workspace-infrastructure.git` @ main
-- 同步方式：`bootstrap.ps1 -Mode minimum` + `-Mode full -Force -ProvisionTeam -Platform cursor`
-- Runtime OS：`harness/compliance-check.ps1`, `harness/mailbox/`, `harness/adapters/`, `.cursor/hooks.json`
-- 业务隔离：`apps/quant_assistant/` 未改动；pytest 1251 passed
-- 会话入口：`docs/SESSION_SETUP.md` + `harness/templates/orchestrator-init-prompt.md`
+- AWI 源：`https://github.com/ninedeerhing/agent-workspace-infrastructure.git` · 本地 **main** 跟踪 `origin/raindeer-AWI`（AWI 架构 only · **非 feature 分支**）
+- QA 源：`apps/quant_assistant` → `https://github.com/ninedeerhing/raindeer-quant-assistant.git` · 本地 **MUST main** → `origin/main`（**禁止** `cursor/*`/feature 日常分支 · GP-08）
+- CodeX automations：`harness/codex-automation-registry.json` 记录 ACTIVE ids：`awi-loop-tick-heartbeat`（heartbeat 15min）、`awi-codex-self-check`、`awi-daily-compliance`、`awi-daily-git-push`；loop heartbeat prompt 已更新为可通过项目 loader safe env loading，仍禁止输出 `.env`/DSN/token
+- 日末 push：`harness/scripts/daily-git-push.ps1` + CodeX `automation_update` id `awi-daily-git-push`（见 `harness/templates/daily-git-push-prompt.md`）
+- 同步方式：`bootstrap.ps1 -Mode minimum` + `-Mode full -Force -ProvisionTeam -Platform codex` 或 `harness/adapters/Invoke-PlatformAdapter.ps1 -Platform codex`
+- Runtime OS：`harness/scripts/codex-self-check.ps1`, `harness/compliance-check.ps1`, `harness/codex-automation-registry.json`, `harness/reports/EMPLOYEE_ROSTER.md`, `harness/adapters/`
+- 业务隔离：loop175 仅改 JobsPage/fixture/test 合同与真源文档；未输出 DSN/token；未读取 `.env`；未执行 migration/backfill/background process/default real runner/DB-backed backtest
+- 会话入口：`docs/SESSION_SETUP.md` + `harness/templates/codex-zero-config-prompt.md`
 
 ## Effective Continuation Prompt
 
@@ -37,8 +41,9 @@ Take over this project and build context strictly in the following order:
 8. apps/quant_assistant/docs/PROJECT_STATUS.md (business mainline)
 
 Facts and constraints:
-- AWI Runtime OS is installed; orchestrator is the only user-facing agent.
-- quant_assistant business code and harness/brain-workflows/ are unchanged.
-- Verify AWI: .\harness\compliance-check.ps1 -Mode post-bootstrap
+- AWI Runtime OS is installed and CodeX-effective; orchestrator is the only user-facing agent.
+- CodeX worker threads use `create_thread` and `harness/templates/codex-subagent-prompt.md`; mailbox is fallback/audit only.
+- quant_assistant business code is on TREE-6 / PL-G; loop175 added JobsPage post-trigger completed affordance: fixture-backed browser smoke now shows `completed_after_manual_trigger` / `Manual trigger completed` and no stale ready affordance after completed trigger, without page-load POST or duplicate trigger per URL. Real batch demand gate contract-only remains next.
+- Verify AWI: .\harness\scripts\codex-self-check.ps1 -Format markdown; .\harness\compliance-check.ps1 -Mode post-bootstrap
 - Verify app: cd apps/quant_assistant && uv run pytest -q -m "not db and not external"
 ```

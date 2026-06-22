@@ -1,0 +1,186 @@
+{
+  "_schema": "omx-plan/1.0.0",
+  "_description": "OMX 目标执行模板。适用于需要持久化跟踪的长期目标，与 $ultragoal 技能对齐。每个目标实例化为独立的 JSON 计划文件，包含完整的目标定义、里程碑、成功标准和执行记录。",
+  "metadata": {
+    "plan_id": "",
+    "plan_title": "",
+    "plan_type": "goal",
+    "plan_name": "OMX 目标执行",
+    "description": "持久化多目标执行跟踪，支持聚合模式和单故事模式，跨会话状态保持",
+    "created_at": "",
+    "completed_at": "",
+    "omx_version": "1.0.0",
+    "skill_alignment": "$ultragoal"
+  },
+  "goal_definition": {
+    "goal_id": "",
+    "goal_name": "",
+    "status": "active",
+    "priority": "P1",
+    "one_line_description": "",
+    "success_criteria": [],
+    "dependencies": [],
+    "blocked_by": []
+  },
+  "execution_mode": {
+    "mode": "aggregate",
+    "description": "聚合模式（每次会话处理一个目标）或单故事模式（每次处理一个独立用户故事）",
+    "current_story_id": "",
+    "stories": []
+  },
+  "phases": [
+    {
+      "id": "startup",
+      "name": "STARTUP",
+      "index": 1,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-GOAL-01",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["all"],
+        "write_on_exit": false
+      },
+      "actions": [
+        "读取 .omx/plans/ 中已有的目标计划文件了解项目状态",
+        "读取 .omx/memory.md 和 .omx/notepad.md 获取最新上下文",
+        "选择当前要推进的目标"
+      ]
+    },
+    {
+      "id": "execute",
+      "name": "EXECUTE",
+      "index": 2,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-GOAL-02",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["build", "conventions"],
+        "write_on_exit": true,
+        "write_categories": ["NOTE"]
+      },
+      "actions": [
+        "按执行模式推进目标或故事",
+        "记录每一步的完成证据",
+        "更新目标进度"
+      ]
+    },
+    {
+      "id": "record",
+      "name": "RECORD",
+      "index": 3,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-GOAL-03",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["notes"],
+        "write_on_exit": true,
+        "write_categories": ["NOTE", "DECISION"]
+      },
+      "actions": [
+        "在 ledger 中追加不可变操作日志",
+        "更新目标的 current_progress、blocked_by",
+        "更新 OMX 项目记忆和记事本"
+      ]
+    },
+    {
+      "id": "handoff",
+      "name": "HANDOFF",
+      "index": 4,
+      "status": "pending",
+      "started_at": "",
+      "completed_at": "",
+      "exit_gate": "G-OMX-GOAL-04",
+      "artifacts": [],
+      "omx_memory_context": {
+        "load_sections": ["all"],
+        "write_on_exit": true,
+        "write_categories": ["NOTE"]
+      },
+      "actions": [
+        "更新目标计划文件的 status",
+        "标记下一步行动和阻塞项",
+        "发布完成声明（如目标完成）"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "G-OMX-GOAL-01",
+      "transition": "STARTUP → EXECUTE",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-GOAL-01.1", "label": "目标计划文件已读取", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-01.2", "label": "OMX 项目记忆已加载", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-01.3", "label": "当前推进目标已选择", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-01.4", "label": "执行模式已确认（aggregate 或 per-story）", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-GOAL-02",
+      "transition": "EXECUTE → RECORD",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-GOAL-02.1", "label": "本次会话的任务步骤已完成", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-02.2", "label": "每步有验证证据", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-02.3", "label": "未经授权的范围扩展已阻断", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-02.4", "label": "执行过程发现已暂存（用于写入 OMX 记忆）", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-GOAL-03",
+      "transition": "RECORD → HANDOFF",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-GOAL-03.1", "label": "ledger 已追加不可变操作日志", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-03.2", "label": "目标 current_progress 已更新", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-03.3", "label": "阻塞项已标记（如有）", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-03.4", "label": "OMX 项目记忆和记事本已更新", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    },
+    {
+      "gate_id": "G-OMX-GOAL-04",
+      "transition": "HANDOFF → 完成",
+      "status": null,
+      "result": null,
+      "timestamp": "",
+      "verifier": "",
+      "conditions": [
+        {"id": "G-OMX-GOAL-04.1", "label": "目标计划文件 status 已更新", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-04.2", "label": "下一步行动已明确标注", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-04.3", "label": "活跃目标数量 ≤ 5", "severity": "必须", "passed": null},
+        {"id": "G-OMX-GOAL-04.4", "label": "完成声明已发出（如目标完成）", "severity": "必须", "passed": null}
+      ],
+      "notes": ""
+    }
+  ],
+  "milestones": [],
+  "ledger": [],
+  "evidence_log": [],
+  "_使用说明": {
+    "激活": "复制此文件到 .omx/plans/active/<goal_id>.json，填写 goal_definition 字段后开始执行。",
+    "执行模式": "aggregate（聚合模式）：每次会话深入完成一个目标；per-story（单故事模式）：每次会话处理一个独立用户故事。",
+    "活跃上限": "活跃目标不超过 5 个。超过上限时需暂停或完成已有目标后再激活新目标。",
+    "ledger 规则": "ledger 数组仅追加，不修改历史条目。每条记录格式：{timestamp, operation_type, description, affected_goal, result, evidence}。",
+    "阶段切换": "当前阶段完成时将其 status 改为 'completed'；下一阶段改为 'in_progress'。",
+    "OMX 记忆": "RECORD 和 HANDOFF 阶段必须将关键发现和决策写入 OMX 记忆，确保跨会话上下文连续。",
+    "与其他技能的协作": "目标执行过程中可调用 $autoresearch（研究）、$executor（实现）、$code-review（审查）、$qa-testing（验证）等工作流技能。"
+  }
+}

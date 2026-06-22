@@ -51,6 +51,15 @@ logs/
 tools/_scratch/*
 !tools/_scratch/.gitkeep
 
+# Local/generated research and tool caches
+.mineru-cli/
+NINEDEER-WiKi/
+_worktree_backups/
+cache/
+ecosystem_503.html
+xcancel_profile.html
+xcancel_search_results.json
+
 # --- 临时文件 ---
 tmp/
 *.tmp

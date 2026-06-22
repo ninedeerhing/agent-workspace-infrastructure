@@ -8,6 +8,7 @@
 - **任意项目适配**：正在进行或刚初始化的软件项目可用单命令生成 AWI 最小核心。
 - **不破坏原项目**：不复制秘密，不覆盖已有重要文件；冲突进入 `.awi-adapter/`。
 - **跨聊天协作**：每个聊天窗口可作为 subagent，沿固定 report 合同回报总调度。
+- **CodeX 原生编排**：定时任务通过 `automation_update`，跨会话 worker 通过 `create_thread` / `send_message_to_thread`；文件总线只作 fallback 与审计。
 - **持续循环**：总调度读取 report、真源和计划后继续派工，直到收口或人工阻塞。
 
 ## 最小真源
@@ -23,6 +24,8 @@ CodeX 总调度启动后只需先读这些文件，缺失时由适配器生成�
 7. `harness/templates/codex-zero-config-prompt.md`：总调度起始 Prompt。
 8. `harness/templates/codex-subagent-prompt.md`：跨聊天 subagent 起始 Prompt。
 9. `harness/reports/EMPLOYEE_ROSTER.md`：员工清单，记录 manager/worker 身份、职责边界、report 位置、负载、错误/教训计数与当前任务。
+10. `harness/codex-automation-registry.json`：CodeX automation id 与 schedule 登记。
+11. `docs/PLATFORM-CODEX.md`：当前项目的 CodeX 有效约束与验证命令。
 
 如项目已有更强约束，例如 `CONSTITUTION.md`、`SECURITY.md`、`docs/ARCHITECTURE.md`、`docs/QUALITY_GATES.md`，总调度应在最小真源之后读取并遵守。
 
@@ -32,7 +35,7 @@ CodeX 总调度启动后只需先读这些文件，缺失时由适配器生成�
 
 - 读取最小真源，确认当前主线、阻塞项、验证口径和不可碰范围。
 - 读取 `harness/reports/EMPLOYEE_ROSTER.md`，派工前按职责边界、`workload`、`mistake_count`、`lesson_count` 与 `risk_notes` 选择 worker。
-- 将任务拆给独立聊天窗口中的 subagents，但不把用户直接暴露给 worker。
+- 将任务拆给独立 CodeX worker 线程或 subagents，但不把用户直接暴露给 worker。
 - 要求 subagent 使用 `codex-subagent-prompt.md` 的报告格式回传。
 - 整合 report 后更新 `PROJECT_STATUS.md`、`CONTINUATION_PROMPT.md`、`loop-state.json`、`EMPLOYEE_ROSTER.md` 与必要 worker report。
 - 每轮执行一个可验证原子动作，运行最小验证，再决定下一动作。
@@ -61,6 +64,7 @@ CodeX 总调度启动后只需先读这些文件，缺失时由适配器生成�
 
 每个新聊天窗口可以被当作一个 subagent：
 
+- 总调度优先用 CodeX `create_thread` 创建 worker 线程；后续用 `send_message_to_thread` 续派或纠偏。
 - 总调度复制 `codex-subagent-prompt.md`，填入 `ROLE_ID`、任务、目标文件、约束和回报路径。
 - subagent 不直接对最终用户做产品承诺，只返回结构化 report。
 - report 保持稳定字段：`status`、`changes`、`verification`、`blockers`、`next`，并包含可回写员工清单的 `workload_delta`、`mistakes`、`lessons`。
@@ -86,6 +90,26 @@ CodeX 总调度启动后只需先读这些文件，缺失时由适配器生成�
 - 进度报告采用短标签：`[DONE]`、`[BLOCKED]`、`[VERIFY]`、`[NEXT]`。
 - 跨聊天 handoff 优先保留：目标、当前主线、改动文件、验证证据、阻塞、下一原子动作、禁止重复事项。
 - 压缩不得丢失安全边界、密钥保护、验证失败、人工阻塞和不可逆操作需求。
+
+## Git 双仓库边界
+
+raindeer 工作区含两个独立 Git 远程，日末 `daily-git-push` 分别处理：
+
+- **AWI 根** → `agent-workspace-infrastructure`（upstream 常为 `raindeer-AWI`）：Harness、治理、架构文档。
+- **`apps/quant_assistant`** → `raindeer-quant-assistant`：Quant 产品代码；**不属于** AWI 架构 publish。
+
+CodeX Automation 配置以 `harness/codex-automation-registry.json` 为准，创建/更新通过 CodeX `automation_update`；`harness/schedule.json` 保留为 portable schedule spec。日末 push 模板见 `harness/templates/daily-git-push-prompt.md`。
+
+## CodeX 自检
+
+每次声明“CodeX 已配置完毕”前运行：
+
+```powershell
+.\harness\scripts\codex-self-check.ps1 -Format markdown
+.\harness\compliance-check.ps1 -Mode post-bootstrap -Format markdown
+```
+
+自检至少覆盖：platform binding、automation registry、worker roster、subagent prompt、关键 skills、agent registry、loop-state 与 base compliance。
 
 ## 单命令导入
 
@@ -121,6 +145,6 @@ powershell -NoProfile -ExecutionPolicy Bypass -File .\harness\scripts\prepare-co
 
 1. 在目标项目打开一个新 CodeX 聊天。
 2. 粘贴 `harness/templates/codex-zero-config-prompt.md` 的内容。
-3. 若要开 worker 聊天，复制 `harness/templates/codex-subagent-prompt.md`，填入角色和任务。
-4. worker 完成后把 report 交回总调度聊天。
+3. 若要开 worker 聊天，优先用 CodeX `create_thread`，并以 `harness/templates/codex-subagent-prompt.md` 填入角色和任务。
+4. worker 完成后把 report 交回总调度聊天；总调度用 repo 命令复核后再采纳。
 5. 总调度更新 worker report、`EMPLOYEE_ROSTER.md`、真源并继续下一原子动作。

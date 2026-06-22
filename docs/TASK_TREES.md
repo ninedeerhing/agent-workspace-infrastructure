@@ -16,7 +16,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 
 | ID | Theme | Registered | Status |
 |----|-------|-----------|--------|
-| PL-001 | Cursor SDK 团队编排（Phase 5） | 2026-06-15 | 待 TREE-RT Phase 4 完成 |
+| PL-001 | SDK 原生团队编排深水区（Phase 5+） | 2026-06-15 | parking_lot；CodeX `create_thread`/`send_message_to_thread` 已覆盖当前跨会话 worker 需求 |
 
 ## Active Trees
 
@@ -24,7 +24,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 
 - Status: `in_progress`
 - Nature: `foreground_mainline`
-- Completion: ~`95%`（运行时 OS 骨架 + bootstrap 全链路 smoke 通过）
+- Completion: `100%` for CodeX-effective baseline（运行时 OS 骨架 + bootstrap smoke + CodeX automation/worker/self-check 验收通过）
 - Main chain files:
   - `docs/ENGINEERING/RAINDEER-AWI-NORTHSTAR.md` — 北极星目标态（Hub-Only / 跨平台 / 零提醒）
   - `docs/ENGINEERING/AWI-RUNTIME-IMPROVEMENT-PLAN.md` — 九阶段施工计划 v0.2
@@ -35,19 +35,23 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - `harness/agent-registry.json` — 18 角色（1 hub + 17 worker）
   - `harness/mailbox/` + `Send-MailboxMessage.ps1` — 文件总线
   - `harness/adapters/` + `Invoke-PlatformAdapter.ps1` — PAL 跨平台
+  - `docs/PLATFORM-CODEX.md` — CodeX 原生 primitives 与有效约束
+  - `harness/codex-automation-registry.json` — CodeX `automation_update` 返回 id 台账
+  - `harness/scripts/codex-self-check.ps1` — CodeX 有效性自检
+  - `harness/templates/codex-self-check-prompt.md` — 定时自检 prompt
   - `harness/gate-runner.ps1` — 阶段门禁
   - `.cursor/hooks.json` + `harness/hooks/` — sessionStart / post-edit 提醒
   - `skills/agent-team-bootstrap` + `skills/workflow-phase-advance`
 - Current commit scope (core):
   - Phase 0–7 交付：compliance、boot、registry、worker 边界、mailbox、PAL、hooks、gate-runner、bootstrap -ProvisionTeam 全链路
+  - CodeX 生效交付：`automation_update` 四项 ACTIVE；`create_thread` verifier worker 已创建；CodeX self-check 27/27 PASS；base compliance 36 checks / 0 findings
 - Unclosed points:
-  - Phase 5 SDK 原生多会话编排（PL-001 parking_lot，不阻塞主线）
-  - 各平台 adapter 增强（Codex send_message 等）按需迭代
+  - Phase 5+ SDK 深水区仍 parking_lot，不阻塞当前 CodeX baseline
 - Processing rules:
-  - 用户只与 orchestrator 对话；worker 通过 mailbox 协作
+  - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 用户导入后执行 `bootstrap -Mode full -ProvisionTeam -Platform auto`，打开 orchestrator 会话即可开工
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G JobsPage post-trigger completed affordance TDD mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防漂移
 
 ## Task Tree Governance Protocol
 
@@ -59,8 +63,10 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 
 ## Current Mainline
 
-- Current sole foreground mainline: `TREE-RT`（AWI 运行时改善）
-- Current background themes: （无）
+- Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
+- Current operational loop: `apps/quant_assistant` PL-G real batch demand gate TDD contract-only（TREE-2 data gate passed；loop175 completed JobsPage post-trigger completed affordance mocked-only；见 `harness/loop-state.json` and app §5.498）
+- Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
+- Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 
 ## EXCLUDE: Default Exclusions
 
