@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-23T05:00:00+08:00
+更新时间：2026-06-23T05:20:00+08:00
+
+## Tick loop226-explicit-controlled-runner-handoff-gate-review
+
+- **任务 ID**：loop226-explicit-controlled-runner-handoff-gate-review-pre-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX agent**：`019ef130-86cb-7e23-8a8f-fc490f1a07bd`
+- **状态**：success
+- **任务**：只读预审 explicit controlled runner handoff gate review 的语义风险。
+- **变更**：worker 只读复核，未修改文件。
+- **审查结论**：需保持 gate-review-only/not-execution；避免 Authorization/Checklist/Acceptance family 旧名；不要让 source glob 偶然通过，必须验证 smoke call + `text_checks` spread；PL-H 仍必须是 not eligible/deferred；active grant/connected/enabled/invoked/executed/eligible markers 不得作为正向证据。
+- **orchestrator 响应**：focused test 同时检查 aggregator export、fixture call 与 `text_checks` spread；新 proof rows 使用 fail-closed markers，active marker non-test scan 为 0。
+- **orchestrator 本地验证**：RED/GREEN、35 pytest、ruff、eslint、build、smoke、active-marker scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: gate review rows must not imply authorization grant, config connection, runner/adapter invocation, actual dry-run execution, or PL-H eligibility。
+- **next**：进入 actual adapter authorization preflight review mocked-only。
 
 ## Tick loop225-controlled-runner-handoff-planning-review
 
