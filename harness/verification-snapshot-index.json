@@ -1,26 +1,26 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T21:31:19Z",
+  "updated_at": "2026-06-22T21:51:27Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-22T21:31:14Z",
-    "last_tick": "loop226-explicit-controlled-runner-handoff-gate-review",
-    "pytest_passed": 35,
+    "recorded_at": "2026-06-22T21:51:23Z",
+    "last_tick": "loop227-actual-adapter-authorization-preflight-review",
+    "pytest_passed": 36,
     "ruff": "ok",
     "evidence_paths": [],
-    "section5_ref": "5.550",
+    "section5_ref": "5.551",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.0014185144444444446,
+  "age_hours": 0.0013277277777777778,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T21:31:19Z",
+    "at": "2026-06-22T21:51:27Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.0014185144444444446
+    "age_hours": 0.0013277277777777778
   }
 }

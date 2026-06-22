@@ -1,6 +1,20 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-23T05:20:00+08:00
+**Updated**: 2026-06-23T05:55:00+08:00
+
+## Tick loop227-actual-adapter-authorization-preflight-review
+
+- **任务 ID**：loop227-actual-adapter-authorization-preflight-review-implementation-scope
+- **任务树**：TREE-6 / PL-G
+- **CodeX agent**：`019ef130-5a38-7951-933f-4f64c4b7917d`
+- **状态**：success
+- **任务**：只读确认 actual adapter authorization preflight review 的最小实现边界。
+- **变更**：worker 只读复核，未修改文件。
+- **结论**：最小文件集应为一条 text-contract pytest、两个 bounded proof modules、`jobs-page-fixture-runner-adapter-proofs.mjs` export/setter wiring、`smoke-jobs-page-fixture.mjs` import/assert/text_checks wiring；JobsPage/runtime/runner/DB/backfill/background 与 PL-H execution 均不应触碰。
+- **orchestrator 本地实现**：按该边界新增 `actualAdapterAuthorizationPreflightReviewChecks` / `assertActualAdapterAuthorizationPreflightReview(...)`，只做 fixture proof wiring。
+- **orchestrator 本地验证**：RED **1 failed** expected；focused pytest **1 passed**；related regression **36 passed**；ruff/eslint/smoke/build/active-marker scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: authorization preflight review implementation remains bounded proof text wiring until a later explicit authorization packet and execution gate exists。
+- **next**：进入 explicit actual-adapter dry-run authorization packet mocked-only。
 
 ## Tick loop226-explicit-controlled-runner-handoff-gate-review
 

@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T05:20:00+08:00
+updated_at: 2026-06-23T05:55:00+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -70,6 +70,8 @@ updated_at: 2026-06-23T05:20:00+08:00
 [CONTEXT] 2026-06-23 loop225 · 已完成 controlled runner handoff planning review mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `controlledRunnerHandoffPlanningReviewChecks` / `assertControlledRunnerHandoffPlanningReview(...)`，Jobs smoke fixture 验证 planning-review-only/not-execution gate：source=loop224 execution readiness review、fail_closed_planning_review_not_execution、authorization evidence completion_required_not_granted、runner/adapter config readiness_handoff_required_not_connected、rollback/audit before-after no-execution observability、missing-runner fail-closed、PL-H not eligible until real-batch gate、no-execution planning acceptance、decision:planning_review_only_not_execution 与 explicit controlled runner handoff gate review next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 34 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / planning review markers visible，source forbidden scans、secret value shape scan、runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 explicit controlled runner handoff gate review TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 
 [CONTEXT] 2026-06-23 loop226 · 已完成 explicit controlled runner handoff gate review mocked-only：worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `explicitControlledRunnerHandoffGateReviewChecks` / `assertExplicitControlledRunnerHandoffGateReview(...)`，Jobs smoke fixture 验证 gate-review-only/not-execution gate：source=loop225 controlled handoff planning review、fail_closed_gate_review_not_execution、operator authorization evidence completion_still_required_not_granted、runner/adapter config readiness_still_required_not_connected、rollback/audit before-after readiness、missing-runner fail-closed、PL-H not eligible until real-batch gate、no-execution gate acceptance、decision:explicit_gate_review_only_not_execution 与 actual adapter authorization preflight review next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 35 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / explicit gate markers visible，active_marker_non_test_match_count=0，source forbidden/secret guard review pass；下一拍进入 actual adapter authorization preflight review TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
+
+[CONTEXT] 2026-06-23 loop227 · 已完成 actual adapter authorization preflight review mocked-only：复用同一 worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `actualAdapterAuthorizationPreflightReviewChecks` / `assertActualAdapterAuthorizationPreflightReview(...)`，Jobs smoke fixture 验证 preflight-review-only/not-execution gate：source=loop226 explicit controlled runner handoff gate review、fail_closed_preflight_review_not_execution、operator authorization evidence package still_required_not_granted、runner/adapter config still_required_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution preflight acceptance、decision:authorization_preflight_only_not_execution 与 explicit actual-adapter dry-run authorization packet next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 36 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / actual-adapter preflight markers visible，active_marker_non_test_match_count=0，source forbidden/secret guard review pass；下一拍进入 explicit actual-adapter dry-run authorization packet TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 ```
 
 ### Loop Machine State
@@ -78,18 +80,18 @@ updated_at: 2026-06-23T05:20:00+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-actual-adapter-authorization-preflight-review-mocked-only |
-| `last_tick` | loop226-explicit-controlled-runner-handoff-gate-review |
+| `current_slice` | pl-g-explicit-actual-adapter-dry-run-authorization-packet-mocked-only |
+| `last_tick` | loop227-actual-adapter-authorization-preflight-review |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start actual adapter authorization preflight review TDD mocked-only: use loop226 explicit controlled runner handoff gate review to define a fail-closed actual adapter authorization preflight review for operator authorization evidence package still required/not granted, injected runner/adapter config still required/not connected, rollback/audit before-after readiness, missing-runner fail-closed rejection, PL-H non-eligibility/real-batch gate, and no-execution preflight acceptance; still forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start explicit actual-adapter dry-run authorization packet TDD mocked-only: use loop227 actual adapter authorization preflight review to define a fail-closed explicit actual-adapter dry-run authorization packet for operator authorization evidence package completion still required/not granted, injected runner/adapter config still required/not connected, rollback/audit before-after readiness, missing-runner fail-closed rejection, PL-H non-eligibility/real-batch gate, and no-execution authorization-packet acceptance; still forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the actual adapter authorization preflight review stabilizes, assess a later explicit actual-adapter dry-run authorization packet only if operator authorization evidence package, injected runner/adapter config readiness, rollback/audit before-after readiness, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, and no-execution preflight acceptance are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
+After the explicit actual-adapter dry-run authorization packet stabilizes, assess a later actual adapter dry-run execution dry-run gate only if operator authorization evidence package completion, injected runner/adapter config readiness, rollback/audit before-after readiness, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, and no-execution authorization-packet acceptance are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -106,7 +108,7 @@ After the actual adapter authorization preflight review stabilizes, assess a lat
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 actual adapter authorization preflight review；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 explicit actual-adapter dry-run authorization packet；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers
