@@ -1,6 +1,21 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-22T19:49:30+08:00
+更新时间：2026-06-22T20:22:07+08:00
+
+## Tick loop208-real-runner-authorization-planning
+
+- **任务 ID**：loop208-real-runner-authorization-planning-test-design
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读设计 real runner wiring demand/authorization gate planning 的 RED/GREEN 验收形态，确保 planning bundle 证明授权/runner/rollback/PL-H 边界，而不是 execution permission。
+- **变更**：worker 只读复核，未修改文件。
+- **验证建议**：
+  - 新增 `realRunnerAuthorizationGatePlanChecks` / `assertRealRunnerAuthorizationGatePlan(bodyText, submittedText, refreshedText)`。
+  - Exact markers: `real_runner_authorization_gate_plan_bundle_visible`、`real_runner_authorization_gate_plan_explicit_authorization:required_before_wiring`、`real_runner_authorization_gate_plan_runner_boundary:injected_runner_configuration_required`、`real_runner_authorization_gate_plan_rollback_observability:required_before_execution`、`real_runner_authorization_gate_plan_pl_h_eligibility:not_eligible_until_real_batch_gate`、`real_runner_authorization_gate_plan_status:planning_only_not_execution`。
+  - Safety guards: no page-load auto POST, no real/default runner, no background process, no migration/backfill, no DB-backed backtest, no PL-H batch execution, no secret output。
+- **roster_update**：workload cleared；mistakes none；lesson: real runner planning tests must encode authorization and rollback preconditions before any runner wiring implementation。
+- **next**：交给 executor/code-reviewer/verifier 汇合；下一切片进入 explicit runner wiring design/implementation preflight。
 
 ## Tick loop207-explicit-approval-runner-preflight
 

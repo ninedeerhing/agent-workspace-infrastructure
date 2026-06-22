@@ -1,6 +1,25 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-22T19:49:30+08:00
+**Updated**: 2026-06-22T20:22:07+08:00
+
+## Tick loop208-real-runner-authorization-planning
+
+- **任务 ID**：loop208-real-runner-authorization-planning-red-tests
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：partial
+- **任务**：TDD 增加 real runner authorization gate planning 的 RED tests，随后按 orchestrator 要求停止，避免共享 fixture 文件跨对话写冲突。
+- **结论**：RED tests 已建立；最终 GREEN patch 由 orchestrator 在共享 fixture 中实现，范围仍限制在 fixture/tests-only。
+- **变更**：
+  - `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py`：新增 authorization gate plan source contract。
+  - `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py`：新增 fixture source/UI authorization planning assertions。
+  - `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs`：由 orchestrator 后续补齐 `realRunnerAuthorizationGatePlanChecks` / `assertRealRunnerAuthorizationGatePlan(...)` 与 text checks。
+- **验证**：
+  - RED before GREEN：focused pytest **2 failed / 15 passed** expected。
+  - orchestrator final verification after shared fixture patch：focused pytest **17 passed**，smoke/build/eslint/ruff/stale-family enablement scan/safety scan pass。
+- **roster_update**：workload cleared；mistakes unchanged；lesson: when RED tests and GREEN fixture share hot files, executor should stop at RED and let orchestrator serialize final patch before verifier review。
+- **残余风险**：mocked-only；real/default runner, DB-backed backtest, background process, migration/backfill, and PL-H execution remain intentionally deferred。
+- **next**：explicit runner wiring design/implementation preflight.
 
 ## Tick loop207-explicit-approval-runner-preflight
 
