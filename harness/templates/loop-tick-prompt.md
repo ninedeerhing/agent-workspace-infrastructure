@@ -19,7 +19,7 @@
 
 ## 2. 前置治理门禁（强制）
 
-在执行任何业务代码或文档切片前，先完成以下三道门，并把结果写入 `harness/reports/orchestrator/latest.md` 与本轮 §5 台账：
+在执行任何业务代码或文档切片前，先完成以下四道门，并把结果写入 `harness/reports/orchestrator/latest.md` 与本轮 §5 台账：
 
 ### 2.1 Goal/Plan Gate
 
@@ -48,6 +48,14 @@
 - 每轮检查 roster 负载分布。若同一 role 连续 ≥3 tick 为 `3 high` / `surge`，或 orchestrator 连续自做实现、测试、审查、治理中任两类工作，必须先再平衡到空闲既有 worker；仍不足时记录 `capacity_review` 与新增 worker 功能差异矩阵，且不得与现有 worker 职责模糊重复。
 - Orchestrator 只做目标、计划、派发、整合、验证与真源同步；实现、测试、审查、安全、治理复核优先派给对应 worker，除非本轮是单文件/单命令 bounded slice 并记录不派发原因。
 
+### 2.4 Worker Cluster/Rendezvous Gate
+
+- 若本轮是 `goal_bundle`、多文件实现、计划/架构审查、测试设计、代码审查、QA/security/governance/verification 或外部研究，必须创建 `cluster_manifest`：`{cluster_id, goal_id, commander, max_parallel_workers, worker_threads[{role_id, thread_id, task_id, write_scope, mode, status}], rendezvous_gate, retirement}`。
+- `role_id` 必须来自 `harness/reports/EMPLOYEE_ROSTER.md`；worker 名称只用角色名，不加项目/约束后缀。新 worker 必须用户批准 + 功能差异矩阵。
+- CodeX 跨对话线程成功创建后，把 `thread_id` 写入 roster / handoff / orchestrator report；若 `set_thread_title` 失败，以 roster 映射和 prompt 头部 `ROLE_ID` 为准。
+- Worker 默认只返回 report；只有分配了 disjoint write scope 才能改文件。总调度统一写共享真源，避免多聊天抢写。
+- 汇合门禁：required reports 到齐或 blocker 记录后，orchestrator 复核仓库事实，运行最小验证，更新 roster，再允许 §5 声称完成。
+
 ## 3. 执行
 
 - 执行 **一条** `next_atomic_action`（TDD → 实现 → 最小验证）
@@ -56,7 +64,7 @@
 ## 4. 同步（六真源 + 机器态）
 
 - 更新 §5 台账、`CONTINUATION_PROMPT`、`WORKFLOWS` 轮次日志 + **`PROJECT_STATUS.md` 顶部「心流模式当前轮」**（与 §5 最新 / loop-state 对齐）+ **Git 快照**（branch · ahead/behind · 脏文件数）
-- §5 末尾必须包含：`goal_gate`、`skill_route`、`dispatch_decision`、`bundle_decision`（若合并了微切片）、`capacity_review` / `skill_lifecycle`（若触发）以及最小验证证据。
+- §5 末尾必须包含：`goal_gate`、`skill_route`、`dispatch_decision`、`cluster_manifest` / `no_cluster_reason`、`worker_report_refs`、`bundle_decision`（若合并了微切片）、`capacity_review` / `skill_lifecycle`（若触发）以及最小验证证据。
 - **Clean-worktree gate（用户权威 2026-06-22）**：每轮结束前必须让 AWI 根与 `apps/quant_assistant` 的 `git status --porcelain` 为空；真实源码/测试/真源改动提交到本地 `main`，本地缓存/构建产物写入 `.gitignore` 后保留不入库。若因冲突、secret 风险或破坏性操作无法清洁，必须把 `stop_reason` 置为真实阻塞并短报；禁止把 dirty_count 当作长期正常状态。
 - **方法论门控**：本步有新增方法论？→ 写步骤 digest；关键任务 done？→ 收口 synthesis；否则 **不写** METHODOLOGY
 - **§5 末尾强制行**：零写入时须加 `方法论门控：M-17 零写入 · 见 METHODOLOGY §轮次-…`；有 digest/synthesis 则改为对应 `§步骤-digest-*` / `§收口 synthesis-*`（`loop_tick.py` → `format_methodology_gate_tail()`）

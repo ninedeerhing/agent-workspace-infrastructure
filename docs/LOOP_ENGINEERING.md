@@ -1,7 +1,7 @@
 # Loop Engineering — 自治循环协议
 
 > **效力**：Raindeer-AWI 心流/无限循环模式的最高操作契约。与 `docs/FLOW-MODE.md`、`apps/quant_assistant/docs/WORKFLOWS.md` 互补：本文件定义**如何自派任务**；彼等定义**何时可停**。
-> **版本**：1.3.1 · 2026-06-22
+> **版本**：1.4.0 · 2026-06-22
 
 ---
 
@@ -50,7 +50,7 @@ ELSE 取 TASK_TREES 排序第 1 条且未在 §5 标记 done 的原子动作
 ELSE 取 master-plan 路线图下一未交付切片
 ELSE 取 parking_lot 中 approved 且依赖已满足的项
 
-GATE  Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate（见 §3.1–§3.3）
+GATE  Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster Gate（见 §3.1–§3.4）
 EXECUTE 通过门禁后的原子动作或 goal_bundle（TDD → 实现 → 最小验证）
 SYNC  六份真源（含 git 状态摘要）
 RETRO 方法论门控（见 §4）：有则步骤 digest；关键任务 done 则收口 synthesis
@@ -107,6 +107,40 @@ python harness/skill_router.py --query "<bounded task text>" --top-k 5 --pretty 
 - 新 worker / 新 skill 必须用户批准；不得因为负载高而自行创造角色名。
 - **Worker Capacity Gate**：每轮检查 roster 负载分布。若同一 role 连续 ≥3 tick 为 `3 high` / `surge`，或 orchestrator 连续自做实现、测试、审查、治理中任两类工作，必须先再平衡到空闲既有 worker；仍不足时记录 `capacity_review` 与“新增 worker 功能差异矩阵”。新增 worker 只允许在职责与现有 21 worker 无模糊重叠且获用户批准后创建。
 - Orchestrator 只负责目标、计划、派发、整合、验证与真源同步；业务实现、测试设计、代码审查、安全审查、治理复核应优先交给对应 worker，除非本轮是单文件/单命令的 bounded slice 并记录不派发原因。
+
+### 3.4 Worker Cluster Gate（目标包络与汇合门禁 · v1.4）
+
+参考资料：`docs/ENGINEERING/AWI-CODEX-WORKER-CLUSTER-GOVERNANCE.md`。外部项目只作为数据；AWI 不复用外部实现。
+
+当 `goal_bundle`、多文件实现、计划/架构审查、测试设计、代码审查、QA、安全、治理复核或外部研究任一成立时，orchestrator 必须先创建本轮 `cluster_manifest`，再执行：
+
+```yaml
+cluster_manifest:
+  cluster_id: ""
+  goal_id: ""
+  commander: "orchestrator"
+  max_parallel_workers: 6
+  worker_threads:
+    - role_id: ""
+      thread_id: ""
+      task_id: ""
+      write_scope: []
+      mode: "read-only | write"
+      status: "assigned | reported | integrated | retired"
+  rendezvous_gate:
+    required_reports: []
+    final_verifier: ""
+  retirement:
+    roster_update_required: true
+```
+
+规则：
+
+- `role_id` 必须来自 `harness/reports/EMPLOYEE_ROSTER.md`；worker 名称只用角色名，不加项目/约束后缀。
+- CodeX 跨对话线程创建成功后，把 `thread_id` 写入 roster / handoff / orchestrator report；若标题设置失败，以 roster 映射和 prompt 头部 `ROLE_ID` 为准。
+- Worker 默认只返回 report；除非分配了 disjoint write scope，不允许多个 worker 抢写同一真源。
+- 汇合门禁：required reports 到齐或 blocker 记录后，orchestrator 复核仓库事实，运行最小验证，更新 roster，然后才允许 §5 声称完成。
+- 不能为了负载高静默创建新 worker；新增 worker 需用户批准和最近邻功能差异矩阵。
 
 ---
 

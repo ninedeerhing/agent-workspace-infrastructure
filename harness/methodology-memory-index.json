@@ -1,8 +1,8 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-06-22T09:45:35Z",
+  "updated_at": "2026-06-22T10:03:54Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
-  "active_entry_count": 40,
+  "active_entry_count": 42,
   "archived_round_count": 0,
   "entries": {
     "M-01": {
@@ -15,7 +15,7 @@
       "fingerprint": "92945a692979de9c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-02": {
@@ -28,7 +28,7 @@
       "fingerprint": "19492a48460ef0b8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-03": {
@@ -41,7 +41,7 @@
       "fingerprint": "b753e5142d63cca6",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-04": {
@@ -54,7 +54,7 @@
       "fingerprint": "8252872344a6a1aa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-05": {
@@ -67,7 +67,7 @@
       "fingerprint": "b0a78e119c2a978d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-06": {
@@ -80,7 +80,7 @@
       "fingerprint": "466b92547c39ab98",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-07": {
@@ -93,7 +93,7 @@
       "fingerprint": "514ac18df80f3270",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-08": {
@@ -106,7 +106,7 @@
       "fingerprint": "127f609b9d336749",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-09": {
@@ -119,7 +119,7 @@
       "fingerprint": "699fe149e07dadd7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-10": {
@@ -132,7 +132,7 @@
       "fingerprint": "042b0ee40d795387",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-11": {
@@ -145,7 +145,7 @@
       "fingerprint": "0b8339a1a4ee0815",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-12": {
@@ -158,7 +158,7 @@
       "fingerprint": "0b8532fed9ce4d33",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-15": {
@@ -171,7 +171,7 @@
       "fingerprint": "da847d8aeda5f49a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-16": {
@@ -184,7 +184,7 @@
       "fingerprint": "a124342e3487cc07",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-17": {
@@ -197,7 +197,7 @@
       "fingerprint": "61b08a325d7f74eb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-18": {
@@ -210,7 +210,7 @@
       "fingerprint": "9df0d5bdaaeb1d34",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-19": {
@@ -223,7 +223,7 @@
       "fingerprint": "7052d26bc2685cfa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-20": {
@@ -236,7 +236,7 @@
       "fingerprint": "d98f2ced613ddc3d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-21": {
@@ -249,7 +249,7 @@
       "fingerprint": "8962d8542b06099d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-22": {
@@ -262,7 +262,7 @@
       "fingerprint": "f8088bb36c67760f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-23": {
@@ -275,7 +275,7 @@
       "fingerprint": "5591738fdcb42c02",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-24": {
@@ -288,7 +288,7 @@
       "fingerprint": "faafb47510b14881",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-25": {
@@ -301,7 +301,7 @@
       "fingerprint": "47b3f516d0a32bbd",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-26": {
@@ -314,7 +314,7 @@
       "fingerprint": "2e8e010276b68173",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-27": {
@@ -327,7 +327,7 @@
       "fingerprint": "d8d82de01b96a7f2",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-28": {
@@ -340,7 +340,7 @@
       "fingerprint": "f45fb585f8e2668f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-29": {
@@ -353,7 +353,7 @@
       "fingerprint": "07f27400a64451a8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-30": {
@@ -366,7 +366,7 @@
       "fingerprint": "5a5e86bf23db3c6a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-31": {
@@ -379,7 +379,7 @@
       "fingerprint": "eba7c675aa3600bc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-32": {
@@ -392,7 +392,7 @@
       "fingerprint": "05605bd00cfcb5d9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "M-33": {
@@ -405,7 +405,20 @@
       "fingerprint": "5cf04c34f8ab2feb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
+      "mention_count": 1
+    },
+    "M-34": {
+      "entry_id": "M-34",
+      "title": "CodeX worker cluster 汇合门禁",
+      "scenario": "用户要求 orchestrator 真正统筹跨对话 workers，而不是自己承担实现/测试/审查/治理；或目标包络包含多文件、多角色、外部研究、review/signoff 任一复杂度",
+      "rule": "先写 `goal_envelope`，再写 `cluster_manifest`，用现有 roster role 建立跨对话 worker cluster；worker 只按 disjoint scope 工作并返回 report；`rendezvous_gate` 要求 required reports 到齐或 blocker 留痕后，orchestrator 才能复核、验证、更新 roster/§5 并声称完成",
+      "trigger": "任意 `goal_bundle`、多 worker 调度、外部架构研究、计划/实现/测试/审查/verification 分离任务",
+      "source": "步骤 digest-20260622-worker-cluster-rendezvous · §5.526",
+      "fingerprint": "3f7a4263c04fb129",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     }
   },
@@ -420,7 +433,7 @@
       "fingerprint": "e2a42f0cbfb4498d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "GP-02": {
@@ -433,7 +446,7 @@
       "fingerprint": "614ede829cca904f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "GP-03": {
@@ -446,7 +459,7 @@
       "fingerprint": "6cf6c017a8fcc86c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "GP-04": {
@@ -459,7 +472,7 @@
       "fingerprint": "6f112435ad5b561f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "GP-05": {
@@ -472,7 +485,7 @@
       "fingerprint": "f0a08a8433aca1de",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "GP-06": {
@@ -485,7 +498,7 @@
       "fingerprint": "b78507c3423d1f86",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "GP-07": {
@@ -498,7 +511,7 @@
       "fingerprint": "2bc38c718dbbe1a9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "GP-08": {
@@ -511,20 +524,33 @@
       "fingerprint": "89e6ae3e88559ba4",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     },
     "GP-09": {
       "entry_id": "GP-09",
       "title": "Skill/Worker/Goal 前置路由门禁",
       "scenario": "大型项目 skills 很多但实际调用率低、worker roster 很完整但派工少、orchestrator 连续自做实现/测试/审查/治理，或 loop 滑向低价值连续小切片",
-      "rule": "每轮执行前强制三门：Goal/Plan Gate 记录 `goal_id/slice_family/acceptance_gate/exit_to_real_flow`；Skill Routing Gate 运行 router 并记录 `selected_skills/applied_skills/skipped_skills/no_skill_reason/skill_lifecycle`；Worker Dispatch Gate 记录 `dispatch_decision/no_dispatch_reason/capacity_review`，优先跨对话 worker，触发条件下 fail-closed 到派工或真实 blocker",
+      "rule": "每轮执行前强制四门：Goal/Plan Gate 记录 `goal_id/slice_family/acceptance_gate/exit_to_real_flow`；Skill Routing Gate 运行 router 并记录 `selected_skills/applied_skills/skipped_skills/no_skill_reason/skill_lifecycle`；Worker Dispatch Gate 记录 `dispatch_decision/no_dispatch_reason/capacity_review`；Worker Cluster Gate 记录 `cluster_manifest/worker_report_refs/rendezvous_gate`，优先跨对话 worker，触发条件下 fail-closed 到派工或真实 blocker",
       "trigger": "任意 CodeX heartbeat / orchestrator loop tick；2+ 独立切片、多文件实现、计划/代码/QA/security/governance/verification 任一工作；同类流程重复 ≥3 次",
       "source": "步骤 digest-20260622-loop-governance-skill-worker-goal-gate · §5.525",
-      "fingerprint": "982de8b531ba2b36",
+      "fingerprint": "02ad18f514a60193",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T09:45:35Z",
+      "last_seen_at": "2026-06-22T10:03:54Z",
+      "mention_count": 1
+    },
+    "GP-10": {
+      "entry_id": "GP-10",
+      "title": "Goal-envelope worker cluster",
+      "scenario": "长期自治项目需要 main agent 管理多个 worker/subagent，且上下文、职责、审计、验证不能混在同一对话里",
+      "rule": "把复杂目标转换为 `goal_envelope -> cluster_manifest -> rendezvous_gate -> verification -> truth_sync`；主调度只做 command/control/integration，不把 worker 中间记录混入主上下文；跨对话 worker 用 role 名 + report contract + roster 映射；hooks/automations 只能辅助提醒和轻量拦截，不能替代权限/验证门禁",
+      "trigger": "CodeX / Kimi Code / Harness 类多代理协作；任意需要跨会话 worker、skill routing、生命周期审计的项目",
+      "source": "步骤 digest-20260622-worker-cluster-rendezvous · §5.526",
+      "fingerprint": "16aedb6f4157c966",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-22T10:03:54Z",
       "mention_count": 1
     }
   },
@@ -646,6 +672,14 @@
       "title": "M-33/GP-09",
       "task_ref": "TREE-RT / TREE-6 · CodeX loop governance repair · PL-002 skill router hardening · §5.525",
       "fingerprint": "loop-governance-skill-worker-goal-gate-v1",
+      "status": "active",
+      "superseded_by": null
+    },
+    "20260622-worker-cluster-rendezvous": {
+      "digest_id": "20260622-worker-cluster-rendezvous",
+      "title": "M-34/GP-10",
+      "task_ref": "TREE-RT · CodeX worker cluster governance · edict/kimi-code evidence scan · §5.526",
+      "fingerprint": "worker-cluster-rendezvous-v1",
       "status": "active",
       "superseded_by": null
     },
@@ -974,17 +1008,17 @@
   "dream_candidates": [],
   "closure_candidates": [],
   "last_lifecycle": {
-    "at": "2026-06-22T09:45:35Z",
+    "at": "2026-06-22T10:03:54Z",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
     "closure_candidates": 0,
     "archived_rounds": [],
-    "active_step_digests": 12,
+    "active_step_digests": 13,
     "completed_tasks_hint": [
-      "loop201 completed PL-G route-evidence acceptance operator handoff packet mocked-only. Governance repair on 2026-06-22 made skill routing, worker dispatch, and goal/plan slice sizing mandatory before execution; current next_atomic_action is now PL-G route-evidence acceptance consolidation bundle mocked-only, not another single checklist marker. No .env/secret output, page-load auto POST/default trigger, runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed.",
+      "loop202 completed CodeX worker-cluster/rendezvous governance hardening with researcher and architect cross-dialogue reports, pure role thread titles, Worker Cluster/Rendezvous Gate in loop prompt/self-check, and M-34/GP-10 methodology. Current next_atomic_action remains PL-G route-evidence acceptance consolidation bundle mocked-only, now requiring cluster_manifest / worker_report_refs / rendezvous_gate before execution. No .env/secret output, page-load auto POST/default trigger, runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed.",
       "pl-g-route-evidence-acceptance-consolidation-bundle-mocked-only",
-      "loop201-pl-g-route-evidence-acceptance-operator-handoff-packet-mocked-only"
+      "loop202-worker-cluster-rendezvous-governance"
     ],
     "ttl_days": 180
   }

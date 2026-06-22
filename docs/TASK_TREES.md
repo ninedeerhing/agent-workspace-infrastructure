@@ -18,6 +18,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 |----|-------|-----------|--------|
 | PL-001 | SDK 原生团队编排深水区（Phase 5+） | 2026-06-15 | parking_lot；CodeX `create_thread`/`send_message_to_thread` 已覆盖当前跨会话 worker 需求 |
 | PL-002 | Codex skills router / gating：hybrid retrieval、family dedupe、top-K exposure、telemetry/eval | 2026-06-22 | promoted into loop preflight governance：`Goal/Plan Gate` + `Skill Routing Gate` + `Worker Dispatch Gate`; router prototype stays under `harness/` and does not mutate global `~/.codex/skills` |
+| PL-003 | CodeX worker cluster / rendezvous governance：goal envelope、cluster manifest、worker reports、retirement | 2026-06-22 | promoted into TREE-RT防漂移维护：参考 edict/kimi-code 只吸收治理模式，不复用代码；loop prompt/self-check/roster now require Worker Cluster/Rendezvous Gate |
 
 ## Active Trees
 
@@ -46,6 +47,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 - Current commit scope (core):
   - Phase 0–7 交付：compliance、boot、registry、worker 边界、mailbox、PAL、hooks、gate-runner、bootstrap -ProvisionTeam 全链路
   - CodeX 生效交付：`automation_update` 四项 ACTIVE；`create_thread` verifier worker 已创建；CodeX self-check 27/27 PASS；base compliance 36 checks / 0 findings
+  - Worker cluster 交付：`researcher` thread `019eeebf-629e-7013-bbf4-1db4d312b925` + `architect` thread `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936`；Worker Cluster/Rendezvous Gate 已接入 loop prompt/self-check/subagent prompt/roster/report
 - Unclosed points:
   - Phase 5+ SDK 深水区仍 parking_lot，不阻塞当前 CodeX baseline
 - Processing rules:
@@ -68,7 +70,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 - Current operational loop: `apps/quant_assistant` PL-G route-evidence acceptance consolidation bundle mocked-only（TREE-2 data gate passed；loop201 completed route-evidence acceptance operator handoff packet；2026-06-22 governance repair blocks further one-marker acceptance checklist drift；见 `harness/loop-state.json` and app §5.525）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
-- Side capability theme: `PL-002` Codex skills router / gating is now explicitly promoted into the loop preflight gates; it must not overwrite global `~/.codex/skills`, and router telemetry must stay in Git-ignored `tmp/` unless summarized into truth sources.
+- Side capability themes: `PL-002` Codex skills router / gating and `PL-003` worker cluster / rendezvous governance are promoted into loop preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
 
 ## EXCLUDE: Default Exclusions
 
