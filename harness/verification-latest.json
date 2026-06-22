@@ -1,9 +1,9 @@
 {
-  "recorded_at": "2026-06-22T19:29:39Z",
-  "last_tick": "loop221-real-runner-dry-run-eligibility-reassessment",
-  "pytest_passed": 30,
+  "recorded_at": "2026-06-22T19:53:48Z",
+  "last_tick": "loop222-explicit-real-runner-dry-run-execution-design-gate",
+  "pytest_passed": 31,
   "ruff": "ok",
   "evidence_paths": [],
-  "section5_ref": "5.545",
+  "section5_ref": "5.546",
   "source": "manual"
 }
