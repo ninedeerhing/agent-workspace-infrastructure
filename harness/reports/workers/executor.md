@@ -1,6 +1,24 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-22T20:44:07+08:00
+**Updated**: 2026-06-22T21:01:21+08:00
+
+## Tick loop210-fail-closed-manual-authorization-artifact
+
+- **任务 ID**：loop210-fail-closed-manual-authorization-artifact-scope-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：只读复核 loop210 implementation scope，确认 fail-closed manual authorization artifact 应保持 fixture/tests-only，避免触碰真实 JobsPage runner wiring 或默认 runner。
+- **结论**：建议三文件 fixture/test-only implementation 足够；不需要修改 `web/src/pages/JobsPage.tsx`，manual artifact must not imply permission。为避免跨对话共享文件写冲突，最终 patch 由 orchestrator 按 RED/GREEN 本地应用。
+- **变更**：
+  - worker 未改文件。
+  - orchestrator final patch 涉及 `tests/test_route_evidence_cross_surface_contract_unit.py`、`tests/test_jobs_page_acceptance_smoke_unit.py`、`web/scripts/smoke-jobs-page-fixture.mjs`。
+- **验证**：
+  - executor report: scope review success; recommended fixture/tests-only and fail-closed artifact markers。
+  - orchestrator verification after patch: RED **2 failed / 17 passed** expected, GREEN focused pytest **19 passed**, smoke/build/eslint/ruff/scans/runtime cleanup pass。
+- **roster_update**：workload cleared；mistakes unchanged；lesson: manual authorization artifact can be source evidence only until a later call boundary defines authorized injected-runner behavior。
+- **残余风险**：mocked-only；real runner/PL-H/DB-backed path remains intentionally deferred。
+- **next**：explicit injected-runner call boundary / rollback-observability contract.
 
 ## Tick loop209-explicit-runner-wiring-preflight
 

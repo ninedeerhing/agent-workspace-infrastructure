@@ -1,6 +1,25 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-22T20:44:07+08:00
+更新时间：2026-06-22T21:01:21+08:00
+
+## Tick loop210-fail-closed-manual-authorization-artifact
+
+- **任务 ID**：loop210-fail-closed-manual-authorization-artifact-verification-plan / loop210-fail-closed-manual-authorization-artifact-final-verification
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读复核 fail-closed manual authorization artifact mocked-only 的验收证据，并确认 clean-worktree gate 由 orchestrator 收口。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：
+  - `$env:PYTHONPATH='src'; uv run pytest tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py -q` -> **19 passed**。
+  - `uv run ruff check tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py` -> **All checks passed**。
+  - `npx eslint scripts/smoke-jobs-page-fixture.mjs` -> pass exit 0。
+  - `npm run smoke:jobs-page` -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`、`fail_closed_manual_authorization_*` markers present、PL-H remains deferred。
+  - `npm run build` -> pass。
+  - stale/family enablement scan -> pass；safety marker scan -> pass；runtime cleanup scan -> pass。
+- **roster_update**：workload cleared；mistakes none；lesson: for fail-closed manual authorization artifacts, forbidden checklist/enablement strings can be acceptable only when they are explicit negative guards。
+- **残余风险**：mocked-only；real/default runner, default DB-backed backtest, background execution, migration/backfill, and PL-H execution remain intentionally deferred behind future explicit gates；touched files remain oversized as pre-existing structural risk。
+- **next**：orchestrator must close truth-source/commit/clean-worktree gates, then next slice is explicit injected-runner call boundary / rollback-observability contract.
 
 ## Tick loop209-explicit-runner-wiring-preflight
 
