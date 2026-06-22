@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-22T12:35:24+08:00
+Updated: 2026-06-22T12:48:51+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -37,7 +37,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | identity_id | display_name | responsibility | report_path | status | workload | intensity | performance | mistake_count | lesson_count | last_assigned_at | last_report_at | current_task | handoff_notes | risk_notes |
 |---|---|---|---|---|---|---|---|---|---:|---:|---|---|---|---|---|
-| orchestrator | manager:orchestrator | Orchestrator | User-facing coordinator, dispatch, synthesis, verification ownership, truth-source sync | `harness/reports/orchestrator/latest.md` | active | 1 light | high | coordinating | 0 | 0 | 2026-06-22 | 2026-06-22 | loop183 completed PL-G next-route guidance mocked-only; next intent quant subgraph route-evidence refresh mocked-only | CodeX automations ACTIVE; verifier thread created; daily_bar/daily_trade_status/adj_factor complete to 2026-06-18; JobsPage now renders read-only demand gate next-route guidance for revisit/deferred branches with browser smoke proving no page-load trigger POST; next gap is intent quant subgraph route-evidence refresh; do not restart backfill or run migration/background process/default real DB-backed backtest/real runner/PL-H batch execution; keep secret output forbidden | Escalate destructive ops, duplicate process risk, secret exposure, missing runtime secrets, new worker/skill creation, schema migration requests, real runner wiring requests, PL-H execution requests, or unresolved Alpha101 canonical failures if they become current scope |
+| orchestrator | manager:orchestrator | Orchestrator | User-facing coordinator, dispatch, synthesis, verification ownership, truth-source sync | `harness/reports/orchestrator/latest.md` | active | 1 light | high | coordinating | 0 | 0 | 2026-06-22 | 2026-06-22 | loop184 completed PL-G intent route-evidence refresh mocked-only; next route evidence execution propagation mocked-only | CodeX automations ACTIVE; verifier thread created; daily_bar/daily_trade_status/adj_factor complete to 2026-06-18; rule_route now emits read-only intent quant subgraph route_evidence for mining_batch_dispatch and mining handoff backtest_dispatch with auto_trigger=false and PL-H deferred; next gap is route evidence execution propagation; do not restart backfill or run migration/background process/default real DB-backed backtest/real runner/PL-H batch execution; keep secret output forbidden | Escalate destructive ops, duplicate process risk, secret exposure, missing runtime secrets, new worker/skill creation, schema migration requests, real runner wiring requests, PL-H execution requests, or unresolved Alpha101 canonical failures if they become current scope |
 
 ## Workers
 
