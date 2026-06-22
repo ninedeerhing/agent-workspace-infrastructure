@@ -1,6 +1,25 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-22T19:06:43+08:00
+更新时间：2026-06-22T19:27:27+08:00
+
+## Tick loop206-observability-demand-gate-review
+
+- **任务 ID**：loop206-verification-plan / loop206-final-verification
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读复核 observability / real-batch demand gate review bundle mocked-only 的验收证据。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：
+  - `$env:PYTHONPATH='src'; uv run pytest tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py -q` -> **15 passed in 0.16s**。
+  - `uv run ruff check tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py` -> **All checks passed**。
+  - `npx eslint scripts/smoke-jobs-page-fixture.mjs` -> pass exit 0。
+  - `npm run smoke:jobs-page` -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`、`observability_demand_gate_review_*` markers present、PL-H remains deferred。
+  - `npm run build` -> pass。
+  - stale route / family scan -> pass；safety marker scan -> pass。
+- **roster_update**：workload cleared；mistakes none；lesson: demand-gate verification should combine pytest/smoke/build with exact stale-route/family and safety scans。
+- **残余风险**：mocked-only；real runner/default DB-backed backtest/PL-H execution remain intentionally deferred behind future explicit gates。
+- **next**：orchestrator can mark loop206 mocked-only observability demand-gate review done and route to explicit approval / runner readiness / PL-H eligibility preflight.
 
 ## Tick loop205-intent-quant-readiness-handoff
 

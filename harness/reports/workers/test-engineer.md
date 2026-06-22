@@ -1,6 +1,21 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-22T19:06:43+08:00
+更新时间：2026-06-22T19:27:27+08:00
+
+## Tick loop206-observability-demand-gate-review
+
+- **任务 ID**：loop206-observability-demand-gate-review-test-design
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读设计 observability / real-batch demand gate review bundle 的 RED/GREEN 验收形态，确保 review 绑定 body route guidance、submitted trigger evidence、refreshed Jobs evidence、real-batch gate、explicit runner required、PL-H deferred 与 no-auto/no-secret guards，并避免新增 acceptance/checklist family。
+- **变更**：worker 只读复核，未修改文件。
+- **验证建议**：
+  - 新增 `observabilityDemandGateReviewBundleChecks` / `assertObservabilityDemandGateReviewBundle(bodyText, submittedText, refreshedText)`。
+  - Exact markers: `observability_demand_gate_review_bundle_visible`、`observability_demand_gate_review_source:intent_quant_readiness_handoff_bundle`、`observability_demand_gate_review_flow:auto_mining_to_auto_backtest`、`observability_demand_gate_review_real_batch_gate:review_required`、`observability_demand_gate_review_runner_status:explicit_runner_required`、`observability_demand_gate_review_pl_h_batch_execution:deferred_until_later_gate`。
+  - Safety guards: no page-load auto POST, no default runner, no PL-H batch execution, no secret output。
+- **roster_update**：workload cleared；mistakes none；lesson: demand-gate review tests must prove review-required/preflight evidence and must not imply execution permission。
+- **next**：交给 code-reviewer/verifier 汇合，下一切片进入 explicit approval / runner readiness / PL-H eligibility preflight。
 
 ## Tick loop205-intent-quant-readiness-handoff
 

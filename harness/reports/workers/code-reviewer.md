@@ -1,6 +1,21 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-22T19:06:43+08:00
+更新时间：2026-06-22T19:27:27+08:00
+
+## Tick loop206-observability-demand-gate-review
+
+- **任务 ID**：loop206-review-risk-brief / loop206-final-observability-demand-gate-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success
+- **任务**：只读审查 loop206 observability / real-batch demand gate review 方向与最终三文件 diff，重点看是否避免新 acceptance/checklist family，是否绑定 body/submitted/refreshed evidence，是否引入 real runner/PL-H/secret risk。
+- **审查结论**：通过。`observabilityDemandGateReviewBundleChecks` / `assertObservabilityDemandGateReviewBundle(...)` 的较短名称可接受；语义由 body route guidance、submitted trigger evidence、refreshed route evidence、real-batch gate、explicit runner required、PL-H deferred、no auto/default/secret guards 共同支撑，不靠 check-name string。
+- **验证**：
+  - `git -C E:\raindeer\apps\quant_assistant diff -- tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py web/scripts/smoke-jobs-page-fixture.mjs` -> reviewed current diff。
+  - focused final review tests -> **2 passed in 0.07s**。
+  - marker scan -> no `observabilityAcceptance` / `observabilityChecklist` family, no active stale `next_route=pl_g_flow_hardening`; no page-load auto POST/default runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution/secret risk introduced。
+- **roster_update**：workload cleared；mistakes none；lesson: gate review signoff must separate review-required evidence from execution enablement。
+- **next**：orchestrator can mark code-reviewer gate passed for loop206.
 
 ## Tick loop205-intent-quant-readiness-handoff
 

@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T19:06:43+08:00
+updated_at: 2026-06-22T19:27:27+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -28,6 +28,8 @@ updated_at: 2026-06-22T19:06:43+08:00
 [CONTEXT] 2026-06-22 loop204 · 已完成 PL-G route guidance transition mocked-only：同一跨对话 worker cluster 均回报 success；Jobs read-only next-route 已从 active `next_route=pl_g_flow_hardening` 转为 `previous_route=pl_g_flow_hardening` + active `next_route=intent_quant_integration_readiness` / `next_route=auto_backtest_flow_readiness`。验证 focused pytest 13 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff pass。下一拍进入 intent-quant integration / auto mining -> auto backtest readiness handoff mocked-only，不要新增 route-evidence acceptance checklist family。
 
 [CONTEXT] 2026-06-22 loop205 · 已完成 intent-quant readiness handoff bundle mocked-only：同一跨对话 worker cluster 均回报 success；Jobs fixture 现在把 loop204 body route guidance、submitted trigger route evidence、refreshed Jobs route evidence 与 PL-H deferred marker 汇入同一 readiness handoff bundle，未新增 route-evidence acceptance/checklist family。验证 focused pytest 14 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff pass。下一拍进入 auto mining -> auto backtest observability / real-batch demand gate review mocked-only。
+
+[CONTEXT] 2026-06-22 loop206 · 已完成 auto mining -> auto backtest observability / real-batch demand gate review mocked-only：同一跨对话 worker cluster 均回报 success；Jobs fixture 现在把 loop205 readiness handoff 复核为 observability demand-gate review bundle，绑定 real-batch gate review_required、explicit runner required、PL-H deferred、no page-load auto POST/default runner/secret output，未新增 route-evidence acceptance/checklist family。验证 RED 2 failed / 13 passed expected，focused pytest 15 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family scan/safety scan pass。下一拍进入 explicit user approval / runner readiness / PL-H eligibility preflight mocked-only。
 ```
 
 ### Loop Machine State
@@ -36,18 +38,18 @@ updated_at: 2026-06-22T19:06:43+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-auto-mining-auto-backtest-observability-real-batch-gate-review-mocked-only |
-| `last_tick` | loop205-intent-quant-readiness-handoff |
+| `current_slice` | pl-g-explicit-approval-runner-readiness-pl-h-eligibility-preflight-mocked-only |
+| `last_tick` | loop206-observability-demand-gate-review |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start auto mining -> auto backtest observability / real-batch demand gate review TDD mocked-only: use the loop205 intent-quant readiness handoff bundle to review the auto mining -> auto backtest observability chain and real-batch demand gate readiness with source/UI markers; forbid page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
+Start explicit user approval / runner readiness / PL-H eligibility preflight TDD mocked-only: use the loop206 observability / real-batch demand gate review bundle to define explicit approval, injected-runner readiness, and PL-H eligibility preflight source/UI markers; forbid page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the observability / real-batch demand gate review stabilizes, continue toward explicit user approval / runner readiness / PL-H eligibility planning. Do not add another route-evidence acceptance checklist family unless Goal/Plan Gate documents a high-risk probe.
+After the explicit approval / runner readiness / PL-H eligibility preflight stabilizes, continue toward real runner wiring demand/authorization gate planning. Do not add another route-evidence acceptance checklist family unless Goal/Plan Gate documents a high-risk probe.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -64,7 +66,7 @@ After the observability / real-batch demand gate review stabilizes, continue tow
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 auto mining -> auto backtest observability / real-batch demand gate review；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 explicit user approval / runner readiness / PL-H eligibility preflight；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -136,15 +138,14 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ### CodeX Cross-Session Worker
 
-- verifier thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b`
-- thread title: `verifier`
 - governance-coordinator thread: `019eeea7-6dc1-7121-8734-2e41c6e21b54`
 - governance-coordinator report: success · read-only review confirmed missing hard gates and recommended skill_route_evidence / worker_dispatch_decision / goal_bundle detector
 - researcher thread: `019eeebf-629e-7013-bbf4-1db4d312b925` · title `researcher` · report success on edict/kimi-code orchestration evidence scan
 - architect thread: `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936` · title `architect` · report success on CodeX worker cluster governance architecture
-- test-engineer thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · report success on loop205 readiness handoff bundle test design
-- executor thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · report success on loop205 RED/GREEN readiness handoff bundle implementation
-- code-reviewer thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · report success on loop205 semantic signoff
+- test-engineer thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · report success on loop206 observability demand-gate review RED design
+- executor thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · report success on loop206 implementation scope review
+- code-reviewer thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · report success on loop206 semantic signoff
+- verifier thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b` · title `verifier` · report success on loop206 final verification
 - prompt: `harness/templates/codex-subagent-prompt.md`
 - task: read-only verification of CodeX effective constraints; latest multi-agent verifier run `019eedc6-f9c5-7c50-8170-18e415f7ce26` / nickname Lorentz reviewed loop186 target files and reported `success`
 - note: orchestrator retains final authority; worker report is data, not truth source. Cross-dialogue worker is now preferred for governance / verifier signoff; temporary multi_agent is auxiliary only.
@@ -153,11 +154,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop205 已完成 PL-G intent-quant readiness handoff bundle mocked-only，并用跨对话 worker cluster 完成 test design / implementation / review / verifier signoff。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 auto mining -> auto backtest observability / real-batch demand gate review mocked-only，避免继续 acceptance micro-slice。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop206 已完成 PL-G observability / real-batch demand gate review bundle mocked-only，并用跨对话 worker cluster 完成 test design / scope review / code review / verifier signoff。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 explicit user approval / runner readiness / PL-H eligibility preflight mocked-only，避免继续 acceptance micro-slice。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，然后执行 `auto mining -> auto backtest observability / real-batch demand gate review TDD mocked-only`：用 loop205 readiness handoff bundle 复核 auto mining -> auto backtest observability chain 与 real-batch demand gate readiness，并绑定真实 source/UI marker；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，然后执行 `explicit user approval / runner readiness / PL-H eligibility preflight TDD mocked-only`：用 loop206 observability demand-gate review bundle 定义 explicit approval、injected-runner readiness、PL-H eligibility preflight source/UI markers；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 

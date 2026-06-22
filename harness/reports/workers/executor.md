@@ -1,6 +1,24 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-22T19:06:43+08:00
+**Updated**: 2026-06-22T19:27:27+08:00
+
+## Tick loop206-observability-demand-gate-review
+
+- **任务 ID**：loop206-observability-demand-gate-review-scope-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：只读复核 loop206 implementation scope，确认是否应改生产 JobsPage 还是只在 fixture/test 层补 observability demand-gate review bundle。
+- **结论**：建议三文件 fixture/test-only implementation 足够；不需要修改 `web/src/pages/JobsPage.tsx`。为避免跨对话共享文件写冲突，最终 patch 由 orchestrator 按 RED/GREEN 本地应用。
+- **变更**：
+  - worker 未改文件。
+  - orchestrator final patch 涉及 `tests/test_route_evidence_cross_surface_contract_unit.py`、`tests/test_jobs_page_acceptance_smoke_unit.py`、`web/scripts/smoke-jobs-page-fixture.mjs`。
+- **验证**：
+  - executor report: scope review success; recommended `demandGateObservabilityReviewChecks` / `assertDemandGateObservabilityReview` shape.
+  - orchestrator verification after patch: RED **2 failed / 13 passed** expected, GREEN focused pytest **15 passed**, smoke/build/eslint/ruff/scans pass。
+- **roster_update**：workload cleared；mistakes unchanged；lesson: shared fixture/test files should have a single final writer, while executor can provide scope review when write contention risk exists。
+- **残余风险**：mocked-only；real runner/PL-H/DB-backed path remains intentionally deferred。
+- **next**：explicit approval / runner readiness / PL-H eligibility preflight.
 
 ## Tick loop205-intent-quant-readiness-handoff
 

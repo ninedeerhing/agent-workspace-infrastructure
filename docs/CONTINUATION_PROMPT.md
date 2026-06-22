@@ -9,12 +9,12 @@
 ## Current Continuation Entry
 
 - Current mainline: AWI CodeX-effective baseline 已验收（TREE-RT 防漂移维护）；业务主线为 `TREE-6 / PL-G` mining_job Template B
-- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop205 已完成 `PL-G intent-quant readiness handoff bundle mocked-only`
-- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 优先通过跨对话 `create_thread`/`send_message_to_thread`；下一拍必须先过 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate + Skill Lifecycle Gate + Worker Capacity Gate，再执行 `auto mining -> auto backtest observability / real-batch demand gate review TDD mocked-only`，用 loop205 readiness handoff bundle 复核 auto mining -> auto backtest observability chain 与 real-batch demand gate readiness，不再单独追加 route-evidence acceptance checklist marker
+- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop206 已完成 `PL-G observability / real-batch demand gate review bundle mocked-only`
+- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 优先通过跨对话 `create_thread`/`send_message_to_thread`；下一拍必须先过 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate + Skill Lifecycle Gate + Worker Capacity Gate，再执行 `explicit user approval / runner readiness / PL-H eligibility preflight TDD mocked-only`，用 loop206 observability demand-gate review bundle 定义 explicit approval、injected-runner readiness、PL-H eligibility preflight markers，不再单独追加 route-evidence acceptance checklist marker
 - Post-backfill directive: 已退出 backfill-monitoring 方式，按真源连续推进 **auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph**；closure/收口表示阶段验收通过并继续下一切片，不是结束方案或停止 loop
-- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.529 loop205 intent-quant readiness handoff 结论与 `auto mining -> auto backtest observability / real-batch demand gate review TDD mocked-only` 下一原子动作）
+- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.530 loop206 observability demand-gate review 结论与 `explicit user approval / runner readiness / PL-H eligibility preflight TDD mocked-only` 下一原子动作）
 - Recovery: CodeX 有效性自检 → `harness/scripts/codex-self-check.ps1 -Format markdown`
-- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.529 最新台账；loop205 worker cluster `test-engineer=019eeece-52d7-7b73-868a-7beb496ba303` / `executor=019eeece-c617-71c3-a80a-39a693ad3ac3` / `code-reviewer=019eeed1-7e14-7342-9d45-d7948aec94d2` / `verifier=019eeed2-dbc0-7313-8d64-f9c6f199c68b` 已回报 success
+- State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.530 最新台账；loop206 worker cluster `test-engineer=019eeece-52d7-7b73-868a-7beb496ba303` / `executor=019eeece-c617-71c3-a80a-39a693ad3ac3` / `code-reviewer=019eeed1-7e14-7342-9d45-d7948aec94d2` / `verifier=019eeed2-dbc0-7313-8d64-f9c6f199c68b` 已回报 success
 
 ## Current Mainline Facts
 
@@ -43,7 +43,7 @@ Take over this project and build context strictly in the following order:
 Facts and constraints:
 - AWI Runtime OS is installed and CodeX-effective; orchestrator is the only user-facing agent.
 - CodeX worker threads use `create_thread` and `harness/templates/codex-subagent-prompt.md`; mailbox is fallback/audit only. Complex goal bundles require `cluster_manifest`, `worker_report_refs`, and rendezvous gate before completion.
-- quant_assistant business code is on TREE-6 / PL-G; loop205 proves the Jobs readiness handoff bundle binds route guidance body markers, submitted trigger route evidence, and refreshed Jobs route evidence while keeping PL-H batch execution deferred. 2026-06-22 governance repair now routes next from repeated acceptance micro-slices to auto mining -> auto backtest observability / real-batch demand gate review.
+- quant_assistant business code is on TREE-6 / PL-G; loop206 proves the Jobs observability / real-batch demand gate review bundle binds loop205 readiness handoff evidence to review_required real-batch gate, explicit runner required, PL-H deferred, and no page-load auto POST/default runner/secret output while keeping execution disabled. The next slice is explicit user approval / runner readiness / PL-H eligibility preflight, still mocked/source/UI only.
 - Side capability `PL-002` Codex skill routing/gating is now promoted into loop preflight governance. Phase 1 prototype lives in `harness/skill_router.py` with tests in `harness/tests/test_skill_router.py`; it does not modify global `~/.codex/skills`; telemetry goes to Git-ignored `tmp/skill-route-events.jsonl` and truth sources record only bounded summaries.
 - Verify AWI: .\harness\scripts\codex-self-check.ps1 -Format markdown; .\harness\compliance-check.ps1 -Mode post-bootstrap
 - Verify app: cd apps/quant_assistant && uv run pytest -q -m "not db and not external"

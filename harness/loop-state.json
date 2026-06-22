@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T19:06:43+08:00",
+  "updated_at": "2026-06-22T19:27:27+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-auto-mining-auto-backtest-observability-real-batch-gate-review-mocked-only",
-  "next_atomic_action": "Start auto mining -> auto backtest observability / real-batch demand gate review TDD mocked-only: use the loop205 intent-quant readiness handoff bundle to review the auto mining -> auto backtest observability chain and real-batch demand gate readiness with source/UI markers; forbid page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After the observability / real-batch demand gate review stabilizes, continue toward explicit user approval / runner readiness / PL-H eligibility planning. Do not add another route-evidence acceptance checklist family unless Goal/Plan Gate documents a high-risk probe; any multi-role tick must record cluster_manifest, worker_report_refs, and rendezvous_gate before completion.",
+  "current_slice": "pl-g-explicit-approval-runner-readiness-pl-h-eligibility-preflight-mocked-only",
+  "next_atomic_action": "Start explicit user approval / runner readiness / PL-H eligibility preflight TDD mocked-only: use the loop206 observability / real-batch demand gate review bundle to define explicit approval, injected-runner readiness, and PL-H eligibility preflight source/UI markers; forbid page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After the explicit approval / runner readiness / PL-H eligibility preflight stabilizes, continue toward real runner wiring demand/authorization gate planning. Do not add another route-evidence acceptance checklist family unless Goal/Plan Gate documents a high-risk probe; any multi-role tick must record cluster_manifest, worker_report_refs, and rendezvous_gate before completion.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop205-intent-quant-readiness-handoff",
+  "last_tick": "loop206-observability-demand-gate-review",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -754,7 +754,14 @@
     "loop205 review: readiness handoff bundle binds body route guidance to submitted trigger route evidence and refreshed Jobs route evidence without new acceptance/checklist family; code-reviewer and verifier success",
     "loop205 method: M-37/GP-13 readiness handoff cross-surface binding",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.529",
-    "next: auto mining -> auto backtest observability / real-batch demand gate review mocked-only using loop205 readiness handoff bundle"
+    "next: auto mining -> auto backtest observability / real-batch demand gate review mocked-only using loop205 readiness handoff bundle",
+    "loop206 skill_route: router decision=expose but top-K noisy; applied orchestrator + dispatching-parallel-agents + test-driven-development + programming; router precision gap carried",
+    "loop206 cluster_manifest: test-engineer 019eeece-52d7-7b73-868a-7beb496ba303, executor 019eeece-c617-71c3-a80a-39a693ad3ac3, code-reviewer 019eeed1-7e14-7342-9d45-d7948aec94d2, verifier 019eeed2-dbc0-7313-8d64-f9c6f199c68b",
+    "loop206 TDD/verification: RED 2 failed / 13 passed expected, GREEN focused pytest 15 passed, ruff pass, npm smoke jobs-page pass pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5, web build pass, targeted eslint pass, stale/family scan pass, safety marker scan pass",
+    "loop206 review: observability demand gate review bundle binds body route guidance, submitted trigger evidence, refreshed Jobs evidence, real-batch gate review_required, explicit runner required, PL-H deferred, no page-load auto POST/default runner/secret output; code-reviewer and verifier success",
+    "loop206 method: M-38/GP-14 demand-gate review proves evidence, not execution permission",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.530",
+    "next: explicit user approval / runner readiness / PL-H eligibility preflight mocked-only using loop206 observability demand gate review bundle"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -764,7 +771,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop205 safe tick completed intent-quant readiness handoff bundle mocked-only with cross-dialogue test-engineer/executor/code-reviewer/verifier rendezvous. The handoff now binds body route guidance, submitted trigger route evidence, and refreshed Jobs route evidence without creating a new acceptance/checklist family. Next gap is auto mining -> auto backtest observability / real-batch demand gate review, still mocked/source/UI only with real runner, PL-H batch execution, migration, backfill, and secret output forbidden."
+    "note": "loop206 safe tick completed auto mining -> auto backtest observability / real-batch demand gate review mocked-only with cross-dialogue test-engineer/executor/code-reviewer/verifier rendezvous. The review bundle now binds body route guidance, submitted trigger evidence, refreshed Jobs evidence, real-batch gate review_required, explicit runner required, PL-H deferred, no page-load auto POST/default runner/secret output without creating a new acceptance/checklist family. Next gap is explicit user approval / runner readiness / PL-H eligibility preflight, still mocked/source/UI only with real runner, PL-H batch execution, migration, backfill, and secret output forbidden."
   },
-  "last_completed_note": "loop205 completed intent-quant readiness handoff bundle mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned success; focused pytest 14 passed, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/ruff passed. Current next_atomic_action is auto mining -> auto backtest observability / real-batch demand gate review mocked-only. No .env/secret output, page-load auto POST/default trigger, runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
+  "last_completed_note": "loop206 completed auto mining -> auto backtest observability / real-batch demand gate review mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned success; RED 2 failed / 13 passed expected, focused pytest 15 passed, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/ruff/stale-family scan/safety scan passed. Current next_atomic_action is explicit user approval / runner readiness / PL-H eligibility preflight mocked-only. No .env/secret output, page-load auto POST/default trigger, runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
 }
