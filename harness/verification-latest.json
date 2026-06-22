@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T06:00:09Z",
-  "last_tick": "loop188-pl-g-flow-hardening-gap-audit-mocked-only",
-  "pytest_passed": 40,
+  "recorded_at": "2026-06-22T06:15:42Z",
+  "last_tick": "loop189-pl-g-jobs-route-evidence-parity-mocked-only",
+  "pytest_passed": 34,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.511"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.512"
   ],
-  "section5_ref": "5.511",
+  "section5_ref": "5.512",
   "source": "manual"
 }

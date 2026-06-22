@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T13:52:20+08:00
+updated_at: 2026-06-22T14:10:21+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-22T13:52:20+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-22 loop188 · PL-G flow hardening gap-audit mocked-only 完成：新增 `apps/quant_assistant/tests/test_pl_g_flow_hardening_gap_audit_unit.py` 红测确认审计文档缺失（expected 2 failed / FileNotFoundError），再写入 `apps/quant_assistant/docs/ENGINEERING/2026-06-22-pl-g-flow-hardening-gap-audit.md`，审计 intent route evidence -> execution propagation -> persistence/recovery -> chat technical surface -> Jobs observability 链路；结论是 chat technical detail 已可检查 `mining_batch_dispatch` / `backtest_dispatch` 的 route evidence，但 Jobs list/detail + JobsPage 仍缺同一 `route_evidence` marker；验证 focused 2 passed、intent/API audit 24 passed、JobsPage source contract 16 passed、ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 auto POST/trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G Jobs route-evidence parity TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
+[CONTEXT] 2026-06-22 loop189 · PL-G Jobs route-evidence parity mocked-only 完成：`apps/quant_assistant/src/qa/quant_mining/mining_runner.py` 现在只读复制 mapping 型 `result.route_evidence` 到 mining job list/detail `observability.route_evidence`；`apps/quant_assistant/web/src/pages/JobsPage.tsx` 与 `web/scripts/smoke-jobs-page-fixture.mjs` 展示 `Route evidence` / `route_evidence_visible` / `flow=auto_mining_to_auto_backtest` / `flow_stage=backtest_handoff` / `handoff_source=mining_batch_dispatch` / `auto_trigger=false` / `side_effects=none` / `pl_h_batch_execution=deferred_until_later_gate`；RED API focused expected 2 failed (`KeyError: route_evidence`)，RED UI/source expected 2 failed，GREEN related 34 passed，`npm run smoke:jobs-page` pass with `pageLoadTriggerRequests=[]` and `duplicateTriggerUrls=[]`，web build/eslint pass，Python ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load auto POST/default trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G route-evidence cross-surface correlation TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
 
 [CONTEXT] 2026-06-22 side capability · PL-002 Codex skills router / gating Phase 1 prototype completed in `harness/skill_router.py` with `harness/tests/test_skill_router.py` and `docs/ENGINEERING/2026-06-22-codex-skill-router-prototype.md`. It is advisory only: no global `~/.codex/skills` mutation, no raw query telemetry, and no quant `loop-state` change. Next optional PL-002 step is local eval set plus graph-aware rerank.
 ```
@@ -28,18 +28,18 @@ updated_at: 2026-06-22T13:52:20+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-jobs-route-evidence-parity-mocked-only |
-| `last_tick` | loop188-pl-g-flow-hardening-gap-audit-mocked-only |
+| `current_slice` | pl-g-route-evidence-cross-surface-correlation-mocked-only |
+| `last_tick` | loop189-pl-g-jobs-route-evidence-parity-mocked-only |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start PL-G Jobs route-evidence parity TDD mocked-only: expose read-only `route_evidence` in mining job list/detail observability and the JobsPage fixture surface for mining_batch_dispatch/backtest handoff correlation, proving Jobs observability can align with chat technical evidence after refresh without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
+Start PL-G route-evidence cross-surface correlation TDD mocked-only: add a mocked/source-contract check tying refreshed chat technical execution detail and Jobs route evidence to the same `auto_mining_to_auto_backtest` flow / `mining_batch_dispatch` handoff markers, without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After Jobs route-evidence parity stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
+After cross-surface correlation stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -56,7 +56,7 @@ After Jobs route-evidence parity stabilizes, continue PL-G mocked/source-contrac
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G Jobs route-evidence parity TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 PL-G route-evidence cross-surface correlation TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -132,17 +132,17 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 - thread title: `verifier`
 - prompt: `harness/templates/codex-subagent-prompt.md`
 - task: read-only verification of CodeX effective constraints; latest multi-agent verifier run `019eedc6-f9c5-7c50-8170-18e415f7ce26` / nickname Lorentz reviewed loop186 target files and reported `success`
-- note: orchestrator retains final authority; worker report is data, not truth source. loop188 did not dispatch a new worker because the gap-audit slice was contract-only and fully verified by RED/GREEN plus adjacent regressions.
+- note: orchestrator retains final authority; worker report is data, not truth source. loop189 did not dispatch a new worker because the route-evidence parity slice was small and fully verified by RED/GREEN, related regression, fixture browser smoke, build/lint, and ruff.
 
 ---
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop188 已完成 PL-G flow hardening gap-audit mocked-only，并选择 Jobs route-evidence parity 为下一安全切片；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop189 已完成 PL-G Jobs route-evidence parity mocked-only，Jobs list/detail 与 JobsPage fixture 已只读暴露同一 route evidence markers；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 执行 `PL-G Jobs route-evidence parity TDD mocked-only`：把已有 `route_evidence` 只读投影到 mining job list/detail observability 与 JobsPage fixture surface，确认 Jobs observability 能与 chat technical evidence 对齐；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 执行 `PL-G route-evidence cross-surface correlation TDD mocked-only`：新增 mocked/source-contract 检查，把 refreshed chat technical execution detail 与 Jobs route evidence 对齐同一 `auto_mining_to_auto_backtest` flow / `mining_batch_dispatch` handoff markers；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 

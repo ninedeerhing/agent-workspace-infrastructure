@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T13:52:20+08:00",
+  "updated_at": "2026-06-22T14:10:21+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-jobs-route-evidence-parity-mocked-only",
-  "next_atomic_action": "Start PL-G Jobs route-evidence parity TDD mocked-only: expose read-only `route_evidence` in mining job list/detail observability and the JobsPage fixture surface for mining_batch_dispatch/backtest handoff correlation, proving Jobs observability can align with chat technical evidence after refresh without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After Jobs route-evidence parity stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-route-evidence-cross-surface-correlation-mocked-only",
+  "next_atomic_action": "Start PL-G route-evidence cross-surface correlation TDD mocked-only: add a mocked/source-contract check tying refreshed chat technical execution detail and Jobs route evidence to the same `auto_mining_to_auto_backtest` flow / `mining_batch_dispatch` handoff markers, without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After cross-surface correlation stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop188-pl-g-flow-hardening-gap-audit-mocked-only",
+  "last_tick": "loop189-pl-g-jobs-route-evidence-parity-mocked-only",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -572,7 +572,20 @@
     "loop188 verification snapshot recorded pytest_passed=40 ruff=ok evidence apps/quant_assistant/docs/PROJECT_STATUS.md#5.511",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.511",
     "loop188 no .env/secret/auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
-    "loop188 next: PL-G Jobs route-evidence parity TDD mocked-only with no real runner/background/default DB-backed backtest or secret output"
+    "loop188 next: PL-G Jobs route-evidence parity TDD mocked-only with no real runner/background/default DB-backed backtest or secret output",
+    "loop189 TDD red: API route_evidence list/detail 2 failed expected due missing observability route_evidence",
+    "loop189 TDD red: JobsPage route_evidence source/smoke contracts 2 failed expected due missing markers",
+    "loop189 focused API route_evidence tests 2 passed",
+    "loop189 focused JobsPage route_evidence source/smoke tests 2 passed",
+    "loop189 related API/UI/source regression 34 passed",
+    "loop189 Python ruff pass for mining_runner.py and route evidence tests",
+    "loop189 web npm run smoke:jobs-page pass with route_evidence_visible, pageLoadTriggerRequests=[], duplicateTriggerUrls=[]",
+    "loop189 web npm run build pass",
+    "loop189 targeted eslint JobsPage + smoke fixture pass",
+    "loop189 verification snapshot recorded pytest_passed=34 ruff=ok evidence apps/quant_assistant/docs/PROJECT_STATUS.md#5.512",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.512",
+    "loop189 no .env/secret/page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
+    "loop189 next: PL-G route-evidence cross-surface correlation TDD mocked-only with no real runner/background/default DB-backed backtest or secret output"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -582,7 +595,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop188 safe tick: PL-G flow hardening gap-audit mocked-only completed. Audit traced route_evidence from intent quant route through execution/progress, persistence/recovery, and chat technical surface, and selected Jobs route-evidence parity as the next smallest safe TDD slice because Jobs observability lacks the same marker. Verification: red doc contract failed as expected, green focused audit test 2 passed, ruff pass, adjacent intent/API audit 24 passed, JobsPage source contract 16 passed. This tick had no env/secret reads, auto POST/trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is PL-G Jobs route-evidence parity mocked-only."
+    "note": "loop189 safe tick: PL-G Jobs route-evidence parity mocked-only completed. Jobs list/detail observability now copies mapping-shaped result.route_evidence, and JobsPage fixture smoke renders route_evidence_visible with auto_mining_to_auto_backtest flow, backtest_handoff stage, mining_batch_dispatch handoff_source, auto_trigger=false, side_effects=none, and PL-H deferred marker. Verification: API red 2 failed expected then green 2 passed; UI/source red 2 failed expected then green 2 passed; related regression 34 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]; web build/eslint pass. This tick had no env/secret reads, page-load auto POST/default trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is PL-G route-evidence cross-surface correlation mocked-only."
   },
-  "last_completed_note": "loop188: safe tick completed PL-G flow hardening gap-audit mocked-only. Audit doc/test traced route_evidence from intent route through execution/progress, persistence/recovery, chat technical surface, and Jobs observability, then selected PL-G Jobs route-evidence parity as the next smallest safe TDD slice. Verification: expected red FileNotFoundError for missing audit doc; focused audit test 2 passed; ruff pass; adjacent intent/API audit 24 passed; JobsPage source contract 16 passed. No .env/secret reads, auto POST/trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G Jobs route-evidence parity TDD mocked-only."
+  "last_completed_note": "loop189: safe tick completed PL-G Jobs route-evidence parity mocked-only. API/unit tests and JobsPage fixture smoke now prove mapping-shaped result.route_evidence is exposed read-only in Jobs list/detail observability and visible in JobsPage with auto_mining_to_auto_backtest/backtest_handoff/mining_batch_dispatch markers, auto_trigger=false, side_effects=none, and PL-H deferred status. Verification: API red 2 failed then green 2 passed; UI/source red 2 failed then green 2 passed; related regression 34 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]; web build/eslint pass. No .env/secret reads, page-load auto POST/default trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route-evidence cross-surface correlation TDD mocked-only."
 }
