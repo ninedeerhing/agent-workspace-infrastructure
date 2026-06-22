@@ -51,7 +51,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G real batch demand gate API surface TDD mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G JobsPage read-only demand gate display TDD mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防漂移
 
 ## Task Tree Governance Protocol
 
@@ -64,7 +64,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G real batch demand gate API surface TDD mocked-only（TREE-2 data gate passed；loop176 completed pure real batch demand gate contract-only；见 `harness/loop-state.json` and app §5.499）
+- Current operational loop: `apps/quant_assistant` PL-G JobsPage read-only demand gate display TDD mocked-only（TREE-2 data gate passed；loop177 completed read-only API surface；见 `harness/loop-state.json` and app §5.500）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 

@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T02:50:29Z",
-  "last_tick": "loop176-pl-g-real-batch-demand-gate-contract-only",
-  "pytest_passed": 33,
+  "recorded_at": "2026-06-22T03:01:53Z",
+  "last_tick": "loop177-pl-g-real-batch-demand-gate-api-surface-mocked-only",
+  "pytest_passed": 34,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.499"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.500"
   ],
-  "section5_ref": "5.499",
+  "section5_ref": "5.500",
   "source": "manual"
 }

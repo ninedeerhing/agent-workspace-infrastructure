@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T11:18:00+08:00
+updated_at: 2026-06-22T10:56:00+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-22T11:18:00+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-22 loop176 · PL-G real batch demand gate TDD contract-only 完成：先写 demand gate 合同红测（expected ImportError for missing build_real_batch_demand_gate），再新增纯只读 build_real_batch_demand_gate()，从已加载 MiningJobV1 列表汇总 queue/backtest request pressure；单个小 ready job 返回 pl_h_deferred，多个 ready jobs、单 job 高请求数、retryable failed pressure 或 runtime evidence 返回 pl_h_revisit；验证 focused 4 passed、adjacent regression 33 passed、ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未调用 store/DB/env loader/runner/background/migration/backfill/DB-backed backtest · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G real batch demand gate API surface TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
+[CONTEXT] 2026-06-22 loop177 · PL-G real batch demand gate API surface TDD mocked-only 完成：先写 mining jobs list API 合同红测（expected 1 failed / 14 passed, KeyError real_batch_demand_gate），再新增 _mining_jobs_list_api_payload()，让 GET /api/v1/quant/mining-jobs 从已加载 rows 返回 per-job payload + top-level real_batch_demand_gate；验证 focused 15 passed、adjacent regression 34 passed、ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 trigger/runner/background/migration/backfill/default DB-backed backtest · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G JobsPage read-only demand gate display TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
 ```
 
 ### Loop Machine State
@@ -26,18 +26,18 @@ updated_at: 2026-06-22T11:18:00+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-real-batch-demand-gate-api-surface-mocked-only |
-| `last_tick` | loop176-pl-g-real-batch-demand-gate-contract-only |
+| `current_slice` | pl-g-jobs-page-demand-gate-display-mocked-only |
+| `last_tick` | loop177-pl-g-real-batch-demand-gate-api-surface-mocked-only |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start PL-G real batch demand gate API surface TDD mocked-only: expose the pure gate summary in the read-only mining jobs API payload from mocked store rows, proving no runner/background/migration/backfill/default DB-backed backtest or secret output; PL-H remains deferred unless the gate decision is `pl_h_revisit`.
+Start PL-G JobsPage read-only demand gate display TDD mocked-only: render `real_batch_demand_gate` from the mining jobs API fixture without POST/trigger/runner/background/migration/backfill/default DB-backed backtest or secret output; PL-H remains deferred unless the displayed gate decision is `pl_h_revisit`.
 
 ### next_after
 
-After the API surface is stable, continue JobsPage read-only demand gate display / PL-G flow hardening for auto mining → auto backtest full flow / intent quant subgraph; PL-H remains deferred unless the gate produces real batch execution demand; BENCH-2 remains env deferred.
+After JobsPage display is stable, continue PL-G flow hardening for auto mining → auto backtest full flow / intent quant subgraph; PL-H remains deferred unless the gate produces real batch execution demand; BENCH-2 remains env deferred.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -54,7 +54,7 @@ After the API surface is stable, continue JobsPage read-only demand gate display
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G real batch demand gate API surface TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner。
+# 下一拍按 loop-state 执行 PL-G JobsPage read-only demand gate display TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner。
 ```
 
 ### Blockers

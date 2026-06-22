@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T11:18:00+08:00",
+  "updated_at": "2026-06-22T10:56:00+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-real-batch-demand-gate-api-surface-mocked-only",
-  "next_atomic_action": "Start PL-G real batch demand gate API surface TDD mocked-only: expose the pure gate summary in the read-only mining jobs API payload from mocked store rows, proving no runner/background/migration/backfill/default DB-backed backtest or secret output; PL-H remains deferred unless the gate decision is `pl_h_revisit`.",
-  "next_after": "After the API surface is stable, continue JobsPage read-only demand gate display / PL-G flow hardening for auto mining → auto backtest full flow / intent quant subgraph; PL-H remains deferred unless the gate produces real batch execution demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-jobs-page-demand-gate-display-mocked-only",
+  "next_atomic_action": "Start PL-G JobsPage read-only demand gate display TDD mocked-only: render `real_batch_demand_gate` from the mining jobs API fixture without POST/trigger/runner/background/migration/backfill/default DB-backed backtest or secret output; PL-H remains deferred unless the displayed gate decision is `pl_h_revisit`.",
+  "next_after": "After JobsPage display is stable, continue PL-G flow hardening for auto mining → auto backtest full flow / intent quant subgraph; PL-H remains deferred unless the gate produces real batch execution demand; BENCH-2 remains env deferred.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop176-pl-g-real-batch-demand-gate-contract-only",
+  "last_tick": "loop177-pl-g-real-batch-demand-gate-api-surface-mocked-only",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -477,7 +477,14 @@
     "loop176 Python ruff pass for mining_runner.py and test_pl_g_real_batch_demand_gate_unit.py",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.499",
     "loop176 no .env/secret/store/DB/env loader/runner/background/migration/backfill/default DB-backed backtest",
-    "loop176 next: real batch demand gate API surface TDD mocked-only with no runner/background/migration/backfill/default DB-backed backtest or secret output"
+    "loop176 next: real batch demand gate API surface TDD mocked-only with no runner/background/migration/backfill/default DB-backed backtest or secret output",
+    "loop177 TDD red: mining jobs list API missing real_batch_demand_gate KeyError expected",
+    "loop177 mining job API focused tests 15 passed",
+    "loop177 adjacent demand/API/backtest/Jobs regression 34 passed",
+    "loop177 Python ruff pass for quant_routes.py and test_mining_job_api_unit.py",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.500",
+    "loop177 no .env/secret/runner/background/migration/backfill/default DB-backed backtest",
+    "loop177 next: JobsPage read-only demand gate display TDD mocked-only with no POST/trigger/runner/background/migration/backfill/default DB-backed backtest or secret output"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -487,7 +494,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop176 safe tick: PL-G real batch demand gate TDD contract-only completed. build_real_batch_demand_gate() now summarizes already-loaded MiningJobV1 queue/backtest request pressure and returns pl_h_deferred for a single small ready job or pl_h_revisit for multiple ready jobs, single-job high request count, retryable failed pressure, or explicit runtime evidence. Verification: red ImportError expected, focused 4 passed, adjacent regression 33 passed, ruff pass. This tick had no env/secret reads, store/DB/env loader calls, real runner/background work, migration, backfill, DB schema change, or DB-backed backtest. Next gap is read-only API surface mocked-only."
+    "note": "loop177 safe tick: PL-G real batch demand gate API surface TDD mocked-only completed. GET /api/v1/quant/mining-jobs now returns top-level real_batch_demand_gate from already-loaded mining job rows while preserving per-job observability. Verification: red KeyError expected, API focused 15 passed, adjacent regression 34 passed, ruff pass. This tick had no env/secret reads, real runner/background work, migration, backfill, DB schema change, default DB-backed backtest, or secret output. Next gap is JobsPage read-only demand gate display mocked-only."
   },
-  "last_completed_note": "loop176: safe tick completed PL-G real batch demand gate TDD contract-only. Added tests/test_pl_g_real_batch_demand_gate_unit.py first and observed expected ImportError for missing build_real_batch_demand_gate, then implemented the pure read-only gate in src/qa/quant_mining/mining_runner.py. Gate summarizes MiningJobV1 queue/backtest request pressure, returns pl_h_deferred for one small ready job, and returns pl_h_revisit for multiple ready jobs, single-job high request count, retryable failed pressure, or explicit runtime evidence. Verification: focused tests 4 passed; adjacent demand/backtest/API/Jobs regression 33 passed; Python ruff passed. No .env/secret reads, store/DB/env loader calls, page-load POST, real runner/background work, migration, DB schema change, backfill, default real runner, or DB-backed backtest. Next atomic action is PL-G real batch demand gate API surface TDD mocked-only."
+  "last_completed_note": "loop177: safe tick completed PL-G real batch demand gate API surface TDD mocked-only. Added tests/test_mining_job_api_unit.py failing contract first and observed expected KeyError for missing real_batch_demand_gate in list_mining_jobs response, then implemented _mining_jobs_list_api_payload() in src/qa/api/quant_routes.py. GET /api/v1/quant/mining-jobs now returns per-job payloads plus top-level pure real_batch_demand_gate computed from the already loaded store rows. Verification: API focused tests 15 passed; adjacent demand/API/backtest/Jobs regression 34 passed; Python ruff passed. No .env/secret reads, page-load POST, trigger, real runner/background work, migration, DB schema change, backfill, default real runner, or DB-backed backtest. Next atomic action is PL-G JobsPage read-only demand gate display TDD mocked-only."
 }
