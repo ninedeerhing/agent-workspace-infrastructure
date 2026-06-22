@@ -1,11 +1,9 @@
 {
-  "recorded_at": "2026-06-22T23:23:22Z",
-  "last_tick": "loop231-real-flow-authorization-packet",
-  "pytest_passed": 40,
+  "recorded_at": "2026-06-22T23:45:35Z",
+  "last_tick": "loop232-explicit-real-runner-adapter-dry-run-execution-authorization-assessment",
+  "pytest_passed": 41,
   "ruff": "ok",
-  "evidence_paths": [
-    "loop231 focused pytest 1 passed; related JobsPage proof regression 40 passed; ruff ok; targeted eslint pass; web build pass; npm smoke:jobs-page pass; active/stale/secret-shape/runtime scans pass"
-  ],
-  "section5_ref": "5.555",
+  "evidence_paths": [],
+  "section5_ref": "5.556",
   "source": "manual"
 }
