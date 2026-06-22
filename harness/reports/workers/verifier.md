@@ -1,6 +1,36 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-23T04:36:32+08:00
+更新时间：2026-06-23T05:00:00+08:00
+
+## Tick loop225-controlled-runner-handoff-planning-review
+
+- **任务 ID**：loop225-controlled-runner-handoff-planning-review-verification-plan / loop225-controlled-runner-handoff-planning-review-final-verification
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读复核 controlled runner handoff planning review mocked-only 的验收证据，并确认 clean-worktree gate 由 orchestrator 收口。
+- **变更**：worker 只读复核，未修改文件。
+- **验证矩阵与最终复核**：
+  - focused pytest RED/GREEN。
+  - related regression pytest。
+  - Python ruff on touched tests。
+  - targeted eslint on `scripts/smoke-jobs-page-fixture.mjs` and `scripts/jobs-page-fixture-runner-adapter-*.mjs`。
+  - `npm run smoke:jobs-page` requiring `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, and `controlled_runner_handoff_planning_*` markers visible。
+  - `npm run build`。
+  - stale/prefixed family source scan, secret marker/value-shape scan, runtime cleanup scan。
+  - final verifier report: related regression **34 passed**；ruff pass；targeted eslint pass；smoke pass；build pass；source scans pass；secret markers guard-only; runtime cleanup pass。
+- **orchestrator 本地验证**：
+  - RED **1 failed** expected。
+  - GREEN focused pytest **1 passed**。
+  - related regression **34 passed**。
+  - ruff -> **All checks passed**。
+  - eslint -> pass exit 0。
+  - build -> pass。
+  - smoke -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`、planning review markers present。
+  - source forbidden scans -> pass；secret value shape scan -> pass；runtime cleanup scan -> pass。
+- **roster_update**：workload cleared；mistakes none；lesson: loop225 evidence remains valid only as planning review; authorization grant, config connection, real runner invocation, actual adapter dry-run execution, execution permission, and PL-H execution stay forbidden until a later explicit gate。
+- **残余风险**：mocked-only；real/default runner, actual adapter dry-run execution, default DB-backed backtest, background execution, migration/backfill, and PL-H execution remain intentionally deferred behind future explicit gates；clean-worktree closure remains orchestrator-owned after truth-source sync and commit。
+- **next**：orchestrator must close truth-source/commit/clean-worktree gates, then next slice is explicit controlled runner handoff gate review mocked-only。
 
 ## Tick loop224-authorized-runner-handoff-execution-readiness-review
 

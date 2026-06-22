@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-23T04:36:32+08:00
+更新时间：2026-06-23T05:00:00+08:00
+
+## Tick loop225-controlled-runner-handoff-planning-review
+
+- **任务 ID**：loop225-controlled-runner-handoff-planning-review-test-design
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读设计 controlled runner handoff planning review 的 RED/GREEN 验收形态，确保 planning review 覆盖 loop224 source evidence、fail_closed_planning_review_not_execution、authorization evidence completion_required_not_granted、runner/adapter config readiness_handoff_required_not_connected、rollback/audit before-after no-execution observability、missing-runner fail-closed、PL-H not eligible until real-batch gate、no-execution planning acceptance、decision:planning_review_only_not_execution，并保持 no real/default runner、no adapter invocation/actual dry-run execution、no page-load auto POST、no background/migration/backfill/DB-backed backtest/PL-H/secret guards。
+- **变更**：worker 只读复核，未修改文件。
+- **验证建议**：focused test 应先 RED 于缺少 `controlledRunnerHandoffPlanningReviewChecks` / `assertControlledRunnerHandoffPlanningReview(...)` / fixture wiring，再 GREEN；source contract 必须拒绝 stale Acceptance/Checklist family，并要求 active grant/connected/invoked/executed/eligible/approved markers 仅作为 negative guard 出现。
+- **orchestrator 本地验证**：RED **1 failed** expected；focused pytest **1 passed**；related regression **34 passed**；ruff/eslint/smoke/build/source forbidden scans/secret value shape scan/runtime cleanup pass。
+- **roster_update**：workload cleared；mistakes none；lesson: planning review tests must prove planning-review-only/not-execution state, not approval granted, runner connected, execution permission, or PL-H eligibility。
+- **next**：进入 explicit controlled runner handoff gate review mocked-only。
 
 ## Tick loop224-authorized-runner-handoff-execution-readiness-review
 

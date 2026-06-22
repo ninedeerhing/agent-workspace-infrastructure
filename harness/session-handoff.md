@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T04:36:32+08:00
+updated_at: 2026-06-23T05:00:00+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -66,6 +66,8 @@ updated_at: 2026-06-23T04:36:32+08:00
 [CONTEXT] 2026-06-23 loop223 · 已完成 operator-authorized runner handoff readiness gate mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `operatorAuthorizedRunnerHandoffReadinessGateChecks` / `assertOperatorAuthorizedRunnerHandoffReadinessGate(...)`，Jobs smoke fixture 验证 handoff-readiness-only/not-execution gate：explicit operator authorization evidence required-not-granted、runner/adapter config handoff required-not-connected、rollback/audit before-after no-execution observability、missing-runner fail-closed、PL-H not eligible until real-batch gate、no-execution handoff acceptance、decision:handoff_readiness_only_not_execution 与 authorized runner handoff execution readiness review next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 32 passed，ruff pass，targeted eslint exit 0 with pre-existing ShellLayoutContext warning，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / operator handoff readiness markers visible，runtime/source forbidden scans、secret value shape scan、runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 authorized runner handoff execution readiness review TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 
 [CONTEXT] 2026-06-23 loop224 · 已完成 authorized runner handoff execution readiness review mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `authorizedRunnerHandoffExecutionReadinessReviewChecks` / `assertAuthorizedRunnerHandoffExecutionReadinessReview(...)`，Jobs smoke fixture 验证 review-only/not-execution gate：source=loop223 operator handoff readiness、fail_closed_review_packet_not_execution、authorization evidence complete_required_not_granted、runner/adapter config ready_required_not_connected、rollback/audit before-after no-execution observability、missing-runner fail-closed、PL-H not eligible until real-batch gate、no-execution review acceptance、decision:review_only_not_execution 与 controlled runner handoff planning review next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 33 passed，ruff pass，targeted eslint exit 0 with pre-existing ShellLayoutContext warning，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / execution readiness review markers visible，source/runtime forbidden scans、secret value shape scan、runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 controlled runner handoff planning review TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
+
+[CONTEXT] 2026-06-23 loop225 · 已完成 controlled runner handoff planning review mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `controlledRunnerHandoffPlanningReviewChecks` / `assertControlledRunnerHandoffPlanningReview(...)`，Jobs smoke fixture 验证 planning-review-only/not-execution gate：source=loop224 execution readiness review、fail_closed_planning_review_not_execution、authorization evidence completion_required_not_granted、runner/adapter config readiness_handoff_required_not_connected、rollback/audit before-after no-execution observability、missing-runner fail-closed、PL-H not eligible until real-batch gate、no-execution planning acceptance、decision:planning_review_only_not_execution 与 explicit controlled runner handoff gate review next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 34 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / planning review markers visible，source forbidden scans、secret value shape scan、runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 explicit controlled runner handoff gate review TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 ```
 
 ### Loop Machine State
@@ -74,18 +76,18 @@ updated_at: 2026-06-23T04:36:32+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-controlled-runner-handoff-planning-review-mocked-only |
-| `last_tick` | loop224-authorized-runner-handoff-execution-readiness-review |
+| `current_slice` | pl-g-explicit-controlled-runner-handoff-gate-review-mocked-only |
+| `last_tick` | loop225-controlled-runner-handoff-planning-review |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start controlled runner handoff planning review TDD mocked-only: use loop224 authorized runner handoff execution readiness review gate to define a fail-closed controlled-handoff planning review for explicit operator authorization evidence completion requirement, injected runner/adapter config readiness handoff, rollback/audit before-after observability, missing-runner fail-closed, PL-H non-eligibility/real-batch gate, and no-execution planning acceptance; still forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start explicit controlled runner handoff gate review TDD mocked-only: use loop225 controlled runner handoff planning review gate to define a fail-closed explicit controlled runner handoff gate review for operator authorization evidence completion still required/not granted, injected runner/adapter config readiness still required/not connected, rollback/audit before-after readiness, missing-runner fail-closed, PL-H non-eligibility/real-batch gate, and no-execution gate acceptance; still forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the controlled runner handoff planning review stabilizes, assess an explicit controlled runner handoff gate only if operator authorization evidence completion, injected runner/adapter config readiness handoff, rollback/audit before-after observability, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, and no-execution planning acceptance are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
+After the explicit controlled runner handoff gate review stabilizes, assess a later actual-adapter authorization preflight only if operator authorization evidence completion, injected runner/adapter config readiness, rollback/audit before-after readiness, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, and no-execution gate acceptance are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -102,7 +104,7 @@ After the controlled runner handoff planning review stabilizes, assess an explic
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 controlled runner handoff planning review；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 explicit controlled runner handoff gate review；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers

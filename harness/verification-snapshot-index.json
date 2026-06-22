@@ -1,26 +1,26 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T20:46:17Z",
+  "updated_at": "2026-06-22T21:08:57Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-22T20:46:14Z",
-    "last_tick": "loop224-authorized-runner-handoff-execution-readiness-review",
-    "pytest_passed": 33,
+    "recorded_at": "2026-06-22T21:08:52Z",
+    "last_tick": "loop225-controlled-runner-handoff-planning-review",
+    "pytest_passed": 34,
     "ruff": "ok",
     "evidence_paths": [],
-    "section5_ref": "5.548",
+    "section5_ref": "5.549",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.0008692680555555556,
+  "age_hours": 0.0016178363888888889,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T20:46:17Z",
+    "at": "2026-06-22T21:08:57Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.0008692680555555556
+    "age_hours": 0.0016178363888888889
   }
 }
