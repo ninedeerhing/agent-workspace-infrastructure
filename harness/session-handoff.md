@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T02:32:13+08:00
+updated_at: 2026-06-23T03:00:17+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -56,6 +56,8 @@ updated_at: 2026-06-23T02:32:13+08:00
 [CONTEXT] 2026-06-23 loop218 · 已完成 adapter invocation/dry-run harness contract mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `adapterInvocationDryRunHarnessContractChecks` / `assertAdapterInvocationDryRunHarnessContract(...)`，Jobs smoke fixture 验证 authorization handoff required-not-granted、injected runner adapter parameter mapping required-not-connected、rollback/audit before-after capture around mocked adapter boundary、missing-runner fail-closed rejection、PL-H not-eligible recheck 与 mocked adapter dry-run proof next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 27 passed，ruff pass，targeted eslint exit 0 with pre-existing ShellLayoutContext warning，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / invocation harness markers visible，web build/family scan/prefix active marker scan/runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 mocked adapter dry-run proof gate TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。用户 2026-06-23 深夜提醒：唯一核心主线是持续推进自动挖掘 → 自动回测全流程 + 意图理解状态机。
 
 [CONTEXT] 2026-06-23 loop219 · 已完成 mocked adapter dry-run proof gate mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `mockedAdapterDryRunProofGateChecks` / `assertMockedAdapterDryRunProofGate(...)`，Jobs smoke fixture 验证 proof-only dry-run artifact、explicit authorization handoff evidence、injected adapter config echo、rollback/audit before-after proof around mocked adapter boundary、missing-runner fail-closed rejection、PL-H not-eligible recheck 与 real-runner authorization packet/preflight next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 28 passed，ruff pass，targeted eslint exit 0 with pre-existing ShellLayoutContext warning，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / mocked dry-run proof markers visible，source/runtime forbidden scans、runtime secret scan、runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 real runner adapter authorization packet / dry-run execution preflight TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
+
+[CONTEXT] 2026-06-23 loop220 · 已完成 real runner authorization packet / dry-run execution preflight mocked-only：同一跨对话 worker cluster 汇合；extracted runner-adapter proof modules 现在暴露 `realRunnerAuthorizationPacketPreflightChecks` / `assertRealRunnerAuthorizationPacketPreflight(...)`，Jobs smoke fixture 验证 fail-closed preflight artifact、explicit authorization evidence required-not-granted、injected adapter config validation required-not-connected、rollback/audit before-after observability、missing-runner fail-closed rejection、PL-H not-eligible recheck、operator approval boundary 与 minimal real-runner dry-run eligibility reassessment next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 29 passed，ruff pass，targeted eslint exit 0 with pre-existing ShellLayoutContext warning，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / authorization packet preflight markers visible，source/runtime forbidden scans、runtime secret scan、runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 minimal real-runner dry-run eligibility reassessment TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 ```
 
 ### Loop Machine State
@@ -64,18 +66,18 @@ updated_at: 2026-06-23T02:32:13+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-real-runner-adapter-authorization-packet-dry-run-execution-preflight-mocked-only |
-| `last_tick` | loop219-mocked-adapter-dry-run-proof-gate |
+| `current_slice` | pl-g-minimal-real-runner-dry-run-eligibility-reassessment-mocked-only |
+| `last_tick` | loop220-real-runner-authorization-packet-preflight |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start real runner adapter authorization packet / dry-run execution preflight TDD mocked-only: use loop219 mocked adapter dry-run proof gate to define a fail-closed authorization packet/preflight contract for explicit authorization evidence handoff, injected adapter config validation, rollback/audit before-after observability, missing-runner fail-closed rejection, PL-H eligibility recheck, and operator approval boundary; forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start minimal real-runner dry-run eligibility reassessment TDD mocked-only: use loop220 authorization packet / dry-run execution preflight to define an eligibility decision matrix for explicit authorization evidence completeness, injected adapter config validation, rollback/audit before-after observability, missing-runner fail-closed behavior, PL-H non-eligibility/real-batch gate, and operator approval boundary; forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the authorization packet / dry-run execution preflight stabilizes, reassess minimal real-runner dry-run execution eligibility only if explicit authorization evidence, injected adapter config validation, rollback/audit before-after observability, fail-closed missing-runner behavior, and PL-H non-eligibility/real-batch gate are proven; do not invoke real/default runner, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
+After the minimal real-runner dry-run eligibility reassessment stabilizes, move to a later explicit real-runner dry-run execution design gate only if explicit authorization evidence completeness, injected adapter config validation, rollback/audit before-after observability, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, and operator approval boundary are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -92,7 +94,7 @@ After the authorization packet / dry-run execution preflight stabilizes, reasses
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 real runner adapter authorization packet / dry-run execution preflight；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 minimal real-runner dry-run eligibility reassessment；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -168,10 +170,10 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 - governance-coordinator report: success · read-only review confirmed missing hard gates and recommended skill_route_evidence / worker_dispatch_decision / goal_bundle detector
 - researcher thread: `019eeebf-629e-7013-bbf4-1db4d312b925` · title `researcher` · report success on edict/kimi-code orchestration evidence scan
 - architect thread: `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936` · title `architect` · report success on CodeX worker cluster governance architecture
-- test-engineer thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · report success on loop219 mocked dry-run proof RED design
-- executor thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · report success on loop219 mocked dry-run proof implementation scope review; final shared fixture patch serialized by orchestrator
-- code-reviewer thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · report success on loop219 final semantic signoff
-- verifier thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b` · title `verifier` · report success on loop219 final verification; clean-worktree closure belongs to orchestrator sync+commit gate
+- test-engineer thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · report success on loop220 authorization packet preflight RED design
+- executor thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · report success on loop220 authorization packet preflight implementation scope review; final shared fixture patch serialized by orchestrator
+- code-reviewer thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · report success on loop220 final semantic signoff
+- verifier thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b` · title `verifier` · report success on loop220 final verification; clean-worktree closure belongs to orchestrator sync+commit gate
 - prompt: `harness/templates/codex-subagent-prompt.md`
 - task: read-only verification of CodeX effective constraints; latest multi-agent verifier run `019eedc6-f9c5-7c50-8170-18e415f7ce26` / nickname Lorentz reviewed loop186 target files and reported `success`
 - note: orchestrator retains final authority; worker report is data, not truth source. Cross-dialogue worker is now preferred for governance / verifier signoff; temporary multi_agent is auxiliary only.

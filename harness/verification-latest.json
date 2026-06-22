@@ -1,14 +1,9 @@
 {
-  "recorded_at": "2026-06-22T18:42:11Z",
-  "last_tick": "loop219-mocked-adapter-dry-run-proof-gate",
-  "pytest_passed": 28,
+  "recorded_at": "2026-06-22T19:06:56Z",
+  "last_tick": "loop220-real-runner-authorization-packet-preflight",
+  "pytest_passed": 29,
   "ruff": "ok",
-  "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.543",
-    "apps/quant_assistant/tests/test_jobs_page_mocked_adapter_dry_run_proof_gate_unit.py",
-    "apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-mocked-dry-run-checks.mjs",
-    "apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-mocked-dry-run-assertions.mjs"
-  ],
-  "section5_ref": "5.543",
+  "evidence_paths": [],
+  "section5_ref": "5.544",
   "source": "manual"
 }
