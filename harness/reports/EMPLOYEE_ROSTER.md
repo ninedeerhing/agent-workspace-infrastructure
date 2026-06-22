@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-22T14:10:21+08:00
+Updated: 2026-06-22T14:18:53+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -37,7 +37,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | identity_id | display_name | responsibility | report_path | status | workload | intensity | performance | mistake_count | lesson_count | last_assigned_at | last_report_at | current_task | handoff_notes | risk_notes |
 |---|---|---|---|---|---|---|---|---|---:|---:|---|---|---|---|---|
-| orchestrator | manager:orchestrator | Orchestrator | User-facing coordinator, dispatch, synthesis, verification ownership, truth-source sync | `harness/reports/orchestrator/latest.md` | active | 1 light | high | coordinating | 0 | 0 | 2026-06-22T14:10:21+08:00 | 2026-06-22T14:10:21+08:00 | loop189 completed PL-G Jobs route-evidence parity mocked-only; next PL-G route-evidence cross-surface correlation mocked-only | CodeX automations ACTIVE; verifier thread created; daily_bar/daily_trade_status/adj_factor complete to 2026-06-18; route_evidence chain is closed through chat technical details and now exposed read-only in Jobs observability + JobsPage fixture; next slice is cross-surface correlation between chat technical detail and Jobs route evidence; do not restart backfill or run migration/background process/default real DB-backed backtest/real runner/PL-H batch execution; keep secret output forbidden | Escalate destructive ops, duplicate process risk, secret exposure, missing runtime secrets, new worker/skill creation, schema migration requests, real runner wiring requests, PL-H execution requests, or unresolved cross-surface route-evidence correlation gaps if they become current scope |
+| orchestrator | manager:orchestrator | Orchestrator | User-facing coordinator, dispatch, synthesis, verification ownership, truth-source sync | `harness/reports/orchestrator/latest.md` | active | 1 light | high | coordinating | 0 | 0 | 2026-06-22T14:18:53+08:00 | 2026-06-22T14:18:53+08:00 | loop190 completed PL-G route-evidence cross-surface correlation mocked-only; next PL-G trigger-response route-evidence parity mocked-only | CodeX automations ACTIVE; verifier thread created; daily_bar/daily_trade_status/adj_factor complete to 2026-06-18; route_evidence chain is closed through chat technical details, Jobs observability, JobsPage fixture, and loop190 source-contract correlation; next slice is trigger-response route_evidence parity in explicit trigger success feedback; do not restart backfill or run migration/background process/default real DB-backed backtest/real runner/PL-H batch execution; keep secret output forbidden | Escalate destructive ops, duplicate process risk, secret exposure, missing runtime secrets, new worker/skill creation, schema migration requests, real runner wiring requests, PL-H execution requests, or unresolved trigger-response route-evidence parity gaps if they become current scope |
 
 ## Workers
 

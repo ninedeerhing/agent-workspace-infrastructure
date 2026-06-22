@@ -9,10 +9,10 @@
 ## Current Continuation Entry
 
 - Current mainline: AWI CodeX-effective baseline 已验收（TREE-RT 防漂移维护）；业务主线为 `TREE-6 / PL-G` mining_job Template B
-- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop189 已完成 `PL-G Jobs route-evidence parity mocked-only`
-- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 通过 `create_thread`/`send_message_to_thread`；下一拍执行 `PL-G route-evidence cross-surface correlation TDD mocked-only`，把 chat technical execution detail 与 Jobs route evidence 对齐同一 `auto_mining_to_auto_backtest` flow / `mining_batch_dispatch` handoff markers，不接默认真实 runner 或 PL-H 批量执行
+- Business mainline: `apps/quant_assistant` — daily_bar / daily_trade_status / adj_factor complete to 2026-06-18；loop190 已完成 `PL-G route-evidence cross-surface correlation mocked-only`
+- Current direction: 使用 CodeX orchestrator-Only 模式；日常只开 orchestrator 会话；CodeX worker 通过 `create_thread`/`send_message_to_thread`；下一拍执行 `PL-G trigger-response route-evidence parity TDD mocked-only`，让 explicit trigger success feedback 的 response job 也暴露同一 `route_evidence` markers，不接默认真实 runner 或 PL-H 批量执行
 - Post-backfill directive: 已退出 backfill-monitoring 方式，按真源连续推进 **auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph**；closure/收口表示阶段验收通过并继续下一切片，不是结束方案或停止 loop
-- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.512 Jobs route-evidence parity 结论与 `PL-G route-evidence cross-surface correlation TDD mocked-only` 下一原子动作）
+- Next direction: 读 `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`（含 §5.513 route-evidence cross-surface correlation 结论与 `PL-G trigger-response route-evidence parity TDD mocked-only` 下一原子动作）
 - Recovery: CodeX 有效性自检 → `harness/scripts/codex-self-check.ps1 -Format markdown`
 - State facts: 见 `docs/PROJECT_STATUS.md` §5 与 `apps/quant_assistant/docs/PROJECT_STATUS.md` §5.512 最新台账
 
@@ -24,7 +24,7 @@
 - 日末 push：`harness/scripts/daily-git-push.ps1` + CodeX `automation_update` id `awi-daily-git-push`（见 `harness/templates/daily-git-push-prompt.md`）
 - 同步方式：`bootstrap.ps1 -Mode minimum` + `-Mode full -Force -ProvisionTeam -Platform codex` 或 `harness/adapters/Invoke-PlatformAdapter.ps1 -Platform codex`
 - Runtime OS：`harness/scripts/codex-self-check.ps1`, `harness/compliance-check.ps1`, `harness/codex-automation-registry.json`, `harness/reports/EMPLOYEE_ROSTER.md`, `harness/adapters/`
-- 业务隔离：loop189 仅做 mocked/source-contract/browser-smoke Jobs route evidence parity，未输出 DSN/token；未读取 `.env`；未执行 page-load auto POST、默认 trigger、真实 runner、migration/backfill/background process/default real runner/DB-backed backtest/PL-H batch execution
+- 业务隔离：loop190 仅做 mocked/source-contract/browser-smoke route evidence cross-surface correlation，未输出 DSN/token；未读取 `.env`；未执行 page-load auto POST、默认 trigger、真实 runner、migration/backfill/background process/default real runner/DB-backed backtest/PL-H batch execution
 - 会话入口：`docs/SESSION_SETUP.md` + `harness/templates/codex-zero-config-prompt.md`
 
 ## Effective Continuation Prompt
@@ -43,7 +43,7 @@ Take over this project and build context strictly in the following order:
 Facts and constraints:
 - AWI Runtime OS is installed and CodeX-effective; orchestrator is the only user-facing agent.
 - CodeX worker threads use `create_thread` and `harness/templates/codex-subagent-prompt.md`; mailbox is fallback/audit only.
-- quant_assistant business code is on TREE-6 / PL-G; loop189 proves Jobs list/detail and JobsPage fixture now expose read-only route evidence aligned with the intent quant subgraph. PL-G route-evidence cross-surface correlation mocked-only remains next.
+- quant_assistant business code is on TREE-6 / PL-G; loop190 proves chat technical execution detail and Jobs fixture route evidence share the same auto mining -> auto backtest flow/handoff/safety markers. PL-G trigger-response route-evidence parity mocked-only remains next.
 - Side capability `PL-002` exists for Codex skill routing/gating. Phase 1 prototype lives in `harness/skill_router.py` with tests in `harness/tests/test_skill_router.py`; it is advisory only, does not modify global `~/.codex/skills`, and must not change quant `harness/loop-state.json` unless explicitly promoted.
 - Verify AWI: .\harness\scripts\codex-self-check.ps1 -Format markdown; .\harness\compliance-check.ps1 -Mode post-bootstrap
 - Verify app: cd apps/quant_assistant && uv run pytest -q -m "not db and not external"
