@@ -18,6 +18,8 @@ updated_at: 2026-06-22T10:56:00+08:00
 
 ```text
 [CONTEXT] 2026-06-22 loop177 · PL-G real batch demand gate API surface TDD mocked-only 完成：先写 mining jobs list API 合同红测（expected 1 failed / 14 passed, KeyError real_batch_demand_gate），再新增 _mining_jobs_list_api_payload()，让 GET /api/v1/quant/mining-jobs 从已加载 rows 返回 per-job payload + top-level real_batch_demand_gate；验证 focused 15 passed、adjacent regression 34 passed、ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 trigger/runner/background/migration/backfill/default DB-backed backtest · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G JobsPage read-only demand gate display TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
+
+[CONTEXT] 2026-06-22 side capability · PL-002 Codex skills router / gating Phase 1 prototype completed in `harness/skill_router.py` with `harness/tests/test_skill_router.py` and `docs/ENGINEERING/2026-06-22-codex-skill-router-prototype.md`. It is advisory only: no global `~/.codex/skills` mutation, no raw query telemetry, and no quant `loop-state` change. Next optional PL-002 step is local eval set plus graph-aware rerank.
 ```
 
 ### Loop Machine State

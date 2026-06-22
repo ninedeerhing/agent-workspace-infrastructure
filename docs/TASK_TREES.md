@@ -17,6 +17,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 | ID | Theme | Registered | Status |
 |----|-------|-----------|--------|
 | PL-001 | SDK 原生团队编排深水区（Phase 5+） | 2026-06-15 | parking_lot；CodeX `create_thread`/`send_message_to_thread` 已覆盖当前跨会话 worker 需求 |
+| PL-002 | Codex skills router / gating：hybrid retrieval、family dedupe、top-K exposure、telemetry/eval | 2026-06-22 | user-requested side capability；does not change current quant loop; first prototype may live under `harness/` and remain main-only |
 
 ## Active Trees
 
@@ -67,6 +68,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 - Current operational loop: `apps/quant_assistant` PL-G JobsPage read-only demand gate display TDD mocked-only（TREE-2 data gate passed；loop177 completed read-only API surface；见 `harness/loop-state.json` and app §5.500）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
+- Side capability theme: `PL-002` Codex skills router / gating is registered for AWI runtime capability work; it must not overwrite global `~/.codex/skills` or change `harness/loop-state.json` quant next action unless explicitly promoted.
 
 ## EXCLUDE: Default Exclusions
 
