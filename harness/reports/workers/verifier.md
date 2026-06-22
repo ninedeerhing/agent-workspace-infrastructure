@@ -1,6 +1,22 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-22T18:42:50+08:00
+更新时间：2026-06-22T19:06:43+08:00
+
+## Tick loop205-intent-quant-readiness-handoff
+
+- **任务 ID**：loop205-intent-quant-readiness-handoff-verification
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读复核 intent-quant readiness handoff bundle mocked-only 的验收证据。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：
+  - `$env:PYTHONPATH='src'; uv run pytest tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py -q` -> **14 passed in 0.18s**。
+  - `npm run smoke:jobs-page` -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`，text checks include `intent_quant_readiness_handoff_bundle_visible` and route evidence handoff markers。
+  - targeted marker scan -> required markers present; no page-load trigger/default runner/PL-H execution markers regressed。
+- **roster_update**：workload cleared；mistakes none；lesson: readiness handoff verification must confirm submitted and refreshed evidence agree with the same body route guidance。
+- **残余风险**：mocked-only；real DB-backed runner, PL-H batch execution, migration/backfill, production background execution remain deferred。
+- **next**：orchestrator can mark loop205 mocked-only readiness handoff done and route to observability / real-batch demand gate review.
 
 ## Tick loop204-pl-g-route-guidance-transition
 

@@ -1,8 +1,8 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-06-22T10:53:35Z",
+  "updated_at": "2026-06-22T11:15:01Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
-  "active_entry_count": 46,
+  "active_entry_count": 48,
   "archived_round_count": 0,
   "entries": {
     "M-01": {
@@ -15,7 +15,7 @@
       "fingerprint": "92945a692979de9c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-02": {
@@ -28,7 +28,7 @@
       "fingerprint": "19492a48460ef0b8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-03": {
@@ -41,7 +41,7 @@
       "fingerprint": "b753e5142d63cca6",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-04": {
@@ -54,7 +54,7 @@
       "fingerprint": "8252872344a6a1aa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-05": {
@@ -67,7 +67,7 @@
       "fingerprint": "b0a78e119c2a978d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-06": {
@@ -80,7 +80,7 @@
       "fingerprint": "466b92547c39ab98",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-07": {
@@ -93,7 +93,7 @@
       "fingerprint": "514ac18df80f3270",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-08": {
@@ -106,7 +106,7 @@
       "fingerprint": "127f609b9d336749",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-09": {
@@ -119,7 +119,7 @@
       "fingerprint": "699fe149e07dadd7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-10": {
@@ -132,7 +132,7 @@
       "fingerprint": "042b0ee40d795387",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-11": {
@@ -145,7 +145,7 @@
       "fingerprint": "0b8339a1a4ee0815",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-12": {
@@ -158,7 +158,7 @@
       "fingerprint": "0b8532fed9ce4d33",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-15": {
@@ -171,7 +171,7 @@
       "fingerprint": "da847d8aeda5f49a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-16": {
@@ -184,7 +184,7 @@
       "fingerprint": "a124342e3487cc07",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-17": {
@@ -197,7 +197,7 @@
       "fingerprint": "61b08a325d7f74eb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-18": {
@@ -210,7 +210,7 @@
       "fingerprint": "9df0d5bdaaeb1d34",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-19": {
@@ -223,7 +223,7 @@
       "fingerprint": "7052d26bc2685cfa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-20": {
@@ -236,7 +236,7 @@
       "fingerprint": "d98f2ced613ddc3d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-21": {
@@ -249,7 +249,7 @@
       "fingerprint": "8962d8542b06099d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-22": {
@@ -262,7 +262,7 @@
       "fingerprint": "f8088bb36c67760f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-23": {
@@ -275,7 +275,7 @@
       "fingerprint": "5591738fdcb42c02",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-24": {
@@ -288,7 +288,7 @@
       "fingerprint": "faafb47510b14881",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-25": {
@@ -301,7 +301,7 @@
       "fingerprint": "47b3f516d0a32bbd",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-26": {
@@ -314,7 +314,7 @@
       "fingerprint": "2e8e010276b68173",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-27": {
@@ -327,7 +327,7 @@
       "fingerprint": "d8d82de01b96a7f2",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-28": {
@@ -340,7 +340,7 @@
       "fingerprint": "f45fb585f8e2668f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-29": {
@@ -353,7 +353,7 @@
       "fingerprint": "07f27400a64451a8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-30": {
@@ -366,7 +366,7 @@
       "fingerprint": "5a5e86bf23db3c6a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-31": {
@@ -379,7 +379,7 @@
       "fingerprint": "eba7c675aa3600bc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-32": {
@@ -392,7 +392,7 @@
       "fingerprint": "05605bd00cfcb5d9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-33": {
@@ -405,7 +405,7 @@
       "fingerprint": "5cf04c34f8ab2feb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-34": {
@@ -418,7 +418,7 @@
       "fingerprint": "3f7a4263c04fb129",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-35": {
@@ -431,7 +431,7 @@
       "fingerprint": "d94ecc47265385dc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "M-36": {
@@ -444,7 +444,20 @@
       "fingerprint": "8b448e0975ec52ef",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
+      "mention_count": 1
+    },
+    "M-37": {
+      "entry_id": "M-37",
+      "title": "Readiness handoff bundle binds three runtime surfaces",
+      "scenario": "route guidance transition 已完成，下一步要把 intent quant readiness 与 auto mining -> auto backtest handoff surface 连接起来",
+      "rule": "readiness handoff bundle 必须同时绑定三面证据：body route guidance（previous/transition/active next routes）、submitted explicit-trigger route evidence（flow/stage/handoff source）和 refreshed Jobs route evidence（同一 flow/stage/handoff source + PL-H deferred）。不得把该 bundle 退化为新的 acceptance/checklist family。",
+      "trigger": "intent quant subgraph readiness、auto mining -> auto backtest handoff、Jobs route evidence refresh、real-batch demand gate review 前置",
+      "source": "步骤 digest-20260622-readiness-handoff-cross-surface-binding · loop205 · §5.529",
+      "fingerprint": "2b0d45889f1b2d9e",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     }
   },
@@ -459,7 +472,7 @@
       "fingerprint": "e2a42f0cbfb4498d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-02": {
@@ -472,7 +485,7 @@
       "fingerprint": "614ede829cca904f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-03": {
@@ -485,7 +498,7 @@
       "fingerprint": "6cf6c017a8fcc86c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-04": {
@@ -498,7 +511,7 @@
       "fingerprint": "6f112435ad5b561f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-05": {
@@ -511,7 +524,7 @@
       "fingerprint": "f0a08a8433aca1de",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-06": {
@@ -524,7 +537,7 @@
       "fingerprint": "b78507c3423d1f86",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-07": {
@@ -537,7 +550,7 @@
       "fingerprint": "2bc38c718dbbe1a9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-08": {
@@ -550,7 +563,7 @@
       "fingerprint": "89e6ae3e88559ba4",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-09": {
@@ -563,7 +576,7 @@
       "fingerprint": "02ad18f514a60193",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-10": {
@@ -576,7 +589,7 @@
       "fingerprint": "16aedb6f4157c966",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-11": {
@@ -589,7 +602,7 @@
       "fingerprint": "b30861a88f74195f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     },
     "GP-12": {
@@ -602,7 +615,20 @@
       "fingerprint": "aab692fcadd8aee1",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-22T10:53:35Z",
+      "last_seen_at": "2026-06-22T11:15:01Z",
+      "mention_count": 1
+    },
+    "GP-13": {
+      "entry_id": "GP-13",
+      "title": "Handoff readiness needs cross-surface evidence binding",
+      "scenario": "一个阶段把 “readiness” 交给下一阶段，尤其是 UI/source-contract mocked smoke 与 runtime evidence 同时存在时",
+      "rule": "readiness handoff 不能只检查一个新可见字符串；必须证明源页面/提交响应/刷新后状态三处围绕同一 flow、stage、handoff source 和 safety deferral 一致。若只是命名变化而无 cross-surface binding，应退回 test design。",
+      "trigger": "multi-surface UI smoke、trigger response refresh、workflow handoff、state-machine readiness、real-batch demand gate preflight",
+      "source": "步骤 digest-20260622-readiness-handoff-cross-surface-binding · §5.529",
+      "fingerprint": "eb10198a06f8acb5",
+      "status": "active",
+      "superseded_by": null,
+      "last_seen_at": "2026-06-22T11:15:01Z",
       "mention_count": 1
     }
   },
@@ -716,6 +742,14 @@
       "title": "{简短标题}",
       "task_ref": "{task_id} · {tree}",
       "fingerprint": "{lifecycle 自动填充或手工摘要 hash}",
+      "status": "active",
+      "superseded_by": null
+    },
+    "20260622-readiness-handoff-cross-surface-binding": {
+      "digest_id": "20260622-readiness-handoff-cross-surface-binding",
+      "title": "M-37/GP-13",
+      "task_ref": "TREE-6 / PL-G · intent-quant readiness handoff bundle · loop205 · §5.529",
+      "fingerprint": "readiness-handoff-cross-surface-binding-v1",
       "status": "active",
       "superseded_by": null
     },
@@ -1076,17 +1110,17 @@
   "dream_candidates": [],
   "closure_candidates": [],
   "last_lifecycle": {
-    "at": "2026-06-22T10:53:35Z",
+    "at": "2026-06-22T11:15:01Z",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
     "closure_candidates": 0,
     "archived_rounds": [],
-    "active_step_digests": 15,
+    "active_step_digests": 16,
     "completed_tasks_hint": [
-      "loop204 completed PL-G route guidance transition mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned success; focused pytest 13 passed, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/ruff passed. Current next_atomic_action is intent-quant integration / auto mining -> auto backtest readiness handoff mocked-only. No .env/secret output, page-load auto POST/default trigger, runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed.",
-      "pl-g-intent-quant-auto-backtest-readiness-handoff-mocked-only",
-      "loop204-pl-g-route-guidance-transition"
+      "loop205 completed intent-quant readiness handoff bundle mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned success; focused pytest 14 passed, smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], web build/eslint/ruff passed. Current next_atomic_action is auto mining -> auto backtest observability / real-batch demand gate review mocked-only. No .env/secret output, page-load auto POST/default trigger, runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed.",
+      "pl-g-auto-mining-auto-backtest-observability-real-batch-gate-review-mocked-only",
+      "loop205-intent-quant-readiness-handoff"
     ],
     "ttl_days": 180
   }

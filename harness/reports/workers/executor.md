@@ -1,6 +1,26 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-22T18:42:50+08:00
+**Updated**: 2026-06-22T19:06:43+08:00
+
+## Tick loop205-intent-quant-readiness-handoff
+
+- **任务 ID**：loop205-intent-quant-readiness-handoff-implementation
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：TDD 实现 mocked-only intent-quant readiness handoff bundle，把 loop204 route guidance transition 连接到 submitted/refreshed route evidence surface。
+- **变更**：
+  - `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py`：新增 readiness handoff bundle source contract。
+  - `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py`：新增 fixture source/UI readiness handoff assertions。
+  - `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs`：新增 `intentQuantReadinessHandoffBundleChecks` / `assertIntentQuantReadinessHandoffBundle(...)` 与 smoke `text_checks`。
+- **验证**：
+  - RED before implementation：focused pytest **2 failed / 12 passed** expected（缺 readiness handoff bundle）。
+  - GREEN：focused pytest **14 passed**。
+  - `npm run smoke:jobs-page` -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`，readiness handoff markers visible。
+  - `uv run ruff check ...` -> pass；`npx eslint scripts/smoke-jobs-page-fixture.mjs` -> pass。
+- **roster_update**：workload cleared；mistakes unchanged；lesson: readiness handoff should bind body/submitted/refreshed evidence instead of adding another checklist marker family。
+- **残余风险**：mocked-only；real runner/PL-H/DB-backed path remains intentionally deferred。
+- **next**：orchestrator truth sync and next observability / real-batch demand gate review.
 
 ## Tick loop204-pl-g-route-guidance-transition
 

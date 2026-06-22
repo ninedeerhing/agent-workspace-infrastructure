@@ -47,14 +47,14 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 - Current commit scope (core):
   - Phase 0–7 交付：compliance、boot、registry、worker 边界、mailbox、PAL、hooks、gate-runner、bootstrap -ProvisionTeam 全链路
   - CodeX 生效交付：`automation_update` 四项 ACTIVE；`create_thread` verifier worker 已创建；CodeX self-check 27/27 PASS；base compliance 36 checks / 0 findings
-  - Worker cluster 交付：`researcher` thread `019eeebf-629e-7013-bbf4-1db4d312b925` + `architect` thread `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936`；loop203 业务 cluster 已用 `test-engineer` / `executor` / `code-reviewer` / `verifier` 跨对话汇合；Worker Cluster/Rendezvous Gate 已接入 loop prompt/self-check/subagent prompt/roster/report
+  - Worker cluster 交付：`researcher` thread `019eeebf-629e-7013-bbf4-1db4d312b925` + `architect` thread `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936`；loop205 业务 cluster 已用 `test-engineer` / `executor` / `code-reviewer` / `verifier` 跨对话汇合；Worker Cluster/Rendezvous Gate 已接入 loop prompt/self-check/subagent prompt/roster/report
 - Unclosed points:
   - Phase 5+ SDK 深水区仍 parking_lot，不阻塞当前 CodeX baseline
 - Processing rules:
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G route guidance transition mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal gate 漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G auto mining -> auto backtest observability / real-batch demand gate review mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal gate 漂移
 
 ## Task Tree Governance Protocol
 
@@ -67,7 +67,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G intent-quant integration / auto mining -> auto backtest readiness handoff mocked-only（TREE-2 data gate passed；loop204 completed route guidance transition with worker rendezvous；2026-06-22 governance repair blocks further one-marker acceptance checklist drift；见 `harness/loop-state.json` and app §5.528）
+- Current operational loop: `apps/quant_assistant` PL-G auto mining -> auto backtest observability / real-batch demand gate review mocked-only（TREE-2 data gate passed；loop205 completed intent-quant readiness handoff bundle with worker rendezvous；2026-06-22 governance repair blocks further one-marker acceptance checklist drift；见 `harness/loop-state.json` and app §5.529）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating and `PL-003` worker cluster / rendezvous governance are promoted into loop preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
