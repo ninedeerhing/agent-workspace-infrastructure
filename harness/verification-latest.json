@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T07:29:22Z",
-  "last_tick": "loop194-pl-g-route-evidence-readiness-gate-summary-mocked-only",
-  "pytest_passed": 21,
+  "recorded_at": "2026-06-22T07:44:38Z",
+  "last_tick": "loop195-pl-g-route-evidence-acceptance-readiness-checklist-mocked-only",
+  "pytest_passed": 22,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.517"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.518"
   ],
-  "section5_ref": "5.517",
+  "section5_ref": "5.518",
   "source": "manual"
 }

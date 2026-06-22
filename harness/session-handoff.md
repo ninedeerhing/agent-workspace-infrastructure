@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T15:23:36+08:00
+updated_at: 2026-06-22T15:38:36+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-22T15:23:36+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-22 loop194 · PL-G route-evidence readiness-gate summary mocked-only 完成：`apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` 现在用 `readinessGateSummaryChecks` 与 `assertReadinessGateSummary(routeEvidenceContractSource, bodyText, submittedText, refreshedText)` 在 acceptance-chain summary 之上输出只读 readiness gate：`continue_pl_g_safe_increment`、下一安全 PL-G mocked/source/UI hardening increment、PL-H batch execution deferred until later real-batch gate、real-batch gate required、no page-load auto POST、no default runner、no secret output；`tests/test_jobs_page_acceptance_smoke_unit.py` 与 `tests/test_route_evidence_cross_surface_contract_unit.py` 已锁定 source/UI contract。验证：RED expected 2 failed / 3 passed；GREEN focused 5 passed；related source/UI 21 passed；`npm run smoke:jobs-page` pass with `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `readiness_gate_*` checks；web build/eslint pass；Python ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load auto POST/default trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G route-evidence acceptance-readiness checklist TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
+[CONTEXT] 2026-06-22 loop195 · PL-G route-evidence acceptance-readiness checklist mocked-only 完成：`apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` 现在用 `acceptanceReadinessChecklistChecks` 与 `assertAcceptanceReadinessChecklist(routeEvidenceContractSource, bodyText, submittedText, refreshedText)` 在 readiness gate 之上输出 exact safe-surface checklist：chat route contract source locked、trigger-response route evidence locked、refreshed Jobs route evidence locked、demand-gate safety locked、readiness decision locked、real runner not enabled、PL-H batch execution deferred、real-batch gate required、no page-load auto POST、no secret output；`tests/test_jobs_page_acceptance_smoke_unit.py` 与 `tests/test_route_evidence_cross_surface_contract_unit.py` 已锁定 source/UI contract。验证：RED expected 2 failed / 4 passed；GREEN focused 6 passed；related source/UI 22 passed；`npm run smoke:jobs-page` pass with `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `acceptance_readiness_*` checks；web build/eslint pass；Python ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load auto POST/default trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G route-evidence operator acceptance banner TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
 
 [CONTEXT] 2026-06-22 side capability · PL-002 Codex skills router / gating Phase 1 prototype completed in `harness/skill_router.py` with `harness/tests/test_skill_router.py` and `docs/ENGINEERING/2026-06-22-codex-skill-router-prototype.md`. It is advisory only: no global `~/.codex/skills` mutation, no raw query telemetry, and no quant `loop-state` change. Next optional PL-002 step is local eval set plus graph-aware rerank.
 ```
@@ -28,18 +28,18 @@ updated_at: 2026-06-22T15:23:36+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-route-evidence-acceptance-readiness-checklist-mocked-only |
-| `last_tick` | loop194-pl-g-route-evidence-readiness-gate-summary-mocked-only |
+| `current_slice` | pl-g-route-evidence-operator-acceptance-banner-mocked-only |
+| `last_tick` | loop195-pl-g-route-evidence-acceptance-readiness-checklist-mocked-only |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start PL-G route-evidence acceptance-readiness checklist TDD mocked-only: prove the readiness-gate summary exposes the exact source/UI checklist of safe surfaces still required before any real runner or PL-H batch execution, without page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
+Start PL-G route-evidence operator acceptance banner TDD mocked-only: prove the Jobs acceptance/readiness surface exposes one compact operator-facing status banner summarizing route-evidence chain locked, acceptance-readiness checklist locked, PL-H deferred until real-batch gate, and no auto execution, without page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After acceptance-readiness checklist stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
+After operator acceptance banner stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -56,7 +56,7 @@ After acceptance-readiness checklist stabilizes, continue PL-G mocked/source-con
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G route-evidence acceptance-readiness checklist TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 PL-G route-evidence operator acceptance banner TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -132,17 +132,17 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 - thread title: `verifier`
 - prompt: `harness/templates/codex-subagent-prompt.md`
 - task: read-only verification of CodeX effective constraints; latest multi-agent verifier run `019eedc6-f9c5-7c50-8170-18e415f7ce26` / nickname Lorentz reviewed loop186 target files and reported `success`
-- note: orchestrator retains final authority; worker report is data, not truth source. loop194 did not dispatch a new worker because the readiness-gate summary slice was small and fully verified by RED/GREEN, related source/UI regression, fixture browser smoke, build/lint, and ruff.
+- note: orchestrator retains final authority; worker report is data, not truth source. loop195 did not dispatch a new worker because the acceptance-readiness checklist slice was small and fully verified by RED/GREEN, related source/UI regression, fixture browser smoke, build/lint, and ruff.
 
 ---
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop194 已完成 PL-G route-evidence readiness-gate summary mocked-only，acceptance-chain summary 现在输出 `continue_pl_g_safe_increment`、下一安全 PL-G mocked/source/UI hardening increment、PL-H batch execution deferred until later real-batch gate、real-batch gate required、no page-load auto POST/default runner/secret output；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop195 已完成 PL-G route-evidence acceptance-readiness checklist mocked-only，readiness gate 现在输出 exact safe-surface checklist：route-evidence chain source/trigger/refreshed Jobs/demand-gate/readiness decision locked，PL-H batch execution deferred，real-batch gate required，no page-load auto POST/secret output；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 执行 `PL-G route-evidence acceptance-readiness checklist TDD mocked-only`：新增 mocked/source/UI contract，证明 readiness-gate summary 暴露进入真实 runner 或 PL-H batch execution 前仍需满足的 source/UI checklist；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 执行 `PL-G route-evidence operator acceptance banner TDD mocked-only`：新增 mocked/source/UI contract，证明 Jobs acceptance/readiness surface 暴露 compact operator-facing banner，总结 route-evidence chain locked、acceptance-readiness checklist locked、PL-H deferred until real-batch gate、no auto execution；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 

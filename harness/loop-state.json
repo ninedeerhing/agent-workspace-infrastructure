@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T15:23:36+08:00",
+  "updated_at": "2026-06-22T15:38:36+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-route-evidence-acceptance-readiness-checklist-mocked-only",
-  "next_atomic_action": "Start PL-G route-evidence acceptance-readiness checklist TDD mocked-only: prove the readiness-gate summary exposes the exact source/UI checklist of safe surfaces still required before any real runner or PL-H batch execution, without page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After acceptance-readiness checklist stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-route-evidence-operator-acceptance-banner-mocked-only",
+  "next_atomic_action": "Start PL-G route-evidence operator acceptance banner TDD mocked-only: prove the Jobs acceptance/readiness surface exposes one compact operator-facing status banner summarizing route-evidence chain locked, acceptance-readiness checklist locked, PL-H deferred until real-batch gate, and no auto execution, without page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After operator acceptance banner stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop194-pl-g-route-evidence-readiness-gate-summary-mocked-only",
+  "last_tick": "loop195-pl-g-route-evidence-acceptance-readiness-checklist-mocked-only",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -643,7 +643,19 @@
     "loop194 verification snapshot recorded pytest_passed=21 ruff=ok evidence apps/quant_assistant/docs/PROJECT_STATUS.md#5.517",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.517",
     "loop194 no .env/secret/page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
-    "loop194 next: PL-G route-evidence acceptance-readiness checklist TDD mocked-only with no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output"
+    "loop194 next: PL-G route-evidence acceptance-readiness checklist TDD mocked-only with no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output",
+    "loop195 TDD red: acceptance-readiness checklist source/UI contracts 2 failed / 4 passed expected due missing acceptanceReadinessChecklistChecks and assertAcceptanceReadinessChecklist helper",
+    "loop195 focused acceptance-readiness checklist tests 6 passed",
+    "loop195 related source/UI regression 22 passed",
+    "loop195 Python ruff pass for JobsPage route evidence source/smoke contract tests",
+    "loop195 web npm run smoke:jobs-page pass with acceptance_readiness_* markers, pageLoadTriggerRequests=[], duplicateTriggerUrls=[], miningJobsReadCount=5",
+    "loop195 web npm run build pass",
+    "loop195 targeted eslint JobsPage + smoke fixture pass",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.518",
+    "loop195 five lifecycles pass: methodology active_entries=30 active_gp_entries=8 active_step_digests=11; work_report record_count=22; sync finding_count=0 latest_section5=518 top_section5_ref=518; verification stale=false section5_ref=5.518 pytest_passed=22 ruff=ok; closure open_count=0",
+    "loop195 verification snapshot recorded pytest_passed=22 ruff=ok evidence apps/quant_assistant/docs/PROJECT_STATUS.md#5.518",
+    "loop195 no .env/secret/page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
+    "loop195 next: PL-G route-evidence operator acceptance banner TDD mocked-only with no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -653,7 +665,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop194 safe tick: PL-G route-evidence readiness-gate summary mocked-only completed. Fixture-backed browser smoke now asserts the acceptance-chain summary emits a read-only readiness gate with continue_pl_g_safe_increment, next mocked/source/UI hardening increment, PL-H batch execution deferred until a later real-batch gate, real-batch gate required, no page-load auto POST, no default runner, and no secret output. Verification: source/UI contracts red 2 failed / 3 passed expected then green 5 passed; related source/UI regression 21 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] and readiness_gate_* checks; web build/eslint pass. This tick had no env/secret reads, page-load auto POST/default trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is PL-G route-evidence acceptance-readiness checklist mocked-only."
+    "note": "loop195 safe tick: PL-G route-evidence acceptance-readiness checklist mocked-only completed. Fixture-backed browser smoke now asserts the readiness gate exposes the exact source/UI safe-surface checklist: chat route contract source locked, trigger-response route evidence locked, refreshed Jobs route evidence locked, demand-gate safety locked, readiness decision locked, real runner not enabled, PL-H batch execution deferred, real-batch gate required, no page-load auto POST, and no secret output. Verification: source/UI contracts red 2 failed / 4 passed expected then green 6 passed; related source/UI regression 22 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] and acceptance_readiness_* checks; web build/eslint pass. This tick had no env/secret reads, page-load auto POST/default trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is PL-G route-evidence operator acceptance banner mocked-only."
   },
-  "last_completed_note": "loop194: safe tick completed PL-G route-evidence readiness-gate summary mocked-only. The fixture now emits a read-only readiness gate on top of the acceptance chain: continue_pl_g_safe_increment, next mocked/source/UI hardening increment, PL-H batch execution deferred until later real-batch gate, real-batch gate required, no page-load auto POST, no default runner, and no secret output. Verification: source/UI contracts red 2 failed / 3 passed then green 5 passed; related source/UI 21 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] plus readiness_gate_* checks; web build/eslint pass. No .env/secret reads, page-load auto POST/default trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route-evidence acceptance-readiness checklist TDD mocked-only."
+  "last_completed_note": "loop195: safe tick completed PL-G route-evidence acceptance-readiness checklist mocked-only. The fixture now emits exact checklist evidence on top of the readiness gate: chat route contract source locked, trigger-response route evidence locked, refreshed Jobs route evidence locked, demand-gate safety locked, readiness decision locked, real runner not enabled, PL-H batch execution deferred, real-batch gate required, no page-load auto POST, and no secret output. Verification: source/UI contracts red 2 failed / 4 passed then green 6 passed; related source/UI 22 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] plus acceptance_readiness_* checks; web build/eslint pass. No .env/secret reads, page-load auto POST/default trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route-evidence operator acceptance banner TDD mocked-only."
 }
