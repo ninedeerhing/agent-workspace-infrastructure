@@ -1,26 +1,31 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T18:19:44Z",
+  "updated_at": "2026-06-22T18:43:43Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-22T18:19:40Z",
-    "last_tick": "loop218-adapter-invocation-dry-run-harness-contract",
-    "pytest_passed": 27,
+    "recorded_at": "2026-06-22T18:42:11Z",
+    "last_tick": "loop219-mocked-adapter-dry-run-proof-gate",
+    "pytest_passed": 28,
     "ruff": "ok",
-    "evidence_paths": [],
-    "section5_ref": "5.542",
+    "evidence_paths": [
+      "apps/quant_assistant/docs/PROJECT_STATUS.md#5.543",
+      "apps/quant_assistant/tests/test_jobs_page_mocked_adapter_dry_run_proof_gate_unit.py",
+      "apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-mocked-dry-run-checks.mjs",
+      "apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-mocked-dry-run-assertions.mjs"
+    ],
+    "section5_ref": "5.543",
     "source": "manual"
   },
-  "git_dirty": true,
-  "age_hours": 0.0013352144444444443,
+  "git_dirty": false,
+  "age_hours": 0.025790769722222225,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T18:19:44Z",
+    "at": "2026-06-22T18:43:43Z",
     "apply": true,
     "stale": false,
-    "git_dirty": true,
-    "age_hours": 0.0013352144444444443
+    "git_dirty": false,
+    "age_hours": 0.025790769722222225
   }
 }

@@ -1,21 +1,21 @@
-# Orchestrator Report — loop218-adapter-invocation-dry-run-harness-contract
+# Orchestrator Report — loop219-mocked-adapter-dry-run-proof-gate
 
-**Updated**: 2026-06-23T02:07:34+08:00
+**Updated**: 2026-06-23T02:32:13+08:00
 
 ## Tick Summary
 
-- **slice**: TREE-6 / PL-G adapter invocation/dry-run harness contract mocked-only
+- **slice**: TREE-6 / PL-G mocked adapter dry-run proof gate mocked-only
 - **agent**: orchestrator
-- **result**: added a bounded invocation harness contract on top of the extracted runner-adapter proof modules, covering explicit authorization handoff, injected runner adapter parameter mapping, rollback/audit before-after capture around the mocked adapter boundary, missing-runner fail-closed rejection, PL-H eligibility recheck, and the next mocked adapter dry-run proof gate
-- **next**: mocked adapter dry-run proof gate mocked-only
+- **result**: added a bounded mocked adapter dry-run proof gate on top of the extracted runner-adapter proof modules, covering proof-only dry-run artifact evidence, explicit authorization handoff evidence, injected adapter config echo, rollback/audit before-after proof around the mocked adapter boundary, missing-runner fail-closed rejection, PL-H eligibility recheck, and the next real-runner authorization packet / dry-run execution preflight gate
+- **next**: real runner adapter authorization packet / dry-run execution preflight mocked-only
 - **core mainline**: auto mining -> auto backtest full flow + intent understanding state machine remains the unique project mainline
 
 ## Cluster Manifest
 
 ```yaml
 cluster_manifest:
-  cluster_id: "cluster-loop218-adapter-invocation-harness-contract"
-  goal_id: "TREE-6-PL-G-adapter-invocation-dry-run-harness-contract"
+  cluster_id: "cluster-loop219-worker-cluster"
+  goal_id: "TREE-6-PL-G-mocked-adapter-dry-run-proof-gate"
   commander: "orchestrator"
   max_parallel_workers: 4
   worker_threads:
@@ -39,10 +39,10 @@ cluster_manifest:
 
 | Gate | Decision |
 |------|----------|
-| goal_gate | `adapter_invocation_dry_run_harness_contract` |
+| goal_gate | `mocked_adapter_dry_run_proof_gate` |
 | skill_route | router `decision=expose`; top-K noisy, applied `orchestrator`, `dispatching-parallel-agents`, `test-driven-development`, `programming`, `verification-before-completion` |
 | dispatch_decision | dispatched existing roster roles `test-engineer`, `executor`, `code-reviewer`, `verifier` via CodeX cross-dialogue threads |
-| bundle_decision | invocation harness proves required blockers and evidence, not authorization grant, not runner config connection, not adapter invocation, not dry-run execution, not PL-H eligibility |
+| bundle_decision | mocked dry-run gate proves proof artifact and required blockers, not authorization grant, not runner/config connection, not adapter invocation, not dry-run execution, not PL-H eligibility |
 | capacity_review | existing roster sufficient; no new worker requested |
 | skill_lifecycle | no new M/GP; applied M-46/GP-22 and M-17 zero-write audit; router precision gap carried |
 
@@ -50,32 +50,32 @@ cluster_manifest:
 
 | File | Summary |
 |------|---------|
-| `apps/quant_assistant/tests/test_jobs_page_adapter_invocation_harness_contract_unit.py` | Added focused source-contract coverage for invocation harness exports, fixture wiring, exact markers, forbidden family names, and active enablement guards. |
-| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-invocation-checks.mjs` | New bounded checks module for invocation harness rows and forbidden markers. |
-| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-invocation-assertions.mjs` | New bounded assertion module binding body/submitted/refreshed evidence to invocation harness rows. |
-| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-proofs.mjs` | Re-exported invocation checks/assertion and wired invocation assertTextCheck setter. |
-| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Calls `assertAdapterInvocationDryRunHarnessContract(...)` and adds invocation checks to browser smoke `text_checks`. |
+| `apps/quant_assistant/tests/test_jobs_page_mocked_adapter_dry_run_proof_gate_unit.py` | Added focused source-contract coverage for mocked dry-run proof exports, fixture wiring, exact markers, forbidden family names, and active execution guards. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-mocked-dry-run-checks.mjs` | New bounded checks module for mocked dry-run proof rows and forbidden markers. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-mocked-dry-run-assertions.mjs` | New bounded assertion module binding body/submitted/refreshed evidence to mocked dry-run proof rows. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-proofs.mjs` | Re-exported mocked dry-run proof checks/assertion and wired mocked dry-run assertTextCheck setter. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Calls `assertMockedAdapterDryRunProofGate(...)` and adds mocked dry-run checks to browser smoke `text_checks`. |
 
 ## Review
 
-- `test-engineer` required RED coverage for invocation harness exports, helper wiring, exact markers, forbidden family names, and negative execution guards.
-- `executor` confirmed implementation should stay inside bounded invocation modules plus thin smoke fixture wiring, leaving JobsPage/runtime/runner/DB untouched.
-- `code-reviewer` final review passed: invocation harness wording remains contract proof, not authorization granted, runner connected, adapter invocation, dry-run execution, execution permission, PL-H eligibility, or secret exposure.
-- `verifier` final verification passed with independent reruns of regression tests, ruff, eslint, smoke, build, scans, and runtime cleanup.
+- `test-engineer` required RED coverage for mocked dry-run proof exports, helper wiring, exact markers, forbidden family names, and negative execution guards.
+- `executor` confirmed implementation should stay inside bounded mocked dry-run modules plus thin smoke fixture wiring, leaving JobsPage/runtime/runner/DB untouched.
+- `code-reviewer` final review passed: mocked dry-run proof gate stays proof-only, evidence-bound, and does not imply authorization grant, runner/config connection, adapter invocation, dry-run execution, or PL-H eligibility/execution.
+- `verifier` final verification passed with independent reruns/reviews of regression tests, ruff, eslint, smoke, build, scans, runtime cleanup, and LOC profile.
 
 ## Verification Gates
 
 | Gate | Result |
 |------|--------|
-| TDD RED | pass · expected 1 failed before invocation harness module/helper existed |
+| TDD RED | pass · expected 1 failed before mocked dry-run proof module/helper existed |
 | focused pytest | pass · 1 passed |
-| related regression | pass · 27 passed |
+| related regression | pass · 28 passed |
 | Python ruff | pass · touched Python tests clean |
-| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, invocation markers visible |
+| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, mocked dry-run proof markers visible |
 | web build | pass · `npm run build` |
 | targeted eslint | pass · exit 0 with one pre-existing `ShellLayoutContext.tsx` warning |
-| guard scans | pass · forbidden family and prefix active marker scans reviewed as negative guards only |
-| runtime cleanup | pass · `listeners=0`; `scoped_processes=0` |
+| guard scans | pass · source/runtime forbidden scans and runtime secret scan reviewed as negative guards only |
+| runtime cleanup | pass · port listener cleanup ok |
 
 ## Safety
 
@@ -87,4 +87,4 @@ Verification remains mocked-only. Real/default runner invocation, actual adapter
 
 ## Next
 
-Start mocked adapter dry-run proof gate mocked-only using the loop218 invocation harness contract.
+Start real runner adapter authorization packet / dry-run execution preflight mocked-only using the loop219 mocked dry-run proof gate.

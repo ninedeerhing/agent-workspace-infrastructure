@@ -1,9 +1,14 @@
 {
-  "recorded_at": "2026-06-22T18:19:40Z",
-  "last_tick": "loop218-adapter-invocation-dry-run-harness-contract",
-  "pytest_passed": 27,
+  "recorded_at": "2026-06-22T18:42:11Z",
+  "last_tick": "loop219-mocked-adapter-dry-run-proof-gate",
+  "pytest_passed": 28,
   "ruff": "ok",
-  "evidence_paths": [],
-  "section5_ref": "5.542",
+  "evidence_paths": [
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.543",
+    "apps/quant_assistant/tests/test_jobs_page_mocked_adapter_dry_run_proof_gate_unit.py",
+    "apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-mocked-dry-run-checks.mjs",
+    "apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-mocked-dry-run-assertions.mjs"
+  ],
+  "section5_ref": "5.543",
   "source": "manual"
 }

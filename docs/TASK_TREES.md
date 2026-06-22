@@ -54,7 +54,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G mocked adapter dry-run proof gate TDD mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal gate 漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G real runner adapter authorization packet / dry-run execution preflight TDD mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal gate 漂移
 
 ## Task Tree Governance Protocol
 
@@ -67,7 +67,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G mocked adapter dry-run proof gate TDD mocked-only（TREE-2 data gate passed；loop218 completed adapter invocation/dry-run harness contract with worker rendezvous；2026-06-22 governance repair blocks further one-marker acceptance checklist drift, and loop218 keeps invocation harness evidence mocked-only before any real runner/adapter dry-run/PL-H execution；见 `harness/loop-state.json` and app §5.542）
+- Current operational loop: `apps/quant_assistant` PL-G real runner adapter authorization packet / dry-run execution preflight TDD mocked-only（TREE-2 data gate passed；loop219 completed mocked adapter dry-run proof gate with worker rendezvous；2026-06-22 governance repair blocks further one-marker acceptance checklist drift, and loop219 keeps mocked dry-run proof evidence proof-only before any real runner/actual adapter dry-run/PL-H execution；见 `harness/loop-state.json` and app §5.543）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward the unique core mainline auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating and `PL-003` worker cluster / rendezvous governance are promoted into loop preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
