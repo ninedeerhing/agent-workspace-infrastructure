@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T15:32:52Z",
-  "last_tick": "loop216-runner-adapter-readiness-matrix",
-  "pytest_passed": 25,
+  "recorded_at": "2026-06-22T17:57:26Z",
+  "last_tick": "loop217-real-runner-adapter-preflight-gate",
+  "pytest_passed": 26,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.540"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.541"
   ],
-  "section5_ref": "5.540",
+  "section5_ref": "5.541",
   "source": "manual"
 }
