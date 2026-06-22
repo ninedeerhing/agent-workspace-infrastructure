@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T02:34:50Z",
-  "last_tick": "loop175-pl-g-jobs-page-post-trigger-completed-affordance-mocked-only",
-  "pytest_passed": 30,
+  "recorded_at": "2026-06-22T02:50:29Z",
+  "last_tick": "loop176-pl-g-real-batch-demand-gate-contract-only",
+  "pytest_passed": 33,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.498"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.499"
   ],
-  "section5_ref": "5.498",
+  "section5_ref": "5.499",
   "source": "manual"
 }

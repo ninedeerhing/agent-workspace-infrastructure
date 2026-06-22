@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-22T10:10:14+08:00
+Updated: 2026-06-22T11:18:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -37,7 +37,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | identity_id | display_name | responsibility | report_path | status | workload | intensity | performance | mistake_count | lesson_count | last_assigned_at | last_report_at | current_task | handoff_notes | risk_notes |
 |---|---|---|---|---|---|---|---|---|---:|---:|---|---|---|---|---|
-| orchestrator | manager:orchestrator | Orchestrator | User-facing coordinator, dispatch, synthesis, verification ownership, truth-source sync | `harness/reports/orchestrator/latest.md` | active | 1 light | high | coordinating | 0 | 0 | 2026-06-22 | 2026-06-22 | loop175 completed PL-G JobsPage post-trigger completed affordance mocked-only; next real batch demand gate contract-only | CodeX automations ACTIVE; verifier thread created; daily_bar/daily_trade_status/adj_factor complete to 2026-06-18; JobsPage now shows completed_after_manual_trigger / Manual trigger completed after explicit trigger and refreshed completed audit/job observability, without stale ready affordance, page-load POST, or duplicate trigger per URL; next gap is pure read-only real batch demand gate before any PL-H revisit; do not restart backfill or run migration/background process/default real DB-backed backtest/real runner; keep secret output forbidden | Escalate destructive ops, duplicate process risk, secret exposure, missing runtime secrets, new worker/skill creation, schema migration requests, real runner wiring requests, or unresolved Alpha101 canonical failures if they become current scope |
+| orchestrator | manager:orchestrator | Orchestrator | User-facing coordinator, dispatch, synthesis, verification ownership, truth-source sync | `harness/reports/orchestrator/latest.md` | active | 1 light | high | coordinating | 0 | 0 | 2026-06-22 | 2026-06-22 | loop176 completed PL-G real batch demand gate contract-only; next API surface mocked-only | CodeX automations ACTIVE; verifier thread created; daily_bar/daily_trade_status/adj_factor complete to 2026-06-18; build_real_batch_demand_gate now returns pl_h_deferred/pl_h_revisit from already-loaded MiningJobV1 pressure without store/DB/env/runner/background work; next gap is read-only API surface mocked-only before JobsPage demand display; do not restart backfill or run migration/background process/default real DB-backed backtest/real runner; keep secret output forbidden | Escalate destructive ops, duplicate process risk, secret exposure, missing runtime secrets, new worker/skill creation, schema migration requests, real runner wiring requests, or unresolved Alpha101 canonical failures if they become current scope |
 
 ## Workers
 
