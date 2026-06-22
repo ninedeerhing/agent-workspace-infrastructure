@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T13:58:18Z",
+  "updated_at": "2026-06-22T14:19:07Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-22T13:58:17Z",
-    "last_tick": "loop212-authorized-runner-injection-seam-pl-h-eligibility",
-    "pytest_passed": 21,
+    "recorded_at": "2026-06-22T14:18:50Z",
+    "last_tick": "loop213-real-runner-adapter-dry-run-pl-h-gate",
+    "pytest_passed": 22,
     "ruff": "ok",
     "evidence_paths": [
-      "apps/quant_assistant/docs/PROJECT_STATUS.md#5.536"
+      "apps/quant_assistant/docs/PROJECT_STATUS.md#5.537"
     ],
-    "section5_ref": "5.536",
+    "section5_ref": "5.537",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.00030277805555555557,
+  "age_hours": 0.004796932222222222,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T13:58:18Z",
+    "at": "2026-06-22T14:19:07Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.00030277805555555557
+    "age_hours": 0.004796932222222222
   }
 }

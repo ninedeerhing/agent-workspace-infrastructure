@@ -1,6 +1,34 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-22T21:46:41+08:00
+更新时间：2026-06-22T22:14:43+08:00
+
+## Tick loop213-real-runner-adapter-dry-run-pl-h-gate
+
+- **任务 ID**：loop213-real-runner-adapter-dry-run-planning-verification-plan / loop213-real-runner-adapter-dry-run-planning-final-verification
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读复核 explicit real runner adapter dry-run planning / PL-H eligibility gate mocked-only 的验收证据，并确认 clean-worktree gate 由 orchestrator 收口。
+- **变更**：worker 只读复核，未修改文件。
+- **验证矩阵与最终复核**：
+  - focused pytest RED/GREEN。
+  - Python ruff on touched tests。
+  - targeted eslint on `scripts/smoke-jobs-page-fixture.mjs`。
+  - `npm run smoke:jobs-page` requiring `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, loop213 markers visible。
+  - `npm run build`。
+  - forbidden family scan, active enablement scan, refined secret marker scan, runtime cleanup scan。
+  - final verifier report: focused pytest **22 passed in 0.07s**；ruff pass；targeted eslint pass；smoke pass；build pass；family scan pass；enablement scan pass；secret marker scan matched only guard literals / negative assertions; runtime cleanup pass。
+- **orchestrator 本地验证**：
+  - RED **2 failed / 20 passed** expected。
+  - GREEN focused pytest **22 passed**。
+  - ruff -> **All checks passed**。
+  - eslint -> pass exit 0。
+  - smoke -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`、`real_runner_adapter_dry_run_*` markers present、PL-H remains fail-closed/not eligible。
+  - build -> pass。
+  - forbidden family scan -> pass；active enablement scan -> pass；refined secret marker scan -> pass；runtime cleanup scan -> pass。
+- **roster_update**：workload cleared；mistakes none；lesson: loop213 acceptance hinges on distinguishing adapter dry-run planning evidence from real adapter invocation; forbidden marker matches are acceptable only when they are negative guards。
+- **残余风险**：mocked-only；real/default runner, default DB-backed backtest, background execution, migration/backfill, dry-run execution, and PL-H execution remain intentionally deferred behind future explicit gates；broad scans can match forbidden-marker guard strings; touched files remain oversized as pre-existing structural risk。
+- **next**：orchestrator must close truth-source/commit/clean-worktree gates, then next slice is explicit adapter contract review / dry-run proof harness。
 
 ## Tick loop212-authorized-runner-injection-seam-pl-h-eligibility
 
