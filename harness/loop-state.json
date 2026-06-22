@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T12:32:00+08:00",
+  "updated_at": "2026-06-22T12:35:24+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-demand-gate-next-route-guidance-mocked-only",
-  "next_atomic_action": "Start PL-G demand gate next-route guidance TDD mocked-only: render read-only next-route guidance from displayed `real_batch_demand_gate.decision` / `revisit_reasons` / `pressure` / threshold explanation markers, showing PL-G flow hardening continues while PL-H batch execution remains deferred until a later gate proves real batch demand, without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After next-route guidance is stable, continue PL-G flow hardening for auto mining -> auto backtest full flow / intent quant subgraph; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-intent-quant-subgraph-route-evidence-refresh-mocked-only",
+  "next_atomic_action": "Start PL-G intent quant subgraph route-evidence refresh TDD mocked-only: refresh contract/source evidence that mixed Template B mining/backtest follow-up remains routed through `mining_batch_dispatch` / `backtest_dispatch` with `mining_job` / `auto_backtest_plan` / `auto_backtest_execution` refs, showing auto mining -> auto backtest flow continues after demand gate UI hardening, without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After intent quant subgraph route evidence is stable, continue PL-G flow hardening for auto mining -> auto backtest full flow observability/acceptance; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop182-pl-g-demand-gate-threshold-explanation-mocked-only",
+  "last_tick": "loop183-pl-g-demand-gate-next-route-guidance-mocked-only",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -549,7 +549,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop182 safe tick: PL-G demand gate pressure-threshold explanation TDD mocked-only completed. JobsPage now renders read-only Gate threshold explanation / threshold_explanation=decision:* / decision_reason:* / revisit_reason_count:* for displayed real_batch_demand_gate decision/revisit_reasons/pressure. Verification: red 2 failed / 13 passed expected, focused 15 passed, adjacent regression 39 passed, browser smoke ok with threshold_explanation_revisit_branch_visible, threshold_explanation_deferred_branch_visible, pageLoadTriggerRequests=[], and duplicateTriggerUrls=[], build/eslint/ruff pass. This tick had no env/secret reads, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, page-load trigger POST, default DB-backed backtest, or secret output. Next gap is next-route guidance mocked-only."
+    "note": "loop183 safe tick: PL-G demand gate next-route guidance TDD mocked-only completed. JobsPage now renders read-only Gate next route guidance / next_route=pl_g_flow_hardening / displayed_decision:* / pl_h_batch_execution=deferred_until_later_gate for displayed real_batch_demand_gate decision/pressure/threshold marker. Verification: red 2 failed / 14 passed expected, focused 16 passed, adjacent regression 40 passed, browser smoke ok with next_route_revisit_branch_visible, next_route_deferred_branch_visible, pageLoadTriggerRequests=[], and duplicateTriggerUrls=[], build/eslint/ruff pass. This tick had no env/secret reads, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, page-load trigger POST, default DB-backed backtest, or secret output. Next gap is intent quant subgraph route-evidence refresh mocked-only."
   },
-  "last_completed_note": "loop182: safe tick completed PL-G demand gate pressure-threshold explanation TDD mocked-only. Added formatDemandGatePressureThresholdExplanation() and a read-only Gate threshold explanation block in JobsPage, plus fixture-backed smoke checks for revisit/deferred gate branches. Verification: expected red 2 failed / 13 passed; focused 15 passed; adjacent JobsPage/API/backtest/gate regression 39 passed; npm run smoke:jobs-page ok with threshold_explanation_revisit_branch_visible, threshold_explanation_deferred_branch_visible, pageLoadTriggerRequests=[], and duplicateTriggerUrls=[]; npm run build pass; targeted eslint pass; Python ruff pass; runtime cleanup found port 5183 not listening, port 5184 TimeWait only, and no smoke node/chrome process. No .env/secret reads, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G demand gate next-route guidance TDD mocked-only."
+  "last_completed_note": "loop183: safe tick completed PL-G demand gate next-route guidance TDD mocked-only. Added formatDemandGateNextRouteGuidance() and a read-only Gate next route guidance block in JobsPage, plus fixture-backed smoke checks for revisit/deferred gate branches. Verification: expected red 2 failed / 14 passed; focused 16 passed; adjacent JobsPage/API/backtest/gate regression 40 passed; npm run smoke:jobs-page ok with next_route_revisit_branch_visible, next_route_deferred_branch_visible, pageLoadTriggerRequests=[], and duplicateTriggerUrls=[]; npm run build pass; targeted eslint pass; Python ruff pass; runtime cleanup found ports 5183/5184 with no listening output and no smoke node/chrome process. No .env/secret reads, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G intent quant subgraph route-evidence refresh TDD mocked-only."
 }

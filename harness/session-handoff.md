@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T12:32:00+08:00
+updated_at: 2026-06-22T12:35:24+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-22T12:32:00+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-22 loop182 · PL-G demand gate pressure-threshold explanation TDD mocked-only 完成：先写 JobsPage/source + fixture smoke 红测（expected 2 failed / 13 passed），再在 JobsPage 只读显示 Gate threshold explanation / read_only_threshold_reason / threshold_explanation=decision:* / decision_reason:* / revisit_reason_count:*，并扩展 fixture-backed browser smoke 的 revisit/deferred 两个 gate 分支；验证 focused 15 passed、adjacent regression 39 passed、npm run smoke:jobs-page ok 且 threshold_explanation_revisit_branch_visible / threshold_explanation_deferred_branch_visible / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]、web build/eslint/ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load POST/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G demand gate next-route guidance TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
+[CONTEXT] 2026-06-22 loop183 · PL-G demand gate next-route guidance TDD mocked-only 完成：先写 JobsPage/source + fixture smoke 红测（expected 2 failed / 14 passed），再在 JobsPage 只读显示 Gate next route guidance / read_only_next_route / next_route=pl_g_flow_hardening / displayed_decision:* / pl_h_batch_execution=deferred_until_later_gate / requires_real_batch_demand_gate=true，并扩展 fixture-backed browser smoke 的 revisit/deferred 两个 gate 分支；验证 focused 16 passed、adjacent regression 40 passed、npm run smoke:jobs-page ok 且 next_route_revisit_branch_visible / next_route_deferred_branch_visible / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]、web build/eslint/ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load POST/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G intent quant subgraph route-evidence refresh TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
 
 [CONTEXT] 2026-06-22 side capability · PL-002 Codex skills router / gating Phase 1 prototype completed in `harness/skill_router.py` with `harness/tests/test_skill_router.py` and `docs/ENGINEERING/2026-06-22-codex-skill-router-prototype.md`. It is advisory only: no global `~/.codex/skills` mutation, no raw query telemetry, and no quant `loop-state` change. Next optional PL-002 step is local eval set plus graph-aware rerank.
 ```
@@ -28,18 +28,18 @@ updated_at: 2026-06-22T12:32:00+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-demand-gate-next-route-guidance-mocked-only |
-| `last_tick` | loop182-pl-g-demand-gate-threshold-explanation-mocked-only |
+| `current_slice` | pl-g-intent-quant-subgraph-route-evidence-refresh-mocked-only |
+| `last_tick` | loop183-pl-g-demand-gate-next-route-guidance-mocked-only |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start PL-G demand gate next-route guidance TDD mocked-only: render read-only next-route guidance from displayed `real_batch_demand_gate.decision` / `revisit_reasons` / `pressure` / threshold explanation markers, showing PL-G flow hardening continues while PL-H batch execution remains deferred until a later gate proves real batch demand, without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
+Start PL-G intent quant subgraph route-evidence refresh TDD mocked-only: refresh contract/source evidence that mixed Template B mining/backtest follow-up remains routed through `mining_batch_dispatch` / `backtest_dispatch` with `mining_job` / `auto_backtest_plan` / `auto_backtest_execution` refs, showing auto mining → auto backtest flow continues after demand gate UI hardening, without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After next-route guidance is stable, continue PL-G flow hardening for auto mining → auto backtest full flow / intent quant subgraph; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
+After intent quant subgraph route evidence is stable, continue PL-G flow hardening for auto mining → auto backtest full flow observability/acceptance; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -56,7 +56,7 @@ After next-route guidance is stable, continue PL-G flow hardening for auto minin
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G demand gate next-route guidance TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 PL-G intent quant subgraph route-evidence refresh TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -138,11 +138,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop182 已完成 PL-G demand gate pressure-threshold explanation TDD mocked-only；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop183 已完成 PL-G demand gate next-route guidance TDD mocked-only；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 执行 `PL-G demand gate next-route guidance TDD mocked-only`：只读显示 gate 后续路由提示，明确继续 PL-G flow hardening 且 PL-H batch execution 仍等待后续真实批量需求 gate；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 执行 `PL-G intent quant subgraph route-evidence refresh TDD mocked-only`：刷新 mixed Template B mining/backtest follow-up 的 route/source contract evidence，确认 `mining_batch_dispatch` / `backtest_dispatch` 仍携带 `mining_job` / `auto_backtest_plan` / `auto_backtest_execution` refs；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 
