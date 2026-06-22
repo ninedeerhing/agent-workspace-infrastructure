@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T03:55:20Z",
-  "last_tick": "loop180-pl-g-demand-gate-deferred-decision-suppression-mocked-only",
-  "pytest_passed": 37,
+  "recorded_at": "2026-06-22T04:11:04Z",
+  "last_tick": "loop181-pl-g-demand-gate-pressure-summary-handoff-mocked-only",
+  "pytest_passed": 38,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.503"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.504"
   ],
-  "section5_ref": "5.503",
+  "section5_ref": "5.504",
   "source": "manual"
 }

@@ -65,7 +65,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G demand gate pressure summary handoff TDD mocked-only（TREE-2 data gate passed；loop180 completed deferred-decision suppression；见 `harness/loop-state.json` and app §5.503）
+- Current operational loop: `apps/quant_assistant` PL-G demand gate pressure-threshold explanation TDD mocked-only（TREE-2 data gate passed；loop181 completed pressure summary handoff；见 `harness/loop-state.json` and app §5.504）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability theme: `PL-002` Codex skills router / gating is registered for AWI runtime capability work; it must not overwrite global `~/.codex/skills` or change `harness/loop-state.json` quant next action unless explicitly promoted.
