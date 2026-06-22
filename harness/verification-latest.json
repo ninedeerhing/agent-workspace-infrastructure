@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T09:01:06Z",
-  "last_tick": "loop200-pl-g-route-evidence-acceptance-mitigation-plan-mocked-only",
-  "pytest_passed": 27,
+  "recorded_at": "2026-06-22T09:15:24Z",
+  "last_tick": "loop201-pl-g-route-evidence-acceptance-operator-handoff-packet-mocked-only",
+  "pytest_passed": 28,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.523"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.524"
   ],
-  "section5_ref": "5.523",
+  "section5_ref": "5.524",
   "source": "manual"
 }
