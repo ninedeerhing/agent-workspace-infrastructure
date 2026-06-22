@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T14:38:13+08:00
+updated_at: 2026-06-22T14:52:42+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-22T14:38:13+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-22 loop191 · PL-G trigger-response route-evidence parity mocked-only 完成：`apps/quant_assistant/web/src/pages/JobsPage.tsx` 的 explicit trigger success formatter 现在会从 response `job.observability.route_evidence` 渲染 `trigger_response_job_route_evidence_*` markers；`apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` 与 source contracts 已锁定 `auto_mining_to_auto_backtest` / `backtest_handoff` / `handoff_source=mining_batch_dispatch` / `auto_trigger=false` / `side_effects=none` / `pl_h_batch_execution=deferred_until_later_gate`。验证：RED expected 2 failed；GREEN focused 2 passed；related source/UI 18 passed；`npm run smoke:jobs-page` pass with `pageLoadTriggerRequests=[]` and `duplicateTriggerUrls=[]`；web build/eslint pass；Python ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load auto POST/default trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G route-evidence post-trigger consistency TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
+[CONTEXT] 2026-06-22 loop192 · PL-G route-evidence post-trigger consistency mocked-only 完成：`apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` 现在会成对校验 explicit trigger success feedback 的 `trigger_response_job_route_evidence_*` 与刷新后的 completed Jobs list `route_evidence_visible=true` / `flow=auto_mining_to_auto_backtest` / `flow_stage=backtest_handoff` / `handoff_source=mining_batch_dispatch` / `auto_trigger=false` / `side_effects=none` / `pl_h_batch_execution=deferred_until_later_gate`；`tests/test_jobs_page_acceptance_smoke_unit.py` 与 `tests/test_route_evidence_cross_surface_contract_unit.py` 已锁定 source/UI contract。验证：RED expected 2 failed / 1 passed；GREEN focused 3 passed；related source/UI 19 passed；`npm run smoke:jobs-page` pass with `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `post_trigger_route_evidence_*` checks；web build/eslint pass；Python ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load auto POST/default trigger/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G route-evidence acceptance-chain summary TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
 
 [CONTEXT] 2026-06-22 side capability · PL-002 Codex skills router / gating Phase 1 prototype completed in `harness/skill_router.py` with `harness/tests/test_skill_router.py` and `docs/ENGINEERING/2026-06-22-codex-skill-router-prototype.md`. It is advisory only: no global `~/.codex/skills` mutation, no raw query telemetry, and no quant `loop-state` change. Next optional PL-002 step is local eval set plus graph-aware rerank.
 ```
@@ -28,18 +28,18 @@ updated_at: 2026-06-22T14:38:13+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-route-evidence-post-trigger-consistency-mocked-only |
-| `last_tick` | loop191-pl-g-trigger-response-route-evidence-parity-mocked-only |
+| `current_slice` | pl-g-route-evidence-acceptance-chain-summary-mocked-only |
+| `last_tick` | loop192-pl-g-post-trigger-route-evidence-consistency-mocked-only |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start PL-G route-evidence post-trigger consistency TDD mocked-only: prove trigger-response route_evidence and refreshed completed Jobs list route_evidence expose the same flow/handoff/safety markers after explicit trigger success, without page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
+Start PL-G route-evidence acceptance-chain summary TDD mocked-only: prove one mocked/source/UI summary ties chat technical route evidence, trigger-response route evidence, refreshed completed Jobs list route evidence, and demand-gate safety markers into the same auto mining -> auto backtest acceptance chain, without page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After post-trigger consistency stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
+After acceptance-chain summary stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -56,7 +56,7 @@ After post-trigger consistency stabilizes, continue PL-G mocked/source-contract 
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G route-evidence post-trigger consistency TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 PL-G route-evidence acceptance-chain summary TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -132,17 +132,17 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 - thread title: `verifier`
 - prompt: `harness/templates/codex-subagent-prompt.md`
 - task: read-only verification of CodeX effective constraints; latest multi-agent verifier run `019eedc6-f9c5-7c50-8170-18e415f7ce26` / nickname Lorentz reviewed loop186 target files and reported `success`
-- note: orchestrator retains final authority; worker report is data, not truth source. loop191 did not dispatch a new worker because the trigger-response route evidence parity slice was small and fully verified by RED/GREEN, related source/UI regression, fixture browser smoke, build/lint, and ruff.
+- note: orchestrator retains final authority; worker report is data, not truth source. loop192 did not dispatch a new worker because the post-trigger route evidence consistency slice was small and fully verified by RED/GREEN, related source/UI regression, fixture browser smoke, build/lint, and ruff.
 
 ---
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop191 已完成 PL-G trigger-response route-evidence parity mocked-only，explicit trigger success feedback 已暴露 response job route evidence markers；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop192 已完成 PL-G route-evidence post-trigger consistency mocked-only，explicit trigger success feedback 与刷新后的 completed Jobs list 已暴露 matching route evidence markers；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 执行 `PL-G route-evidence post-trigger consistency TDD mocked-only`：新增 mocked/source/UI contract，证明 explicit trigger success feedback 中的 response job route_evidence 与刷新后的 completed Jobs list route_evidence 展示同一 `auto_mining_to_auto_backtest` / `backtest_handoff` / `mining_batch_dispatch` / safety / PL-H deferred markers；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 执行 `PL-G route-evidence acceptance-chain summary TDD mocked-only`：新增 mocked/source/UI contract，证明 chat technical route evidence、trigger-response route evidence、refreshed completed Jobs list route evidence 与 demand-gate safety markers 被同一 summary 串成 `auto_mining_to_auto_backtest` acceptance chain；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 
