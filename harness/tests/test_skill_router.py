@@ -79,6 +79,14 @@ class SkillRouterTests(unittest.TestCase):
 
         self.assertEqual(result.selected, [])
         self.assertEqual(result.decision, "no_skill")
+        self.assertEqual(result.no_skill_reason, "below_min_score")
+
+    def test_empty_query_records_no_skill_reason(self) -> None:
+        result = skill_router.route_skills("", [], top_k=5, min_score=0.25)
+
+        self.assertEqual(result.selected, [])
+        self.assertEqual(result.decision, "no_skill")
+        self.assertEqual(result.no_skill_reason, "empty_query")
 
     def test_path_words_do_not_dominate_skill_router_queries(self) -> None:
         cards = [
@@ -153,7 +161,9 @@ class SkillRouterTests(unittest.TestCase):
         payload = json.loads(bundle)
 
         self.assertEqual(payload["decision"], "expose")
+        self.assertEqual(payload["router_version"], skill_router.ROUTER_VERSION)
         self.assertEqual(payload["top_k"], 1)
+        self.assertEqual(payload["route_parameters"]["requested_top_k"], 1)
         self.assertEqual(payload["skills"][0]["name"], "test-driven-development")
         self.assertLessEqual(len(payload["skills"][0]["description"]), 32)
 
@@ -171,12 +181,22 @@ class SkillRouterTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as tmp:
             log_path = Path(tmp) / "skill-route-events.jsonl"
-            skill_router.record_route_event(log_path, result, outcome="success")
+            skill_router.record_route_event(
+                log_path,
+                result,
+                outcome="success",
+                context={"task_id": "loop-governance", "tree": "TREE-RT", "source": "unit-test"},
+            )
             summary = skill_router.summarize_telemetry(log_path)
+            event = json.loads(log_path.read_text(encoding="utf-8").strip())
 
         self.assertEqual(summary["event_count"], 1)
         self.assertEqual(summary["skills"]["test-driven-development"]["shown_count"], 1)
         self.assertEqual(summary["skills"]["test-driven-development"]["outcomes"]["success"], 1)
+        self.assertEqual(event["router_version"], skill_router.ROUTER_VERSION)
+        self.assertEqual(event["context"]["task_id"], "loop-governance")
+        self.assertEqual(event["route_parameters"]["requested_top_k"], 1)
+        self.assertIn("reasons", event["shown_skills"][0])
 
 
 if __name__ == "__main__":

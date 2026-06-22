@@ -17,7 +17,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 | ID | Theme | Registered | Status |
 |----|-------|-----------|--------|
 | PL-001 | SDK 原生团队编排深水区（Phase 5+） | 2026-06-15 | parking_lot；CodeX `create_thread`/`send_message_to_thread` 已覆盖当前跨会话 worker 需求 |
-| PL-002 | Codex skills router / gating：hybrid retrieval、family dedupe、top-K exposure、telemetry/eval | 2026-06-22 | user-requested side capability；does not change current quant loop; first prototype may live under `harness/` and remain main-only |
+| PL-002 | Codex skills router / gating：hybrid retrieval、family dedupe、top-K exposure、telemetry/eval | 2026-06-22 | promoted into loop preflight governance：`Goal/Plan Gate` + `Skill Routing Gate` + `Worker Dispatch Gate`; router prototype stays under `harness/` and does not mutate global `~/.codex/skills` |
 
 ## Active Trees
 
@@ -52,7 +52,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G route-evidence acceptance reviewer signoff checklist mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G route-evidence acceptance consolidation bundle mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal gate 漂移
 
 ## Task Tree Governance Protocol
 
@@ -65,10 +65,10 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G route-evidence acceptance reviewer signoff checklist mocked-only（TREE-2 data gate passed；loop201 completed route-evidence acceptance operator handoff packet；见 `harness/loop-state.json` and app §5.524）
+- Current operational loop: `apps/quant_assistant` PL-G route-evidence acceptance consolidation bundle mocked-only（TREE-2 data gate passed；loop201 completed route-evidence acceptance operator handoff packet；2026-06-22 governance repair blocks further one-marker acceptance checklist drift；见 `harness/loop-state.json` and app §5.525）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
-- Side capability theme: `PL-002` Codex skills router / gating is registered for AWI runtime capability work; it must not overwrite global `~/.codex/skills` or change `harness/loop-state.json` quant next action unless explicitly promoted.
+- Side capability theme: `PL-002` Codex skills router / gating is now explicitly promoted into the loop preflight gates; it must not overwrite global `~/.codex/skills`, and router telemetry must stay in Git-ignored `tmp/` unless summarized into truth sources.
 
 ## EXCLUDE: Default Exclusions
 

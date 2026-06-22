@@ -1,38 +1,62 @@
-# Orchestrator Report — loop201-pl-g-route-evidence-acceptance-operator-handoff-packet-mocked-only
+# Orchestrator Report — loop-governance-20260622-skill-worker-goal-gate
 
-**Updated**: 2026-06-22T17:09:45+08:00
+**Updated**: 2026-06-22T17:37:15+08:00
 
 ## Tick Summary
 
-- **slice**: TREE-6 / PL-G route-evidence acceptance operator handoff packet mocked-only
+- **slice**: TREE-RT / TREE-6 loop governance repair
 - **agent**: orchestrator
-- **result**: completed mocked/source/UI compact operator handoff packet on top of the acceptance mitigation plan
-- **evidence**: app `PROJECT_STATUS.md` §5.524 · `harness/loop-state.json`
+- **result**: promoted skill routing, worker dispatch, and goal-bundle sizing from advisory prose into hard loop gates
+- **next**: PL-G route-evidence acceptance consolidation bundle TDD mocked-only
 
-## Flow Evidence
+## Why This Tick Happened
 
-| Check | Value |
-|--------|-------|
-| RED | expected source/UI contracts failed because `acceptanceOperatorHandoffPacketChecks` and `assertAcceptanceOperatorHandoffPacket(...)` were missing |
-| Fixture contract | `smoke-jobs-page-fixture.mjs` now bundles acceptance chain, risk register, mitigation plan, deferred PL-H gate, and next PL-G mocked/source-contract review |
-| Operator handoff packet | `assertAcceptanceOperatorHandoffPacket()` emits chain summary, risk-register linked, mitigation-plan linked, deferred PL-H gate, next PL-G mocked/source-contract review, no page-load auto POST, no default runner, and no secret output checks |
-| Safety | no `.env` read; no DSN/token output; no page-load auto POST/default trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, or default DB-backed backtest |
-| Worker dispatch | not used this tick; slice was bounded source/UI fixture operator handoff packet with focused RED/GREEN, related regression, browser smoke, build/lint, ruff, and runtime cleanup |
+The user identified a real drift: CodeX had many available skills but almost no applied skill evidence, 21 workers but little cross-dialogue dispatch, and PL-G route-evidence acceptance had become a long chain of same-family mocked/source-contract micro-slices. Worker review confirmed the root cause: the loop prompt and self-check verified existence, not usage.
+
+## Changes
+
+| Area | Summary |
+|------|---------|
+| Goal/Plan Gate | `next_atomic_action` must now name goal, slice_family, acceptance gate, user-visible outcome, and exit-to-real-flow; 3+ same-family ticks require `goal_bundle` or route advancement. |
+| Skill Routing Gate | `harness/skill_router.py` now exposes `router_version`, `no_skill_reason`, `top_rejected`, context, route parameters, and skip reason; loop prompt requires route evidence before execution. |
+| Worker Dispatch Gate | Loop prompt and LOOP_ENGINEERING now prefer cross-dialogue CodeX workers, require dispatch or enumerated no-dispatch reason, and add worker capacity review. |
+| Skill Lifecycle | Repeated manual flows require `skillification_candidate` or existing-skill reactivation notes; new skills still require user approval and a nearest-neighbor difference matrix. |
+| Truth sources | `loop-state`, TASK_TREES, CONTINUATION, PROJECT_STATUS, METHODOLOGY, roster, handoff, and worker reports now point to the consolidation bundle instead of another isolated checklist. |
+
+## Worker Evidence
+
+| Worker | Thread | Result |
+|--------|--------|--------|
+| governance-coordinator | `019eeea7-6dc1-7121-8734-2e41c6e21b54` | success · read-only review confirmed missing hard gates and recommended skill_route_evidence, worker_dispatch_decision, and goal_bundle detector |
+| Lagrange / Boyle | temporary multi-agent | success · auxiliary read-only review; not roster truth source |
+
+## Gate Decision
+
+| Gate | Decision |
+|------|----------|
+| goal_gate | `goal_bundle_required` because PL-G route-evidence acceptance latest streak exceeded 3 same-family mocked/source-contract ticks |
+| skill_route | route evidence required for next tick via `harness/skill_router.py`; this governance tick used orchestration/planning/dispatching skills and upgraded router telemetry |
+| dispatch_decision | cross-dialogue governance-coordinator dispatched and reported success; next business consolidation should use verifier/governance signoff |
+| bundle_decision | next action changed from isolated reviewer checklist to consolidation bundle |
+| capacity_review | executor stale high load cleared; orchestrator constrained to coordination role; future implementation/test/review slices should rebalance to roster workers |
+| skill_lifecycle | M-33/GP-09 created; future repeated workflows must record skillification or reactivation notes |
+
+## Safety
+
+No `.env`, `.env.local`, DSN, token, or secret was printed or persisted. No backfill, migration, real runner, background process, PL-H batch execution, or default DB-backed backtest was started.
 
 ## Verification Gates
 
 | Gate | Result |
 |------|--------|
-| focused source/UI red/green | pass · red 2 failed / 10 passed expected, green 12 passed |
-| related source/UI regression | pass · `tests/test_jobs_page_action_rendering_unit.py tests/test_jobs_page_acceptance_smoke_unit.py tests/test_route_evidence_cross_surface_contract_unit.py` -> 28 passed |
-| Python ruff | pass · focused route evidence source/smoke contract tests all checks passed |
-| browser smoke | pass · `npm run smoke:jobs-page`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `acceptance_operator_handoff_packet_*` checks visible |
-| web build/eslint | pass · `npm run build`; `npx eslint scripts/smoke-jobs-page-fixture.mjs src/pages/JobsPage.tsx` |
-| runtime cleanup | pass · no port entries on 5183/5184; no smoke-jobs-page-fixture node/chrome process |
-| five lifecycles | pass · methodology active_entries=30 active_gp_entries=8 active_step_digests=11; work_report record_count=22; sync coherence finding_count=0 latest_section5=524 top_section5_ref=524; verification snapshot section5_ref=5.524 pytest_passed=28 ruff=ok stale=false; closure open_count=0 |
+| skill router unit tests | pass · `python -m unittest discover -s harness\tests -p test_skill_router.py -v` -> 9 tests OK |
+| router compile / JSON | pass · `python -m py_compile harness\skill_router.py`; `python -m json.tool harness\loop-state.json > $null` |
+| router live route | pass · `decision=expose`, top skill `dispatching-parallel-agents`, telemetry written to gitignored `tmp\skill-route-events.jsonl` |
+| ruff | pass · `uv run ruff check harness\skill_router.py harness\tests\test_skill_router.py` -> all checks passed |
+| CodeX self-check | pass · 41 checks / 0 findings |
+| compliance | pass · 36 checks / 0 findings; dirty warning expected before commit |
+| five lifecycles | pass · methodology 31/9/12; work_report 22; sync coherence 0 findings latest/top 525; verification snapshot §5.525 pytest=9 ruff=ok; closure open_count=0 |
 
 ## Next
 
-- Next heartbeat: `PL-G route-evidence acceptance reviewer signoff checklist TDD mocked-only`.
-- Prove the Jobs acceptance/readiness surface emits a compact reviewer signoff checklist confirming the operator handoff packet, source contract, safety gates, deferred PL-H gate, and next PL-G mocked/source-contract review remain locked.
-- Keep default execution safe: no page-load auto POST/default trigger, runner/background work, migration, backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start PL-G route-evidence acceptance consolidation bundle TDD mocked-only: consolidate reviewer signoff, source/UI contract audit, safety-gate matrix, route-evidence handoff packet, and exit-to-real-flow decision; then send worker-backed signoff before routing to the next non-repetitive PL-G or intent-quant integration slice.

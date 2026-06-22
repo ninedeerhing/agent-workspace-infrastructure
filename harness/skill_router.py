@@ -13,6 +13,7 @@ from typing import Iterable, Sequence
 
 
 TOKEN_RE = re.compile(r"[a-z0-9]+|[\u4e00-\u9fff]+", re.IGNORECASE)
+ROUTER_VERSION = "2026-06-22.goal-gate-v1"
 STOPWORDS = {
     "a",
     "an",
@@ -84,6 +85,13 @@ class RouteResult:
     selected: list[RankedSkill]
     suppressed_siblings: list[dict[str, object]]
     candidate_count: int
+    no_skill_reason: str = ""
+    top_rejected: list[dict[str, object]] | None = None
+    router_version: str = ROUTER_VERSION
+    top_k: int = 5
+    min_score: float = 0.08
+    relative_score_floor: float = 0.4
+    best_score: float = 0.0
 
 
 def default_codex_skill_roots() -> list[Path]:
@@ -149,6 +157,34 @@ def route_skills(
     if top_k < 1:
         raise ValueError("top_k must be >= 1")
 
+    query_tokens = tokenize(query)
+    if not query_tokens:
+        return RouteResult(
+            query=query,
+            decision="no_skill",
+            selected=[],
+            suppressed_siblings=[],
+            candidate_count=0,
+            no_skill_reason="empty_query",
+            top_rejected=[],
+            top_k=top_k,
+            min_score=min_score,
+            relative_score_floor=relative_score_floor,
+        )
+    if not cards:
+        return RouteResult(
+            query=query,
+            decision="no_skill",
+            selected=[],
+            suppressed_siblings=[],
+            candidate_count=0,
+            no_skill_reason="no_cards",
+            top_rejected=[],
+            top_k=top_k,
+            min_score=min_score,
+            relative_score_floor=relative_score_floor,
+        )
+
     scored = score_cards(query, cards)
     best_score = scored[0].score if scored else 0.0
     relative_floor = best_score * relative_score_floor
@@ -182,13 +218,33 @@ def route_skills(
         for family, items in sorted(suppressed_by_family.items())
         if family in family_kept and items
     ]
+    selected_names = {item.card.name for item in selected}
+    top_rejected = [
+        {
+            "name": item.card.name,
+            "family": item.card.family,
+            "score": round(item.score, 4),
+            "reasons": list(item.reasons),
+        }
+        for item in scored
+        if item.card.name not in selected_names
+    ][:5]
     decision = "expose" if selected else "no_skill"
+    no_skill_reason = ""
+    if decision == "no_skill":
+        no_skill_reason = "below_min_score" if best_score < min_score else "below_relative_floor"
     return RouteResult(
         query=query,
         decision=decision,
         selected=selected,
         suppressed_siblings=suppressed,
         candidate_count=len(candidates),
+        no_skill_reason=no_skill_reason,
+        top_rejected=top_rejected,
+        top_k=top_k,
+        min_score=min_score,
+        relative_score_floor=relative_score_floor,
+        best_score=best_score,
     )
 
 
@@ -243,9 +299,17 @@ def bm25_score(
 
 def render_exposure_bundle(result: RouteResult, *, max_description_chars: int = 160) -> str:
     payload = {
+        "router_version": result.router_version,
         "decision": result.decision,
+        "no_skill_reason": result.no_skill_reason,
         "query": result.query,
         "top_k": len(result.selected),
+        "route_parameters": {
+            "requested_top_k": result.top_k,
+            "min_score": result.min_score,
+            "relative_score_floor": result.relative_score_floor,
+            "best_score": round(result.best_score, 4),
+        },
         "candidate_count": result.candidate_count,
         "skills": [
             {
@@ -259,6 +323,7 @@ def render_exposure_bundle(result: RouteResult, *, max_description_chars: int = 
             for item in result.selected
         ],
         "suppressed_siblings": result.suppressed_siblings,
+        "top_rejected": result.top_rejected or [],
     }
     return json.dumps(payload, ensure_ascii=False, indent=2)
 
@@ -284,24 +349,43 @@ def build_skill_index(cards: Sequence[SkillCard]) -> dict[str, object]:
     }
 
 
-def record_route_event(log_path: Path | str, result: RouteResult, *, outcome: str = "unknown") -> None:
+def record_route_event(
+    log_path: Path | str,
+    result: RouteResult,
+    *,
+    outcome: str = "unknown",
+    context: dict[str, str] | None = None,
+    skip_reason: str = "",
+) -> None:
     path = Path(log_path)
     path.parent.mkdir(parents=True, exist_ok=True)
     event = {
         "timestamp_utc": datetime.now(UTC).isoformat(timespec="seconds"),
+        "router_version": result.router_version,
         "decision": result.decision,
+        "no_skill_reason": result.no_skill_reason,
         "query_sha256": hashlib.sha256(result.query.encode("utf-8")).hexdigest(),
         "query_length": len(result.query),
+        "context": context or {},
+        "route_parameters": {
+            "requested_top_k": result.top_k,
+            "min_score": result.min_score,
+            "relative_score_floor": result.relative_score_floor,
+            "best_score": round(result.best_score, 4),
+        },
         "candidate_count": result.candidate_count,
         "shown_skills": [
             {
                 "name": item.card.name,
                 "family": item.card.family,
                 "score": round(item.score, 4),
+                "reasons": list(item.reasons),
             }
             for item in result.selected
         ],
         "suppressed_siblings": result.suppressed_siblings,
+        "top_rejected": result.top_rejected or [],
+        "skip_reason": skip_reason,
         "outcome": outcome,
     }
     with path.open("a", encoding="utf-8") as handle:
@@ -473,6 +557,10 @@ def main(argv: Sequence[str] | None = None) -> int:
     parser.add_argument("--telemetry-log", help="Optional JSONL path for route telemetry. Raw query text is not stored.")
     parser.add_argument("--telemetry-summary", action="store_true", help="Summarize --telemetry-log instead of routing.")
     parser.add_argument("--outcome", default="unknown", help="Outcome label recorded with --telemetry-log.")
+    parser.add_argument("--task-id", help="Optional task id written to telemetry context.")
+    parser.add_argument("--tree", help="Optional task tree written to telemetry context.")
+    parser.add_argument("--source", default="manual", help="Telemetry source label.")
+    parser.add_argument("--skip-reason", default="", help="Why exposed skills were skipped, if applicable.")
     parser.add_argument("--pretty", action="store_true")
     args = parser.parse_args(argv)
 
@@ -492,7 +580,18 @@ def main(argv: Sequence[str] | None = None) -> int:
             parser.error("--query is required unless --index-only is set")
         result = route_skills(args.query, cards, top_k=args.top_k, min_score=args.min_score)
         if args.telemetry_log:
-            record_route_event(args.telemetry_log, result, outcome=args.outcome)
+            context = {
+                "task_id": args.task_id or "",
+                "tree": args.tree or "",
+                "source": args.source,
+            }
+            record_route_event(
+                args.telemetry_log,
+                result,
+                outcome=args.outcome,
+                context=context,
+                skip_reason=args.skip_reason,
+            )
         payload = json.loads(render_exposure_bundle(result))
     print(json.dumps(payload, ensure_ascii=False, indent=2 if args.pretty else None))
     return 0

@@ -64,6 +64,36 @@ Test-RequiredFile (Join-Path $HarnessDir "templates/codex-zero-config-prompt.md"
 Test-RequiredFile (Join-Path $HarnessDir "templates/codex-subagent-prompt.md") "CX-003" "CodeX subagent prompt" "Restore harness/templates/codex-subagent-prompt.md." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "reports/EMPLOYEE_ROSTER.md") "CX-004" "Employee roster" "Restore harness/reports/EMPLOYEE_ROSTER.md." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "codex-automation-registry.json") "CX-005" "CodeX automation registry" "Create CodeX automations through the UI/tool and write their ids to harness/codex-automation-registry.json." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "skill_router.py") "CX-009" "CodeX skill router" "Restore harness/skill_router.py and keep the loop skill routing gate executable." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "tests/test_skill_router.py") "CX-010" "CodeX skill router tests" "Restore harness/tests/test_skill_router.py." | Out-Null
+
+$loopPromptPath = Join-Path $HarnessDir "templates/loop-tick-prompt.md"
+$loopPromptText = Get-Text $loopPromptPath
+if ($null -ne $loopPromptText) {
+    $requiredLoopGateNeedles = @(
+        "Goal/Plan Gate",
+        "Skill Routing Gate",
+        "Worker Dispatch Gate",
+        "goal_bundle",
+        "slice_family",
+        "no_skill_reason",
+        "no_dispatch_reason",
+        "skillification_candidate",
+        "skill_reactivation_note",
+        "capacity_review",
+        "功能差异矩阵",
+        "tmp/skill-route-events.jsonl"
+    )
+    foreach ($needle in $requiredLoopGateNeedles) {
+        if ($loopPromptText -match [regex]::Escape($needle)) {
+            Add-Check "loop prompt gate:$needle" "PASS" "present"
+        }
+        else {
+            Add-Check "loop prompt gate:$needle" "FAIL" "missing"
+            Add-Finding "error" "CX-LOOP-GATE" "Loop governance gate missing" "harness/templates/loop-tick-prompt.md does not contain required gate marker: $needle." "Restore the Goal/Plan, Skill Routing, and Worker Dispatch gates in the loop tick prompt."
+        }
+    }
+}
 
 $bindingPath = Join-Path $HarnessDir "platform-binding.json"
 if (Test-Path $bindingPath) {

@@ -1,7 +1,7 @@
 # Loop Engineering — 自治循环协议
 
 > **效力**：Raindeer-AWI 心流/无限循环模式的最高操作契约。与 `docs/FLOW-MODE.md`、`apps/quant_assistant/docs/WORKFLOWS.md` 互补：本文件定义**如何自派任务**；彼等定义**何时可停**。
-> **版本**：1.0.0 · 2026-06-19
+> **版本**：1.3.1 · 2026-06-22
 
 ---
 
@@ -50,13 +50,63 @@ ELSE 取 TASK_TREES 排序第 1 条且未在 §5 标记 done 的原子动作
 ELSE 取 master-plan 路线图下一未交付切片
 ELSE 取 parking_lot 中 approved 且依赖已满足的项
 
-EXECUTE 该原子动作（TDD → 实现 → 最小验证）
+GATE  Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate（见 §3.1–§3.3）
+EXECUTE 通过门禁后的原子动作或 goal_bundle（TDD → 实现 → 最小验证）
 SYNC  六份真源（含 git 状态摘要）
 RETRO 方法论门控（见 §4）：有则步骤 digest；关键任务 done 则收口 synthesis
 LOOP  回到 READ（除非停止白名单或裁判收口）
 ```
 
 **禁止**：完成一项后停下来问「是否继续」；**禁止**无台账声称完成。
+
+### 3.1 Goal/Plan Gate（目标与切片尺寸硬门禁 · v1.3）
+
+Loop 是目标/规划导向，不是 `next_atomic_action` 文本队列。执行前必须从真源提取：
+
+| 字段 | 说明 |
+|------|------|
+| `goal_id` | 当前任务树 / PL / master-plan 目标 |
+| `slice_family` | 动作家族，如 `route-evidence`、`acceptance`、`mocked-source-contract`、`db-backfill` |
+| `user_visible_outcome` | 用户或系统能感知的推进结果 |
+| `acceptance_gate` | 本轮要关闭的验收条件 |
+| `exit_to_real_flow` | 完成后如何进入下一阶段，而不是继续同族加 marker |
+
+**切片尺寸规则**：
+
+- `next_atomic_action` 必须“小到可验证，大到关闭一个目标验收点”。
+- 默认禁止一轮只新增一个 marker / checklist / assertion / helper；除非它是高风险探针、环境阻塞探针或破坏性操作预检，并在 §5 写明原因。
+- 同一 `slice_family` 最多连续 3 tick。若 §5 最新 3 条与当前动作同族，下一轮必须执行 `goal_bundle`、reviewer/verifier signoff、真实集成晋级或路由到下一 goal；不得继续生成第 4 个同族 mocked/source-contract 微切片。
+- `goal_bundle` 结构固定为：`{goal_id, slice_family, items[3-7], shared_acceptance_gate, verification_matrix, exit_condition}`。
+- 若当前动作无法说明如何推进 **auto mining → auto backtest full flow + intent quant subgraph** 的阶段闭环，则本 tick 改为 PLAN/ROUTE，不写生产切片。
+
+当前治理裁定（2026-06-22）：PL-G route-evidence acceptance 已连续超过 3 个 mocked/source/UI 微切片；下一业务 tick 必须先做 **acceptance consolidation / reviewer signoff bundle**，不得继续单独追加 checklist marker。
+
+### 3.2 Skill Routing Gate（技能前置硬门禁 · v1.3）
+
+每轮执行前必须对 `current_tree + current_slice + next_atomic_action + goal_id` 做 skill routing：
+
+```powershell
+python harness/skill_router.py --query "<bounded task text>" --top-k 5 --pretty --telemetry-log tmp/skill-route-events.jsonl --task-id "<tick-or-task-id>" --tree "<tree>" --source loop-tick
+```
+
+规则：
+
+- `decision=expose`：读取选中 `SKILL.md` 全文，按最小技能集执行；记录 `selected_skills`、`applied_skills`、`skipped_skills`、`skip_reason`。
+- `decision=no_skill`：记录 `no_skill_reason`，只能使用 `empty_query | no_cards | below_min_score | below_relative_floor | explicit_no_skill | read_only_scope | already_applied_recently | router_error`。
+- router 遥测写 `tmp/skill-route-events.jsonl`（Git ignored），不得写入 raw query 文本；真源只记录摘要和 hash / skill names / family / scores。
+- router 错误不得静默吞掉；任务依赖该技能才能安全执行时，设置真实 blocker。
+- **Skill Lifecycle Gate**：若同类手工流程连续出现 ≥3 次、或本轮发现“已有适配 skill 但过去连续未使用”，必须记录 `skillification_candidate` 或 `skill_reactivation_note`。已有 skill 优先重新投入使用；确需新 skill 时，先写职责/输入/输出/最近邻差异矩阵并获得用户批准，不能静默创建。
+
+### 3.3 Worker Dispatch Gate（跨对话 worker 前置硬门禁 · v1.3）
+
+每轮执行前必须读取 `harness/reports/EMPLOYEE_ROSTER.md` 并做 dispatch 决策：
+
+- 默认优先跨对话 CodeX worker 线程（`create_thread` / `send_message_to_thread`）；临时 `multi_agent` subagent 只作为旁路审查或工具层辅助，不替代长期 worker 清单。
+- 2+ 独立切片、多文件实现、计划审查、代码审查、QA、安全、governance 或 verification 任务，必须派发既有 roster worker（最多 6 个），并写回 worker report / roster。
+- 不派发必须记录 `dispatch_decision=no_dispatch` 与 `no_dispatch_reason`，只能使用 `single_bounded_slice | no_independent_slices | read_only_review | shared_file_conflict | worker_overloaded | role_not_found | missing_subagent_tool | risk_requires_user | already_running_task`。
+- 新 worker / 新 skill 必须用户批准；不得因为负载高而自行创造角色名。
+- **Worker Capacity Gate**：每轮检查 roster 负载分布。若同一 role 连续 ≥3 tick 为 `3 high` / `surge`，或 orchestrator 连续自做实现、测试、审查、治理中任两类工作，必须先再平衡到空闲既有 worker；仍不足时记录 `capacity_review` 与“新增 worker 功能差异矩阵”。新增 worker 只允许在职责与现有 21 worker 无模糊重叠且获用户批准后创建。
+- Orchestrator 只负责目标、计划、派发、整合、验证与真源同步；业务实现、测试设计、代码审查、安全审查、治理复核应优先交给对应 worker，除非本轮是单文件/单命令的 bounded slice 并记录不派发原因。
 
 ---
 

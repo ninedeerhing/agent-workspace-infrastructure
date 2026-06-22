@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T17:09:45+08:00",
+  "updated_at": "2026-06-22T17:37:15+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-route-evidence-acceptance-reviewer-signoff-checklist-mocked-only",
-  "next_atomic_action": "Start PL-G route-evidence acceptance reviewer signoff checklist TDD mocked-only: prove the Jobs acceptance/readiness surface emits a compact reviewer signoff checklist confirming the operator handoff packet, source contract, safety gates, deferred PL-H gate, and next PL-G mocked/source-contract review remain locked, while forbidding page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After acceptance reviewer signoff checklist stabilizes, continue PL-G mocked/source-contract TDD increments for auto mining -> auto backtest full flow readiness/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-route-evidence-acceptance-consolidation-bundle-mocked-only",
+  "next_atomic_action": "Start PL-G route-evidence acceptance consolidation bundle TDD mocked-only: consolidate reviewer signoff, source/UI contract audit, safety-gate matrix, route-evidence handoff packet, and exit-to-real-flow decision into one goal-bundle that closes the repeated PL-G route-evidence acceptance micro-slice family and routes the next step toward auto mining -> auto backtest flow readiness / intent quant subgraph integration, while forbidding page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After the acceptance consolidation bundle stabilizes, run worker-backed reviewer/verifier signoff and route to the next non-repetitive PL-G or intent-quant integration slice. Do not add another one-marker route-evidence acceptance checklist unless Goal/Plan Gate documents why it is a high-risk probe.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -730,7 +730,9 @@
     "loop201 no .env/secret/page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
     "loop201 five lifecycles pass: methodology active_entries=30 active_gp_entries=8 active_step_digests=11; work_report record_count=22; sync finding_count=0 latest_section5=524 top_section5_ref=524; verification stale=false section5_ref=5.524 pytest_passed=28 ruff=ok; closure open_count=0",
     "loop201 verification snapshot recorded pytest_passed=28 ruff=ok evidence apps/quant_assistant/docs/PROJECT_STATUS.md#5.524",
-    "loop201 next: PL-G route-evidence acceptance reviewer signoff checklist TDD mocked-only with no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output"
+    "loop201 next was superseded by loop-governance-20260622 after Goal/Plan Gate detected repeated PL-G route-evidence acceptance same-family micro-slices",
+    "loop-governance-20260622: skill routing, worker dispatch, skill lifecycle, worker capacity, and goal bundle gates promoted to mandatory loop preflight; governance-coordinator cross-dialogue thread 019eeea7-6dc1-7121-8734-2e41c6e21b54 reported success",
+    "next: PL-G route-evidence acceptance consolidation bundle TDD mocked-only with no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -740,7 +742,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop201 safe tick: PL-G route-evidence acceptance operator handoff packet mocked-only completed. Fixture-backed browser smoke now asserts a compact operator handoff packet bundling acceptance chain, risk register, mitigation plan, deferred PL-H gate, and next PL-G mocked/source-contract review, with no page-load auto POST, no default runner, and no secret output checks. Verification: source/UI contracts red 2 failed / 10 passed expected then green 12 passed; related source/UI regression 28 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] and acceptance_operator_handoff_packet_* checks; web build/eslint pass; runtime cleanup showed no port entries and no smoke process. This tick had no env/secret reads, page-load auto POST/default trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is PL-G route-evidence acceptance reviewer signoff checklist mocked-only."
+    "note": "loop201 safe tick completed PL-G route-evidence acceptance operator handoff packet mocked-only. A 2026-06-22 governance repair then promoted PL-002 skill routing from advisory to mandatory loop gate, added Goal/Plan Gate + Worker Dispatch Gate, and changed the next business slice from isolated reviewer checklist to PL-G route-evidence acceptance consolidation bundle mocked-only. Next gap is to close the repeated PL-G route-evidence acceptance micro-slice family with one goal bundle and then route toward auto mining -> auto backtest flow readiness / intent quant subgraph integration."
   },
-  "last_completed_note": "loop201: safe tick completed PL-G route-evidence acceptance operator handoff packet mocked-only. The fixture now emits a compact operator handoff packet bundling acceptance chain, risk register, mitigation plan, deferred PL-H gate, and next PL-G mocked/source-contract review, with no page-load auto POST, no default runner, and no secret output checks. Verification: source/UI contracts red 2 failed / 10 passed then green 12 passed; related source/UI 28 passed; Python ruff pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] plus acceptance_operator_handoff_packet_* checks; web build/eslint pass; runtime cleanup showed no port entries and no smoke process. No .env/secret reads, page-load auto POST/default trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route-evidence acceptance reviewer signoff checklist TDD mocked-only."
+  "last_completed_note": "loop201 completed PL-G route-evidence acceptance operator handoff packet mocked-only. Governance repair on 2026-06-22 made skill routing, worker dispatch, and goal/plan slice sizing mandatory before execution; current next_atomic_action is now PL-G route-evidence acceptance consolidation bundle mocked-only, not another single checklist marker. No .env/secret output, page-load auto POST/default trigger, runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
 }

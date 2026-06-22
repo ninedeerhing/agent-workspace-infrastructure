@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T09:15:46Z",
+  "updated_at": "2026-06-22T09:45:35Z",
   "candidates": [
     {
       "task_ref": "R0-M1",
@@ -10,7 +10,7 @@
       "has_permanent_entry": true,
       "permanent_ids": [
         "M-21",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -23,7 +23,7 @@
       "permanent_ids": [
         "M-23",
         "M-24",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -36,7 +36,7 @@
       "permanent_ids": [
         "M-23",
         "M-24",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -48,7 +48,7 @@
       "has_permanent_entry": true,
       "permanent_ids": [
         "M-21",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -60,7 +60,7 @@
       "has_permanent_entry": true,
       "permanent_ids": [
         "M-21",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -72,7 +72,7 @@
       "has_permanent_entry": true,
       "permanent_ids": [
         "M-20",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -84,7 +84,7 @@
       "has_permanent_entry": true,
       "permanent_ids": [
         "M-26",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -106,7 +106,7 @@
       "permanent_ids": [
         "M-09",
         "GP-01",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -128,7 +128,7 @@
       "permanent_ids": [
         "M-30",
         "M-28",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -150,7 +150,7 @@
       "permanent_ids": [
         "M-09",
         "GP-01",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -163,7 +163,7 @@
       "permanent_ids": [
         "M-30",
         "M-28",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -176,7 +176,7 @@
       "permanent_ids": [
         "M-30",
         "M-28",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -190,7 +190,7 @@
         "M-18",
         "M-19",
         "GP-01",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -202,7 +202,7 @@
       "has_permanent_entry": true,
       "permanent_ids": [
         "M-19",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -215,7 +215,7 @@
       "permanent_ids": [
         "M-30",
         "M-28",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -228,7 +228,7 @@
       "permanent_ids": [
         "M-30",
         "M-28",
-        "GP-08"
+        "GP-09"
       ],
       "recommendation": "closed"
     },
@@ -251,7 +251,7 @@
   "explicit_none_count": 3,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-22T09:15:46Z",
+    "at": "2026-06-22T09:45:35Z",
     "open_count": 0,
     "closed_count": 17,
     "explicit_none_count": 3,

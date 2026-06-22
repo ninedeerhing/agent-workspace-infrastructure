@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T09:15:23Z",
+  "updated_at": "2026-06-22T09:45:35Z",
   "orchestrator_path": "harness/reports/orchestrator",
   "workers_dir": "harness/reports/workers",
   "worker_count": 21,
@@ -14,7 +14,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-22T09:15:23Z",
+      "last_updated_at": "2026-06-22T09:45:35Z",
       "source_path": "harness\\reports\\orchestrator\\latest.md"
     },
     "architect:architect-idle": {
@@ -76,7 +76,7 @@
       ],
       "verification": "live API 复现 **5.2s**（`tmp/kb_m2_sse_repro_loop22_result.json`）",
       "status": "resolved（executor 已落地修复）",
-      "last_updated_at": "2026-06-22T09:15:23Z",
+      "last_updated_at": "2026-06-22T09:45:35Z",
       "source_path": "harness\\reports\\workers\\debugger.md"
     },
     "designer:designer-ui-a-2-spec": {
@@ -102,7 +102,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-22T09:15:23Z",
+      "last_updated_at": "2026-06-22T09:45:35Z",
       "source_path": "harness\\reports\\workers\\executor.md"
     },
     "explore:explore-idle": {
@@ -152,7 +152,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-22T09:15:23Z",
+      "last_updated_at": "2026-06-22T09:45:35Z",
       "source_path": "harness\\reports\\workers\\governance-coordinator.md"
     },
     "growth-engineer:growth-engineer-idle": {
@@ -188,7 +188,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-22T09:15:23Z",
+      "last_updated_at": "2026-06-22T09:45:35Z",
       "source_path": "harness\\reports\\workers\\qa-tester.md"
     },
     "researcher:researcher-idle": {
@@ -281,7 +281,7 @@
     }
   },
   "last_lifecycle": {
-    "at": "2026-06-22T09:15:23Z",
+    "at": "2026-06-22T09:45:35Z",
     "apply": true,
     "dedupe_actions": 0,
     "record_count": 22,
