@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T17:57:25+08:00
+updated_at: 2026-06-22T18:19:20+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -22,6 +22,8 @@ updated_at: 2026-06-22T17:57:25+08:00
 [CONTEXT] 2026-06-22 skill-router · PL-002 `harness/skill_router.py` 已从 advisory prototype 提升为 loop 前置证据链：每 tick 对 bounded task 运行 router，记录 `router_version/no_skill_reason/top_rejected/context/skip_reason`，遥测仅写 gitignored `tmp/skill-route-events.jsonl`，真源只写摘要；已有 skill 优先重新投入使用，重复流程 ≥3 次才登记 `skillification_candidate`，新 skill / worker 仍需用户批准与差异矩阵。
 
 [CONTEXT] 2026-06-22 worker-cluster · 用户要求参考 `cft0808/edict` 与 `MoonshotAI/kimi-code` 完善 CodeX 跨对话 worker cluster。已派发既有 roster 角色 `researcher` thread `019eeebf-629e-7013-bbf4-1db4d312b925` 与 `architect` thread `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936`，均只读 success；新增 `docs/ENGINEERING/AWI-CODEX-WORKER-CLUSTER-GOVERNANCE.md`，并把 Worker Cluster/Rendezvous Gate 写入 `docs/LOOP_ENGINEERING.md` §3.4、`harness/templates/loop-tick-prompt.md`、`harness/scripts/codex-self-check.ps1` 与 METHODOLOGY M-34/GP-10。下一业务 tick 执行 PL-G consolidation bundle 前必须写 `cluster_manifest` / `worker_report_refs` / rendezvous gate。
+
+[CONTEXT] 2026-06-22 loop203 · 已完成 PL-G route-evidence acceptance consolidation bundle mocked-only：cluster `test-engineer=019eeece-52d7-7b73-868a-7beb496ba303`、`executor=019eeece-c617-71c3-a80a-39a693ad3ac3`、`code-reviewer=019eeed1-7e14-7342-9d45-d7948aec94d2`、`verifier=019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均回报 success；code-reviewer 初次发现 exit-to-real-flow semantic gap，executor 修复为真实 `read_only_next_route` / `next_route=pl_g_flow_hardening` source/UI markers，post-fix review/verifier 通过。下一拍必须执行 PL-G route guidance transition mocked-only，转向 `intent_quant_integration_readiness` / `auto_backtest_flow_readiness`，不要再追加 acceptance checklist marker family。
 ```
 
 ### Loop Machine State
@@ -30,18 +32,18 @@ updated_at: 2026-06-22T17:57:25+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-route-evidence-acceptance-consolidation-bundle-mocked-only |
-| `last_tick` | loop202-worker-cluster-rendezvous-governance |
+| `current_slice` | pl-g-route-guidance-transition-mocked-only |
+| `last_tick` | loop203-pl-g-acceptance-consolidation-bundle |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start PL-G route-evidence acceptance consolidation bundle TDD mocked-only: first create a `cluster_manifest` / `worker_report_refs` / rendezvous gate from existing roster workers, then consolidate reviewer signoff, source/UI contract audit, safety-gate matrix, route-evidence handoff packet, and exit-to-real-flow decision into one goal-bundle that closes the repeated PL-G route-evidence acceptance micro-slice family and routes the next step toward auto mining -> auto backtest flow readiness / intent quant subgraph integration, while forbidding page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
+Start PL-G route guidance transition TDD mocked-only: replace or augment the Jobs read-only next-route guidance from the old generic `pl_g_flow_hardening` acceptance chain toward `intent_quant_integration_readiness` / `auto_backtest_flow_readiness`, using loop203 consolidation bundle evidence; require a real source/UI marker and worker-backed review, do not add another acceptance checklist marker family, and forbid page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the acceptance consolidation bundle stabilizes, run worker-backed reviewer/verifier signoff and route to the next non-repetitive PL-G or intent-quant integration slice. Do not add another one-marker route-evidence acceptance checklist unless Goal/Plan Gate documents why it is a high-risk probe.
+After the route guidance transition stabilizes, move to a non-repetitive intent-quant integration / auto mining -> auto backtest readiness handoff slice. Do not add another route-evidence acceptance checklist family unless Goal/Plan Gate documents a high-risk probe.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -58,7 +60,7 @@ After the acceptance consolidation bundle stabilizes, run worker-backed reviewer
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G route-evidence acceptance consolidation goal_bundle；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 PL-G route guidance transition；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -130,12 +132,15 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ### CodeX Cross-Session Worker
 
-- verifier thread: `019ee9fe-7605-7d53-8380-57228c31048c`
+- verifier thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b`
 - thread title: `verifier`
 - governance-coordinator thread: `019eeea7-6dc1-7121-8734-2e41c6e21b54`
 - governance-coordinator report: success · read-only review confirmed missing hard gates and recommended skill_route_evidence / worker_dispatch_decision / goal_bundle detector
 - researcher thread: `019eeebf-629e-7013-bbf4-1db4d312b925` · title `researcher` · report success on edict/kimi-code orchestration evidence scan
 - architect thread: `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936` · title `architect` · report success on CodeX worker cluster governance architecture
+- test-engineer thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · report success on loop203 TDD/smoke contract design
+- executor thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · report success on loop203 RED/GREEN implementation and post-review semantic fix
+- code-reviewer thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · report success on loop203 post-fix semantic signoff
 - prompt: `harness/templates/codex-subagent-prompt.md`
 - task: read-only verification of CodeX effective constraints; latest multi-agent verifier run `019eedc6-f9c5-7c50-8170-18e415f7ce26` / nickname Lorentz reviewed loop186 target files and reported `success`
 - note: orchestrator retains final authority; worker report is data, not truth source. Cross-dialogue worker is now preferred for governance / verifier signoff; temporary multi_agent is auxiliary only.
@@ -144,11 +149,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop201 已完成 PL-G route-evidence acceptance operator handoff packet mocked-only。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；loop202 进一步加入 worker cluster/rendezvous gate，下一步必须执行 PL-G route-evidence acceptance consolidation bundle，并优先使用跨对话 worker 做 signoff。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop203 已完成 PL-G route-evidence acceptance consolidation bundle mocked-only，并用跨对话 worker cluster 完成 test design / implementation / review / verifier signoff。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 PL-G route guidance transition mocked-only，转向 intent-quant integration / auto-backtest readiness，避免继续 acceptance micro-slice。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，然后执行 `PL-G route-evidence acceptance consolidation bundle TDD mocked-only`：合并 reviewer signoff、source/UI contract audit、safety-gate matrix、route-evidence handoff packet 与 exit-to-real-flow decision，关闭连续同族 acceptance 微切片；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，然后执行 `PL-G route guidance transition TDD mocked-only`：把 Jobs read-only next-route guidance 从 generic `pl_g_flow_hardening` transition 到 `intent_quant_integration_readiness` / `auto_backtest_flow_readiness`，并绑定真实 source/UI marker；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 

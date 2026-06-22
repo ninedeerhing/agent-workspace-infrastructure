@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T17:57:25+08:00",
+  "updated_at": "2026-06-22T18:19:20+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-route-evidence-acceptance-consolidation-bundle-mocked-only",
-  "next_atomic_action": "Start PL-G route-evidence acceptance consolidation bundle TDD mocked-only: first create a cluster_manifest / worker_report_refs / rendezvous gate from existing roster workers, then consolidate reviewer signoff, source/UI contract audit, safety-gate matrix, route-evidence handoff packet, and exit-to-real-flow decision into one goal-bundle that closes the repeated PL-G route-evidence acceptance micro-slice family and routes the next step toward auto mining -> auto backtest flow readiness / intent quant subgraph integration, while forbidding page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After the acceptance consolidation bundle stabilizes, run worker-backed reviewer/verifier signoff and route to the next non-repetitive PL-G or intent-quant integration slice. Do not add another one-marker route-evidence acceptance checklist unless Goal/Plan Gate documents why it is a high-risk probe; any multi-role tick must record cluster_manifest, worker_report_refs, and rendezvous_gate before completion.",
+  "current_slice": "pl-g-route-guidance-transition-mocked-only",
+  "next_atomic_action": "Start PL-G route guidance transition TDD mocked-only: replace or augment the Jobs read-only next-route guidance from the old generic `pl_g_flow_hardening` acceptance chain toward `intent_quant_integration_readiness` / `auto_backtest_flow_readiness`, using loop203 consolidation bundle evidence; require a real source/UI marker and worker-backed review, do not add another acceptance checklist marker family, and forbid page-load auto POST/default trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After the route guidance transition stabilizes, move to a non-repetitive intent-quant integration / auto mining -> auto backtest readiness handoff slice. Do not add another route-evidence acceptance checklist family unless Goal/Plan Gate documents a high-risk probe; any multi-role tick must record cluster_manifest, worker_report_refs, and rendezvous_gate before completion.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop202-worker-cluster-rendezvous-governance",
+  "last_tick": "loop203-pl-g-acceptance-consolidation-bundle",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -733,7 +733,14 @@
     "loop201 next was superseded by loop-governance-20260622 after Goal/Plan Gate detected repeated PL-G route-evidence acceptance same-family micro-slices",
     "loop-governance-20260622: skill routing, worker dispatch, skill lifecycle, worker capacity, and goal bundle gates promoted to mandatory loop preflight; governance-coordinator cross-dialogue thread 019eeea7-6dc1-7121-8734-2e41c6e21b54 reported success",
     "loop202-worker-cluster-rendezvous-governance: researcher thread 019eeebf-629e-7013-bbf4-1db4d312b925 and architect thread 019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936 reported success; Worker Cluster/Rendezvous Gate promoted to loop preflight and M-34/GP-10 recorded",
-    "next: PL-G route-evidence acceptance consolidation bundle TDD mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate, and no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output"
+    "next: PL-G route-evidence acceptance consolidation bundle TDD mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate, and no page-load auto POST/default trigger/real runner/background/default DB-backed backtest/PL-H batch execution or secret output",
+    "loop203 skill_route: router decision=expose but top-K noisy; applied orchestrator + dispatching-parallel-agents + test-driven-development; router precision gap carried",
+    "loop203 cluster_manifest: test-engineer 019eeece-52d7-7b73-868a-7beb496ba303, executor 019eeece-c617-71c3-a80a-39a693ad3ac3, code-reviewer 019eeed1-7e14-7342-9d45-d7948aec94d2, verifier 019eeed2-dbc0-7313-8d64-f9c6f199c68b",
+    "loop203 TDD/verification: RED 2 failed expected, GREEN focused pytest 13 passed, ruff pass, npm smoke jobs-page pass pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5, web build pass, targeted eslint pass",
+    "loop203 review: code-reviewer found exit-to-real-flow semantic gap; executor fixed with read_only_next_route and next_route=pl_g_flow_hardening page markers; code-reviewer and verifier post-fix success",
+    "loop203 method: M-35/GP-11 acceptance bundle semantic evidence binding",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.527",
+    "next: PL-G route guidance transition mocked-only toward intent_quant_integration_readiness / auto_backtest_flow_readiness with no new acceptance checklist family"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -743,7 +750,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop201 safe tick completed PL-G route-evidence acceptance operator handoff packet mocked-only. 2026-06-22 governance repair promoted PL-002 skill routing from advisory to mandatory loop gate, added Goal/Plan Gate + Worker Dispatch Gate, and changed the next business slice from isolated reviewer checklist to PL-G route-evidence acceptance consolidation bundle mocked-only. loop202 then added Worker Cluster/Rendezvous Gate after researcher/architect cross-dialogue reports. Next gap is to close the repeated PL-G route-evidence acceptance micro-slice family with one goal bundle and then route toward auto mining -> auto backtest flow readiness / intent quant subgraph integration."
+    "note": "loop203 safe tick completed PL-G route-evidence acceptance consolidation bundle mocked-only with cross-dialogue test-engineer/executor/code-reviewer/verifier rendezvous. The repeated PL-G route-evidence acceptance micro-slice family is closed as a goal bundle for mocked/source/UI scope; next gap is to transition read-only route guidance from generic pl_g_flow_hardening toward intent_quant_integration_readiness / auto_backtest_flow_readiness, then route toward auto mining -> auto backtest readiness and intent quant subgraph integration."
   },
-  "last_completed_note": "loop202 completed CodeX worker-cluster/rendezvous governance hardening with researcher and architect cross-dialogue reports, pure role thread titles, Worker Cluster/Rendezvous Gate in loop prompt/self-check, and M-34/GP-10 methodology. Current next_atomic_action remains PL-G route-evidence acceptance consolidation bundle mocked-only, now requiring cluster_manifest / worker_report_refs / rendezvous_gate before execution. No .env/secret output, page-load auto POST/default trigger, runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
+  "last_completed_note": "loop203 completed PL-G route-evidence acceptance consolidation bundle mocked-only with cluster_manifest / worker_report_refs / rendezvous_gate. test-engineer, executor, code-reviewer, and verifier cross-dialogue reports returned success; code-reviewer semantic gap was fixed and post-fix verified. Current next_atomic_action is PL-G route guidance transition mocked-only toward intent_quant_integration_readiness / auto_backtest_flow_readiness. No .env/secret output, page-load auto POST/default trigger, runner/background, migration, backfill, default DB-backed backtest, or PL-H batch execution is allowed."
 }

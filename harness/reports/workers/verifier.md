@@ -1,6 +1,22 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-22T13:26:39+08:00
+更新时间：2026-06-22T18:19:20+08:00
+
+## Tick loop203-pl-g-acceptance-consolidation
+
+- **任务 ID**：loop203-pl-g-acceptance-consolidation-verification / loop203-post-fix-verification-rerun
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读复核 PL-G acceptance consolidation bundle mocked-only 的验收证据；post-fix 复核 executor 对 code-reviewer semantic gap 的修正。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：
+  - `$env:PYTHONPATH='src'; uv run pytest tests/test_route_evidence_cross_surface_contract_unit.py tests/test_jobs_page_acceptance_smoke_unit.py -q` -> **13 passed**。
+  - `npm run smoke:jobs-page` -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`，text checks include `acceptance_consolidation_exit_decision_source:read_only_next_route` and `acceptance_consolidation_exit_to_real_flow_decision:pl_g_flow_hardening`。
+  - targeted marker scan -> `acceptanceConsolidationBundleChecks` / `assertAcceptanceConsolidationBundle(...)` / safety guard markers present。
+- **roster_update**：workload cleared；mistakes none；lesson: post-fix semantic verification must confirm both machine-check markers and smoke output text_checks。
+- **残余风险**：mocked-only；real DB-backed runner, PL-H batch execution, migration/backfill, production background execution remain deferred。
+- **next**：orchestrator can mark loop203 mocked-only consolidation closed and route to non-repetitive route guidance transition.
 
 ## Tick loop186-pl-g-route-evidence-persistence-recovery
 

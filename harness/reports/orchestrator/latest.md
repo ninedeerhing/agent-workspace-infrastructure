@@ -1,99 +1,106 @@
-# Orchestrator Report — loop202-worker-cluster-rendezvous-governance
+# Orchestrator Report — loop203-pl-g-acceptance-consolidation-bundle
 
-**Updated**: 2026-06-22T17:57:25+08:00
+**Updated**: 2026-06-22T18:19:20+08:00
 
 ## Tick Summary
 
-- **slice**: TREE-RT worker-cluster/rendezvous governance hardening
+- **slice**: TREE-6 / PL-G route-evidence acceptance consolidation bundle mocked-only
 - **agent**: orchestrator
-- **result**: upgraded CodeX loop from single-worker dispatch evidence to goal-envelope worker cluster with rendezvous gate
-- **next**: PL-G route-evidence acceptance consolidation bundle TDD mocked-only
-
-## Why This Tick Happened
-
-The user requested a CodeX-native orchestration architecture informed by `cft0808/edict` and `MoonshotAI/kimi-code`, with cross-dialogue workers managed by the orchestrator and no further low-value micro-slicing. External repositories were treated as data only. The tick did not reuse external code, add dependencies, read secrets, start backfill, run migrations, or touch the app runtime.
+- **result**: closed the repeated PL-G acceptance micro-slice family as one worker-backed goal bundle
+- **next**: PL-G route guidance transition mocked-only toward intent quant / auto-backtest readiness
 
 ## Cluster Manifest
 
 ```yaml
 cluster_manifest:
-  cluster_id: "loop202-worker-cluster-rendezvous"
-  goal_id: "TREE-RT-worker-cluster-governance"
+  cluster_id: "cluster-loop203-pl-g-acceptance-consolidation"
+  goal_id: "TREE-6-PL-G-acceptance-consolidation"
   commander: "orchestrator"
-  max_parallel_workers: 6
+  max_parallel_workers: 4
   worker_threads:
-    - role_id: "researcher"
-      thread_id: "019eeebf-629e-7013-bbf4-1db4d312b925"
-      task_id: "loop202-worker-cluster-researcher"
+    - role_id: "test-engineer"
+      thread_id: "019eeece-52d7-7b73-868a-7beb496ba303"
+      task_id: "loop203-pl-g-acceptance-consolidation-test-design"
       write_scope: []
       mode: "read-only"
       status: "reported"
-    - role_id: "architect"
-      thread_id: "019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936"
-      task_id: "loop202-worker-cluster-architect"
+    - role_id: "executor"
+      thread_id: "019eeece-c617-71c3-a80a-39a693ad3ac3"
+      task_id: "loop203-pl-g-acceptance-consolidation-implementation"
+      write_scope:
+        - "apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py"
+        - "apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py"
+        - "apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs"
+      mode: "disjoint-write"
+      status: "reported"
+    - role_id: "code-reviewer"
+      thread_id: "019eeed1-7e14-7342-9d45-d7948aec94d2"
+      task_id: "loop203-pl-g-acceptance-consolidation-code-review"
+      write_scope: []
+      mode: "read-only"
+      status: "reported"
+    - role_id: "verifier"
+      thread_id: "019eeed2-dbc0-7313-8d64-f9c6f199c68b"
+      task_id: "loop203-pl-g-acceptance-consolidation-verification"
       write_scope: []
       mode: "read-only"
       status: "reported"
   rendezvous_gate:
     required_reports:
-      - "harness/reports/workers/researcher.md"
-      - "harness/reports/workers/architect.md"
+      - "harness/reports/workers/test-engineer.md"
+      - "harness/reports/workers/executor.md"
+      - "harness/reports/workers/code-reviewer.md"
+      - "harness/reports/workers/verifier.md"
     final_verifier: "orchestrator"
+    status: "passed"
   retirement:
     roster_update_required: true
+    next_worker_load: "cleared"
 ```
-
-## Evidence Integrated
-
-| Source | Pattern Integrated |
-|--------|--------------------|
-| `cft0808/edict` | staged triage/planning/review/dispatch/execution, permissioned agent graph, status/audit/heartbeat |
-| `MoonshotAI/kimi-code` | goal lifecycle, isolated subagents, background status, skills, hooks, session records |
-| local truth sources | AGENTS orchestrator boundary, LOOP_ENGINEERING gates, loop tick prompt, employee roster, TASK_TREES, PROJECT_STATUS |
-
-## Changes
-
-| Area | Summary |
-|------|---------|
-| Architecture doc | Added `docs/ENGINEERING/AWI-CODEX-WORKER-CLUSTER-GOVERNANCE.md` with goal envelope, cluster manifest, rendezvous, skill lifecycle, and anti-fragmentation rules. |
-| Loop contract | `docs/LOOP_ENGINEERING.md` upgraded to v1.4.0 and added Worker Cluster Gate §3.4. |
-| Heartbeat prompt | `harness/templates/loop-tick-prompt.md` now requires Worker Cluster/Rendezvous Gate plus `cluster_manifest`, `worker_report_refs`, and `no_cluster_reason`. |
-| Worker prompt | `harness/templates/codex-subagent-prompt.md` now includes cluster/rendezvous fields and disjoint-write rules. |
-| Self-check | `harness/scripts/codex-self-check.ps1` now verifies worker-cluster gate markers. |
-| Methodology | Added M-34 / GP-10 and digest `步骤 digest-20260622-worker-cluster-rendezvous`. |
-| Roster/reports | Recorded researcher and architect cross-dialogue reports; thread titles are pure role names. |
 
 ## Gate Decision
 
 | Gate | Decision |
 |------|----------|
-| goal_gate | `plan_route_governance_tick`; business `next_atomic_action` remains PL-G acceptance consolidation bundle |
-| skill_route | applied `github-research`, `architect`, `dispatching-parallel-agents`, and `orchestrator` skills; skipped deprecated `tdd` skill shim while keeping TDD discipline |
-| dispatch_decision | dispatched existing roster roles `researcher` and `architect` via CodeX cross-dialogue threads |
-| cluster_manifest | `loop202-worker-cluster-rendezvous` with required reports from researcher + architect |
-| worker_report_refs | `harness/reports/workers/researcher.md`, `harness/reports/workers/architect.md` |
-| bundle_decision | no business bundle executed; next business tick must use the PL-G acceptance consolidation bundle |
-| capacity_review | no new worker required; both selected roles returned to idle; orchestrator remains constrained to command/control/integration |
-| skill_lifecycle | new durable methodology M-34 / GP-10 recorded; no new skill created |
+| goal_gate | `goal_bundle_closed_for_repeated_acceptance_family` |
+| skill_route | router `decision=expose`; top-K noisy, applied `orchestrator`, `dispatching-parallel-agents`, `test-driven-development` |
+| dispatch_decision | dispatched existing roster roles `test-engineer`, `executor`, `code-reviewer`, `verifier` via CodeX cross-dialogue threads |
+| cluster_manifest | `cluster-loop203-pl-g-acceptance-consolidation` |
+| worker_report_refs | `test-engineer.md`, `executor.md`, `code-reviewer.md`, `verifier.md` |
+| bundle_decision | consolidated reviewer signoff, source/UI audit, safety gate, handoff packet, and exit-to-real-flow decision |
+| capacity_review | existing 21-worker roster sufficient; no new worker requested |
+| skill_lifecycle | M-35/GP-11 recorded; router precision gap carried as future tuning input |
 
-## Safety
+## Changes
 
-No `.env`, `.env.local`, DSN, token, or secret was printed or persisted. No backfill, migration, real runner, background process, PL-H batch execution, or default DB-backed backtest was started.
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Added consolidation bundle source contract and real exit marker assertions. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Added fixture source checks for consolidation bundle, source/UI audit, safety gate, handoff packet, and exit decision. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added `acceptanceConsolidationBundleChecks` and `assertAcceptanceConsolidationBundle(...)`; post-review fix binds exit-to-real-flow to page body markers. |
+
+## Review
+
+- `code-reviewer` first pass found the exit-to-real-flow check was too weak because it was only gated by `handoffPacketReady`.
+- `executor` fixed the gap with `acceptance_consolidation_exit_decision_source:read_only_next_route` and `acceptance_consolidation_exit_to_real_flow_decision:pl_g_flow_hardening`.
+- `code-reviewer` post-fix signoff: semantic gap resolved enough for mocked-only tick.
+- `verifier` post-fix rerun: focused pytest and browser smoke passed.
 
 ## Verification Gates
 
 | Gate | Result |
 |------|--------|
-| router live route | pass · `decision=expose`, telemetry written to gitignored `tmp\skill-route-events.jsonl` |
-| JSON | pass · `python -m json.tool harness\loop-state.json` |
-| CodeX self-check | pass · 46 checks / 0 findings |
-| compliance | pass · 36 checks / 0 findings; dirty warning was expected before commit |
-| methodology lifecycle | pass · active_entries=32, active_gp_entries=10, active_step_digests=13 |
-| work report lifecycle | pass · record_count=22 |
-| sync coherence | pass · finding_count=0, latest/top §5.526 |
-| verification snapshot | pass · stale=false, section5_ref=5.526, ruff=n/a |
-| closure gate | pass · open_count=0 |
+| focused pytest | pass · 13 passed in 0.08s |
+| Python ruff | pass · touched Python tests clean |
+| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, consolidation exit markers visible |
+| web build | pass · `npm run build` |
+| targeted eslint | pass · `scripts/smoke-jobs-page-fixture.mjs` + `src/pages/JobsPage.tsx` |
+| five lifecycle | pass · methodology 33/11/14, work_report 22, sync 0 findings §5.527, verification snapshot §5.527 pytest=13 ruff=ok, closure open_count=0 |
+
+## Safety
+
+No `.env`, `.env.local`, DSN, token, or secret was printed or persisted. No page-load auto POST, default trigger, real runner, background process, migration, backfill, default DB-backed backtest, or PL-H batch execution was started.
 
 ## Next
 
-Start PL-G route-evidence acceptance consolidation bundle TDD mocked-only with Goal/Plan + Skill Routing + Worker Dispatch + Worker Cluster/Rendezvous gates. The next business cluster should use existing roles such as `test-engineer`, `executor`, `code-reviewer`, and `verifier` with disjoint scopes and a rendezvous gate before final truth-source completion.
+Start PL-G route guidance transition TDD mocked-only: replace or augment Jobs read-only next-route guidance from generic `pl_g_flow_hardening` toward `intent_quant_integration_readiness` / `auto_backtest_flow_readiness`, with a real source/UI marker and worker-backed review.
