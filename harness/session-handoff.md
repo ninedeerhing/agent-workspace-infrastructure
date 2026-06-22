@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T11:55:00+08:00
+updated_at: 2026-06-22T12:18:00+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-22T11:55:00+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-22 loop179 · PL-G demand gate displayed-decision handoff TDD mocked-only 完成：先写 JobsPage/source + fixture smoke 红测（expected 2 failed / 10 passed），再在 displayed real_batch_demand_gate.decision=pl_h_revisit 时只读展示 PL-H revisit evidence / displayed_decision_handoff / handoff_mode=read_only_displayed_decision / pl_h_batch_execution=false / requires_new_gate_before_execution=true，并扩展 fixture-backed browser smoke；验证 focused 12 passed、adjacent regression 36 passed、npm run smoke:jobs-page ok 且 pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]、web build/eslint/ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load POST/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G demand gate deferred-decision suppression TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
+[CONTEXT] 2026-06-22 loop180 · PL-G demand gate deferred-decision suppression TDD mocked-only 完成：先写 JobsPage/source + fixture smoke 红测（expected 2 failed / 11 passed），再让 displayed real_batch_demand_gate.decision=pl_h_deferred 时不显示 PL-H revisit evidence / displayed_decision_handoff / handoff marker，并扩展 fixture-backed browser smoke 的 deferred branch；验证 focused 13 passed、adjacent regression 37 passed、npm run smoke:jobs-page ok 且 decision=pl_h_deferred / deferred_gate_suppresses_pl_h_handoff / pl_h_revisit_handoff_visible=false / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]、web build/eslint/ruff pass · TREE-2 data gate 已过，勿重复启动 daily_bar/daily_trade_status/adj_factor · 未读取 .env/未输出 DSN/token · 未触发 page-load POST/真实 runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution · worker names use pure role ids · Git main-only GP-08 · 下一拍从 loop-state.next_atomic_action 执行 PL-G demand gate pressure summary handoff TDD mocked-only；closure/收口是阶段验收并继续下一切片，不是结束方案或停止 loop。
 
 [CONTEXT] 2026-06-22 side capability · PL-002 Codex skills router / gating Phase 1 prototype completed in `harness/skill_router.py` with `harness/tests/test_skill_router.py` and `docs/ENGINEERING/2026-06-22-codex-skill-router-prototype.md`. It is advisory only: no global `~/.codex/skills` mutation, no raw query telemetry, and no quant `loop-state` change. Next optional PL-002 step is local eval set plus graph-aware rerank.
 ```
@@ -28,18 +28,18 @@ updated_at: 2026-06-22T11:55:00+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-demand-gate-deferred-decision-suppression-mocked-only |
-| `last_tick` | loop179-pl-g-demand-gate-displayed-decision-handoff-mocked-only |
+| `current_slice` | pl-g-demand-gate-pressure-summary-handoff-mocked-only |
+| `last_tick` | loop180-pl-g-demand-gate-deferred-decision-suppression-mocked-only |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start PL-G demand gate deferred-decision suppression TDD mocked-only: prove JobsPage does not surface the PL-H revisit handoff marker when `real_batch_demand_gate.decision=pl_h_deferred`, without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest or secret output.
+Start PL-G demand gate pressure summary handoff TDD mocked-only: render a read-only compact pressure summary from `real_batch_demand_gate.pressure` (`ready_backtest_jobs`, `ready_backtest_request_count`, `retryable_failed_jobs`) on JobsPage beside the manual trigger evidence, without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest or secret output.
 
 ### next_after
 
-After deferred-decision suppression is stable, continue PL-G flow hardening for auto mining → auto backtest full flow / intent quant subgraph; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
+After pressure summary is stable, continue PL-G flow hardening for auto mining → auto backtest full flow / intent quant subgraph; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -56,7 +56,7 @@ After deferred-decision suppression is stable, continue PL-G flow hardening for 
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G demand gate deferred-decision suppression TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 PL-G demand gate pressure summary handoff TDD mocked-only；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -91,7 +91,7 @@ $env:PYTHONPATH='src'
 4. **勿创建** feature/`cursor/*` 分支（GP-08）
 5. **勿读取/复制/提交** `.env` / `.env.local`（含 DSN / Token）
 6. **勿安装 WSL** 或破坏性 git 操作（force push main 等）
-7. **勿 commit/push** 除非用户明确要求
+7. **勿 push** 除非用户明确要求或 daily-git-push automation 到点；本地 main commit 依 clean-worktree gate 执行，避免 loop 结束留脏文件
 
 ### Verify Commands（接手后第一件事）
 
@@ -138,11 +138,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop175 已完成 PL-G JobsPage post-trigger completed affordance TDD mocked-only；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop180 已完成 PL-G demand gate deferred-decision suppression TDD mocked-only；TREE-RT/TREE-4 CodeX 有效约束已验收（automation/worker/self-check 全部有真源与验证）。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 执行 `PL-G real batch demand gate TDD contract-only`：增加纯只读 demand gate，汇总 mining job queue / auto-backtest request pressure 并返回 `pl_h_deferred` / `pl_h_revisit`；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行与 secret 输出。
+CodeX orchestrator 执行 `PL-G demand gate pressure summary handoff TDD mocked-only`：只读展示 `real_batch_demand_gate.pressure` 的 ready/request/retryable 摘要；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行与 secret 输出。
 
 ## Resume Command
 
