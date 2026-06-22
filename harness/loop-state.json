@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-22T13:10:44+08:00",
+  "updated_at": "2026-06-22T13:26:39+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-route-evidence-persistence-recovery-mocked-only",
-  "next_atomic_action": "Start PL-G route evidence persistence/recovery TDD mocked-only: preserve execution `route_evidence` through brain_run snapshot / SSE execution payload surfaces for `mining_batch_dispatch` and `backtest_dispatch`, proving auto mining -> auto backtest observability survives persistence/resume without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
-  "next_after": "After route_evidence persistence/recovery is stable, continue PL-G flow hardening for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
+  "current_slice": "pl-g-route-evidence-acceptance-surface-mocked-only",
+  "next_atomic_action": "Start PL-G route evidence acceptance-surface TDD mocked-only: expose recovered `route_evidence` from `brain_executions` / SSE execution payloads in user-visible or technical chat execution surfaces for `mining_batch_dispatch` and `backtest_dispatch`, proving auto mining -> auto backtest observability is inspectable after refresh without auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest, PL-H batch execution, or secret output.",
+  "next_after": "After route_evidence acceptance surface is stable, continue PL-G flow hardening for auto mining -> auto backtest full flow observability/acceptance surfaces; PL-H batch execution remains deferred until a later gate proves real batch demand; BENCH-2 remains env deferred.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop185-pl-g-route-evidence-execution-propagation-mocked-only",
+  "last_tick": "loop186-pl-g-route-evidence-persistence-recovery-mocked-only",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -550,7 +550,13 @@
     "loop185 broader adjacent probe including test_brain_quant_loop_unit retains known Alpha101 canonical 2 old failures",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.508",
     "loop185 no .env/secret/auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
-    "loop185 next: route evidence persistence/recovery TDD mocked-only with no real runner/background/default DB-backed backtest or secret output"
+    "loop185 next: route evidence persistence/recovery TDD mocked-only with no real runner/background/default DB-backed backtest or secret output",
+    "loop186 TDD red: SSE execution payload and assistant message metadata dropped top-level route_evidence; expected 2 failed",
+    "loop186 focused persistence/recovery tests 3 passed; API/metadata/brain_run/intent adjacent 47 passed; recovery/intent/runtime regression 69 passed / 1 skipped; Python ruff pass",
+    "loop186 verifier worker success: target pytest 40 passed; intent route 7 passed; targeted ruff pass; residual risk moved to acceptance-surface/hydration",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.509",
+    "loop186 no .env/secret/auto POST/trigger/runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution",
+    "loop186 next: route evidence acceptance-surface TDD mocked-only with no real runner/background/default DB-backed backtest or secret output"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -560,7 +566,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop185 safe tick: PL-G route evidence execution propagation TDD mocked-only completed. intent quant dispatch route_evidence now survives _coerce_dispatch(), mocked mining_batch_dispatch / backtest_dispatch execution items, result.route_evidence, and runtime dispatch_start progress payloads. Verification: red 3 failed / 4 passed expected, focused 7 passed, executor regression 142 passed, PL-G adjacent 51 passed / 2 xfailed, Python ruff pass; broader Alpha101 canonical 2 old failures remain registered residual risk. This tick had no env/secret reads, auto POST/trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is route evidence persistence/recovery mocked-only."
+    "note": "loop186 safe tick: PL-G route evidence persistence/recovery TDD mocked-only completed. Top-level route_evidence now survives SSE execution payload projection, assistant message metadata brain_executions recovery, and mocked brain_run snapshot persistence for mining_batch_dispatch / backtest_dispatch. Verification: red 2 failed expected, focused 3 passed, API/metadata/brain_run/intent adjacent 47 passed, recovery/intent/runtime regression 69 passed / 1 skipped, Python ruff pass, verifier worker success with target pytest 40 passed and intent route 7 passed. This tick had no env/secret reads, auto POST/trigger, real runner/background work, PL-H batch execution, migration, DB schema change, backfill, default DB-backed backtest, or secret output. Next gap is route evidence acceptance-surface mocked-only."
   },
-  "last_completed_note": "loop185: safe tick completed PL-G route evidence execution propagation TDD mocked-only. Preserved dispatch route_evidence in _coerce_dispatch(), mining_batch_dispatch / backtest_dispatch mocked execution item top-level payloads, result.route_evidence, and runtime dispatch_start progress payloads. Verification: expected red 3 failed / 4 passed; focused 7 passed; executor regression 142 passed; PL-G adjacent 51 passed / 2 xfailed; Python ruff pass; known Alpha101 canonical 2 old failures remain residual risk outside this tick. No .env/secret reads, auto POST/trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route evidence persistence/recovery TDD mocked-only."
+  "last_completed_note": "loop186: safe tick completed PL-G route evidence persistence/recovery TDD mocked-only. Preserved top-level route_evidence in SSE execution payloads, assistant message metadata brain_executions, and mocked brain_run snapshot persistence for mining_batch_dispatch / backtest_dispatch. Verification: expected red 2 failed; focused 3 passed; API/metadata/brain_run/intent adjacent 47 passed; recovery/intent/runtime regression 69 passed / 1 skipped; Python ruff pass; verifier worker target pytest 40 passed and intent route 7 passed. No .env/secret reads, auto POST/trigger, migration, DB schema change, backfill, background worker, real runner, PL-H batch execution, default DB-backed backtest, or secret output. Next atomic action is PL-G route evidence acceptance-surface TDD mocked-only."
 }

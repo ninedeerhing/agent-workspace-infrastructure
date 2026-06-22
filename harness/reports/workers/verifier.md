@@ -1,6 +1,24 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-21T20:02:25+08:00
+更新时间：2026-06-22T13:26:39+08:00
+
+## Tick loop186-pl-g-route-evidence-persistence-recovery
+
+- **任务 ID**：loop186 verifier review
+- **任务树**：TREE-6 / PL-G
+- **状态**：success
+- **任务**：PL-G route_evidence persistence/recovery independent review
+- **CodeX multi-agent**：`019eedc6-f9c5-7c50-8170-18e415f7ce26`（nickname Lorentz）
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：
+  - `python -m pytest -q -p no:cacheprovider tests/test_api_app_unit.py tests/test_draft_confirmation_ui_unit.py tests/test_brain_run_resume_unit.py` -> **40 passed**
+  - `ruff check src/qa/api/sse.py src/qa/ui/chat_brain.py tests/test_api_app_unit.py tests/test_draft_confirmation_ui_unit.py tests/test_brain_run_resume_unit.py` -> **All checks passed**
+  - `python -m pytest -q -p no:cacheprovider tests/test_intent_quant_subgraph_handoff_unit.py` -> **7 passed**
+  - route_evidence producer/runtime targeted ruff -> **All checks passed**
+  - `git diff --check -- target files` -> passed; line-ending warnings only
+- **roster_update**：workload cleared；mistakes none；lesson: server-side SSE and metadata paths preserve top-level `route_evidence`; brain_run snapshot preservation relies on existing raw execution copy.
+- **残余风险**：full web hydration recovery of top-level `route_evidence` was not exercised; web hydration may only retain nested `result.route_evidence` unless that model is updated/tested.
+- **next**：由 orchestrator 转入 `PL-G route evidence acceptance-surface TDD mocked-only`。
 
 ## Tick verifier
 
