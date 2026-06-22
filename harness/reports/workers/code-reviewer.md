@@ -1,6 +1,21 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-22T21:01:21+08:00
+更新时间：2026-06-22T21:21:54+08:00
+
+## Tick loop211-explicit-injected-runner-call-boundary-rollback-observability
+
+- **任务 ID**：loop211-explicit-injected-runner-call-boundary-rollback-observability-pre-review / loop211-explicit-injected-runner-call-boundary-rollback-observability-final-review
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success
+- **任务**：只读审查 loop211 explicit injected-runner call boundary / rollback-observability contract 方向与最终三文件 diff，重点看是否把 call boundary 误写成 authorization granted、runner enablement、default DB-backed backtest、PL-H eligibility 或新 acceptance/checklist family。
+- **审查结论**：通过。`explicitInjectedRunnerCallBoundaryChecks` / `assertExplicitInjectedRunnerCallBoundary(...)` 绑定 fail-closed manual authorization artifact、body markers、submitted route/audit evidence 与 refreshed Jobs evidence；语义保持 contract/evidence-only，explicit authorization handoff、rollback observability before call、audit before/after、missing-runner fail-closed 与 PL-H non-eligibility 都是前置条件，不是执行许可或 runner invocation。
+- **验证**：
+  - scoped diff semantic review -> pass。
+  - focused final review tests -> **2 passed**。
+  - marker scan -> no active Acceptance/Checklist family found; enablement strings only appear as `forbiddenMarkers`; no page-load auto POST/default runner/background/migration/backfill/default DB-backed backtest/PL-H batch execution/secret risk introduced。
+- **roster_update**：workload cleared；mistakes none；lesson: injected-runner call boundary work should prove rollback/observability and fail-closed constraints before any runner call, while keeping runner invocation explicitly forbidden。
+- **next**：orchestrator can mark code-reviewer gate passed for loop211.
 
 ## Tick loop210-fail-closed-manual-authorization-artifact
 

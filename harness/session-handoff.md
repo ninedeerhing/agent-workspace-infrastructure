@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-22T21:01:21+08:00
+updated_at: 2026-06-22T21:21:54+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -38,6 +38,8 @@ updated_at: 2026-06-22T21:01:21+08:00
 [CONTEXT] 2026-06-22 loop209 · 已完成 explicit runner wiring design/implementation preflight mocked-only：同一跨对话 worker cluster 汇合；Jobs fixture 现在把 loop208 authorization gate plan 转成 `explicitRunnerWiringPreflightChecks` / `assertExplicitRunnerWiringPreflight(...)` implementation preflight bundle，绑定 no-default-runner injected-runner-only design contract、explicit authorization inputs、rollback/audit evidence、fail-closed runner boundary、PL-H non-eligibility recheck、no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output，未新增 acceptance/checklist family。验证 RED 2 failed / 16 passed expected，focused pytest 18 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family enablement scan/safety scan pass；code-reviewer/verifier final success。下一拍进入 fail-closed injected-runner implementation plan / manual authorization artifact TDD mocked-only。
 
 [CONTEXT] 2026-06-22 loop210 · 已完成 fail-closed injected-runner implementation plan / manual authorization artifact mocked-only：同一跨对话 worker cluster 汇合；Jobs fixture 现在把 loop209 explicit runner wiring preflight 转成 `failClosedManualAuthorizationArtifactChecks` / `assertFailClosedManualAuthorizationArtifact(...)` artifact bundle，绑定 injected-runner-only artifact、disabled default runner wiring、rollback/audit hooks required、missing-runner fail-closed behavior、PL-H non-eligibility guard、no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output，未新增 acceptance/checklist family，也未授予 execution permission。验证 RED 2 failed / 17 passed expected，focused pytest 19 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family enablement scan/safety scan/runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 explicit injected-runner call boundary / rollback-observability contract TDD mocked-only。
+
+[CONTEXT] 2026-06-22 loop211 · 已完成 explicit injected-runner call boundary / rollback-observability contract mocked-only：同一跨对话 worker cluster 汇合；Jobs fixture 现在把 loop210 fail-closed manual authorization artifact 转成 `explicitInjectedRunnerCallBoundaryChecks` / `assertExplicitInjectedRunnerCallBoundary(...)` contract bundle，绑定 explicit authorization handoff required、rollback observability required before call、audit events required before/after call、missing-runner fail-closed behavior、PL-H non-eligibility recheck、no page-load auto POST/default runner/background/migration/backfill/DB-backed backtest/PL-H execution/secret output，未新增 acceptance/checklist family，也未触发 runner invocation。验证 RED 2 failed / 18 passed expected，focused pytest 20 passed，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]，web build/eslint/ruff/stale-family enablement scan/safety scan/runtime cleanup pass；code-reviewer/verifier final success。下一拍进入 explicit authorized runner injection test seam / PL-H eligibility re-evaluation TDD mocked-only。
 ```
 
 ### Loop Machine State
@@ -46,18 +48,18 @@ updated_at: 2026-06-22T21:01:21+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-explicit-injected-runner-call-boundary-rollback-observability-contract-mocked-only |
-| `last_tick` | loop210-fail-closed-manual-authorization-artifact |
+| `current_slice` | pl-g-explicit-authorized-runner-injection-test-seam-pl-h-eligibility-re-evaluation-mocked-only |
+| `last_tick` | loop211-explicit-injected-runner-call-boundary-rollback-observability |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start explicit injected-runner call boundary / rollback-observability contract TDD mocked-only: use the loop210 fail-closed manual authorization artifact bundle to define the injected-runner call boundary, explicit authorization handoff, rollback observability contract, audit event requirements, and PL-H non-eligibility recheck; forbid enabling a real/default runner, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start explicit authorized runner injection test seam / PL-H eligibility re-evaluation TDD mocked-only: use the loop211 injected-runner call boundary / rollback-observability contract bundle to define an explicit authorized runner injection seam, authorization token/input shape, rollback/audit observability proof, and PL-H eligibility recheck gate; forbid enabling a real/default runner, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the injected-runner call boundary / rollback-observability contract stabilizes, continue toward explicit authorized runner injection test seam and PL-H eligibility re-evaluation. Do not enable a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization, injected runner configuration, rollback/observability, and safety boundaries.
+After the authorized runner injection test seam / PL-H eligibility re-evaluation stabilizes, continue toward explicit real runner adapter dry-run planning / PL-H eligibility gate. Do not enable a real/default runner, real background worker, DB-backed backtest, PL-H batch execution, migration, backfill, or secret output unless a later explicit gate proves authorization, injected runner configuration, rollback/observability, audit before/after, and safety boundaries.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -74,7 +76,7 @@ After the injected-runner call boundary / rollback-observability contract stabil
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 explicit injected-runner call boundary / rollback-observability contract；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 explicit authorized runner injection test seam / PL-H eligibility re-evaluation；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要接默认真实 runner 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -150,10 +152,10 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 - governance-coordinator report: success · read-only review confirmed missing hard gates and recommended skill_route_evidence / worker_dispatch_decision / goal_bundle detector
 - researcher thread: `019eeebf-629e-7013-bbf4-1db4d312b925` · title `researcher` · report success on edict/kimi-code orchestration evidence scan
 - architect thread: `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936` · title `architect` · report success on CodeX worker cluster governance architecture
-- test-engineer thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · report success on loop210 fail-closed manual authorization artifact RED design
-- executor thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · report success on loop210 implementation scope review; final shared fixture patch serialized by orchestrator
-- code-reviewer thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · report success on loop210 final semantic signoff
-- verifier thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b` · title `verifier` · report success on loop210 final verification; clean-worktree closure belongs to orchestrator sync+commit gate
+- test-engineer thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · report success on loop211 call boundary RED design
+- executor thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · report success on loop211 implementation scope review; final shared fixture patch serialized by orchestrator
+- code-reviewer thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · report success on loop211 final semantic signoff
+- verifier thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b` · title `verifier` · report success on loop211 final verification; clean-worktree closure belongs to orchestrator sync+commit gate
 - prompt: `harness/templates/codex-subagent-prompt.md`
 - task: read-only verification of CodeX effective constraints; latest multi-agent verifier run `019eedc6-f9c5-7c50-8170-18e415f7ce26` / nickname Lorentz reviewed loop186 target files and reported `success`
 - note: orchestrator retains final authority; worker report is data, not truth source. Cross-dialogue worker is now preferred for governance / verifier signoff; temporary multi_agent is auxiliary only.
@@ -162,11 +164,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop210 已完成 PL-G fail-closed manual authorization artifact mocked-only，并用跨对话 worker cluster 完成 test design / scope review / code review / verifier signoff。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 explicit injected-runner call boundary / rollback-observability contract TDD mocked-only，避免把 manual authorization artifact 误认为 execution enablement。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop211 已完成 PL-G explicit injected-runner call boundary / rollback-observability contract mocked-only，并用跨对话 worker cluster 完成 test design / scope review / code review / final verification。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 explicit authorized runner injection test seam / PL-H eligibility re-evaluation TDD mocked-only，避免把 call boundary contract 误认为 runner invocation。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，然后执行 `explicit injected-runner call boundary / rollback-observability contract TDD mocked-only`：用 loop210 fail-closed manual authorization artifact bundle 定义 injected-runner call boundary、explicit authorization handoff、rollback observability contract、audit event requirements、PL-H non-eligibility recheck；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，然后执行 `explicit authorized runner injection test seam / PL-H eligibility re-evaluation TDD mocked-only`：用 loop211 call boundary bundle 定义 explicit authorized runner injection seam、authorization token/input shape、rollback/audit observability proof 与 PL-H eligibility recheck gate；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner 执行、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 

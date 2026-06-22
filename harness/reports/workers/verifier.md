@@ -1,6 +1,34 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-22T21:01:21+08:00
+更新时间：2026-06-22T21:21:54+08:00
+
+## Tick loop211-explicit-injected-runner-call-boundary-rollback-observability
+
+- **任务 ID**：loop211-explicit-injected-runner-call-boundary-rollback-observability-verification-plan / loop211-explicit-injected-runner-call-boundary-rollback-observability-final-verification
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读复核 explicit injected-runner call boundary / rollback-observability contract mocked-only 的验收证据，并确认 clean-worktree gate 由 orchestrator 收口。
+- **变更**：worker 只读复核，未修改文件。
+- **验证矩阵与最终复核**：
+  - focused pytest RED/GREEN。
+  - Python ruff on touched tests。
+  - targeted eslint on `scripts/smoke-jobs-page-fixture.mjs`。
+  - `npm run smoke:jobs-page` requiring `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, loop211 markers visible。
+  - `npm run build`。
+  - stale/family enablement scan, safety marker scan, runtime cleanup scan。
+  - final verifier report: focused pytest **20 passed in 0.07s**；ruff pass；targeted eslint pass；smoke pass；build pass；stale/family enablement scan pass；safety marker scan pass；runtime cleanup pass。
+- **orchestrator 本地验证**：
+  - RED **2 failed / 18 passed** expected。
+  - GREEN focused pytest **20 passed**。
+  - ruff -> **All checks passed**。
+  - eslint -> pass exit 0。
+  - smoke -> pass；`ok=true`、`pageLoadTriggerRequests=[]`、`duplicateTriggerUrls=[]`、`miningJobsReadCount=5`、`explicit_injected_runner_call_boundary_*` markers present、PL-H remains deferred。
+  - build -> pass。
+  - stale/family enablement scan -> pass；safety marker scan -> pass；runtime cleanup scan -> pass。
+- **roster_update**：workload cleared；mistakes none；lesson: rollback-observability verification must prove contract evidence only, not runner-call execution or authorization enablement。
+- **残余风险**：mocked-only；real/default runner, default DB-backed backtest, background execution, migration/backfill, and PL-H execution remain intentionally deferred behind future explicit gates；touched files remain oversized as pre-existing structural risk。
+- **next**：orchestrator must close truth-source/commit/clean-worktree gates, then next slice is explicit authorized runner injection test seam / PL-H eligibility re-evaluation.
 
 ## Tick loop210-fail-closed-manual-authorization-artifact
 

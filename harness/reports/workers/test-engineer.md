@@ -1,6 +1,21 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-22T21:01:21+08:00
+更新时间：2026-06-22T21:21:54+08:00
+
+## Tick loop211-explicit-injected-runner-call-boundary-rollback-observability
+
+- **任务 ID**：loop211-explicit-injected-runner-call-boundary-test-design
+- **任务树**：TREE-6 / PL-G
+- **CodeX thread**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读设计 explicit injected-runner call boundary / rollback-observability contract 的 RED/GREEN 验收形态，确保 call boundary 是 source/contract evidence 而不是 authorization granted、runner enabled 或 runner invocation。
+- **变更**：worker 只读复核，未修改文件。
+- **验证建议**：
+  - 新增 `explicitInjectedRunnerCallBoundaryChecks` / `assertExplicitInjectedRunnerCallBoundary(bodyText, submittedText, refreshedText)`。
+  - Exact markers: `explicit_injected_runner_call_boundary_visible`、`explicit_injected_runner_call_boundary_source:fail_closed_manual_authorization_artifact`、`explicit_injected_runner_call_boundary:injected_runner_only`、`explicit_injected_runner_call_boundary_authorization_handoff:explicit_required`、`explicit_injected_runner_call_boundary_rollback_observability_contract:required_before_call`、`explicit_injected_runner_call_boundary_audit_events:required_before_and_after_call`、`explicit_injected_runner_call_boundary_missing_runner_behavior:fail_closed`、`explicit_injected_runner_call_boundary_pl_h_recheck:not_eligible_until_authorized_real_batch_gate`。
+  - Safety guards: contract-only, no page-load auto POST, no real/default runner, no background process, no migration/backfill, no DB-backed backtest, no PL-H batch execution, no secret output。
+- **roster_update**：workload cleared；mistakes none；lesson: call boundary tests must prove rollback/observability and audit before/after while runner invocation remains forbidden。
+- **next**：交给 executor/code-reviewer/verifier 汇合；下一切片进入 explicit authorized runner injection test seam / PL-H eligibility re-evaluation。
 
 ## Tick loop210-fail-closed-manual-authorization-artifact
 
