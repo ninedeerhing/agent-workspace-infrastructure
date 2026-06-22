@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-22T22:35:06Z",
-  "last_tick": "loop229-actual-adapter-dry-run-execution-dry-run-gate-goal-bundle",
-  "pytest_passed": 38,
+  "recorded_at": "2026-06-22T23:02:13Z",
+  "last_tick": "loop230-controlled-actual-adapter-dry-run-execution-seam-authorization-review-goal-bundle",
+  "pytest_passed": 39,
   "ruff": "ok",
   "evidence_paths": [
-    "loop229 focused pytest 1 passed; related JobsPage proof regression 38 passed; ruff ok; targeted eslint pass; web build pass; npm smoke:jobs-page pass; active/stale/secret/runtime scans pass"
+    "loop230 focused pytest 1 passed; related JobsPage proof regression 39 passed; ruff ok; targeted eslint pass; web build pass; npm smoke:jobs-page pass; active/stale/added-line secret-shape/runtime scans pass"
   ],
-  "section5_ref": "5.553",
+  "section5_ref": "5.554",
   "source": "manual"
 }
