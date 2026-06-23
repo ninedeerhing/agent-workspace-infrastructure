@@ -1,6 +1,18 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T01:25:46+08:00
+更新时间：2026-06-24T01:46:23+08:00
+
+## Tick loop260-reviewed-backtest-plan-handoff
+
+- **任务 ID**：loop260-reviewed-backtest-plan-handoff-test-design
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读复核“panel/F6 evidence + plan-only auto_backtest_plan -> reviewed_backtest_plan -> Chat/Jobs consumer UI”的 TDD 验收矩阵。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；验收应覆盖 `reviewed_backtest_plan` 包含 visible category/subclass、IC/rank-IC/ICIR/coverage/evaluated_days/sample_rows/panel source/data profile、consumer summary、manual trigger requirement、fail-closed no candidates，以及 no real/default runner、no adapter invocation、no actual adapter dry-run、no DB-backed backtest、no PL-H、no background/migration/backfill、no secret output。
+- **orchestrator 本地验证**：RED 缺 `build_reviewed_backtest_plan_handoff`；focused GREEN **4 passed**；target group **6 passed**；related regression **81 passed**；ruff/eslint/build/node-check/Jobs smoke pass。
+- **roster_update**：workload cleared；mistakes none；lesson: reviewed plan tests must prove consumer-visible evidence and no-execution gate together, not just internal JSON presence。
 
 ## Tick loop259-real-panel-f6-evaluation-integration
 

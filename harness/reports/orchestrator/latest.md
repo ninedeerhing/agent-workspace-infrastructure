@@ -1,3 +1,54 @@
+# Orchestrator Report - loop260-reviewed-backtest-plan-handoff
+
+**Updated**: 2026-06-24T01:46:23+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Reviewed Backtest Plan Handoff.
+- **trigger**: loop259 completed local panel/F6 IC screening evidence, but the evidence still needed a consumer-readable reviewed plan before manual-safe simulation.
+- **result**: Added `build_reviewed_backtest_plan_handoff(...)`, persisted/exposed `reviewed_backtest_plan` through mining runner durable reports and API observability, rendered Chat summary copy, and displayed a Jobs page “模拟回测计划草案” with category/subclass, rank IC, coverage, evaluated days, manual trigger requirement, and no-execution markers.
+- **next**: `MANUAL_SAFE_SIMULATION_HAPPY_PATH` across MiningJob/Chat/Jobs; still no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Added reviewed plan handoff builder, persisted it in durable results, and exposed it in MiningJob observability without executing a runner. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Added consumer-grade Chat “模拟回测计划草案” summary from reviewed plan data. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Added Jobs page reviewed plan UI with category/subclass, metrics, sample profile, and manual/no-execution markers. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added reviewed plan fixture data and browser text checks. |
+| `apps/quant_assistant/tests/test_mining_job_auto_backtest_plan_unit.py` | Added reviewed plan success and fail-closed no-candidate coverage. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Added API observability reviewed plan handoff coverage. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Added Chat consumer summary coverage. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `build_reviewed_backtest_plan_handoff` failed before implementation |
+| focused GREEN | pass · **4 passed** |
+| target group | pass · **6 passed** |
+| related regression | pass · mining/DSL/API/Chat/taxonomy matrix **81 passed** |
+| Python ruff | pass |
+| JobsPage eslint | pass |
+| web build | pass |
+| node syntax | pass |
+| Jobs browser smoke | pass · `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `reviewed_backtest_plan_visible=true`, `reviewed_backtest_plan_manual_trigger=true`, `reviewed_backtest_plan_will_execute=false` |
+
+## Worker Notes
+
+Permanent worker threads were used read-only. `test-engineer` returned a success matrix for reviewed plan data, consumer-visible summary, fail-closed no-candidate handling, and no-execution safety. `code-reviewer` returned a success pre-review warning that final wording must not imply execution authorization, runner readiness, adapter invocation, DB/backfill, or completed real backtest.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, background process, migration, or backfill was started. `reviewed_backtest_plan.execution_gate` remains plan-only/manual-trigger-required with `will_execute_backtest=false`.
+
+## Residual Risk
+
+The reviewed plan is now visible and understandable, but the next slice must connect it into a true user path: inspect candidate evidence, explicitly confirm, and receive an injected/mock-safe simulation result without widening real-runner permissions.
+
+---
+
 # Orchestrator Report - loop259-real-panel-f6-evaluation-integration
 
 **Updated**: 2026-06-24T01:25:46+08:00

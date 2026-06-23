@@ -1,6 +1,18 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T01:25:46+08:00
+更新时间：2026-06-24T01:46:23+08:00
+
+## Tick loop260-reviewed-backtest-plan-handoff
+
+- **任务 ID**：loop260-reviewed-backtest-plan-handoff-pre-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success
+- **任务**：只读预审把 panel/F6 screening evidence 汇总成 reviewed backtest plan 并显示到 API/Chat/Jobs 时的代码风险边界。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：PASS；最低风险路径是纯 summary/handoff 层，不修改 runtime/rule_route/runner/adapter 调度，不新增 fetch/useEffect/page-load POST，不把 `reviewed_backtest_plan` 文案写成 authorized/approved/executed。最终实现应保持 plan-only/manual-trigger-required，且 no real/default runner、no adapter invocation、no actual adapter dry-run、no DB-backed backtest、no PL-H、no background/migration/backfill。
+- **orchestrator 本地验证**：focused GREEN **4 passed**；target group **6 passed**；related regression **81 passed**；ruff/eslint/build/node-check/Jobs smoke pass，smoke 证明 `reviewed_backtest_plan_will_execute=false`。
+- **roster_update**：workload cleared；mistakes none；lesson: reviewed plan copy must be treated as decision support, not authorization, approval, runner readiness, or completed backtest。
 
 ## Tick loop259-real-panel-f6-evaluation-integration
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T01:25:46+08:00",
+  "updated_at": "2026-06-24T01:46:23+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "real-panel-f6-evaluation-integration-loop259",
-  "next_atomic_action": "REVIEWED_BACKTEST_PLAN_HANDOFF：把 loop259 的 local_panel_f6_screening_evidence 汇总成用户可读 reviewed backtest plan，上接 MiningJob/Chat/Jobs 显示层，下接 explicit/manual-safe backtest execution gates；仍不得启动 PL-H batch、真实/default runner、background/migration/backfill，真实回测执行继续要求显式授权。",
-  "next_after": "After reviewed plan handoff, wire consumer-visible manual-safe execution readiness so users can inspect candidate evidence and explicitly choose safe simulation before any real runner work.",
+  "current_slice": "reviewed-backtest-plan-handoff-loop260",
+  "next_atomic_action": "MANUAL_SAFE_SIMULATION_HAPPY_PATH：基于 loop260 reviewed_backtest_plan，把“检查候选证据 -> 手动确认 -> 安全模拟回测”的用户可见 happy path 串通到 Chat/Jobs/MiningJob；仍只允许 injected/mock-safe runner 或 plan-only evidence，禁止 PL-H batch、真实/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、background/migration/backfill 和 secret 输出。",
+  "next_after": "After manual-safe simulation happy path, decide whether the consumer-visible acceptance evidence is enough to request explicit real-runner authorization/config review, or whether candidate evidence/intent routing needs another product slice.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,11 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop259-real-panel-f6-evaluation-integration",
+  "last_tick": "loop260-reviewed-backtest-plan-handoff",
   "last_sync_sources": [
+    "loop260 reviewed_backtest_plan visible in MiningJob/API, Chat, and Jobs",
+    "loop260 TDD target 4 passed; target group 6 passed; related regression 81 passed",
+    "loop260 ruff ok; JobsPage eslint ok; web build ok; node --check ok; Jobs smoke ok",
+    "loop260 permanent test-engineer/code-reviewer read-only reports success",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.587",
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
-    "PROJECT_STATUS.md §5.585",
+    "PROJECT_STATUS.md §5.586",
     "METHODOLOGY_MEMORY.md GP-08",
     "harness/session-handoff.md",
     "git status / branch main-only",
@@ -1049,7 +1054,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop259 completed real panel F6 evaluation integration. Deterministic A-E mining candidates can now be evaluated on an injected local panel through Factor DSL operators and FastBacktestService IC/rank-IC screening, producing local_panel_f6_screening_evidence with panel_source, data_profile, quick_ic/rank_ic/icir/coverage/evaluated_days/sample_rows, candidate verdicts, and fail-closed expression errors. mining_runner uses this evidence when a panel is supplied and still falls back to pseudo quick-screen only when no panel is injected. auto_backtest_plan remains plan_only and carries screening_evidence; no real/default runner, DB-backed backtest, PL-H batch, background/migration/backfill, or secret output was introduced."
+    "note": "loop260 completed reviewed backtest plan handoff. local_panel_f6_screening_evidence plus plan-only auto_backtest_plan are now summarized as reviewed_backtest_plan for MiningJob/API observability, Chat summaries, and Jobs consumer UI. The plan shows A-E category/subclass labels, selected candidates, IC/rank-IC/ICIR/coverage/evaluated_days/sample_rows, panel source/data profile, and a manual-safe execution gate. It remains plan-only/manual-trigger-required: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, background/migration/backfill, or secret output was introduced."
   },
-  "last_completed_note": "loop259 Real Panel F6 Evaluation Integration complete. Added qa.quant_mining.panel_f6_evaluator, expanded Factor DSL panel operators used by candidate_generator_v1, wired run_mining_batch_once(panel=...) to produce local_panel_f6_screening_evidence, preserved IC/rank-IC/coverage/evaluated-days/sample-rows fields in quick_screening_report, and carried screening_evidence into plan-only auto_backtest_plan. Verification: TDD target 4 passed; related mining/DSL regression 49 passed; targeted ruff pass. Permanent test-engineer/code-reviewer worker reports were used read-only. Next_atomic_action is reviewed backtest plan handoff for user-readable evidence and manual-safe gates, not PL-H/real runner execution."
+  "last_completed_note": "loop260 Reviewed Backtest Plan Handoff complete. Added build_reviewed_backtest_plan_handoff, persisted/exposed reviewed_backtest_plan through mining_runner observability/API, rendered a consumer-grade Chat summary, and displayed Jobs page reviewed plan copy with visible category/subclass, rank IC, coverage, evaluated days, manual-trigger requirement, and will_execute=false markers. Verification: TDD RED missing helper; focused GREEN 4 passed; target group 6 passed; related mining/DSL/API/Chat/taxonomy regression 81 passed; ruff ok; JobsPage eslint ok; web build ok; node --check ok; Jobs browser smoke ok with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]. Permanent test-engineer/code-reviewer reports were used read-only. Next_atomic_action is manual-safe simulation happy path, not PL-H/real runner execution."
 }
