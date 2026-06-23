@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T15:16:50+08:00
+updated_at: 2026-06-23T15:34:09+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-23T15:16:50+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-23 loop251 · 已完成 operator/reviewer authorization packet review-only mocked-only：新增 `operatorReviewerAuthorizationPacketReviewOnlyChecks` / `assertOperatorReviewerAuthorizationPacketReviewOnly(...)`，基于 loop250 planning-only packet boundary 证明 review-only/not-manual-acceptance/not-authorization/not-execution：source=loop250、authorization evidence packet fields review_required_not_granted、operator authorization review_required_not_granted、reviewer authorization review_required_not_approved、runner/adapter config boundary review_required_not_connected、explicit runner/no-default boundary、rollback/audit before-after review_required_no_execution、missing-runner fail-closed review confirmed、PL-H not eligible until real-batch gate、no-execution matrix review_complete_not_executable、decision=review_only_not_authorization_not_execution。验证：RED expected failure，focused+loop250 pytest 2 passed，source-chain loop248-loop251 4 passed，jobs_fixture_emits 54 passed，ruff/node-check/eslint/build/smoke/scans/runtime cleanup pass；test-engineer/executor/code-reviewer success，verifier semantic PASS accepted after orchestrator rerun。用户随后校准：不要陷入 proof-only 微切片，目标是完整可用 raindeer 平台；下一拍改为 PL-G product outcome happy-path slice，用既有 mocked/injected-runner explicit trigger 把 intent/route evidence -> MiningJob action -> explicit trigger -> completed mocked backtest/audit -> readable user result/next-step summary 收束成用户可见 Jobs/assistant 闭环与 browser smoke。仍禁止 manual acceptance grant、authorization grant、execution permission、real/default runner connection/configuration/invocation、actual adapter dry-run、background、migration/backfill、DB-backed backtest、PL-H execution、secret output。
+
 [CONTEXT] 2026-06-23 loop250 · 已完成 explicit authorization/config/runner/rollback-audit packet boundary planning-only mocked-only：新增 `explicitAuthorizationConfigRunnerRollbackAuditPacketBoundaryPlanningChecks` / `assertExplicitAuthorizationConfigRunnerRollbackAuditPacketBoundaryPlanning(...)`，基于 loop249 artifact-review gate 证明 planning-only/not-manual-acceptance/not-authorization/not-execution：source=loop249、authorization evidence packet planning_required_not_granted、operator authorization planning_required_not_granted、reviewer authorization planning_required_not_approved、runner/adapter config planning_required_not_connected、explicit runner/no-default boundary、rollback/audit before-after plan_required_no_execution、missing-runner fail-closed planned、PL-H not eligible until real-batch gate、no-execution matrix planning_complete_not_executable、later executable handoff blocked until operator/reviewer authorization packet review、decision=planning_only_not_authorization_not_execution、next_gate=operator_reviewer_authorization_packet_review_only。验证：RED expected failure，focused+loop249 pytest 2 passed，adjacent proof chain 12 passed，jobs_fixture_emits 53 passed，ruff/node-check/eslint/build/smoke/scans/runtime cleanup pass；test-engineer success，executor partial，code-reviewer/verifier success。下一拍：operator/reviewer authorization packet review-only mocked-only；仍禁止 manual acceptance grant、authorization grant、execution permission、runner/adapter connection/configuration/invocation、actual adapter dry-run、background、migration/backfill、DB-backed backtest、PL-H execution、secret output。
 
 [CONTEXT] 2026-06-23 loop249 · 已完成 later executable handoff manual acceptance artifact review-only mocked-only：新增 `laterExecutableHandoffManualAcceptanceArtifactReviewOnlyChecks` / `assertLaterExecutableHandoffManualAcceptanceArtifactReviewOnly(...)`，基于 loop248 acceptance-design gate 证明 artifact-review-only/not-manual-acceptance/not-authorization：source=loop248、explicit UI acceptance packet review_required_not_granted、operator signoff review_required_not_granted、reviewer signoff review_required_not_approved、runner/adapter still_not_connected、rollback/audit before-after review_required_no_execution、missing-runner fail-closed rejection confirmed、PL-H not eligible until real-batch gate、no-execution matrix review_complete_not_executable、later executable handoff blocked until explicit authorization/config/runner/rollback-audit packet boundary、decision=artifact_review_only_not_manual_acceptance_not_authorization、next_gate=explicit_authorization_config_runner_rollback_audit_packet_boundary_planning_only。验证：RED expected failure，focused+loop248 pytest 2 passed，adjacent proof chain 11 passed，jobs_fixture_emits 52 passed，ruff/node-check/eslint/build/smoke/scans/runtime cleanup pass；test-engineer/executor/code-reviewer/verifier success。下一拍：explicit authorization/config/runner/rollback-audit packet boundary planning-only mocked-only；仍禁止 manual acceptance grant、authorization grant、runner/adapter connection、real/default runner、adapter invocation、actual adapter dry-run、background、migration/backfill、DB-backed backtest、PL-H execution、secret output。
@@ -134,18 +136,18 @@ updated_at: 2026-06-23T15:16:50+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-operator-reviewer-authorization-packet-review-only-mocked-only |
-| `last_tick` | loop250-explicit-authorization-config-runner-rollback-audit-packet-boundary-planning |
+| `current_slice` | pl-g-product-outcome-auto-mining-to-auto-backtest-happy-path |
+| `last_tick` | loop251-operator-reviewer-authorization-packet-review-only |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start operator/reviewer authorization packet review-only mocked-only: use loop250 planning-only packet boundary to review the explicit authorization evidence packet fields, operator/reviewer authorization evidence, runner/adapter config boundary, explicit runner/no-default boundary, rollback/audit before-after plan, missing-runner fail-closed plan, PL-H real-batch eligibility boundary, and no-execution matrix before any later executable handoff can be considered; this remains review-only and must not grant manual acceptance, grant authorization, grant execution permission, connect/configure/invoke runner/adapter, execute actual adapter dry-run, auto POST on page load, start background work, run migration/backfill, run DB-backed backtest, enable PL-H batch execution, or output secrets. Before dispatch, resolve permanent CodeX worker codex_thread_id from roster and verify reachability; runtime_agent_id is auxiliary evidence only.
+Start PL-G product outcome happy-path slice: collapse the existing auto-mining-to-auto-backtest proof chain into one user-visible Jobs/assistant workflow acceptance surface and browser smoke. Use existing mocked/injected-runner explicit trigger only to show intent/route evidence -> MiningJob action -> explicit trigger -> completed mocked backtest/audit -> readable user result/next-step summary; this is product acceptance wiring, not another proof-only artifact, and must not connect/configure/invoke a real/default runner, execute actual adapter dry-run, auto POST on page load, start background work, run migration/backfill, run DB-backed backtest, enable PL-H batch execution, or output secrets. Before dispatch, resolve permanent CodeX worker codex_thread_id from roster and verify reachability; runtime_agent_id is auxiliary evidence only.
 
 ### next_after
 
-After operator/reviewer authorization packet review-only stabilizes, decide the smallest still-mocked operator/reviewer authorization packet UX/signoff artifact review gate; any manual acceptance grant, authorization grant, execution permission, runner/adapter connection/configuration/invocation, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output remains forbidden until a later explicit authorization/config/runner/rollback-audit gate is implemented and verified.
+After the product happy-path slice is browser-smoke verified, prepare the manual UX acceptance package / user-facing verification checklist; any real runner, actual adapter dry-run, DB-backed backtest, PL-H batch execution, or authorization grant still requires a later explicit authorization/config/rollback-audit gate.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -162,7 +164,7 @@ After operator/reviewer authorization packet review-only stabilizes, decide the 
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 operator/reviewer authorization packet review-only；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate，并验证永久 worker codex_thread_id 可达；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要授予 manual acceptance/authorization/execution，也不要调用真实 runner、adapter invocation、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 PL-G product outcome happy-path slice；先跑 goal/product gate、worker dispatch gate 与 worker cluster/rendezvous gate，并验证永久 worker codex_thread_id 可达；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要授予 manual acceptance/authorization/execution，也不要调用真实/default runner、adapter invocation、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers
