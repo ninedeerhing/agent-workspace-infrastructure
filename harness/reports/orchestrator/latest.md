@@ -1,6 +1,6 @@
 # Orchestrator Report - loop239-explicit-executable-handoff-authorization-packet
 
-**Updated**: 2026-06-23T10:51:01+08:00
+**Updated**: 2026-06-23T10:57:14+08:00
 
 ## Tick Summary
 
@@ -46,6 +46,8 @@ cluster_manifest:
 | capacity_review | existing roster sufficient; no new worker requested |
 | skill_lifecycle | no new M/GP; applied M-46/GP-22 and M-17 zero-write audit; router precision gap carried |
 | daily_ops_governance | after user duplicate-thread report, old verifier thread archived and `daily-ops` worker/prompt/wrapper added to replace three separate daily automations; follow-up fixed UI drift by creating pinned `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`, archiving old daily UI threads, and binding `awi-daily-ops` heartbeat to that thread |
+| model_budget_governance | user requested token reduction; routine/non-critical workers now dispatch with `<=gpt-5.4`, critical code/design/architecture/security/real-execution/release-final-review stays on `gpt-5.5`; future dispatch must record `model_tier` and `model_reason` |
+| skillification_review | no new skill created now; P0 candidate is PL-G fail-closed proof gate; P1 candidate is skill-router telemetry tuning; remaining patterns stay as worker responsibilities until repeated evidence justifies a new skill |
 
 ## Changes
 
@@ -61,6 +63,7 @@ cluster_manifest:
 | `harness/codex-automation-registry.json` | Retires three separate daily automations in favor of `awi-daily-ops`. |
 | `harness/reports/workers/daily-ops.md` | Registers the daily-ops worker report surface. |
 | `docs/PLATFORM-CODEX.md` / `docs/CONTINUATION_PROMPT.md` / `harness/session-handoff.md` / `harness/reports/EMPLOYEE_ROSTER.md` | Records `awi-daily-ops` as a heartbeat bound to pinned thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0` and archives old daily UI threads. |
+| `docs/LOOP_ENGINEERING.md` / `harness/templates/loop-tick-prompt.md` / `harness/templates/codex-subagent-prompt.md` / `apps/quant_assistant/docs/METHODOLOGY_MEMORY.md` | Records Worker Model Budget Gate and skillification candidate digest without creating a new skill. |
 
 ## Review
 
@@ -99,3 +102,5 @@ Start executable handoff gate review mocked-only using the loop239 explicit exec
 Daily operations must route through `daily-ops` only; do not create duplicate verifier/self-check/compliance/git-push conversations.
 
 Pinned daily-ops thread: `019ef261-de0b-7ad0-8e9c-bb005dd38af0`; old daily git-push/compliance/self-check UI threads archived.
+
+Next dispatch must include `model_tier` / `model_reason`: routine workers use `<=gpt-5.4`; critical product/code/design/security/execution gate work uses `gpt-5.5`.

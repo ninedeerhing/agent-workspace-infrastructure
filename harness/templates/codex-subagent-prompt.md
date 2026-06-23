@@ -23,6 +23,10 @@ assignment:
     cluster_id: ""
     rendezvous_gate: ""
     write_scope_mode: "read-only | disjoint-write"
+  model_policy:
+    assigned_model: "gpt-5.5 | gpt-5.4 | gpt-5.4-mini | gpt-5.3-codex-spark"
+    model_tier: "critical-gpt-5.5 | routine-<=gpt-5.4"
+    model_reason: ""
   do_not_touch:
     - ".env"
     - ".env.local"
@@ -42,6 +46,7 @@ assignment:
 - 不自行创建新 worker 或 skill；如当前角色不足以承担任务，报告 `blocked` 并交回总调度请求用户批准。
 - `role_id` 必须来自 `harness/reports/EMPLOYEE_ROSTER.md`；不要使用 `reviewer` / `tester` / `other` 等未登记别名。
 - 默认只返回 report；只有 `cluster.write_scope_mode=disjoint-write` 且 `target_files` 明确时才能改文件。不要抢写共享真源。
+- 模型预算由 orchestrator 在创建/续派线程时决定；你不得自行要求升模。若任务实际风险与 `assignment.model_policy` 不匹配，报告 `blocked` 或 `risks` 交回总调度。
 
 ## Token 压缩
 
@@ -84,5 +89,9 @@ report:
     - ""
   risks:
     - ""
+  model_policy_observed:
+    assigned_model: ""
+    model_tier: ""
+    mismatch: "none | task_requires_higher_model | task_can_use_lower_model | unknown"
   next: ""
 ```

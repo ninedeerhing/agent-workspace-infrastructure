@@ -106,6 +106,7 @@ python harness/skill_router.py --query "<bounded task text>" --top-k 5 --pretty 
 - 不派发必须记录 `dispatch_decision=no_dispatch` 与 `no_dispatch_reason`，只能使用 `single_bounded_slice | no_independent_slices | read_only_review | shared_file_conflict | worker_overloaded | role_not_found | missing_subagent_tool | risk_requires_user | already_running_task`。
 - 新 worker / 新 skill 必须用户批准；不得因为负载高而自行创造角色名。
 - **Worker Capacity Gate**：每轮检查 roster 负载分布。若同一 role 连续 ≥3 tick 为 `3 high` / `surge`，或 orchestrator 连续自做实现、测试、审查、治理中任两类工作，必须先再平衡到空闲既有 worker；仍不足时记录 `capacity_review` 与“新增 worker 功能差异矩阵”。新增 worker 只允许在职责与现有 21 worker 无模糊重叠且获用户批准后创建。
+- **Worker Model Budget Gate**：每次 dispatch 必须记录 `model_tier` 与 `model_reason`。非关键任务 worker 默认使用 `<=gpt-5.4`（routine/status/index/report/daily ops 优先 `gpt-5.4-mini`，普通 read-only research/planning/governance/trace 可用 `gpt-5.4`）；关键代码、关键设计、架构边界、安全/授权、真实执行门禁、发布/高风险 final review 必须使用 `gpt-5.5`。跨对话既有 worker 续派时，用 `send_message_to_thread(model=...)` 显式覆盖；不要为了模型切换创建重复 worker 对话。
 - Orchestrator 只负责目标、计划、派发、整合、验证与真源同步；业务实现、测试设计、代码审查、安全审查、治理复核应优先交给对应 worker，除非本轮是单文件/单命令的 bounded slice 并记录不派发原因。
 
 ### 3.4 Worker Cluster Gate（目标包络与汇合门禁 · v1.4）
@@ -124,6 +125,8 @@ cluster_manifest:
     - role_id: ""
       thread_id: ""
       task_id: ""
+      model_tier: "<=gpt-5.4 | gpt-5.5"
+      model_reason: ""
       write_scope: []
       mode: "read-only | write"
       status: "assigned | reported | integrated | retired"

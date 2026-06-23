@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-23T10:51:01+08:00
+Updated: 2026-06-23T10:57:14+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -32,6 +32,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 - After each subagent report, update `last_report_at`, `workload`, `performance`, `mistake_count`, `lesson_count`, `current_task`, and `handoff_notes`.
 - Keep role creation fail-closed: new workers or skills require AskQuestion/user approval and must not be invented silently.
 - `report_path` remains the detailed evidence source; this roster is an index, not a replacement for worker reports.
+
+## Model Budget Policy
+
+- **Default**: non-critical workers and routine work use `<=gpt-5.4`. Prefer `gpt-5.4-mini` for daily ops, git/status checks, index refresh, report formatting, thread hygiene, and other low-risk mechanical work; use `gpt-5.4` for ordinary read-only research, planning, governance, traceability, and routine verification.
+- **Critical**: use `gpt-5.5` for production code edits, product/UI design, architecture boundary decisions, security/authorization reviews, real-execution gates, release/high-risk final verification, and any worker asked to make or review user-facing product behavior.
+- **Dispatch requirement**: every worker assignment must record `model_tier` and `model_reason` in the assignment envelope / cluster manifest. Existing cross-dialogue worker threads must be continued with `send_message_to_thread(model=...)` instead of creating duplicate threads only to change model.
 
 ## Manager
 

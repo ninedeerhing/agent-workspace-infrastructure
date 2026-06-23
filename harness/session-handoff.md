@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T10:51:01+08:00
+updated_at: 2026-06-23T10:57:14+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -18,6 +18,8 @@ updated_at: 2026-06-23T10:51:01+08:00
 
 ```text
 [CONTEXT] 2026-06-23 daily-ops · 用户指出 CodeX UI 出现两个同名 verifier，并且 daily git push / compliance / CodeX self-check 每天分别新开对话；随后发现 daily-ops 对话未出现且旧 daily 对话未归档。已归档旧 verifier thread `019ee9fe-7605-7d53-8380-57228c31048c`，保留当前 verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 为唯一可复用 verifier；新增并 pin `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`，归档旧 daily UI threads `019eef56-e7c4-7ea1-916a-49030eb3f929` / `019eea29-471f-7df3-a174-b6a0e74fb6dc` / `019eef34-1b24-7020-8003-4e8a158df67e` / `019ef1c7-f3f3-7401-9158-c25756633a17` / `019eecaa-4930-7dc0-b5a1-97003d2e7b50`；`awi-daily-ops` 已从 standalone cron 改为绑定该 thread 的 heartbeat。业务主线不变，下一拍仍是 executable handoff gate review TDD mocked-only。
+
+[CONTEXT] 2026-06-23 worker-model-budget · 用户要求 token 消耗降级：非关键 worker 不再默认继承 5.5，routine/status/index/report/daily ops 用 `gpt-5.4-mini`，普通 read-only research/planning/governance/trace 用 `gpt-5.4`；关键代码、关键设计、架构边界、安全/授权、真实执行门禁、发布/高风险 final review 必须用 `gpt-5.5`。已写入 `docs/LOOP_ENGINEERING.md` Worker Model Budget Gate、`harness/templates/loop-tick-prompt.md`、`harness/templates/codex-subagent-prompt.md` 和 roster 的 Model Budget Policy。后续派工必须记录 `model_tier` / `model_reason`，续派既有 worker 用 `send_message_to_thread(model=...)`，不得为了换模型创建重复 worker thread。技能候选暂不创建，P0 候选是 PL-G fail-closed proof gate；P1 候选是 skill-router telemetry tuning。
 
 [CONTEXT] 2026-06-23 loop239 · 已完成 explicit executable handoff authorization packet mocked-only：复用同一 worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `explicitExecutableHandoffAuthorizationPacketChecks` / `assertExplicitExecutableHandoffAuthorizationPacket(...)`，Jobs smoke fixture 验证 authorization-packet-only/not-execution gate：source=loop238 later executable handoff gate preflight、fail_closed_explicit_executable_handoff_authorization_packet_not_execution、operator/reviewer authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution executable authorization packet acceptance、executable handoff blocked_until_explicit_authorization_config_rollback_audit_real_batch_gate 与 executable handoff gate review next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 48 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / loop239 markers visible，source-only active Pascal scan=0，precise_secret_assignment_matches=0 与 runtime cleanup pass。下一拍进入 executable handoff gate review TDD mocked-only，仍禁止 real/default runner、adapter invocation、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 
@@ -160,6 +162,7 @@ $env:PYTHONPATH='src'
 - **路径**: `harness/reports/EMPLOYEE_ROSTER.md`
 - **Orchestrator report**: `harness/reports/orchestrator/latest.md`
 - **Workers**: 21 active roles · dispatch 前读 roster 的 workload / risk_notes
+- **Model budget**: 非关键 worker 用 `<=gpt-5.4`；关键代码/设计/架构/安全/真实执行门禁/发布 final review 用 `gpt-5.5`；每次 dispatch 记录 `model_tier` / `model_reason`
 
 ### What NOT To Do
 
