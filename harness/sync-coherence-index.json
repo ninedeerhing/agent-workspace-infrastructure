@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T10:44:55Z",
+  "updated_at": "2026-06-23T11:21:39Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
@@ -10,14 +10,14 @@
   "task_trees_next_hint": "USER_MANUAL_UX_ACCEPTANCE_REQUIRED：用户在 Jobs/assistant 复验 `Auto mining to backtest result` 下方的 `Manual UX acceptance package` 是否清楚、完整、不会误导为真实执行；验收后进入 intent quant integration readiness / auto-backtest flow readiness hardening。",
   "foreground_tree": "TREE-6",
   "foreground_slice": "",
-  "latest_section5_id": "579",
-  "latest_section5_title": "loop253 PL-G manual UX acceptance package / user-facing verification checklist（2026-06-23 · orchestrator · TREE-6/PL-G）",
-  "top_summary_section5_ref": "579",
-  "top_summary_last_tick": "loop253-manual-ux-acceptance-package",
-  "loop_last_tick": "loop253-manual-ux-acceptance-package",
+  "latest_section5_id": "580",
+  "latest_section5_title": "loop253 live Jobs API mining_job readiness hotfix（2026-06-23 · orchestrator · TREE-6/PL-G）",
+  "top_summary_section5_ref": "580",
+  "top_summary_last_tick": "loop253-manual-ux-db-readiness-hotfix",
+  "loop_last_tick": "loop253-manual-ux-db-readiness-hotfix",
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-23T10:44:55Z",
+    "at": "2026-06-23T11:21:39Z",
     "finding_count": 0,
     "warning_count": 0,
     "error_count": 0

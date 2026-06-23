@@ -1,3 +1,34 @@
+# Orchestrator Report - loop253-live-jobs-api-mining-job-readiness-hotfix
+
+**Updated**: 2026-06-23T19:08:00+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G manual UX acceptance support.
+- **trigger**: user live Jobs page acceptance showed `UndefinedTable: relation "mining_job" does not exist`.
+- **root cause**: app `schema.sql` contains `mining_job` DDL, but current API DSN had not applied that additive table while core market tables existed.
+- **action**: executed only additive `mining_job` table + two indexes DDL.
+- **stop boundary**: still `manual_ux_acceptance_required_loop253`; this hotfix restores live Jobs API readiness but does not count as manual package acceptance.
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| DB shape before | pass · `mining_job=False`, `daily_bar=True`, `trading_calendar_cn=True`, `security_master=True` |
+| DB hotfix | pass · `CREATE TABLE IF NOT EXISTS mining_job` + indexes only |
+| DB shape after | pass · `mining_job=True`, `mining_job_rows=0` |
+| live API | pass · `GET /api/v1/quant/mining-jobs` -> HTTP 200, `jobs=[]`, `error=null` |
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No full schema script, destructive DDL, business job seed, background process, migration/backfill job, real/default runner, adapter dry-run, DB-backed backtest, or PL-H batch execution was started.
+
+## Residual Risk
+
+The live empty DB queue does not display the loop253 completed mocked/injected-runner happy-path package. Manual UX acceptance still needs the user to inspect the completed mocked path copy: `Auto mining to backtest result` plus `Manual UX acceptance package`.
+
+---
+
 # Orchestrator Report - loop253-manual-ux-acceptance-package
 
 **Updated**: 2026-06-23T18:35:36+08:00
