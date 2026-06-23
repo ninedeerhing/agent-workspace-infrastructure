@@ -1,3 +1,54 @@
+# Orchestrator Report - loop266-durable-safe-simulation-result-roundtrip
+
+**Updated**: 2026-06-24T04:24:03+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Durable Safe-Simulation Result Roundtrip.
+- **trigger**: loop265 normalized `manual_safe_status/product_state`, but completed safe-simulation results still needed one durable product-state source across explicit trigger response, refreshed MiningJob list/detail, Jobs, and Chat/session recovery.
+- **result**: Completed `product_state` now carries `completed_count`, `run_ids`, `next_step`, `audit_event_id`, and `audit_status` from the same manual-safe status source. API response/list/detail, Jobs default UI, and Chat follow-up/session recovery all consume that completed state.
+- **next**: `REAL_RUNNER_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_FRAMEWORK_LOOP267`; implement explicit runner config, operator/reviewer authorization evidence, rollback/audit readiness, and fail-closed API/Jobs/Chat readiness. Still no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, page-load POST, env/DB read, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/manual_safe_simulation_status.py` | Adds completed-state fields for count, run ids, and audit status. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Wraps completed manual-safe status into `product_state.completed` for API/list/detail observability. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Prefers completed `product_state` for manual-safe follow-up replies and session recovery. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Renders completed product-state roundtrip details in the default Jobs card. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds completed product-state fixture data and smoke assertions. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Proves trigger response and refreshed list/detail share completed product state. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Proves Chat completed follow-up prefers product state over stale legacy payload. |
+| `apps/quant_assistant/tests/test_jobs_page_action_rendering_unit.py` | Proves Jobs source renders completed product-state markers. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Proves fixture source emits completed roundtrip markers. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `product_state.completed`, Chat completed copy, Jobs markers, and fixture assertions failed before implementation |
+| focused GREEN | pass · **4 passed** |
+| final related regression | pass · **88 passed** across API, status contract, Chat, Jobs action rendering, and smoke source tests |
+| Python ruff | pass · targeted files clean |
+| node check | pass · smoke fixture syntax ok |
+| web build | pass · `tsc -b && vite build` |
+| Jobs browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `product_state_completed_roundtrip_visible=true`, `product_state_run_ids=bt_smoke_mocked_accept` |
+
+## Worker Notes
+
+Permanent worker threads were used. `executor` implemented the completed product-state roundtrip and ran focused/wider checks. `test-engineer` returned a success matrix for trigger response, refreshed list/detail, Chat, Jobs, and no execution. `code-reviewer` found no P1/P2 blockers and confirmed no real/default runner or adapter path was added. `verifier` independently accepted 88 tests, ruff, node check, build, smoke, and no-execution evidence.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, page-load POST, background process, migration, or backfill was started. Completed `product_state` is product visibility for manual-safe mocked/injected simulation result, not an execution grant.
+
+## Residual Risk
+
+The next real gap is a proper runner eligibility framework: explicit runner config, operator/reviewer authorization, rollback/audit readiness, and missing-runner fail-closed behavior must be modeled before any controlled runner dry-run contract.
+
+---
+
 # Orchestrator Report - loop265-mining-job-normalized-product-state-api-contract
 
 **Updated**: 2026-06-24T04:04:25+08:00

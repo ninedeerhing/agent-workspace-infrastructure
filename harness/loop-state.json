@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T04:04:25+08:00",
+  "updated_at": "2026-06-24T04:24:03+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "mining-job-normalized-product-state-api-contract-loop265",
-  "next_atomic_action": "DURABLE_SAFE_SIMULATION_RESULT_ROUNDTRIP_LOOP266：在不启用真实 runner/PL-H 的前提下，把 loop265 统一 product_state/manual_safe_status 串到 durable safe-simulation result roundtrip：explicit trigger 后 API response、refreshed MiningJob list/detail、Chat follow-up/session recovery、Jobs 默认卡片必须从同一 product_state.completed 状态读取 completed_count/run_ids/next_step/audit refs；补齐 API/Chat/Jobs tests + smoke，仍禁止 backtest_dispatch 自动触发、PL-H batch、真实/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、page-load POST、background/migration/backfill、secret 输出。",
-  "next_after": "After durable completed-state roundtrip is stable across API, Jobs, and Chat/session recovery, proceed to explicit authorization/config/rollback-audit review for real-runner eligibility only if the product-state acceptance remains stable; do not enable PL-H or a real/default runner without explicit later gates.",
+  "current_slice": "durable-safe-simulation-result-roundtrip-loop266",
+  "next_atomic_action": "REAL_RUNNER_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_FRAMEWORK_LOOP267：在 loop266 completed product_state 稳定后，建立真实 runner eligibility framework v1：显式 runner_config、operator/reviewer 双人授权证据、rollback/audit before-after readiness、missing-runner fail-closed、consumer-visible readiness/API/Jobs/Chat 状态；仍禁止 default/real runner invocation、adapter invocation、actual adapter dry-run、DB-backed backtest、PL-H batch、page-load POST、background/migration/backfill、secret 输出。",
+  "next_after": "After explicit runner authorization/config/rollback-audit framework v1 is stable and fail-closed, proceed to controlled real-runner dry-run adapter contract only behind explicit operator/reviewer approval and test-only injected runner boundaries; do not enable PL-H or default runner.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop265-mining-job-normalized-product-state-api-contract",
+  "last_tick": "loop266-durable-safe-simulation-result-roundtrip",
   "last_sync_sources": [
+    "loop266 Durable safe-simulation result roundtrip",
+    "loop266 TDD RED missing product_state.completed/Chat completed/Jos markers before implementation",
+    "loop266 focused GREEN 4 passed; final related regression 88 passed; targeted ruff pass",
+    "loop266 node check pass; web build pass; Jobs smoke ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 product_state_completed_roundtrip_visible=true",
+    "loop266 executor/test-engineer/code-reviewer/verifier permanent worker reports success",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.593",
     "loop265 MiningJob normalized product_state/manual_safe_status API contract",
     "loop265 TDD RED KeyError manual_safe_status before implementation",
     "loop265 focused API/status 31 passed; final focused regression 66 passed; ruff pass",
@@ -1083,7 +1089,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop265 completed the MiningJob normalized product_state/manual_safe_status API contract. MiningJob list/detail observability now exposes manual_safe_status and product_state from the same pure status contract; Chat follow-up prefers normalized product_state/manual_safe_status over legacy manual_safe_simulation; Jobs default UI renders the normalized safety simulation state. This branch remains no-execution: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
+    "note": "loop266 completed durable safe-simulation result roundtrip. Explicit trigger response, refreshed MiningJob list/detail, Chat follow-up/session recovery, and Jobs default UI now read the same completed product_state with completed_count, run_ids, next_step, audit_event_id, and audit_status. This branch remains no-execution: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
   },
-  "last_completed_note": "loop265 MiningJob Normalized Product State API Contract complete. MiningJob list/detail observability now derives manual_safe_status and product_state from the loop264 pure manual-safe simulation status contract, using reviewed_backtest_plan, manual_safe_simulation, explicit action hints, and latest audit event. Chat follow-up/session recovery now prefers normalized product_state/manual_safe_status before legacy manual_safe_simulation/reviewed_plan copy, preventing stale legacy payloads from overriding API truth. Jobs default UI shows the shared safety simulation state and machine-readable no-execution markers. Verification: executor RED KeyError manual_safe_status before implementation; focused API/status group 31 passed; final focused regression 66 passed; targeted ruff pass; web build pass; npm run smoke:jobs-page pass with ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5; code-reviewer P1 legacy-priority issue fixed and rechecked success; test-engineer/verifier read-only reports accepted. Next_atomic_action is DURABLE_SAFE_SIMULATION_RESULT_ROUNDTRIP_LOOP266 to prove completed product_state roundtrip after explicit trigger across API, Jobs, and Chat/session recovery, not PL-H/real runner execution."
+  "last_completed_note": "loop266 Durable Safe-Simulation Result Roundtrip complete. build_manual_safe_simulation_status completed state now surfaces completed_count, run_ids, audit_event_id, and audit_status; MiningJob product_state wraps those fields under product_state.completed; API trigger response and refreshed list/detail, Jobs default UI, and Chat follow-up/session recovery consume the same completed product_state. Verification: RED failed on missing product_state.completed, Chat completed copy, Jobs markers, and fixture assertions before implementation; focused GREEN 4 passed; final related regression 88 passed; targeted ruff pass; node --check pass; web build pass; npm run smoke:jobs-page pass with ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 product_state_completed_roundtrip_visible=true product_state_run_ids=bt_smoke_mocked_accept. Executor/test-engineer/code-reviewer/verifier permanent worker reports accepted. Next_atomic_action is REAL_RUNNER_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_FRAMEWORK_LOOP267 to establish explicit runner config, operator/reviewer authorization, rollback/audit readiness, and fail-closed API/Jobs/Chat readiness without enabling PL-H/default/real runner execution."
 }

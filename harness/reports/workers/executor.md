@@ -1,6 +1,17 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-24T04:04:25+08:00
+**Updated**: 2026-06-24T04:24:03+08:00
+
+## Tick loop266-durable-safe-simulation-result-roundtrip
+
+- **任务 ID**：loop266-durable-safe-simulation-result-roundtrip-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：有界实现 completed `product_state` roundtrip，让 explicit trigger response、refreshed MiningJob list/detail、Jobs 默认卡片与 Chat follow-up/session recovery 读取同一完成态；不读取/打印 secret，不连接 DB/runner，不启动 backtest/migration/backfill。
+- **变更**：扩展 `build_manual_safe_simulation_status(...)` completed fields；在 MiningJob product_state 下加入 `completed`；Chat completed follow-up 优先消费 product_state；Jobs/smoke 增加 completed roundtrip markers；补齐 API/Chat/Jobs tests。
+- **orchestrator 本地验证**：RED missing `product_state.completed` / Chat completed copy / Jobs markers / fixture assertions；focused GREEN **4 passed**；最终 related regression **88 passed**；targeted ruff pass；node check pass；web build pass；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `product_state_completed_roundtrip_visible=true`。
+- **roster_update**：workload cleared；mistakes none；lesson: completed product-state roundtrip must be represented by one shared API product state, not by separate Chat/UI legacy summaries。
 
 ## Tick loop265-mining-job-normalized-product-state-api-contract
 
