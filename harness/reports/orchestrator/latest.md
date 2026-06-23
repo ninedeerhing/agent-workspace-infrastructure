@@ -1,3 +1,49 @@
+# Orchestrator Report - loop262-chat-intent-manual-safe-simulation-bridge
+
+**Updated**: 2026-06-24T02:28:30+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Chat Intent Manual-safe Simulation Bridge.
+- **trigger**: loop261 made manual-safe simulation visible, but natural-language "start/check safe simulation" still risked falling through to generic backtest dispatch.
+- **result**: Added manual-safe simulation intent detection and no-dispatch route decisions in `rule_route_decision(...)`: ready state points to the explicit page trigger, completed state reports injected/mock-safe result ids, and missing reviewed plan fail-closes.
+- **next**: `CHAT_MANUAL_SAFE_SIMULATION_RECOVERY_AND_ACTION_PARITY`; still no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, page-load POST, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/brain/graph/rule_route.py` | Added manual-safe simulation phrase detection and route decisions before generic backtest follow-up. |
+| `apps/quant_assistant/tests/test_intent_quant_subgraph_handoff_unit.py` | Added ready/completed/no-reviewed-plan route coverage to prove no generic dispatch. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · expected **3 failed / 7 passed** before implementation |
+| focused GREEN | pass · **10 passed** |
+| related Chat/API/MiningJob group | pass · **69 passed** |
+| cross-surface regression | pass · **162 passed** |
+| Python ruff | pass · `uv run ruff check .` |
+| forbidden-path scan | pass · no new runner/DB/adapter execution call found |
+| five lifecycle | pass · sync finding_count=0, verification stale=false section5_ref=5.589 |
+| CodeX self-check | pass · 59 checks / 0 findings |
+| compliance | pass · 41 pass / 1 pre-commit dirty-worktree warn / 0 fail / 0 findings |
+
+## Worker Notes
+
+Permanent worker threads were used read-only. `test-engineer` returned a success matrix for ready/completed/no-plan fail-closed route decisions and no-execution forbidden paths. `code-reviewer` returned a success safety review recommending the manual-safe route early-return and explicitly avoiding generic `backtest_dispatch`.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, page-load POST, background process, migration, or backfill was started.
+
+## Residual Risk
+
+The route contract is now safe, but the next slice must connect Chat runtime/session recovery and MiningJob action status so multi-turn users see the same explicit trigger handoff and existing results.
+
+---
+
 # Orchestrator Report - loop261-manual-safe-simulation-happy-path
 
 **Updated**: 2026-06-24T02:09:22+08:00

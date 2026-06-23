@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T18:16:57Z",
+  "updated_at": "2026-06-23T18:34:34Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-23T18:16:51Z",
-    "last_tick": "loop261-manual-safe-simulation-happy-path",
-    "pytest_passed": 88,
+    "recorded_at": "2026-06-23T18:34:33Z",
+    "last_tick": "loop262-chat-intent-manual-safe-simulation-bridge",
+    "pytest_passed": 162,
     "ruff": "pass",
     "evidence_paths": [
-      "loop261-manual-safe-simulation-happy-path"
+      "loop262 focused 10 passed; related 69 passed; cross-surface 162 passed; ruff pass; forbidden scan no new runner/DB/adapter execution"
     ],
-    "section5_ref": "5.588",
+    "section5_ref": "5.589",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.0016928605555555556,
+  "age_hours": 0.0002794286111111111,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-23T18:16:57Z",
+    "at": "2026-06-23T18:34:34Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.0016928605555555556
+    "age_hours": 0.0002794286111111111
   }
 }
