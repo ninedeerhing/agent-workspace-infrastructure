@@ -1,6 +1,17 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-24T04:24:03+08:00
+**Updated**: 2026-06-24T04:44:41+08:00
+
+## Tick loop267-real-runner-authorization-config-rollback-audit-framework
+
+- **任务 ID**：loop267-real-runner-authorization-framework-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：partial -> orchestrator takeover completed
+- **任务**：按 TDD 为真实 runner authorization/config/rollback-audit framework 建立 API/Chat/Jobs 基础实现；不读取/打印 secret，不连接 DB/runner，不启动 backtest/migration/backfill。
+- **变更**：先写 RED tests，新增 `real_runner_authorization_framework.py` 初版并接入 MiningJob/Chat/Jobs；orchestrator 后续完成 payload-drift gating、Chat 派生文案、fixture markers 与最终验证。
+- **orchestrator 本地验证**：focused **5 passed**；final related regression **92 passed**；targeted ruff pass；node check pass；web build pass；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `real_runner_authorization_framework_visible=true`, `execution_permission=not_granted`。
+- **roster_update**：workload cleared；mistakes none；lesson: shared hot-file implementation can start in executor, but orchestrator must coordinate takeover after STOP/rendezvous and complete final cross-surface verification.
 
 ## Tick loop266-durable-safe-simulation-result-roundtrip
 

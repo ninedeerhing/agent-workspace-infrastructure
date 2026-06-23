@@ -1,6 +1,18 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-24T04:24:03+08:00
+更新时间：2026-06-24T04:44:41+08:00
+
+## Tick loop267-real-runner-authorization-config-rollback-audit-framework
+
+- **任务 ID**：loop267-real-runner-authorization-framework-final-verification
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读验收真实 runner authorization/config/rollback-audit framework，确认 API/Chat/Jobs 共享 fail-closed 状态，且 no page-load POST/duplicate trigger/no-execution 边界成立。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：PASS；orchestrator rerun confirmed focused **5 passed**；final related regression **92 passed**；targeted ruff pass；node check pass；web build pass；Jobs smoke `ok=true` / `pageLoadTriggerRequests=[]` / `duplicateTriggerUrls=[]` / `miningJobsReadCount=5` / `real_runner_authorization_framework_visible=true` / `execution_permission=not_granted`；code-reviewer P2 recheck success。
+- **roster_update**：workload cleared；mistakes none；lesson: final verification for authorization frameworks must include payload drift protection, not only positive fail-closed text markers。
+- **残余风险**：受控 dry-run adapter contract/schema 尚未实现；下一拍必须定义 explicit runner_config schema、authorization packet schema、rollback/audit proof schema 与 test-only injected runner boundary，仍不得启动真实/default runner 或 PL-H execution。
 
 ## Tick loop266-durable-safe-simulation-result-roundtrip
 

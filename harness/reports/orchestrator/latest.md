@@ -1,3 +1,56 @@
+# Orchestrator Report - loop267-real-runner-authorization-config-rollback-audit-framework
+
+**Updated**: 2026-06-24T04:44:41+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Real Runner Authorization Config/Rollback-Audit Framework.
+- **trigger**: loop266 completed `product_state` made mocked/manual-safe results durable, but the next core gap was a shared, fail-closed framework that tells users why real runner execution is still not authorized.
+- **result**: API trigger/list/detail, Jobs default UI, and Chat follow-up/session recovery now expose the same `runner_authorization_framework_v1`: explicit runner config required/not-connected, operator/reviewer authorization required/not-granted, rollback/audit before-after proof required/not-ready, missing-runner fail-closed, and `execution_permission=not_granted`.
+- **next**: `CONTROLLED_REAL_RUNNER_DRY_RUN_ADAPTER_CONTRACT_LOOP268`; define explicit runner_config schema, authorization packet schema, rollback/audit proof schema, test-only injected runner boundary, and missing-runner fail-closed error surface. Still no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, page-load POST, env/DB read, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/real_runner_authorization_framework.py` | Adds pure fail-closed framework builder for runner config, operator/reviewer authorization, rollback/audit readiness, missing-runner fail-closed, and execution permission. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Attaches `runner_authorization_framework_v1` to completed MiningJob observability/product state. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders framework notes from payload fields and surfaces drift as manual-review copy instead of hardcoded safety claims. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Renders real-runner authorization framework readiness; fixed fail-closed markers are emitted only when the payload satisfies the predicate. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds framework fixture payload and smoke assertions for no-execution state. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Proves completed product state exposes framework payload. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Proves Chat displays framework notes and does not mask drifted payloads. |
+| `apps/quant_assistant/tests/test_jobs_page_action_rendering_unit.py` | Proves Jobs rendering includes framework readiness and source predicate assertions. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Proves fixture emits framework markers. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing API/Chat/Jobs/smoke framework markers failed before implementation |
+| focused GREEN | pass · **5 passed** |
+| final related regression | pass · **92 passed** across API, status contract, Chat, Jobs action rendering, and smoke source tests |
+| Python ruff | pass · targeted files clean |
+| node check | pass · smoke fixture syntax ok |
+| web build | pass · `tsc -b && vite build` |
+| targeted web lint | pass · 0 errors / 1 existing `ShellLayoutContext.tsx` warning |
+| Jobs browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `real_runner_authorization_framework_visible=true`, `execution_permission=not_granted` |
+| code-reviewer P2 recheck | pass · Jobs markers gated by payload predicate; Chat labels derived from payload and drift shows manual-review copy |
+
+## Worker Notes
+
+Permanent worker threads were used. `executor` wrote RED tests and partial implementation, then orchestrator completed shared hot-file integration. `test-engineer` returned a success matrix for API, Jobs, Chat, smoke, and no execution. `code-reviewer` found two P2 drift risks; both were fixed and rechecked success. `verifier` independently accepted focused tests, 92-test regression, ruff, node check, build, smoke, and no-execution evidence.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, page-load POST, background process, migration, or backfill was started. The framework is product visibility and eligibility state only, not an execution grant.
+
+## Residual Risk
+
+Controlled dry-run adapter contract/schema is not implemented yet. The next slice must define contract boundaries before any test-only injected-runner harness, and still must not enable live/default runner or PL-H execution.
+
+---
+
 # Orchestrator Report - loop266-durable-safe-simulation-result-roundtrip
 
 **Updated**: 2026-06-24T04:24:03+08:00

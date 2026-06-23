@@ -1,6 +1,18 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T04:24:03+08:00
+更新时间：2026-06-24T04:44:41+08:00
+
+## Tick loop267-real-runner-authorization-config-rollback-audit-framework
+
+- **任务 ID**：loop267-real-runner-authorization-framework-test-design
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读复核真实 runner authorization/config/rollback-audit framework 的 TDD 验收矩阵。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；验收覆盖 source=completed product_state 后的 `runner_authorization_framework_v1`、runner_config required/not-connected、operator/reviewer required/not-granted、rollback/audit before-after not-ready、missing runner fail-closed、PL-H not eligible、execution_permission not_granted、no real/default runner、no adapter invocation、no actual adapter dry-run、no page-load POST、no background/migration/backfill/DB backtest/secret output。
+- **orchestrator 本地验证**：focused **5 passed**；final related regression **92 passed**；targeted ruff pass；node check pass；web build pass；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `real_runner_authorization_framework_visible=true`。
+- **roster_update**：workload cleared；mistakes none；lesson: authorization framework acceptance must prove payload-driven fail-closed semantics, not just the presence of safety words.
 
 ## Tick loop266-durable-safe-simulation-result-roundtrip
 

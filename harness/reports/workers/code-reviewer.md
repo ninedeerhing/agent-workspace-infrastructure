@@ -1,6 +1,18 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T04:24:03+08:00
+更新时间：2026-06-24T04:44:41+08:00
+
+## Tick loop267-real-runner-authorization-config-rollback-audit-framework
+
+- **任务 ID**：loop267-real-runner-authorization-framework-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success after P2 recheck
+- **任务**：只读审查真实 runner authorization/config/rollback-audit framework 是否误表达执行授权，是否引入真实 runner/default runner/adapter/DB/backfill/PL-H 路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：初审发现两项 P2：Jobs 固定 fail-closed markers 可能掩盖 payload drift；Chat 固定“operator 未授权/reviewer 未批准/rollback 未就绪”文案可能掩盖 framework drift。orchestrator 修复后 recheck PASS：Jobs 仅在 `isFailClosedRealRunnerAuthorizationFramework(framework)` 为 true 时输出固定 fail-closed markers，Chat 从 operator/reviewer/rollback fields 派生标签，漂移或畸形值显示“待人工复核”。
+- **orchestrator 本地验证**：focused **5 passed**；final related regression **92 passed**；targeted ruff pass；node check pass；web build pass；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `real_runner_authorization_framework_visible=true`。
+- **roster_update**：workload cleared；mistakes none；lesson: fail-closed evidence strings should be gated by actual payload values, while drifted payloads should surface dynamic markers and manual-review wording.
 
 ## Tick loop266-durable-safe-simulation-result-roundtrip
 

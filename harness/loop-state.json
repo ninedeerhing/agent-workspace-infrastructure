@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T04:24:03+08:00",
+  "updated_at": "2026-06-24T04:44:41+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "durable-safe-simulation-result-roundtrip-loop266",
-  "next_atomic_action": "REAL_RUNNER_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_FRAMEWORK_LOOP267：在 loop266 completed product_state 稳定后，建立真实 runner eligibility framework v1：显式 runner_config、operator/reviewer 双人授权证据、rollback/audit before-after readiness、missing-runner fail-closed、consumer-visible readiness/API/Jobs/Chat 状态；仍禁止 default/real runner invocation、adapter invocation、actual adapter dry-run、DB-backed backtest、PL-H batch、page-load POST、background/migration/backfill、secret 输出。",
-  "next_after": "After explicit runner authorization/config/rollback-audit framework v1 is stable and fail-closed, proceed to controlled real-runner dry-run adapter contract only behind explicit operator/reviewer approval and test-only injected runner boundaries; do not enable PL-H or default runner.",
+  "current_slice": "real-runner-authorization-framework-loop267",
+  "next_atomic_action": "CONTROLLED_REAL_RUNNER_DRY_RUN_ADAPTER_CONTRACT_LOOP268：在 loop267 fail-closed eligibility framework 稳定后，建立受控 real-runner dry-run adapter contract v1：定义 explicit runner_config schema、operator/reviewer authorization packet schema、rollback/audit before-after proof schema、test-only injected runner boundary、missing-runner fail-closed error surface 与 consumer-visible not-authorized execution state；仍禁止 default/real runner invocation、adapter invocation、actual adapter dry-run、DB-backed backtest、PL-H batch、page-load POST、background/migration/backfill、secret 输出。",
+  "next_after": "After controlled dry-run adapter contract/schema is stable, wire the first test-only injected-runner dry-run harness behind explicit authorization packet fixtures and rollback/audit proof; do not enable PL-H, default runner, live runner, or DB-backed execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop266-durable-safe-simulation-result-roundtrip",
+  "last_tick": "loop267-real-runner-authorization-config-rollback-audit-framework",
   "last_sync_sources": [
+    "loop267 Real runner authorization/config/rollback-audit framework",
+    "loop267 TDD RED missing runner_authorization_framework_v1 API/Chat/Jobs markers before implementation",
+    "loop267 focused GREEN 5 passed; final related regression 92 passed; targeted ruff pass",
+    "loop267 node check pass; web build pass; Jobs smoke ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 real_runner_authorization_framework_visible=true execution_permission=not_granted",
+    "loop267 code-reviewer P2 found hardcoded fail-closed marker/copy drift risks; local fixes gated Jobs markers by payload and derived Chat labels; recheck success",
+    "loop267 test-engineer/verifier permanent worker reports success",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.594",
     "loop266 Durable safe-simulation result roundtrip",
     "loop266 TDD RED missing product_state.completed/Chat completed/Jos markers before implementation",
     "loop266 focused GREEN 4 passed; final related regression 88 passed; targeted ruff pass",
@@ -1089,7 +1096,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop266 completed durable safe-simulation result roundtrip. Explicit trigger response, refreshed MiningJob list/detail, Chat follow-up/session recovery, and Jobs default UI now read the same completed product_state with completed_count, run_ids, next_step, audit_event_id, and audit_status. This branch remains no-execution: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
+    "note": "loop267 completed real runner authorization/config/rollback-audit framework v1. API trigger/list/detail, Jobs default UI, and Chat follow-up/session recovery now read the same fail-closed runner_authorization_framework_v1 with explicit runner_config required/not-connected, operator/reviewer authorization required/not-granted, rollback/audit before-after required/not-ready, missing-runner fail-closed, and execution_permission=not_granted. This remains no-execution: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
   },
-  "last_completed_note": "loop266 Durable Safe-Simulation Result Roundtrip complete. build_manual_safe_simulation_status completed state now surfaces completed_count, run_ids, audit_event_id, and audit_status; MiningJob product_state wraps those fields under product_state.completed; API trigger response and refreshed list/detail, Jobs default UI, and Chat follow-up/session recovery consume the same completed product_state. Verification: RED failed on missing product_state.completed, Chat completed copy, Jobs markers, and fixture assertions before implementation; focused GREEN 4 passed; final related regression 88 passed; targeted ruff pass; node --check pass; web build pass; npm run smoke:jobs-page pass with ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 product_state_completed_roundtrip_visible=true product_state_run_ids=bt_smoke_mocked_accept. Executor/test-engineer/code-reviewer/verifier permanent worker reports accepted. Next_atomic_action is REAL_RUNNER_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_FRAMEWORK_LOOP267 to establish explicit runner config, operator/reviewer authorization, rollback/audit readiness, and fail-closed API/Jobs/Chat readiness without enabling PL-H/default/real runner execution."
+  "last_completed_note": "loop267 Real Runner Authorization Config/Rollback-Audit Framework complete. API trigger/list/detail, Jobs default UI, and Chat follow-up/session recovery now expose shared runner_authorization_framework_v1: framework_kind=real_runner_authorization_config_rollback_audit_v1, status=not_eligible, runner_config required/not-connected/default_runner_allowed=false, operator/reviewer authorization required/not-granted, rollback_audit before/after not ready, missing_runner_fail_closed=true, and execution_permission=not_granted. Jobs fixed fail-closed markers are gated by actual payload values via isFailClosedRealRunnerAuthorizationFramework(...), and Chat derives operator/reviewer/rollback labels from payload so drift renders pending/manual-review copy instead of masking risk. Verification: focused 5 passed; final related regression 92 passed; targeted ruff pass; node --check pass; npm run smoke:jobs-page pass with ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 real_runner_authorization_framework_visible=true execution_permission=not_granted; web build pass; targeted lint exit 0 with existing warning; code-reviewer P2 recheck success; test-engineer/verifier reports success. Next_atomic_action is CONTROLLED_REAL_RUNNER_DRY_RUN_ADAPTER_CONTRACT_LOOP268 to define explicit runner_config schema, authorization packet schema, rollback/audit proof schema, and test-only injected runner boundary without enabling PL-H/default/real runner execution."
 }
