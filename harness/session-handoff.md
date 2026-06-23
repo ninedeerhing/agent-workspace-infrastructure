@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T19:45:38+08:00
+updated_at: 2026-06-23T20:18:00+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-23T19:45:38+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-23 loop254 · 已完成 consumer-grade Jobs UX hardening：用户指出最终展示必须消费级、小白也能看明白。本轮把 Jobs/assistant 默认可见层改为中文消费级说明：`任务与自动研究进度`、`自动挖掘与模拟回测`、`批量执行准备情况`、`需要你确认的操作`、`模拟回测结果已生成`、`请检查这次结果是否清楚`；内部 `pl_g_*` gate、`trigger_request`、`action_id`、route/side_effect/audit/trigger_response proof 保留在折叠 `高级诊断` 或 sr-only/fixture 证据层。改动：`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、`tests/test_jobs_page_action_rendering_unit.py`、`tests/test_jobs_page_acceptance_smoke_unit.py`。验证：JobsPage regression 19 passed，node --check pass，targeted eslint pass，web build pass，`npm run smoke:jobs-page` ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5，新增 consumer-visible checks 证明默认可见层隐藏内部协议 marker。未读取/输出 secret，未启动 real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、migration/backfill/background 或 PL-H batch。停止白名单：`manual_ux_acceptance_required_loop254`；下一动作是用户验收消费级默认展示是否清楚、不误导为真实执行；验收后进入 intent quant integration readiness / auto-backtest flow readiness hardening。
+[CONTEXT] 2026-06-23 loop255 · 用户已回复“通过，继续”，loop254 手动 UX 验收停止点解除；已完成 intent quant integration readiness contract：MiningJob API observability 新增消费级 `intent_quant_readiness`，从 `route_evidence`、screening / `auto_backtest_plan`、execution 与 audit 派生当前链路进度、当前步骤、下一步、route 与 safety；Jobs 默认层新增“当前链路进度”；explicit trigger response 与 refreshed Jobs list 必须共享 readiness / route / audit evidence。改动：`src/qa/quant_mining/mining_runner.py`、`tests/test_mining_job_api_unit.py`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、`tests/test_jobs_page_action_rendering_unit.py`。验证：TDD RED expected 2 failed；focused GREEN 3 passed；related regression 45/59/66 passed；ruff pass；`npm run lint` exit 0（仅既有 ShellLayoutContext warning）；web build pass；`npm run smoke:jobs-page` ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5。未读取/输出 secret，未启动 real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、migration/backfill/background 或 PL-H batch。下一动作：`AUTO_BACKTEST_FLOW_READINESS_STATE_MACHINE`，把 ready_for_manual_simulation -> explicit trigger -> completed mocked/injected run 映射到 Chat/Jobs 一致的用户可读 next-step，并定义真实 runner 授权前最小 API contract。
 
 [CONTEXT] 2026-06-23 loop253 hotfix · 用户 live Jobs 页面验收时暴露 `UndefinedTable: relation "mining_job" does not exist`。根因：当前 API DSN `host.docker.internal:55432/quant_assistant` 已有行情核心表，但未执行到 loop148 的 additive `mining_job` schema。已只执行 `mining_job` 表 + 两个索引 DDL；未跑整包 schema、未写业务 job、未启动 migration/backfill/background/real backtest、未输出 secret。复验：`GET /api/v1/quant/mining-jobs` -> HTTP 200, `jobs=[]`, `error=null`。注意：live 空 DB 队列页面不是 loop253 UX package 通过证据；manual UX acceptance 仍需验收 completed mocked/injected-runner path 下的 `Auto mining to backtest result` + `Manual UX acceptance package` 文案。
 
@@ -144,18 +144,18 @@ updated_at: 2026-06-23T19:45:38+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | manual-ux-acceptance-required-after-loop254-consumer-jobs-ux |
-| `last_tick` | loop254-consumer-jobs-ux-hardening |
-| `stop_reason` | manual_ux_acceptance_required_loop254 |
+| `current_slice` | intent-quant-integration-readiness-contract-loop255 |
+| `last_tick` | loop255-intent-quant-readiness-contract |
+| `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-USER_MANUAL_UX_ACCEPTANCE_REQUIRED: user verifies in Jobs/assistant that the consumer-grade default display is understandable for novice users and not misleading as real execution. Focus on `模拟回测结果已生成`, `请检查这次结果是否清楚`, `批量执行准备情况`, and the boundary between default UI and folded `高级诊断`.
+AUTO_BACKTEST_FLOW_READINESS_STATE_MACHINE: implement pre-real-run auto-backtest flow readiness checks by mapping ready_for_manual_simulation -> explicit trigger -> completed mocked/injected run into consistent Chat/Jobs user next-step copy, and define the minimum API contract before real-runner authorization.
 
 ### next_after
 
-After user manual UX acceptance, continue into intent quant integration readiness / auto-backtest flow readiness hardening; any real runner, actual adapter dry-run, DB-backed backtest, PL-H batch execution, or authorization grant still requires a later explicit authorization/config/rollback-audit gate.
+After auto-backtest flow readiness state-machine hardening, continue toward explicit authorization/config/rollback-audit preflight for real runner eligibility. Any real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch execution, or authorization grant still requires a later explicit gate.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -172,7 +172,7 @@ After user manual UX acceptance, continue into intent quant integration readines
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 PL-G product outcome happy-path slice；先跑 goal/product gate、worker dispatch gate 与 worker cluster/rendezvous gate，并验证永久 worker codex_thread_id 可达；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要授予 manual acceptance/authorization/execution，也不要调用真实/default runner、adapter invocation、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 auto-backtest flow readiness state-machine / runner authorization preflight；先跑 goal/product gate、worker dispatch gate 与 worker cluster/rendezvous gate，并验证永久 worker codex_thread_id 可达；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要授予 manual acceptance/authorization/execution，也不要调用真实/default runner、adapter invocation、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers

@@ -1,6 +1,6 @@
-# Daily Compliance Report · 20260623
+# Daily Compliance Report - 20260623
 
-- **Checked at**: 2026-06-23 16:07:52
+- **Checked at**: 2026-06-23 20:17:27
 - **Project root**: E:\raindeer
 - **codex-self-check exit**: 0
 - **compliance-check exit**: 0
@@ -10,7 +10,7 @@
 
 # CodeX Self Check
 
-- Checked at: 2026-06-23T16:07:50+08:00
+- Checked at: 2026-06-23T20:17:25+08:00
 - Project: E:\raindeer
 - Checks: 59
 - Findings: 0
@@ -46,11 +46,11 @@
 | loop prompt gate:skill_reactivation_note | PASS | present |
 | loop prompt gate:capacity_review | PASS | present |
 | loop prompt gate:methodology_ref | PASS | present |
-| loop prompt gate:功能差异矩阵 | PASS | present |
+| loop prompt gate:model_tier | PASS | present |
 | loop prompt gate:tmp/skill-route-events.jsonl | PASS | present |
-| methodology visibility:## 当前可见状态 | PASS | present |
 | methodology visibility:updated_at | PASS | present |
 | methodology visibility:latest_digest | PASS | present |
+| methodology visibility:latest_permanent_M_GP | PASS | present |
 | methodology visibility:methodology_ref | PASS | present |
 | QA latest ledger methodology_ref | PASS | present |
 | platform-binding codex | PASS | platform=codex adapter_status=installed |
@@ -75,7 +75,7 @@
 | retired automation inactive:daily-compliance | PASS | not active |
 | retired automation inactive:daily-git-push | PASS | not active |
 | retired automation inactive:codex-self-check | PASS | not active |
-| loop-state next action | PASS | pl-g-manual-ux-acceptance-package-product-happy-path |
+| loop-state next action | PASS | intent-quant-integration-readiness-contract-loop255 |
 | base compliance-check | PASS | findings=0 |
 
 ## Findings
@@ -89,7 +89,7 @@
 
 - Mode: baseline
 - Project: E:\raindeer
-- Checked At: 2026-06-23 16:07:51
+- Checked At: 2026-06-23 20:17:26
 - Checks: 37 / Findings: 0
 
 ## Checks
@@ -110,7 +110,7 @@
 | SESSION_BOOT | PASS | E:\raindeer\docs\SESSION_BOOT.md |
 | agents roster | PASS | 23 files |
 | agent-registry | PASS | E:\raindeer\harness\agent-registry.json |
-| Git 工作区 | WARN | 15 dirty entries |
+| Git 工作区 | WARN | 19 dirty entries |
 | QA PROJECT_STATUS §5 | PASS | E:\raindeer\apps\quant_assistant\docs\PROJECT_STATUS.md |
 | QA 最新 §5 methodology_ref | PASS | present |
 | METHODOLOGY 轮次复盘 | PASS | rounds present |
@@ -119,18 +119,18 @@
 | METHODOLOGY 可见状态:latest_digest | PASS | present |
 | METHODOLOGY 可见状态:methodology_ref | PASS | present |
 | 根最新 §5 methodology_ref | PASS | present |
-| loop-state next action | PASS | WAIT_FOR_USER_RESUME_THEN prepare PL-G manual UX acceptance package / user-facin |
+| loop-state next action | PASS | AUTO_BACKTEST_FLOW_READINESS_STATE_MACHINE：实现 auto-backtest flow readiness 的真实运行 |
 | methodology-memory-index | PASS | E:\raindeer\harness\methodology-memory-index.json |
-| MEM-004 last_lifecycle freshness | PASS | at=06/23/2026 08:06:07 age=8.02881533811111h |
+| MEM-004 last_lifecycle freshness | PASS | at=2026-06-23T12:13:10Z age=0.0711404814166667h |
 | orchestrator-work-report | PASS | E:\raindeer\harness\reports\orchestrator\latest.md |
 | worker-work-reports | PASS | count=23 |
 | work-reports-index | PASS | E:\raindeer\harness\work-reports-index.json |
 | sync-coherence-index | PASS | E:\raindeer\harness\sync-coherence-index.json |
-| SYNC-001 freshness | PASS | at=06/23/2026 08:07:15 age=8.00995818411111h |
+| SYNC-001 freshness | PASS | at=2026-06-23T12:13:10Z age=0.0711693900555556h |
 | verification-snapshot-index | PASS | E:\raindeer\harness\verification-snapshot-index.json |
-| VER-001 freshness | PASS | at=06/23/2026 05:38:26 age=10.4902691955556h |
+| VER-001 freshness | PASS | at=2026-06-23T12:13:10Z age=0.0711918232222222h |
 | closure-gate-index | PASS | E:\raindeer\harness\closure-gate-index.json |
-| CLO-001 freshness | PASS | at=06/23/2026 08:06:07 age=8.02891425608333h |
+| CLO-001 freshness | PASS | at=2026-06-23T12:13:10Z age=0.0712212794444444h |
 | SYNC coherence drift | PASS | no warnings |
 | CLO closure candidates | PASS | open=0 |
 
@@ -145,64 +145,64 @@
 ```text
 {
   "stopped": true,
-  "stop_detail": "stop_reason=user_requested_stop_after_current_task_2026-06-23",
-  "next_atomic_action": "WAIT_FOR_USER_RESUME_THEN prepare PL-G manual UX acceptance package / user-facing verification checklist for the product happy path: list what the user should see in Jobs/assistant, what remains mocked-only, and what still requires later explicit authorization/config/rollback-audit before any real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch, or secret-bearing path.",
-  "next_after": "After manual UX acceptance package is ready and reviewed, continue into intent quant integration readiness / auto-backtest flow readiness hardening; real runner/actual adapter dry-run/DB-backed backtest/PL-H batch remains blocked until explicit authorization/config/rollback-audit gate.",
-  "updated_at": "2026-06-23T15:59:25+08:00",
-  "last_tick": "loop252-product-outcome-happy-path",
+  "stop_detail": "closure_gate=closed",
+  "next_atomic_action": "AUTO_BACKTEST_FLOW_READINESS_STATE_MACHINE��ʵ�� auto-backtest flow readiness ����ʵ����ǰ��飬�� ready_for_manual_simulation -> explicit trigger -> completed mocked/injected run ��״̬��ӳ�䵽 Chat/Jobs һ�µ��û��ɶ� next-step����������һ����ʵ runner ��Ȩǰ����С API contract���Խ�ֹ real/default runner��actual adapter dry-run��DB-backed backtest��PL-H batch��background/migration/backfill��secret output��",
+  "next_after": "After auto-backtest flow readiness state-machine hardening, continue toward explicit authorization/config/rollback-audit preflight for real runner eligibility; do not grant manual acceptance/authorization/execution or connect/invoke real/default runner until a later explicit gate passes.",
+  "updated_at": "2026-06-23T20:18:00+08:00",
+  "last_tick": "loop255-intent-quant-readiness-contract",
   "last_lifecycle_run": {
-    "at": "2026-06-23T08:06:07Z",
+    "at": "2026-06-23T12:13:10Z",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
     "closure_candidates": 0,
     "archived_rounds": [],
-    "active_step_digests": 28,
+    "active_step_digests": 29,
     "completed_tasks_hint": [
-      "loop252 completed PL-G product outcome happy-path slice. Changed JobsPage product summary and fixture smoke/tests so mocked/injected explicit trigger completion surfaces a user-visible Auto mining to backtest result with intent route, MiningJob action, explicit trigger, completed mocked backtest/audit, and next-step summary. Verification: RED expected; GREEN focused 2 passed; JobsPage regression 18 passed; jobs_fixture_emits 54 passed; ruff/node --check/targeted eslint/build/smoke/scans/runtime cleanup passed; test-engineer success, executor partial reconciled, code-reviewer success, verifier success. No manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, actual adapter dry-run execution, page-load auto POST, background, migration/backfill, DB-backed backtest, PL-H batch execution, or secret output. Stop reason set by user request; next_atomic_action waits for user resume before manual UX acceptance package.",
-      "pl-g-manual-ux-acceptance-package-product-happy-path",
-      "loop252-product-outcome-happy-path"
+      "loop255 intent quant integration readiness contract complete after user accepted loop254 UX. Added MiningJob observability.intent_quant_readiness, Jobs default ��ǰ��·���� display, and trigger response/refreshed GET consistency coverage. Verification: RED expected 2 failures before implementation; focused GREEN 3 passed; related API/Jobs/route regression 66/59/45 passed; ruff ok; npm lint exit 0 with pre-existing ShellLayoutContext warning; npm build pass; npm run smoke:jobs-page ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5. No real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, or secret output. Next_atomic_action is auto-backtest flow readiness state-machine / runner authorization preflight.",
+      "intent-quant-integration-readiness-contract-loop255",
+      "loop255-intent-quant-readiness-contract"
     ],
     "ttl_days": 180
   },
   "lifecycle_runs": {
     "methodology_memory": {
-      "at": "2026-06-23T08:06:07Z",
+      "at": "2026-06-23T12:13:10Z",
       "apply": true,
       "dedupe_actions": 0,
       "dream_candidates": 0,
       "closure_candidates": 0,
       "archived_rounds": [],
-      "active_step_digests": 28,
+      "active_step_digests": 29,
       "completed_tasks_hint": [
-        "loop252 completed PL-G product outcome happy-path slice. Changed JobsPage product summary and fixture smoke/tests so mocked/injected explicit trigger completion surfaces a user-visible Auto mining to backtest result with intent route, MiningJob action, explicit trigger, completed mocked backtest/audit, and next-step summary. Verification: RED expected; GREEN focused 2 passed; JobsPage regression 18 passed; jobs_fixture_emits 54 passed; ruff/node --check/targeted eslint/build/smoke/scans/runtime cleanup passed; test-engineer success, executor partial reconciled, code-reviewer success, verifier success. No manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, actual adapter dry-run execution, page-load auto POST, background, migration/backfill, DB-backed backtest, PL-H batch execution, or secret output. Stop reason set by user request; next_atomic_action waits for user resume before manual UX acceptance package.",
-        "pl-g-manual-ux-acceptance-package-product-happy-path",
-        "loop252-product-outcome-happy-path"
+        "loop255 intent quant integration readiness contract complete after user accepted loop254 UX. Added MiningJob observability.intent_quant_readiness, Jobs default ��ǰ��·���� display, and trigger response/refreshed GET consistency coverage. Verification: RED expected 2 failures before implementation; focused GREEN 3 passed; related API/Jobs/route regression 66/59/45 passed; ruff ok; npm lint exit 0 with pre-existing ShellLayoutContext warning; npm build pass; npm run smoke:jobs-page ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5. No real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, or secret output. Next_atomic_action is auto-backtest flow readiness state-machine / runner authorization preflight.",
+        "intent-quant-integration-readiness-contract-loop255",
+        "loop255-intent-quant-readiness-contract"
       ],
       "ttl_days": 180
     },
     "work_reports": {
-      "at": "2026-06-23T08:06:07Z",
+      "at": "2026-06-23T12:13:10Z",
       "apply": true,
       "dedupe_actions": 0,
       "record_count": 22,
       "created": []
     },
     "sync_coherence": {
-      "at": "2026-06-23T08:07:15Z",
+      "at": "2026-06-23T12:13:10Z",
       "finding_count": 0,
       "warning_count": 0,
       "error_count": 0
     },
     "verification_snapshot": {
-      "at": "2026-06-23T05:38:26Z",
+      "at": "2026-06-23T12:13:10Z",
       "apply": true,
       "stale": false,
       "git_dirty": true,
-      "age_hours": 0.0001441677777777778
+      "age_hours": 0.031558762222222224
     },
     "closure_gate": {
-      "at": "2026-06-23T08:06:07Z",
+      "at": "2026-06-23T12:13:10Z",
       "open_count": 0,
       "closed_count": 17,
       "explicit_none_count": 3,
@@ -221,64 +221,67 @@
   "dedupe_actions": [],
   "dream_candidates": [],
   "closure_candidates": [],
-  "archived_rounds… |
+  "archived_rounds... |
 | work_report | 0 | {
   "apply": true,
   "dedupe_actions": [],
   "record_count": 22,
   "created": [],
   "worker_ids": [
-    "architect… |
+    "architect... |
 | sync_coherence | 0 | {
   "apply": true,
   "finding_count": 0,
-  "latest_section5": "578",
-  "top_section5_ref": "578",
+  "latest_section5": "582",
+  "top_section5_ref": "582",
   "findings": []
-… |
+... |
 | verification_snapshot | 0 | {
   "apply": true,
   "stale": false,
   "git_dirty": true,
-  "age_hours": 0.006302970277777778,
+  "age_hours": 0.10274094972222222,
   "findings": [],
- … |
+  ... |
 | closure_gate | 0 | {
   "apply": true,
   "open_count": 0,
   "closed_count": 17,
   "explicit_none_count": 3,
   "findings": [],
-  "candi… |
+  "candi... |
 
 ## Index summaries
 
 | Index | Summary |
 |-------|---------|
-| methodology-memory-index | last_lifecycle.at=06/23/2026 08:07:51 |
-| work-reports-index | last_lifecycle.at=06/23/2026 08:07:51 |
-| sync-coherence-index | last_lifecycle.at=06/23/2026 08:07:51 · findings_warn=0 findings_error=0 |
-| verification-snapshot-index | last_lifecycle.at=06/23/2026 08:07:51 · findings_warn=0 findings_error=0 |
-| closure-gate-index | open_count=0 · last_lifecycle.at=06/23/2026 08:07:51 · findings_warn=0 findings_error=0 |
+| methodology-memory-index | last_lifecycle.at=2026-06-23T12:17:26Z |
+| work-reports-index | last_lifecycle.at=2026-06-23T12:17:26Z |
+| sync-coherence-index | last_lifecycle.at=2026-06-23T12:17:26Z | findings_warn=0 findings_error=0 |
+| verification-snapshot-index | last_lifecycle.at=2026-06-23T12:17:26Z | findings_warn=0 findings_error=0 |
+| closure-gate-index | open_count=0 | last_lifecycle.at=2026-06-23T12:17:26Z | findings_warn=0 findings_error=0 |
 
 ## Git status (dual repos)
 
 ### Raindeer root
 
-- branch=main ahead=56 behind=0 dirty=16
+- branch=main ahead=0 behind=0 dirty=19
 - status -sb:
 ```text
-## main...origin/raindeer-AWI [ahead 56]
- m apps/quant_assistant
+## main...origin/raindeer-AWI
+ M apps/quant_assistant
  M harness/closure-gate-index.json
  M harness/loop-state.json
  M harness/methodology-memory-index.json
  M harness/reports/EMPLOYEE_ROSTER.md
+ M harness/reports/daily-compliance-20260623.md
+ M harness/reports/daily-git-push-20260623.md
+ M harness/reports/daily-ops-20260623.md
  M harness/reports/orchestrator/latest.md
- M harness/reports/workers/code-reviewer.md
- M harness/reports/workers/executor.md
- M harness/reports/workers/test-engineer.md
- M harness/reports/workers/verifier.md
+ M harness/scripts/codex-self-check.ps1
+ M harness/scripts/daily-compliance.ps1
+ M harness/scripts/daily-git-push.ps1
+ M harness/scripts/daily-ops.ps1
  M harness/session-handoff.md
  M harness/sync-coherence-index.json
  M harness/verification-archive.jsonl
@@ -289,24 +292,16 @@
 
 ### quant_assistant
 
-- branch=main ahead=44 behind=0 dirty=8
+- branch=main ahead=1 behind=0 dirty=0
 - status -sb:
 ```text
-## main...origin/main [ahead 44]
- M docs/CONTINUATION_PROMPT.md
- M docs/METHODOLOGY_MEMORY.md
- M docs/PROJECT_STATUS.md
- M docs/TASK_TREES.md
- M tests/test_jobs_page_acceptance_smoke_unit.py
- M tests/test_jobs_page_action_rendering_unit.py
- M web/scripts/smoke-jobs-page-fixture.mjs
- M web/src/pages/JobsPage.tsx
+## main...origin/main [ahead 1]
 ```
 
 ## TREE-2 gap list
 
 - Path: `apps/quant_assistant/docs/ENGINEERING/TREE-2-gap-list.yaml`
-- Summary: **env_count=1 · degraded_count=5 · blocker_count=0 · future_count=4**
+- Summary: **future_count=4 | blocker_count=0 | env_count=1 | degraded_count=5**
 
 ## Notes
 

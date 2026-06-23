@@ -349,12 +349,12 @@ $rows = ($results | ForEach-Object {
 $detailBlocks = ($results | ForEach-Object {
     @"
 
-### $($_.label) · ``$($_.github_repo)``
+### $($_.label) - ``$($_.github_repo)``
 
 - scope: $($_.scope)
 - path: ``$($_.path)``
 - action: **$($_.action)**
-- local branch: $($_.branch) · upstream: $($_.upstream) · ahead: $($_.ahead)
+- local branch: $($_.branch) | upstream: $($_.upstream) | ahead: $($_.ahead)
 - push target: ``$($_.push_target)``
 - reason: $($_.reason)
 ``````text
@@ -366,12 +366,12 @@ $(if ($_.push_output) { "**push output:**`n``````text`n$($_.push_output)`n``````
 }) -join "`n"
 
 $report = @"
-# Daily Git Push Report · $DateStamp
+# Daily Git Push Report - $DateStamp
 
 - **Checked at**: $checkedAt
 - **Dry run**: $DryRun
 - **Schedule task id**: ``daily-ops`` calls ``daily-git-push`` after ``daily-compliance``
-- **Policy**: main-only local branch · dual-repo · upstream-aware ahead count · push only when ahead > 0 · no force · fail-closed on non-main / staged secrets
+- **Policy**: main-only local branch | dual-repo | upstream-aware ahead count | push only when ahead > 0 | no force | fail-closed on non-main / staged secrets
 
 ## Dual-repo model
 
@@ -392,14 +392,20 @@ $detailBlocks
 ## Fail-closed rules
 
 - Block if local branch is not ``main`` (policy: main-only development; merge/delete branch and checkout main)
-- Block push if staged files match: ``.env`` · ``.env.local`` · ``credentials.json`` · ``secrets.*``
+- Block push if staged files match: ``.env`` | ``.env.local`` | ``credentials.json`` | ``secrets.*``
 - Never use ``git push --force`` or ``--force-with-lease``
 - Skip when no upstream tracking branch or no commits ahead of upstream
 - AWI root must **not** assume ``origin/main`` when upstream is ``origin/raindeer-AWI``
 - Do **not** auto-delete user branches; blocked exit 1 surfaces in Automation
 "@
 
-Set-Content -Path $ReportPath -Value $report -Encoding UTF8
+$normalizedReport = $report -replace "`r`n", "`n"
+$normalizedReport = $normalizedReport -replace "`r", "`n"
+$normalizedReport = (($normalizedReport -split "`n") | ForEach-Object { $_ -replace '\s+$', '' }) -join "`n"
+if (-not $normalizedReport.EndsWith("`n")) {
+    $normalizedReport += "`n"
+}
+[System.IO.File]::WriteAllText($ReportPath, $normalizedReport, [System.Text.UTF8Encoding]::new($false))
 Write-Log "Report written: $ReportPath"
 
 if ($fatal) {

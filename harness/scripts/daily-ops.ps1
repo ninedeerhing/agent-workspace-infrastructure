@@ -57,7 +57,7 @@ if (-not (Test-Path $ReportsDir)) {
     New-Item -ItemType Directory -Path $ReportsDir -Force | Out-Null
 }
 
-Write-Log "Daily ops wrapper · root=$ProjectRoot"
+Write-Log "Daily ops wrapper - root=$ProjectRoot"
 
 $complianceScript = Join-Path $HarnessDir "scripts/daily-compliance.ps1"
 $gitPushScript = Join-Path $HarnessDir "scripts/daily-git-push.ps1"
@@ -87,7 +87,7 @@ $gitReport = Join-Path $ReportsDir "daily-git-push-$DateStamp.md"
 $status = if ($compliance.exit_code -eq 0 -and $gitPush.exit_code -eq 0) { "success" } else { "blocked" }
 
 $report = @"
-# Daily Ops Report · $DateStamp
+# Daily Ops Report - $DateStamp
 
 - **Checked at**: $checkedAt
 - **Worker**: ``daily-ops``
@@ -125,7 +125,13 @@ $($gitPush.output)
 - Do not read or print ``.env``, ``.env.local``, tokens, DSNs, or secrets.
 "@
 
-Set-Content -Path $ReportPath -Value $report -Encoding UTF8
+$normalizedReport = $report -replace "`r`n", "`n"
+$normalizedReport = $normalizedReport -replace "`r", "`n"
+$normalizedReport = (($normalizedReport -split "`n") | ForEach-Object { $_ -replace '\s+$', '' }) -join "`n"
+if (-not $normalizedReport.EndsWith("`n")) {
+    $normalizedReport += "`n"
+}
+[System.IO.File]::WriteAllText($ReportPath, $normalizedReport, [System.Text.UTF8Encoding]::new($false))
 Write-Log "Report written: $ReportPath"
 
 if ($status -ne "success") {

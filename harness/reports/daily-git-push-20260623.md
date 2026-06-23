@@ -1,7 +1,7 @@
 # Daily Git Push Report · 20260623
 
-- **Checked at**: 2026-06-23 10:43:21
-- **Dry run**: True
+- **Checked at**: 2026-06-23 20:02:13
+- **Dry run**: False
 - **Schedule task id**: `daily-ops` calls `daily-git-push` after `daily-compliance`
 - **Policy**: main-only local branch · dual-repo · upstream-aware ahead count · push only when ahead > 0 · no force · fail-closed on non-main / staged secrets
 
@@ -16,8 +16,8 @@
 
 | Repo | GitHub | Local branch | Upstream | Ahead | Action | Reason |
 |------|--------|--------------|----------|-------|--------|--------|
-| `Raindeer-AWI` | `agent-workspace-infrastructure` | main | origin/raindeer-AWI | 39 | push | ahead=39 |
-| `Quant Assistant` | `raindeer-quant-assistant` | main | origin/main | 30 | push | ahead=30 |
+| `Raindeer-AWI` | `agent-workspace-infrastructure` | main | origin/raindeer-AWI | 60 | pushed | ahead=60 |
+| `Quant Assistant` | `raindeer-quant-assistant` | main | origin/main | 48 | pushed | ahead=48 |
 
 ## Details
 
@@ -25,62 +25,49 @@
 
 - scope: AWI architecture / Harness / governance only
 - path: `E:\raindeer`
-- action: **push**
-- local branch: main · upstream: origin/raindeer-AWI · ahead: 39
+- action: **pushed**
+- local branch: main · upstream: origin/raindeer-AWI · ahead: 60
 - push target: `git push origin HEAD:raindeer-AWI`
-- reason: ahead=39
+- reason: ahead=60
 ```text
-## main...origin/raindeer-AWI [ahead 39]
+## main...origin/raindeer-AWI [ahead 60]
  m apps/quant_assistant
- M docs/CONTINUATION_PROMPT.md
- M docs/PLATFORM-CODEX.md
- M docs/PROJECT_STATUS.md
- M docs/TASK_TREES.md
- M harness/codex-automation-registry.json
- M harness/loop-state.json
- M harness/reports/EMPLOYEE_ROSTER.md
- M harness/reports/orchestrator/latest.md
- M harness/reports/workers/code-reviewer.md
- M harness/reports/workers/executor.md
- M harness/reports/workers/test-engineer.md
- M harness/reports/workers/verifier.md
- M harness/schedule.json
- M harness/scripts/codex-self-check.ps1
- M harness/scripts/daily-compliance.ps1
- M harness/scripts/daily-git-push.ps1
- M harness/session-handoff.md
- M harness/templates/daily-compliance-prompt.md
- M harness/templates/daily-git-push-prompt.md
-?? harness/reports/daily-compliance-20260623.md
-?? harness/reports/workers/daily-ops.md
-?? harness/scripts/daily-ops.ps1
-?? harness/templates/daily-ops-prompt.md
+ M harness/closure-gate-index.json
+ M harness/methodology-memory-index.json
+ M harness/reports/daily-compliance-20260623.md
+ M harness/sync-coherence-index.json
+ M harness/verification-snapshot-index.json
+ M harness/work-reports-index.json
 ```
-**dry-run:** dry-run: would git push origin HEAD:raindeer-AWI
 
+**push output:**
+```text
+To https://github.com/ninedeerhing/agent-workspace-infrastructure.git
+   e97584a..7e795e4  HEAD -> raindeer-AWI
+```
 
 ### Quant Assistant · `raindeer-quant-assistant`
 
 - scope: Separate product repo; not part of AWI publish
 - path: `E:\raindeer\apps\quant_assistant`
-- action: **push**
-- local branch: main · upstream: origin/main · ahead: 30
+- action: **pushed**
+- local branch: main · upstream: origin/main · ahead: 48
 - push target: `git push origin HEAD:main`
-- reason: ahead=30
+- reason: ahead=48
 ```text
-## main...origin/main [ahead 30]
- M docs/CONTINUATION_PROMPT.md
- M docs/PROJECT_STATUS.md
- M docs/TASK_TREES.md
- M docs/WORKFLOWS.md
- M web/scripts/jobs-page-fixture-runner-adapter-proofs.mjs
+## main...origin/main [ahead 48]
+ M src/qa/quant_mining/mining_runner.py
+ M tests/test_jobs_page_action_rendering_unit.py
+ M tests/test_mining_job_api_unit.py
  M web/scripts/smoke-jobs-page-fixture.mjs
-?? tests/test_jobs_page_explicit_executable_handoff_authorization_packet_unit.py
-?? web/scripts/jobs-page-fixture-runner-adapter-explicit-executable-handoff-authorization-packet-assertions.mjs
-?? web/scripts/jobs-page-fixture-runner-adapter-explicit-executable-handoff-authorization-packet-checks.mjs
+ M web/src/pages/JobsPage.tsx
 ```
-**dry-run:** dry-run: would git push origin HEAD:main
 
+**push output:**
+```text
+To https://github.com/ninedeerhing/raindeer-quant-assistant.git
+   2ca7d14..d2f6976  HEAD -> main
+```
 
 ## Fail-closed rules
 

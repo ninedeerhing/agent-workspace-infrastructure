@@ -103,7 +103,7 @@ function Get-JsonFileSummary {
             $err = @($obj.findings | Where-Object { $_.severity -eq "error" }).Count
             $parts += "findings_warn=$warn findings_error=$err"
         }
-        return ($parts -join " · ")
+        return ($parts -join " | ")
     }
     catch {
         return "parse error: $($_.Exception.Message)"
@@ -127,7 +127,7 @@ function Get-GapListSummary {
     if ($summary.Count -eq 0) {
         return "no summary counts parsed"
     }
-    return ($summary.GetEnumerator() | ForEach-Object { "$($_.Key)=$($_.Value)" }) -join " · "
+    return ($summary.GetEnumerator() | ForEach-Object { "$($_.Key)=$($_.Value)" }) -join " | "
 }
 
 function Invoke-Lifecycle {
@@ -153,7 +153,7 @@ if (-not (Test-Path $ReportsDir)) {
     New-Item -ItemType Directory -Path $ReportsDir -Force | Out-Null
 }
 
-Write-Log "Daily compliance wrapper · root=$ProjectRoot"
+Write-Log "Daily compliance wrapper - root=$ProjectRoot"
 
 $complianceScript = Join-Path $HarnessDir "compliance-check.ps1"
 $codexSelfCheckScript = Join-Path $HarnessDir "scripts/codex-self-check.ps1"
@@ -208,11 +208,11 @@ $gapSummary = Get-GapListSummary $gapPath
 
 $checkedAt = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
 $lifecycleTable = ($lifecycleResults | ForEach-Object {
-    "| $($_.label) | $($_.exit_code) | $(if ($_.output.Length -gt 120) { $_.output.Substring(0, 120) + '…' } else { $_.output }) |"
+    "| $($_.label) | $($_.exit_code) | $(if ($_.output.Length -gt 120) { $_.output.Substring(0, 120) + '...' } else { $_.output }) |"
 }) -join "`n"
 
 $report = @"
-# Daily Compliance Report · $DateStamp
+# Daily Compliance Report - $DateStamp
 
 - **Checked at**: $checkedAt
 - **Project root**: $ProjectRoot
@@ -280,11 +280,17 @@ $($qaRoot.status_sb)
 - Daily scheduler: ``daily-ops`` calls ``daily-git-push`` after this wrapper succeeds
 "@
 
-Set-Content -Path $ReportPath -Value $report -Encoding UTF8
+$normalizedReport = $report -replace "`r`n", "`n"
+$normalizedReport = $normalizedReport -replace "`r", "`n"
+$normalizedReport = (($normalizedReport -split "`n") | ForEach-Object { $_ -replace '\s+$', '' }) -join "`n"
+if (-not $normalizedReport.EndsWith("`n")) {
+    $normalizedReport += "`n"
+}
+[System.IO.File]::WriteAllText($ReportPath, $normalizedReport, [System.Text.UTF8Encoding]::new($false))
 Write-Log "Report written: $ReportPath"
 
 if ($complianceExit -ne 0) {
-    Write-Log "compliance-check reported findings (exit $complianceExit) — report still written."
+    Write-Log "compliance-check reported findings (exit $complianceExit); report still written."
 }
 
 exit 0

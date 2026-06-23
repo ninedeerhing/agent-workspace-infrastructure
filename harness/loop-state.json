@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T19:45:38+08:00",
+  "updated_at": "2026-06-23T20:18:00+08:00",
   "mode": "autonomous",
-  "stop_reason": "manual_ux_acceptance_required_loop254",
+  "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "manual-ux-acceptance-required-after-loop254-consumer-jobs-ux",
-  "next_atomic_action": "USER_MANUAL_UX_ACCEPTANCE_REQUIRED：用户在 Jobs/assistant 复验消费级默认展示是否“小白也看得懂”，重点检查 `模拟回测结果已生成`、`请检查这次结果是否清楚`、`批量执行准备情况` 与折叠 `高级诊断` 的边界是否清楚、不误导为真实执行；验收后进入 intent quant integration readiness / auto-backtest flow readiness hardening。",
-  "next_after": "After user manual UX acceptance of the consumer-grade Jobs display, harden the route-evidence/state-machine contract between intent quant dispatch, MiningJob, auto_backtest_plan, explicit trigger response, refreshed Jobs state, and next-route guidance; real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, and secret output remain blocked until explicit authorization/config/rollback-audit gate.",
+  "current_slice": "intent-quant-integration-readiness-contract-loop255",
+  "next_atomic_action": "AUTO_BACKTEST_FLOW_READINESS_STATE_MACHINE：实现 auto-backtest flow readiness 的真实运行前检查，把 ready_for_manual_simulation -> explicit trigger -> completed mocked/injected run 的状态机映射到 Chat/Jobs 一致的用户可读 next-step，并定义下一步真实 runner 授权前的最小 API contract；仍禁止 real/default runner、actual adapter dry-run、DB-backed backtest、PL-H batch、background/migration/backfill、secret output。",
+  "next_after": "After auto-backtest flow readiness state-machine hardening, continue toward explicit authorization/config/rollback-audit preflight for real runner eligibility; do not grant manual acceptance/authorization/execution or connect/invoke real/default runner until a later explicit gate passes.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop254-consumer-jobs-ux-hardening",
+  "last_tick": "loop255-intent-quant-readiness-contract",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -1049,7 +1049,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop254 completed consumer-grade Jobs UX hardening after user feedback that final display must be understandable for novice users. Jobs/assistant default visible layer now uses Chinese consumer copy for task progress, manual confirmation, mocked result, acceptance checklist, and real-batch readiness; internal gate/action_id/trigger_request/route/side-effect/audit proof remains available only in folded advanced diagnostics or sr-only/fixture evidence. Verification passed JobsPage regression 19 passed, node --check, targeted eslint, web build, browser smoke ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 and consumer-visible checks hiding internal protocol markers. Stop reason is manual_ux_acceptance_required_loop254; after user UX acceptance continue into intent quant integration readiness / auto-backtest flow readiness hardening. Manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, actual adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
+    "note": "User accepted loop254 consumer-grade Jobs UX; loop255 completed intent quant integration readiness contract. MiningJob API observability now exposes consumer-readable intent_quant_readiness derived from route_evidence, screening/auto_backtest_plan, execution, and audit state; Jobs default view renders Current chain progress in novice-readable Chinese, and trigger response plus refreshed Jobs list share readiness/route/audit evidence. Verification passed focused API/UI tests, broader route/API/Jobs regression, ruff, web lint/build, and browser smoke with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5. Stop reason cleared. Manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, actual adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
   },
-  "last_completed_note": "loop254 consumer-grade Jobs UX hardening complete. User feedback required final display to be consumer-grade and understandable for novice users. Implemented Chinese default UI copy, folded advanced diagnostics for technical proof, job metadata/state diagnostics for traceability, and browser smoke consumer-visible assertions proving internal markers such as pl_g_real_batch_demand_gate, trigger_request, action_id, side_effects=none, trigger_response_*, product_happy_path_summary_visible, and manual_ux_acceptance_package_visible are not in the default visible layer. Verification: JobsPage regression 19 passed; node --check pass; targeted eslint pass; npm run build pass; npm run smoke:jobs-page ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5. Stop reason remains manual_ux_acceptance_required_loop254; next_atomic_action is user manual UX acceptance of the consumer-grade Jobs/assistant display, then intent quant integration readiness / auto-backtest flow readiness hardening."
+  "last_completed_note": "loop255 intent quant integration readiness contract complete after user accepted loop254 UX. Added MiningJob observability.intent_quant_readiness, Jobs default 当前链路进度 display, and trigger response/refreshed GET consistency coverage. Verification: RED expected 2 failures before implementation; focused GREEN 3 passed; related API/Jobs/route regression 66/59/45 passed; ruff ok; npm lint exit 0 with pre-existing ShellLayoutContext warning; npm build pass; npm run smoke:jobs-page ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5. No real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, or secret output. Next_atomic_action is auto-backtest flow readiness state-machine / runner authorization preflight."
 }

@@ -1,3 +1,50 @@
+# Orchestrator Report - loop255-intent-quant-readiness-contract
+
+**Updated**: 2026-06-23T20:18:00+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G intent quant integration readiness contract.
+- **trigger**: user accepted loop254 consumer-grade Jobs UX with "通过，继续".
+- **result**: MiningJob API observability now exposes consumer-readable `intent_quant_readiness`; Jobs default view renders "当前链路进度"; explicit trigger response and refreshed Jobs list share readiness / route / audit evidence.
+- **next**: `auto-backtest flow readiness state-machine / runner authorization preflight`.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Added read-only intent quant readiness observability derived from route evidence, screening/plan, execution, and audit state. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Added API field and trigger-response/refreshed-list consistency coverage. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Added `IntentQuantReadiness` type and default consumer-facing current chain progress display. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added readiness fixture data and smoke waits. |
+| `apps/quant_assistant/tests/test_jobs_page_action_rendering_unit.py` | Added source contract for consumer readiness rendering. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · expected 2 failures before implementation (`intent_quant_readiness` missing) |
+| focused GREEN | pass · 3 passed |
+| related regression | pass · 45/59/66 passed across mining API, Jobs page, route evidence, and intent handoff suites |
+| Python ruff | pass |
+| web lint | pass · exit 0 with pre-existing `ShellLayoutContext.tsx` react-refresh warning |
+| web build | pass |
+| browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5` |
+
+## Worker Notes
+
+Chandrasekhar (`019ef455-19aa-7703-91cf-e91e53aab025`) was used only as a current-session read-only explorer and recommended the narrow API+UI readiness consistency path. This runtime explorer did not replace any permanent worker identity; future dispatch remains anchored to roster `codex_thread_id` entries.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No page-load auto POST, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, migration/backfill/background process, or PL-H batch execution was started.
+
+## Residual Risk
+
+The readiness contract is product-facing and mocked/injected-runner-safe. Real runner authorization, adapter invocation, actual dry-run execution, DB-backed backtest, and PL-H batch execution remain intentionally deferred behind future explicit authorization/config/rollback-audit gates.
+
+---
+
 # Orchestrator Report - loop254-consumer-jobs-ux-hardening
 
 **Updated**: 2026-06-23T19:45:38+08:00

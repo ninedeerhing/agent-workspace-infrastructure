@@ -92,7 +92,7 @@ if ($null -ne $loopPromptText) {
         "skill_reactivation_note",
         "capacity_review",
         "methodology_ref",
-        "功能差异矩阵",
+        "model_tier",
         "tmp/skill-route-events.jsonl"
     )
     foreach ($needle in $requiredLoopGateNeedles) {
@@ -113,7 +113,7 @@ if ($null -eq $methodologyText) {
     Add-Finding "error" "CX-METHODOLOGY-VISIBILITY" "Methodology visibility source missing" "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md is missing." "Restore the methodology memory truth source and its visible status block."
 }
 else {
-    foreach ($needle in @("## 当前可见状态", "updated_at", "latest_digest", "methodology_ref")) {
+    foreach ($needle in @("updated_at", "latest_digest", "latest_permanent_M_GP", "methodology_ref")) {
         if ($methodologyText -match [regex]::Escape($needle)) {
             Add-Check "methodology visibility:$needle" "PASS" "present"
         }
@@ -337,9 +337,9 @@ switch ($Format) {
     }
     default {
         if (-not $Quiet) {
-            Write-Host "CodeX Self Check · $ProjectRoot"
+            Write-Host "CodeX Self Check - $ProjectRoot"
             foreach ($check in $Checks) {
-                Write-Host ("[{0}] {1} — {2}" -f $check.status, $check.name, $check.detail)
+                Write-Host ("[{0}] {1} - {2}" -f $check.status, $check.name, $check.detail)
             }
             if ($Findings.Count -gt 0) {
                 Write-Host "Findings:"
