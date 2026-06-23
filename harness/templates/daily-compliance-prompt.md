@@ -1,6 +1,6 @@
 # Daily Compliance — 日末合规巡检 Prompt
 
-> **用途**：CodeX `automation_update` 的 `daily-compliance` 任务主 prompt（RRULE `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` 本地时区）。
+> **用途**：旧 `daily-compliance` prompt。CodeX UI 不再单独调度它；统一由 `daily-ops` worker 调用。
 > **机器包装**：`.\harness\scripts\daily-compliance.ps1`（落盘 `harness/reports/daily-compliance-YYYYMMDD.md`）
 > **约束**：**不修改** `loop-state.json` 的 `next_atomic_action`（loop98/TREE-2 续跑中）；不停止 `daily_trade_status` batch_24mo。
 
@@ -85,4 +85,4 @@ git -C E:\raindeer\apps\quant_assistant status -sb
 
 ---
 
-*下一 Automation：`daily-git-push` @ `30 20 * * *` · prompt 见 `daily-git-push-prompt.md`*
+*当前 CodeX Automation：`daily-ops` · prompt 见 `daily-ops-prompt.md`。*

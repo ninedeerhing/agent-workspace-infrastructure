@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "updated_at": "2026-06-22T02:00:10+08:00",
+  "updated_at": "2026-06-23T10:24:59+08:00",
   "source": "CodeX UI automation_update",
   "automations": [
     {
@@ -13,28 +13,38 @@
       "prompt_policy": "2026-06-21 loop137 update: may load env only through project-approved qa.env.load_env_files() or inherited process env when a tick explicitly requires DB/backfill progress; never print/copy/persist .env, DSNs, tokens, or secret values"
     },
     {
-      "id": "codex-self-check",
-      "codex_id": "awi-codex-self-check",
+      "id": "daily-ops",
+      "codex_id": "awi-daily-ops",
       "kind": "cron",
       "status": "ACTIVE",
-      "schedule": "FREQ=DAILY;BYHOUR=8;BYMINUTE=0;BYSECOND=0",
-      "prompt_ref": "harness/templates/codex-self-check-prompt.md"
+      "schedule": "FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0",
+      "prompt_ref": "harness/templates/daily-ops-prompt.md",
+      "worker_role": "daily-ops",
+      "replaces": [
+        "awi-codex-self-check",
+        "awi-daily-compliance",
+        "awi-daily-git-push"
+      ]
+    }
+  ],
+  "retired_automations": [
+    {
+      "id": "codex-self-check",
+      "codex_id": "awi-codex-self-check",
+      "retired_at": "2026-06-23T10:24:59+08:00",
+      "replacement": "awi-daily-ops"
     },
     {
       "id": "daily-compliance",
       "codex_id": "awi-daily-compliance",
-      "kind": "cron",
-      "status": "ACTIVE",
-      "schedule": "FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0",
-      "prompt_ref": "harness/templates/daily-compliance-prompt.md"
+      "retired_at": "2026-06-23T10:24:59+08:00",
+      "replacement": "awi-daily-ops"
     },
     {
       "id": "daily-git-push",
       "codex_id": "awi-daily-git-push",
-      "kind": "cron",
-      "status": "ACTIVE",
-      "schedule": "FREQ=DAILY;BYHOUR=20;BYMINUTE=30;BYSECOND=0",
-      "prompt_ref": "harness/templates/daily-git-push-prompt.md"
+      "retired_at": "2026-06-23T10:24:59+08:00",
+      "replacement": "awi-daily-ops"
     }
   ]
 }

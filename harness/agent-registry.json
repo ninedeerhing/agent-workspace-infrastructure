@@ -1,12 +1,12 @@
 {
   "version": "0.1.0",
-  "generated_at": "2026-06-15T23:04:33+08:00",
+  "generated_at": "2026-06-23T10:45:10+08:00",
   "source": "harness/scripts/Build-AgentRegistryFromAgentsDir.ps1",
   "project_root": "E:\\raindeer",
   "orchestrator_role": "orchestrator",
   "user_facing_role": "orchestrator",
-  "role_count": 22,
-  "worker_count": 21,
+  "role_count": 23,
+  "worker_count": 22,
   "roles": [
     {
       "role_id": "orchestrator",
@@ -102,6 +102,26 @@
         "processed": "harness/mailbox/critic/processed"
       },
       "worklog": "harness/worklogs/critic.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "daily-ops",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/daily-ops.md",
+      "session_name": "AWI / daily-ops",
+      "model": "sonnet",
+      "description": "Daily operations worker. Owns scheduled CodeX self-check, compliance, lifecycle, dual-repo git status, and daily git push reporting.",
+      "mailbox": {
+        "inbox": "harness/mailbox/daily-ops/inbox",
+        "processed": "harness/mailbox/daily-ops/processed"
+      },
+      "worklog": "harness/worklogs/daily-ops.md",
       "platform_binding": {
         "platform": null,
         "session_id": null,

@@ -1,6 +1,6 @@
 # Daily Git Push — 日末推送 Prompt
 
-> **用途**：Cursor Automations `daily-git-push` 任务（cron `30 20 * * *`，在 `daily-compliance` 之后）。
+> **用途**：旧 `daily-git-push` prompt。CodeX UI 不再单独调度它；统一由 `daily-ops` worker 调用。
 > **机器脚本**：`.\harness\scripts\daily-git-push.ps1`
 > **Schedule 真源**：`harness/schedule.json`（manifest；**须在 Cursor UI 手动创建 Automation**）
 > **用户确认（2026-06-21）**：双仓库模型 · **main-only 本地分支** · upstream 感知 · 仅 ahead>0 时 push · 禁止 force · `.env` staged fail-closed
@@ -92,4 +92,4 @@ Automation 对话侧：**1–2 句** — 各仓库 pushed / skipped / blocked、
 
 ---
 
-*Schedule ids：`daily-compliance` → `daily-git-push` · 见 `harness/schedule.json` · 双仓库 + main-only 见 `docs/LOOP_ENGINEERING.md` §9.3 · `docs/OPERATIONS.md` §1*
+*Schedule id：`daily-ops` · 见 `harness/schedule.json` · 双仓库 + main-only 见 `docs/LOOP_ENGINEERING.md` §9.3 · `docs/OPERATIONS.md` §1*

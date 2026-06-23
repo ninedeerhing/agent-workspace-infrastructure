@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
   "template_id": "default-full-roster",
-  "generated_at": "2026-06-15T23:04:33+08:00",
+  "generated_at": "2026-06-23T10:45:10+08:00",
   "orchestrator_role": "orchestrator",
   "user_facing_role": "orchestrator",
   "roles": [
@@ -44,6 +44,14 @@
       "session_name": "AWI / critic",
       "model": "opus",
       "source_file": "agents/critic.md"
+    },
+    {
+      "role_id": "daily-ops",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / daily-ops",
+      "model": "sonnet",
+      "source_file": "agents/daily-ops.md"
     },
     {
       "role_id": "debugger",

@@ -64,6 +64,8 @@ Test-RequiredFile (Join-Path $HarnessDir "templates/codex-zero-config-prompt.md"
 Test-RequiredFile (Join-Path $HarnessDir "templates/codex-subagent-prompt.md") "CX-003" "CodeX subagent prompt" "Restore harness/templates/codex-subagent-prompt.md." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "reports/EMPLOYEE_ROSTER.md") "CX-004" "Employee roster" "Restore harness/reports/EMPLOYEE_ROSTER.md." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "codex-automation-registry.json") "CX-005" "CodeX automation registry" "Create CodeX automations through the UI/tool and write their ids to harness/codex-automation-registry.json." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "templates/daily-ops-prompt.md") "CX-DAILY-OPS-PROMPT" "Daily ops prompt" "Restore harness/templates/daily-ops-prompt.md." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "scripts/daily-ops.ps1") "CX-DAILY-OPS-SCRIPT" "Daily ops wrapper" "Restore harness/scripts/daily-ops.ps1." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "skill_router.py") "CX-009" "CodeX skill router" "Restore harness/skill_router.py and keep the loop skill routing gate executable." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "tests/test_skill_router.py") "CX-010" "CodeX skill router tests" "Restore harness/tests/test_skill_router.py." | Out-Null
 
@@ -180,7 +182,7 @@ if ($null -ne $rosterText) {
 
 $platformText = Get-Text (Join-Path $DocsDir "PLATFORM-CODEX.md")
 if ($null -ne $platformText) {
-    foreach ($needle in @("automation_update", "create_thread", "send_message_to_thread", "codex-subagent-prompt", "codex-self-check")) {
+    foreach ($needle in @("automation_update", "create_thread", "send_message_to_thread", "codex-subagent-prompt", "codex-self-check", "daily-ops")) {
         if ($platformText -match [regex]::Escape($needle)) {
             Add-Check "PLATFORM-CODEX mentions $needle" "PASS" "present"
         }
@@ -195,7 +197,7 @@ $automationRegistryPath = Join-Path $HarnessDir "codex-automation-registry.json"
 if (Test-Path $automationRegistryPath) {
     try {
         $auto = Get-Content -LiteralPath $automationRegistryPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        $expected = @("loop-tick", "daily-compliance", "daily-git-push", "codex-self-check")
+        $expected = @("loop-tick", "daily-ops")
         foreach ($id in $expected) {
             $entry = $auto.automations | Where-Object { $_.id -eq $id } | Select-Object -First 1
             if ($entry -and $entry.codex_id -and $entry.status -eq "ACTIVE") {
@@ -204,6 +206,16 @@ if (Test-Path $automationRegistryPath) {
             else {
                 Add-Check "automation:$id" "WARN" "missing/inactive in registry"
                 Add-Finding "warning" "CX-AUTO" "CodeX automation not registered" "$id is not ACTIVE in harness/codex-automation-registry.json." "Create/update the automation with codex_app.automation_update and record the returned id."
+            }
+        }
+        foreach ($id in @("daily-compliance", "daily-git-push", "codex-self-check")) {
+            $entry = $auto.automations | Where-Object { $_.id -eq $id -and $_.status -eq "ACTIVE" } | Select-Object -First 1
+            if ($entry) {
+                Add-Check "retired automation inactive:$id" "WARN" "still ACTIVE in registry"
+                Add-Finding "warning" "CX-AUTO-DUP" "Retired daily automation still active" "$id should be replaced by daily-ops to avoid duplicate CodeX daily conversations." "Retire $id and route daily work through awi-daily-ops."
+            }
+            else {
+                Add-Check "retired automation inactive:$id" "PASS" "not active"
             }
         }
     }

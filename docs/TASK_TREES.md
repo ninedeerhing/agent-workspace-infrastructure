@@ -19,6 +19,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 | PL-001 | SDK 原生团队编排深水区（Phase 5+） | 2026-06-15 | parking_lot；CodeX `create_thread`/`send_message_to_thread` 已覆盖当前跨会话 worker 需求 |
 | PL-002 | Codex skills router / gating：hybrid retrieval、family dedupe、top-K exposure、telemetry/eval | 2026-06-22 | promoted into loop preflight governance：`Goal/Plan Gate` + `Skill Routing Gate` + `Worker Dispatch Gate`; router prototype stays under `harness/` and does not mutate global `~/.codex/skills` |
 | PL-003 | CodeX worker cluster / rendezvous governance：goal envelope、cluster manifest、worker reports、retirement | 2026-06-22 | promoted into TREE-RT防漂移维护：参考 edict/kimi-code 只吸收治理模式，不复用代码；loop prompt/self-check/roster now require Worker Cluster/Rendezvous Gate |
+| PL-004 | CodeX daily-ops consolidation：self-check/compliance/git-push 三个 daily 对话收束为一个 worker | 2026-06-23 | promoted into TREE-RT防漂移维护：`daily-ops` worker owns daily self-check, compliance, lifecycles, dual-repo git status, and daily git push reporting |
 
 ## Active Trees
 
@@ -40,13 +41,15 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - `docs/PLATFORM-CODEX.md` — CodeX 原生 primitives 与有效约束
   - `harness/codex-automation-registry.json` — CodeX `automation_update` 返回 id 台账
   - `harness/scripts/codex-self-check.ps1` — CodeX 有效性自检
+  - `harness/scripts/daily-ops.ps1` — 单入口 daily ops wrapper
+  - `harness/templates/daily-ops-prompt.md` — 单入口 daily ops CodeX prompt
   - `harness/templates/codex-self-check-prompt.md` — 定时自检 prompt
   - `harness/gate-runner.ps1` — 阶段门禁
   - `.cursor/hooks.json` + `harness/hooks/` — sessionStart / post-edit 提醒
   - `skills/agent-team-bootstrap` + `skills/workflow-phase-advance`
 - Current commit scope (core):
   - Phase 0–7 交付：compliance、boot、registry、worker 边界、mailbox、PAL、hooks、gate-runner、bootstrap -ProvisionTeam 全链路
-  - CodeX 生效交付：`automation_update` 四项 ACTIVE；`create_thread` verifier worker 已创建；CodeX self-check 27/27 PASS；base compliance 36 checks / 0 findings
+  - CodeX 生效交付：`automation_update` heartbeat + daily-ops ACTIVE；旧 self-check/compliance/git-push 三条 daily automation retired；`create_thread` verifier worker 已创建且旧 verifier duplicate 已归档；CodeX self-check 重新验收中；base compliance 重新验收中
   - Worker cluster 交付：`researcher` thread `019eeebf-629e-7013-bbf4-1db4d312b925` + `architect` thread `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936`；loop207 业务 cluster 已用 `test-engineer` / `executor` / `code-reviewer` / `verifier` 跨对话汇合；Worker Cluster/Rendezvous Gate 已接入 loop prompt/self-check/subagent prompt/roster/report
 - Unclosed points:
   - Phase 5+ SDK 深水区仍 parking_lot，不阻塞当前 CodeX baseline
@@ -54,7 +57,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G explicit executable handoff authorization packet TDD mocked-only；架构侧用 `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal gate 漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G executable handoff gate review TDD mocked-only；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
 
 ## Task Tree Governance Protocol
 
@@ -67,10 +70,10 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G explicit executable handoff authorization packet TDD mocked-only（TREE-2 data gate passed；loop238 completed later executable handoff gate preflight with worker rendezvous；2026-06-22 governance repair blocks further one-marker acceptance checklist drift, and loop238 keeps the gate preflight-only/not-execution before any real runner/adapter invocation/actual adapter dry-run/PL-H execution；见 `harness/loop-state.json` and app §5.562）
+- Current operational loop: `apps/quant_assistant` PL-G executable handoff gate review TDD mocked-only（TREE-2 data gate passed；loop239 completed explicit executable handoff authorization packet with worker rendezvous；2026-06-22 governance repair blocks further one-marker acceptance checklist drift, and loop239 keeps the authorization packet proof-only/not-execution before any real runner/adapter invocation/actual adapter dry-run/PL-H execution；见 `harness/loop-state.json` and app §5.563）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward the unique core mainline auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
-- Side capability themes: `PL-002` Codex skills router / gating and `PL-003` worker cluster / rendezvous governance are promoted into loop preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
+- Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
 
 ## EXCLUDE: Default Exclusions
 

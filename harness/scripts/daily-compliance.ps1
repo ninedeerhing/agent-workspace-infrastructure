@@ -218,7 +218,7 @@ $report = @"
 - **Project root**: $ProjectRoot
 - **codex-self-check exit**: $codexSelfCheckExit
 - **compliance-check exit**: $complianceExit
-- **Schedule task id**: ``daily-compliance`` (cron ``0 20 * * *``)
+- **Schedule task id**: ``daily-ops`` calls ``daily-compliance`` (not separately scheduled)
 
 ## CodeX self-check
 
@@ -277,7 +277,7 @@ $($qaRoot.status_sb)
 
 - ``sync_coherence_lifecycle`` validates prose drift read-only even with ``--apply``.
 - Full agent audit prompt: ``harness/templates/daily-compliance-prompt.md``
-- Next scheduled task: ``daily-git-push`` @ ``30 20 * * *``
+- Daily scheduler: ``daily-ops`` calls ``daily-git-push`` after this wrapper succeeds
 "@
 
 Set-Content -Path $ReportPath -Value $report -Encoding UTF8

@@ -82,6 +82,17 @@
       "last_run": null
     },
     {
+      "id": "daily-ops",
+      "name": "Daily Ops (End of Day)",
+      "description": "Single CodeX daily worker: self-check, compliance, five lifecycles, dual git status, and daily git push",
+      "prompt": "Read harness/templates/daily-ops-prompt.md and run .\\harness\\scripts\\daily-ops.ps1 from repo root. Do NOT modify loop-state next_atomic_action.",
+      "cron": "0 20 * * *",
+      "max_duration_minutes": 35,
+      "retry_on_failure": false,
+      "enabled": true,
+      "last_run": null
+    },
+    {
       "id": "daily-compliance",
       "name": "Daily Compliance (End of Day)",
       "description": "EOD full compliance: compliance-check, five lifecycles, sync/verification summary, dual git status, gap blockers → harness/reports/daily-compliance-YYYYMMDD.md",
@@ -89,7 +100,7 @@
       "cron": "0 20 * * *",
       "max_duration_minutes": 20,
       "retry_on_failure": false,
-      "enabled": true,
+      "enabled": false,
       "last_run": null
     },
     {
@@ -100,7 +111,7 @@
       "cron": "30 20 * * *",
       "max_duration_minutes": 10,
       "retry_on_failure": false,
-      "enabled": true,
+      "enabled": false,
       "last_run": null
     }
   ]

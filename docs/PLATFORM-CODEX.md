@@ -10,6 +10,7 @@ This file is the CodeX-effective platform binding for raindeer-AWI. It makes the
 - Worker roster: `harness/reports/EMPLOYEE_ROSTER.md`.
 - Automation registry: `harness/codex-automation-registry.json`.
 - Self-check: `harness/scripts/codex-self-check.ps1`.
+- Daily ops wrapper: `harness/scripts/daily-ops.ps1`.
 
 ## CodeX-Native Primitives
 
@@ -32,9 +33,9 @@ This file is the CodeX-effective platform binding for raindeer-AWI. It makes the
 | Local id | Kind | Schedule | Prompt |
 |---|---|---|---|
 | `loop-tick` | heartbeat | `FREQ=MINUTELY;INTERVAL=30` | `harness/templates/loop-tick-prompt.md` |
-| `codex-self-check` | cron | `FREQ=DAILY;BYHOUR=8;BYMINUTE=0;BYSECOND=0` | `harness/templates/codex-self-check-prompt.md` |
-| `daily-compliance` | cron | `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` | `harness/templates/daily-compliance-prompt.md` |
-| `daily-git-push` | cron | `FREQ=DAILY;BYHOUR=20;BYMINUTE=30;BYSECOND=0` | `harness/templates/daily-git-push-prompt.md` |
+| `daily-ops` | cron | `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` | `harness/templates/daily-ops-prompt.md` |
+
+`daily-ops` is the only scheduled daily CodeX worker. It replaces the old separate `codex-self-check`, `daily-compliance`, and `daily-git-push` automations so the UI does not open three daily worker conversations.
 
 After creating or updating automations in CodeX UI, write the returned ids to `harness/codex-automation-registry.json`.
 
@@ -43,15 +44,17 @@ After creating or updating automations in CodeX UI, write the returned ids to `h
 | Local id | CodeX id | Status |
 |---|---|---|
 | `loop-tick` | `awi-loop-tick-heartbeat` | ACTIVE |
-| `codex-self-check` | `awi-codex-self-check` | ACTIVE |
-| `daily-compliance` | `awi-daily-compliance` | ACTIVE |
-| `daily-git-push` | `awi-daily-git-push` | ACTIVE |
+| `daily-ops` | `awi-daily-ops` | ACTIVE |
+
+Retired daily automations: `awi-codex-self-check`, `awi-daily-compliance`, and `awi-daily-git-push`; keep their scripts callable but do not schedule them as separate CodeX conversations.
 
 ## Current Worker Thread
 
 | Role | Thread id | Task |
 |---|---|---|
-| `verifier` | `019ee9fe-7605-7d53-8380-57228c31048c` | Read-only verification |
+| `verifier` | `019eeed2-dbc0-7313-8d64-f9c6f199c68b` | Current reusable verifier |
+| `verifier` | `019ee9fe-7605-7d53-8380-57228c31048c` | Archived; do not dispatch |
+| `daily-ops` | `awi-daily-ops` automation | Daily self-check/compliance/lifecycle/git-push worker |
 
 ## Validation
 
@@ -64,4 +67,4 @@ Run:
 
 The CodeX self-check must pass before declaring that AWI is CodeX-effective.
 
-Latest validation: 2026-06-21 `codex-self-check` 27 checks / 0 findings; `compliance-check -Mode post-bootstrap` 36 checks / 0 findings.
+Latest validation: 2026-06-23 `codex-self-check` 50 checks / 0 findings; `compliance-check -Mode post-bootstrap` 36 checks / 0 findings.

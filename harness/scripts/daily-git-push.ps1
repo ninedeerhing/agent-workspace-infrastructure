@@ -370,7 +370,7 @@ $report = @"
 
 - **Checked at**: $checkedAt
 - **Dry run**: $DryRun
-- **Schedule task id**: ``daily-git-push`` (cron ``30 20 * * *`` · after ``daily-compliance``)
+- **Schedule task id**: ``daily-ops`` calls ``daily-git-push`` after ``daily-compliance``
 - **Policy**: main-only local branch · dual-repo · upstream-aware ahead count · push only when ahead > 0 · no force · fail-closed on non-main / staged secrets
 
 ## Dual-repo model
