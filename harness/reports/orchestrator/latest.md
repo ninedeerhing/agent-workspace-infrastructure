@@ -1,3 +1,54 @@
+# Orchestrator Report - loop261-manual-safe-simulation-happy-path
+
+**Updated**: 2026-06-24T02:09:22+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Manual-safe Simulation Happy Path.
+- **trigger**: loop260 made reviewed panel/F6 evidence readable, but the user path still needed a visible safe simulation state/result before any real-runner discussion.
+- **result**: Added `manual_safe_simulation` ready/completed/blocked observability derived from `reviewed_backtest_plan` and injected/mock-safe execution, gated MiningJob action hints behind reviewed-plan readiness, rendered Chat “安全模拟回测结果” copy, and displayed Jobs page safe-simulation result copy.
+- **next**: `CHAT_INTENT_MANUAL_SAFE_SIMULATION_BRIDGE`; still no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Added manual-safe simulation observability and fail-closed action hint gating from reviewed plan/execution state. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Added consumer-grade Chat “安全模拟回测结果” summary without exposing internal runner/DB markers. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Added Jobs page manual-safe simulation result UI with candidate, run id, next step, and safety boundary. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added after-trigger fixture data and browser text checks for manual-safe simulation visibility. |
+| `apps/quant_assistant/tests/test_mining_job_backtest_execution_unit.py` | Added ready/completed manual-safe simulation coverage. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Added injected-runner trigger/API coverage for ready reviewed plan. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Added Chat consumer summary coverage. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `manual_safe_simulation` observability/Chat notes failed before implementation |
+| focused GREEN | pass · **4 passed** |
+| related group | pass · **63 passed** |
+| wider regression | pass · mining/DSL/taxonomy/API/Chat matrix **88 passed** |
+| Python ruff | pass |
+| JobsPage eslint | pass |
+| web build | pass |
+| node syntax | pass |
+| Jobs browser smoke | pass · `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `manual_safe_simulation_visible=true` |
+
+## Worker Notes
+
+Permanent worker threads were used read-only. `test-engineer` returned a success matrix for ready/completed/blocked states, fail-closed no-candidate/missing-runner/non-plan-only handling, and the no-execution forbidden matrix. `code-reviewer` returned a success pre-review recommending the injected callable runner path only, `requires_injected_runner=true`, `auto_execute=false`, and no wording that implies real execution authorization.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, background process, migration, or backfill was started. Page-load trigger requests remained empty.
+
+## Residual Risk
+
+The safe simulation result is now visible and understandable, but the next slice must connect natural-language Chat intent to the same reviewed-plan/manual-confirmation/safe-simulation state machine before any manual UX acceptance or real-runner authorization review.
+
+---
+
 # Orchestrator Report - loop260-reviewed-backtest-plan-handoff
 
 **Updated**: 2026-06-24T01:46:23+08:00

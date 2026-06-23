@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-24T01:46:23+08:00
+updated_at: 2026-06-24T02:09:22+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-24T01:46:23+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-24 loop261 · 已完成 Manual-safe Simulation Happy Path：loop260 的 `reviewed_backtest_plan` 现在会生成 `manual_safe_simulation` ready/completed/blocked 观测合同，并暴露到 MiningJob/API observability、Chat 摘要与 Jobs 消费级默认展示。用户可见摘要包含代表候选、rank IC、coverage、evaluated_days、模拟结果编号、下一步与安全边界；缺候选、reviewed plan gate 不满足、缺 runner 或非 plan-only 均 fail-closed。改动：`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/chat_brain.py`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、`tests/test_mining_job_backtest_execution_unit.py`、`tests/test_mining_job_api_unit.py`、`tests/test_ui_chat_brain_unit.py`。验证：RED 缺 `manual_safe_simulation` observability/Chat notes；focused GREEN 4 passed；related group 63 passed；wider mining/DSL/taxonomy/API/Chat regression 88 passed；ruff ok；JobsPage eslint ok；web build ok；node --check ok；Jobs smoke ok with `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `manual_safe_simulation_visible=true`。test-engineer/code-reviewer 永久线程只读 report success。未读取/输出 secret，未启动 real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、PL-H batch、background/migration/backfill。下一动作：`CHAT_INTENT_MANUAL_SAFE_SIMULATION_BRIDGE`，把“检查候选/开始安全模拟/查看结果”接入 Chat/intent quant 状态机。
+
 [CONTEXT] 2026-06-24 loop260 · 已完成 Reviewed Backtest Plan Handoff：loop259 的 `local_panel_f6_screening_evidence` 与 plan-only `auto_backtest_plan` 现在会生成 `reviewed_backtest_plan`，并暴露到 MiningJob/API observability、Chat 摘要与 Jobs 消费级默认展示。用户可见摘要包含候选/建议/请求数量、A-E 分类与子类、IC/rank-IC/ICIR/coverage/evaluated_days/sample_rows、panel source/data profile、why_selected、manual trigger required 与 `will_execute=false` 边界。改动：`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/chat_brain.py`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、`tests/test_mining_job_auto_backtest_plan_unit.py`、`tests/test_mining_job_api_unit.py`、`tests/test_ui_chat_brain_unit.py`。验证：RED 缺 `build_reviewed_backtest_plan_handoff`；focused GREEN 4 passed；target group 6 passed；related mining/DSL/API/Chat/taxonomy regression 81 passed；ruff ok；JobsPage eslint ok；web build ok；node --check ok；Jobs smoke ok with `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `reviewed_backtest_plan_visible=true`, `reviewed_backtest_plan_manual_trigger=true`, `reviewed_backtest_plan_will_execute=false`。test-engineer/code-reviewer 永久线程只读 report success。未读取/输出 secret，未启动 real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、PL-H batch、background/migration/backfill。下一动作：`MANUAL_SAFE_SIMULATION_HAPPY_PATH`，把“检查候选证据 -> 手动确认 -> 安全模拟回测”的用户可见路径串到 Chat/Jobs/MiningJob。
 
 [CONTEXT] 2026-06-24 loop259 · 已完成 Real Panel F6 Evaluation Integration：loop258 的 A-E deterministic candidates 现在可通过 `qa.quant_mining.panel_f6_evaluator.evaluate_candidates_on_panel(...)` 在注入的本地 panel 上执行 Factor DSL 并调用 `FastBacktestService.screen_ic`，形成 `local_panel_f6_screening_evidence`（panel_source/data_profile/quick_ic/rank_ic/icir/coverage/evaluated_days/sample_rows/verdict/error_detail）。`run_mining_batch_once(panel=...)` 会使用真实 panel/F6 evidence；无 panel 时保留 pseudo quick-screen fallback，避免冒充真实数据评估；`quick_screening_report` 和 plan-only `auto_backtest_plan` 均携带 `screening_evidence`。改动：`src/qa/factor_dsl/evaluator.py`、`src/qa/quant_mining/panel_f6_evaluator.py`、`src/qa/quant_mining/mining_runner.py`、`tests/test_quant_mining_panel_f6_evaluator_unit.py`、`tests/test_mining_runner_unit.py`、`tests/test_mining_job_auto_backtest_plan_unit.py`。验证：RED 缺 `panel_f6_evaluator`；GREEN target 4 passed；related mining/DSL regression 49 passed；targeted ruff pass；test-engineer/code-reviewer 永久线程只读 report success。未读取/输出 secret，未启动 real/default runner、adapter、DB-backed backtest、PL-H batch、background/migration/backfill。下一动作：`REVIEWED_BACKTEST_PLAN_HANDOFF`，把 panel/F6 evidence 汇总成用户可读 reviewed backtest plan 与 explicit/manual-safe gates。
@@ -154,14 +156,14 @@ updated_at: 2026-06-24T01:46:23+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | real-panel-f6-evaluation-integration-loop259 |
-| `last_tick` | loop259-real-panel-f6-evaluation-integration |
+| `current_slice` | manual-safe-simulation-happy-path-loop261 |
+| `last_tick` | loop261-manual-safe-simulation-happy-path |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-REVIEWED_BACKTEST_PLAN_HANDOFF: turn loop259 `local_panel_f6_screening_evidence` into a consumer-readable reviewed backtest plan across MiningJob/Chat/Jobs, and keep execution behind explicit/manual-safe gates.
+CHAT_INTENT_MANUAL_SAFE_SIMULATION_BRIDGE: connect loop261 `manual_safe_simulation` to the Chat/intent quant state machine so users can ask to inspect candidates, manually confirm, start an injected/mock-safe simulation, or view existing safe-simulation results; keep PL-H, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, background/migration/backfill, and secret output forbidden.
 
 ### next_after
 

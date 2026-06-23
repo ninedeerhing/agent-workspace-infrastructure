@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T17:54:23Z",
+  "updated_at": "2026-06-23T18:16:57Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-23T17:54:19Z",
-    "last_tick": "loop260-reviewed-backtest-plan-handoff",
-    "pytest_passed": 81,
-    "ruff": "ok",
+    "recorded_at": "2026-06-23T18:16:51Z",
+    "last_tick": "loop261-manual-safe-simulation-happy-path",
+    "pytest_passed": 88,
+    "ruff": "pass",
     "evidence_paths": [
-      "loop260 reviewed backtest plan handoff: focused 4 passed; target group 6 passed; related regression 81 passed; ruff ok; JobsPage eslint ok; web build ok; node --check ok; Jobs smoke ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[] reviewed_backtest_plan_visible=true reviewed_backtest_plan_manual_trigger=true reviewed_backtest_plan_will_execute=false"
+      "loop261-manual-safe-simulation-happy-path"
     ],
-    "section5_ref": "5.587",
+    "section5_ref": "5.588",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.0011787177777777776,
+  "age_hours": 0.0016928605555555556,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-23T17:54:23Z",
+    "at": "2026-06-23T18:16:57Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.0011787177777777776
+    "age_hours": 0.0016928605555555556
   }
 }

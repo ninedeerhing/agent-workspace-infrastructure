@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T01:46:23+08:00",
+  "updated_at": "2026-06-24T02:09:22+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "reviewed-backtest-plan-handoff-loop260",
-  "next_atomic_action": "MANUAL_SAFE_SIMULATION_HAPPY_PATH：基于 loop260 reviewed_backtest_plan，把“检查候选证据 -> 手动确认 -> 安全模拟回测”的用户可见 happy path 串通到 Chat/Jobs/MiningJob；仍只允许 injected/mock-safe runner 或 plan-only evidence，禁止 PL-H batch、真实/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、background/migration/backfill 和 secret 输出。",
-  "next_after": "After manual-safe simulation happy path, decide whether the consumer-visible acceptance evidence is enough to request explicit real-runner authorization/config review, or whether candidate evidence/intent routing needs another product slice.",
+  "current_slice": "manual-safe-simulation-happy-path-loop261",
+  "next_atomic_action": "CHAT_INTENT_MANUAL_SAFE_SIMULATION_BRIDGE：把 loop261 manual_safe_simulation 合同接到意图理解状态机/Chat 操作流：用户表达“检查候选/开始安全模拟/查看模拟结果”时，Chat 能恢复 reviewed plan、识别手动确认意图、触发 injected/mock-safe simulation 或展示已有结果；仍禁止 PL-H batch、真实/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、background/migration/backfill 和 secret 输出。",
+  "next_after": "After Chat intent bridge, decide whether the product path is ready for manual UX acceptance of the mocked/injected safe simulation flow or needs another state-machine/Jobs parity slice before any real-runner authorization/config review.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop260-reviewed-backtest-plan-handoff",
+  "last_tick": "loop261-manual-safe-simulation-happy-path",
   "last_sync_sources": [
+    "loop261 manual_safe_simulation visible in MiningJob/API, Chat, and Jobs",
+    "loop261 TDD focused 4 passed; related group 63 passed; wider mining/DSL/taxonomy regression 88 passed",
+    "loop261 ruff ok; JobsPage eslint ok; web build ok; node --check ok; Jobs smoke ok",
+    "loop261 permanent test-engineer/code-reviewer read-only reports success",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.588",
     "loop260 reviewed_backtest_plan visible in MiningJob/API, Chat, and Jobs",
     "loop260 TDD target 4 passed; target group 6 passed; related regression 81 passed",
     "loop260 ruff ok; JobsPage eslint ok; web build ok; node --check ok; Jobs smoke ok",
@@ -1056,5 +1061,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop260 completed reviewed backtest plan handoff. local_panel_f6_screening_evidence plus plan-only auto_backtest_plan are now summarized as reviewed_backtest_plan for MiningJob/API observability, Chat summaries, and Jobs consumer UI. The plan shows A-E category/subclass labels, selected candidates, IC/rank-IC/ICIR/coverage/evaluated_days/sample_rows, panel source/data profile, and a manual-safe execution gate. It remains plan-only/manual-trigger-required: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, background/migration/backfill, or secret output was introduced."
   },
-  "last_completed_note": "loop260 Reviewed Backtest Plan Handoff complete. Added build_reviewed_backtest_plan_handoff, persisted/exposed reviewed_backtest_plan through mining_runner observability/API, rendered a consumer-grade Chat summary, and displayed Jobs page reviewed plan copy with visible category/subclass, rank IC, coverage, evaluated days, manual-trigger requirement, and will_execute=false markers. Verification: TDD RED missing helper; focused GREEN 4 passed; target group 6 passed; related mining/DSL/API/Chat/taxonomy regression 81 passed; ruff ok; JobsPage eslint ok; web build ok; node --check ok; Jobs browser smoke ok with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]. Permanent test-engineer/code-reviewer reports were used read-only. Next_atomic_action is manual-safe simulation happy path, not PL-H/real runner execution."
+  "last_completed_note": "loop261 Manual-safe Simulation Happy Path complete. Added manual_safe_simulation ready/completed/blocked observability derived from reviewed_backtest_plan and injected/mock-safe execution, gated action hints fail-closed on missing candidates or invalid reviewed-plan gate, rendered consumer-grade Chat safe-simulation notes, and displayed Jobs page safe-simulation result card. Verification: TDD RED missing observability/Chat notes; focused GREEN 4 passed; related group 63 passed; wider mining/DSL/taxonomy/API/Chat regression 88 passed; ruff ok; JobsPage eslint ok; web build ok; node --check ok; Jobs browser smoke ok with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]. Permanent test-engineer/code-reviewer reports were used read-only. Next_atomic_action is Chat intent manual-safe simulation bridge, not PL-H/real runner execution."
 }
