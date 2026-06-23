@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-23T07:01:01Z",
-  "last_tick": "loop249-later-executable-handoff-manual-acceptance-artifact-review-only",
-  "pytest_passed": 52,
+  "recorded_at": "2026-06-23T07:21:40Z",
+  "last_tick": "loop250-explicit-authorization-config-runner-rollback-audit-packet-boundary-planning",
+  "pytest_passed": 53,
   "ruff": "ok",
   "evidence_paths": [
-    "loop249 RED expected; GREEN focused+loop248 2 passed; adjacent proof chain 11 passed; jobs_fixture_emits 52 passed; ruff/node/eslint/build/smoke/scans/runtime cleanup pass"
+    "loop250 RED expected; GREEN focused+loop249 2 passed; adjacent proof chain 12 passed; jobs_fixture_emits 53 passed; ruff/node/eslint/build/smoke/scans/runtime cleanup pass"
   ],
-  "section5_ref": "5.575",
+  "section5_ref": "5.576",
   "source": "manual"
 }

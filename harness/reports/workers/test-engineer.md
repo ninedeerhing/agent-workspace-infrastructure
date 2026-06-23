@@ -612,3 +612,23 @@
 - **更新时间**：2026-06-19T05:00:59Z
 
 > 被委派切片时更新本节；同步 TASK_TREES + §5 + CONTINUATION + METHODOLOGY + WORKFLOWS + loop-state + 本报告。
+## loop250-explicit-authorization-config-runner-rollback-audit-packet-boundary-planning
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "Read-only TDD design review for TREE-6 / PL-G explicit authorization/config/runner/rollback-audit packet boundary planning-only mocked-only."
+  changes: []
+  verification:
+    - command: "read-only review of planned loop250 unit/proof/smoke scope"
+      result: "PASS: required RED/GREEN markers cover source=loop249 artifact-review gate, planning-only not manual acceptance/not authorization/not execution, authorization evidence packet planning_required_not_granted, operator/reviewer authorization planning_required_not_granted/not_approved, runner/adapter config planning_required_not_connected, explicit runner/no-default boundary, rollback/audit plan_required_no_execution, missing-runner fail-closed planned, PL-H not eligible, no-execution matrix, and next operator/reviewer authorization packet review-only."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Packet-boundary planning must remain planning-only and must not imply manual acceptance, authorization, execution, or runner/adapter connectivity."
+    performance_note: "Success; permanent worker identity retained."
+  blockers: []
+  next: "Use the same marker discipline for loop251 operator/reviewer authorization packet review-only."
+
+---

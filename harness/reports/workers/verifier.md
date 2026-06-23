@@ -891,3 +891,29 @@
 - **更新时间**：2026-06-19T05:00:59Z
 
 > 被委派切片时更新本节；同步 TASK_TREES + §5 + CONTINUATION + METHODOLOGY + WORKFLOWS + loop-state + 本报告。
+## loop250-explicit-authorization-config-runner-rollback-audit-packet-boundary-planning
+
+report:
+  role_id: "verifier"
+  status: "success"
+  task: "Read-only final verification for TREE-6 / PL-G packet-boundary planning-only gate."
+  changes: []
+  verification:
+    - command: "uv run pytest tests/test_jobs_page_explicit_authorization_config_runner_rollback_audit_packet_boundary_planning_unit.py tests/test_jobs_page_later_executable_handoff_manual_acceptance_artifact_review_only_unit.py -q"
+      result: "PASS: 2 passed."
+    - command: "adjacent proof chain pytest"
+      result: "PASS: 12 passed."
+    - command: "uv run pytest tests -k jobs_fixture_emits -q"
+      result: "PASS: 53 passed, 2127 deselected, 1 known LangChainPendingDeprecationWarning."
+    - command: "ruff / node --check / targeted eslint / npm run build / npm run smoke:jobs-page / guard scans / runtime cleanup"
+      result: "PASS: lint/build/smoke/scans all passed; smoke parsed ok=true, pageLoadTriggerRequests=[], duplicateTriggerUrls=[], miningJobsReadCount=5; forbidden active marker count=0; stale loop250 marker count=0; secret value-shape count=0; dev server listener count=0."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Completion claim is limited to mocked-only planning proof; real execution remains blocked."
+    performance_note: "Success; verification matrix sufficient for loop250 completion."
+  blockers: []
+  next: "Verify loop251 operator/reviewer authorization packet review-only with the same mocked-only/no-execution matrix."
+
+---

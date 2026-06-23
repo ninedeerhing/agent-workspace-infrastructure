@@ -663,3 +663,25 @@
 - **更新时间**：2026-06-19T05:00:59Z
 
 > 被委派切片时更新本节；同步 TASK_TREES + §5 + CONTINUATION + METHODOLOGY + WORKFLOWS + loop-state + 本报告。
+## loop250-explicit-authorization-config-runner-rollback-audit-packet-boundary-planning
+
+report:
+  role_id: "code-reviewer"
+  status: "success"
+  task: "Read-only semantic/code risk review for TREE-6 / PL-G packet-boundary planning-only gate."
+  changes: []
+  verification:
+    - command: "read-only diff review of loop250 test/check/assertion/proof/smoke files"
+      result: "PASS: diff is limited to planning-only packet-boundary proof wiring; marker semantics align with loop249 source and loop251 next gate; no grant/execution/runner/default-runner/adapter/DB/background/PL-H/secret path was introduced."
+    - command: "review of negative marker usage"
+      result: "PASS: active grant/execution wording appears only as negative guard semantics, tests, or hasNoMarkers checks; runtime proof markers remain planning-only/not-authorization/not-execution."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Packet-boundary planning language must be explicit that it is neither authorization nor execution permission."
+    performance_note: "Success; final semantic risk review accepted."
+  blockers: []
+  next: "Loop251 should remain review-only and require the same no-execution semantic guard."
+
+---
