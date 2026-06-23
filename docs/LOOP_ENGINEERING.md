@@ -1,7 +1,7 @@
 # Loop Engineering — 自治循环协议
 
 > **效力**：Raindeer-AWI 心流/无限循环模式的最高操作契约。与 `docs/FLOW-MODE.md`、`apps/quant_assistant/docs/WORKFLOWS.md` 互补：本文件定义**如何自派任务**；彼等定义**何时可停**。
-> **版本**：1.4.0 · 2026-06-22
+> **版本**：1.5.0 · 2026-06-23
 
 ---
 
@@ -39,11 +39,8 @@ Loop Engineering = **Ralph Loop（自引用持久循环）** + **心流模式（
 ## 3. 自治派任务算法（每轮 Step 1）
 
 ```
-READ  TASK_TREES → 当前 in_progress 主线与「下一原子动作」列表
-READ  CONTINUATION_PROMPT → 阻塞项、P0 验收
-READ  PROJECT_STATUS §5 最新 3 条 → 避免重复劳动
-READ  METHODOLOGY_MEMORY 顶部「当前可见状态」+ 最新轮 + P0 教训 → 不踩已知坑
-READ  implementation-master-plan / intent-state-machine → 未收口切片
+READ  热路径：loop-state + 当前 slice 的 workflow gate + PROJECT_STATUS §5 最新 1-3 条 + 下一动作 + 必要 worker/skill 索引
+READ  冷路径按触发回源：阶段切换、事实冲突、自检失败、worker/skill 新增、方法论沉淀、发布/真实执行门禁、高风险审查
 
 IF 存在 P0 阻塞且无法自动消除 → 停止白名单「真实阻塞」，短播报后等待
 ELSE 取 TASK_TREES 排序第 1 条且未在 §5 标记 done 的原子动作
@@ -58,6 +55,23 @@ LOOP  回到 READ（除非停止白名单或裁判收口）
 ```
 
 **禁止**：完成一项后停下来问「是否继续」；**禁止**无台账声称完成。
+
+### 3.0 Context Loading Budget Gate（热路径轻量 + 冷路径可追溯回源 · v1.5）
+
+Loop 不再每轮全文加载 workflow / 方法论 / 历史台账。AWI 架构权威保持不变，但上下文加载改为预算化：
+
+| 路径 | 每轮默认读取 | 触发条件 |
+|------|--------------|----------|
+| 热路径 | `harness/loop-state.json`；当前 slice 对应的 workflow gate/任务树片段；`PROJECT_STATUS` 最新 1-3 条；`CONTINUATION_PROMPT` 当前 entry；`METHODOLOGY_MEMORY` 顶部 visible status；roster 中本轮相关 worker 行；skill router top-K 摘要 | 默认每轮 |
+| 冷路径 | `docs/LOOP_ENGINEERING.md` 全文、完整 `WORKFLOWS.md`、完整 `TASK_TREES.md`、完整 `METHODOLOGY_MEMORY.md`、历史 §5、worker 历史报告、架构/安全/运行文档 | 阶段切换、真源冲突、自检/lifecycle 失败、schema/真实执行/安全门禁、发布/commit/push、创建/重绑 worker、创建/修改 skill、方法论 synthesis、用户要求审计 |
+
+规则：
+
+- 热路径目标是把架构治理控制在约 10-15% 上下文内，把主要窗口留给代码、测试和产品产出。
+- 冷路径不是删除；它以文件路径、mtime/hash、索引和最近 ledger 引用保留可追溯回源能力。
+- 每轮 §5 必须记录本轮 `context_mode=hot_path` 或触发的 `cold_path_reason`。
+- 如果热路径资料之间出现冲突，立即冷路径回源，不得用聊天记忆裁决。
+- workflow 不能舍弃；默认只加载当前 gate，阶段切换或 gate 失败时再加载完整 workflow。
 
 ### 3.1 Goal/Plan Gate（目标与切片尺寸硬门禁 · v1.3）
 

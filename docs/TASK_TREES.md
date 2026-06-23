@@ -49,7 +49,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - `skills/agent-team-bootstrap` + `skills/workflow-phase-advance`
 - Current commit scope (core):
   - Phase 0–7 交付：compliance、boot、registry、worker 边界、mailbox、PAL、hooks、gate-runner、bootstrap -ProvisionTeam 全链路
-  - CodeX 生效交付：`automation_update` heartbeat + daily-ops ACTIVE；旧 self-check/compliance/git-push 三条 daily automation retired；`create_thread` verifier worker 已创建且旧 verifier duplicate 已归档；CodeX self-check 重新验收中；base compliance 重新验收中
+  - CodeX 生效交付：loop-tick heartbeat 按用户 2026-06-23 指令临时暂停为 `PAUSED_BY_USER`，当前业务 loop 改由 continuous orchestrator thread 执行；daily-ops 仍 ACTIVE 并绑定 pinned `daily-ops` thread；旧 self-check/compliance/git-push 三条 daily automation retired；旧 verifier duplicate 已归档；CodeX self-check 已验收 loop-tick `ACTIVE|PAUSED_BY_USER`
   - Worker cluster 交付：`researcher` thread `019eeebf-629e-7013-bbf4-1db4d312b925` + `architect` thread `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936`；loop207 业务 cluster 已用 `test-engineer` / `executor` / `code-reviewer` / `verifier` 跨对话汇合；Worker Cluster/Rendezvous Gate 已接入 loop prompt/self-check/subagent prompt/roster/report
 - Unclosed points:
   - Phase 5+ SDK 深水区仍 parking_lot，不阻塞当前 CodeX baseline
@@ -57,7 +57,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G later executable handoff final implementation gate/review TDD mocked-only；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G transition readiness assessment-only mocked-only；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
 
 ## Task Tree Governance Protocol
 
@@ -70,7 +70,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G later executable handoff final implementation gate/review TDD mocked-only（TREE-2 data gate passed；loop242 completed narrower executable handoff implementation seam with no-execution proof; worker permanent `codex_thread_id` and temporary `runtime_agent_id` are separated, and dispatch must verify cross-dialogue thread reachability before assignment；见 `harness/loop-state.json` and app §5.568）
+- Current operational loop: `apps/quant_assistant` PL-G transition readiness assessment-only mocked-only（TREE-2 data gate passed；loop243 completed later executable handoff final implementation gate/review with no-execution proof; worker permanent `codex_thread_id` and temporary `runtime_agent_id` are separated, and dispatch must verify cross-dialogue thread reachability before assignment；见 `harness/loop-state.json` and app §5.569）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward the unique core mainline auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.

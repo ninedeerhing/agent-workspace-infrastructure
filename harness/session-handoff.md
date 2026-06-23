@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T12:14:39+08:00
+updated_at: 2026-06-23T12:41:00+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,12 @@ updated_at: 2026-06-23T12:14:39+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-23 loop243 · 已完成 later executable handoff final implementation gate/review mocked-only：新增 `laterExecutableHandoffFinalImplementationGateReviewChecks` / `assertLaterExecutableHandoffFinalImplementationGateReview(...)`，基于 loop242 narrower executable handoff implementation seam 证明 final-gate-review-only/not-execution：source=loop242、fail_closed_later_executable_handoff_final_implementation_gate_review_not_execution、operator/reviewer authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution final gate/review acceptance、executable handoff blocked_until_explicit_authorization_config_rollback_audit_real_batch_gate 与 next transition_readiness_assessment_only。验证：RED expected failure，focused pytest 1 passed，adjacent proof chain 6 passed，jobs_fixture_emits 47 passed，ruff/node-check/eslint/build/smoke/scans/runtime cleanup pass；test-engineer permanent worker report success，code-reviewer/verifier final checks dispatched to permanent threads。canonical threads 为 test-engineer `019eeece-52d7-7b73-868a-7beb496ba303`、executor `019eeece-c617-71c3-a80a-39a693ad3ac3`、code-reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b`；`019ef130...` 系列只作 runtime evidence，不可用于 `send_message_to_thread`。下一拍：transition readiness assessment-only mocked-only；仍禁止 authorization grant、runner/adapter connection、real/default runner、adapter invocation、actual adapter dry-run、background、migration/backfill、DB-backed backtest、PL-H execution、secret output。
+
+[CONTEXT] 2026-06-23 continuous-loop · 用户要求暂时停止 heartbeat，改用当前 orchestrator thread 连续 loop，以免 heartbeat 反复恢复上下文导致 token/context 爆炸。实际 CodeX heartbeat `awi-loop-tick-heartbeat` 已删除/暂停，`harness/codex-automation-registry.json` 记录 `loop-tick` 为 `PAUSED_BY_USER` + `replacement_mode=continuous-orchestrator-thread-loop`；`harness/scripts/codex-self-check.ps1` 已接受 `ACTIVE|PAUSED_BY_USER`，self-check 56 checks / 0 findings。daily-ops heartbeat 仍 ACTIVE，并绑定 pinned `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`。
+
+[CONTEXT] 2026-06-23 context-budget · 用户正式批准切换为“热路径轻量 + 冷路径可追溯回源”模式。Loop Engineering v1.5 与 `harness/templates/loop-tick-prompt.md` 已加入 Context Loading Budget Gate；self-check 已要求 `Context Loading Budget Gate` / `context_mode` / `cold_path_reason`。默认每轮只热加载 current slice gate、§5 最新 1-3 条、下一动作、METHODOLOGY visible status、必要 worker/skill 索引；阶段切换、事实冲突、自检失败、安全/真实执行/发布门禁、worker/skill 新增或重绑、方法论 synthesis、用户审计时冷路径回源完整真源。workflow 不舍弃，默认只加载当前 gate。
+
 [CONTEXT] 2026-06-23 loop242 · 已完成 narrower executable handoff implementation seam mocked-only：新增 `narrowerExecutableHandoffImplementationSeamChecks` / `assertNarrowerExecutableHandoffImplementationSeam(...)`，基于 loop241 executable handoff implementation preflight 证明 narrower-seam-only/not-execution：source=loop241、fail_closed_narrower_executable_handoff_implementation_seam_not_execution、operator/reviewer authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution narrower executable handoff implementation seam acceptance、executable handoff blocked_until_explicit_authorization_config_rollback_audit_real_batch_gate 与 next later executable handoff final implementation gate/review。验证：RED expected failure，focused pytest 1 passed，adjacent proof chain 5 passed，jobs_fixture_emits 46 passed，ruff/node-check/eslint/build/smoke/scans/runtime cleanup pass；test-engineer/code-reviewer/verifier permanent worker reports success。canonical threads 为 test-engineer `019eeece-52d7-7b73-868a-7beb496ba303`、executor `019eeece-c617-71c3-a80a-39a693ad3ac3`、code-reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b`；`019ef130...` 系列只作 runtime evidence，不可用于 `send_message_to_thread`。下一拍：later executable handoff final implementation gate/review TDD mocked-only；仍禁止 real/default runner、adapter invocation、actual adapter dry-run、background、migration/backfill、DB-backed backtest、PL-H execution、secret output。
 
 [CONTEXT] 2026-06-23 loop241 · 已完成 executable handoff implementation preflight mocked-only：新增 `executableHandoffImplementationPreflightChecks` / `assertExecutableHandoffImplementationPreflight(...)`，基于 loop240 executable handoff gate review 证明 implementation-preflight-only/not-execution：source=loop240、fail_closed_executable_handoff_implementation_preflight_not_execution、operator/reviewer authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution executable handoff implementation preflight acceptance、executable handoff blocked_until_explicit_authorization_config_rollback_audit_real_batch_gate 与 next narrower executable handoff implementation seam。验证：RED expected failure，focused pytest 1 passed，adjacent proof chain 5 passed，jobs_fixture_emits 45 passed，ruff/node-check/eslint/build/smoke/scans/runtime cleanup pass；test-engineer/code-reviewer/verifier permanent worker reports success。canonical threads 为 test-engineer `019eeece-52d7-7b73-868a-7beb496ba303`、executor `019eeece-c617-71c3-a80a-39a693ad3ac3`、code-reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b`；`019ef130...` 系列只作 runtime evidence，不可用于 `send_message_to_thread`。下一拍：narrower executable handoff implementation seam TDD mocked-only；仍禁止 real/default runner、adapter invocation、actual adapter dry-run、background、migration/backfill、DB-backed backtest、PL-H execution、secret output。
@@ -114,18 +120,18 @@ updated_at: 2026-06-23T12:14:39+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-later-executable-handoff-final-implementation-gate-review-mocked-only |
-| `last_tick` | loop242-narrower-executable-handoff-implementation-seam |
+| `current_slice` | pl-g-transition-readiness-assessment-only-mocked-only |
+| `last_tick` | loop243-later-executable-handoff-final-implementation-gate-review |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start later executable handoff final implementation gate/review TDD mocked-only: use loop242 narrower executable handoff implementation seam to define a fail-closed later executable handoff final implementation gate/review for operator/reviewer authorization still not granted, runner/adapter config still not connected, rollback/audit before-after readiness still required, missing-runner fail-closed rejection, PL-H still not eligible until real-batch gate, no-execution later executable handoff final implementation gate/review acceptance, and executable handoff still blocked until explicit authorization+config+rollback/audit+real-batch gate; still forbid real/default runner invocation, adapter invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output. Before dispatch, resolve permanent CodeX worker codex_thread_id from roster and verify reachability; runtime_agent_id is auxiliary evidence only.
+Start transition readiness assessment-only mocked-only: use loop243 later executable handoff final implementation gate/review to produce a fail-closed transition-readiness assessment packet that only assesses whether operator/reviewer authorization evidence, runner/adapter config readiness, rollback/audit before-after readiness, missing-runner fail-closed behavior, PL-H non-eligibility/real-batch gate, and no-execution final gate/review acceptance remain complete; it must not grant authorization, connect a runner/adapter, invoke real/default runner, invoke adapter, execute actual adapter dry-run, auto POST on page load, start background work, run migration/backfill, run DB-backed backtest, enable PL-H batch execution, or output secrets. Before dispatch, resolve permanent CodeX worker codex_thread_id from roster and verify reachability; runtime_agent_id is auxiliary evidence only.
 
 ### next_after
 
-After the later executable handoff final implementation gate/review stabilizes, only assess any transition toward executable handoff authorization/config/rollback-audit real-batch gate if operator/reviewer authorization, runner/adapter config readiness, rollback/audit before-after readiness, missing-runner fail-closed behavior, PL-H non-eligibility/real-batch gate, and no-execution final gate/review acceptance remain proven; do not invoke real/default runner, adapter invocation, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
+After transition readiness assessment-only stabilizes, only plan a later explicit executable handoff authorization/config/rollback-audit real-batch gate if the assessment remains fail-closed and complete; any real/default runner call, adapter invocation, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output remains forbidden until a later explicit authorization gate is implemented and verified.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -161,7 +167,7 @@ $env:PYTHONPATH='src'
 
 - **禁止**: `cursor/*` / arbitrary feature 分支作为日常开发分支
 - **日末 push**: `harness/scripts/daily-git-push.ps1`（非 main → blocked exit 1）
-- **Automation**: CodeX UI 配置 · loop-tick heartbeat + daily-ops heartbeat bound to pinned thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`
+- **Automation**: CodeX UI 配置 · loop-tick heartbeat currently `PAUSED_BY_USER` for continuous in-thread loop + daily-ops heartbeat ACTIVE bound to pinned thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`
 
 ### Employee Roster
 
@@ -206,7 +212,7 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 | 名称 | CodeX id | 类型 | 调度 | 模板 |
 |---|---|---|---|---|
-| loop-tick | `awi-loop-tick-heartbeat` | heartbeat | `FREQ=MINUTELY;INTERVAL=15` | `harness/templates/loop-tick-prompt.md` · prompt updated: safe env loading allowed via project loader, secret output forbidden |
+| loop-tick | `awi-loop-tick-heartbeat` | heartbeat | `PAUSED_BY_USER` · replacement `continuous-orchestrator-thread-loop` | `harness/templates/loop-tick-prompt.md` · temporarily stopped by user to avoid heartbeat context blow-up |
 | daily-ops | `awi-daily-ops` | heartbeat bound to pinned thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0` | `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` | `harness/templates/daily-ops-prompt.md` · runs self-check, compliance, lifecycles, dual-repo status, and daily git push |
 
 登记真源：`harness/codex-automation-registry.json`。旧 daily automations `awi-codex-self-check` / `awi-daily-compliance` / `awi-daily-git-push` retired；旧 daily UI threads `019eef56-e7c4-7ea1-916a-49030eb3f929` / `019eea29-471f-7df3-a174-b6a0e74fb6dc` / `019eef34-1b24-7020-8003-4e8a158df67e` / `019ef1c7-f3f3-7401-9158-c25756633a17` / `019eecaa-4930-7dc0-b5a1-97003d2e7b50` archived。
@@ -230,11 +236,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop242 已完成 PL-G narrower executable handoff implementation seam mocked-only，并保持 worker channel identity 修复。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 later executable handoff final implementation gate/review TDD mocked-only，避免把 narrower seam proof 误认为 authorization/operator approval grant、runner invocation、adapter invocation、actual adapter dry-run execution、executable handoff approval 或 PL-H execution。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop243 已完成 PL-G later executable handoff final implementation gate/review mocked-only，并保持 worker channel identity 修复。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 transition readiness assessment-only mocked-only，避免把 final gate/review proof 误认为 authorization/operator approval grant、runner connection、runner invocation、adapter invocation、actual adapter dry-run execution、executable handoff approval 或 PL-H execution。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `later executable handoff final implementation gate/review TDD mocked-only`：使用 loop242 narrower executable handoff implementation seam 定义 fail-closed later executable handoff final implementation gate/review，覆盖 operator/reviewer authorization still not granted / injected runner-adapter config readiness still not connected / rollback-audit before-after readiness / missing-runner fail-closed boundary / PL-H non-eligibility real-batch gate / no-execution final gate/review acceptance 与 executable handoff still blocked until explicit authorization+config+rollback/audit+real-batch gate；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation/actual adapter dry-run execution、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `transition readiness assessment-only mocked-only`：使用 loop243 later executable handoff final implementation gate/review 产出 fail-closed transition-readiness assessment packet，只评估 authorization evidence / runner-adapter config readiness / rollback-audit before-after readiness / missing-runner fail-closed boundary / PL-H non-eligibility real-batch gate / no-execution final gate/review acceptance 是否仍完整；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation/actual adapter dry-run execution、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 

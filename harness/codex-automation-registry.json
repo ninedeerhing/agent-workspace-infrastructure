@@ -1,14 +1,17 @@
 {
   "version": "0.1.0",
-  "updated_at": "2026-06-23T10:51:01+08:00",
+  "updated_at": "2026-06-23T12:32:00+08:00",
   "source": "CodeX UI automation_update",
   "automations": [
     {
       "id": "loop-tick",
       "codex_id": "awi-loop-tick-heartbeat",
       "kind": "heartbeat",
-      "status": "ACTIVE",
+      "status": "PAUSED_BY_USER",
       "schedule": "FREQ=MINUTELY;INTERVAL=15",
+      "paused_at": "2026-06-23T12:32:00+08:00",
+      "pause_reason": "User requested continuous in-thread loop and temporary heartbeat stop to avoid context blow-up.",
+      "replacement_mode": "continuous-orchestrator-thread-loop",
       "prompt_ref": "harness/templates/loop-tick-prompt.md",
       "prompt_policy": "2026-06-21 loop137 update: may load env only through project-approved qa.env.load_env_files() or inherited process env when a tick explicitly requires DB/backfill progress; never print/copy/persist .env, DSNs, tokens, or secret values"
     },

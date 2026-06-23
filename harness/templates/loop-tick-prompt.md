@@ -10,16 +10,29 @@
 
 ## 1. 读取状态（只读）
 
-1. `harness/loop-state.json` → `next_atomic_action`
-2. `apps/quant_assistant/docs/TASK_TREES.md` → 前台主线与下一原子动作
-3. `apps/quant_assistant/docs/CONTINUATION_PROMPT.md`
-4. `apps/quant_assistant/docs/PROJECT_STATUS.md` §5 最新 3 条
-5. `apps/quant_assistant/docs/METHODOLOGY_MEMORY.md` → 永久库 + GP-xx + 活跃步骤 digest + 最近 2 轮
-6. `docs/LOOP_ENGINEERING.md` §3 派任务算法
+默认使用 **Context Loading Budget Gate（热路径轻量 + 冷路径可追溯回源）**：
+
+1. 热路径必读：`harness/loop-state.json` → `next_atomic_action`
+2. 热路径必读：`apps/quant_assistant/docs/PROJECT_STATUS.md` 顶部 + §5 最新 1-3 条
+3. 热路径必读：`apps/quant_assistant/docs/CONTINUATION_PROMPT.md` 当前 entry
+4. 热路径必读：`apps/quant_assistant/docs/TASK_TREES.md` 当前主线片段与下一原子动作
+5. 热路径必读：`apps/quant_assistant/docs/METHODOLOGY_MEMORY.md` 顶部「当前可见状态」
+6. 热路径必读：`harness/reports/EMPLOYEE_ROSTER.md` 中本轮相关 worker 行 + `harness/skill_router.py` top-K 摘要
+7. 热路径按需：当前 slice 对应的 `WORKFLOWS.md` gate 片段，避免全文加载
+
+冷路径回源触发：阶段切换、真源冲突、自检/lifecycle 失败、schema/真实执行/安全门禁、发布/commit/push、创建/重绑 worker、创建/修改 skill、方法论 synthesis、用户要求审计。触发后读取完整相关真源，并在 §5 记录 `cold_path_reason`。
 
 ## 2. 前置治理门禁（强制）
 
-在执行任何业务代码或文档切片前，先完成以下四道门，并把结果写入 `harness/reports/orchestrator/latest.md` 与本轮 §5 台账：
+在执行任何业务代码或文档切片前，先完成以下门禁，并把结果写入 `harness/reports/orchestrator/latest.md` 与本轮 §5 台账：
+
+### 2.0 Context Loading Budget Gate
+
+- 默认 `context_mode=hot_path`：只热加载当前 slice gate、最近 1-3 条台账、下一动作、方法论 visible status、必要 worker/skill 索引。
+- 冷路径按触发回源：阶段切换、事实冲突、自检失败、真实执行/安全/发布门禁、worker/skill 新增或重绑、方法论 synthesis、用户要求审计。
+- workflow 不能舍弃；默认只加载当前 gate，阶段切换或 gate 失败时再加载完整 workflow。
+- 若热路径资料冲突，立即冷路径回源；不得用聊天记忆裁决。
+- §5 末尾必须记录 `context_mode=hot_path` 或 `cold_path_reason=<reason>`。
 
 ### 2.1 Goal/Plan Gate
 
@@ -65,7 +78,7 @@
 ## 4. 同步（六真源 + 机器态）
 
 - 更新 §5 台账、`CONTINUATION_PROMPT`、`WORKFLOWS` 轮次日志 + **`PROJECT_STATUS.md` 顶部「心流模式当前轮」**（与 §5 最新 / loop-state 对齐）+ **Git 快照**（branch · ahead/behind · 脏文件数）
-- §5 末尾必须包含：`goal_gate`、`skill_route`、`dispatch_decision`、`model_tier` / `model_reason`、`cluster_manifest` / `no_cluster_reason`、`worker_report_refs`、`bundle_decision`（若合并了微切片）、`capacity_review` / `skill_lifecycle`（若触发）、`methodology_ref` 以及最小验证证据。
+- §5 末尾必须包含：`context_mode` 或 `cold_path_reason`、`goal_gate`、`skill_route`、`dispatch_decision`、`model_tier` / `model_reason`、`cluster_manifest` / `no_cluster_reason`、`worker_report_refs`、`bundle_decision`（若合并了微切片）、`capacity_review` / `skill_lifecycle`（若触发）、`methodology_ref` 以及最小验证证据。
 - **Clean-worktree gate（用户权威 2026-06-22）**：每轮结束前必须让 AWI 根与 `apps/quant_assistant` 的 `git status --porcelain` 为空；真实源码/测试/真源改动提交到本地 `main`，本地缓存/构建产物写入 `.gitignore` 后保留不入库。若因冲突、secret 风险或破坏性操作无法清洁，必须把 `stop_reason` 置为真实阻塞并短报；禁止把 dirty_count 当作长期正常状态。
 - **方法论门控**：本步有新增方法论？→ 写步骤 digest 并刷新 `METHODOLOGY_MEMORY.md` 顶部「当前可见状态」；关键任务 done？→ 收口 synthesis；否则 **不写** METHODOLOGY
 - **§5 末尾强制 `methodology_ref`**：零写入时须加 `methodology_ref: M-17-zero-write · reason=...`；有 digest/synthesis 则改为 `methodology_ref: METHODOLOGY_MEMORY §步骤-digest-*` / `methodology_ref: METHODOLOGY_MEMORY §收口 synthesis-*`（`loop_tick.py` → `format_methodology_gate_tail()`）

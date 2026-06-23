@@ -32,7 +32,7 @@ This file is the CodeX-effective platform binding for raindeer-AWI. It makes the
 
 | Local id | Kind | Schedule | Prompt |
 |---|---|---|---|
-| `loop-tick` | heartbeat | `FREQ=MINUTELY;INTERVAL=15` | `harness/templates/loop-tick-prompt.md` |
+| `loop-tick` | heartbeat | `PAUSED_BY_USER` · replacement `continuous-orchestrator-thread-loop` | `harness/templates/loop-tick-prompt.md` |
 | `daily-ops` | heartbeat bound to thread | `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` | `harness/templates/daily-ops-prompt.md` |
 
 `daily-ops` is the only scheduled daily CodeX worker. It is a heartbeat bound to the pinned `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`, not a standalone cron that opens a fresh daily conversation. It replaces the old separate `codex-self-check`, `daily-compliance`, and `daily-git-push` automations.
@@ -43,7 +43,7 @@ After creating or updating automations in CodeX UI, write the returned ids to `h
 
 | Local id | CodeX id | Kind | Target | Status |
 |---|---|---|---|---|
-| `loop-tick` | `awi-loop-tick-heartbeat` | heartbeat | orchestrator thread | ACTIVE |
+| `loop-tick` | `awi-loop-tick-heartbeat` | heartbeat | orchestrator thread | PAUSED_BY_USER |
 | `daily-ops` | `awi-daily-ops` | heartbeat | `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0` | ACTIVE |
 
 Retired daily automations: `awi-codex-self-check`, `awi-daily-compliance`, and `awi-daily-git-push`; keep their scripts callable but do not schedule them as separate CodeX conversations. Archived old daily UI threads: `019eef56-e7c4-7ea1-916a-49030eb3f929`, `019eea29-471f-7df3-a174-b6a0e74fb6dc`, `019eef34-1b24-7020-8003-4e8a158df67e`, `019ef1c7-f3f3-7401-9158-c25756633a17`, and `019eecaa-4930-7dc0-b5a1-97003d2e7b50`.
@@ -67,4 +67,4 @@ Run:
 
 The CodeX self-check must pass before declaring that AWI is CodeX-effective.
 
-Latest validation: 2026-06-23 `codex-self-check` 50 checks / 0 findings; `compliance-check -Mode post-bootstrap` 36 checks / 0 findings.
+Latest validation: 2026-06-23 `codex-self-check` 56 checks / 0 findings with `loop-tick=PAUSED_BY_USER`; `compliance-check -Mode post-bootstrap` 36 checks / 0 findings.

@@ -74,6 +74,9 @@ $loopPromptText = Get-Text $loopPromptPath
 if ($null -ne $loopPromptText) {
     $requiredLoopGateNeedles = @(
         "Goal/Plan Gate",
+        "Context Loading Budget Gate",
+        "context_mode",
+        "cold_path_reason",
         "Skill Routing Gate",
         "Worker Dispatch Gate",
         "Worker Cluster/Rendezvous Gate",
@@ -229,15 +232,19 @@ $automationRegistryPath = Join-Path $HarnessDir "codex-automation-registry.json"
 if (Test-Path $automationRegistryPath) {
     try {
         $auto = Get-Content -LiteralPath $automationRegistryPath -Raw -Encoding UTF8 | ConvertFrom-Json
-        $expected = @("loop-tick", "daily-ops")
-        foreach ($id in $expected) {
+        $expected = @(
+            @{ id = "loop-tick"; allowedStatuses = @("ACTIVE", "PAUSED_BY_USER") },
+            @{ id = "daily-ops"; allowedStatuses = @("ACTIVE") }
+        )
+        foreach ($spec in $expected) {
+            $id = $spec.id
             $entry = $auto.automations | Where-Object { $_.id -eq $id } | Select-Object -First 1
-            if ($entry -and $entry.codex_id -and $entry.status -eq "ACTIVE") {
-                Add-Check "automation:$id" "PASS" "codex_id=$($entry.codex_id)"
+            if ($entry -and $entry.codex_id -and ($spec.allowedStatuses -contains $entry.status)) {
+                Add-Check "automation:$id" "PASS" "codex_id=$($entry.codex_id); status=$($entry.status)"
             }
             else {
                 Add-Check "automation:$id" "WARN" "missing/inactive in registry"
-                Add-Finding "warning" "CX-AUTO" "CodeX automation not registered" "$id is not ACTIVE in harness/codex-automation-registry.json." "Create/update the automation with codex_app.automation_update and record the returned id."
+                Add-Finding "warning" "CX-AUTO" "CodeX automation not registered" "$id is not in an allowed status in harness/codex-automation-registry.json." "Create/update the automation with codex_app.automation_update or record the user-approved paused replacement mode."
             }
         }
         foreach ($id in @("daily-compliance", "daily-git-push", "codex-self-check")) {
