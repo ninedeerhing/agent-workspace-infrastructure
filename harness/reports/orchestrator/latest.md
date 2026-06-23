@@ -1,3 +1,57 @@
+# Orchestrator Report - loop240-executable-handoff-gate-review
+
+**Updated**: 2026-06-23T11:26:34+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G executable handoff gate review mocked-only
+- **result**: added a bounded gate-review-only/not-execution matrix on top of loop239 explicit executable handoff authorization packet proof.
+- **next**: executable handoff implementation preflight mocked-only
+- **core mainline**: auto mining -> auto backtest full flow + intent understanding state machine remains the unique project mainline
+
+## Worker Channel Repair
+
+- **incident**: orchestrator initially passed `019ef130...` runtime_agent_id values to CodeX `send_message_to_thread`, which failed because those are not Codex thread ids.
+- **canonical codex_thread_id**: test-engineer `019eeece-52d7-7b73-868a-7beb496ba303`; executor `019eeece-c617-71c3-a80a-39a693ad3ac3`; code-reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`; verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b`.
+- **rule**: worker identity is permanent. `runtime_agent_id` is auxiliary evidence only; dispatch must resolve and verify `codex_thread_id` first. If stale/unreachable, mark `channel_stale` and rebind, never discard identity or create duplicate same-role workers.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/tests/test_jobs_page_executable_handoff_gate_review_unit.py` | Added focused source-contract coverage for gate-review exports, fixture wiring, exact markers, stale family rejection, and negative authorization/config/invocation/execution guards. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-executable-handoff-gate-review-checks.mjs` | New bounded checks module for gate-review-only rows and forbidden markers. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-executable-handoff-gate-review-assertions.mjs` | New bounded assertion module binding body/submitted/refreshed evidence to executable handoff gate review rows. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-proofs.mjs` | Re-exported loop240 checks/assertion and wired assertTextCheck setter. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Calls `assertExecutableHandoffGateReview(...)` and adds loop240 checks to browser smoke `text_checks`. |
+| `apps/quant_assistant/docs/METHODOLOGY_MEMORY.md` | Added `步骤 digest-20260623-permanent-worker-channel-reachability`. |
+| `harness/reports/EMPLOYEE_ROSTER.md` / worker reports / handoff truth sources | Separated permanent `codex_thread_id` from temporary `runtime_agent_id`. |
+
+## Review And Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · expected missing gate review export/check failure before implementation |
+| focused/adjacent pytest | pass · 4 passed |
+| jobs fixture regression | pass · 44 passed, 1 known LangChainPendingDeprecationWarning |
+| Python ruff | pass |
+| node syntax | pass · touched `.mjs` files |
+| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, loop240 markers visible |
+| web build | pass |
+| targeted eslint | pass · exit 0, pre-existing `ShellLayoutContext.tsx` react-refresh warning only |
+| guard scans | pass · active Pascal scan 0; secret assignment diff scan 0 |
+| runtime cleanup | pass · ports 5183/5184 listen count 0 after smoke |
+
+## Safety
+
+No `.env`, `.env.local`, DSN, token, or secret was printed or persisted. No page-load auto POST, default trigger, real/default runner invocation, adapter invocation, actual adapter dry-run execution, background process, migration, backfill, default DB-backed backtest, or PL-H batch execution was started.
+
+## Residual Risk
+
+Verification remains mocked-only. Real/default runner invocation, adapter invocation, actual adapter dry-run execution, DB-backed backtest, migration/backfill, background execution, execution permission, executable handoff approval, and PL-H batch execution remain intentionally deferred behind future explicit gates.
+
+---
+
 # Orchestrator Report - governance-methodology-visibility-ref
 
 **Updated**: 2026-06-23T11:05:41+08:00

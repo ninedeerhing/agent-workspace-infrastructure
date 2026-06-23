@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T11:05:41+08:00
+updated_at: 2026-06-23T11:26:34+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,9 @@ updated_at: 2026-06-23T11:05:41+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-23 daily-ops · 用户指出 CodeX UI 出现两个同名 verifier，并且 daily git push / compliance / CodeX self-check 每天分别新开对话；随后发现 daily-ops 对话未出现且旧 daily 对话未归档。已归档旧 verifier thread `019ee9fe-7605-7d53-8380-57228c31048c`，保留当前 verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 为唯一可复用 verifier；新增并 pin `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`，归档旧 daily UI threads `019eef56-e7c4-7ea1-916a-49030eb3f929` / `019eea29-471f-7df3-a174-b6a0e74fb6dc` / `019eef34-1b24-7020-8003-4e8a158df67e` / `019ef1c7-f3f3-7401-9158-c25756633a17` / `019eecaa-4930-7dc0-b5a1-97003d2e7b50`；`awi-daily-ops` 已从 standalone cron 改为绑定该 thread 的 heartbeat。业务主线不变，下一拍仍是 executable handoff gate review TDD mocked-only。
+[CONTEXT] 2026-06-23 loop240 · 已完成 executable handoff gate review mocked-only：新增 `executableHandoffGateReviewChecks` / `assertExecutableHandoffGateReview(...)`，基于 loop239 explicit executable handoff authorization packet 证明 gate-review-only/not-execution：source=loop239、fail_closed_executable_handoff_gate_review_not_execution、operator/reviewer authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution executable handoff gate review acceptance、executable handoff blocked_until_explicit_authorization_config_rollback_audit_real_batch_gate 与 next executable handoff implementation preflight。验证：RED expected failure，focused+adjacent pytest 4 passed，jobs_fixture_emits 44 passed，ruff/node-check/eslint/build/smoke/scans/runtime cleanup pass。治理修复：permanent worker `codex_thread_id` 与 temporary `runtime_agent_id` 已分离；canonical threads 为 test-engineer `019eeece-52d7-7b73-868a-7beb496ba303`、executor `019eeece-c617-71c3-a80a-39a693ad3ac3`、code-reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b`；`019ef130...` 系列只作 runtime evidence，不可用于 `send_message_to_thread`。下一拍：executable handoff implementation preflight TDD mocked-only；仍禁止 real/default runner、adapter invocation、actual adapter dry-run、background、migration/backfill、DB-backed backtest、PL-H execution、secret output。
+
+[CONTEXT] 2026-06-23 daily-ops · 用户指出 CodeX UI 出现两个同名 verifier，并且 daily git push / compliance / CodeX self-check 每天分别新开对话；随后发现 daily-ops 对话未出现且旧 daily 对话未归档。已归档旧 verifier thread `019ee9fe-7605-7d53-8380-57228c31048c`，保留当前 verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 为唯一可复用 verifier；新增并 pin `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`，归档旧 daily UI threads `019eef56-e7c4-7ea1-916a-49030eb3f929` / `019eea29-471f-7df3-a174-b6a0e74fb6dc` / `019eef34-1b24-7020-8003-4e8a158df67e` / `019ef1c7-f3f3-7401-9158-c25756633a17` / `019eecaa-4930-7dc0-b5a1-97003d2e7b50`；`awi-daily-ops` 已从 standalone cron 改为绑定该 thread 的 heartbeat。业务主线不变，当前下一拍已推进为 executable handoff implementation preflight TDD mocked-only。
 
 [CONTEXT] 2026-06-23 worker-model-budget · 用户要求 token 消耗降级：非关键 worker 不再默认继承 5.5，routine/status/index/report/daily ops 用 `gpt-5.4-mini`，普通 read-only research/planning/governance/trace 用 `gpt-5.4`；关键代码、关键设计、架构边界、安全/授权、真实执行门禁、发布/高风险 final review 必须用 `gpt-5.5`。已写入 `docs/LOOP_ENGINEERING.md` Worker Model Budget Gate、`harness/templates/loop-tick-prompt.md`、`harness/templates/codex-subagent-prompt.md` 和 roster 的 Model Budget Policy。后续派工必须记录 `model_tier` / `model_reason`，续派既有 worker 用 `send_message_to_thread(model=...)`，不得为了换模型创建重复 worker thread。技能候选暂不创建，P0 候选是 PL-G fail-closed proof gate；P1 候选是 skill-router telemetry tuning。
 
@@ -110,18 +112,18 @@ updated_at: 2026-06-23T11:05:41+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-executable-handoff-gate-review-mocked-only |
-| `last_tick` | loop239-explicit-executable-handoff-authorization-packet |
+| `current_slice` | pl-g-executable-handoff-implementation-preflight-mocked-only |
+| `last_tick` | loop240-executable-handoff-gate-review |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start executable handoff gate review TDD mocked-only: use loop239 explicit executable handoff authorization packet to define a fail-closed executable handoff gate review for operator/reviewer authorization still not granted, runner/adapter config still not connected, rollback/audit before-after readiness still required, missing-runner fail-closed rejection, PL-H still not eligible until real-batch gate, no-execution executable handoff gate review acceptance, and executable handoff still blocked until explicit authorization+config+rollback/audit+real-batch gate; still forbid real/default runner invocation, adapter invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start executable handoff implementation preflight TDD mocked-only: use loop240 executable handoff gate review to define a fail-closed executable handoff implementation preflight for operator/reviewer authorization still not granted, runner/adapter config still not connected, rollback/audit before-after readiness still required, missing-runner fail-closed rejection, PL-H still not eligible until real-batch gate, no-execution executable handoff implementation preflight acceptance, and executable handoff still blocked until explicit authorization+config+rollback/audit+real-batch gate; still forbid real/default runner invocation, adapter invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output. Before dispatch, resolve permanent CodeX worker codex_thread_id from roster and verify reachability; runtime_agent_id is auxiliary evidence only.
 
 ### next_after
 
-After the executable handoff gate review stabilizes, only assess executable handoff implementation preflight if operator/reviewer authorization, runner/adapter config readiness, rollback/audit before-after readiness, missing-runner fail-closed behavior, PL-H non-eligibility/real-batch gate, and no-execution executable handoff gate review acceptance remain proven; do not invoke real/default runner, adapter invocation, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
+After the executable handoff implementation preflight stabilizes, only assess a narrower executable handoff implementation seam if operator/reviewer authorization, runner/adapter config readiness, rollback/audit before-after readiness, missing-runner fail-closed behavior, PL-H non-eligibility/real-batch gate, and no-execution implementation preflight acceptance remain proven; do not invoke real/default runner, adapter invocation, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -138,7 +140,7 @@ After the executable handoff gate review stabilizes, only assess executable hand
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 executable handoff gate review；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、adapter invocation、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 executable handoff implementation preflight；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate，并验证永久 worker codex_thread_id 可达；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、adapter invocation、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -213,10 +215,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 - governance-coordinator report: success · read-only review confirmed missing hard gates and recommended skill_route_evidence / worker_dispatch_decision / goal_bundle detector
 - researcher thread: `019eeebf-629e-7013-bbf4-1db4d312b925` · title `researcher` · report success on edict/kimi-code orchestration evidence scan
 - architect thread: `019eeebf-b3a3-7ab3-bfe8-5a9c4b8b2936` · title `architect` · report success on CodeX worker cluster governance architecture
-- test-engineer thread: `019ef130-2e3a-7210-a305-bc34ff0a5bcc` · title `test-engineer` · report success on loop238 later executable handoff gate preflight RED contract
-- executor thread: `019ef130-5a38-7951-933f-4f64c4b7917d` · title `executor` · report success on loop238 later executable handoff gate preflight implementation scope review; final shared fixture patch serialized by orchestrator
-- code-reviewer thread: `019ef130-86cb-7e23-8a8f-fc490f1a07bd` · title `code-reviewer` · report success on loop238 semantic signoff
-- verifier thread: `019ef130-b3c9-7201-a4cd-af2240391a6b` · title `verifier` · report success on loop238 final verification; clean-worktree closure belongs to orchestrator sync+commit gate
+- test-engineer permanent thread: `019eeece-52d7-7b73-868a-7beb496ba303` · title `test-engineer` · canonical reusable cross-dialogue worker; loop240 runtime_agent_id `019ef130-2e3a-7210-a305-bc34ff0a5bcc` is auxiliary only
+- executor permanent thread: `019eeece-c617-71c3-a80a-39a693ad3ac3` · title `executor` · canonical reusable cross-dialogue worker; prior runtime_agent_id `019ef130-5a38-7951-933f-4f64c4b7917d` is auxiliary only
+- code-reviewer permanent thread: `019eeed1-7e14-7342-9d45-d7948aec94d2` · title `code-reviewer` · canonical reusable cross-dialogue worker; loop240 runtime_agent_id `019ef130-86cb-7e23-8a8f-fc490f1a07bd` is auxiliary only
+- verifier permanent thread: `019eeed2-dbc0-7313-8d64-f9c6f199c68b` · title `verifier` · canonical reusable cross-dialogue worker; old verifier thread `019ee9fe-7605-7d53-8380-57228c31048c` archived/do-not-dispatch; prior runtime_agent_id `019ef130-b3c9-7201-a4cd-af2240391a6b` is auxiliary only
+- channel policy: worker identity is permanent; dispatch must verify `codex_thread_id` reachability first. If unreachable, mark `channel_stale` and rebind, never discard identity or create a duplicate same-role worker.
 - prompt: `harness/templates/codex-subagent-prompt.md`
 - task: read-only verification of CodeX effective constraints; latest multi-agent verifier run `019eedc6-f9c5-7c50-8170-18e415f7ce26` / nickname Lorentz reviewed loop186 target files and reported `success`
 - note: orchestrator retains final authority; worker report is data, not truth source. Cross-dialogue worker is now preferred for governance / verifier signoff; temporary multi_agent is auxiliary only.
@@ -225,11 +228,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop238 已完成 PL-G later executable handoff gate preflight mocked-only，并用跨对话 worker cluster 完成 test design / scope review / code review / final verification。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 explicit executable handoff authorization packet TDD mocked-only，避免把 executable handoff gate preflight proof 误认为 authorization/operator approval grant、runner invocation、adapter invocation、actual adapter dry-run execution、later executable handoff approval、executable handoff approval 或 PL-H execution。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop240 已完成 PL-G executable handoff gate review mocked-only，并完成 worker channel identity 修复。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 executable handoff implementation preflight TDD mocked-only，避免把 gate review proof 误认为 authorization/operator approval grant、runner invocation、adapter invocation、actual adapter dry-run execution、executable handoff approval 或 PL-H execution。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，然后执行 `explicit executable handoff authorization packet TDD mocked-only`：使用 loop238 later executable handoff gate preflight 定义 fail-closed explicit executable handoff authorization packet，覆盖 operator/reviewer authorization still not granted / injected runner-adapter config readiness still not connected / rollback-audit before-after readiness / missing-runner fail-closed boundary / PL-H non-eligibility real-batch gate / no-execution executable authorization packet acceptance 与 executable handoff still blocked until explicit authorization+config+rollback/audit+real-batch gate；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation/actual adapter dry-run execution、PL-H batch execution 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `executable handoff implementation preflight TDD mocked-only`：使用 loop240 executable handoff gate review 定义 fail-closed executable handoff implementation preflight，覆盖 operator/reviewer authorization still not granted / injected runner-adapter config readiness still not connected / rollback-audit before-after readiness / missing-runner fail-closed boundary / PL-H non-eligibility real-batch gate / no-execution executable handoff implementation preflight acceptance 与 executable handoff still blocked until explicit authorization+config+rollback/audit+real-batch gate；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation/actual adapter dry-run execution、PL-H batch execution 与 secret 输出。
 
 ## Resume Command
 
