@@ -1,3 +1,50 @@
+# Orchestrator Report - loop258-core-batch-mining-engine-v1
+
+**Updated**: 2026-06-23T21:24:00+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Core Batch Mining Engine v1.
+- **trigger**: user approved the A-E user-visible taxonomy and asked to implement the chain from "what factors to mine" through candidate generation, screening, and backtest planning.
+- **result**: Factor mining now exposes A-E categories and subclass names, deterministically generates candidates across fundamental/style, price-volume/technical, expression/paper/library, ML, and text/event/alternative classes, carries category metadata through mining reports and factor-library summaries, and emits `generation_policy`, `rejected_candidates`, `screening`, and plan-only `auto_backtest_plan`.
+- **next**: `REAL_PANEL_F6_EVALUATION_INTEGRATION` using local panel/F6 data evidence; still no PL-H batch, real/default runner, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/factor_taxonomy.py` | Added A-E visible category labels, full subclass labels, and formatting helpers. |
+| `apps/quant_assistant/src/qa/quant_mining/candidate_generator.py` | Added deterministic candidate generator v1 with rejected-candidate proof and no execution side effects. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Wired candidate generation, generation policy, screening metadata, durable reports, and plan-only backtest plan. |
+| `apps/quant_assistant/src/qa/ui/*` and `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Added user-visible category display/filter surfaces for factor mining, factor library, and factor version summaries. |
+| `apps/quant_assistant/tests/*` | Added/updated taxonomy, candidate, mining runner, flow, factor library, summary, readiness, and web source-contract tests. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing subclass labels and A/D/E candidate routing failed before fixes |
+| focused GREEN | pass · taxonomy/candidate tests **6 passed** |
+| related regression | pass · core mining/library/page source matrix **53 passed** |
+| Python ruff | pass |
+| web lint | pass · exit 0 with pre-existing `ShellLayoutContext.tsx` react-refresh warning |
+| web build | pass |
+| Jobs browser smoke | pass · `npm run smoke:jobs-page` exit_code=0 |
+
+## Worker Notes
+
+Permanent worker threads were used. `executor` implemented the bounded taxonomy/candidate slice. `test-engineer` returned a success acceptance matrix tying taxonomy, generation, F6 quick screening, and plan-only backtest planning. `code-reviewer` first reported A/D/E routing and subclass-label gaps, then rechecked success after fixes. `verifier` rechecked final no-execution evidence successfully.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, background process, migration, or backfill was started.
+
+## Residual Risk
+
+Core Batch Mining Engine v1 now explains and records the chain, but F6 evidence is still quick/static-screening style. The next slice must connect candidates to local panel/F6 factor_value/IC evaluation before treating screening as real data evidence.
+
+---
+
 # Orchestrator Report - loop257-chat-intent-quant-readiness-parity
 
 **Updated**: 2026-06-23T20:40:27+08:00

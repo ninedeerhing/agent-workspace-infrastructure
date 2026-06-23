@@ -1,6 +1,18 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-23T20:40:27+08:00
+更新时间：2026-06-23T21:24:00+08:00
+
+## Tick loop258-core-batch-mining-engine-v1
+
+- **任务 ID**：loop258-core-batch-mining-engine-v1-test-design
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读复核“挖什么因子、怎么生成候选、怎么筛选、怎么形成回测计划”的最小验收矩阵。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；验收应绑定 A-E taxonomy/filter、candidate generation、F6 quick screening report、plan-only `auto_backtest_plan` 与 no-execution forbidden matrix；真实 PL-H/runner/DB-backed execution 继续延后。
+- **orchestrator 本地验证**：taxonomy/candidate **6 passed**；core mining/library/page source matrix **53 passed**；ruff pass；web lint/build pass；Jobs smoke exit_code=0。
+- **roster_update**：workload cleared；mistakes none；lesson: batch mining v1 的测试边界应证明“解释链路完整”，但不能把 quick screening 冒充真实 panel IC 评估。
 
 ## Tick loop257-chat-intent-quant-readiness-parity
 

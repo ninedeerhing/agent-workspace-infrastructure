@@ -1,6 +1,18 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-23T20:40:27+08:00
+更新时间：2026-06-23T21:24:00+08:00
+
+## Tick loop258-core-batch-mining-engine-v1
+
+- **任务 ID**：loop258-core-batch-mining-engine-v1-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success（初审 partial，修复后 recheck success）
+- **任务**：只读审查 factor taxonomy / candidate generator / mining runner 是否真正覆盖用户要求的 A-E 分类，并确认不新增执行路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：初审发现两个 P1/P2 风险：A/D/E 请求被降级为 B 类候选、部分子类标签回退为英文 key；orchestrator 修复后 recheck PASS，A/D/E 均有独立 routing，全部合法子类有用户可见名称，生成器保持 deterministic/no DB/no runner/no backtest/no secret。
+- **orchestrator 本地验证**：RED reproduced；修复后 taxonomy/candidate **6 passed**；core mining/library/page source matrix **53 passed**；ruff pass；web lint/build pass；Jobs smoke exit_code=0。
+- **roster_update**：workload cleared；mistakes none；lesson: 因子分类改动必须测试完整 label coverage 和每个 visible class 的候选路由，不能只测 B/C happy path。
 
 ## Tick loop257-chat-intent-quant-readiness-parity
 

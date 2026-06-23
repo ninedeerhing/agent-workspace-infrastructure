@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T20:40:27+08:00
+updated_at: 2026-06-23T21:24:00+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-23T20:40:27+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-23 loop258 · 已完成 Core Batch Mining Engine v1：用户可见 A-E 因子分类与全部合法子类中文名已落地，因子挖掘/因子库均可展示和筛选分类；`candidate_generator_v1` 可 deterministic 路由基本面/风格、价量/技术、表达式/论文/库、ML、文本/事件/另类五类候选；`run_mining_batch_once` 输出并持久化 `generation_policy`、`rejected_candidates`、F6 `screening` 与 plan-only `auto_backtest_plan`。改动：`src/qa/quant_mining/factor_taxonomy.py`、`src/qa/quant_mining/candidate_generator.py`、`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/factor_library_insights.py`、`src/qa/ui/factor_version_summary.py`、`src/qa/ui/pages/quant_factor_mining_page.py`、`web/src/pages/FactorLibraryPage.tsx` 与相关 tests。验证：RED 暴露缺口，GREEN focused pytest 53 passed；targeted ruff pass；web lint pass（仅既有 ShellLayoutContext warning）；web build pass；Jobs smoke exit_code=0；executor/test-engineer/code-reviewer/verifier 永久线程报告/recheck success。未引入 real/default runner、DB-backed backtest、PL-H batch、background/migration/backfill 或 secret output。下一动作：`REAL_PANEL_F6_EVALUATION_INTEGRATION`，把候选接入本地 panel/F6 数据评估，形成真实 IC/coverage/screening evidence，再生成用户可读 reviewed backtest plan。
+
 [CONTEXT] 2026-06-23 loop257 · 已完成 Chat/assistant readiness parity：Chat 摘要同源消费 loop256 `intent_quant_readiness.state_machine` 与 `runner_authorization_preflight`，默认可见层用消费级中文说明“自动挖掘到模拟回测进度 / 当前 / 下一步 / 真实回测引擎未授权 / 仅手动确认后的安全模拟”；proof-only marker（如 `runner_authorization_preflight=not_granted`）保留在 `web/src/lib/routeEvidenceExecution.contract.ts` 与 source tests，不进入默认用户文字。改动：`src/qa/ui/chat_brain.py`、`tests/test_ui_chat_brain_unit.py`、`web/src/lib/routeEvidenceExecution.contract.ts`、`tests/test_route_evidence_cross_surface_contract_unit.py`。验证：RED expected 2 failed + consumer-copy RED 1 failed；GREEN focused 2 passed；related regression 57 passed；ruff pass；`npm run test:route-evidence` pass；`npm run lint` exit 0（仅既有 ShellLayoutContext warning）；web build pass；Jobs smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5。永久 worker `test-engineer` 与 `code-reviewer` 均只读报告 success。仍禁止 manual acceptance grant、authorization grant、execution permission、page-load auto POST、real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、background/migration/backfill、PL-H batch 与 secret output。下一动作：`REAL_RUNNER_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_PREFLIGHT`，只定义真实 runner 授权/config/rollback-audit/real-batch demand gate 的最小只读前置合同，不授权、不执行。
 
 [CONTEXT] 2026-06-23 loop256 · 历史阶段（已由 loop257 补齐 Chat parity）：已完成 auto-backtest flow readiness state-machine 的 API/Jobs 面：`intent_quant_readiness` 新增 `state_machine`（`ready_for_manual_simulation -> explicit_trigger_required -> completed_mocked_or_injected_run`，完成态 next_gate=`real_runner_authorization_preflight`）与 `runner_authorization_preflight`（authorization_state=`not_granted`、default/real runner false、actual adapter dry-run/DB-backed/PL-H/background/migration/backfill/secret output false）。Jobs 默认层显示“真实回测引擎未授权，当前只允许手动确认后的安全模拟”，并保留 `intent_quant_readiness_preflight_visible=true` 证据。验证：RED expected 3 failed/36 passed；GREEN focused 39 passed；related regression 68 passed；ruff pass；node --check pass；npm lint exit 0（仅既有 ShellLayoutContext warning）；web build pass；smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5。未读取/输出 secret，未启动 page-load POST、real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、migration/backfill/background 或 PL-H batch。
@@ -148,14 +150,14 @@ updated_at: 2026-06-23T20:40:27+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | intent-quant-integration-readiness-contract-loop255 |
-| `last_tick` | loop255-intent-quant-readiness-contract |
+| `current_slice` | core-batch-mining-engine-v1-loop258 |
+| `last_tick` | loop258-core-batch-mining-engine-v1 |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-AUTO_BACKTEST_FLOW_READINESS_STATE_MACHINE: implement pre-real-run auto-backtest flow readiness checks by mapping ready_for_manual_simulation -> explicit trigger -> completed mocked/injected run into consistent Chat/Jobs user next-step copy, and define the minimum API contract before real-runner authorization.
+REAL_PANEL_F6_EVALUATION_INTEGRATION: connect loop258 A-E deterministic factor candidates to local panel/F6 data evaluation, produce IC/coverage/screening evidence, and keep backtest execution behind explicit/manual-safe gates.
 
 ### next_after
 

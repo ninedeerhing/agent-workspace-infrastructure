@@ -1,6 +1,17 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-23T15:59:25+08:00
+**Updated**: 2026-06-23T21:24:00+08:00
+
+## Tick loop258-core-batch-mining-engine-v1
+
+- **任务 ID**：loop258-core-batch-mining-engine-v1-bounded-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：在有界范围内实现因子分类和候选生成基础件；范围限于 taxonomy/candidate generator 与测试，不读取/打印 secret，不连接 DB/runner，不启动 backtest/migration/backfill。
+- **变更**：新增 A-E 可见分类与子类标签 helper；新增 deterministic candidate generator v1；orchestrator 后续把候选元数据接入 mining runner、UI 与 web library。
+- **orchestrator 本地验证**：TDD RED 暴露 A/D/E 路由与子类标签缺口；修复后 taxonomy/candidate **6 passed**；相关 mining/library/page source matrix **53 passed**；ruff pass；web lint/build pass；Jobs smoke exit_code=0。
+- **roster_update**：workload cleared；mistakes none；lesson: candidate generation must prove every visible factor class can produce distinct, explainable candidates while remaining side-effect free。
 
 ## Tick loop252-product-outcome-happy-path
 

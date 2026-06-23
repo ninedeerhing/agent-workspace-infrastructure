@@ -1,6 +1,19 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-23T18:35:36+08:00
+更新时间：2026-06-23T21:24:00+08:00
+
+## Tick loop258-core-batch-mining-engine-v1
+
+- **任务 ID**：loop258-core-batch-mining-engine-v1-final-verification
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读验收 A-E 分类、候选生成、筛选报告和 plan-only 回测计划链，确认无真实执行路径。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：PASS；A-E category/subclass labels covered；candidate generator supports all five categories; factor mining and factor library display/filter wiring covered; `auto_backtest_plan` remains plan-only; no real/default runner, adapter invocation, actual dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, or secret output.
+- **orchestrator 本地验证**：taxonomy/candidate **6 passed**；core mining/library/page source matrix **53 passed**；ruff pass；web lint/build pass；Jobs smoke exit_code=0。
+- **roster_update**：workload cleared；mistakes none；residual risk remains real panel/F6 evaluation integration before data-driven reviewed backtest plan。
+- **残余风险**：尚未验证真实 panel IC/F6 评估；下一拍必须用本地数据形成 screening evidence，仍不得启动 PL-H/runner execution。
 
 ## Tick loop253-manual-ux-acceptance-package
 
