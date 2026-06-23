@@ -1,3 +1,49 @@
+# Orchestrator Report - loop275-manual-safe-simulation-trigger-api
+
+**Updated**: 2026-06-24T07:42:01+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Manual-safe Simulation Trigger API.
+- **trigger**: loop274 made the manual-safe action visible and fail-closed, but users still needed the explicit Jobs/API click path to return a completed safe simulation summary without requiring ad-hoc dependency injection.
+- **result**: FastAPI trigger now uses a server-owned safe simulation runner by default. It only returns deterministic `safe_sim_*` run ids, refreshes `MiningJob.product_state/manual_safe_status`, and returns `consumer_summary` plus `brain_execution.observability`. JobsPage displays the readable completed summary after explicit submit.
+- **next**: `SIMULATION_SUMMARY_TO_FACTOR_LIBRARY_REVIEW_LOOP276`; connect completed safe_sim summaries to factor library filtering and reviewed backtest-plan inspection.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/api/quant_routes.py` | Adds server-owned safe simulation runner, default runner resolution, consumer summary builder, and trigger response brain_execution observability. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Proves trigger endpoint works without dependency override, refreshes product state/manual safe status, returns safe_sim run id, and keeps consumer_summary free of internal trigger_request details. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Stores trigger response consumer_summary and renders a novice-readable completed simulation summary after explicit submit. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds mocked consumer_summary payload and smoke assertions for visible summary markers with no page-load or duplicate trigger. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · initial API trigger returned 400 `requires_injected_runner`; Jobs smoke initially missed consumer-summary markers |
+| API unit | pass · `uv run pytest tests/test_mining_job_api_unit.py -q` -> **32 passed** |
+| Chat related | pass · `uv run pytest tests/test_ui_chat_brain_unit.py -q` -> **46 passed** |
+| Python ruff | pass · `uv run ruff check src/qa/api/quant_routes.py tests/test_mining_job_api_unit.py` |
+| web build | pass · `npm run build` |
+| web lint | pass · exit 0, one pre-existing `ShellLayoutContext.tsx` warning |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, consumer summary visible |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success before implementation and required API/Jobs/Chat roundtrip coverage without client-granted execution authority. `code-reviewer` post-implementation review reported success: no live/default runner, adapter, DB-backed real batch, PL-H, background/migration/backfill, secret risk, page-load POST, duplicate submit, or consumer_summary internal leakage found.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop grants only a server-owned safe simulation result path; it does not authorize real execution.
+
+## Residual Risk
+
+Completed safe_sim results are now returned and visible after submit, but they still need to be connected back into factor-library filtering and reviewed backtest-plan inspection so users can move from “result generated” to “inspect why this factor/result matters.”
+
+---
+
 # Orchestrator Report - loop274-manual-safe-backtest-result-consumer
 
 **Updated**: 2026-06-24T07:20:12+08:00

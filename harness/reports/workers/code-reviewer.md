@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T07:20:12+08:00
+更新时间：2026-06-24T07:42:01+08:00
+
+## Tick loop275-manual-safe-simulation-trigger-api
+
+- **任务 ID**：loop275-manual-safe-simulation-trigger-api-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 trigger 执行边界、server-owned runner 与用户可见结果文案。
+- **状态**：success
+- **任务**：只读审查 `quant_routes.py`、`test_mining_job_api_unit.py`、`JobsPage.tsx`、`smoke-jobs-page-fixture.mjs`，确认新增 safe simulation trigger path 是否误打开真实执行/默认 runner/adapter/DB-backed real batch/PL-H/page-load POST/background/migration/backfill/secret 风险。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：PASS；默认 trigger 使用 server-owned safe simulation runner，只返回 `safe_sim_*` ids；`consumer_summary` 未泄露 `trigger_request` 或 internal URL；JobsPage 仅在 explicit trigger success 后展示消费级摘要；未发现 page-load POST 或 duplicate-submit 新路径。
+- **orchestrator 本地验证**：API unit **32 passed**；Chat brain **46 passed**；ruff targeted pass；web build pass；npm lint exit 0（仅既有 warning）；Jobs smoke pass `ok=true` / `pageLoadTriggerRequests=[]` / `duplicateTriggerUrls=[]` / consumer summary visible。
+- **roster_update**：workload cleared；mistakes none；lesson: server-owned safe simulation summaries should stay consumer-facing and keep internal trigger_request details out of response copy.
 
 ## Tick loop274-manual-safe-backtest-result-consumer
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T07:20:12+08:00",
+  "updated_at": "2026-06-24T07:42:01+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "manual-safe-backtest-result-consumer-loop274",
-  "next_atomic_action": "MANUAL_SAFE_SIMULATION_TRIGGER_API_LOOP275：把 loop274 产出的 action handoff 接到 Jobs/API 的显式安全模拟触发入口与 Chat follow-up 状态，使用户点击“开始安全模拟”后只走 server-owned injected/test-safe runner contract，刷新 MiningJob product_state/manual_safe_status，并展示模拟结果摘要；继续禁止 live/default runner、未授权 adapter invocation、DB-backed real batch、PL-H、page-load POST、background/migration/backfill、secret 输出。",
-  "next_after": "After explicit manual-safe trigger roundtrip is stable, connect completed simulation summaries to factor library filtering and backtest-plan review so the app can guide users from discovered factors to inspected results without real-runner authorization.",
+  "current_slice": "manual-safe-simulation-trigger-api-loop275",
+  "next_atomic_action": "SIMULATION_SUMMARY_TO_FACTOR_LIBRARY_REVIEW_LOOP276：把 loop275 完成的 safe_sim 结果摘要接入因子库筛选与回测计划复核视图，使用户能从 factor_version_id / safe_sim run_id 回到 A-E 因子分类、候选来源、F6/IC evidence、reviewed_backtest_plan 与下一步复核；继续只读/plan-only，不启用 live/default runner、未授权 adapter invocation、DB-backed real batch、PL-H、page-load POST、background/migration/backfill、secret 输出。",
+  "next_after": "After simulation summaries are visible from factor-library/backtest-plan review, connect the same evidence to manual acceptance and controlled dry-run readiness without granting real-runner or PL-H execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop274-manual-safe-backtest-result-consumer",
+  "last_tick": "loop275-manual-safe-simulation-trigger-api",
   "last_sync_sources": [
+    "loop275 Manual-safe simulation trigger API",
+    "loop275 TDD RED: FastAPI trigger endpoint returned requires_injected_runner 400 without dependency override; Jobs smoke lacked manual_safe_trigger_consumer_summary markers after explicit submit",
+    "loop275 GREEN: quant_routes now resolves a server-owned safe simulation runner by default, produces deterministic safe_sim_* run ids, refreshes MiningJob product_state/manual_safe_status, and returns consumer_summary plus brain_execution observability without client-supplied authority",
+    "loop275 frontend: JobsPage stores trigger response consumer_summary and shows novice-readable completed summary after explicit user trigger; smoke fixture asserts no page-load POST, no duplicate trigger, and visible consumer summary markers",
+    "loop275 verification: API unit 32 passed; focused default trigger test passed; Chat brain related 46 passed; ruff targeted all pass; web build pass; npm lint pass with one pre-existing ShellLayoutContext warning; Jobs browser smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]",
+    "loop275 worker review: permanent test-engineer success before implementation; permanent code-reviewer success after implementation; no remaining worker blockers",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.602",
     "loop274 Manual-safe backtest result consumer layer",
     "loop274 TDD RED: confirmed mining dispatch lacked consumer-facing observability.reviewed_backtest_plan and Chat summary lacked multi-candidate selected list/manual-safe action; later P2 RED caught unsafe action drift and mismatched trigger_request.action_id rendering as ready",
     "loop274 GREEN: execute_mining_batch_dispatch now emits observability bundle with factor_discovery_workflow, reviewed_backtest_plan, auto_backtest_plan, actions, manual_safe_status, product_state, and intent_quant_readiness; Chat renders up to five selected candidates plus manual-safe action only after fail-closed trigger validation",
@@ -1143,7 +1150,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop274 completed the consumer-facing manual-safe backtest result layer. Confirmed mining dispatch now returns a single observability bundle for Chat/API consumption: factor_discovery_workflow, reviewed_backtest_plan, auto_backtest_plan, actions, manual_safe_status, product_state, and intent_quant_readiness. Chat now renders a multi-candidate selected list with A-E category/subclass labels, metrics, reasons, and a manual-safe action handoff. Code-reviewer P2 found ready-copy drift risks; Chat now fail-closes unless trigger identity and execution-boundary markers pass validation, and blocked status text is consumer-sanitized. Safety remains fail-closed: no env/DB read, live/default runner, unauthorized adapter invocation, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret output was introduced. Next loop connects this action handoff to the explicit manual-safe trigger roundtrip."
+    "note": "loop275 completed the explicit manual-safe simulation trigger roundtrip. Jobs/API now defaults to a server-owned safe simulation runner that only returns deterministic safe_sim_* run ids, refreshes MiningJob product_state/manual_safe_status, and returns consumer_summary plus brain_execution observability after an explicit user trigger. JobsPage displays the readable completed summary in the submitted action area, while smoke tests prove no page-load POST or duplicate trigger. Safety remains fail-closed: no env/DB read, live/default runner, unauthorized adapter invocation, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret output was introduced. Next loop connects completed safe_sim summaries to factor library filtering and backtest-plan review."
   },
-  "last_completed_note": "loop274 Manual-safe Backtest Result Consumer complete. Confirmed mining_batch_dispatch now emits a Chat/API observability bundle containing reviewed_backtest_plan, auto_backtest_plan, factor_discovery_workflow, actions, manual_safe_status, product_state, and intent_quant_readiness. Chat now displays a consumer-grade selected-candidate list, reasons, manual-safe readiness, and hides internal fields; ready action copy requires explicit_trigger_required, requires_injected_runner=true, auto_execute=false, no true execution-danger flags, and trigger_request.action_id matching action.id. Verification: initial RED 2 failed for missing observability/candidate list; P2 RED failures covered unsafe trigger drift and mismatched action identity; focused GREEN 4 passed; related Chat/executor/draft/intent regression 98 passed with one upstream LangGraph warning; ruff all pass; web build pass; forbidden scan pass. Permanent test-engineer review success; permanent code-reviewer initial partial P2 then final recheck success. Next_atomic_action is MANUAL_SAFE_SIMULATION_TRIGGER_API_LOOP275."
+  "last_completed_note": "loop275 Manual-safe Simulation Trigger API complete. FastAPI trigger without dependency override now uses a server-owned safe simulation runner, returns safe_sim_* run ids, updates product_state/manual_safe_status, and includes consumer_summary + brain_execution observability. JobsPage stores and displays the consumer_summary after explicit submit. Verification: TDD RED first failed with 400 requires_injected_runner and missing Jobs consumer-summary marker; focused trigger test passed; full mining API unit 32 passed; Chat brain related 46 passed; ruff targeted pass; web build pass; npm lint pass with one pre-existing ShellLayoutContext warning; Jobs smoke pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]. Permanent test-engineer review success; permanent code-reviewer post-implementation review success. Next_atomic_action is SIMULATION_SUMMARY_TO_FACTOR_LIBRARY_REVIEW_LOOP276."
 }

@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T07:20:12+08:00
+更新时间：2026-06-24T07:42:01+08:00
+
+## Tick loop275-manual-safe-simulation-trigger-api
+
+- **任务 ID**：loop275-manual-safe-simulation-trigger-api-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及显式 trigger/API/Jobs 核心产品路径与执行授权边界。
+- **状态**：success
+- **任务**：只读复核 loop275 测试设计，确认 API/Jobs/Chat roundtrip、server-owned safe simulation runner、consumer summary、no client-granted authority 与 no-execution safety 均被锁住。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；建议测试不只覆盖 runner-layer，而要覆盖 trigger response、refreshed MiningJob `product_state/manual_safe_status`、submitted Jobs UI summary、no live/default runner、no unauthorized adapter、no DB-backed real batch、no PL-H、no page-load POST、no background/migration/backfill/secret output。
+- **orchestrator 本地验证**：RED API 400 `requires_injected_runner` 与 Jobs consumer-summary marker missing；GREEN API unit **32 passed**；Chat brain **46 passed**；ruff targeted pass；web build pass；npm lint exit 0（仅既有 warning）；Jobs smoke pass `ok=true` / `pageLoadTriggerRequests=[]` / `duplicateTriggerUrls=[]` / consumer summary visible。
+- **roster_update**：workload cleared；mistakes none；lesson: client POST body must not grant controlled dry-run authority; only server-owned dependency/test fixture contracts can do so.
 
 ## Tick loop274-manual-safe-backtest-result-consumer
 
