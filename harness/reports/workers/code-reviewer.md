@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T05:39:26+08:00
+更新时间：2026-06-24T06:07:34+08:00
+
+## Tick loop271-factor-discovery-to-backtest-plan-core
+
+- **任务 ID**：loop271-factor-discovery-to-backtest-plan-core-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及核心 workflow contract 与 no-execution 执行边界，虽然只读但属于关键功能审查。
+- **状态**：success
+- **任务**：只读预审 `factor_discovery_workflow_v1` 是否误表达执行授权，是否新增真实 runner/default runner/adapter/DB/backfill/PL-H、page-load POST 或 secret 输出路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：PASS with guard；最低风险落点是纯 helper + MiningJob observability，并由 API/Chat/Jobs 消费同一 payload。历史 job 如果缺 screening/plan/reviewed evidence，不应伪造 ready；orchestrator 最终 builder 对无链路 evidence 返回 `None`，对无通过候选返回 `no_passed_candidates`，未新增执行路径。
+- **orchestrator 本地验证**：focused **3 passed**；direct+related regression **99 passed**；ruff pass；web build pass；Jobs smoke pass with no page-load trigger；diff forbidden scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: workflow contracts may summarize readiness only from existing evidence; missing evidence should fail closed or stay absent instead of manufacturing user-visible progress.
 
 ## Tick loop270-controlled-dry-run-rollback-after-audit-ux-signoff
 

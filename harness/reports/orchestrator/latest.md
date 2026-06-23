@@ -1,3 +1,56 @@
+# Orchestrator Report - loop271-factor-discovery-to-backtest-plan-core
+
+**Updated**: 2026-06-24T06:07:34+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Factor Discovery to Backtest Plan Core.
+- **trigger**: user explicitly rejected proof-only micro-slices and asked for core framework/key content. Existing pieces from loop258-loop261 could generate candidates, screen them, form a reviewed plan, and expose manual-safe simulation, but they were not yet one API/Chat/Jobs workflow contract.
+- **result**: Added `factor_discovery_workflow_v1`, a pure read-only workflow contract that ties A-E taxonomy, candidate generation, panel/F6 screening, reviewed backtest plan, manual-safe simulation, intent state transition, and no-execution safety into one MiningJob observability payload. Chat and Jobs now render consumer-grade stages: what factor to mine, how candidates are generated, how they are screened, how a mocked/manual-safe backtest plan is formed, and what explicit next step is required.
+- **next**: `USER_FACING_BATCH_MINING_CREATION_INTENT_PLANNER_LOOP272`; connect the workflow contract to user-facing batch mining creation / intent planner while keeping live/default runner, PL-H, DB-backed execution, page-load POST, background/migration/backfill, and secret output disabled.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/factor_workflow_contract.py` | Adds pure builder for `factor_discovery_workflow_v1`, including taxonomy, generation, screening, reviewed plan, manual-safe state, state transition, and fail-closed safety. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds the workflow contract to MiningJob observability when chain evidence exists. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders consumer-grade factor discovery workflow notes from the same payload. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Adds workflow types, formatter, card, and fail-closed markers for Jobs UI. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds workflow fixture payload/text checks and explicit-trigger refresh state. |
+| `apps/quant_assistant/tests/test_factor_workflow_contract_unit.py` | Proves ready path, no-passed-candidates path, and no-evidence no-contract behavior. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Proves MiningJob API exposes the workflow contract. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Proves Chat renders the workflow summary and no-execution boundary. |
+| `apps/quant_assistant/tests/test_jobs_page_action_rendering_unit.py` | Proves Jobs rendering includes the workflow card and no new fetch/useEffect/page-load execution. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Proves smoke fixture includes workflow visibility and fail-closed markers. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · API missing `factor_discovery_workflow`, Chat missing `**因子挖掘主流程**`, and Jobs missing workflow interface/card failed before implementation |
+| focused GREEN | pass · **3 passed** |
+| direct+related regression | pass · **99 passed** across contract builder, MiningJob API, Chat, Jobs rendering, and smoke source tests |
+| Python ruff | pass · `uv run ruff check src tests` |
+| web build | pass · `tsc -b && vite build` |
+| Jobs browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `factor_discovery_workflow_visible=true` |
+| diff forbidden scan | pass · no new fetch/page-load POST, live/default runner enablement, DB-backed backtest, PL-H batch, background/migration/backfill, or secret output enablement |
+| diff hygiene | pass · `git diff --check`, LF/CRLF warnings only in quant |
+
+## Worker Notes
+
+Permanent worker threads were used for read-only review. `test-engineer` asked for direct builder tests covering ready, no-passed, and empty evidence states; those were added and included in the 99-test regression. `code-reviewer` confirmed the landing shape should remain a pure observability/intent-state contract and warned against fabricating readiness for historical jobs without screening/plan evidence; the builder returns `None` when no chain evidence exists and `no_passed_candidates` when screening finds no passed candidates. `security-reviewer` still has no reusable `codex_thread_id`, so no duplicate worker was created; local no-execution and forbidden diff scans covered the boundary.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No live/default runner, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. The workflow contract is a consumer-facing business state and manual-safe handoff, not execution authorization or runner readiness.
+
+## Residual Risk
+
+Users can now see the full factor discovery -> backtest plan workflow for existing MiningJob evidence, but natural-language/user-facing creation of new mining batches still needs to be connected to this contract. That is loop272.
+
+---
+
 # Orchestrator Report - loop270-controlled-dry-run-rollback-after-audit-ux-signoff
 
 **Updated**: 2026-06-24T05:39:26+08:00

@@ -57,7 +57,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G manual-safe simulation consumer UX acceptance walkthrough；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G `USER_FACING_BATCH_MINING_CREATION_INTENT_PLANNER_LOOP272`：把 loop271 `factor_discovery_workflow` contract 接到用户发起/意图理解的 batch mining creation planner；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
 
 ## Task Tree Governance Protocol
 

@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-24T05:39:26+08:00
+updated_at: 2026-06-24T06:07:34+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-24T05:39:26+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-24 loop270 · 已完成 Controlled Dry-Run Rollback-after Audit + UX Signoff：`run_auto_backtest_plan_once(...)` 现在从 completed/failed audit event 构造 `controlled_dry_run_rollback_after_audit_signoff_v1`，并同源贯通 MiningJob observability/API list/detail、Jobs 默认卡片、Chat follow-up 与 Jobs browser smoke。用户可见层显示“受控 dry-run 审计与复核 / 审计已经记录，等待操作员和复核人确认 / 不会自动升级真实回测，也不会启动 PL-H 批量执行”；operator/reviewer 状态为 `review_required`，不是 granted/signed。改动：`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/chat_brain.py`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、相关 API/Chat/Jobs/smoke tests。验证：RED caught missing signoff packet/Jobs/Chat；focused 7 passed；related API/Chat/Jobs/smoke-source 93 passed；ruff pass；web build pass；Jobs smoke ok=true/pageLoadTriggerRequests=[]/duplicateTriggerUrls=[]/controlled_dry_run_rollback_after_audit_signoff_visible=true；production forbidden scan pass。下一动作：`FACTOR_DISCOVERY_TO_BACKTEST_PLAN_CORE_LOOP271`，把 A-E taxonomy、candidate_generator、panel/F6 screening、reviewed_backtest_plan、manual_safe_simulation 收束成 mining job workflow contract + intent state transition；仍禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill/secret 输出。
+[CONTEXT] 2026-06-24 loop271 · 已完成 Factor Discovery to Backtest Plan Core：新增纯 `factor_discovery_workflow_v1` contract，并同源贯通 MiningJob observability/API、Chat follow-up、Jobs 默认卡片与 Jobs browser smoke。用户可见层现在展示“因子挖掘主流程 / 挖什么因子 / 候选怎么生成 / 怎么筛选 / 怎么形成回测计划 / 下一步”，示例包含 `B.行情/价量/技术因子 / 收益动量`、`candidate_generator_v1:price_volume`、`F6_panel_ic_screen`、`准备 1 个模拟回测请求，当前不会执行`。改动：`src/qa/quant_mining/factor_workflow_contract.py`、`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/chat_brain.py`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、相关 API/Chat/Jobs/smoke tests。验证：RED caught missing API/Chat/Jobs workflow；focused 3 passed；direct+related regression 99 passed；ruff pass；web build pass；Jobs smoke ok=true/pageLoadTriggerRequests=[]/duplicateTriggerUrls=[]/miningJobsReadCount=5/factor_discovery_workflow_visible=true；diff forbidden scan pass。下一动作：`USER_FACING_BATCH_MINING_CREATION_INTENT_PLANNER_LOOP272`，把 workflow contract 接到用户发起/意图理解的 batch mining creation planner；仍禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill/secret 输出。
 
 [CONTEXT] 2026-06-24 loop269 · 已完成 Test-only Controlled Dry-Run Trigger Roundtrip：`controlled_dry_run_contract` 可由服务端依赖/测试夹具注入 FastAPI trigger，并贯通 trigger request/audit、test-only injected runner、MiningJob observability、refreshed list/detail 与 Jobs 默认卡片，同源展示 `auto_backtest_execution.controlled_dry_run_adapter_contract`。客户端 POST body 伪造 `controlled_dry_run_adapter_contract` 会被忽略，不会创建受控合同或授权。改动：`src/qa/api/quant_routes.py`、`src/qa/quant_mining/mining_runner.py`、`tests/test_mining_job_api_unit.py`。验证：focused controlled roundtrip/security 4 passed；related API/Jobs regression 52 passed；ruff pass；node check pass；web build pass；test-engineer/code-reviewer read-only success。下一动作：`CONTROLLED_DRY_RUN_ROLLBACK_AFTER_AUDIT_UX_SIGNOFF_LOOP270`，补齐 rollback-after audit recording 与 operator/reviewer UX signoff packet；仍禁止 PL-H、live/default runner、DB-backed execution、page-load POST、background/migration/backfill/secret 输出。
 
@@ -172,18 +172,18 @@ updated_at: 2026-06-24T05:39:26+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | controlled-dry-run-rollback-after-audit-ux-signoff-loop270 |
-| `last_tick` | loop270-controlled-dry-run-rollback-after-audit-ux-signoff |
+| `current_slice` | factor-discovery-to-backtest-plan-core-loop271 |
+| `last_tick` | loop271-factor-discovery-to-backtest-plan-core |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-FACTOR_DISCOVERY_TO_BACKTEST_PLAN_CORE_LOOP271：围绕“挖什么因子、怎么生成候选、怎么筛选、怎么形成回测计划”，把 A-E taxonomy、candidate_generator、panel/F6 screening、reviewed_backtest_plan、manual_safe_simulation 汇总成一个 mining job workflow contract 与 intent state transition；API/Chat/Jobs 同源展示阶段、输入、输出、下一步，继续禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill、secret 输出。
+USER_FACING_BATCH_MINING_CREATION_INTENT_PLANNER_LOOP272：把 loop271 `factor_discovery_workflow` contract 接到用户发起/意图理解的 batch mining creation planner，使用户输入“帮我挖掘价量/基本面/论文/ML/事件类因子”等能生成 MiningJob/候选计划并进入 existing explicit-trigger manual-safe simulation path；API/Chat/Jobs 必须同源展示用户选择的 A-E 分类、候选生成策略、筛选门槛、计划状态和下一步，继续禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill、secret 输出。
 
 ### next_after
 
-After the factor discovery workflow contract is stable, connect it to user-facing batch mining creation/intent planner and promote safe backtest plans into the existing explicit-trigger simulation path; real runner/PL-H remains gated.
+After user-facing batch mining creation and intent planner are stable, promote safe backtest plans into the existing explicit-trigger simulation path and build consumer-grade result/evaluation loop; real runner/PL-H remains gated.
 
 ### Running Processes（poll 2026-06-22T01:49）
 

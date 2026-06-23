@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T05:39:26+08:00
+更新时间：2026-06-24T06:07:34+08:00
+
+## Tick loop271-factor-discovery-to-backtest-plan-core
+
+- **任务 ID**：loop271-factor-discovery-to-backtest-plan-core-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及自动挖掘到回测计划的核心用户路径与执行边界，虽然只读但属于关键功能验收。
+- **状态**：success
+- **任务**：只读复核 `factor_discovery_workflow_v1` 的测试矩阵，确认 A-E taxonomy、candidate generation、panel/F6 screening、reviewed plan、manual-safe simulation 与 no-execution safety 同源覆盖 API/Chat/Jobs/smoke。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；建议补 direct builder ready/no-passed/empty tests，避免只靠 API/UI 间接证明。orchestrator 已新增 `tests/test_factor_workflow_contract_unit.py` 覆盖 ready path、no passed candidates、no evidence returns none。
+- **orchestrator 本地验证**：RED missing API/Chat/Jobs workflow；focused **3 passed**；direct+related regression **99 passed**；ruff pass；web build pass；Jobs smoke `ok=true` / `pageLoadTriggerRequests=[]` / `duplicateTriggerUrls=[]` / `miningJobsReadCount=5` / `factor_discovery_workflow_visible=true`；diff forbidden scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: core workflow tests must prove both direct contract semantics and cross-surface consumer parity, not only visible UI strings.
 
 ## Tick loop270-controlled-dry-run-rollback-after-audit-ux-signoff
 
