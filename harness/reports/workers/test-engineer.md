@@ -1,18 +1,29 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-23T14:06:00+08:00
+更新时间：2026-06-23T14:16:24+08:00
+
+## Tick loop247-operator-authorization-config-rollback-audit-real-batch-review-only
+
+- **任务 ID**：loop247-pl-g-operator-authorization-config-rollback-audit-real-batch-review-only-test-design
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读复核 review-only RED/GREEN 验收形态，覆盖 source=loop246 explicit authorization/config/rollback-audit real-batch gate planning、explicit evidence packet fields review_required_not_granted、runner/adapter config boundary review_required_not_connected、rollback/audit before-after review required no-execution、missing runner fail-closed、PL-H not eligible、no-execution matrix、manual operator/reviewer UX acceptance required、no real/default runner、no adapter invocation、no actual adapter dry-run、no page-load POST、no background/migration/backfill/DB-backed backtest/secret output。
+- **变更**：worker 未修改文件。
+- **orchestrator 本地验证**：RED expected failed on missing export；focused+loop246 pytest **2 passed**；adjacent proof chain **9 passed**；jobs_fixture_emits regression **50 passed**；ruff / node --check / targeted eslint / web build / smoke / stale family scan / active marker scan / secret value-shape scan / runtime cleanup pass。
+- **roster_update**：workload cleared；mistakes none；lesson: review-only tests must prove manual UX acceptance requirement and must not prove authorization grant, runner/adapter connection, adapter invocation, execution permission, executable handoff approval, or PL-H eligibility。
 
 ## Tick loop246-explicit-authorization-config-rollback-audit-real-batch-gate-planning
 
 - **任务 ID**：loop246-pl-g-explicit-authorization-config-rollback-audit-real-batch-gate-planning-test-design
 - **任务树**：TREE-6 / PL-G
 - **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
-- **状态**：partial
+- **状态**：success
 - **任务**：只读复核 planning-only RED/GREEN 验收形态，覆盖 source=loop244 transition readiness assessment、explicit evidence packet required_not_granted、runner/adapter config boundary required_not_connected、rollback/audit before-after required no-execution、missing runner fail-closed、PL-H not eligible、no-execution matrix、no real/default runner、no adapter invocation、no actual adapter dry-run、no page-load POST、no background/migration/backfill/DB-backed backtest/secret output。
 - **变更**：worker 未修改文件。
-- **orchestrator 观察**：该跨对话 assignment 进入 compaction/in-progress，未在本轮 truth-source sync 前返回最终 report；完成声明不依赖该 pending report，使用本地 RED/GREEN、code-reviewer success 与 verifier success 作为证据。
+- **orchestrator 观察**：该跨对话 assignment 后续返回 late success；loop247 roster sync 已纳入并修正此前 pending 标记，后续不再把该永久 worker 误判为丢失。
 - **orchestrator 本地验证**：RED expected failed on missing export；focused+loop244 pytest **2 passed**；adjacent proof chain **8 passed**；jobs_fixture_emits regression **49 passed**；ruff / node --check / targeted eslint / web build / smoke / active/stale family scans / secret value-shape scan / runtime cleanup pass。
-- **roster_update**：workload remains light/pending until thread returns or is explicitly cleared；mistakes none；lesson: pending cross-dialogue reports must be marked pending and never counted as success evidence。
+- **roster_update**：workload cleared；mistakes none；lesson: pending cross-dialogue reports must be marked pending until they return, and late success must be reconciled instead of creating duplicate workers。
 
 ## Tick loop244-transition-readiness-assessment
 

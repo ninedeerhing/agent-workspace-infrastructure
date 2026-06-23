@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-23T06:02:31Z",
-  "last_tick": "loop246-explicit-authorization-config-rollback-audit-real-batch-gate-planning",
-  "pytest_passed": 49,
+  "recorded_at": "2026-06-23T06:22:43Z",
+  "last_tick": "loop247-operator-authorization-config-rollback-audit-real-batch-review-only",
+  "pytest_passed": 50,
   "ruff": "ok",
   "evidence_paths": [
-    "loop246 focused+loop244=2 passed; adjacent proof chain=8 passed; jobs_fixture_emits=49 passed; ruff/node/eslint/build/smoke/scans/runtime cleanup pass"
+    "loop247 RED expected; GREEN focused+loop246 2 passed; adjacent proof chain 9 passed; jobs_fixture_emits 50 passed; ruff/node/eslint/build/smoke/scans/runtime cleanup pass"
   ],
-  "section5_ref": "5.572",
+  "section5_ref": "5.573",
   "source": "manual"
 }
