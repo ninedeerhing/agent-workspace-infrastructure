@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-23T13:39:18+08:00
+Updated: 2026-06-23T14:06:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -45,6 +45,16 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 - **Default**: non-critical workers and routine work use `<=gpt-5.4`. Prefer `gpt-5.4-mini` for daily ops, git/status checks, index refresh, report formatting, thread hygiene, and other low-risk mechanical work; use `gpt-5.4` for ordinary read-only research, planning, governance, traceability, and routine verification.
 - **Critical**: use `gpt-5.5` for production code edits, product/UI design, architecture boundary decisions, security/authorization reviews, real-execution gates, release/high-risk final verification, and any worker asked to make or review user-facing product behavior.
 - **Dispatch requirement**: every worker assignment must record `model_tier` and `model_reason` in the assignment envelope / cluster manifest. Existing cross-dialogue worker threads must be continued with `send_message_to_thread(model=...)` instead of creating duplicate threads only to change model.
+
+## Current Assignment Overlay
+
+| role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
+|---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | loop246 | active | gpt-5.5 | 2026-06-23T14:06:00+08:00 | loop246 truth-source sync complete; next loop247 operator authorization/config/rollback-audit real-batch review-only mocked-only | workload light; do not self-own next code/review when worker dispatch is available |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop246 | partial | gpt-5.5 | 2026-06-23T14:06:00+08:00 | completed RED test only; orchestrator took over GREEN implementation after executor paused for approval | workload cleared; lesson: worker should not wait for approval on non-destructive bounded implementation when orchestrator has authorized slice |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop246 | pending | gpt-5.5 | 2026-06-23T14:06:00+08:00 | read-only test design assignment entered compaction/in-progress; not used as completion evidence | workload light; retain permanent identity; do not create duplicate test-engineer |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop246 | success | gpt-5.5 | 2026-06-23T14:06:00+08:00 | final semantic/code risk review for planning-only/not-authorization gate | workload cleared; no mistakes; lesson: smoke assertion must be runtime text check, not static marker-only |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop246 | success | gpt-5.5 | 2026-06-23T14:06:00+08:00 | final verification matrix accepted focused/proof-chain/jobs_fixture/lint/build/smoke/scans/runtime evidence | workload cleared; no mistakes; residual risk remains mocked-only |
 
 ## Manager
 
