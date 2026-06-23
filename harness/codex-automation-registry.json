@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "updated_at": "2026-06-23T10:24:59+08:00",
+  "updated_at": "2026-06-23T10:51:01+08:00",
   "source": "CodeX UI automation_update",
   "automations": [
     {
@@ -15,11 +15,14 @@
     {
       "id": "daily-ops",
       "codex_id": "awi-daily-ops",
-      "kind": "cron",
+      "kind": "heartbeat",
       "status": "ACTIVE",
       "schedule": "FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0",
+      "target_thread_id": "019ef261-de0b-7ad0-8e9c-bb005dd38af0",
+      "thread_title": "daily-ops",
       "prompt_ref": "harness/templates/daily-ops-prompt.md",
       "worker_role": "daily-ops",
+      "prompt_policy": "Runs as a heartbeat bound to the pinned daily-ops thread; do not create separate daily self-check, compliance, or git-push conversations.",
       "replaces": [
         "awi-codex-self-check",
         "awi-daily-compliance",
@@ -45,6 +48,33 @@
       "codex_id": "awi-daily-git-push",
       "retired_at": "2026-06-23T10:24:59+08:00",
       "replacement": "awi-daily-ops"
+    }
+  ],
+  "archived_daily_threads": [
+    {
+      "thread_id": "019eef56-e7c4-7ea1-916a-49030eb3f929",
+      "title": "AWI Daily Git Push",
+      "archived_at": "2026-06-23T10:51:01+08:00"
+    },
+    {
+      "thread_id": "019eea29-471f-7df3-a174-b6a0e74fb6dc",
+      "title": "AWI Daily Git Push",
+      "archived_at": "2026-06-23T10:51:01+08:00"
+    },
+    {
+      "thread_id": "019eef34-1b24-7020-8003-4e8a158df67e",
+      "title": "AWI Daily Compliance",
+      "archived_at": "2026-06-23T10:51:01+08:00"
+    },
+    {
+      "thread_id": "019ef1c7-f3f3-7401-9158-c25756633a17",
+      "title": "AWI CodeX Self Check",
+      "archived_at": "2026-06-23T10:51:01+08:00"
+    },
+    {
+      "thread_id": "019eecaa-4930-7dc0-b5a1-97003d2e7b50",
+      "title": "AWI CodeX Self Check",
+      "archived_at": "2026-06-23T10:51:01+08:00"
     }
   ]
 }

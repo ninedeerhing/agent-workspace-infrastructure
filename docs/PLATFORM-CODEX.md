@@ -32,21 +32,21 @@ This file is the CodeX-effective platform binding for raindeer-AWI. It makes the
 
 | Local id | Kind | Schedule | Prompt |
 |---|---|---|---|
-| `loop-tick` | heartbeat | `FREQ=MINUTELY;INTERVAL=30` | `harness/templates/loop-tick-prompt.md` |
-| `daily-ops` | cron | `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` | `harness/templates/daily-ops-prompt.md` |
+| `loop-tick` | heartbeat | `FREQ=MINUTELY;INTERVAL=15` | `harness/templates/loop-tick-prompt.md` |
+| `daily-ops` | heartbeat bound to thread | `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` | `harness/templates/daily-ops-prompt.md` |
 
-`daily-ops` is the only scheduled daily CodeX worker. It replaces the old separate `codex-self-check`, `daily-compliance`, and `daily-git-push` automations so the UI does not open three daily worker conversations.
+`daily-ops` is the only scheduled daily CodeX worker. It is a heartbeat bound to the pinned `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`, not a standalone cron that opens a fresh daily conversation. It replaces the old separate `codex-self-check`, `daily-compliance`, and `daily-git-push` automations.
 
 After creating or updating automations in CodeX UI, write the returned ids to `harness/codex-automation-registry.json`.
 
 ## Current Registered Automations
 
-| Local id | CodeX id | Status |
-|---|---|---|
-| `loop-tick` | `awi-loop-tick-heartbeat` | ACTIVE |
-| `daily-ops` | `awi-daily-ops` | ACTIVE |
+| Local id | CodeX id | Kind | Target | Status |
+|---|---|---|---|---|
+| `loop-tick` | `awi-loop-tick-heartbeat` | heartbeat | orchestrator thread | ACTIVE |
+| `daily-ops` | `awi-daily-ops` | heartbeat | `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0` | ACTIVE |
 
-Retired daily automations: `awi-codex-self-check`, `awi-daily-compliance`, and `awi-daily-git-push`; keep their scripts callable but do not schedule them as separate CodeX conversations.
+Retired daily automations: `awi-codex-self-check`, `awi-daily-compliance`, and `awi-daily-git-push`; keep their scripts callable but do not schedule them as separate CodeX conversations. Archived old daily UI threads: `019eef56-e7c4-7ea1-916a-49030eb3f929`, `019eea29-471f-7df3-a174-b6a0e74fb6dc`, `019eef34-1b24-7020-8003-4e8a158df67e`, `019ef1c7-f3f3-7401-9158-c25756633a17`, and `019eecaa-4930-7dc0-b5a1-97003d2e7b50`.
 
 ## Current Worker Thread
 
@@ -54,7 +54,7 @@ Retired daily automations: `awi-codex-self-check`, `awi-daily-compliance`, and `
 |---|---|---|
 | `verifier` | `019eeed2-dbc0-7313-8d64-f9c6f199c68b` | Current reusable verifier |
 | `verifier` | `019ee9fe-7605-7d53-8380-57228c31048c` | Archived; do not dispatch |
-| `daily-ops` | `awi-daily-ops` automation | Daily self-check/compliance/lifecycle/git-push worker |
+| `daily-ops` | `019ef261-de0b-7ad0-8e9c-bb005dd38af0` | Pinned daily self-check/compliance/lifecycle/git-push worker thread |
 
 ## Validation
 

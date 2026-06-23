@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T10:24:59+08:00
+updated_at: 2026-06-23T10:51:01+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-23T10:24:59+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-23 daily-ops · 用户指出 CodeX UI 出现两个同名 verifier，并且 daily git push / compliance / CodeX self-check 每天分别新开对话。已归档旧 verifier thread `019ee9fe-7605-7d53-8380-57228c31048c`，保留当前 verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 为唯一可复用 verifier；新增 `daily-ops` worker、`harness/scripts/daily-ops.ps1`、`harness/templates/daily-ops-prompt.md` 和 `harness/reports/workers/daily-ops.md`，并将 `harness/codex-automation-registry.json` 改为 ACTIVE `awi-loop-tick-heartbeat` + `awi-daily-ops`，旧 `awi-codex-self-check` / `awi-daily-compliance` / `awi-daily-git-push` retired/replaced。业务主线不变，下一拍仍是 executable handoff gate review TDD mocked-only。
+[CONTEXT] 2026-06-23 daily-ops · 用户指出 CodeX UI 出现两个同名 verifier，并且 daily git push / compliance / CodeX self-check 每天分别新开对话；随后发现 daily-ops 对话未出现且旧 daily 对话未归档。已归档旧 verifier thread `019ee9fe-7605-7d53-8380-57228c31048c`，保留当前 verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 为唯一可复用 verifier；新增并 pin `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`，归档旧 daily UI threads `019eef56-e7c4-7ea1-916a-49030eb3f929` / `019eea29-471f-7df3-a174-b6a0e74fb6dc` / `019eef34-1b24-7020-8003-4e8a158df67e` / `019ef1c7-f3f3-7401-9158-c25756633a17` / `019eecaa-4930-7dc0-b5a1-97003d2e7b50`；`awi-daily-ops` 已从 standalone cron 改为绑定该 thread 的 heartbeat。业务主线不变，下一拍仍是 executable handoff gate review TDD mocked-only。
 
 [CONTEXT] 2026-06-23 loop239 · 已完成 explicit executable handoff authorization packet mocked-only：复用同一 worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `explicitExecutableHandoffAuthorizationPacketChecks` / `assertExplicitExecutableHandoffAuthorizationPacket(...)`，Jobs smoke fixture 验证 authorization-packet-only/not-execution gate：source=loop238 later executable handoff gate preflight、fail_closed_explicit_executable_handoff_authorization_packet_not_execution、operator/reviewer authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution executable authorization packet acceptance、executable handoff blocked_until_explicit_authorization_config_rollback_audit_real_batch_gate 与 executable handoff gate review next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 48 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / loop239 markers visible，source-only active Pascal scan=0，precise_secret_assignment_matches=0 与 runtime cleanup pass。下一拍进入 executable handoff gate review TDD mocked-only，仍禁止 real/default runner、adapter invocation、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 
@@ -153,7 +153,7 @@ $env:PYTHONPATH='src'
 
 - **禁止**: `cursor/*` / arbitrary feature 分支作为日常开发分支
 - **日末 push**: `harness/scripts/daily-git-push.ps1`（非 main → blocked exit 1）
-- **Automation**: Cursor/CodeX 各自 UI 配置 · 模板 `harness/templates/daily-git-push-prompt.md`
+- **Automation**: CodeX UI 配置 · loop-tick heartbeat + daily-ops heartbeat bound to pinned thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`
 
 ### Employee Roster
 
@@ -169,7 +169,7 @@ $env:PYTHONPATH='src'
 4. **勿创建** feature/`cursor/*` 分支（GP-08）
 5. **勿读取/复制/提交** `.env` / `.env.local`（含 DSN / Token）
 6. **勿安装 WSL** 或破坏性 git 操作（force push main 等）
-7. **勿 push** 除非用户明确要求或 daily-git-push automation 到点；本地 main commit 依 clean-worktree gate 执行，避免 loop 结束留脏文件
+7. **勿 push** 除非用户明确要求或 pinned `daily-ops` thread 到点执行 daily-git-push；本地 main commit 依 clean-worktree gate 执行，避免 loop 结束留脏文件
 
 ### Verify Commands（接手后第一件事）
 
@@ -198,11 +198,9 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 | 名称 | CodeX id | 类型 | 调度 | 模板 |
 |---|---|---|---|---|
 | loop-tick | `awi-loop-tick-heartbeat` | heartbeat | `FREQ=MINUTELY;INTERVAL=15` | `harness/templates/loop-tick-prompt.md` · prompt updated: safe env loading allowed via project loader, secret output forbidden |
-| codex-self-check | `awi-codex-self-check` | cron | `FREQ=DAILY;BYHOUR=8;BYMINUTE=0;BYSECOND=0` | `harness/templates/codex-self-check-prompt.md` |
-| daily-compliance | `awi-daily-compliance` | cron | `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` | `harness/templates/daily-compliance-prompt.md` |
-| daily-git-push | `awi-daily-git-push` | cron | `FREQ=DAILY;BYHOUR=20;BYMINUTE=30;BYSECOND=0` | `harness/templates/daily-git-push-prompt.md` |
+| daily-ops | `awi-daily-ops` | heartbeat bound to pinned thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0` | `FREQ=DAILY;BYHOUR=20;BYMINUTE=0;BYSECOND=0` | `harness/templates/daily-ops-prompt.md` · runs self-check, compliance, lifecycles, dual-repo status, and daily git push |
 
-登记真源：`harness/codex-automation-registry.json`。CodeX self-check 验证：27 checks / 0 findings。
+登记真源：`harness/codex-automation-registry.json`。旧 daily automations `awi-codex-self-check` / `awi-daily-compliance` / `awi-daily-git-push` retired；旧 daily UI threads `019eef56-e7c4-7ea1-916a-49030eb3f929` / `019eea29-471f-7df3-a174-b6a0e74fb6dc` / `019eef34-1b24-7020-8003-4e8a158df67e` / `019ef1c7-f3f3-7401-9158-c25756633a17` / `019eecaa-4930-7dc0-b5a1-97003d2e7b50` archived。
 
 ### CodeX Cross-Session Worker
 

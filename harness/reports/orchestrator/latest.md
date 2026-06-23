@@ -1,6 +1,6 @@
 # Orchestrator Report - loop239-explicit-executable-handoff-authorization-packet
 
-**Updated**: 2026-06-23T10:24:59+08:00
+**Updated**: 2026-06-23T10:51:01+08:00
 
 ## Tick Summary
 
@@ -45,7 +45,7 @@ cluster_manifest:
 | gate_decision | authorization packet proves required evidence and fail-closed boundaries, not authorization grant, not config connection, not runner/adapter invocation, not dry-run execution, not execution permission, not PL-H eligibility |
 | capacity_review | existing roster sufficient; no new worker requested |
 | skill_lifecycle | no new M/GP; applied M-46/GP-22 and M-17 zero-write audit; router precision gap carried |
-| daily_ops_governance | after user duplicate-thread report, old verifier thread archived and `daily-ops` worker/prompt/wrapper added to replace three separate daily automations |
+| daily_ops_governance | after user duplicate-thread report, old verifier thread archived and `daily-ops` worker/prompt/wrapper added to replace three separate daily automations; follow-up fixed UI drift by creating pinned `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0`, archiving old daily UI threads, and binding `awi-daily-ops` heartbeat to that thread |
 
 ## Changes
 
@@ -60,6 +60,7 @@ cluster_manifest:
 | `harness/templates/daily-ops-prompt.md` | New CodeX prompt for the daily-ops worker. |
 | `harness/codex-automation-registry.json` | Retires three separate daily automations in favor of `awi-daily-ops`. |
 | `harness/reports/workers/daily-ops.md` | Registers the daily-ops worker report surface. |
+| `docs/PLATFORM-CODEX.md` / `docs/CONTINUATION_PROMPT.md` / `harness/session-handoff.md` / `harness/reports/EMPLOYEE_ROSTER.md` | Records `awi-daily-ops` as a heartbeat bound to pinned thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0` and archives old daily UI threads. |
 
 ## Review
 
@@ -96,3 +97,5 @@ Verification remains mocked-only. Real/default runner invocation, adapter invoca
 Start executable handoff gate review mocked-only using the loop239 explicit executable handoff authorization packet.
 
 Daily operations must route through `daily-ops` only; do not create duplicate verifier/self-check/compliance/git-push conversations.
+
+Pinned daily-ops thread: `019ef261-de0b-7ad0-8e9c-bb005dd38af0`; old daily git-push/compliance/self-check UI threads archived.
