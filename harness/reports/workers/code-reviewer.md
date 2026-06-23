@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T04:44:41+08:00
+更新时间：2026-06-24T05:21:18+08:00
+
+## Tick loop268-controlled-real-runner-dry-run-adapter-contract
+
+- **任务 ID**：loop268-controlled-real-runner-dry-run-adapter-contract-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.4 read-only；本轮只做代码风险审查，不承担生产代码编辑。
+- **状态**：success
+- **任务**：只读审查受控 dry-run contract 是否误表达真实执行授权，是否新增 live/default runner、DB/backfill/PL-H 或 page-load 执行路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：PASS；关键风险是 positive readiness copy 必须由 payload 推导。orchestrator 最终实现用 `isAuthorizedControlledDryRunAdapterContract(...)` 门控 Jobs 固定 marker，并让 contract validator 在 snapshot/runner 前 fail-closed；未看到真实/default runner、DB-backed backtest、migration/backfill、PL-H batch 或 page-load POST 路径。
+- **orchestrator 本地验证**：controlled contract focused **2 passed**；Jobs static **1 passed**；related API/Jobs regression **48 passed**；targeted ruff pass；node check pass；web build pass。
+- **roster_update**：workload cleared；mistakes none；lesson: positive readiness claims like authorized/connected/ready must be predicate-gated by actual payload, and missing/incomplete contract must surface as fail-closed instead of silently running.
 
 ## Tick loop267-real-runner-authorization-config-rollback-audit-framework
 

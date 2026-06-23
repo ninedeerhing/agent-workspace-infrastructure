@@ -1,3 +1,51 @@
+# Orchestrator Report - loop268-controlled-real-runner-dry-run-adapter-contract
+
+**Updated**: 2026-06-24T05:21:18+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Controlled Real-Runner Dry-Run Adapter Contract.
+- **trigger**: loop267 established a fail-closed runner authorization/config/rollback-audit framework, but the next executable boundary needed a concrete contract that can be checked before any snapshot or runner work.
+- **result**: `controlled_real_runner_dry_run_adapter_contract_v1` is now a pure builder/validator. It requires explicit runner config, connected test-only adapter, `dry_run_only=true`, `default_runner_allowed=false`, distinct operator/reviewer authorization ids, rollback before-audit proof, after-audit requirement, and no-side-effect safety flags before a controlled dry-run can proceed. MiningJob observability and Jobs UI can display the same authorized contract summary.
+- **next**: `TEST_ONLY_CONTROLLED_DRY_RUN_TRIGGER_ROUNDTRIP_LOOP269`; wire this contract through API trigger/test fixture/test-only injected runner roundtrip so trigger response, refreshed list/detail, and Jobs share one controlled dry-run summary. Still no live/default runner, DB-backed backtest, PL-H batch, page-load POST, background/migration/backfill, or secret output.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/real_runner_authorization_framework.py` | Adds controlled dry-run contract builder and validator with fail-closed eligibility checks. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Validates `controlled_dry_run_contract` before plan/request/audit/snapshot/runner work and passes the authorized summary into observability. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Renders a consumer-facing controlled dry-run contract summary from predicate-gated payload fields. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Proves incomplete contracts fail closed before runner calls and authorized summaries roundtrip through observability. |
+| `apps/quant_assistant/tests/test_jobs_page_action_rendering_unit.py` | Proves Jobs rendering includes the controlled dry-run contract summary and safety markers. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing controlled contract API failed before implementation |
+| focused contract GREEN | pass · **2 passed** |
+| Jobs static GREEN | pass · **1 passed** |
+| related regression | pass · **48 passed** across MiningJob API and Jobs action rendering |
+| Python ruff | pass · targeted files clean |
+| node check | pass · smoke fixture syntax ok |
+| web build | pass · `tsc -b && vite build` |
+| worker review | pass · test-engineer/code-reviewer read-only reports success; code-reviewer lesson applied: positive readiness markers must be derived from payload, not hardcoded |
+
+## Worker Notes
+
+Permanent worker threads were used for read-only review. `test-engineer` confirmed the contract family should be covered by API, Chat, Jobs, smoke, and no-execution checks as it moves into loop269. `code-reviewer` found no blocker and emphasized that “authorized/connected/ready” wording must stay payload-derived; local implementation gates Jobs fixed markers through the authorized contract predicate.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No live/default runner, adapter-backed DB execution, DB-backed backtest, PL-H batch, page-load POST, background process, migration, or backfill was started. The contract is an eligibility and controlled test-only dry-run boundary, not a live execution grant.
+
+## Residual Risk
+
+The contract is not yet wired through the FastAPI trigger request path. loop269 must connect the test-only contract to API trigger fixtures and injected-runner roundtrip while keeping live/default runner and PL-H disabled.
+
+---
+
 # Orchestrator Report - loop267-real-runner-authorization-config-rollback-audit-framework
 
 **Updated**: 2026-06-24T04:44:41+08:00
