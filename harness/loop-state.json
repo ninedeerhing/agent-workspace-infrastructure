@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T05:21:18+08:00",
+  "updated_at": "2026-06-24T05:21:54+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "controlled-dry-run-adapter-contract-loop268",
-  "next_atomic_action": "TEST_ONLY_CONTROLLED_DRY_RUN_TRIGGER_ROUNDTRIP_LOOP269：把 loop268 contract 接到 API trigger/test fixture/test-only injected runner roundtrip：请求层必须显式传入授权合同或测试夹具，API response/refreshed list/detail/Jobs 都能看到同一 controlled dry-run summary；仍禁止 live/default runner、DB-backed backtest、PL-H batch、page-load POST、background/migration/backfill、secret 输出。",
-  "next_after": "After API/test-only dry-run roundtrip is stable, add rollback-after audit recording and operator/reviewer UX signoff packet for the controlled path; do not enable PL-H, default runner, live runner, or DB-backed execution.",
+  "current_slice": "test-only-controlled-dry-run-trigger-roundtrip-loop269",
+  "next_atomic_action": "CONTROLLED_DRY_RUN_ROLLBACK_AFTER_AUDIT_UX_SIGNOFF_LOOP270：在受控 dry-run trigger roundtrip 后，补齐 rollback-after audit recording 与 operator/reviewer UX signoff packet；API/Jobs/Chat 应展示执行前/后审计签收状态，但仍不启用 PL-H、live/default runner、DB-backed execution、page-load POST、background/migration/backfill、secret 输出。",
+  "next_after": "After rollback-after audit and UX signoff packet is stable, promote the controlled path into one operator-reviewed dry-run readiness gate; still no PL-H/live DB-backed batch until real demand gate and explicit user approval.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop268-controlled-real-runner-dry-run-adapter-contract",
+  "last_tick": "loop269-test-only-controlled-dry-run-trigger-roundtrip",
   "last_sync_sources": [
+    "loop269 Test-only controlled dry-run trigger roundtrip",
+    "loop269 TDD RED missing controlled_dry_run_contract route/runner keyword before implementation; GREEN focused 4 passed including forged request-body ignored regression",
+    "loop269 related API/Jobs regression 52 passed; ruff pass; node --check pass; web build pass",
+    "loop269 test-engineer/code-reviewer permanent worker read-only reports success; code-reviewer risk addressed by ignoring client-supplied contract body and accepting only server dependency/fixture contract",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.596",
     "loop268 Controlled real-runner dry-run adapter contract",
     "loop268 TDD RED missing controlled_dry_run_adapter_contract_v1 API before implementation",
     "loop268 focused contract GREEN 2 passed; Jobs static contract 1 passed; related API/Jobs regression 48 passed",
@@ -1103,7 +1108,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop268 completed controlled real-runner dry-run adapter contract v1. The pure builder/validator now requires explicit runner_config connected+dry_run_only, default_runner_allowed=false, operator/reviewer dual authorization with distinct ids, rollback before audit id plus after_required=true, and no-side-effect safety flags before any snapshot or runner call can proceed. MiningJob observability and Jobs default UI can display the same controlled dry-run contract summary. This remains no-execution: no PL-H batch, live/default runner, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
+    "note": "loop269 completed test-only controlled dry-run trigger roundtrip. The server-owned controlled_dry_run_contract can now flow through FastAPI trigger dependency injection, trigger request/audit summary, injected runner execution, MiningJob observability, refreshed list/detail, and Jobs UI. Client-supplied POST body contracts are ignored, so authorization cannot be forged from request JSON. This remains no-execution outside the injected test-only runner path: no PL-H batch, live/default runner, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
   },
-  "last_completed_note": "loop268 Controlled Real-Runner Dry-Run Adapter Contract complete. real_runner_authorization_framework.py now exposes controlled_real_runner_dry_run_adapter_contract_v1 builder/validator and require_controlled_dry_run_adapter_contract_v1; mining_runner.run_auto_backtest_plan_once(...) validates the contract before plan/request/audit/snapshot/runner work if a controlled_dry_run_contract is supplied, and passes the authorized summary into auto_backtest_execution observability. JobsPage renders a consumer-visible controlled dry-run contract summary only from a payload that satisfies the authorized predicate. Verification: controlled contract focused 2 passed; Jobs static summary 1 passed; related API/Jobs regression 48 passed; targeted ruff pass; node --check pass; web build pass; test-engineer/code-reviewer reports success. This remains no-execution: no live/default runner, DB-backed backtest, PL-H batch, page-load POST, background/migration/backfill, or secret output. Next_atomic_action is TEST_ONLY_CONTROLLED_DRY_RUN_TRIGGER_ROUNDTRIP_LOOP269 to wire the contract through API trigger/test fixture/test-only injected runner roundtrip without enabling live/default runner or PL-H."
+  "last_completed_note": "loop269 Test-only Controlled Dry-Run Trigger Roundtrip complete. quant_routes.trigger_mining_job_auto_backtest_action(...) now accepts a server dependency-injected controlled_dry_run_contract and passes it to trigger_auto_backtest_action_once(...); mining_runner builds a trigger request/audit body containing only the validated contract summary and passes the full contract to run_auto_backtest_plan_once(...). API trigger response, refreshed list/detail, and Jobs UI can observe the same auto_backtest_execution.controlled_dry_run_adapter_contract. A forged client JSON body is ignored and does not create a controlled contract. Verification: focused controlled roundtrip/security 4 passed; related API/Jobs regression 52 passed; targeted ruff pass; node --check pass; web build pass; test-engineer/code-reviewer reports success. This remains no-execution outside the injected test-only runner path: no live/default runner, DB-backed backtest, PL-H batch, page-load POST, background/migration/backfill, or secret output. Next_atomic_action is CONTROLLED_DRY_RUN_ROLLBACK_AFTER_AUDIT_UX_SIGNOFF_LOOP270 to add rollback-after audit recording and operator/reviewer UX signoff packet without enabling live/default runner or PL-H."
 }

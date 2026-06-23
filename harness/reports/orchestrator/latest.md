@@ -1,3 +1,48 @@
+# Orchestrator Report - loop269-test-only-controlled-dry-run-trigger-roundtrip
+
+**Updated**: 2026-06-24T05:21:54+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Test-only Controlled Dry-Run Trigger Roundtrip.
+- **trigger**: loop268 created the controlled dry-run contract and pre-runner validator, but the API trigger path still needed a server-owned way to carry the contract through request/audit, injected runner, refreshed reads, and Jobs UI.
+- **result**: FastAPI trigger now accepts a server dependency-injected `controlled_dry_run_contract`, passes it to `trigger_auto_backtest_action_once(...)`, writes the validated summary into the trigger request/audit body, and lets API response, refreshed list/detail, and Jobs share one `auto_backtest_execution.controlled_dry_run_adapter_contract`. Client-supplied JSON contracts are ignored and cannot forge authorization.
+- **next**: `CONTROLLED_DRY_RUN_ROLLBACK_AFTER_AUDIT_UX_SIGNOFF_LOOP270`; add rollback-after audit recording and operator/reviewer UX signoff packet without enabling live/default runner, DB-backed execution, PL-H, page-load POST, background/migration/backfill, or secret output.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/api/quant_routes.py` | Adds server dependency seam for controlled dry-run contract and passes only mapping dependency values to the trigger runner path. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds contract-aware trigger request/audit body and passes full validated contract into `run_auto_backtest_plan_once(...)`. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Proves trigger response/refreshed list/detail share the contract summary, incomplete contracts fail closed before runner/snapshot, endpoint dependency injection works, and forged POST bodies are ignored. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing route/runner keyword support failed before implementation |
+| focused roundtrip/security GREEN | pass · **4 passed** |
+| related regression | pass · **52 passed** across MiningJob API and Jobs action rendering |
+| Python ruff | pass · targeted files clean |
+| node check | pass · smoke fixture syntax ok |
+| web build | pass · `tsc -b && vite build` |
+| worker review | pass · test-engineer/code-reviewer read-only reports success; code-reviewer risk addressed with forged-body ignored regression |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` confirmed loop269 should extend the existing `auto_backtest_execution` roundtrip instead of creating a separate proof surface. `code-reviewer` flagged request-body authorization forgery risk; orchestrator kept contract data server-owned via dependency injection and added a regression proving client JSON does not create a controlled contract.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No live/default runner, DB-backed backtest, PL-H batch, page-load POST, background process, migration, or backfill was started. The only execution seam remains explicit injected runner/test-only dry-run.
+
+## Residual Risk
+
+The controlled dry-run path still lacks rollback-after audit recording and operator/reviewer UX signoff evidence. loop270 must add those before any broader readiness gate.
+
+---
+
 # Orchestrator Report - loop268-controlled-real-runner-dry-run-adapter-contract
 
 **Updated**: 2026-06-24T05:21:18+08:00

@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T05:21:18+08:00
+更新时间：2026-06-24T05:21:54+08:00
+
+## Tick loop269-test-only-controlled-dry-run-trigger-roundtrip
+
+- **任务 ID**：loop269-test-only-controlled-dry-run-trigger-roundtrip-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.4 read-only；本轮只做代码风险审查，不承担生产代码编辑。
+- **状态**：success
+- **任务**：只读预审 controlled dry-run contract 接入 API trigger/test fixture/test-only injected runner roundtrip 是否误打开 live/default runner、DB-backed backtest、PL-H、page-load POST 或请求体伪造授权。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：PASS with guard；关键风险是不能信任客户端 POST body 的 authorization/config 字段。orchestrator 最终实现只接受服务端 dependency/fixture 提供的 mapping contract，并新增 forged body ignored 回归测试；未看到 live/default runner、DB-backed backtest、migration/backfill、PL-H batch 或 page-load POST 路径。
+- **orchestrator 本地验证**：focused controlled roundtrip/security **4 passed**；related API/Jobs regression **52 passed**；targeted ruff pass；node check pass；web build pass。
+- **roster_update**：workload cleared；mistakes none；lesson: controlled dry-run authorization data must be server-owned and dependency-derived; client request bodies may request a trigger but must not mint authorization contracts.
 
 ## Tick loop268-controlled-real-runner-dry-run-adapter-contract
 
