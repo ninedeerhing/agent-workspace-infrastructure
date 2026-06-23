@@ -57,7 +57,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G transition readiness assessment-only mocked-only；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G explicit authorization/config/rollback-audit real-batch gate planning-only mocked-only；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
 
 ## Task Tree Governance Protocol
 
@@ -70,7 +70,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G transition readiness assessment-only mocked-only（TREE-2 data gate passed；loop243 completed later executable handoff final implementation gate/review with no-execution proof; worker permanent `codex_thread_id` and temporary `runtime_agent_id` are separated, and dispatch must verify cross-dialogue thread reachability before assignment；见 `harness/loop-state.json` and app §5.569）
+- Current operational loop: `apps/quant_assistant` PL-G explicit authorization/config/rollback-audit real-batch gate planning-only mocked-only（TREE-2 data gate passed；loop244 completed transition readiness assessment-only with no-authorization/no-execution proof; worker permanent `codex_thread_id` and temporary `runtime_agent_id` are separated, and dispatch must verify cross-dialogue thread reachability before assignment；见 `harness/loop-state.json` and app §5.570）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward the unique core mainline auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.

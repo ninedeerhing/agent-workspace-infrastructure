@@ -1,12 +1,44 @@
-# Orchestrator Report - loop243-later-executable-handoff-final-implementation-gate-review
+# Orchestrator Report - loop245-reboot-recovery-assessment
 
-**Updated**: 2026-06-23T12:49:14+08:00
+**Updated**: 2026-06-23T13:39:18+08:00
 
 ## Tick Summary
 
-- **slice**: TREE-6 / PL-G later executable handoff final implementation gate/review mocked-only
-- **result**: added a bounded final-gate-review-only/not-execution matrix on top of loop242 narrower executable handoff implementation seam proof.
-- **next**: transition readiness assessment-only mocked-only
+- **slice**: reboot recovery assessment after abnormal PC restart, preserving TREE-6 / PL-G business next action.
+- **result**: confirmed system recovery state and did not restart any backfill or real execution path.
+- **next**: explicit authorization/config/rollback-audit real-batch gate planning-only mocked-only, using loop244 transition readiness assessment.
+- **core mainline**: auto mining -> auto backtest full flow + intent understanding state machine remains the unique project mainline.
+
+## Recovery Evidence
+
+| Gate | Result |
+|------|--------|
+| Docker/PG recovery | pass · `qa-pg-alt` restored on port 55432 per app §5.571 |
+| Backfill process check | pass · daily_bar/daily_trade_status process count 0; no resume needed |
+| DSN isolation | pass · app §5.571 records prod/test isolation OK with masked DSN only |
+| Data snapshot | pass · daily_bar and daily_trade_status 3995/3995 through 2026-06-18 |
+| Business proof recheck | pass · loop244 proof chain 7 passed; jobs_fixture_emits 48 passed; ruff/node/eslint/build/smoke/scans/runtime cleanup pass |
+| Lifecycle gates | pass · methodology/work-report/sync/verification/closure lifecycles; sync finding_count=0; closure open_count=0 |
+
+## Safety
+
+No `.env`, `.env.local`, DSN, token, or secret was printed or persisted. No backfill resume, migration, background process, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, or PL-H batch execution was started.
+
+## Residual Risk
+
+Recovery did not advance the business implementation slice. It only restored runtime confidence and preserves the next action: explicit authorization/config/rollback-audit real-batch gate planning-only mocked-only.
+
+---
+
+# Orchestrator Report - loop244-transition-readiness-assessment
+
+**Updated**: 2026-06-23T13:32:26+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G transition readiness assessment-only mocked-only
+- **result**: added a bounded assessment-only/not-authorization matrix on top of loop243 later executable handoff final implementation gate/review proof.
+- **next**: explicit authorization/config/rollback-audit real-batch gate planning-only mocked-only
 - **core mainline**: auto mining -> auto backtest full flow + intent understanding state machine remains the unique project mainline
 - **automation mode**: loop-tick heartbeat is `PAUSED_BY_USER`; continuous orchestrator-thread loop is the active business-loop mode.
 - **context mode**: Context Loading Budget Gate is active; default is `context_mode=hot_path`, with cold-path full-source retrieval only on phase switches, conflicts, failed checks, security/real-execution/release gates, worker/skill changes, methodology synthesis, or explicit audits.
@@ -14,6 +46,7 @@
 ## Cluster Manifest
 
 - **test-engineer**: `019eeece-52d7-7b73-868a-7beb496ba303`, model `gpt-5.5`, read-only test design review, success.
+- **executor**: `019eeece-c617-71c3-a80a-39a693ad3ac3`, model `gpt-5.5`, bounded implementation scope, success.
 - **code-reviewer**: `019eeed1-7e14-7342-9d45-d7948aec94d2`, model `gpt-5.5`, read-only semantic/code risk review, success.
 - **verifier**: `019eeed2-dbc0-7313-8d64-f9c6f199c68b`, model `gpt-5.5`, read-only final verification, success.
 
@@ -21,30 +54,29 @@
 
 | File | Summary |
 |------|---------|
-| `apps/quant_assistant/tests/test_jobs_page_later_executable_handoff_final_implementation_gate_review_unit.py` | Added focused source-contract coverage for final gate/review exports, fixture wiring, exact long marker, stale short-marker rejection, and negative authorization/config/invocation/execution guards. |
-| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-later-executable-handoff-final-implementation-gate-review-checks.mjs` | New bounded checks module for final-gate-review-only rows and forbidden markers. |
-| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-later-executable-handoff-final-implementation-gate-review-assertions.mjs` | New bounded assertion module binding body/submitted/refreshed evidence to final gate/review rows. |
-| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-proofs.mjs` | Re-exported loop243 checks/assertion and wired assertTextCheck setter. |
-| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Calls `assertLaterExecutableHandoffFinalImplementationGateReview(...)` and adds loop243 checks to browser smoke `text_checks`. |
-| truth sources and worker reports | Synchronized loop-state, app/root docs, handoff, roster, orchestrator report, worker reports, CodeX registry, and self-check script for loop-tick `PAUSED_BY_USER`. |
+| `apps/quant_assistant/tests/test_jobs_page_transition_readiness_assessment_unit.py` | Added focused source-contract coverage for transition readiness assessment exports, fixture wiring, exact fail-closed marker, stale family rejection, and negative authorization/config/invocation/execution guards. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-transition-readiness-assessment-checks.mjs` | New bounded checks module for assessment-only/not-authorization rows and forbidden markers. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-transition-readiness-assessment-assertions.mjs` | New bounded assertion module binding loop243 body/submitted/refreshed evidence to transition readiness rows. |
+| `apps/quant_assistant/web/scripts/jobs-page-fixture-runner-adapter-proofs.mjs` | Re-exported loop244 checks/assertion and wired assertTextCheck setter. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Calls `assertTransitionReadinessAssessment(...)` and adds loop244 checks to browser smoke `text_checks`. |
+| truth sources and worker reports | Synchronized loop-state, app/root docs, handoff, roster, orchestrator report, and worker reports for loop244. |
 
 ## Review And Verification
 
 | Gate | Result |
 |------|--------|
-| TDD RED | pass · expected missing final gate/review export/check failure before implementation |
-| focused pytest | pass · 1 passed |
-| adjacent proof chain | pass · 6 passed |
-| jobs fixture regression | pass · 47 passed, 1 known LangChainPendingDeprecationWarning |
+| TDD RED | pass · expected missing transition readiness assessment export/check failure before implementation |
+| focused+loop243 pytest | pass · 2 passed |
+| adjacent proof chain | pass · 7 passed |
+| jobs fixture regression | pass · 48 passed, 1 known LangChainPendingDeprecationWarning |
 | Python ruff | pass |
 | node syntax | pass · touched `.mjs` files |
-| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, loop243 marker visible |
+| browser smoke | pass · ok=true, parsed `pageLoadTriggerRequests=0`, `duplicateTriggerUrls=0`, `miningJobsReadCount=5`, loop244 marker visible |
 | web build | pass |
 | targeted eslint | pass · exit 0 |
-| guard scans | pass · runtime active marker scan 0; secret value shape scan 0; stale short marker scan 0 |
+| guard scans | pass · non-test stale family scan 0; secret value-shape scan 0 |
 | runtime cleanup | pass · listeners 0; scoped_processes 0 after smoke |
-| CodeX self-check | pass · 56 checks / 0 findings after loop-tick `PAUSED_BY_USER` registry update |
-| worker rendezvous | pass · test-engineer, code-reviewer, and verifier all returned success |
+| worker rendezvous | pass · test-engineer, executor, code-reviewer, and verifier all returned success |
 
 ## Safety
 
