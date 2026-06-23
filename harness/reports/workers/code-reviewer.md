@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T06:07:34+08:00
+更新时间：2026-06-24T06:32:34+08:00
+
+## Tick loop272-user-facing-batch-mining-creation-intent-planner
+
+- **任务 ID**：loop272-user-facing-batch-mining-creation-planner-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及核心用户路径和 no-env/no-DB/no-runner 安全声明。
+- **状态**：success after P1 recheck
+- **任务**：只读审查 user-facing creation plan 是否误表达执行授权，confirmed dispatch 是否新增 env/DB/runner/adapter/PL-H/backfill 路径，以及 Chat 文案是否隐藏内部 proof keys。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：初审发现 P1：confirmed path 调用 `get_postgres_dsn(...)`，与 `batch_mining_creation_plan.safety.read_env=false/read_db=false` 和用户可见 no-env/no-DB 文案冲突。orchestrator 修复为 `run_mining_batch_once(job, dsn=None)` 并新增 monkeypatch 回归测试后 recheck PASS；未新增 live/default runner、adapter invocation、DB-backed backtest、PL-H、page-load POST、background/migration/backfill 或 secret output 路径。
+- **orchestrator 本地验证**：targeted regression **100 passed**；ruff pass；web build pass；Jobs smoke pass with no page-load trigger；forbidden scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: safety claims about no env/DB must be executable regressions, not only payload markers; any confirmed path that can read DSN must fail review until fixed.
 
 ## Tick loop271-factor-discovery-to-backtest-plan-core
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T06:07:34+08:00",
+  "updated_at": "2026-06-24T06:32:34+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "factor-discovery-to-backtest-plan-core-loop271",
-  "next_atomic_action": "USER_FACING_BATCH_MINING_CREATION_INTENT_PLANNER_LOOP272：把 loop271 factor_discovery_workflow contract 接到用户发起/意图理解的 batch mining creation planner，使用户输入“帮我挖掘价量/基本面/论文/ML/事件类因子”等能生成 MiningJob/候选计划并进入 existing explicit-trigger manual-safe simulation path；API/Chat/Jobs 必须同源展示用户选择的 A-E 分类、候选生成策略、筛选门槛、计划状态和下一步，继续禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill、secret 输出。",
-  "next_after": "After user-facing batch mining creation and intent planner are stable, promote safe backtest plans into the existing explicit-trigger simulation path and build consumer-grade result/evaluation loop; real runner/PL-H remains gated.",
+  "current_slice": "user-facing-batch-mining-creation-intent-planner-loop272",
+  "next_atomic_action": "INTENT_BATCH_MINING_CONFIRMATION_STATE_MACHINE_LOOP273：把 loop272 batch_mining_creation_plan 接入 Chat pending/continuation 与 intent state machine，使用户确认“开始/确认/继续”后沿同一对话进入 MiningJob 创建、candidate_generator、F6 screening、reviewed_backtest_plan 和 manual-safe readiness；API/Chat/Jobs 继续同源展示 A-E 分类、候选/筛选/计划来源与 no-env/no-DB/no-runner safety；禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill、secret 输出。",
+  "next_after": "After confirmation-state loop is stable, build the consumer-grade result/evaluation loop from reviewed_backtest_plan and manual-safe simulation outcomes; real runner/PL-H remains gated until explicit authorization/config/rollback-audit and real-batch demand gates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop271-factor-discovery-to-backtest-plan-core",
+  "last_tick": "loop272-user-facing-batch-mining-creation-intent-planner",
   "last_sync_sources": [
+    "loop272 User-facing batch mining creation / intent planner",
+    "loop272 TDD RED missing build_factor_mining_creation_plan before implementation; later confirmed-path RED caught missing top-level auto_backtest_plan and P1 DSN-read regression",
+    "loop272 creation_plan exposes A-E taxonomy, candidate_generator preview/source, F6 screening plan, reviewed_backtest/manual-safe plan state, next step, and fail-closed no-env/no-DB/no-runner safety",
+    "loop272 confirmed mining dispatch now calls run_mining_batch_once(job, dsn=None), promotes auto_backtest_plan/reviewed_backtest_plan/factor_discovery_workflow top-level, and Chat renders consumer-grade creation plan notes",
+    "loop272 verification: targeted factor/intent/mining/API/Chat/Jobs regression 100 passed; ruff pass; web build pass; Jobs browser smoke ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 factor_discovery_workflow_visible=true",
+    "loop272 forbidden scan pass: no env/DB read, live/default runner, adapter invocation, DB-backed backtest, PL-H batch, page-load POST, background/migration/backfill, or secret output enablement",
+    "loop272 test-engineer/code-reviewer permanent worker read-only reports success after P1 DSN-read fix",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.599",
     "loop271 Factor Discovery -> Backtest Plan Core workflow contract",
     "loop271 TDD RED missing factor_discovery_workflow API/Chat/Jobs before implementation; GREEN focused 3 passed",
     "loop271 direct+related regression 99 passed across factor workflow contract, MiningJob API, Chat, Jobs rendering, and smoke source tests",
@@ -1121,7 +1129,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop271 completed the factor discovery -> backtest plan core workflow contract. MiningJob observability now exposes factor_discovery_workflow_v1 tying A-E taxonomy, candidate_generator, panel/F6 screening, reviewed_backtest_plan, manual_safe_simulation, intent state transition, and no-execution safety into one API/Chat/Jobs source. Jobs and Chat show consumer-grade stages: what factor to mine, how candidates are generated, how they are screened, how a mocked/manual-safe backtest plan is formed, and the next explicit manual-safe step. Safety remains fail-closed: no PL-H batch, live/default runner, DB-backed execution, page-load POST, background/migration/backfill, or secret output was introduced. Next loop connects this contract to user-facing batch mining creation / intent planner."
+    "note": "loop272 completed the user-facing batch mining creation / intent planner. Natural-language mining goals now produce user_facing_batch_mining_creation_plan_v1 with A-E taxonomy, candidate preview/source, F6 screening plan, reviewed/manual-safe backtest plan state, next route, and no-env/no-DB/no-runner safety. Confirmed dispatch creates MiningJob/candidate/F6/reviewed plan/workflow payloads and promotes auto_backtest_plan, reviewed_backtest_plan, and factor_discovery_workflow top-level without reading DSN/env. Safety remains fail-closed: no PL-H batch, live/default runner, adapter invocation, DB-backed execution, page-load POST, background/migration/backfill, env/DB read, or secret output was introduced. Next loop connects this creation plan to Chat confirmation/continuation state machine."
   },
-  "last_completed_note": "loop271 Factor Discovery -> Backtest Plan Core complete. Added pure factor_discovery_workflow_v1 contract and wired it through MiningJob observability/API, Chat follow-up summaries, Jobs UI, and Jobs smoke fixture. The contract shows A-E taxonomy/category/subclass, candidate generation source/counts, panel/F6 screening evidence/counts, reviewed_backtest_plan request count/factor ids, manual_safe_simulation state, reviewed_plan_ready -> explicit_manual_safe_simulation_trigger -> manual_safe_simulation state transition, and fail-closed safety flags. Verification: TDD RED caught missing API/Chat/Jobs workflow; focused 3 passed; direct+related regression 99 passed; ruff pass; web build pass; Jobs browser smoke ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 factor_discovery_workflow_visible=true; diff forbidden scan pass. No live/default runner, DB-backed execution, PL-H batch, page-load POST, background/migration/backfill, or secret output was introduced. Next_atomic_action is USER_FACING_BATCH_MINING_CREATION_INTENT_PLANNER_LOOP272 to connect the workflow contract to user-facing mining creation and intent planning."
+  "last_completed_note": "loop272 User-facing Batch Mining Creation / Intent Planner complete. Added pure user_facing_batch_mining_creation_plan_v1 contract and wired it through batch_mining_flow, execute_mining_batch_dispatch, and Chat summaries. The plan shows A-E taxonomy/category/subclass, candidate generation source/preview, F6 screening stage/threshold, reviewed/manual-safe backtest plan source/status, next route, and fail-closed safety. Confirmed dispatch promotes top-level auto_backtest_plan, reviewed_backtest_plan, and factor_discovery_workflow while calling run_mining_batch_once(job, dsn=None). Verification: TDD RED caught missing helper/top-level contracts; code-reviewer P1 caught confirmed path DSN read and the no-DSN-read regression now passes; targeted regression 100 passed; ruff pass; web build pass; Jobs browser smoke ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 factor_discovery_workflow_visible=true; forbidden scan pass. No env/DB read, live/default runner, adapter invocation, DB-backed execution, PL-H batch, page-load POST, background/migration/backfill, or secret output was introduced. Next_atomic_action is INTENT_BATCH_MINING_CONFIRMATION_STATE_MACHINE_LOOP273 to connect the creation plan to Chat pending/continuation and intent state machine."
 }

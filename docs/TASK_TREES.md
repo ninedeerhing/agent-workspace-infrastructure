@@ -57,7 +57,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G `USER_FACING_BATCH_MINING_CREATION_INTENT_PLANNER_LOOP272`：把 loop271 `factor_discovery_workflow` contract 接到用户发起/意图理解的 batch mining creation planner；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G `INTENT_BATCH_MINING_CONFIRMATION_STATE_MACHINE_LOOP273`：把 loop272 `batch_mining_creation_plan` 接入 Chat pending/continuation 与 intent state machine，使用户确认后沿同一对话进入 MiningJob 创建、candidate generation、F6 screening、reviewed_backtest_plan 与 manual-safe readiness；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
 
 ## Task Tree Governance Protocol
 
@@ -70,7 +70,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G `MANUAL_SAFE_SIMULATION_CONSUMER_UX_ACCEPTANCE_WALKTHROUGH`（TREE-2 data gate passed；loop263 completed Chat runtime/session recovery and action parity for manual-safe simulation follow-ups; worker permanent `codex_thread_id` and temporary `runtime_agent_id` are separated, and dispatch must verify cross-dialogue thread reachability before assignment；见 `harness/loop-state.json` and app §5.590）
+- Current operational loop: `apps/quant_assistant` PL-G `user-facing-batch-mining-creation-intent-planner-loop272` completed（TREE-2 data gate passed；loop272 completed natural-language batch mining creation plan with A-E taxonomy, candidate preview/source, F6 screening plan, reviewed/manual-safe plan state, and no-env/no-DB/no-runner safety; next is Chat confirmation-state machine loop273; worker permanent `codex_thread_id` and temporary `runtime_agent_id` are separated, and dispatch must verify cross-dialogue thread reachability before assignment；见 `harness/loop-state.json` and app §5.599）
 - Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward the unique core mainline auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.

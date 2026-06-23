@@ -1,3 +1,51 @@
+# Orchestrator Report - loop272-user-facing-batch-mining-creation-intent-planner
+
+**Updated**: 2026-06-24T06:32:34+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G User-facing Batch Mining Creation / Intent Planner.
+- **trigger**: loop271 made the factor discovery -> backtest plan workflow visible after a MiningJob already had evidence, but users still needed a consumer-facing way to start the chain from natural-language mining intent.
+- **result**: Added `user_facing_batch_mining_creation_plan_v1` and wired it into `execute_mining_batch_dispatch(...)` plus Chat summaries. A prompt like "帮我挖掘价量/基本面/论文/ML/事件类因子" now yields a user-readable plan with A-E taxonomy, candidate preview/source, F6 screening plan, plan-only reviewed/backtest plan state, next step, and no-env/no-DB/no-runner safety. Confirmed dispatch now creates the MiningJob/candidate/F6/reviewed plan/workflow payload and promotes `auto_backtest_plan`, `reviewed_backtest_plan`, and `factor_discovery_workflow` to top-level result/observability without reading DSN/env.
+- **next**: `INTENT_BATCH_MINING_CONFIRMATION_STATE_MACHINE_LOOP273`; connect this creation plan to Chat pending/continuation and the intent state machine so "开始/确认/继续" advances through the same conversation into MiningJob creation and manual-safe readiness.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/brain/batch_mining_flow.py` | Adds pure `build_factor_mining_creation_plan(...)`, A-E intent routing improvements, candidate preview/source, F6 screening plan, plan-only backtest plan, next route, and fail-closed safety. |
+| `apps/quant_assistant/src/qa/brain/quant_trading_executors.py` | Adds creation plan to unconfirmed and confirmed mining dispatch, promotes top-level auto/reviewed/workflow contracts, and fixes confirmed path to avoid DSN/env reads by calling `run_mining_batch_once(job, dsn=None)`. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders consumer-grade "因子挖掘创建计划" notes from the same execution payload. |
+| `apps/quant_assistant/tests/test_batch_mining_flow_unit.py` | Proves creation plan semantics and A-E routing. |
+| `apps/quant_assistant/tests/test_quant_trading_executors_unit.py` | Proves unconfirmed plan, confirmed top-level contracts, and no DSN/env read regression. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Proves Chat displays the creation plan and hides internal safety keys. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing creation helper failed first; confirmed path then failed for missing top-level plan/workflow; code-reviewer P1 led to a failing no-DSN-read regression before fix |
+| targeted regression | pass · **100 passed** across batch mining flow, executors, intent handoff, candidate generator, factor workflow, MiningJob API, and Chat |
+| Python ruff | pass · `uv run ruff check src tests` |
+| web build | pass · `tsc -b && vite build` |
+| Jobs browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `factor_discovery_workflow_visible=true` |
+| forbidden scan | pass · no env/DB read, live/default runner, adapter invocation, DB-backed backtest, PL-H batch, page-load POST, background/migration/backfill, or secret output enablement |
+| diff hygiene | pass · `git diff --check`, LF/CRLF warnings only in quant |
+
+## Worker Notes
+
+Permanent worker threads were used for read-only review. `test-engineer` confirmed the suite should cover unconfirmed user-facing plans, confirmed top-level plan/workflow promotion, and no-execution safety. `code-reviewer` initially reported a P1 because confirmed dispatch read `get_postgres_dsn(...)` while the plan claimed no env/DB access; the implementation now uses `run_mining_batch_once(job, dsn=None)` and has a regression proving `get_postgres_dsn` is not called.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. The new plan is a consumer-facing creation and handoff contract, not execution authorization.
+
+## Residual Risk
+
+The creation plan and confirmed execution payload exist, but Chat pending/continuation does not yet treat "开始/确认/继续" as a first-class state transition for this plan. That is loop273.
+
+---
+
 # Orchestrator Report - loop271-factor-discovery-to-backtest-plan-core
 
 **Updated**: 2026-06-24T06:07:34+08:00

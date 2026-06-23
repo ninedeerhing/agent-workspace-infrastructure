@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T06:07:34+08:00
+更新时间：2026-06-24T06:32:34+08:00
+
+## Tick loop272-user-facing-batch-mining-creation-intent-planner
+
+- **任务 ID**：loop272-user-facing-batch-mining-creation-planner-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及自然语言挖掘入口、候选生成、筛选、计划和 no-execution 边界的核心用户路径。
+- **状态**：success
+- **任务**：只读复核 `user_facing_batch_mining_creation_plan_v1` 与 `execute_mining_batch_dispatch(...)` 的测试矩阵，确认确认前计划、确认后 top-level plan/workflow promotion、A-E taxonomy routing、candidate preview/source、F6 screening plan、manual-safe readiness 和 no-env/no-DB/no-runner safety。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；建议覆盖 unconfirmed creation plan、confirmed top-level `auto_backtest_plan` / `reviewed_backtest_plan` / `factor_discovery_workflow`、以及 confirmed path 不读 env/DB。orchestrator 已补 `test_mining_batch_dispatch_confirmed_does_not_read_env_or_dsn`。
+- **orchestrator 本地验证**：RED missing helper/top-level plan；P1 no-DSN-read regression RED 后修复；targeted regression **100 passed**；ruff pass；web build pass；Jobs smoke `ok=true` / `pageLoadTriggerRequests=[]` / `duplicateTriggerUrls=[]` / `miningJobsReadCount=5` / `factor_discovery_workflow_visible=true`；forbidden scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: creation-intent tests must prove both pre-confirmation explanation and post-confirmation payload promotion, while explicitly asserting no env/DB reads on confirmed paths.
 
 ## Tick loop271-factor-discovery-to-backtest-plan-core
 
