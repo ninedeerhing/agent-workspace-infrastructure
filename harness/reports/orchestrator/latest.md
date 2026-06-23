@@ -1,3 +1,54 @@
+# Orchestrator Report - loop270-controlled-dry-run-rollback-after-audit-ux-signoff
+
+**Updated**: 2026-06-24T05:39:26+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Controlled Dry-Run Rollback-after Audit + UX Signoff.
+- **trigger**: loop269 made the server-owned controlled dry-run contract roundtrip through API trigger and injected runner, but the controlled path still needed rollback-after audit evidence plus operator/reviewer review-required UX before returning to the business workflow.
+- **result**: `run_auto_backtest_plan_once(...)` now builds `controlled_dry_run_rollback_after_audit_signoff_v1` from the completed/failed audit event. MiningJob observability/API list/detail, Jobs UI, Chat follow-up, and Jobs smoke now share the same rollback-after audit + operator/reviewer `review_required` signoff packet. The packet is non-authorizing and keeps live/default runner, DB-backed execution, PL-H, background/migration/backfill, page-load POST, and secret output disabled.
+- **next**: `FACTOR_DISCOVERY_TO_BACKTEST_PLAN_CORE_LOOP271`; consolidate A-E taxonomy, candidate generation, panel/F6 screening, reviewed backtest plan, and manual-safe simulation into one mining job workflow contract + intent state transition across API/Chat/Jobs.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds rollback-after audit signoff packet generation for successful and failed controlled dry-run paths and includes it in execution observability. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders consumer-grade controlled dry-run audit/review notes from the same signoff packet without implying authorization. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Adds Jobs UI types, formatter, predicate, and card for controlled dry-run audit/review state. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds browser fixture payload/text checks for the signoff packet and safety matrix. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Proves API trigger/list/detail and direct runner path carry the same signoff packet. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Proves Chat follow-up displays audit/review notes and no automatic real backtest upgrade. |
+| `apps/quant_assistant/tests/test_jobs_page_action_rendering_unit.py` | Proves Jobs rendering consumes the signoff packet without POST/fetch/page-load execution. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Proves the smoke fixture includes the signoff card and safety markers. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing signoff packet / Jobs interface / Chat copy failed before implementation |
+| focused GREEN | pass · **7 passed / 85 deselected** |
+| related regression | pass · **93 passed** across MiningJob API, Chat, Jobs rendering, and smoke source tests |
+| Python ruff | pass · targeted files clean |
+| web build | pass · `tsc -b && vite build` |
+| Jobs browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `controlled_dry_run_rollback_after_audit_signoff_visible=true` |
+| production forbidden scan | pass · no live/default runner enablement, DB-backed execution, PL-H batch, background/migration/backfill, page-load POST, granted/signed status, or secret output enablement |
+| diff hygiene | pass · `git diff --check`, LF/CRLF warnings only in quant |
+
+## Worker Notes
+
+Permanent worker threads were used for read-only pre-review. `test-engineer` required the rollback-after audit/signoff packet to cover API, Chat, Jobs, and no-execution smoke evidence. `code-reviewer` emphasized that the signoff card must remain evidence for human review, not execution authorization; the implementation uses `review_required`, not `signed`, `granted`, or `approved`. `security-reviewer` has no reusable `codex_thread_id`, so no duplicate worker was created; local production forbidden scans covered the safety boundary.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No live/default runner, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. The only trigger path remains explicit/manual and test-only/injected; the new packet records review-required audit evidence, not authorization.
+
+## Residual Risk
+
+The factor discovery -> reviewed backtest plan workflow exists as pieces from loop258-loop261, but it is not yet a single workflow contract / intent state transition. loop271 should return to that core business chain instead of adding more runner proof-only slices.
+
+---
+
 # Orchestrator Report - loop269-test-only-controlled-dry-run-trigger-roundtrip
 
 **Updated**: 2026-06-24T05:21:54+08:00

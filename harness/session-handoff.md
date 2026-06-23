@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-24T05:21:54+08:00
+updated_at: 2026-06-24T05:39:26+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-24T05:21:54+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-24 loop270 · 已完成 Controlled Dry-Run Rollback-after Audit + UX Signoff：`run_auto_backtest_plan_once(...)` 现在从 completed/failed audit event 构造 `controlled_dry_run_rollback_after_audit_signoff_v1`，并同源贯通 MiningJob observability/API list/detail、Jobs 默认卡片、Chat follow-up 与 Jobs browser smoke。用户可见层显示“受控 dry-run 审计与复核 / 审计已经记录，等待操作员和复核人确认 / 不会自动升级真实回测，也不会启动 PL-H 批量执行”；operator/reviewer 状态为 `review_required`，不是 granted/signed。改动：`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/chat_brain.py`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、相关 API/Chat/Jobs/smoke tests。验证：RED caught missing signoff packet/Jobs/Chat；focused 7 passed；related API/Chat/Jobs/smoke-source 93 passed；ruff pass；web build pass；Jobs smoke ok=true/pageLoadTriggerRequests=[]/duplicateTriggerUrls=[]/controlled_dry_run_rollback_after_audit_signoff_visible=true；production forbidden scan pass。下一动作：`FACTOR_DISCOVERY_TO_BACKTEST_PLAN_CORE_LOOP271`，把 A-E taxonomy、candidate_generator、panel/F6 screening、reviewed_backtest_plan、manual_safe_simulation 收束成 mining job workflow contract + intent state transition；仍禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill/secret 输出。
+
 [CONTEXT] 2026-06-24 loop269 · 已完成 Test-only Controlled Dry-Run Trigger Roundtrip：`controlled_dry_run_contract` 可由服务端依赖/测试夹具注入 FastAPI trigger，并贯通 trigger request/audit、test-only injected runner、MiningJob observability、refreshed list/detail 与 Jobs 默认卡片，同源展示 `auto_backtest_execution.controlled_dry_run_adapter_contract`。客户端 POST body 伪造 `controlled_dry_run_adapter_contract` 会被忽略，不会创建受控合同或授权。改动：`src/qa/api/quant_routes.py`、`src/qa/quant_mining/mining_runner.py`、`tests/test_mining_job_api_unit.py`。验证：focused controlled roundtrip/security 4 passed；related API/Jobs regression 52 passed；ruff pass；node check pass；web build pass；test-engineer/code-reviewer read-only success。下一动作：`CONTROLLED_DRY_RUN_ROLLBACK_AFTER_AUDIT_UX_SIGNOFF_LOOP270`，补齐 rollback-after audit recording 与 operator/reviewer UX signoff packet；仍禁止 PL-H、live/default runner、DB-backed execution、page-load POST、background/migration/backfill/secret 输出。
 
 [CONTEXT] 2026-06-24 loop268 · 已完成 Controlled Real-Runner Dry-Run Adapter Contract：新增 `controlled_real_runner_dry_run_adapter_contract_v1` builder/validator；`run_auto_backtest_plan_once(...)` 在任何 snapshot 或 runner 调用前校验 explicit runner config、operator/reviewer authorization、rollback/audit proof 与 no-side-effect safety flags。合同要求 adapter_id、connected=true、dry_run_only=true、default_runner_allowed=false、operator/reviewer authorization id、rollback before audit id、after_required=true；不完整合同会 fail-closed 且 runner 不会被调用。授权摘要写入 `auto_backtest_execution.controlled_dry_run_adapter_contract`，MiningJob observability 与 Jobs 默认卡片可见“受控 dry-run 合同已授权 / 只允许干跑，不允许真实 DB 回测、迁移、回填或密钥输出”。改动：`src/qa/quant_mining/real_runner_authorization_framework.py`、`src/qa/quant_mining/mining_runner.py`、`web/src/pages/JobsPage.tsx`、`tests/test_mining_job_api_unit.py`、`tests/test_jobs_page_action_rendering_unit.py`。验证：focused contract 2 passed；Jobs static 1 passed；related group 48 passed；ruff pass；node check pass；web build pass；test-engineer/code-reviewer read-only success。下一动作：`TEST_ONLY_CONTROLLED_DRY_RUN_TRIGGER_ROUNDTRIP_LOOP269`，把合同贯通 API trigger/test fixture/test-only injected runner roundtrip；仍禁止 live/default runner、DB-backed execution、PL-H、page-load POST、background/migration/backfill/secret 输出。
@@ -170,18 +172,18 @@ updated_at: 2026-06-24T05:21:54+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | controlled-dry-run-adapter-contract-loop268 |
-| `last_tick` | loop268-controlled-real-runner-dry-run-adapter-contract |
+| `current_slice` | controlled-dry-run-rollback-after-audit-ux-signoff-loop270 |
+| `last_tick` | loop270-controlled-dry-run-rollback-after-audit-ux-signoff |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-TEST_ONLY_CONTROLLED_DRY_RUN_TRIGGER_ROUNDTRIP_LOOP269：把 loop268 contract 接到 API trigger/test fixture/test-only injected runner roundtrip：请求层必须显式传入授权合同或测试夹具，API response/refreshed list/detail/Jobs 都能看到同一 controlled dry-run summary；仍禁止 live/default runner、DB-backed backtest、PL-H batch、page-load POST、background/migration/backfill、secret 输出。
+FACTOR_DISCOVERY_TO_BACKTEST_PLAN_CORE_LOOP271：围绕“挖什么因子、怎么生成候选、怎么筛选、怎么形成回测计划”，把 A-E taxonomy、candidate_generator、panel/F6 screening、reviewed_backtest_plan、manual_safe_simulation 汇总成一个 mining job workflow contract 与 intent state transition；API/Chat/Jobs 同源展示阶段、输入、输出、下一步，继续禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill、secret 输出。
 
 ### next_after
 
-After API/test-only dry-run roundtrip is stable, add rollback-after audit recording and operator/reviewer UX signoff packet for the controlled path. Any real/default runner, DB-backed backtest, PL-H batch execution, or authorization grant still requires a later explicit gate.
+After the factor discovery workflow contract is stable, connect it to user-facing batch mining creation/intent planner and promote safe backtest plans into the existing explicit-trigger simulation path; real runner/PL-H remains gated.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -286,11 +288,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop268 已完成 PL-G controlled real-runner dry-run adapter contract，使 `run_auto_backtest_plan_once(...)` 在任何 snapshot/runner work 前校验 explicit runner_config、operator/reviewer authorization、rollback/audit proof 与 no-side-effect flags，并把 authorized summary 写入 MiningJob observability/Jobs UI。下一步必须执行 API trigger/test fixture/test-only injected runner roundtrip，让请求层、response、refreshed list/detail 与 Jobs 使用同一 controlled dry-run summary；不得把该合同误认为 manual acceptance grant、authorization grant、live/default runner enablement、DB-backed backtest、executable handoff approval 或 PL-H execution。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop270 已完成 PL-G controlled dry-run rollback-after audit + UX signoff packet，使受控 dry-run 路径在审计后同源展示 operator/reviewer `review_required` 复核状态，但仍不是 authorization grant、execution permission、live/default runner enablement、DB-backed backtest、executable handoff approval 或 PL-H execution。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。下一步切回核心业务链：把 A-E taxonomy、candidate generation、panel/F6 screening、reviewed plan、manual-safe simulation 收束为一个 mining job workflow contract + intent state transition。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `TEST_ONLY_CONTROLLED_DRY_RUN_TRIGGER_ROUNDTRIP_LOOP269`：使用 loop268 `controlled_real_runner_dry_run_adapter_contract_v1` 作为 fail-closed 前置合同源，把合同贯通 API trigger/test fixture/test-only injected runner roundtrip；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、PL-H batch execution、manual acceptance grant、authorization grant 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `FACTOR_DISCOVERY_TO_BACKTEST_PLAN_CORE_LOOP271`：用现有 A-E taxonomy、candidate_generator、panel/F6 screening evidence、reviewed_backtest_plan 与 manual_safe_simulation 建一个同源 workflow contract/state transition，让 API/Chat/Jobs 明确展示“挖什么因子 → 候选怎么生成 → 怎么筛选 → 怎么形成回测计划 → 何时进入手动安全模拟”；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、PL-H batch execution、manual acceptance grant、authorization grant 与 secret 输出。
 
 ## Resume Command
 

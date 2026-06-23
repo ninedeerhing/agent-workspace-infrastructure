@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T05:21:54+08:00",
+  "updated_at": "2026-06-24T05:39:26+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "test-only-controlled-dry-run-trigger-roundtrip-loop269",
-  "next_atomic_action": "CONTROLLED_DRY_RUN_ROLLBACK_AFTER_AUDIT_UX_SIGNOFF_LOOP270：在受控 dry-run trigger roundtrip 后，补齐 rollback-after audit recording 与 operator/reviewer UX signoff packet；API/Jobs/Chat 应展示执行前/后审计签收状态，但仍不启用 PL-H、live/default runner、DB-backed execution、page-load POST、background/migration/backfill、secret 输出。",
-  "next_after": "After rollback-after audit and UX signoff packet is stable, promote the controlled path into one operator-reviewed dry-run readiness gate; still no PL-H/live DB-backed batch until real demand gate and explicit user approval.",
+  "current_slice": "controlled-dry-run-rollback-after-audit-ux-signoff-loop270",
+  "next_atomic_action": "FACTOR_DISCOVERY_TO_BACKTEST_PLAN_CORE_LOOP271：围绕“挖什么因子、怎么生成候选、怎么筛选、怎么形成回测计划”，把 A-E taxonomy、candidate_generator、panel/F6 screening、reviewed_backtest_plan、manual_safe_simulation 汇总成一个 mining job workflow contract 与 intent state transition；API/Chat/Jobs 同源展示阶段、输入、输出、下一步，继续禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill、secret 输出。",
+  "next_after": "After the factor discovery workflow contract is stable, connect it to user-facing batch mining creation/intent planner and promote safe backtest plans into the existing explicit-trigger simulation path; real runner/PL-H remains gated.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop269-test-only-controlled-dry-run-trigger-roundtrip",
+  "last_tick": "loop270-controlled-dry-run-rollback-after-audit-ux-signoff",
   "last_sync_sources": [
+    "loop270 Controlled dry-run rollback-after audit + UX signoff packet",
+    "loop270 TDD RED missing controlled_dry_run_rollback_after_audit_signoff API/Jobs/Chat before implementation; GREEN related API/Chat/Jobs/smoke-source 93 passed",
+    "loop270 ruff pass; web build pass; Jobs browser smoke ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 controlled_dry_run_rollback_after_audit_signoff_visible=true",
+    "loop270 forbidden production scan pass: no live/default runner allowed, DB-backed execution, PL-H batch, background/migration/backfill, page-load POST, or secret output enablement",
+    "loop270 test-engineer/code-reviewer permanent worker read-only reports success; local security scan used because security-reviewer has no codex_thread_id and no duplicate worker may be created",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.597",
     "loop269 Test-only controlled dry-run trigger roundtrip",
     "loop269 TDD RED missing controlled_dry_run_contract route/runner keyword before implementation; GREEN focused 4 passed including forged request-body ignored regression",
     "loop269 related API/Jobs regression 52 passed; ruff pass; node --check pass; web build pass",
@@ -1108,7 +1114,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop269 completed test-only controlled dry-run trigger roundtrip. The server-owned controlled_dry_run_contract can now flow through FastAPI trigger dependency injection, trigger request/audit summary, injected runner execution, MiningJob observability, refreshed list/detail, and Jobs UI. Client-supplied POST body contracts are ignored, so authorization cannot be forged from request JSON. This remains no-execution outside the injected test-only runner path: no PL-H batch, live/default runner, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
+    "note": "loop270 completed controlled dry-run rollback-after audit and UX signoff packet. The controlled path now records a rollback-after audit event and exposes one controlled_dry_run_rollback_after_audit_signoff_v1 packet across run_auto_backtest_plan_once, MiningJob API observability/list/detail, Jobs consumer UI, Chat follow-up, and Jobs browser smoke. Operator/reviewer status is review_required, not granted/signed, and safety remains fail-closed: no PL-H batch, live/default runner, DB-backed execution, page-load POST, background/migration/backfill, or secret output was introduced. Next loop returns to the core factor discovery -> backtest plan workflow contract."
   },
-  "last_completed_note": "loop269 Test-only Controlled Dry-Run Trigger Roundtrip complete. quant_routes.trigger_mining_job_auto_backtest_action(...) now accepts a server dependency-injected controlled_dry_run_contract and passes it to trigger_auto_backtest_action_once(...); mining_runner builds a trigger request/audit body containing only the validated contract summary and passes the full contract to run_auto_backtest_plan_once(...). API trigger response, refreshed list/detail, and Jobs UI can observe the same auto_backtest_execution.controlled_dry_run_adapter_contract. A forged client JSON body is ignored and does not create a controlled contract. Verification: focused controlled roundtrip/security 4 passed; related API/Jobs regression 52 passed; targeted ruff pass; node --check pass; web build pass; test-engineer/code-reviewer reports success. This remains no-execution outside the injected test-only runner path: no live/default runner, DB-backed backtest, PL-H batch, page-load POST, background/migration/backfill, or secret output. Next_atomic_action is CONTROLLED_DRY_RUN_ROLLBACK_AFTER_AUDIT_UX_SIGNOFF_LOOP270 to add rollback-after audit recording and operator/reviewer UX signoff packet without enabling live/default runner or PL-H."
+  "last_completed_note": "loop270 Controlled Dry-Run Rollback-after Audit + UX Signoff complete. run_auto_backtest_plan_once(...) now attaches controlled_dry_run_rollback_after_audit_signoff_v1 from the completed/failed audit event; MiningJob observability, API list/detail, Jobs UI, Chat follow-up, and Jobs smoke expose the same review_required operator/reviewer signoff packet. Verification: TDD RED caught missing API/Jobs/Chat signoff; related API/Chat/Jobs/smoke-source 93 passed; targeted ruff pass; web build pass; Jobs browser smoke ok=true with pageLoadTriggerRequests=[] and controlled_dry_run_rollback_after_audit_signoff_visible=true; production forbidden scan pass; diff-check pass. No live/default runner, DB-backed execution, PL-H batch, page-load POST, background/migration/backfill, or secret output was introduced. Next_atomic_action is FACTOR_DISCOVERY_TO_BACKTEST_PLAN_CORE_LOOP271 to return to the core factor discovery -> candidate screening -> reviewed backtest plan workflow contract."
 }

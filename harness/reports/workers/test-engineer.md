@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T05:21:54+08:00
+更新时间：2026-06-24T05:39:26+08:00
+
+## Tick loop270-controlled-dry-run-rollback-after-audit-ux-signoff
+
+- **任务 ID**：loop270-controlled-dry-run-rollback-after-audit-ux-signoff-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及受控 runner 审计/复核边界，虽然只读但属于授权/执行门禁审查。
+- **状态**：success
+- **任务**：只读复核 rollback-after audit recording 与 operator/reviewer UX signoff packet 的 TDD 验收矩阵。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；验收必须覆盖 API trigger/list/detail、direct runner observability、Jobs 默认卡片、Chat follow-up、browser smoke 和 no-execution safety matrix。建议保留 status=review_required，避免把 operator/reviewer 复核误写为授权签署。
+- **orchestrator 本地验证**：RED missing signoff packet/Jobs/Chat；focused **7 passed**；related API/Chat/Jobs/smoke-source **93 passed**；targeted ruff pass；web build pass；Jobs smoke `ok=true` / `pageLoadTriggerRequests=[]` / `duplicateTriggerUrls=[]` / `controlled_dry_run_rollback_after_audit_signoff_visible=true`；production forbidden scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: rollback-after audit signoff tests must prove both audit event linkage and operator/reviewer review-required status across API/Chat/Jobs, not just a UI label.
 
 ## Tick loop269-test-only-controlled-dry-run-trigger-roundtrip
 
