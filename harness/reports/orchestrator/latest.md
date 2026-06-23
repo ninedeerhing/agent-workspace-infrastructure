@@ -1,3 +1,16 @@
+# Orchestrator Report - governance-methodology-visibility-ref
+
+**Updated**: 2026-06-23T11:05:41+08:00
+
+## Governance Overlay
+
+- **trigger**: user noticed `METHODOLOGY_MEMORY` no longer surfaced and asked where methodology is being recorded.
+- **finding**: methodology was recorded in `apps/quant_assistant/docs/METHODOLOGY_MEMORY.md` and indexed by `harness/methodology-memory-index.json`, but the file lacked a top visible status block and §5 lacked a mandatory machine-readable `methodology_ref`.
+- **changes**: added top visible status + new digest `步骤 digest-20260623-methodology-visibility-and-methodology-ref`, made `methodology_ref` mandatory in loop sync, and wired CodeX self-check/compliance to fail if newest ledgers omit it.
+- **next**: business mainline remains `TREE-6 / PL-G executable handoff gate review mocked-only`.
+
+---
+
 # Orchestrator Report - loop239-explicit-executable-handoff-authorization-packet
 
 **Updated**: 2026-06-23T10:57:14+08:00

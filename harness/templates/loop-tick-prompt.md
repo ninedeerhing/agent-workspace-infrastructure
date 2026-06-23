@@ -65,10 +65,10 @@
 ## 4. 同步（六真源 + 机器态）
 
 - 更新 §5 台账、`CONTINUATION_PROMPT`、`WORKFLOWS` 轮次日志 + **`PROJECT_STATUS.md` 顶部「心流模式当前轮」**（与 §5 最新 / loop-state 对齐）+ **Git 快照**（branch · ahead/behind · 脏文件数）
-- §5 末尾必须包含：`goal_gate`、`skill_route`、`dispatch_decision`、`model_tier` / `model_reason`、`cluster_manifest` / `no_cluster_reason`、`worker_report_refs`、`bundle_decision`（若合并了微切片）、`capacity_review` / `skill_lifecycle`（若触发）以及最小验证证据。
+- §5 末尾必须包含：`goal_gate`、`skill_route`、`dispatch_decision`、`model_tier` / `model_reason`、`cluster_manifest` / `no_cluster_reason`、`worker_report_refs`、`bundle_decision`（若合并了微切片）、`capacity_review` / `skill_lifecycle`（若触发）、`methodology_ref` 以及最小验证证据。
 - **Clean-worktree gate（用户权威 2026-06-22）**：每轮结束前必须让 AWI 根与 `apps/quant_assistant` 的 `git status --porcelain` 为空；真实源码/测试/真源改动提交到本地 `main`，本地缓存/构建产物写入 `.gitignore` 后保留不入库。若因冲突、secret 风险或破坏性操作无法清洁，必须把 `stop_reason` 置为真实阻塞并短报；禁止把 dirty_count 当作长期正常状态。
-- **方法论门控**：本步有新增方法论？→ 写步骤 digest；关键任务 done？→ 收口 synthesis；否则 **不写** METHODOLOGY
-- **§5 末尾强制行**：零写入时须加 `方法论门控：M-17 零写入 · 见 METHODOLOGY §轮次-…`；有 digest/synthesis 则改为对应 `§步骤-digest-*` / `§收口 synthesis-*`（`loop_tick.py` → `format_methodology_gate_tail()`）
+- **方法论门控**：本步有新增方法论？→ 写步骤 digest 并刷新 `METHODOLOGY_MEMORY.md` 顶部「当前可见状态」；关键任务 done？→ 收口 synthesis；否则 **不写** METHODOLOGY
+- **§5 末尾强制 `methodology_ref`**：零写入时须加 `methodology_ref: M-17-zero-write · reason=...`；有 digest/synthesis 则改为 `methodology_ref: METHODOLOGY_MEMORY §步骤-digest-*` / `methodology_ref: METHODOLOGY_MEMORY §收口 synthesis-*`（`loop_tick.py` → `format_methodology_gate_tail()`）
 - 更新 `harness/reports/orchestrator/latest.md` + 活跃 worker 报告
 - **（强制 · 与 §5 同级）** 运行：
   - `python harness/methodology_memory_lifecycle.py run --apply`

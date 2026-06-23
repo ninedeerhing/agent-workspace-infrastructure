@@ -88,6 +88,7 @@ if ($null -ne $loopPromptText) {
         "skillification_candidate",
         "skill_reactivation_note",
         "capacity_review",
+        "methodology_ref",
         "功能差异矩阵",
         "tmp/skill-route-events.jsonl"
     )
@@ -99,6 +100,37 @@ if ($null -ne $loopPromptText) {
             Add-Check "loop prompt gate:$needle" "FAIL" "missing"
             Add-Finding "error" "CX-LOOP-GATE" "Loop governance gate missing" "harness/templates/loop-tick-prompt.md does not contain required gate marker: $needle." "Restore the Goal/Plan, Skill Routing, and Worker Dispatch gates in the loop tick prompt."
         }
+    }
+}
+
+$methodologyPath = Join-Path $ProjectRoot "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md"
+$methodologyText = Get-Text $methodologyPath
+if ($null -eq $methodologyText) {
+    Add-Check "methodology visibility source" "FAIL" "missing"
+    Add-Finding "error" "CX-METHODOLOGY-VISIBILITY" "Methodology visibility source missing" "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md is missing." "Restore the methodology memory truth source and its visible status block."
+}
+else {
+    foreach ($needle in @("## 当前可见状态", "updated_at", "latest_digest", "methodology_ref")) {
+        if ($methodologyText -match [regex]::Escape($needle)) {
+            Add-Check "methodology visibility:$needle" "PASS" "present"
+        }
+        else {
+            Add-Check "methodology visibility:$needle" "FAIL" "missing"
+            Add-Finding "error" "CX-METHODOLOGY-VISIBILITY" "Methodology visibility marker missing" "METHODOLOGY_MEMORY.md does not contain required visible status marker: $needle." "Refresh METHODOLOGY_MEMORY.md top visible status and ledger reference rules."
+        }
+    }
+}
+
+$qaProjectStatusPath = Join-Path $ProjectRoot "apps/quant_assistant/docs/PROJECT_STATUS.md"
+$qaProjectStatusText = Get-Text $qaProjectStatusPath
+if ($null -ne $qaProjectStatusText) {
+    $latestQaLedger = [regex]::Match($qaProjectStatusText, '(?s)### 5\.\d+.*?(?=\r?\n### 5\.|\z)')
+    if ($latestQaLedger.Success -and $latestQaLedger.Value -match 'methodology_ref') {
+        Add-Check "QA latest ledger methodology_ref" "PASS" "present"
+    }
+    else {
+        Add-Check "QA latest ledger methodology_ref" "FAIL" "missing"
+        Add-Finding "error" "CX-METHODOLOGY-REF" "Latest QA ledger lacks methodology_ref" "The newest apps/quant_assistant PROJECT_STATUS §5 entry does not include methodology_ref." "Add methodology_ref to every new §5 row: M-17-zero-write, digest, or synthesis."
     }
 }
 

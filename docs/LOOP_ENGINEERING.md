@@ -42,7 +42,7 @@ Loop Engineering = **Ralph Loop（自引用持久循环）** + **心流模式（
 READ  TASK_TREES → 当前 in_progress 主线与「下一原子动作」列表
 READ  CONTINUATION_PROMPT → 阻塞项、P0 验收
 READ  PROJECT_STATUS §5 最新 3 条 → 避免重复劳动
-READ  METHODOLOGY_MEMORY 最新轮 + P0 教训 → 不踩已知坑
+READ  METHODOLOGY_MEMORY 顶部「当前可见状态」+ 最新轮 + P0 教训 → 不踩已知坑
 READ  implementation-master-plan / intent-state-machine → 未收口切片
 
 IF 存在 P0 阻塞且无法自动消除 → 停止白名单「真实阻塞」，短播报后等待
@@ -164,7 +164,7 @@ cluster_manifest:
 | `loop_tick.py advance` | 自动 subprocess（含 tick-id/note） | tick 推进后必跑 |
 | compliance MEM/SYNC/VER/CLO | 各 index `last_lifecycle.at` ≤24h（Git dirty 时 warn） | 与 LEDGER-002 并列 |
 
-**六真源 prose 同步（含顶部现状概述 + git）**：每完成一项原子任务，除 §5 台账外，**必须**更新 `PROJECT_STATUS.md` 顶部「心流模式当前轮」块（1–3 句：模式/本批完成/下一动作/阻塞），与 §5 最新条目及 `loop-state.json` 对齐；§5 或 worker 报告须含当轮 `git status -sb` 摘要（branch · ahead/behind · 脏文件数）。`sync_coherence_lifecycle.py` 只读校验漂移，不自动改写 prose。
+**六真源 prose 同步（含顶部现状概述 + git）**：每完成一项原子任务，除 §5 台账外，**必须**更新 `PROJECT_STATUS.md` 顶部「心流模式当前轮」块（1–3 句：模式/本批完成/下一动作/阻塞），与 §5 最新条目及 `loop-state.json` 对齐；若写入 METHODOLOGY digest/synthesis，必须刷新 `METHODOLOGY_MEMORY.md` 顶部「当前可见状态」；§5 或 worker 报告须含当轮 `git status -sb` 摘要（branch · ahead/behind · 脏文件数）。`sync_coherence_lifecycle.py` 只读校验漂移，不自动改写 prose。
 
 | Lifecycle | 脚本 | 索引 |
 |-----------|------|------|
@@ -199,10 +199,11 @@ cluster_manifest:
 
 ### 4.3 §5 指向
 
-PROJECT_STATUS §5 每条台账末尾只保留一句：
+PROJECT_STATUS §5 每条台账末尾必须保留一个机器可检索字段 `methodology_ref`：
 
-- **M-17 零写入**：`方法论门控：M-17 零写入 · 见 METHODOLOGY §轮次-…`（默认参考 `§轮次-20260619-loop49-56`）
-- **有新增**：`方法论门控：见 METHODOLOGY_MEMORY §步骤-digest-xxx` 或 `§收口 synthesis-xxx`
+- **M-17 零写入**：`methodology_ref: M-17-zero-write · reason=本步无新增项目方法论`
+- **有新增**：`methodology_ref: METHODOLOGY_MEMORY §步骤-digest-xxx` 或 `methodology_ref: METHODOLOGY_MEMORY §收口 synthesis-xxx`
+- **可见状态**：有新增 digest/synthesis 时，同步刷新 `METHODOLOGY_MEMORY.md` 顶部 `updated_at` / `latest_digest` / `machine_index`。
 
 机器辅助：`python -c "from harness.loop_tick import format_methodology_gate_tail; print(format_methodology_gate_tail())"`（自仓库根目录）。
 

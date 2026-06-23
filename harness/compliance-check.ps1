@@ -338,6 +338,14 @@ elseif ($qaProjectStatusText -notmatch '### 5\.\d+') {
 }
 else {
     Add-Check -Name "QA PROJECT_STATUS §5" -Status "PASS" -Detail $qaProjectStatusPath
+    $latestQaLedger = [regex]::Match($qaProjectStatusText, '(?s)### 5\.\d+.*?(?=\r?\n### 5\.|\z)')
+    if ($latestQaLedger.Success -and $latestQaLedger.Value -match 'methodology_ref') {
+        Add-Check -Name "QA 最新 §5 methodology_ref" -Status "PASS" -Detail "present"
+    }
+    else {
+        Add-Check -Name "QA 最新 §5 methodology_ref" -Status "FAIL" -Detail "missing"
+        Add-Finding -Severity "error" -Code "MEM-005" -Title "业务 §5 缺 methodology_ref" -Detail "最新 quant_assistant PROJECT_STATUS §5 条目缺少 methodology_ref。" -Recommendation "每条新 §5 台账必须写 methodology_ref: M-17-zero-write / METHODOLOGY_MEMORY §步骤-digest-* / §收口 synthesis-*。"
+    }
 }
 
 $methodologyPath = Join-Path $ProjectRoot "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md"
@@ -352,6 +360,28 @@ elseif ($methodologyText -notmatch '## 轮次-') {
 }
 else {
     Add-Check -Name "METHODOLOGY 轮次复盘" -Status "PASS" -Detail "rounds present"
+}
+if ($null -ne $methodologyText) {
+    foreach ($needle in @("## 当前可见状态", "updated_at", "latest_digest", "methodology_ref")) {
+        if ($methodologyText -match [regex]::Escape($needle)) {
+            Add-Check -Name "METHODOLOGY 可见状态:$needle" -Status "PASS" -Detail "present"
+        }
+        else {
+            Add-Check -Name "METHODOLOGY 可见状态:$needle" -Status "FAIL" -Detail "missing"
+            Add-Finding -Severity "error" -Code "MEM-006" -Title "方法论可见状态缺失" -Detail "METHODOLOGY_MEMORY.md 缺少可见状态标记: $needle。" -Recommendation "刷新 METHODOLOGY_MEMORY.md 顶部当前可见状态。"
+        }
+    }
+}
+
+if ($null -ne $projectStatusText) {
+    $rootLedgerRows = [regex]::Matches($projectStatusText, '^\|\s*20\d{2}-\d{2}-\d{2}\s*\|.*$', [System.Text.RegularExpressions.RegexOptions]::Multiline)
+    if ($rootLedgerRows.Count -gt 0 -and $rootLedgerRows[0].Value -match 'methodology_ref') {
+        Add-Check -Name "根最新 §5 methodology_ref" -Status "PASS" -Detail "present"
+    }
+    else {
+        Add-Check -Name "根最新 §5 methodology_ref" -Status "FAIL" -Detail "missing"
+        Add-Finding -Severity "error" -Code "MEM-007" -Title "根 §5 缺 methodology_ref" -Detail "根 docs/PROJECT_STATUS.md 最新活动台账缺少 methodology_ref。" -Recommendation "每条新根 §5 台账必须写 methodology_ref。"
+    }
 }
 
 $loopStatePath = Join-Path $HarnessDir "loop-state.json"
