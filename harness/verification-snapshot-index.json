@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T02:47:22Z",
+  "updated_at": "2026-06-23T03:58:57Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-23T02:43:54Z",
-    "last_tick": "loop239-explicit-executable-handoff-authorization-packet",
-    "pytest_passed": 48,
+    "recorded_at": "2026-06-23T03:58:56Z",
+    "last_tick": "loop241-executable-handoff-implementation-preflight",
+    "pytest_passed": 45,
     "ruff": "ok",
     "evidence_paths": [
-      "apps/quant_assistant/docs/PROJECT_STATUS.md section 5.563; daily-ops dry-run success; CodeX self-check 50 checks / 0 findings; compliance 36 checks / 0 findings"
+      "apps/quant_assistant/docs/PROJECT_STATUS.md#5.567"
     ],
-    "section5_ref": "5.563",
+    "section5_ref": "5.567",
     "source": "manual"
   },
-  "git_dirty": false,
-  "age_hours": 0.05782476388888889,
+  "git_dirty": true,
+  "age_hours": 0.00028221361111111106,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-23T02:47:22Z",
+    "at": "2026-06-23T03:58:57Z",
     "apply": true,
     "stale": false,
-    "git_dirty": false,
-    "age_hours": 0.05782476388888889
+    "git_dirty": true,
+    "age_hours": 0.00028221361111111106
   }
 }

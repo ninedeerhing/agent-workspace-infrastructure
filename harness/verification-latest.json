@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-23T02:43:54Z",
-  "last_tick": "loop239-explicit-executable-handoff-authorization-packet",
-  "pytest_passed": 48,
+  "recorded_at": "2026-06-23T03:58:56Z",
+  "last_tick": "loop241-executable-handoff-implementation-preflight",
+  "pytest_passed": 45,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md section 5.563; daily-ops dry-run success; CodeX self-check 50 checks / 0 findings; compliance 36 checks / 0 findings"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.567"
   ],
-  "section5_ref": "5.563",
+  "section5_ref": "5.567",
   "source": "manual"
 }
