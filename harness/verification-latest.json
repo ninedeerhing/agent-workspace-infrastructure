@@ -1,12 +1,12 @@
 {
-  "recorded_at": "2026-06-23T22:43:52Z",
-  "last_tick": "loop272-user-facing-batch-mining-creation-intent-planner",
-  "pytest_passed": 100,
+  "recorded_at": "2026-06-23T23:05:02Z",
+  "last_tick": "loop273-intent-batch-mining-confirmation-state-machine",
+  "pytest_passed": 94,
   "ruff": "ok",
   "evidence_paths": [
     "apps/quant_assistant/docs/PROJECT_STATUS.md",
     "harness/reports/orchestrator/latest.md"
   ],
-  "section5_ref": "5.599",
+  "section5_ref": "5.600",
   "source": "manual"
 }

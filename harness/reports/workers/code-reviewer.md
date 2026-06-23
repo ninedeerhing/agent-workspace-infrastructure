@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T06:32:34+08:00
+更新时间：2026-06-24T07:00:52+08:00
+
+## Tick loop273-intent-batch-mining-confirmation-state-machine
+
+- **任务 ID**：loop273-intent-batch-mining-confirmation-state-machine-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及核心状态机、capability isolation 与 no-execution 边界。
+- **状态**：success after P1 recheck
+- **任务**：只读审查 `draft_confirmation.py`、`chat_brain.py`、`runtime.py` 与新增测试，确认 mining pending 仅作为确认态处理、metadata/pending 安全、intent_session 不污染其他 pending，并且不打开 runner/DB/backfill/PL-H 路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：初审发现 P1：`find_pending_draft_confirmation(...)` 将 `mining_batch_dispatch` 与 `mining_loop_dispatch` 都映射为 `kind=mining`，但 `run_brain_draft_confirmation_continuation(...)` 曾把所有 mining pending 都硬编码成 `mining_batch_dispatch`。orchestrator 新增 RED 回归 `test_mining_loop_draft_confirmation_dispatches_loop_not_batch`，并按 `pending.capability` 分流；recheck PASS：batch mining 与 mining loop 各自保留 capability、task_type、input_refs、flow 和 stage。
+- **orchestrator 本地验证**：focused mining-loop/batch/state **3 passed**；Chat/runtime/mining **66 passed**；intent/session **28 passed / 1 upstream warning**；combined related **94 passed / 1 upstream warning**；ruff all pass；web build pass；forbidden scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: confirmation continuations must branch by capability when one pending kind covers multiple workflows; shared `kind` is not enough identity for replay.
 
 ## Tick loop272-user-facing-batch-mining-creation-intent-planner
 

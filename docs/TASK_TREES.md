@@ -57,7 +57,7 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
   - 用户只与 orchestrator 对话；CodeX worker 优先通过 `create_thread` / `send_message_to_thread`，`harness/mailbox/` 仅作 fallback 与审计
   - 有变更必须写 §5 台账
 - Next atomic action:
-  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G `INTENT_BATCH_MINING_CONFIRMATION_STATE_MACHINE_LOOP273`：把 loop272 `batch_mining_creation_plan` 接入 Chat pending/continuation 与 intent state machine，使用户确认后沿同一对话进入 MiningJob 创建、candidate generation、F6 screening、reviewed_backtest_plan 与 manual-safe readiness；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
+  - 日常业务继续 `apps/quant_assistant` TREE-6 / PL-G `MANUAL_SAFE_BACKTEST_RESULT_CONSUMER_LOOP274`：把 loop273 确认后的 `mining_batch_dispatch` / `reviewed_backtest_plan` / `intent_session` 阶段证据接入 Chat/API 用户可见结果层，使用户确认挖掘后能继续看到候选晋级、模拟回测计划、手动安全模拟触发条件与结果评估摘要；架构侧用 `.\harness\scripts\daily-ops.ps1` + `.\harness\scripts\codex-self-check.ps1 -Format markdown` 防 skill/worker/goal/daily ops gate 漂移
 
 ## Task Tree Governance Protocol
 

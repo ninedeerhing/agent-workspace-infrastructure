@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T06:32:34+08:00
+更新时间：2026-06-24T07:00:52+08:00
+
+## Tick loop273-intent-batch-mining-confirmation-state-machine
+
+- **任务 ID**：loop273-intent-batch-mining-confirmation-state-machine-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及核心 Chat confirmation state machine 与 no-execution 边界。
+- **状态**：success
+- **任务**：只读复核 `batch_mining_creation_plan` 是否进入 Chat pending/metadata/恢复链路，mining 确认卡片是否不再误用 F3，确认后是否 dispatch confirmed mining batch 并记录 intent state。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；建议覆盖 `brain_pending_draft.kind=mining`、`capability=mining_batch_dispatch`、`batch_mining_creation_plan.contract_kind=user_facing_batch_mining_creation_plan_v1`、专属 confirmation card、summary benign pending、confirmed dispatch input_refs、intent_session carry_over 与 no-env/no-DB/no-runner/no-adapter/no-PL-H safety。
+- **orchestrator 本地验证**：RED 4 failures expected；P1 regression RED for mining-loop cross-wire；focused mining-loop/batch/state **3 passed**；Chat/runtime/mining **66 passed**；intent/session **28 passed / 1 upstream warning**；combined related **94 passed / 1 upstream warning**；ruff all pass；web build pass；forbidden scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: mining pending must remain a confirmation state, not an exceptional blocked state; mining confirmation card must stay separate from legacy factor F3 confirmation while preserving pending metadata and recovery.
 
 ## Tick loop272-user-facing-batch-mining-creation-intent-planner
 

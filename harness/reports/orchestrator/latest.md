@@ -1,3 +1,53 @@
+# Orchestrator Report - loop273-intent-batch-mining-confirmation-state-machine
+
+**Updated**: 2026-06-24T07:00:52+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Intent Batch Mining Confirmation State Machine.
+- **trigger**: loop272 could create a consumer-facing batch mining plan, but users still needed the same Chat conversation to preserve the plan through pending/recovery and advance on “确认/开始/继续”.
+- **result**: Chat pending metadata now preserves `batch_mining_creation_plan`, mining pending is treated as a benign confirmation state, the confirmation card uses dedicated factor-mining copy instead of the F3 factor draft UI, and confirmed continuation dispatches `mining_batch_dispatch` while recording `intent_session` and `confirmation_state_machine`.
+- **P1 fixed**: `code-reviewer` found that shared `kind=mining` could replay `mining_loop_dispatch` as batch mining. Added a RED regression and fixed runtime confirmation continuation to branch by `pending.capability`, preserving `mining_loop_confirmed/mining_loop_config_json` and `auto_mining_loop` for mining loop.
+- **next**: `MANUAL_SAFE_BACKTEST_RESULT_CONSUMER_LOOP274`; connect confirmed mining/reviewed plan/intent session to consumer-grade manual-safe result and evaluation display.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/ui/draft_confirmation.py` | Treats mining confirmation as benign pending, preserves `batch_mining_creation_plan`, and keeps aggregate status from swallowing hard blockers. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders dedicated factor-mining confirmation summary/card and avoids abnormal blocked/F3 factor copy for mining pending. |
+| `apps/quant_assistant/src/qa/brain/runtime.py` | Confirms mining batch and mining loop by capability, writes `intent_session` / `confirmation_state_machine`, and prevents mining-loop pending from becoming batch dispatch. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Proves pending metadata survives, mining confirmation card renders, and mining pending is not summarized as an error. |
+| `apps/quant_assistant/tests/test_brain_draft_confirmation_unit.py` | Proves batch confirmation dispatch/state transition and mining-loop confirmation capability isolation. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · initial 4 failures for missing metadata/card/summary/state; P1 RED caught `mining_loop_dispatch` cross-wire |
+| focused P1 fix | pass · **3 passed** for mining-loop/batch/state confirmation |
+| related Chat/runtime/mining | pass · **66 passed** |
+| intent/session regression | pass · **28 passed**, 1 upstream LangGraph warning |
+| combined related regression | pass · **94 passed**, 1 upstream LangGraph warning |
+| Python ruff | pass · `uv run ruff check src tests` |
+| web build | pass · `tsc -b && vite build` |
+| forbidden scan | pass · no env/DB, real/default runner, adapter, DB-backed execution, PL-H, page-load POST, background/migration/backfill, or secret-output enablement |
+| diff hygiene | pass · `git diff --check`, LF/CRLF warnings only in quant |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success and confirmed the required test surface. `code-reviewer` initially reported a P1 on shared mining pending capability identity; after the capability split and regression, the same worker rechecked successfully with no remaining blockers.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop advances confirmation state only; it does not authorize real execution.
+
+## Residual Risk
+
+The confirmed mining plan now reaches the state machine, but the user still needs a consumer-grade result/evaluation layer that explains candidate promotion, manual-safe simulation readiness, and evaluation summary after confirmation. That is loop274.
+
+---
+
 # Orchestrator Report - loop272-user-facing-batch-mining-creation-intent-planner
 
 **Updated**: 2026-06-24T06:32:34+08:00
