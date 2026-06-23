@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T08:26:24+08:00
+updated_at: 2026-06-23T08:49:25+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -86,6 +86,8 @@ updated_at: 2026-06-23T08:26:24+08:00
 [CONTEXT] 2026-06-23 loop233 · 已完成 controlled dry-run execution seam mocked-only：复用同一 worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `controlledDryRunExecutionSeamChecks` / `assertControlledDryRunExecutionSeam(...)`，Jobs smoke fixture 验证 controlled-seam-only/not-execution gate：source=loop232 explicit authorization assessment、fail_closed_controlled_dry_run_execution_seam_not_execution、operator/reviewer authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution seam acceptance、exit blocked_until_later_explicit_authorization_gate 与 explicit authorization gate next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 42 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / loop233 markers visible，active_marker_runtime_surface_count=0，stale_family_non_test_count=0，added_line_secret_value_shape_count=0 与 runtime cleanup pass；下一拍进入 explicit authorization gate TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 
 [CONTEXT] 2026-06-23 loop234 · 已完成 explicit authorization gate mocked-only：复用同一 worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `explicitAuthorizationGateChecks` / `assertExplicitAuthorizationGate(...)`，Jobs smoke fixture 验证 explicit-authorization-gate-only/not-execution gate：source=loop233 controlled dry-run execution seam、fail_closed_explicit_authorization_gate_not_execution、operator/reviewer authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution authorization gate acceptance、execution/exit blocked_until_later_authorization_config_rollback_audit_gate 与 execution handoff readiness review next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 43 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / loop234 markers visible，active_enablement_runtime_surface_match_count=0，stale_marker_nontest_match_count=0，secret_shape_match_count=0 与 runtime cleanup pass；下一拍进入 execution handoff readiness review TDD mocked-only，仍禁止 real/default runner、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
+
+[CONTEXT] 2026-06-23 loop235 · 已完成 execution handoff readiness review mocked-only：复用同一 worker cluster `test-engineer=019ef130-2e3a-7210-a305-bc34ff0a5bcc`、`executor=019ef130-5a38-7951-933f-4f64c4b7917d`、`code-reviewer=019ef130-86cb-7e23-8a8f-fc490f1a07bd`、`verifier=019ef130-b3c9-7201-a4cd-af2240391a6b` 汇合；extracted runner-adapter proof modules 现在暴露 `executionHandoffReadinessReviewChecks` / `assertExecutionHandoffReadinessReview(...)`，Jobs smoke fixture 验证 handoff-readiness-review-only/not-execution gate：source=loop234 explicit authorization gate、fail_closed_execution_handoff_readiness_review_not_execution、operator/reviewer authorization still_not_granted、runner/adapter config still_not_connected、rollback/audit before-after readiness、missing-runner fail-closed rejection、PL-H not eligible until real-batch gate、no-execution handoff readiness acceptance、handoff blocked_until_later_authorization_config_rollback_audit_gate 与 later execution handoff implementation preflight next gate。验证 RED 1 failed expected，focused pytest 1 passed，related regression 44 passed，ruff pass，targeted eslint exit 0，web build pass，smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5 / loop235 markers visible，active_enablement_runtime_surface_match_count=0，stale_marker_nontest_match_count=0，secret_shape_match_count=0 与 runtime cleanup pass；下一拍进入 later execution handoff implementation preflight TDD mocked-only，仍禁止 real/default runner、adapter invocation、actual adapter dry-run execution、background、migration/backfill、DB-backed backtest、PL-H execution 与 secret output。
 ```
 
 ### Loop Machine State
@@ -94,18 +96,18 @@ updated_at: 2026-06-23T08:26:24+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-execution-handoff-readiness-review-mocked-only |
-| `last_tick` | loop234-explicit-authorization-gate |
+| `current_slice` | pl-g-later-execution-handoff-implementation-preflight-mocked-only |
+| `last_tick` | loop235-execution-handoff-readiness-review |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-Start execution handoff readiness review TDD mocked-only: use loop234 explicit authorization gate to define a fail-closed execution handoff readiness review for operator/reviewer authorization still not granted, runner/adapter config still not connected, rollback/audit before-after readiness still required, missing-runner fail-closed rejection, PL-H still not eligible until real-batch gate, no-execution handoff readiness acceptance, and execution handoff still blocked until later authorization+config+rollback/audit gate; still forbid real/default runner invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
+Start later execution handoff implementation preflight TDD mocked-only: use loop235 execution handoff readiness review to define a fail-closed later execution handoff implementation preflight for operator/reviewer authorization still not granted, runner/adapter config still not connected, rollback/audit before-after readiness still required, missing-runner fail-closed rejection, PL-H still not eligible until real-batch gate, no-execution implementation preflight acceptance, and later execution handoff implementation still blocked until explicit authorization+config+rollback/audit+real-batch gate; still forbid real/default runner invocation, adapter invocation, actual adapter dry-run execution, page-load auto POST, background process, migration/backfill, default DB-backed backtest, PL-H batch execution, or secret output.
 
 ### next_after
 
-After the execution handoff readiness review stabilizes, assess the later execution handoff implementation only if operator/reviewer authorization, runner/adapter config readiness, rollback/audit before-after readiness, fail-closed missing-runner behavior, PL-H non-eligibility/real-batch gate, and no-execution handoff readiness acceptance are proven; do not invoke real/default runner, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
+After later execution handoff implementation preflight stabilizes, only assess a narrower implementation handoff seam if operator/reviewer authorization, runner/adapter config readiness, rollback/audit before-after readiness, missing-runner fail-closed behavior, PL-H non-eligibility/real-batch gate, and no-execution preflight acceptance remain proven; do not invoke real/default runner, adapter invocation, actual adapter dry-run execution, background worker, DB-backed backtest, migration/backfill, PL-H batch execution, or secret output until a later explicit gate authorizes it.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -122,7 +124,7 @@ After the execution handoff readiness review stabilizes, assess the later execut
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 execution handoff readiness review；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 later execution handoff implementation preflight；先跑 skill routing gate、worker dispatch gate 与 worker cluster/rendezvous gate；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要调用默认真实 runner、adapter invocation、actual adapter dry-run execution 或 PL-H 批量执行。
 ```
 
 ### Blockers
