@@ -1,6 +1,18 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-23T21:24:00+08:00
+更新时间：2026-06-24T01:25:46+08:00
+
+## Tick loop259-real-panel-f6-evaluation-integration
+
+- **任务 ID**：loop259-real-panel-f6-evaluation-integration-test-design
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读复核“deterministic candidates -> local panel/F6 evaluator -> screening evidence -> reviewed backtest plan context”的 TDD 验收矩阵。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；验收应证明 candidate expressions 经过 Factor DSL 在本地 panel 上求值，再由 `FastBacktestService.screen_ic` 产出 IC/rank-IC/coverage/evaluated-days/sample-rows evidence；quick screening 与 plan-only `auto_backtest_plan` 必须继承 evidence；PL-H、真实/default runner、DB-backed backtest execution、background/migration/backfill、secret output 必须保持禁止。
+- **orchestrator 本地验证**：RED 缺 `qa.quant_mining.panel_f6_evaluator`；GREEN target **4 passed**；related mining/DSL regression **49 passed**；targeted ruff pass。
+- **roster_update**：workload cleared；mistakes none；lesson: loop259 的最小验收不是继续 runner gate，而是证明候选能产生本地 panel/F6 数据证据且仍 plan-only。
 
 ## Tick loop258-core-batch-mining-engine-v1
 

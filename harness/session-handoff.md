@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T21:24:00+08:00
+updated_at: 2026-06-24T01:25:46+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-23T21:24:00+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-24 loop259 · 已完成 Real Panel F6 Evaluation Integration：loop258 的 A-E deterministic candidates 现在可通过 `qa.quant_mining.panel_f6_evaluator.evaluate_candidates_on_panel(...)` 在注入的本地 panel 上执行 Factor DSL 并调用 `FastBacktestService.screen_ic`，形成 `local_panel_f6_screening_evidence`（panel_source/data_profile/quick_ic/rank_ic/icir/coverage/evaluated_days/sample_rows/verdict/error_detail）。`run_mining_batch_once(panel=...)` 会使用真实 panel/F6 evidence；无 panel 时保留 pseudo quick-screen fallback，避免冒充真实数据评估；`quick_screening_report` 和 plan-only `auto_backtest_plan` 均携带 `screening_evidence`。改动：`src/qa/factor_dsl/evaluator.py`、`src/qa/quant_mining/panel_f6_evaluator.py`、`src/qa/quant_mining/mining_runner.py`、`tests/test_quant_mining_panel_f6_evaluator_unit.py`、`tests/test_mining_runner_unit.py`、`tests/test_mining_job_auto_backtest_plan_unit.py`。验证：RED 缺 `panel_f6_evaluator`；GREEN target 4 passed；related mining/DSL regression 49 passed；targeted ruff pass；test-engineer/code-reviewer 永久线程只读 report success。未读取/输出 secret，未启动 real/default runner、adapter、DB-backed backtest、PL-H batch、background/migration/backfill。下一动作：`REVIEWED_BACKTEST_PLAN_HANDOFF`，把 panel/F6 evidence 汇总成用户可读 reviewed backtest plan 与 explicit/manual-safe gates。
+
 [CONTEXT] 2026-06-23 loop258 · 已完成 Core Batch Mining Engine v1：用户可见 A-E 因子分类与全部合法子类中文名已落地，因子挖掘/因子库均可展示和筛选分类；`candidate_generator_v1` 可 deterministic 路由基本面/风格、价量/技术、表达式/论文/库、ML、文本/事件/另类五类候选；`run_mining_batch_once` 输出并持久化 `generation_policy`、`rejected_candidates`、F6 `screening` 与 plan-only `auto_backtest_plan`。改动：`src/qa/quant_mining/factor_taxonomy.py`、`src/qa/quant_mining/candidate_generator.py`、`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/factor_library_insights.py`、`src/qa/ui/factor_version_summary.py`、`src/qa/ui/pages/quant_factor_mining_page.py`、`web/src/pages/FactorLibraryPage.tsx` 与相关 tests。验证：RED 暴露缺口，GREEN focused pytest 53 passed；targeted ruff pass；web lint pass（仅既有 ShellLayoutContext warning）；web build pass；Jobs smoke exit_code=0；executor/test-engineer/code-reviewer/verifier 永久线程报告/recheck success。未引入 real/default runner、DB-backed backtest、PL-H batch、background/migration/backfill 或 secret output。下一动作：`REAL_PANEL_F6_EVALUATION_INTEGRATION`，把候选接入本地 panel/F6 数据评估，形成真实 IC/coverage/screening evidence，再生成用户可读 reviewed backtest plan。
 
 [CONTEXT] 2026-06-23 loop257 · 已完成 Chat/assistant readiness parity：Chat 摘要同源消费 loop256 `intent_quant_readiness.state_machine` 与 `runner_authorization_preflight`，默认可见层用消费级中文说明“自动挖掘到模拟回测进度 / 当前 / 下一步 / 真实回测引擎未授权 / 仅手动确认后的安全模拟”；proof-only marker（如 `runner_authorization_preflight=not_granted`）保留在 `web/src/lib/routeEvidenceExecution.contract.ts` 与 source tests，不进入默认用户文字。改动：`src/qa/ui/chat_brain.py`、`tests/test_ui_chat_brain_unit.py`、`web/src/lib/routeEvidenceExecution.contract.ts`、`tests/test_route_evidence_cross_surface_contract_unit.py`。验证：RED expected 2 failed + consumer-copy RED 1 failed；GREEN focused 2 passed；related regression 57 passed；ruff pass；`npm run test:route-evidence` pass；`npm run lint` exit 0（仅既有 ShellLayoutContext warning）；web build pass；Jobs smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5。永久 worker `test-engineer` 与 `code-reviewer` 均只读报告 success。仍禁止 manual acceptance grant、authorization grant、execution permission、page-load auto POST、real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、background/migration/backfill、PL-H batch 与 secret output。下一动作：`REAL_RUNNER_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_PREFLIGHT`，只定义真实 runner 授权/config/rollback-audit/real-batch demand gate 的最小只读前置合同，不授权、不执行。
@@ -150,14 +152,14 @@ updated_at: 2026-06-23T21:24:00+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | core-batch-mining-engine-v1-loop258 |
-| `last_tick` | loop258-core-batch-mining-engine-v1 |
+| `current_slice` | real-panel-f6-evaluation-integration-loop259 |
+| `last_tick` | loop259-real-panel-f6-evaluation-integration |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-REAL_PANEL_F6_EVALUATION_INTEGRATION: connect loop258 A-E deterministic factor candidates to local panel/F6 data evaluation, produce IC/coverage/screening evidence, and keep backtest execution behind explicit/manual-safe gates.
+REVIEWED_BACKTEST_PLAN_HANDOFF: turn loop259 `local_panel_f6_screening_evidence` into a consumer-readable reviewed backtest plan across MiningJob/Chat/Jobs, and keep execution behind explicit/manual-safe gates.
 
 ### next_after
 

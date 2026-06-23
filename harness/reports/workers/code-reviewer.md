@@ -1,6 +1,18 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-23T21:24:00+08:00
+更新时间：2026-06-24T01:25:46+08:00
+
+## Tick loop259-real-panel-f6-evaluation-integration
+
+- **任务 ID**：loop259-real-panel-f6-evaluation-integration-pre-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success
+- **任务**：只读预审把 loop258 candidates 接入本地 panel/F6/IC 评估时的代码风险边界。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：PASS；最小安全接入点应是 `quant_mining` 内的专用 panel IC screening adapter，组合 Factor DSL evaluator 与 `FastBacktestService.screen_ic`，不得调用 UI factor evaluation、`backtest.engine.run_backtest`、`run_auto_backtest_plan_once`、`run_auto_backtest_worker_once` 或 trigger action。evidence 应包含 panel/source/data profile、IC/rank-IC/ICIR、coverage、valid rows、days、failure reason，并在 durable/UI wording 中明确是 screening evidence，不是 backtest completed 或 authorization grant。
+- **orchestrator 本地验证**：target **4 passed**；related mining/DSL regression **49 passed**；targeted ruff pass；实现保持 plan-only/no runner/no DB-backed execution/no PL-H/no secret。
+- **roster_update**：workload cleared；mistakes none；lesson: panel IC screening 名称与 UI copy 必须避免“已执行回测/已授权真实 runner”的误表达。
 
 ## Tick loop258-core-batch-mining-engine-v1
 

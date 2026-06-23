@@ -1,3 +1,48 @@
+# Orchestrator Report - loop259-real-panel-f6-evaluation-integration
+
+**Updated**: 2026-06-24T01:25:46+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Real Panel F6 Evaluation Integration.
+- **trigger**: loop258 completed A-E taxonomy, deterministic candidate generation, quick screening, and plan-only backtest handoff; the next goal was replacing pseudo quick-screen evidence with local panel/F6 IC evidence when a panel is supplied.
+- **result**: Added `qa.quant_mining.panel_f6_evaluator.evaluate_candidates_on_panel(...)`, expanded Factor DSL panel operators required by candidate templates, wired `run_mining_batch_once(panel=...)` to emit `local_panel_f6_screening_evidence`, preserved IC/rank-IC/ICIR/coverage/evaluated-days/sample-rows fields in quick screening, and carried screening evidence into plan-only `auto_backtest_plan`.
+- **next**: `REVIEWED_BACKTEST_PLAN_HANDOFF` across MiningJob/Chat/Jobs; still no PL-H batch, real/default runner, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/factor_dsl/evaluator.py` | Added local panel operators: delay/delta/rolling mean/sum/std/min/max/rank, correlation, zscore, scale, abs/sign/min/max. |
+| `apps/quant_assistant/src/qa/quant_mining/panel_f6_evaluator.py` | Added fail-closed panel/F6 evaluator that composes Factor DSL and FastBacktestService IC screening without env/DB/runner side effects. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Uses panel/F6 evidence when a panel is injected, preserves screening evidence in quick reports, and carries it into plan-only backtest plans. |
+| `apps/quant_assistant/tests/test_quant_mining_panel_f6_evaluator_unit.py` | Added data-driven F6 evidence and fail-closed expression error coverage. |
+| `apps/quant_assistant/tests/test_mining_runner_unit.py` | Added runner-level injected-panel evidence coverage. |
+| `apps/quant_assistant/tests/test_mining_job_auto_backtest_plan_unit.py` | Added plan-only evidence propagation assertion. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.panel_f6_evaluator` failed before implementation |
+| focused GREEN | pass · **4 passed** |
+| related regression | pass · mining/DSL matrix **49 passed** |
+| Python ruff | pass |
+
+## Worker Notes
+
+Permanent worker threads were used read-only. `test-engineer` returned a success matrix tying candidate generation, local panel/F6 evaluator, screening evidence, and reviewed plan context. `code-reviewer` returned a success pre-review recommending a narrow panel IC screening adapter and warning that IC screening must not be worded as backtest completion or execution authorization.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, background process, migration, or backfill was started. `FastBacktestService.screen_ic` is used as IC quick screening only, not as executed backtest.
+
+## Residual Risk
+
+The evidence is now data-driven for injected local panels, but the user-facing handoff still needs to summarize IC/rank-IC/coverage and selected candidates in consumer language before any manual-safe simulation gate.
+
+---
+
 # Orchestrator Report - loop258-core-batch-mining-engine-v1
 
 **Updated**: 2026-06-23T21:24:00+08:00

@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T13:35:38Z",
+  "updated_at": "2026-06-23T17:35:11Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-23T13:34:36Z",
-    "last_tick": "loop258-core-batch-mining-engine-v1",
-    "pytest_passed": 53,
+    "recorded_at": "2026-06-23T17:32:57Z",
+    "last_tick": "loop259-real-panel-f6-evaluation-integration",
+    "pytest_passed": 49,
     "ruff": "ok",
     "evidence_paths": [
-      "loop258 final rerun: pytest core matrix 53 passed; ruff all checks passed; web lint exit 0 with pre-existing ShellLayoutContext warning; web build pass; smoke jobs page ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[]; no real/default runner, DB-backed backtest, PL-H, background, migration, backfill, or secret output"
+      "loop259: TDD target 4 passed; related mining/DSL regression 49 passed; targeted ruff pass; no real/default runner, DB-backed backtest, PL-H, background, migration, backfill, or secret output"
     ],
-    "section5_ref": "5.585",
+    "section5_ref": "5.586",
     "source": "manual"
   },
   "git_dirty": false,
-  "age_hours": 0.01745881361111111,
+  "age_hours": 0.03732658527777778,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-23T13:35:38Z",
+    "at": "2026-06-23T17:35:11Z",
     "apply": true,
     "stale": false,
     "git_dirty": false,
-    "age_hours": 0.01745881361111111
+    "age_hours": 0.03732658527777778
   }
 }

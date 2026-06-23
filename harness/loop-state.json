@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T21:24:00+08:00",
+  "updated_at": "2026-06-24T01:25:46+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "core-batch-mining-engine-v1-loop258",
-  "next_atomic_action": "REAL_PANEL_F6_EVALUATION_INTEGRATION：把 loop258 已生成的 A-E 分类候选接入本地 panel/F6 快筛，使用现有 Factor DSL / factor_value / IC 评估能力形成真实数据驱动的 screening evidence；仍不得启动 PL-H batch、真实/default runner、background/migration/backfill，真实回测执行继续要求显式授权。",
-  "next_after": "After real panel F6 evaluation integration, form a user-readable reviewed backtest plan from candidates that pass local data screening, then route only to explicit/manual-safe backtest execution gates.",
+  "current_slice": "real-panel-f6-evaluation-integration-loop259",
+  "next_atomic_action": "REVIEWED_BACKTEST_PLAN_HANDOFF：把 loop259 的 local_panel_f6_screening_evidence 汇总成用户可读 reviewed backtest plan，上接 MiningJob/Chat/Jobs 显示层，下接 explicit/manual-safe backtest execution gates；仍不得启动 PL-H batch、真实/default runner、background/migration/backfill，真实回测执行继续要求显式授权。",
+  "next_after": "After reviewed plan handoff, wire consumer-visible manual-safe execution readiness so users can inspect candidate evidence and explicitly choose safe simulation before any real runner work.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop258-core-batch-mining-engine-v1",
+  "last_tick": "loop259-real-panel-f6-evaluation-integration",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -1049,7 +1049,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop258 completed Core Batch Mining Engine v1 for the product chain 'what factors to mine -> candidate generation -> F6 quick screening -> plan-only auto_backtest_plan'. It added user-visible A-E factor taxonomy labels with full subclass display names, deterministic candidate generation across A/B/C/D/E, category metadata in mining reports, factor mining and factor library filter/display surfaces, fail-soft library metadata handling, and durable generation_policy/screening/auto_backtest_plan/rejected_candidates persistence. Permanent executor/test-engineer/code-reviewer/verifier worker reports were used; code-reviewer initially found A/D/E and subclass-label gaps, then rechecked success after fixes. Verification passed focused pytest 53, targeted ruff, web lint/build, and Jobs smoke exit_code=0. No real/default runner, DB-backed backtest, PL-H batch, background/migration/backfill, or secret output was introduced."
+    "note": "loop259 completed real panel F6 evaluation integration. Deterministic A-E mining candidates can now be evaluated on an injected local panel through Factor DSL operators and FastBacktestService IC/rank-IC screening, producing local_panel_f6_screening_evidence with panel_source, data_profile, quick_ic/rank_ic/icir/coverage/evaluated_days/sample_rows, candidate verdicts, and fail-closed expression errors. mining_runner uses this evidence when a panel is supplied and still falls back to pseudo quick-screen only when no panel is injected. auto_backtest_plan remains plan_only and carries screening_evidence; no real/default runner, DB-backed backtest, PL-H batch, background/migration/backfill, or secret output was introduced."
   },
-  "last_completed_note": "loop258 Core Batch Mining Engine v1 complete. Added A-E user-visible taxonomy and full subclass labels; factor mining and factor library now show/filter categories; deterministic candidate generator routes fundamental/style, price-volume/technical, expression/paper/library, ML, and text/event/alternative requests; mining runner emits generation_policy, rejected_candidates, F6 quick screening, and plan-only auto_backtest_plan in durable reports. Verification: RED exposed missing subclass labels and A/D/E routing, GREEN 53 passed; targeted ruff pass; npm lint pass with pre-existing ShellLayoutContext warning; npm build pass; npm run smoke:jobs-page exit_code=0; code-reviewer/verifier rechecks success. Next_atomic_action is real panel F6 evaluation integration using local data, not proof-only runner authorization drift."
+  "last_completed_note": "loop259 Real Panel F6 Evaluation Integration complete. Added qa.quant_mining.panel_f6_evaluator, expanded Factor DSL panel operators used by candidate_generator_v1, wired run_mining_batch_once(panel=...) to produce local_panel_f6_screening_evidence, preserved IC/rank-IC/coverage/evaluated-days/sample-rows fields in quick_screening_report, and carried screening_evidence into plan-only auto_backtest_plan. Verification: TDD target 4 passed; related mining/DSL regression 49 passed; targeted ruff pass. Permanent test-engineer/code-reviewer worker reports were used read-only. Next_atomic_action is reviewed backtest plan handoff for user-readable evidence and manual-safe gates, not PL-H/real runner execution."
 }

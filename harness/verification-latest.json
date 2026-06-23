@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-23T13:34:36Z",
-  "last_tick": "loop258-core-batch-mining-engine-v1",
-  "pytest_passed": 53,
+  "recorded_at": "2026-06-23T17:32:57Z",
+  "last_tick": "loop259-real-panel-f6-evaluation-integration",
+  "pytest_passed": 49,
   "ruff": "ok",
   "evidence_paths": [
-    "loop258 final rerun: pytest core matrix 53 passed; ruff all checks passed; web lint exit 0 with pre-existing ShellLayoutContext warning; web build pass; smoke jobs page ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[]; no real/default runner, DB-backed backtest, PL-H, background, migration, backfill, or secret output"
+    "loop259: TDD target 4 passed; related mining/DSL regression 49 passed; targeted ruff pass; no real/default runner, DB-backed backtest, PL-H, background, migration, backfill, or secret output"
   ],
-  "section5_ref": "5.585",
+  "section5_ref": "5.586",
   "source": "manual"
 }
