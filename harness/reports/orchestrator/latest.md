@@ -1,3 +1,49 @@
+# Orchestrator Report - loop274-manual-safe-backtest-result-consumer
+
+**Updated**: 2026-06-24T07:20:12+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Manual-safe Backtest Result Consumer.
+- **trigger**: loop273 could preserve/confirm the mining creation plan, but the confirmed result still needed a consumer layer that explains selected candidates, reviewed backtest plan, explicit safe-simulation handoff, and fail-closed trigger readiness.
+- **result**: confirmed `mining_batch_dispatch` now returns a single Chat/API `observability` bundle: `factor_discovery_workflow`, `reviewed_backtest_plan`, `auto_backtest_plan`, `actions`, `manual_safe_status`, `product_state`, and `intent_quant_readiness`. Chat now lists multiple selected candidates with category/metric/reason and shows the manual-safe action only after trigger contract validation.
+- **P2 fixed**: `code-reviewer` found action ready copy could be rendered from id/enabled only, then found trigger identity drift. Added RED regressions and fixed Chat to require explicit trigger mode, injected runner, `auto_execute=false`, no true execution-danger flags, and `trigger_request.action_id == action.id`. Blocked status copy now hides internal trigger_request wording.
+- **next**: `MANUAL_SAFE_SIMULATION_TRIGGER_API_LOOP275`; connect action handoff to explicit Jobs/API trigger roundtrip and completed result summary.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/brain/quant_trading_executors.py` | Emits consumer observability bundle for confirmed mining dispatch and builds manual-safe/product/intent readiness state from reviewed/auto backtest plans. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders multi-candidate selected list, validates manual-safe action trigger contract before ready copy, and consumer-sanitizes blocked internal trigger messages. |
+| `apps/quant_assistant/tests/test_quant_trading_executors_unit.py` | Proves confirmed dispatch returns reviewed plan, workflow, actions, manual_safe_status, product_state, and intent readiness. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Proves Chat selected-candidate/action rendering plus unsafe trigger and mismatched action-id fail-closed regressions. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · initial 2 failures for missing observability/candidate list; later P2 RED failures for unsafe trigger drift and mismatched trigger action id |
+| focused GREEN | pass · **4 passed** |
+| related Chat/executor/draft/intent | pass · **98 passed**, 1 upstream LangGraph warning |
+| Python ruff | pass · `uv run ruff check src tests` |
+| web build | pass · `tsc -b && vite build` |
+| forbidden scan | pass · no env/DB, real/default runner, unauthorized adapter, DB-backed execution, PL-H, page-load POST, background/migration/backfill, or secret-output enablement |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success for the consumer observability/test surface. `code-reviewer` initially reported a P2 on id/enabled-only ready action rendering; after the first fix it reported a remaining trigger identity gap; after action-id equality validation and consumer-safe blocked copy, final recheck returned success with no remaining blockers.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop advances the consumer result and explicit-action handoff only; it does not authorize real execution.
+
+## Residual Risk
+
+The action handoff is now visible and fail-closed, but the next loop still needs to wire the explicit Jobs/API trigger roundtrip and completed result summary so users can actually run the safe mocked/injected simulation from the UI/API boundary.
+
+---
+
 # Orchestrator Report - loop273-intent-batch-mining-confirmation-state-machine
 
 **Updated**: 2026-06-24T07:00:52+08:00

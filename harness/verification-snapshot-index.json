@@ -1,29 +1,29 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T23:05:52Z",
+  "updated_at": "2026-06-23T23:29:07Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-23T23:05:02Z",
-    "last_tick": "loop273-intent-batch-mining-confirmation-state-machine",
-    "pytest_passed": 94,
+    "recorded_at": "2026-06-23T23:27:31Z",
+    "last_tick": "loop274-manual-safe-backtest-result-consumer",
+    "pytest_passed": 98,
     "ruff": "ok",
     "evidence_paths": [
       "apps/quant_assistant/docs/PROJECT_STATUS.md",
       "harness/reports/orchestrator/latest.md"
     ],
-    "section5_ref": "5.600",
+    "section5_ref": "5.601",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.014124287499999999,
+  "age_hours": 0.026711468888888888,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-23T23:05:52Z",
+    "at": "2026-06-23T23:29:07Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.014124287499999999
+    "age_hours": 0.026711468888888888
   }
 }
