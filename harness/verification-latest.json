@@ -1,9 +1,9 @@
 {
-  "recorded_at": "2026-06-22T23:45:35Z",
-  "last_tick": "loop232-explicit-real-runner-adapter-dry-run-execution-authorization-assessment",
-  "pytest_passed": 41,
+  "recorded_at": "2026-06-23T00:10:58Z",
+  "last_tick": "loop233-controlled-dry-run-execution-seam",
+  "pytest_passed": 42,
   "ruff": "ok",
   "evidence_paths": [],
-  "section5_ref": "5.556",
+  "section5_ref": "5.557",
   "source": "manual"
 }
