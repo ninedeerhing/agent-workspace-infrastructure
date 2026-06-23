@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T12:17:26Z",
+  "updated_at": "2026-06-23T12:30:59Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-23T12:11:17Z",
-    "last_tick": "loop255-intent-quant-readiness-contract",
-    "pytest_passed": 66,
+    "recorded_at": "2026-06-23T12:30:53Z",
+    "last_tick": "loop256-auto-backtest-flow-readiness-state-machine",
+    "pytest_passed": 68,
     "ruff": "ok",
     "evidence_paths": [
-      "pytest 45/66 passed; ruff ok; npm lint exit 0 with pre-existing ShellLayoutContext warning; npm build pass; npm smoke jobs ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[]"
+      "RED expected 3 failed/36 passed; GREEN focused 39 passed; related regression 68 passed; ruff ok; node --check ok; npm lint exit 0 with pre-existing ShellLayoutContext warning; npm build pass; npm smoke jobs ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 intent_quant_readiness_preflight_visible=true; diff checks clean"
     ],
-    "section5_ref": "5.582",
+    "section5_ref": "5.583",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.10274094972222222,
+  "age_hours": 0.0017969627777777778,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-23T12:17:26Z",
+    "at": "2026-06-23T12:30:59Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.10274094972222222
+    "age_hours": 0.0017969627777777778
   }
 }

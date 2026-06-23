@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T20:18:00+08:00
+updated_at: 2026-06-23T20:26:05+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-23T20:18:00+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-23 loop256 · 已完成 auto-backtest flow readiness state-machine 的 API/Jobs 面：`intent_quant_readiness` 新增 `state_machine`（`ready_for_manual_simulation -> explicit_trigger_required -> completed_mocked_or_injected_run`，完成态 next_gate=`real_runner_authorization_preflight`）与 `runner_authorization_preflight`（authorization_state=`not_granted`、default/real runner false、actual adapter dry-run/DB-backed/PL-H/background/migration/backfill/secret output false）。Jobs 默认层显示“真实回测引擎未授权，当前只允许手动确认后的安全模拟”，并保留 `intent_quant_readiness_preflight_visible=true` 证据。验证：RED expected 3 failed/36 passed；GREEN focused 39 passed；related regression 68 passed；ruff pass；node --check pass；npm lint exit 0（仅既有 ShellLayoutContext warning）；web build pass；smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5。未读取/输出 secret，未启动 page-load POST、real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、migration/backfill/background 或 PL-H batch。注意：Chat/assistant 同源消费级展示尚未完成，下一动作是 `CHAT_INTENT_QUANT_READINESS_PARITY`。
+
 [CONTEXT] 2026-06-23 loop255 · 用户已回复“通过，继续”，loop254 手动 UX 验收停止点解除；已完成 intent quant integration readiness contract：MiningJob API observability 新增消费级 `intent_quant_readiness`，从 `route_evidence`、screening / `auto_backtest_plan`、execution 与 audit 派生当前链路进度、当前步骤、下一步、route 与 safety；Jobs 默认层新增“当前链路进度”；explicit trigger response 与 refreshed Jobs list 必须共享 readiness / route / audit evidence。改动：`src/qa/quant_mining/mining_runner.py`、`tests/test_mining_job_api_unit.py`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、`tests/test_jobs_page_action_rendering_unit.py`。验证：TDD RED expected 2 failed；focused GREEN 3 passed；related regression 45/59/66 passed；ruff pass；`npm run lint` exit 0（仅既有 ShellLayoutContext warning）；web build pass；`npm run smoke:jobs-page` ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5。未读取/输出 secret，未启动 real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、migration/backfill/background 或 PL-H batch。下一动作：`AUTO_BACKTEST_FLOW_READINESS_STATE_MACHINE`，把 ready_for_manual_simulation -> explicit trigger -> completed mocked/injected run 映射到 Chat/Jobs 一致的用户可读 next-step，并定义真实 runner 授权前最小 API contract。
 
 [CONTEXT] 2026-06-23 loop253 hotfix · 用户 live Jobs 页面验收时暴露 `UndefinedTable: relation "mining_job" does not exist`。根因：当前 API DSN `host.docker.internal:55432/quant_assistant` 已有行情核心表，但未执行到 loop148 的 additive `mining_job` schema。已只执行 `mining_job` 表 + 两个索引 DDL；未跑整包 schema、未写业务 job、未启动 migration/backfill/background/real backtest、未输出 secret。复验：`GET /api/v1/quant/mining-jobs` -> HTTP 200, `jobs=[]`, `error=null`。注意：live 空 DB 队列页面不是 loop253 UX package 通过证据；manual UX acceptance 仍需验收 completed mocked/injected-runner path 下的 `Auto mining to backtest result` + `Manual UX acceptance package` 文案。

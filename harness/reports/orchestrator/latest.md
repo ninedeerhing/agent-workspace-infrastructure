@@ -1,3 +1,54 @@
+# Orchestrator Report - loop256-auto-backtest-flow-readiness-state-machine
+
+**Updated**: 2026-06-23T20:26:05+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G auto-backtest flow readiness state-machine.
+- **trigger**: loop255 readiness contract completed; next goal was runner authorization preflight before any real execution.
+- **result**: API/Jobs now expose `intent_quant_readiness.state_machine` and `runner_authorization_preflight`; Jobs default visible summary tells the user the real backtest engine is not authorized and only manual-confirmed safe simulation is allowed.
+- **residual**: Chat/assistant consumer parity is not yet claimed; next atomic action is `CHAT_INTENT_QUANT_READINESS_PARITY`.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Added read-only readiness state-machine and fail-closed runner authorization preflight fields. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Added API TDD coverage for preflight fields and ready-state mapping. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Added preflight typing and consumer-facing real-engine-not-authorized copy. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added ready/completed readiness fixture state-machine/preflight data and smoke marker checks. |
+| `apps/quant_assistant/tests/test_jobs_page_action_rendering_unit.py` | Added source contract for preflight visibility. |
+| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Added cross-surface contract expectations. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Added acceptance smoke source expectations. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · expected 3 failures / 36 passed before implementation |
+| focused GREEN | pass · 39 passed |
+| related regression | pass · 68 passed |
+| Python ruff | pass |
+| node syntax | pass |
+| web lint | pass · exit 0 with pre-existing `ShellLayoutContext.tsx` react-refresh warning |
+| web build | pass |
+| browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, `intent_quant_readiness_preflight_visible=true` |
+| diff checks | pass · no whitespace errors; CRLF warnings only |
+
+## Worker Notes
+
+Applied `orchestrator` and `test-driven-development`. No permanent worker was dispatched because this slice touched shared API/UI/smoke hot files and followed the single-write-owner lesson. Future Chat parity should use permanent worker `test-engineer` / `code-reviewer` only after roster `codex_thread_id` reachability is verified.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No page-load auto POST, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, migration/backfill/background process, or PL-H batch execution was started.
+
+## Residual Risk
+
+API/Jobs readiness state-machine and preflight are complete. Chat/assistant still needs the same consumer-readable contract to avoid cross-surface drift before any later real runner authorization/config/rollback-audit gate.
+
+---
+
 # Orchestrator Report - loop255-intent-quant-readiness-contract
 
 **Updated**: 2026-06-23T20:18:00+08:00
