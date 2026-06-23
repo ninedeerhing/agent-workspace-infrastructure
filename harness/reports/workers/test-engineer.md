@@ -1,6 +1,18 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-23T18:35:36+08:00
+更新时间：2026-06-23T20:40:27+08:00
+
+## Tick loop257-chat-intent-quant-readiness-parity
+
+- **任务 ID**：loop257-chat-intent-quant-readiness-parity-test-design
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读复核 Chat/assistant readiness parity 的 RED/GREEN 验收形态，覆盖 loop256 `intent_quant_readiness.state_machine` 与 `runner_authorization_preflight` 在 Chat 默认摘要中的消费级可见性，并保持 Jobs/Chat 对 `ready_for_manual_simulation -> explicit trigger -> completed mocked/injected run` 的 next-step 一致。
+- **变更**：worker 未修改文件。
+- **复核结论**：建议最小 RED 绑定 Python Chat summary 与 TS route-evidence/source contract；Chat 可见层必须包含当前链路进度、manual trigger / mocked completion 语义、真实回测引擎未授权、下一步与 Jobs 一致，同时禁止 page-load POST、real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、PL-H batch、background/migration/backfill、secret output。
+- **orchestrator 本地验证**：RED expected **2 failed** + consumer-copy RED **1 failed**；focused GREEN **2 passed**；related regression **57 passed**；ruff pass；`npm run test:route-evidence` pass；`npm run lint` exit 0 with pre-existing warning；web build pass；Jobs smoke pass `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`。
+- **roster_update**：workload unchanged；mistakes none；lesson: Chat/assistant parity must combine consumer-visible wording with source-contract proof markers, not add another Jobs-only proof artifact。
 
 ## Tick loop253-manual-ux-acceptance-package
 

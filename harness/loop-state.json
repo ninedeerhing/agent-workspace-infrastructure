@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T20:26:05+08:00",
+  "updated_at": "2026-06-23T20:40:27+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "auto-backtest-flow-readiness-state-machine-loop256",
-  "next_atomic_action": "CHAT_INTENT_QUANT_READINESS_PARITY：把 loop256 的 intent_quant_readiness state_machine + runner_authorization_preflight 同源映射到 Chat/assistant 可见摘要，确保 Chat 与 Jobs 对 ready_for_manual_simulation -> explicit trigger -> completed mocked/injected run 的 next-step 一致；仍禁止 page-load auto POST、real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、PL-H batch、background/migration/backfill、secret output。",
-  "next_after": "After Chat/assistant readiness parity, continue toward explicit authorization/config/rollback-audit preflight for real runner eligibility; do not grant manual acceptance/authorization/execution or connect/invoke real/default runner until a later explicit gate passes.",
+  "current_slice": "chat-intent-quant-readiness-parity-loop257",
+  "next_atomic_action": "REAL_RUNNER_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_PREFLIGHT：在 Chat/Jobs readiness parity 后，定义真实 runner 授权、runner/adapter config、rollback/audit、real-batch demand gate 的最小只读前置合同；仍不得授予 manual acceptance、authorization、execution permission，不得连接/调用 real/default runner、adapter，不得执行 actual adapter dry-run、DB-backed backtest、PL-H batch、background/migration/backfill，不得输出 secret。",
+  "next_after": "After the read-only real-runner authorization/config/rollback-audit preflight contract, continue only if the next gate remains product-goal aligned and explicitly preserves no authorization grant, no runner/adapter connection, no DB-backed execution, and no PL-H batch.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop256-auto-backtest-flow-readiness-state-machine",
+  "last_tick": "loop257-chat-intent-quant-readiness-parity",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -1049,7 +1049,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop256 completed API/Jobs auto-backtest flow readiness state-machine and runner authorization preflight. MiningJob API observability now exposes intent_quant_readiness.state_machine plus runner_authorization_preflight; Jobs default current-chain display includes the consumer-facing real-engine-not-authorized copy and sr-only preflight marker. Verification passed TDD RED/GREEN, focused API/UI tests, related route/API/Jobs/intent regression, ruff, node syntax, web lint/build, browser smoke with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5, and diff checks. Chat/assistant consumer parity is not yet claimed and is the next atomic action. Manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, actual adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
+    "note": "loop257 completed Chat/assistant consumer parity for the loop256 intent_quant_readiness state_machine and runner_authorization_preflight contract. Chat summaries now show novice-readable progress/current/next-step copy, explain that the real backtest engine is not authorized, and describe manual-confirmed safe simulation without leaking proof-only markers; route/evidence markers remain in source/contract tests. Permanent test-engineer and code-reviewer Codex threads were reachable and returned read-only success reports. Verification passed TDD RED/GREEN, related backend regression, ruff, route-evidence contract script, web lint/build, Jobs smoke with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5. Manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, adapter invocation, actual adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
   },
-  "last_completed_note": "loop256 auto-backtest flow readiness state-machine complete for API/Jobs. Added intent_quant_readiness.state_machine and runner_authorization_preflight, mapped ready_for_manual_simulation -> explicit_trigger_required -> completed_mocked_or_injected_run, and surfaced consumer copy that the real backtest engine is not authorized yet. Verification: RED expected 3 failures/36 passed before implementation; GREEN focused 39 passed; related regression 68 passed; ruff ok; node --check ok; npm lint exit 0 with pre-existing ShellLayoutContext warning; npm build pass; npm run smoke:jobs-page ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5; diff checks clean. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, page-load auto POST, or secret output. Next_atomic_action is Chat/assistant readiness parity using the same state_machine/preflight contract."
+  "last_completed_note": "loop257 Chat/assistant readiness parity complete. Added Chat summary support for intent_quant_readiness.state_machine and runner_authorization_preflight with consumer-grade wording: progress/current/next-step, real engine not authorized, manual-confirmed safe simulation only; proof markers remain in route-evidence contract/source tests, not default visible copy. Verification: RED expected 2 failures before implementation plus consumer-copy RED 1 failed; GREEN focused 2 passed; related regression 57 passed; ruff ok; npm test:route-evidence ok; npm lint exit 0 with pre-existing ShellLayoutContext warning; npm build pass; npm run smoke:jobs-page ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5. Permanent test-engineer and code-reviewer reports returned success. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, page-load auto POST, or secret output. Next_atomic_action is read-only real-runner authorization/config/rollback-audit preflight contract."
 }

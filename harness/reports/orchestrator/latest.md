@@ -1,3 +1,50 @@
+# Orchestrator Report - loop257-chat-intent-quant-readiness-parity
+
+**Updated**: 2026-06-23T20:40:27+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Chat/assistant readiness parity.
+- **trigger**: loop256 completed API/Jobs readiness state-machine + runner authorization preflight; Chat needed same consumer-readable contract.
+- **result**: Chat summaries now consume `intent_quant_readiness.state_machine` and `runner_authorization_preflight`, showing novice-readable progress/current/next-step and real-engine-not-authorized copy while keeping proof-only markers in source/contract evidence.
+- **next**: `REAL_RUNNER_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_PREFLIGHT` as read-only preflight contract only; no authorization or execution grant.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Added display-only readiness summary helper and wired it into Chat result summaries. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Added RED/GREEN coverage for Chat readiness copy and consumer-grade no-marker default text. |
+| `apps/quant_assistant/web/src/lib/routeEvidenceExecution.contract.ts` | Added intent readiness/preflight execution-detail contract evidence. |
+| `apps/quant_assistant/tests/test_route_evidence_cross_surface_contract_unit.py` | Added cross-surface source contract for Chat/Jobs readiness/preflight markers. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · expected 2 failures before implementation, plus consumer-copy RED 1 failure before marker cleanup |
+| focused GREEN | pass · 2 passed |
+| related regression | pass · 57 passed |
+| Python ruff | pass |
+| route-evidence contract script | pass |
+| web lint | pass · exit 0 with pre-existing `ShellLayoutContext.tsx` react-refresh warning |
+| web build | pass |
+| Jobs browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5` |
+
+## Worker Notes
+
+Permanent worker threads were reached before dispatch. `test-engineer` (`019eeece-52d7-7b73-868a-7beb496ba303`) reported success with a minimal Chat/Jobs parity test design and no-execution forbidden matrix. `code-reviewer` (`019eeed1-7e14-7342-9d45-d7948aec94d2`) reported success and recommended a display-only helper while avoiding runtime/rule_route changes and authorization wording.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No page-load auto POST, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, migration/backfill/background process, or PL-H batch execution was started.
+
+## Residual Risk
+
+Chat/Jobs readiness parity is complete for consumer display and source-contract evidence. Real runner authorization/config/rollback-audit remains deferred behind a read-only preflight contract; it must not grant manual acceptance, authorization, execution permission, runner/adapter connection, DB-backed execution, or PL-H batch.
+
+---
+
 # Orchestrator Report - loop256-auto-backtest-flow-readiness-state-machine
 
 **Updated**: 2026-06-23T20:26:05+08:00
