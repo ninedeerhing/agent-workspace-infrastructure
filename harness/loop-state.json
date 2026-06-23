@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T02:47:36+08:00",
+  "updated_at": "2026-06-24T03:40:21+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "chat-manual-safe-simulation-recovery-action-parity-loop263",
-  "next_atomic_action": "MANUAL_SAFE_SIMULATION_CONSUMER_UX_ACCEPTANCE_WALKTHROUGH：在不启用真实 runner/PL-H 的前提下，用现有 mocked/injected safe-simulation path 做一次消费级端到端验收：从 Chat 触发“检查候选/开始安全模拟/查看结果”到 Jobs 页面显式按钮/结果展示，确认小白能理解因子候选、计划、明确触发、安全模拟结果与下一步；若验收发现文案/入口不清晰，做同一阶段的 UX 修正；仍禁止 backtest_dispatch 自动触发、PL-H batch、真实/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、page-load POST、background/migration/backfill、secret 输出。",
-  "next_after": "After consumer UX acceptance of the mocked/injected safe simulation flow, decide whether to harden the manual confirmation UX further or enter real-runner authorization/config/rollback-audit review; do not enable PL-H or a real/default runner without explicit later gates.",
+  "current_slice": "manual-safe-simulation-status-contract-chat-api-loop264",
+  "next_atomic_action": "MINING_JOB_NORMALIZED_PRODUCT_STATE_API_CONTRACT_LOOP265：在不启用真实 runner/PL-H 的前提下，把 loop264 manual_safe_simulation_status 上移到 MiningJob list/detail observability/API 的统一 read-only product_state/manual_safe_status 合同，使 Chat、Jobs、API 共用“候选生成 -> panel/F6 筛选证据 -> reviewed plan -> 等待明确触发 -> 安全模拟结果 -> 下一步”的状态，而不是各自拼散落文案；补齐 list/detail 序列化、Chat/Jobs 消费和 fail-closed tests/smoke；仍禁止 backtest_dispatch 自动触发、PL-H batch、真实/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、page-load POST、background/migration/backfill、secret 输出。",
+  "next_after": "After MiningJob normalized product_state/manual_safe_status is shared across API, Chat, and Jobs, proceed to the next core auto-mining-to-auto-backtest phase: durable safe-simulation result roundtrip and explicit authorization/config/rollback-audit review only if product-state acceptance is stable; do not enable PL-H or a real/default runner without explicit later gates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop263-chat-manual-safe-simulation-recovery-action-parity",
+  "last_tick": "loop264-manual-safe-simulation-status-contract-chat-api",
   "last_sync_sources": [
+    "loop264 Manual-safe simulation unified status contract + Chat/API consumption",
+    "loop264 TDD RED 3 failed/6 passed then 9 passed status contract",
+    "loop264 related regression 81 passed; ruff pass; manual_safe_status_smoke OK; Jobs smoke ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[]",
+    "loop264 code-reviewer P1 recheck success; verifier final success; no-execution marker gate expanded",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.591",
     "loop263 Chat manual-safe simulation runtime/session recovery and action parity",
     "loop263 TDD RED expected 3 failed / 36 deselected before implementation",
     "loop263 GREEN focused 3 passed; Chat/API/intent group 51 passed; session/resume group 16 passed",
@@ -1072,7 +1077,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop263 completed Chat runtime/session recovery and action parity for manual-safe simulation. Chat follow-ups such as 检查候选/开始安全模拟/查看结果 now recover reviewed_backtest_plan or manual_safe_simulation from recent assistant brain_executions metadata and return a static consumer-facing status/result plus the same explicit Jobs/API action handoff. This branch does not start a full Brain job or backtest job and remains no-execution: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
+    "note": "loop264 completed a pure manual_safe_simulation_status contract and consumed it from Chat/API follow-up paths. The contract normalizes no_context, plan_ready, awaiting_explicit_trigger, completed, and blocked states; it fail-closes on upstream no-execution marker drift and trigger_request/action mismatch. Chat/API no-context manual-safe follow-ups now return a static status instead of starting Brain/backtest jobs. This branch remains no-execution: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
   },
-  "last_completed_note": "loop263 Chat Manual-safe Simulation Recovery and Action Parity complete. Added Chat runtime/session recovery so short follow-ups like “检查候选/开始安全模拟/查看结果” read the latest assistant brain_executions metadata, recover reviewed_backtest_plan or manual_safe_simulation, and return a static consumer-facing status/result with the same explicit Jobs/API action handoff. The route kind is manual_safe_simulation_status with job_id=null, so it does not start a full Brain job or factor/backtest job. Verification: TDD RED 3 failed expected before implementation; focused GREEN 3 passed; Chat/API/intent group 51 passed; session/resume group 16 passed; MiningJob/Jobs group 49 passed; Chat/brain resume group 63 passed; ruff all pass; targeted forbidden-path scan found no new trigger/worker/plan/executor path in the manual-safe recovery branch. Permanent test-engineer/code-reviewer reports were used read-only. Next_atomic_action is consumer UX acceptance walkthrough for the mocked/injected safe simulation path, not PL-H/real runner execution."
+  "last_completed_note": "loop264 Manual-safe Simulation Product Function Closure v1 complete. Added a pure qa.quant_mining.manual_safe_simulation_status.build_manual_safe_simulation_status contract and wired Chat/API follow-up consumption so no_context, plan_ready, awaiting_explicit_trigger, completed, and blocked states are shared rather than scattered copy. The contract accepts existing safe action hints without trigger_request, blocks mismatched trigger_request.action_id, and fail-closes on upstream no-execution marker drift including real/default runner, adapter, page-load POST, env/DB read, background, migration/backfill, PL-H, ran_backtest, and secret-output markers. Verification: RED 3 failed/6 passed before implementation; status contract 9 passed; related regression 81 passed; targeted ruff pass; git diff --check exit 0 with CRLF warnings only; manual_safe_status_smoke OK; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[]; code-reviewer P1 recheck success; verifier final success. Next_atomic_action is MINING_JOB_NORMALIZED_PRODUCT_STATE_API_CONTRACT_LOOP265 to move this unified product state into MiningJob list/detail API observability for Chat/Jobs/API reuse, not PL-H/real runner execution."
 }

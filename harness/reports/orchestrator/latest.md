@@ -1,3 +1,52 @@
+# Orchestrator Report - loop264-manual-safe-simulation-status-contract-chat-api
+
+**Updated**: 2026-06-24T03:40:21+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Manual-safe Simulation Product Function Closure v1.
+- **trigger**: loop263 restored Chat manual-safe follow-ups, but the state still lived as scattered display logic. The next core step was a shared status contract that Chat/API can consume without starting execution.
+- **result**: Added pure `build_manual_safe_simulation_status(...)` with `no_context`, `plan_ready`, `awaiting_explicit_trigger`, `completed`, and `blocked` states. Chat/API follow-up paths now use it, no-context manual-safe queries return static status, and action hints without `trigger_request` are still recognized when they are explicit manual-safe actions.
+- **next**: `MINING_JOB_NORMALIZED_PRODUCT_STATE_API_CONTRACT_LOOP265`; move the shared status into MiningJob list/detail observability/API so Chat, Jobs, and API consume one product state source. Still no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, page-load POST, env/DB read, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/manual_safe_simulation_status.py` | New pure manual-safe simulation status contract with expanded fail-closed safety markers. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Consumes the status contract for reviewed-plan, completed-result, and no-context manual-safe follow-up replies. |
+| `apps/quant_assistant/tests/test_manual_safe_simulation_status_unit.py` | Added contract coverage for five states, action hints, upstream forbidden marker drift, trigger mismatch, and purity. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Added Chat no-context/status copy coverage and aligned fixture trigger_request with the real API shape. |
+| `apps/quant_assistant/tests/test_chat_job_router_l1.py` | Proved manual-safe no-context/status queries return static replies without starting Brain/backtest jobs. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · expected **3 failed / 6 passed** before full safety and trigger mismatch implementation |
+| focused status contract | pass · **9 passed** |
+| related regression | pass · **81 passed** across status, Chat, router, MiningJob API, and backtest execution tests |
+| Python ruff | pass · targeted files clean |
+| diff hygiene | pass · `git diff --check` exit 0, only CRLF warnings on touched existing files |
+| pure smoke | pass · `manual_safe_status_smoke OK` |
+| Jobs browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5` |
+| code-reviewer P1 recheck | pass · forbidden marker coverage and trigger_request/action mismatch resolved |
+| verifier final gate | pass · final success after P1 fixes |
+
+## Worker Notes
+
+Permanent worker threads were used. `executor` implemented the pure status helper and initial tests. `test-engineer` returned a success matrix for no_context/plan_ready/awaiting/completed/blocked and no-job/no-runner paths. `code-reviewer` first found two P1 gaps, then rechecked success after expanded forbidden marker scanning and strict trigger_request matching. `verifier` returned final success after P1 fixes and smoke evidence.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. The new module has no env/DB/network/runner imports. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, page-load POST, background process, migration, or backfill was started.
+
+## Residual Risk
+
+The shared status contract is now in Chat/API follow-up logic, but MiningJob list/detail still needs to expose it as normalized `product_state/manual_safe_status` so Jobs and downstream clients do not maintain separate status derivations.
+
+---
+
 # Orchestrator Report - loop263-chat-manual-safe-simulation-recovery-action-parity
 
 **Updated**: 2026-06-24T02:47:36+08:00
