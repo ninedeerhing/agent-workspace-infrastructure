@@ -1,3 +1,52 @@
+# Orchestrator Report - loop265-mining-job-normalized-product-state-api-contract
+
+**Updated**: 2026-06-24T04:04:25+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G MiningJob Normalized Product State API Contract.
+- **trigger**: loop264 produced a pure manual-safe simulation status contract, but MiningJob list/detail, Chat, and Jobs still risked deriving state separately.
+- **result**: MiningJob observability now exposes shared `manual_safe_status` and `product_state`; Chat prefers normalized product state over legacy manual-safe payloads; Jobs renders the same safety simulation state in its default consumer UI.
+- **next**: `DURABLE_SAFE_SIMULATION_RESULT_ROUNDTRIP_LOOP266`; prove explicit-trigger completed `product_state` roundtrips through API response, refreshed list/detail, Jobs default card, and Chat follow-up/session recovery. Still no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, page-load POST, env/DB read, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Builds `manual_safe_status` and wraps it in `product_state` for MiningJob list/detail observability. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Prefers normalized `product_state.manual_safe_status` / `observability.manual_safe_status` before legacy safe-simulation or reviewed-plan copy. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Proves list/detail API expose identical `manual_safe_status` + `product_state` without triggering execution paths. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Proves Chat follows normalized API product state even when legacy payloads also exist. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Adds default “安全模拟状态” rendering from normalized product state with no-execution markers. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds initial/refreshed product_state fixture checks for awaiting/completed status and safety markers. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Adds source/smoke assertions for product_state/manual_safe_status fixture wiring. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · executor saw expected `KeyError: manual_safe_status` before implementation |
+| focused API/status | pass · **31 passed** |
+| final focused regression | pass · **66 passed** across API, status contract, Chat, and Jobs smoke source tests |
+| Python ruff | pass · targeted files clean |
+| web build | pass · `tsc -b && vite build` |
+| Jobs browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5` |
+| code-reviewer P1 recheck | pass · normalized product_state now outranks legacy manual_safe_simulation payloads in Chat |
+
+## Worker Notes
+
+Permanent worker threads were used. `executor` implemented the MiningJob product-state contract and initial API tests. `test-engineer` returned a success matrix for list/detail API, Chat/Jobs parity, fail-closed markers, and no execution. `code-reviewer` found a P1 where Chat could prefer legacy payloads over normalized product_state, then rechecked success after the fix. `verifier` accepted focused tests, ruff, build, smoke, and no-execution evidence.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, page-load POST, background process, migration, or backfill was started. The new `trigger_request` material is status-validation context only, not an execution grant.
+
+## Residual Risk
+
+Completed safe-simulation result roundtrip is the next core gap: explicit trigger completion must feed the same `product_state.completed` into API response, refreshed list/detail, Jobs, and Chat/session recovery.
+
+---
+
 # Orchestrator Report - loop264-manual-safe-simulation-status-contract-chat-api
 
 **Updated**: 2026-06-24T03:40:21+08:00

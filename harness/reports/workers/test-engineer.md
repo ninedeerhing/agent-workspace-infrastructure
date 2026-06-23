@@ -1,6 +1,18 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T03:40:21+08:00
+更新时间：2026-06-24T04:04:25+08:00
+
+## Tick loop265-mining-job-normalized-product-state-api-contract
+
+- **任务 ID**：loop265-mining-job-normalized-product-state-api-contract-test-design
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **状态**：success
+- **任务**：只读复核 MiningJob normalized `product_state/manual_safe_status` 的 TDD 验收矩阵。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；验收应覆盖 list/detail API 同源 `manual_safe_status` + `product_state`、Chat/Jobs parity、legacy payload coexistence、fail-closed no-execution markers、no real/default runner、no adapter invocation、no actual adapter dry-run、no DB-backed backtest、no PL-H、no page-load POST、no background/migration/backfill、no secret output。
+- **orchestrator 本地验证**：API/status group **31 passed**；final focused regression **66 passed**；targeted ruff pass；web build pass；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`。
+- **roster_update**：workload cleared；mistakes none；lesson: product-state API tests must prove shared source-of-truth and UI parity, not only field existence。
 
 ## Tick loop264-manual-safe-simulation-status-contract-chat-api
 

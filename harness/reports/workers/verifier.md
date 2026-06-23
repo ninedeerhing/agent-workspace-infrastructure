@@ -1,6 +1,18 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-24T03:40:21+08:00
+更新时间：2026-06-24T04:04:25+08:00
+
+## Tick loop265-mining-job-normalized-product-state-api-contract
+
+- **任务 ID**：loop265-mining-job-normalized-product-state-api-contract-final-verification
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **状态**：success
+- **任务**：只读验收 MiningJob normalized `product_state/manual_safe_status`，确认 API/Chat/Jobs 共享状态源、P1 legacy priority 修复、no page-load POST/duplicate trigger/no-execution 边界成立。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：PASS；orchestrator rerun confirmed API/status group **31 passed**；final focused regression **66 passed**；targeted ruff pass；web build pass；Jobs smoke `ok=true` / `pageLoadTriggerRequests=[]` / `duplicateTriggerUrls=[]` / `miningJobsReadCount=5`；code-reviewer P1 recheck success。
+- **roster_update**：workload cleared；mistakes none；lesson: final verification must include mixed normalized+legacy payload behavior, because shared product-state acceptance fails if legacy fields can override API truth。
+- **残余风险**：completed safe-simulation result roundtrip 尚未验收；下一拍必须证明 explicit trigger 后 API response、refreshed list/detail、Jobs 与 Chat/session recovery 读取同一 `product_state.completed`，仍不得启动 PL-H/runner execution。
 
 ## Tick loop264-manual-safe-simulation-status-contract-chat-api
 

@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-24T03:40:21+08:00
+updated_at: 2026-06-24T04:04:25+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-24T03:40:21+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-24 loop265 · 已完成 MiningJob Normalized Product State API Contract：MiningJob list/detail observability/API 现在从 loop264 纯 `manual_safe_simulation_status` 契约派生并暴露统一 `manual_safe_status` + `product_state`。`build_mining_job_observability(...)` 使用 reviewed plan、manual_safe_simulation、explicit action hints 和 latest audit event 构造状态；Chat follow-up/session recovery 优先消费 normalized `product_state.manual_safe_status`，修复 legacy `manual_safe_simulation` 与 product_state 同时存在时旧文案覆盖新状态的 P1；Jobs 默认层显示同一“安全模拟状态”卡片。改动：`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/chat_brain.py`、`tests/test_mining_job_api_unit.py`、`tests/test_ui_chat_brain_unit.py`、`tests/test_jobs_page_acceptance_smoke_unit.py`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`。验证：executor RED `KeyError manual_safe_status`；API/status group 31 passed；final focused regression 66 passed；ruff pass；web build pass；Jobs smoke ok=true/pageLoadTriggerRequests=[]/duplicateTriggerUrls=[]/miningJobsReadCount=5；code-reviewer P1 recheck success；test-engineer/verifier accepted。下一动作：`DURABLE_SAFE_SIMULATION_RESULT_ROUNDTRIP_LOOP266`，用同一 `product_state.completed` 证明 explicit trigger 后 API response、refreshed list/detail、Jobs 默认卡片、Chat follow-up/session recovery 完成态一致；仍禁止 PL-H/真实 runner/adapter/DB-backed execution/page-load POST/background/migration/backfill/secret 输出。
+
 [CONTEXT] 2026-06-24 loop264 · 已完成 Manual-safe Simulation Product Function Closure v1：新增纯 `qa.quant_mining.manual_safe_simulation_status.build_manual_safe_simulation_status(...)`，把安全模拟状态统一为 `no_context / plan_ready / awaiting_explicit_trigger / completed / blocked`，并接入 Chat/API follow-up。无上下文时返回静态 no-context 状态，不启动 Brain/backtest job；有 reviewed plan/action/result 时复用同一状态；`SAFETY` 固定 requires_explicit_trigger=true，real/default runner、adapter、actual adapter dry-run、DB-backed backtest、page-load POST、env/DB read、background、migration/backfill、PL-H、ran_backtest、secret output 等 marker 全 false；`_blockers` 扫描 payload/action/trigger_request/manual_safe_simulation/observability/latest_audit/result 及 nested safety/side_effects/result；`trigger_request.action_id` 必须匹配 safe action，否则 blocked。改动：`src/qa/quant_mining/manual_safe_simulation_status.py`、`src/qa/ui/chat_brain.py`、`tests/test_manual_safe_simulation_status_unit.py`、`tests/test_ui_chat_brain_unit.py`、`tests/test_chat_job_router_l1.py`。验证：RED 3 failed/6 passed；status contract 9 passed；related regression 81 passed；ruff pass；manual_safe_status_smoke OK；Jobs smoke ok=true/pageLoadTriggerRequests=[]/duplicateTriggerUrls=[]；code-reviewer P1 recheck success；verifier final success。下一动作：`MINING_JOB_NORMALIZED_PRODUCT_STATE_API_CONTRACT_LOOP265`，把该状态上移到 MiningJob list/detail observability/API 的统一 `product_state/manual_safe_status`，让 Chat、Jobs、API 共用同一状态源。
 
 [CONTEXT] 2026-06-24 loop263 · 已完成 Chat Manual-safe Simulation Recovery and Action Parity：Chat runtime/session 现在会在用户后续说“检查候选/开始安全模拟/查看结果”时，从最近 assistant `brain_executions` metadata 恢复 `reviewed_backtest_plan` / `manual_safe_simulation` / `run_auto_backtest` 或 `retry_auto_backtest` action hints，并返回消费级静态状态或已有安全模拟结果。API router 返回 `route_kind=manual_safe_simulation_status`、`job_id=None`，不会启动 full Brain job、factor/backtest job，也不会落入 generic `backtest_dispatch`；默认文案隐藏 raw POST URL 和 `/api/v1/...` 内部路径。改动：`src/qa/ui/chat_brain.py`、`src/qa/api/chat_job_router.py`、`tests/test_ui_chat_brain_unit.py`、`tests/test_chat_job_router_l1.py`。验证：RED expected 3 failed；focused GREEN 3 passed；Chat/API/intent group 51 passed；session/resume group 16 passed；MiningJob/Jobs group 49 passed；Chat/brain resume group 63 passed；`uv run ruff check .` pass；targeted forbidden-path scan 未发现新增 trigger/worker/plan/executor path。test-engineer/code-reviewer 永久线程只读 report success。未读取/输出 secret，未启动 real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、PL-H batch、page-load POST、background/migration/backfill。
@@ -162,18 +164,18 @@ updated_at: 2026-06-24T03:40:21+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | manual-safe-simulation-happy-path-loop261 |
-| `last_tick` | loop261-manual-safe-simulation-happy-path |
+| `current_slice` | mining-job-normalized-product-state-api-contract-loop265 |
+| `last_tick` | loop265-mining-job-normalized-product-state-api-contract |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-CHAT_INTENT_MANUAL_SAFE_SIMULATION_BRIDGE: connect loop261 `manual_safe_simulation` to the Chat/intent quant state machine so users can ask to inspect candidates, manually confirm, start an injected/mock-safe simulation, or view existing safe-simulation results; keep PL-H, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, background/migration/backfill, and secret output forbidden.
+DURABLE_SAFE_SIMULATION_RESULT_ROUNDTRIP_LOOP266：在不启用真实 runner/PL-H 的前提下，把 loop265 统一 `product_state/manual_safe_status` 串到 durable safe-simulation result roundtrip：explicit trigger 后 API response、refreshed MiningJob list/detail、Chat follow-up/session recovery、Jobs 默认卡片必须从同一 `product_state.completed` 状态读取 `completed_count/run_ids/next_step/audit refs`；补齐 API/Chat/Jobs tests + smoke，仍禁止 backtest_dispatch 自动触发、PL-H batch、真实/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、page-load POST、background/migration/backfill、secret 输出。
 
 ### next_after
 
-After auto-backtest flow readiness state-machine hardening, continue toward explicit authorization/config/rollback-audit preflight for real runner eligibility. Any real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch execution, or authorization grant still requires a later explicit gate.
+After durable completed-state roundtrip is stable across API, Jobs, and Chat/session recovery, continue toward explicit authorization/config/rollback-audit review for real runner eligibility. Any real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch execution, or authorization grant still requires a later explicit gate.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -278,11 +280,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop249 已完成 PL-G later executable handoff manual acceptance artifact review-only mocked-only，并保持 worker channel identity 修复。2026-06-22 governance repair 将 skill router / worker dispatch / goal bundle 从 advisory 提升为 loop 前置硬门禁；下一步必须执行 explicit authorization/config/runner/rollback-audit packet boundary planning-only mocked-only，避免把 artifact review proof 误认为 manual acceptance grant、authorization grant、runner/adapter connection、runner invocation、adapter invocation、actual adapter dry-run execution、executable handoff approval 或 PL-H execution。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop265 已完成 PL-G MiningJob normalized product_state/manual_safe_status API contract，使 MiningJob list/detail、Chat、Jobs 共享同一 manual-safe 产品状态源。下一步必须执行 durable safe-simulation result roundtrip，用 completed `product_state` 证明 explicit trigger 后 API response、refreshed list/detail、Jobs 默认卡片与 Chat follow-up/session recovery 完成态一致；不得把该状态误认为 manual acceptance grant、authorization grant、runner/adapter connection、runner invocation、adapter invocation、actual adapter dry-run execution、DB-backed backtest、executable handoff approval 或 PL-H execution。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `explicit authorization/config/runner/rollback-audit packet boundary planning-only mocked-only`：使用 loop249 artifact-review-only proof 产出 fail-closed planning packet，只定义 explicit authorization evidence packet / runner-adapter config boundary / rollback-audit before-after requirements / missing-runner fail-closed boundary / PL-H non-eligibility real-batch gate / no-execution verification matrix；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation/actual adapter dry-run execution、PL-H batch execution、manual acceptance grant、authorization grant 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `DURABLE_SAFE_SIMULATION_RESULT_ROUNDTRIP_LOOP266`：使用 loop265 `product_state/manual_safe_status` 作为唯一状态源，证明 explicit trigger 后 completed 状态在 API response、refreshed MiningJob list/detail、Jobs 默认卡片与 Chat follow-up/session recovery 中一致；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation/actual adapter dry-run execution、PL-H batch execution、manual acceptance grant、authorization grant 与 secret 输出。
 
 ## Resume Command
 

@@ -1,6 +1,17 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-24T03:40:21+08:00
+**Updated**: 2026-06-24T04:04:25+08:00
+
+## Tick loop265-mining-job-normalized-product-state-api-contract
+
+- **任务 ID**：loop265-mining-job-normalized-product-state-api-contract-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **状态**：success
+- **任务**：有界实现 MiningJob list/detail observability/API 的 normalized `manual_safe_status` + `product_state`，范围限于 mining runner/API tests；不读取/打印 secret，不连接 DB/runner，不启动 backtest/migration/backfill。
+- **变更**：在 `build_mining_job_observability(...)` 中从 reviewed plan、manual_safe_simulation、safe action hints 和 latest audit event 构造 `manual_safe_status`，并包装成 `product_state`；补齐 list/detail API contract test。orchestrator 后续接入 Chat/Jobs 消费与 P1 legacy-priority 修复。
+- **orchestrator 本地验证**：RED expected `KeyError: manual_safe_status`；API/status group **31 passed**；最终 focused regression **66 passed**；targeted ruff pass；web build pass；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`。
+- **roster_update**：workload cleared；mistakes none；lesson: MiningJob product-state contracts must be API-first and shared by Chat/Jobs, not copied independently in UI layers。
 
 ## Tick loop264-manual-safe-simulation-status-contract-chat-api
 

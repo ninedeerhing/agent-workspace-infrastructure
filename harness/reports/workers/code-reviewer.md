@@ -1,6 +1,18 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T03:40:21+08:00
+更新时间：2026-06-24T04:04:25+08:00
+
+## Tick loop265-mining-job-normalized-product-state-api-contract
+
+- **任务 ID**：loop265-mining-job-normalized-product-state-api-contract-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **状态**：success after P1 recheck
+- **任务**：只读审查 MiningJob normalized `product_state/manual_safe_status` 是否真正成为 API/Chat/Jobs 的共享状态源，是否误表达执行授权或引入真实执行路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：初审发现一项 P1：真实 API payload 同时包含 normalized `product_state.manual_safe_status` 与 legacy `manual_safe_simulation` 时，Chat 仍可能先展示 legacy 结果，导致用户看到旧状态。orchestrator 修复后 recheck PASS：Chat now prefers normalized `product_state.manual_safe_status` / `observability.manual_safe_status` before legacy fields; no runner/adapter/DB/backfill/page-load path added。
+- **orchestrator 本地验证**：final focused regression **66 passed**；targeted ruff pass；web build pass；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`。
+- **roster_update**：workload cleared；mistakes none；lesson: normalized API product_state must outrank legacy payloads whenever both are present, otherwise state unification is only nominal。
 
 ## Tick loop264-manual-safe-simulation-status-contract-chat-api
 
