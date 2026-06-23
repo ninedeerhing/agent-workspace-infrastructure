@@ -1,3 +1,44 @@
+# Orchestrator Report - loop254-consumer-jobs-ux-hardening
+
+**Updated**: 2026-06-23T19:45:38+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G consumer-grade Jobs UX hardening.
+- **trigger**: user feedback that final display must be consumer-grade and understandable for novice users.
+- **result**: Jobs/assistant default visible layer now uses Chinese consumer copy for progress, manual confirmation, mocked result, acceptance checklist, and batch-readiness status; technical proof remains traceable in folded `高级诊断` or sr-only/fixture evidence.
+- **stop boundary**: `manual_ux_acceptance_required_loop254`; next requires user UX acceptance, not more proof-only loop work.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Reworked default Jobs copy into consumer-grade Chinese, folded raw gate/action/audit details into advanced diagnostics, added folded job metadata/state diagnostics, and changed manual trigger/result/checklist copy. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Updated browser smoke to use Chinese actions/copy and added consumer-visible assertions that exclude sr-only and folded diagnostics. |
+| `apps/quant_assistant/tests/test_jobs_page_action_rendering_unit.py` | Updated source contract for consumer-grade copy and advanced diagnostics separation. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Updated acceptance smoke source contract for Chinese consumer-facing result and checklist copy. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| JobsPage regression | pass · `19 passed` |
+| node syntax | pass · `node --check web\scripts\smoke-jobs-page-fixture.mjs` |
+| targeted eslint | pass · `npx eslint src\pages\JobsPage.tsx scripts\smoke-jobs-page-fixture.mjs` |
+| web build | pass |
+| browser smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5` |
+| consumer-visible UX gate | pass · default visible text includes consumer Chinese labels and hides `pl_g_real_batch_demand_gate`, `trigger_request`, `action_id`, `side_effects=none`, `trigger_response_*`, and proof marker internals |
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No page-load auto POST, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, migration/backfill/background process, or PL-H batch execution was started.
+
+## Residual Risk
+
+This is still the manual UX acceptance boundary. User should inspect whether the consumer-grade default display is clear enough for a novice and whether `高级诊断` is appropriately separated from the default experience. After acceptance, continue into intent quant integration readiness / auto-backtest flow readiness hardening.
+
+---
+
 # Orchestrator Report - loop253-live-jobs-api-mining-job-readiness-hotfix
 
 **Updated**: 2026-06-23T19:08:00+08:00

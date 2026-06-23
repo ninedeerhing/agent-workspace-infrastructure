@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-23T19:08:00+08:00
+updated_at: 2026-06-23T19:45:38+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-23T19:08:00+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-23 loop254 · 已完成 consumer-grade Jobs UX hardening：用户指出最终展示必须消费级、小白也能看明白。本轮把 Jobs/assistant 默认可见层改为中文消费级说明：`任务与自动研究进度`、`自动挖掘与模拟回测`、`批量执行准备情况`、`需要你确认的操作`、`模拟回测结果已生成`、`请检查这次结果是否清楚`；内部 `pl_g_*` gate、`trigger_request`、`action_id`、route/side_effect/audit/trigger_response proof 保留在折叠 `高级诊断` 或 sr-only/fixture 证据层。改动：`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、`tests/test_jobs_page_action_rendering_unit.py`、`tests/test_jobs_page_acceptance_smoke_unit.py`。验证：JobsPage regression 19 passed，node --check pass，targeted eslint pass，web build pass，`npm run smoke:jobs-page` ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5，新增 consumer-visible checks 证明默认可见层隐藏内部协议 marker。未读取/输出 secret，未启动 real/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、migration/backfill/background 或 PL-H batch。停止白名单：`manual_ux_acceptance_required_loop254`；下一动作是用户验收消费级默认展示是否清楚、不误导为真实执行；验收后进入 intent quant integration readiness / auto-backtest flow readiness hardening。
+
 [CONTEXT] 2026-06-23 loop253 hotfix · 用户 live Jobs 页面验收时暴露 `UndefinedTable: relation "mining_job" does not exist`。根因：当前 API DSN `host.docker.internal:55432/quant_assistant` 已有行情核心表，但未执行到 loop148 的 additive `mining_job` schema。已只执行 `mining_job` 表 + 两个索引 DDL；未跑整包 schema、未写业务 job、未启动 migration/backfill/background/real backtest、未输出 secret。复验：`GET /api/v1/quant/mining-jobs` -> HTTP 200, `jobs=[]`, `error=null`。注意：live 空 DB 队列页面不是 loop253 UX package 通过证据；manual UX acceptance 仍需验收 completed mocked/injected-runner path 下的 `Auto mining to backtest result` + `Manual UX acceptance package` 文案。
 
 [CONTEXT] 2026-06-23 loop253 · 已完成 PL-G manual UX acceptance package / user-facing verification checklist：Jobs/assistant 在 loop252 `Auto mining to backtest result` 下方新增 `Manual UX acceptance package`，只在 `productHappyPathSummary` 存在、route flow 为 `auto_mining_to_auto_backtest`、latest audit result status 为 `completed` 时显示。用户可验证：intent route、MiningJob action、explicit trigger、mocked backtest audit/run ids；明确 blocked：real/default runner、actual adapter dry-run、DB-backed backtest、PL-H batch、background/migration/backfill、secret output。改动：`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、`tests/test_jobs_page_action_rendering_unit.py`、`tests/test_jobs_page_acceptance_smoke_unit.py`。验证：RED expected，JobsPage regression 19 passed，jobs_fixture_emits 54 passed，ruff/node-check/eslint/build/smoke pass，smoke `ok=true` / `pageLoadTriggerRequests=[]` / `duplicateTriggerUrls=[]` / `miningJobsReadCount=5` / manual UX acceptance markers visible，secret/diff/runtime cleanup pass；test-engineer success，code-reviewer success，verifier success。仍禁止 manual acceptance grant、authorization grant、execution permission、real/default runner connection/configuration/invocation、actual adapter dry-run、page-load auto POST、background、migration/backfill、DB-backed backtest、PL-H execution、secret output。停止白名单：`manual_ux_acceptance_required_loop253`；用户 UX 验收后下一步是 intent quant integration readiness / auto-backtest flow readiness hardening。
@@ -142,14 +144,14 @@ updated_at: 2026-06-23T19:08:00+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | pl-g-product-outcome-auto-mining-to-auto-backtest-happy-path |
-| `last_tick` | loop251-operator-reviewer-authorization-packet-review-only |
-| `stop_reason` | null |
+| `current_slice` | manual-ux-acceptance-required-after-loop254-consumer-jobs-ux |
+| `last_tick` | loop254-consumer-jobs-ux-hardening |
+| `stop_reason` | manual_ux_acceptance_required_loop254 |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-USER_MANUAL_UX_ACCEPTANCE_REQUIRED: user verifies in Jobs/assistant that the `Manual UX acceptance package` under `Auto mining to backtest result` is clear, complete, and not misleading as real execution. It should let the user verify route/action/trigger/audit/run-id evidence and clearly see that real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, and secret output remain blocked.
+USER_MANUAL_UX_ACCEPTANCE_REQUIRED: user verifies in Jobs/assistant that the consumer-grade default display is understandable for novice users and not misleading as real execution. Focus on `模拟回测结果已生成`, `请检查这次结果是否清楚`, `批量执行准备情况`, and the boundary between default UI and folded `高级诊断`.
 
 ### next_after
 

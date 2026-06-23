@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-23T10:44:24Z",
-  "last_tick": "loop253-manual-ux-acceptance-package",
-  "pytest_passed": 54,
+  "recorded_at": "2026-06-23T11:47:27Z",
+  "last_tick": "loop254-consumer-jobs-ux-hardening",
+  "pytest_passed": 19,
   "ruff": "ok",
   "evidence_paths": [
-    "loop253 manual UX acceptance package: JobsPage regression 19 passed; jobs_fixture_emits 54 passed; ruff ok; node --check ok; eslint ok; web build ok; smoke ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 manual UX acceptance visible; secret scan 0; listener cleanup 0"
+    "loop254 consumer-grade Jobs UX hardening: JobsPage regression 19 passed; node --check ok; eslint ok; web build ok; smoke ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 consumer-visible checks hide internal protocol markers; no real/default runner/adapter/backfill/PL-H/secret output"
   ],
-  "section5_ref": "5.579",
+  "section5_ref": "5.581",
   "source": "manual"
 }
