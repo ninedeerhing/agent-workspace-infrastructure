@@ -1,3 +1,50 @@
+# Orchestrator Report - loop263-chat-manual-safe-simulation-recovery-action-parity
+
+**Updated**: 2026-06-24T02:47:36+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Chat Manual-safe Simulation Recovery and Action Parity.
+- **trigger**: loop262 made manual-safe phrases route safely, but multi-turn Chat still needed to restore the same reviewed plan / safe result / explicit action status without starting another job.
+- **result**: Added Chat metadata recovery for `reviewed_backtest_plan` and `manual_safe_simulation`, plus API router static replies for manual-safe follow-ups. “检查候选 / 开始安全模拟 / 查看结果” now returns `route_kind=manual_safe_simulation_status` with `job_id=None` and shows the same Jobs/API explicit action handoff or existing result.
+- **next**: `MANUAL_SAFE_SIMULATION_CONSUMER_UX_ACCEPTANCE_WALKTHROUGH`; still no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, page-load POST, background/migration/backfill, DB-backed backtest, or execution authorization.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Added manual-safe follow-up detection, metadata recovery, action handoff notes, and static consumer replies. |
+| `apps/quant_assistant/src/qa/api/chat_job_router.py` | Routed manual-safe follow-ups to static `manual_safe_simulation_status` replies before full Brain/backtest job creation. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Added reviewed-plan and completed-result recovery coverage. |
+| `apps/quant_assistant/tests/test_chat_job_router_l1.py` | Added router coverage proving no Brain/backtest job starts for manual-safe follow-ups. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · expected **3 failed** before implementation |
+| focused GREEN | pass · **3 passed** |
+| Chat/API/intent group | pass · **51 passed** |
+| session/resume group | pass · **16 passed** |
+| MiningJob/Jobs group | pass · **49 passed** |
+| Chat/brain resume group | pass · **63 passed** |
+| Python ruff | pass · `uv run ruff check .` |
+| forbidden-path scan | pass · no new trigger/worker/plan/executor path in manual-safe recovery branch |
+
+## Worker Notes
+
+Permanent worker threads were used read-only. `test-engineer` returned a success matrix for runtime/session hydration, explicit action status, completed result display, fail-closed no-plan handling, and no auto execution. `code-reviewer` returned a success review requiring recovery/display of existing action state only, no new execution capability, and no backtest executor call.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, PL-H batch, page-load POST, background process, migration, or backfill was started.
+
+## Residual Risk
+
+The Chat/Jobs state is now aligned, but the next slice should run a consumer-grade walkthrough of the mocked/injected safe-simulation path and fix unclear wording or entry points before any real-runner authorization/config review.
+
+---
+
 # Orchestrator Report - loop262-chat-intent-manual-safe-simulation-bridge
 
 **Updated**: 2026-06-24T02:28:30+08:00

@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T18:34:34Z",
+  "updated_at": "2026-06-23T18:55:07Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-23T18:34:33Z",
-    "last_tick": "loop262-chat-intent-manual-safe-simulation-bridge",
-    "pytest_passed": 162,
+    "recorded_at": "2026-06-23T18:47:36Z",
+    "last_tick": "loop263-chat-manual-safe-simulation-recovery-action-parity",
+    "pytest_passed": 63,
     "ruff": "pass",
     "evidence_paths": [
-      "loop262 focused 10 passed; related 69 passed; cross-surface 162 passed; ruff pass; forbidden scan no new runner/DB/adapter execution"
+      "loop263 focused 3 passed; Chat/API/intent group 51 passed; session/resume group 16 passed; MiningJob/Jobs group 49 passed; Chat/brain resume group 63 passed; ruff pass; forbidden scan no new trigger/worker/plan/executor path"
     ],
-    "section5_ref": "5.589",
+    "section5_ref": "5.590",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.0002794286111111111,
+  "age_hours": 0.12547513944444444,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-23T18:34:34Z",
+    "at": "2026-06-23T18:55:07Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.0002794286111111111
+    "age_hours": 0.12547513944444444
   }
 }

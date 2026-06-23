@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T02:28:30+08:00",
+  "updated_at": "2026-06-24T02:47:36+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "chat-intent-manual-safe-simulation-bridge-loop262",
-  "next_atomic_action": "CHAT_MANUAL_SAFE_SIMULATION_RECOVERY_AND_ACTION_PARITY：把 loop262 的安全模拟自然语言意图桥接从 route-contract 扩展到 Chat runtime/session 恢复与同一 MiningJob explicit trigger action 状态：用户在多轮对话中说“检查候选/开始安全模拟/查看结果”时，能从最近 reviewed plan/manual_safe_simulation observability 恢复上下文，展示同一 Jobs/API action handoff 或已有结果；仍不自动触发 backtest_dispatch、PL-H batch、真实/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、page-load POST、background/migration/backfill 或 secret 输出。",
-  "next_after": "After Chat runtime/session action parity, run a manual UX acceptance slice for the mocked/injected safe simulation flow only if Chat and Jobs expose the same state/action/result; real-runner authorization/config review remains later and explicitly gated.",
+  "current_slice": "chat-manual-safe-simulation-recovery-action-parity-loop263",
+  "next_atomic_action": "MANUAL_SAFE_SIMULATION_CONSUMER_UX_ACCEPTANCE_WALKTHROUGH：在不启用真实 runner/PL-H 的前提下，用现有 mocked/injected safe-simulation path 做一次消费级端到端验收：从 Chat 触发“检查候选/开始安全模拟/查看结果”到 Jobs 页面显式按钮/结果展示，确认小白能理解因子候选、计划、明确触发、安全模拟结果与下一步；若验收发现文案/入口不清晰，做同一阶段的 UX 修正；仍禁止 backtest_dispatch 自动触发、PL-H batch、真实/default runner、adapter invocation、actual adapter dry-run、DB-backed backtest、page-load POST、background/migration/backfill、secret 输出。",
+  "next_after": "After consumer UX acceptance of the mocked/injected safe simulation flow, decide whether to harden the manual confirmation UX further or enter real-runner authorization/config/rollback-audit review; do not enable PL-H or a real/default runner without explicit later gates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop262-chat-intent-manual-safe-simulation-bridge",
+  "last_tick": "loop263-chat-manual-safe-simulation-recovery-action-parity",
   "last_sync_sources": [
+    "loop263 Chat manual-safe simulation runtime/session recovery and action parity",
+    "loop263 TDD RED expected 3 failed / 36 deselected before implementation",
+    "loop263 GREEN focused 3 passed; Chat/API/intent group 51 passed; session/resume group 16 passed",
+    "loop263 MiningJob/Jobs related group 49 passed; Chat/brain resume group 63 passed",
+    "loop263 ruff all pass; targeted forbidden-path scan no new trigger/worker/plan/executor path in manual-safe recovery branch",
+    "loop263 permanent test-engineer/code-reviewer read-only reports success",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.590",
     "loop262 Chat intent manual-safe simulation bridge in rule_route_decision",
     "loop262 TDD RED expected 3 failed / 7 passed before implementation",
     "loop262 GREEN focused 10 passed; related group 69 passed; cross-surface regression 162 passed",
@@ -1065,7 +1072,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop262 completed Chat intent manual-safe simulation bridge. Manual-safe phrases now early-return in rule_route_decision as run_manual_safe_simulation done/clarify with capability=null, reusing reviewed_backtest_plan/manual_safe_simulation observability and avoiding generic backtest_dispatch. It remains manual-trigger-required and no-execution: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
+    "note": "loop263 completed Chat runtime/session recovery and action parity for manual-safe simulation. Chat follow-ups such as 检查候选/开始安全模拟/查看结果 now recover reviewed_backtest_plan or manual_safe_simulation from recent assistant brain_executions metadata and return a static consumer-facing status/result plus the same explicit Jobs/API action handoff. This branch does not start a full Brain job or backtest job and remains no-execution: no PL-H batch, real/default runner, adapter invocation, actual adapter dry-run, DB-backed backtest, page-load POST, background/migration/backfill, or secret output was introduced."
   },
-  "last_completed_note": "loop262 Chat Intent Manual-safe Simulation Bridge complete. Added manual-safe simulation intent detection and route decisions in rule_route_decision so “开始安全模拟/查看模拟结果/安全模拟结果” recovers reviewed_plan/manual_safe_simulation state and returns done/clarify with task_type=run_manual_safe_simulation and capability=null instead of generic backtest_dispatch. Ready replies point to the explicit page trigger; completed replies summarize injected/mock-safe result ids; missing reviewed plan fail-closes. Verification: TDD RED 3 failed / 7 passed expected; focused GREEN 10 passed; related Chat/API/MiningJob group 69 passed; cross-surface regression 162 passed; ruff all pass; targeted forbidden-path scan found no new runner/DB/adapter execution call; five lifecycle pass with sync finding_count=0 and verification stale=false section5_ref=5.589; CodeX self-check 59 checks / 0 findings; compliance 41 pass / 1 pre-commit dirty-worktree warn / 0 fail / 0 findings. Permanent test-engineer/code-reviewer reports were used read-only. Next_atomic_action is Chat runtime/session recovery and action parity, not PL-H/real runner execution."
+  "last_completed_note": "loop263 Chat Manual-safe Simulation Recovery and Action Parity complete. Added Chat runtime/session recovery so short follow-ups like “检查候选/开始安全模拟/查看结果” read the latest assistant brain_executions metadata, recover reviewed_backtest_plan or manual_safe_simulation, and return a static consumer-facing status/result with the same explicit Jobs/API action handoff. The route kind is manual_safe_simulation_status with job_id=null, so it does not start a full Brain job or factor/backtest job. Verification: TDD RED 3 failed expected before implementation; focused GREEN 3 passed; Chat/API/intent group 51 passed; session/resume group 16 passed; MiningJob/Jobs group 49 passed; Chat/brain resume group 63 passed; ruff all pass; targeted forbidden-path scan found no new trigger/worker/plan/executor path in the manual-safe recovery branch. Permanent test-engineer/code-reviewer reports were used read-only. Next_atomic_action is consumer UX acceptance walkthrough for the mocked/injected safe simulation path, not PL-H/real runner execution."
 }
