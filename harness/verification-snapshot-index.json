@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T08:07:51Z",
+  "updated_at": "2026-06-23T10:44:30Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-23T08:07:29Z",
-    "last_tick": "loop252-product-outcome-happy-path",
+    "recorded_at": "2026-06-23T10:44:24Z",
+    "last_tick": "loop253-manual-ux-acceptance-package",
     "pytest_passed": 54,
     "ruff": "ok",
     "evidence_paths": [
-      "loop252 product outcome happy path: focused 2 passed; JobsPage regression 18 passed; jobs_fixture_emits 54 passed; ruff/node/eslint/build/smoke/scans/runtime cleanup pass"
+      "loop253 manual UX acceptance package: JobsPage regression 19 passed; jobs_fixture_emits 54 passed; ruff ok; node --check ok; eslint ok; web build ok; smoke ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5 manual UX acceptance visible; secret scan 0; listener cleanup 0"
     ],
-    "section5_ref": "5.578",
+    "section5_ref": "5.579",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.006302970277777778,
+  "age_hours": 0.001765991111111111,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-23T08:07:51Z",
+    "at": "2026-06-23T10:44:30Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.006302970277777778
+    "age_hours": 0.001765991111111111
   }
 }

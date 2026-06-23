@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T15:59:25+08:00",
+  "updated_at": "2026-06-23T18:35:36+08:00",
   "mode": "autonomous",
-  "stop_reason": "user_requested_stop_after_current_task_2026-06-23",
+  "stop_reason": "manual_ux_acceptance_required_loop253",
   "current_tree": "TREE-6",
-  "current_slice": "pl-g-manual-ux-acceptance-package-product-happy-path",
-  "next_atomic_action": "WAIT_FOR_USER_RESUME_THEN prepare PL-G manual UX acceptance package / user-facing verification checklist for the product happy path: list what the user should see in Jobs/assistant, what remains mocked-only, and what still requires later explicit authorization/config/rollback-audit before any real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch, or secret-bearing path.",
-  "next_after": "After manual UX acceptance package is ready and reviewed, continue into intent quant integration readiness / auto-backtest flow readiness hardening; real runner/actual adapter dry-run/DB-backed backtest/PL-H batch remains blocked until explicit authorization/config/rollback-audit gate.",
+  "current_slice": "manual-ux-acceptance-required-after-loop253",
+  "next_atomic_action": "USER_MANUAL_UX_ACCEPTANCE_REQUIRED：用户在 Jobs/assistant 复验 `Auto mining to backtest result` 下方的 `Manual UX acceptance package` 是否清楚、完整、不会误导为真实执行；验收后进入 intent quant integration readiness / auto-backtest flow readiness hardening。",
+  "next_after": "After user manual UX acceptance, harden the route-evidence/state-machine contract between intent quant dispatch, MiningJob, auto_backtest_plan, explicit trigger response, refreshed Jobs state, and next-route guidance; real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, and secret output remain blocked until explicit authorization/config/rollback-audit gate.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop252-product-outcome-happy-path",
+  "last_tick": "loop253-manual-ux-acceptance-package",
   "last_sync_sources": [
     "TASK_TREES.md",
     "CONTINUATION_PROMPT.md",
@@ -1049,7 +1049,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop252 completed PL-G product outcome happy-path slice. Jobs/assistant now shows a user-visible Auto mining to backtest result summary after mocked/injected-runner explicit trigger completion, tying intent route auto_mining_to_auto_backtest, MiningJob action, explicit trigger, completed mocked backtest/audit, and next-step summary into one product surface. Verification passed RED/GREEN, JobsPage regression 18 passed, jobs_fixture_emits 54 passed, ruff, node --check, targeted eslint, web build, browser smoke ok=true with no page-load trigger POST/duplicate trigger, scans, runtime cleanup, and worker reviews. User requested stopping after current task; next action is held behind WAIT_FOR_USER_RESUME_THEN manual UX acceptance package. Manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, actual adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
+    "note": "loop253 completed PL-G manual UX acceptance package / user-facing verification checklist. Jobs/assistant now shows Manual UX acceptance package after the Auto mining to backtest result summary, gated by productHappyPathSummary + auto_mining_to_auto_backtest route evidence + completed audit, and lists user-verifiable route/action/trigger/audit/run-id checks plus blocked real/default runner, actual adapter dry-run, DB-backed backtest, PL-H batch, background/migration/backfill, and secret output. Verification passed JobsPage regression 19 passed, jobs_fixture_emits 54 passed, ruff, node --check, targeted eslint, web build, browser smoke ok=true with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[], secret scan, diff check, and runtime cleanup. Stop reason is manual_ux_acceptance_required_loop253; after user UX acceptance continue into intent quant integration readiness / auto-backtest flow readiness hardening. Manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, actual adapter dry-run execution, background execution, migration, backfill, DB-backed backtest, PL-H batch execution, and secret output remain forbidden."
   },
-  "last_completed_note": "loop252 completed PL-G product outcome happy-path slice. Changed JobsPage product summary and fixture smoke/tests so mocked/injected explicit trigger completion surfaces a user-visible Auto mining to backtest result with intent route, MiningJob action, explicit trigger, completed mocked backtest/audit, and next-step summary. Verification: RED expected; GREEN focused 2 passed; JobsPage regression 18 passed; jobs_fixture_emits 54 passed; ruff/node --check/targeted eslint/build/smoke/scans/runtime cleanup passed; test-engineer success, executor partial reconciled, code-reviewer success, verifier success. No manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, actual adapter dry-run execution, page-load auto POST, background, migration/backfill, DB-backed backtest, PL-H batch execution, or secret output. Stop reason set by user request; next_atomic_action waits for user resume before manual UX acceptance package."
+  "last_completed_note": "loop253 completed PL-G manual UX acceptance package / user-facing verification checklist. Changed JobsPage, smoke fixture, and source/smoke tests so the loop252 product happy path now surfaces a Manual UX acceptance package gated by productHappyPathSummary + route flow auto_mining_to_auto_backtest + completed audit. Verification: RED expected; JobsPage regression 19 passed; jobs_fixture_emits 54 passed; ruff/node --check/targeted eslint/build/smoke/diff check/secret scan/runtime cleanup passed; test-engineer, code-reviewer, and verifier read-only reports all success. No manual acceptance grant, authorization grant, execution permission, real/default runner connection/configuration/invocation, actual adapter dry-run execution, page-load auto POST, background, migration/backfill, DB-backed backtest, PL-H batch execution, or secret output. Stop reason set to manual_ux_acceptance_required_loop253; next_atomic_action is user manual UX acceptance, then intent quant integration readiness / auto-backtest flow readiness hardening."
 }

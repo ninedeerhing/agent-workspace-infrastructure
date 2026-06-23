@@ -1,3 +1,59 @@
+# Orchestrator Report - loop253-manual-ux-acceptance-package
+
+**Updated**: 2026-06-23T18:35:36+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G manual UX acceptance package / user-facing verification checklist.
+- **result**: Jobs/assistant now exposes a `Manual UX acceptance package` below `Auto mining to backtest result`, telling the user what to verify and what remains blocked.
+- **stop boundary**: `manual_ux_acceptance_required_loop253`; after user UX acceptance, continue into intent quant integration readiness / auto-backtest flow readiness hardening.
+- **core mainline**: auto mining -> auto backtest full flow + intent understanding state machine remains the unique project mainline.
+- **automation mode**: loop-tick heartbeat remains `PAUSED_BY_USER`; continuous orchestrator-thread loop stops only because manual UX acceptance is now required.
+- **context mode**: `context_mode=hot_path`.
+
+## Cluster Manifest
+
+- **test-engineer**: `019eeece-52d7-7b73-868a-7beb496ba303`, model `gpt-5.5`, read-only test design, success.
+- **executor**: not dispatched for writes this loop; orchestrator kept single `write_owner` on shared hot files to avoid loop252 duplicate-block risk.
+- **code-reviewer**: `019eeed1-7e14-7342-9d45-d7948aec94d2`, model `gpt-5.5`, read-only final review, success.
+- **verifier**: `019eeed2-dbc0-7313-8d64-f9c6f199c68b`, model `gpt-5.5`, read-only final verification, success.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Added gated `formatManualUxAcceptancePackage(...)` and read-only manual UX acceptance panel after the product happy-path summary. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Added browser-smoke waits, assertions, and text checks proving the manual UX acceptance package is visible after the explicit mocked trigger completes. |
+| `apps/quant_assistant/tests/test_jobs_page_action_rendering_unit.py` | Added source coverage for the manual UX acceptance package, gating inputs, no fetch/useEffect/POST, and blocked execution paths. |
+| `apps/quant_assistant/tests/test_jobs_page_acceptance_smoke_unit.py` | Added smoke source checks for manual UX acceptance visibility and blocked-path copy. |
+| truth sources and worker reports | Synchronized loop-state, app/root docs, handoff, roster, orchestrator report, and worker report index for loop253. |
+
+## Review And Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · expected missing `formatManualUxAcceptancePackage` and `Manual UX acceptance package` failures before implementation |
+| JobsPage regression | pass · 19 passed |
+| jobs fixture regression | pass · 54 passed, 2129 deselected, 1 known LangChainPendingDeprecationWarning |
+| Python ruff | pass |
+| node syntax | pass · `web/scripts/smoke-jobs-page-fixture.mjs` |
+| targeted eslint | pass · exit 0 |
+| web build | pass |
+| browser smoke | pass · ok=true, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`, manual UX acceptance markers visible |
+| guard scans | pass · secret value-shape scan 0; JobsPage no new `fetch(`/`useEffect`/network path; `git diff --check` no whitespace errors except LF/CRLF warnings |
+| runtime cleanup | pass · jobs smoke listener count 0 |
+| worker rendezvous | pass · test-engineer/code-reviewer/verifier success; executor intentionally not assigned write ownership |
+
+## Safety
+
+No `.env`, `.env.local`, DSN, token, or secret was printed or persisted. No manual acceptance grant, authorization grant, execution permission, page-load auto POST, default trigger, real/default runner invocation, adapter invocation, actual adapter dry-run execution, background process, migration, backfill, default DB-backed backtest, or PL-H batch execution was started.
+
+## Residual Risk
+
+This is the manual UX acceptance boundary. The next meaningful evidence requires the user to inspect the Jobs/assistant surface for clarity and non-misleading wording. Real/default runner invocation, adapter invocation, actual adapter dry-run execution, DB-backed backtest, migration/backfill, background execution, executable handoff approval, and PL-H batch execution remain intentionally deferred behind future explicit gates.
+
+---
+
 # Orchestrator Report - loop252-product-outcome-happy-path
 
 **Updated**: 2026-06-23T15:59:25+08:00
@@ -6,9 +62,9 @@
 
 - **slice**: TREE-6 / PL-G product outcome happy-path slice.
 - **result**: Jobs/assistant now exposes a user-visible auto-mining-to-auto-backtest happy-path summary after the mocked/injected-runner explicit trigger completes.
-- **next**: stop after current closure per user request; on resume, prepare the PL-G manual UX acceptance package / user-facing verification checklist.
+- **next**: historical; superseded by loop253 manual UX acceptance package.
 - **core mainline**: auto mining -> auto backtest full flow + intent understanding state machine remains the unique project mainline.
-- **automation mode**: loop-tick heartbeat remains `PAUSED_BY_USER`; continuous orchestrator-thread loop is paused by `loop-state.stop_reason=user_requested_stop_after_current_task_2026-06-23`.
+- **automation mode**: historical loop252 pause; current stop boundary is loop253 manual UX acceptance.
 - **context mode**: `context_mode=hot_path`.
 
 ## Cluster Manifest
