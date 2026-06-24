@@ -42,6 +42,14 @@
 - 若当前动作无法说明如何推进 `auto mining -> auto backtest full flow + intent quant subgraph` 的阶段闭环，先执行 PLAN/ROUTE tick，更新真源，不写生产切片。
 - 当前 PL-G route-evidence acceptance 链已连续超过 3 个同族 mocked/source/UI 切片；后续 tick 必须优先执行 acceptance consolidation / reviewer signoff bundle，而不是继续单独堆 checklist marker。
 
+### 2.1.1 Function-First Loop Gate
+
+- 每个业务 loop 必须先声明 `core_function_artifact`：本轮要新增或改变的核心功能对象，例如状态机转换、API/read-model、候选生成、筛选决策、回测计划、执行结果、人工验收决策。
+- 每个业务 loop 必须写 `phase_plan`：`contract_or_tdd -> implementation -> consumer_surface -> closing_work`。其中展示/UI 文案、业务原则、门禁、方法论、lifecycle、真源同步都只能放在 `closing_work`。
+- `functional_acceptance` 必须证明核心功能对象真实改变系统能力；只证明文字出现、marker 存在、门禁列表更新或报告同步，不算产品 loop 完成。
+- 若 `next_atomic_action` 是 display/readiness/gate/checklist/spec/sync-only，必须先改写为背后的核心功能对象；确实只有治理动作时，标记为 `route_calibration` / `loop_protocol_update`，不得推进业务 `last_tick`。
+- §5 末尾必须记录 `function_first_gate={core_function_artifact, phase_plan, functional_acceptance, closing_work_only}`；若核心功能未完成，closing work 只能记录为 pending，不得声明 done。
+
 ### 2.2 Skill Routing Gate
 
 - 对 `current_tree + current_slice + next_atomic_action + goal_id` 运行本地 router（不含 secret 文本）：
@@ -72,13 +80,13 @@
 
 ## 3. 执行
 
-- 执行 **一条** `next_atomic_action`（TDD → 实现 → 最小验证）
+- 执行 **一条** `next_atomic_action`（TDD → 核心功能实现 → 功能验收面 → 收尾治理）
 - 环境阻塞时：按 METHODOLOGY **M-04** 交叉验证；转做不依赖该环境的下一切片
 
 ## 4. 同步（六真源 + 机器态）
 
 - 更新 §5 台账、`CONTINUATION_PROMPT`、`WORKFLOWS` 轮次日志 + **`PROJECT_STATUS.md` 顶部「心流模式当前轮」**（与 §5 最新 / loop-state 对齐）+ **Git 快照**（branch · ahead/behind · 脏文件数）
-- §5 末尾必须包含：`context_mode` 或 `cold_path_reason`、`goal_gate`、`skill_route`、`dispatch_decision`、`model_tier` / `model_reason`、`cluster_manifest` / `no_cluster_reason`、`worker_report_refs`、`bundle_decision`（若合并了微切片）、`capacity_review` / `skill_lifecycle`（若触发）、`methodology_ref` 以及最小验证证据。
+- §5 末尾必须包含：`context_mode` 或 `cold_path_reason`、`goal_gate`、`function_first_gate`（含 `core_function_artifact`、`phase_plan`、`functional_acceptance`、`closing_work_only`）、`skill_route`、`dispatch_decision`、`model_tier` / `model_reason`、`cluster_manifest` / `no_cluster_reason`、`worker_report_refs`、`bundle_decision`（若合并了微切片）、`capacity_review` / `skill_lifecycle`（若触发）、`methodology_ref` 以及最小验证证据。
 - **Clean-worktree gate（用户权威 2026-06-22）**：每轮结束前必须让 AWI 根与 `apps/quant_assistant` 的 `git status --porcelain` 为空；真实源码/测试/真源改动提交到本地 `main`，本地缓存/构建产物写入 `.gitignore` 后保留不入库。若因冲突、secret 风险或破坏性操作无法清洁，必须把 `stop_reason` 置为真实阻塞并短报；禁止把 dirty_count 当作长期正常状态。
 - **方法论门控**：本步有新增方法论？→ 写步骤 digest 并刷新 `METHODOLOGY_MEMORY.md` 顶部「当前可见状态」；关键任务 done？→ 收口 synthesis；否则 **不写** METHODOLOGY
 - **§5 末尾强制 `methodology_ref`**：零写入时须加 `methodology_ref: M-17-zero-write · reason=...`；有 digest/synthesis 则改为 `methodology_ref: METHODOLOGY_MEMORY §步骤-digest-*` / `methodology_ref: METHODOLOGY_MEMORY §收口 synthesis-*`（`loop_tick.py` → `format_methodology_gate_tail()`）

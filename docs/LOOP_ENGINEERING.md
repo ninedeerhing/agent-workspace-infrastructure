@@ -1,7 +1,7 @@
 # Loop Engineering — 自治循环协议
 
 > **效力**：Raindeer-AWI 心流/无限循环模式的最高操作契约。与 `docs/FLOW-MODE.md`、`apps/quant_assistant/docs/WORKFLOWS.md` 互补：本文件定义**如何自派任务**；彼等定义**何时可停**。
-> **版本**：1.5.0 · 2026-06-23
+> **版本**：1.6.0 · 2026-06-25
 
 ---
 
@@ -47,10 +47,11 @@ ELSE 取 TASK_TREES 排序第 1 条且未在 §5 标记 done 的原子动作
 ELSE 取 master-plan 路线图下一未交付切片
 ELSE 取 parking_lot 中 approved 且依赖已满足的项
 
-GATE  Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster Gate（见 §3.1–§3.4）
-EXECUTE 通过门禁后的原子动作或 goal_bundle（TDD → 实现 → 最小验证）
+GATE  Goal/Plan Gate + Function-First Loop Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster Gate（见 §3.1–§3.4）
+PLAN  为本轮核心功能产出写 phase_plan；治理/门禁/展示只能进入 closing_work
+EXECUTE 通过门禁后的原子动作或 goal_bundle（TDD → 核心功能实现 → 功能验收面 → 收尾治理）
 SYNC  六份真源（含 git 状态摘要）
-RETRO 方法论门控（见 §4）：有则步骤 digest；关键任务 done 则收口 synthesis
+RETRO 方法论门控（见 §4）：有则步骤 digest；关键任务 done 则收口 synthesis；原则/门禁收集只作为 closing_work，不单独算产品 loop 完结
 LOOP  回到 READ（除非停止白名单或裁判收口）
 ```
 
@@ -84,6 +85,9 @@ Loop 是目标/规划导向，不是 `next_atomic_action` 文本队列。执行�
 | `user_visible_outcome` | 用户或系统能感知的推进结果 |
 | `acceptance_gate` | 本轮要关闭的验收条件 |
 | `exit_to_real_flow` | 完成后如何进入下一阶段，而不是继续同族加 marker |
+| `core_function_artifact` | 本轮必须新增或改变的核心功能对象：状态机转换、API/read-model、候选生成、筛选决策、回测计划、执行结果、人工验收决策等 |
+| `phase_plan` | 围绕核心功能拆出的阶段：contract/TDD → implementation → consumer surface → closing work |
+| `closing_work_only` | 仅允许在核心功能验收后执行的展示、文案、门禁、原则、方法论、lifecycle、真源同步 |
 
 **切片尺寸规则**：
 
@@ -94,6 +98,33 @@ Loop 是目标/规划导向，不是 `next_atomic_action` 文本队列。执行�
 - 若当前动作无法说明如何推进 **auto mining → auto backtest full flow + intent quant subgraph** 的阶段闭环，则本 tick 改为 PLAN/ROUTE，不写生产切片。
 
 当前治理裁定（2026-06-22）：PL-G route-evidence acceptance 已连续超过 3 个 mocked/source/UI 微切片；下一业务 tick 必须先做 **acceptance consolidation / reviewer signoff bundle**，不得继续单独追加 checklist marker。
+
+#### 3.1.1 Function-First Loop Gate（核心功能闭环优先 · v1.6）
+
+业务 loop 的完成标准是**核心功能闭环**，不是展示一致、门禁齐全或规范写完。每轮执行前必须写出并通过以下判断：
+
+```yaml
+function_first_gate:
+  core_function_artifact: ""
+  user_problem_closed: ""
+  phase_plan:
+    - contract_or_tdd: ""
+    - implementation: ""
+    - consumer_surface: ""
+    - closing_work: ""
+  functional_acceptance: []
+  closing_work_only: []
+  invalid_if_only: ["ui_copy", "display_parity", "gate_text", "checklist", "methodology_digest", "truth_source_sync"]
+```
+
+规则：
+
+- `core_function_artifact` 必须是可被代码、API、状态机、read-model、runner、job、factor library 或 intent route 消费的功能对象；没有它，本轮不能登记为产品 loop 完成。
+- `phase_plan` 至少包含 contract/TDD、implementation、consumer surface、closing work 四段；展示/UI/文案/门禁/方法论/真源同步只能放入 `closing_work`，不能作为本轮主产出。
+- `functional_acceptance` 必须证明核心对象真实改变了系统能力，例如“生成候选晋级决策”“创建回测计划”“状态机从 pending 进入 confirmed dispatch”“从 safe result 派生 factor review decision”。只证明文字出现、marker 存在或报告更新，不算功能验收。
+- 若 `next_atomic_action` 看起来是 display/readiness/gate/checklist/spec/sync-only，orchestrator 必须先改写为它背后的功能对象；确实只有治理动作时，登记为 `SYNC/ROUTE` 或 `closing_work`，不得冒充业务 loop 完结。
+- 原则、门禁、业务规则、方法论 digest、lifecycle 和真源同步必须在核心功能验收之后收尾；若核心功能未完成，收尾项只能记录为 pending，不得推进 `last_tick`。
+- 用户显式要求治理修正时可以执行治理切片，但必须标记为 `route_calibration` / `loop_protocol_update`，并保持业务 `next_atomic_action` 指向下一项核心功能。
 
 ### 3.2 Skill Routing Gate（技能前置硬门禁 · v1.3）
 

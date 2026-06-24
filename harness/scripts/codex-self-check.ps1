@@ -74,6 +74,11 @@ $loopPromptText = Get-Text $loopPromptPath
 if ($null -ne $loopPromptText) {
     $requiredLoopGateNeedles = @(
         "Goal/Plan Gate",
+        "Function-First Loop Gate",
+        "core_function_artifact",
+        "phase_plan",
+        "functional_acceptance",
+        "closing_work_only",
         "Context Loading Budget Gate",
         "context_mode",
         "cold_path_reason",

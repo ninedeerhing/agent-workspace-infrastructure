@@ -1,3 +1,31 @@
+# Orchestrator Report - loop-protocol-function-first-gate-v1.6
+
+**Updated**: 2026-06-25T02:41:51+08:00
+
+## Tick Summary
+
+- **trigger**: User corrected loop design again: every loop must be driven by the core functional plan and total product goal, not by standalone display, UI copy, gate text, checklist, methodology, lifecycle, or truth-source sync.
+- **result**: `Function-First Loop Gate v1.6` is now encoded in `docs/LOOP_ENGINEERING.md`, `harness/templates/loop-tick-prompt.md`, and `harness/scripts/codex-self-check.ps1`.
+- **required loop fields**: `core_function_artifact`, `phase_plan`, `functional_acceptance`, and `closing_work_only`.
+- **business route**: unchanged. The next product loop remains `SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291`.
+
+## Verification
+
+- CodeX self-check: **64 pass / 0 warn / 0 fail / 0 findings**.
+- `git diff --check`: no whitespace errors; CRLF warnings only.
+- `python -m json.tool harness/loop-state.json`: pass.
+- Lifecycle refresh: methodology `active_entries=44`, work reports `record_count=22`, sync coherence `finding_count=0`, verification snapshot `stale=false`, closure gate `open_count=0`.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No runner, adapter, DB-backed backtest, PL-H batch, background process, migration, or backfill was started.
+
+## Next
+
+Return root and quant worktrees to clean main-only state, then execute `SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291`.
+
+---
+
 # Orchestrator Report - sync294-function-first-loop291-route-calibration
 
 **Updated**: 2026-06-25T02:05:02+08:00

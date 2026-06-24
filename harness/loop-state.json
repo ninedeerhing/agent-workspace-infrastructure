@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-25T02:05:02+08:00",
+  "updated_at": "2026-06-25T02:41:51+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
@@ -21,6 +21,9 @@
   ],
   "last_tick": "loop290-explicit-trigger-server-owned-safe-simulation",
   "last_sync_sources": [
+    "LOOP-PROTOCOL v1.6 Function-First Loop Gate written into docs/LOOP_ENGINEERING.md, harness/templates/loop-tick-prompt.md, and codex self-check needles",
+    "Every business loop now requires core_function_artifact, phase_plan, functional_acceptance, and closing_work_only; display/UI/gate/spec/sync work may only be closing_work after functional acceptance",
+    "Business next action unchanged: SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291",
     "SYNC-294 function-first loop291 route calibration",
     "User calibration: product loop must close a core functional capability; display/UI/gate/spec sync only counts as closing work after function implementation",
     "loop291 next action changed to SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291",
