@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-25T01:34:11+08:00
+updated_at: 2026-06-25T02:05:02+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-25T01:34:11+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-25 loop290 · 已完成 explicit trigger handoff to server-owned manual-safe trigger：`manual_safe_trigger_handoff_v1.ready_for_manual_safe_trigger` 已接到现有 Jobs/API 显式点击触发链。前端只在用户二次确认后 POST，body 包含 `gate=explicit_user_click_required`、`job_id/action_id` 和 `target_candidate_ids`；后端新增 `AutoBacktestTriggerBody` gate 校验，非显式 gate 在 DSN/job lookup 前 400 fail-closed；`build_auto_backtest_trigger_request(...)` 与 audit 现在携带 `target_candidate_ids`、`requires_explicit_trigger=true`、`server_owned_manual_safe_simulation=true`。服务端不信任客户端 target，实际 target/audit 来自持久化 `auto_backtest_plan.factor_version_ids`，伪造 body target 不生效。验证：related API/runner/Chat/Jobs regression 143 passed；targeted Ruff pass；web build pass；Jobs smoke pass 且 pageLoadTriggerRequests=[]、trigger POST body 含 explicit gate/target ids。下一动作：`POST_TRIGGER_SAFE_SIM_RESULT_TO_FACTOR_LIBRARY_CHAIN_LOOP291`，把触发后的 `safe_sim_*` 结果与 Chat/Jobs/Factor Library 复核、人工验收和 controlled dry-run readiness 做同源一致性收口；仍禁止 live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。
+[CONTEXT] 2026-06-25 SYNC-294 · 用户校准 loop 节奏：下一轮不得把展示、UI 文案、门禁或规范同步作为完整 loop；这些只能作为功能收尾。loop291 已从旧 `POST_TRIGGER_SAFE_SIM_RESULT_TO_FACTOR_LIBRARY_CHAIN_LOOP291` 改为 `SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291`：从 safe_sim result/audit、reviewed_backtest_plan、F6 evidence、A-E taxonomy、target_candidate_ids 派生 `candidate_promotion_decision_v1`，为每个候选输出 `advance_to_factor_library_review` / `hold_for_recheck` / `reject`、理由、证据 refs 和下一步动作，再由 Chat/Jobs/Factor Library 消费同源 read-model。缺失或伪造 safety evidence、candidate target 或 result/audit 必须 fail-closed；仍禁止 live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。方法论：`METHODOLOGY_MEMORY §步骤-digest-20260625-function-first-loop`。上一功能完成点仍是 loop290 explicit trigger handoff：显式点击后才 POST，非显式 gate 在 DSN/job lookup 前 400 fail-closed，服务端计划 target 绑定 audit/run，验证 143 passed + Ruff/build/smoke pass。
 
 [CONTEXT] 2026-06-24 loop289 · 已完成 manual-safe plan readiness to explicit trigger handoff：新增 `qa.quant_mining.manual_safe_trigger_handoff.build_manual_safe_trigger_handoff_v1(...)` 与 `manual_safe_trigger_handoff_models.py`，并把 `batch_mining_creation_plan` / Chat UI 接到 `manual_safe_trigger_handoff_v1`。该合同从 `manual_safe_simulation_plan_readiness_v1` 派生 `waiting_for_reviewed_plan` / `needs_recheck` / `ready_for_manual_safe_trigger`；ready 只生成可恢复的 Chat/pending/confirmation 显式触发交接，`pending_confirmation.recoverable=true`、`requires_user_click=true`、`will_execute_on_render=false`，且 `trigger_request.target_candidate_ids` 必须非空。页面加载/恢复不自动执行；waiting/needs_recheck 或候选目标为空均隐藏入口并 fail-closed。验证：RED missing module expected；focused handoff/UI/batch group 11 passed；related manual-safe/batch/Chat regression 68 passed；targeted Ruff pass；source-only forbidden true scan clean；verifier success；code-reviewer 初审 P2 candidate-target drift 已修复并 final recheck success。
 

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-23T23:27:31Z",
+  "updated_at": "2026-06-24T18:09:47Z",
   "orchestrator_path": "harness/reports/orchestrator",
   "workers_dir": "harness/reports/workers",
   "worker_count": 21,
@@ -14,7 +14,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-23T23:27:31Z",
+      "last_updated_at": "2026-06-24T18:09:46Z",
       "source_path": "harness\\reports\\orchestrator\\latest.md"
     },
     "architect:loop202-worker-cluster-architecture-review": {
@@ -31,8 +31,8 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\architect.md"
     },
-    "code-reviewer:loop274-manual-safe-backtest-result-consumer": {
-      "report_id": "loop274-manual-safe-backtest-result-consumer",
+    "code-reviewer:loop289-manual-safe-plan-readiness-to-explicit-trigger-handoff": {
+      "report_id": "loop289-manual-safe-plan-readiness-to-explicit-trigger-handoff",
       "worker_id": "code-reviewer",
       "task_id": "loop203-pl-g-acceptance-consolidation-code-review",
       "tree": "TREE-6 / PL-G",
@@ -78,7 +78,7 @@
       ],
       "verification": "live API 复现 **5.2s**（`tmp/kb_m2_sse_repro_loop22_result.json`）",
       "status": "resolved（executor 已落地修复）",
-      "last_updated_at": "2026-06-23T23:27:31Z",
+      "last_updated_at": "2026-06-24T18:09:46Z",
       "source_path": "harness\\reports\\workers\\debugger.md"
     },
     "designer:designer-ui-a-2-spec": {
@@ -95,8 +95,8 @@
       "last_updated_at": "2026-06-19T16:45:00Z",
       "source_path": "harness\\reports\\workers\\designer.md"
     },
-    "executor:loop267-real-runner-authorization-config-rollback-audit-framework": {
-      "report_id": "loop267-real-runner-authorization-config-rollback-audit-framework",
+    "executor:loop282-controlled-dry-run-artifact-capture-bundle": {
+      "report_id": "loop282-controlled-dry-run-artifact-capture-bundle",
       "worker_id": "executor",
       "task_id": "loop203-pl-g-acceptance-consolidation-implementation",
       "tree": "TREE-6 / PL-G",
@@ -104,7 +104,7 @@
       "files": [],
       "verification": "orchestrator verification after patch: RED **1 failed** expected, GREEN focused pytest **1 passed**, related regression **23 passed**, smoke/build/eslint/ruff/family scan/enablement scan/runtime cleanup pass。",
       "status": "success",
-      "last_updated_at": "2026-06-23T23:27:31Z",
+      "last_updated_at": "2026-06-24T18:09:46Z",
       "source_path": "harness\\reports\\workers\\executor.md"
     },
     "explore:explore-idle": {
@@ -154,7 +154,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-23T23:27:31Z",
+      "last_updated_at": "2026-06-24T18:09:46Z",
       "source_path": "harness\\reports\\workers\\governance-coordinator.md"
     },
     "growth-engineer:growth-engineer-idle": {
@@ -190,7 +190,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-23T23:27:31Z",
+      "last_updated_at": "2026-06-24T18:09:46Z",
       "source_path": "harness\\reports\\workers\\qa-tester.md"
     },
     "researcher:loop202-worker-cluster-evidence-scan": {
@@ -231,8 +231,8 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\security-reviewer.md"
     },
-    "test-engineer:loop274-manual-safe-backtest-result-consumer": {
-      "report_id": "loop274-manual-safe-backtest-result-consumer",
+    "test-engineer:loop288-reviewed-readiness-to-manual-safe-simulation-plan": {
+      "report_id": "loop288-reviewed-readiness-to-manual-safe-simulation-plan",
       "worker_id": "test-engineer",
       "task_id": "loop203-pl-g-acceptance-consolidation-test-design",
       "tree": "TREE-6 / PL-G",
@@ -255,8 +255,8 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\tracer.md"
     },
-    "verifier:loop267-real-runner-authorization-config-rollback-audit-framework": {
-      "report_id": "loop267-real-runner-authorization-config-rollback-audit-framework",
+    "verifier:loop289-manual-safe-plan-readiness-to-explicit-trigger-handoff": {
+      "report_id": "loop289-manual-safe-plan-readiness-to-explicit-trigger-handoff",
       "worker_id": "verifier",
       "task_id": "verifier",
       "tree": "TREE-RT",
@@ -285,7 +285,7 @@
     }
   },
   "last_lifecycle": {
-    "at": "2026-06-23T23:27:31Z",
+    "at": "2026-06-24T18:09:47Z",
     "apply": true,
     "dedupe_actions": 0,
     "record_count": 22,

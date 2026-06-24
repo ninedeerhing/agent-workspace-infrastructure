@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-25T01:34:11+08:00",
+  "updated_at": "2026-06-25T02:05:02+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "explicit-trigger-server-owned-safe-simulation-loop290",
-  "next_atomic_action": "POST_TRIGGER_SAFE_SIM_RESULT_TO_FACTOR_LIBRARY_CHAIN_LOOP291：在 loop290 已证明显式点击才能触发 server-owned safe simulation 的基础上，把触发后的 safe_sim_* 结果与 Chat/Jobs/Factor Library 的候选复核、人工验收和 controlled dry-run readiness 链做同源一致性收口；用户应能看懂哪批候选被模拟、模拟编号是什么、质量闸/人工验收下一步是什么；缺失或伪造 safety evidence 必须 fail-closed；仍禁止 live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。",
-  "next_after": "After post-trigger safe_sim results are reconciled across Chat, Jobs, and Factor Library, advance the user-visible decision path from manual acceptance/readiness toward controlled dry-run readiness review without enabling real execution.",
+  "current_slice": "safe-sim-result-to-candidate-promotion-decision-loop291",
+  "next_atomic_action": "SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291：在 loop290 已完成显式点击触发 server-owned safe simulation 的基础上，实现候选晋级决策 read-model：从 safe_sim result/audit、reviewed_backtest_plan、F6 evidence、A-E taxonomy 和 target_candidate_ids 派生 candidate_promotion_decision_v1，为每个候选给出 advance_to_factor_library_review / hold_for_recheck / reject、理由、证据 refs 和下一步动作，并把该决策作为 Chat/Jobs/Factor Library 的同源功能链路；缺失或伪造 safety evidence、candidate target 或 result/audit 必须 fail-closed；仍禁止 live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。",
+  "next_after": "After candidate_promotion_decision_v1 is derived from safe simulation result/audit and surfaced as the shared Chat/Jobs/Factor Library functional read-model, advance selected candidates into manual factor-library review and later controlled dry-run readiness without enabling real execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -21,6 +21,11 @@
   ],
   "last_tick": "loop290-explicit-trigger-server-owned-safe-simulation",
   "last_sync_sources": [
+    "SYNC-294 function-first loop291 route calibration",
+    "User calibration: product loop must close a core functional capability; display/UI/gate/spec sync only counts as closing work after function implementation",
+    "loop291 next action changed to SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.618",
+    "METHODOLOGY_MEMORY §步骤-digest-20260625-function-first-loop",
     "loop290 Explicit trigger handoff to server-owned manual-safe trigger",
     "loop290 TDD RED: API trigger/audit tests failed until explicit body gate and target-candidate audit contract were implemented",
     "loop290 GREEN: Jobs explicit manual trigger now posts gate=explicit_user_click_required plus job/action/target ids only after user confirmation; API rejects non-explicit gates before DSN/job lookup",
@@ -1258,7 +1263,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop290 completed explicit trigger handoff to server-owned manual-safe trigger. Ready manual_safe_trigger_handoff_v1 now reaches the existing Jobs/API explicit user action surface: the browser only POSTs after the two-click manual trigger with gate=explicit_user_click_required, job/action ids, and target ids. API rejects non-explicit gates before DSN/job lookup; trigger_request/audit derive target_candidate_ids from persisted auto_backtest_plan.factor_version_ids, not client-forged body targets. The default runner remains server-owned safe simulation only, with no page-load POST, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, background/migration/backfill, or secret output. Next loop reconciles completed safe_sim results across Chat, Jobs, Factor Library review, manual acceptance, and controlled dry-run readiness."
+    "note": "loop290 completed explicit trigger handoff to server-owned manual-safe trigger. Ready manual_safe_trigger_handoff_v1 now reaches the existing Jobs/API explicit user action surface: the browser only POSTs after the two-click manual trigger with gate=explicit_user_click_required, job/action ids, and target ids. API rejects non-explicit gates before DSN/job lookup; trigger_request/audit derive target_candidate_ids from persisted auto_backtest_plan.factor_version_ids, not client-forged body targets. The default runner remains server-owned safe simulation only, with no page-load POST, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, background/migration/backfill, or secret output. User calibration on 2026-06-25 moved loop291 from display-only reconciliation to function-first candidate promotion decision read-model."
   },
-  "last_completed_note": "loop290 explicit trigger handoff to server-owned manual-safe trigger complete. JobsPage now carries trigger_request.body/target_candidate_ids/server_owned_manual_safe_simulation, submits gate=explicit_user_click_required only after manual confirmation, and renders target/server-owned diagnostics. quant_routes now requires AutoBacktestTriggerBody, rejects non-explicit gates before DSN/job lookup, and keeps controlled dry-run contracts server-owned. mining_runner trigger_request/audit now carry target_candidate_ids, requires_explicit_trigger, and server_owned_manual_safe_simulation; server targets come from persisted auto_backtest_plan.factor_version_ids so forged client targets are ignored. Verification: related API/runner/Chat/Jobs regression 143 passed; targeted Ruff pass; npm run build pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and explicit gate/target POST bodies. Next_atomic_action is POST_TRIGGER_SAFE_SIM_RESULT_TO_FACTOR_LIBRARY_CHAIN_LOOP291."
+  "last_completed_note": "loop290 explicit trigger handoff to server-owned manual-safe trigger complete. JobsPage now carries trigger_request.body/target_candidate_ids/server_owned_manual_safe_simulation, submits gate=explicit_user_click_required only after manual confirmation, and renders target/server-owned diagnostics. quant_routes now requires AutoBacktestTriggerBody, rejects non-explicit gates before DSN/job lookup, and keeps controlled dry-run contracts server-owned. mining_runner trigger_request/audit now carry target_candidate_ids, requires_explicit_trigger, and server_owned_manual_safe_simulation; server targets come from persisted auto_backtest_plan.factor_version_ids so forged client targets are ignored. Verification: related API/runner/Chat/Jobs regression 143 passed; targeted Ruff pass; npm run build pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and explicit gate/target POST bodies. Next_atomic_action is SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291."
 }

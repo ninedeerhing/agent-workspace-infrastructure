@@ -1,3 +1,25 @@
+# Orchestrator Report - sync294-function-first-loop291-route-calibration
+
+**Updated**: 2026-06-25T02:05:02+08:00
+
+## Tick Summary
+
+- **trigger**: User observed that the next loop was drifting toward display/consumer-layer reconciliation instead of a functional capability increment.
+- **decision**: loop291 is now `SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291`, not a display-only reconciliation loop.
+- **functional objective**: derive `candidate_promotion_decision_v1` from server-owned safe simulation result/audit, reviewed backtest plan, F6 evidence, A-E taxonomy, and target candidate ids.
+- **expected product increment**: each candidate gets `advance_to_factor_library_review`, `hold_for_recheck`, or `reject`, with reasons, evidence refs, and next action; Chat/Jobs/Factor Library only consume this shared read-model as the acceptance surface.
+- **dirty-file handling**: daily-ops reports and lifecycle indexes are valid governance artifacts, but they must be refreshed, verified, and committed promptly so root and quant worktrees return to clean main-only state.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No runner, adapter, DB-backed backtest, PL-H batch, background process, migration, or backfill was started.
+
+## Next
+
+Execute `SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291` as the next product loop after worktree cleanup and lifecycle verification.
+
+---
+
 # Orchestrator Report - loop290-explicit-trigger-server-owned-safe-simulation
 
 **Updated**: 2026-06-25T01:34:11+08:00
@@ -7,7 +29,7 @@
 - **slice**: TREE-6 / PL-G explicit trigger handoff to server-owned manual-safe trigger.
 - **trigger**: loop289 exposed a recoverable `manual_safe_trigger_handoff_v1`; the product chain still needed the existing safe simulation trigger surface to accept only explicit user clicks.
 - **result**: Jobs now submits the handoff only after the two-click manual action, with `gate=explicit_user_click_required`, candidate targets, and server-owned simulation markers. API rejects non-explicit gates before DSN/job lookup, and the server derives audit/target candidates from persisted `auto_backtest_plan.factor_version_ids`, not client-forged target ids.
-- **next**: `POST_TRIGGER_SAFE_SIM_RESULT_TO_FACTOR_LIBRARY_CHAIN_LOOP291`; reconcile the completed `safe_sim_*` results across Chat, Jobs, Factor Library review, manual acceptance, and controlled dry-run readiness without enabling real execution.
+- **next**: superseded by SYNC-294; execute `SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291` to derive candidate promotion decisions from safe simulation result/audit before Chat/Jobs/Factor Library display work.
 
 ## Changes
 
