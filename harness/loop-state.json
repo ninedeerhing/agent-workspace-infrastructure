@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T14:21:44+08:00",
+  "updated_at": "2026-06-24T14:46:00+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "selected-candidates-to-f6-screening-evidence-loop286",
-  "next_atomic_action": "F6_EVIDENCE_PLAN_TO_REVIEWED_BACKTEST_PLAN_READINESS_LOOP287：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 f6_screening_evidence_plan_v1 接入 reviewed backtest plan readiness：从 selected_candidate_ids / candidate_evidence / thresholds / evidence_requirements 派生只读 reviewed-plan readiness，区分 waiting、needs_recheck、ready_for_reviewed_plan 三种状态，展示哪些候选可进入 reviewed backtest plan、还缺哪些 F6/IC/coverage 证据，并继续保持 manual-safe simulation 仅为后续显式手动触发准备，不执行真实筛选或真实回测。",
-  "next_after": "After F6 evidence readiness can feed a reviewed backtest plan readiness contract, connect the reviewed plan to manual-safe simulation readiness and later explicit execution gates.",
+  "current_slice": "f6-evidence-plan-to-reviewed-backtest-readiness-loop287",
+  "next_atomic_action": "REVIEWED_PLAN_READINESS_TO_MANUAL_SAFE_SIMULATION_PLAN_LOOP288：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 reviewed_backtest_plan_readiness_v1 接到 manual-safe simulation plan/action readiness：当 readiness 仍 waiting/needs_recheck 时只展示缺口和下一步；当 ready_for_reviewed_plan 且 rank_ic/coverage/panel_sample 证据齐备时，生成 no-execution reviewed plan preview 与显式手动安全模拟触发准备，继续不执行真实回测。",
+  "next_after": "After reviewed readiness can prepare a manual-safe simulation plan/action, connect it to explicit trigger handling and later controlled dry-run/manual acceptance gates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,17 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop286-selected-candidates-to-f6-screening-evidence",
+  "last_tick": "loop287-f6-evidence-plan-to-reviewed-backtest-plan-readiness",
   "last_sync_sources": [
+    "loop287 F6 evidence plan to reviewed backtest plan readiness",
+    "loop287 TDD RED: missing qa.quant_mining.reviewed_backtest_plan_readiness before implementation",
+    "loop287 GREEN: reviewed_backtest_plan_readiness_v1 derives waiting_for_f6_evidence_selection, needs_recheck, and ready_for_reviewed_plan from f6_screening_evidence_plan_v1",
+    "loop287 semantic hardening: ready_for_reviewed_plan now requires rank_ic threshold pass, coverage threshold pass, and panel_sample evidence; selected candidates without measured evidence fail-closed to needs_recheck with rank_ic/coverage/panel_sample gaps",
+    "loop287 P2 hardening after Aquinas final review: ready_for_reviewed_plan now also requires source_status=ready_for_f6_evidence_review; waiting-source payloads with injected measured candidate rows fail-closed to needs_recheck with f6_evidence_plan_source_status",
+    "loop287 UI/Chat: batch mining creation plan renders reviewed readiness copy only when full top-level safety plus nested reviewed_plan_preview/next_route/execution_gate prove no-execution; drifted route/gate payloads hide normal copy",
+    "loop287 verification: RED missing module failed expected; focused readiness 5 passed after P2 source_status regression; final related regression 87 passed; targeted Ruff pass; source-only true enablement scan clean; diff check CRLF warnings only",
+    "loop287 worker review: permanent code-reviewer Aquinas pre-review success then final P2 on source_status drift, fixed locally; permanent test-engineer Galileo thread stale/waitingOnApproval and not duplicated",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.614",
     "loop286 Selected candidates to F6 screening evidence plan",
     "loop286 TDD RED: missing qa.quant_mining.f6_screening_evidence_plan and nested F6 evidence UI drift still showing safe copy before predicate hardening",
     "loop286 GREEN: f6_screening_evidence_plan_v1 supports empty/manual waiting state, valid selected_candidate_ids evidence rows, invalid id needs_manual_selection_recheck, IC/coverage thresholds, evidence requirements, reviewed_backtest_plan_handoff blocked_until_f6_evidence, next_route, and full no-execution safety matrix",
@@ -1225,7 +1234,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop286 completed selected candidates to F6 screening evidence plan. f6_screening_evidence_plan_v1 now accepts selected_candidate_ids plan-only input, maps valid candidate rows with A-E taxonomy/expression/source/gate evidence, fail-closes invalid ids to needs_manual_selection_recheck, carries IC/coverage thresholds, evidence requirements, blocked reviewed_backtest_plan_handoff, next_route, and full no-execution safety flags false. Chat/UI copy is gated on top-level safety plus nested evidence_requirements/reviewed_backtest_plan_handoff/next_route so drifted payloads do not show safe F6 evidence copy. Next loop connects F6 evidence readiness to reviewed backtest plan readiness without real screening/backtest."
+    "note": "loop287 completed F6 evidence plan to reviewed backtest plan readiness. reviewed_backtest_plan_readiness_v1 now derives waiting/needs_recheck/ready states from f6_screening_evidence_plan_v1 and only allows ready_for_reviewed_plan when source_status=ready_for_f6_evidence_review, rank_ic passes threshold, coverage passes threshold, and panel_sample evidence is present. Missing or drifted evidence fails closed with explicit gaps, including f6_evidence_plan_source_status. Chat/UI copy is gated on top-level safety plus nested reviewed_plan_preview/next_route/execution_gate no-execution fields. Next loop connects reviewed readiness to manual-safe simulation plan/action readiness without real backtest execution."
   },
-  "last_completed_note": "loop286 Selected candidates to F6 screening evidence plan complete. Added qa.quant_mining.f6_screening_evidence_plan and f6_screening_evidence_plan_models; build_factor_mining_creation_plan now exposes f6_screening_evidence_plan_v1; qa.ui.batch_mining_selector_view renders selector and F6 evidence copy while batch_mining_creation_plan_view stays below size ceiling. The plan supports waiting_for_manual_candidate_selection, ready_for_f6_evidence_review, and needs_manual_selection_recheck; valid selected ids produce candidate_evidence rows and invalid ids fail closed. reviewed_backtest_plan_handoff stays blocked_until_f6_evidence; will_execute_screening=false, will_execute_backtest=false, read_env/read_db=false, all safety flags false. Verification: RED missing module failed expected; nested drift RED failed expected before predicate hardening; final related regression 81 passed; targeted Ruff pass; source-only true enablement scan clean; diff check CRLF warnings only. Aquinas initial P2 then final recheck success; Galileo assignment timed out/no report. Next_atomic_action is F6_EVIDENCE_PLAN_TO_REVIEWED_BACKTEST_PLAN_READINESS_LOOP287."
+  "last_completed_note": "loop287 F6 evidence plan to reviewed backtest plan readiness complete. Added qa.quant_mining.reviewed_backtest_plan_readiness and reviewed_backtest_plan_readiness_models; build_factor_mining_creation_plan now exposes reviewed_backtest_plan_readiness_v1; qa.ui.batch_mining_reviewed_plan_view renders consumer-grade readiness copy. The contract supports waiting_for_f6_evidence_selection, needs_recheck, and ready_for_reviewed_plan; ready requires source_status=ready_for_f6_evidence_review, rank_ic threshold pass, coverage threshold pass, and panel_sample evidence. Waiting-source payloads with injected measured candidate rows fail closed with f6_evidence_plan_source_status; missing selected-candidate metrics fail closed with rank_ic/coverage/panel_sample gaps. will_read_env=false, will_read_db=false, will_execute_backtest=false, full safety flags false. Verification: RED missing module failed expected; focused readiness 5 passed; final related regression 87 passed; targeted Ruff pass; source-only true enablement scan clean; diff check CRLF warnings only. Aquinas semantic blocker and final P2 were fixed; Galileo remains stale/waitingOnApproval and was not duplicated. Next_atomic_action is REVIEWED_PLAN_READINESS_TO_MANUAL_SAFE_SIMULATION_PLAN_LOOP288."
 }

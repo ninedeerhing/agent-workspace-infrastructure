@@ -1,3 +1,50 @@
+# Orchestrator Report - loop287-f6-evidence-plan-to-reviewed-backtest-plan-readiness
+
+**Updated**: 2026-06-24T14:46:00+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G F6 evidence plan to reviewed backtest plan readiness.
+- **trigger**: loop286 created `f6_screening_evidence_plan_v1`; the chain still needed a fail-closed readiness gate before any manual-safe simulation plan/action could be prepared.
+- **result**: `reviewed_backtest_plan_readiness_v1` now derives `waiting_for_f6_evidence_selection`, `needs_recheck`, and `ready_for_reviewed_plan` from `f6_screening_evidence_plan_v1`. Ready requires source_status=`ready_for_f6_evidence_review`, rank_ic threshold pass, coverage threshold pass, and panel_sample evidence. Waiting-source payloads with injected measured candidate rows fail closed.
+- **next**: `REVIEWED_PLAN_READINESS_TO_MANUAL_SAFE_SIMULATION_PLAN_LOOP288`; convert reviewed readiness into manual-safe simulation plan/action readiness without real screening/backtest execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/reviewed_backtest_plan_readiness.py` | Adds the no-execution reviewed-plan readiness builder over F6 evidence plans. |
+| `apps/quant_assistant/src/qa/quant_mining/reviewed_backtest_plan_readiness_models.py` | Adds typed readiness, candidate row, preview, route, gate, and safety contracts. |
+| `apps/quant_assistant/src/qa/brain/batch_mining_flow.py` | Exposes `reviewed_backtest_plan_readiness` from batch mining creation plans. |
+| `apps/quant_assistant/src/qa/ui/batch_mining_reviewed_plan_view.py` | Renders consumer-readable reviewed readiness copy with fail-closed predicate. |
+| `apps/quant_assistant/src/qa/ui/batch_mining_creation_plan_view.py` | Includes reviewed readiness in creation plan notes and panel output. |
+| `apps/quant_assistant/tests/*loop287 related*` | Proves waiting, missing-evidence recheck, ready with measured evidence, source-status drift, nested UI drift, and no-execution safety. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.reviewed_backtest_plan_readiness` failed as expected |
+| focused readiness | pass · **5 passed** after P2 source-status regression |
+| related regression | pass · candidate-generator/factory/selector/F6/reviewed/batch/executor/UI/confirmation **87 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| source-only true enablement scan | pass · no env/DB/runner/adapter/backtest/PL-H/page-load/background/migration/backfill/secret enablement markers flipped true |
+| size gate | warning · `batch_mining_flow.py` remains in warning band; next growth must split `build_factor_mining_creation_plan` |
+
+## Worker Notes
+
+Permanent worker identities were preserved. `code-reviewer` Aquinas pre-review raised semantic blockers that were fixed; final recheck then found a P2 source_status drift gap, now closed by the injected-evidence regression and source_status requirement; Aquinas narrow recheck returned success. `test-engineer` Galileo remains stale/waitingOnApproval from the prior assignment and was not duplicated; orchestrator covered with local RED/GREEN and related regression.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, adapter invocation, actual dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop only decides whether a reviewed plan can be prepared.
+
+## Residual Risk
+
+Reviewed readiness is now fail-closed, but it is not yet connected to a manual-safe simulation plan/action readiness payload. That is the next slice.
+
+---
+
 # Orchestrator Report - loop286-selected-candidates-to-f6-screening-evidence
 
 **Updated**: 2026-06-24T14:21:44+08:00

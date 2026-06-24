@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T14:21:44+08:00
+更新时间：2026-06-24T14:46:00+08:00
+
+## Tick loop287-f6-evidence-plan-to-reviewed-backtest-plan-readiness
+
+- **任务 ID**：loop287-f6-evidence-plan-to-reviewed-backtest-plan-readiness-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及自动挖掘核心 reviewed readiness 与候选质量闸。
+- **状态**：partial / channel_stale_no_new_duplicate
+- **任务**：只读复核 `reviewed_backtest_plan_readiness_v1` 测试矩阵，确认 waiting、missing metrics recheck、ready with measured evidence、source_status drift、nested UI drift、no-execution safety。
+- **变更**：worker 未修改文件。
+- **复核结论**：Galileo 永久 thread 仍处于旧 loop286 assignment waitingOnApproval/inProgress；未创建同职责替代 worker，保留永久身份并由 orchestrator 本地验证兜底。
+- **orchestrator 本地验证**：RED missing module failed expected；focused readiness **5 passed**；final related regression **87 passed**；targeted Ruff **All checks passed!**；source-only true enablement scan clean。
+- **roster_update**：workload unchanged/channel_stale；mistakes none；lessons: stale permanent worker channels are recorded and repaired later, not replaced by duplicate same-role workers.
 
 ## Tick loop286-selected-candidates-to-f6-screening-evidence
 

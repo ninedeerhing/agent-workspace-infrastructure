@@ -1,6 +1,21 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T14:21:44+08:00
+更新时间：2026-06-24T14:46:00+08:00
+
+## Tick loop287-f6-evidence-plan-to-reviewed-backtest-plan-readiness
+
+- **任务 ID**：loop287-f6-evidence-plan-to-reviewed-backtest-plan-readiness-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及自动挖掘核心 reviewed plan readiness、候选质量闸和后续手动安全模拟入口边界。
+- **状态**：success after P2 closure
+- **任务**：只读审查 `reviewed_backtest_plan_readiness_v1`、batch mining creation plan 与 UI/Chat 渲染，确认 reviewed readiness 不会误表达真实回测授权，不引入 env/DB/runner/adapter/page-load POST/background/migration/backfill/PL-H/secret 路径，并检查 ready 状态是否严格依赖 F6/IC/coverage/panel_sample 证据。
+- **变更**：worker 只读复核，未修改文件。
+- **初审结论**：pre-review success，明确 blocker：`ready_for_reviewed_plan` 不能表示执行授权，且不能在缺少 rank_ic/coverage/panel_sample 实测证据时 ready。
+- **最终 P2**：Aquinas final recheck 指出 source_status 漂移：若上游 payload 仍是 `waiting_for_manual_candidate_selection` 但被注入 measured `candidate_evidence` rows，旧实现可能升级为 `ready_for_reviewed_plan`。
+- **闭环结论**：orchestrator 已补 `test_reviewed_backtest_plan_readiness_rechecks_waiting_status_with_injected_evidence`，并收紧 builder：`ready_for_reviewed_plan` 现在必须 source_status=`ready_for_f6_evidence_review`，否则 fail-closed 为 `needs_recheck` 且列 `f6_evidence_plan_source_status`；Aquinas 窄复核 success，确认 P2 已关闭。未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused readiness **5 passed**；final related regression **87 passed**；targeted Ruff **All checks passed!**；source-only true enablement scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: reviewed readiness must validate source state as well as metric evidence; measured rows alone are not enough.
 
 ## Tick loop286-selected-candidates-to-f6-screening-evidence
 
