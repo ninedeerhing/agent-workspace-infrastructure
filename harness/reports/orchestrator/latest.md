@@ -1,3 +1,56 @@
+# Orchestrator Report - loop283-controlled-dry-run-handoff-readiness-validator
+
+**Updated**: 2026-06-24T11:10:36+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Controlled Dry-Run Artifact Capture to Handoff Readiness Validator.
+- **trigger**: loop282 made the artifact bundle visible as a material checklist, but the flow still needed a server-owned validator that decides whether materials are missing, safe for human handoff review, or require recheck without granting execution.
+- **result**: Factor Library, Chat, Jobs, and MiningJob completed observability now share `controlled_dry_run_handoff_readiness_validator_v1`. It exposes `missing_materials`, `ready_for_handoff_review`, and `needs_recheck`; keeps `execution_permission=not_granted`, `ready_for_execution=false`, and `ready_for_controlled_dry_run=false`; and demotes source/material drift to recheck copy.
+- **next**: `CONTROLLED_DRY_RUN_HANDOFF_READINESS_TO_ARTIFACT_SUBMISSION_REVIEW_UX_LOOP284`; build operator/reviewer artifact submission/review UX and an auditable material package without granting execution or connecting a live/default runner.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/real_runner_authorization_framework.py` | Adds `controlled_dry_run_handoff_readiness_validator_v1` builder, material-state checks, and fail-closed drift handling. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Exposes the validator from completed product_state observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Adds the same validator to Factor Library safe-simulation review rows. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders consumer-grade handoff readiness notes with recheck fallback. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Shows handoff readiness status and no-execution markers from the validator. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Shows handoff readiness status in Jobs cards and smoke surfaces. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds mocked validator observability and smoke text checks. |
+| `apps/quant_assistant/tests/*loop283 related*` | Proves API/UI/Chat/Jobs visibility, missing/ready/recheck states, source/material drift, and no-execution boundaries. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `build_controlled_dry_run_handoff_readiness_validator_v1` failed as expected |
+| focused GREEN | pass · **5 passed** |
+| related regression | pass · **143 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| node check | pass · `web/scripts/smoke-jobs-page-fixture.mjs` |
+| frontend eslint | pass · `FactorLibraryPage.tsx` + `JobsPage.tsx` |
+| web build | pass · `npm run build` |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `controlled_dry_run_handoff_readiness_validator_visible=true`, `handoff_review_only_not_execution` |
+| narrow forbidden true/granted marker scan | pass · no execution permission or ready/execution-danger flags flipped to true |
+| diff check | pass · CRLF warnings only |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported final success and deemed coverage sufficient across missing/present/invalid/recheck states, same-source rendering, and no-execution flags. `code-reviewer` reported final success with no execution-boundary or consumer-drift blockers.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop adds only a human handoff review-readiness validator; it does not authorize real execution.
+
+## Residual Risk
+
+The validator is visible and fail-closed, but users still need an explicit submission/review UX for the artifacts themselves. That is the next core framework slice.
+
+---
+
 # Orchestrator Report - loop282-controlled-dry-run-artifact-capture-bundle
 
 **Updated**: 2026-06-24T10:38:29+08:00

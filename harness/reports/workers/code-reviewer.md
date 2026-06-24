@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T10:38:29+08:00
+更新时间：2026-06-24T11:10:36+08:00
+
+## Tick loop283-controlled-dry-run-handoff-readiness-validator
+
+- **任务 ID**：loop283-controlled-dry-run-handoff-readiness-validator-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.4 read-only recheck；本轮复核不编辑生产代码，但涉及执行授权边界、漂移降级与 UI/Chat 用户文案风险。
+- **状态**：success
+- **任务**：只读审查 `controlled_dry_run_handoff_readiness_validator_v1` 是否 server-owned、是否只表达人工交接复核准备度而非执行授权，source/material drift 是否降级 recheck，Factor Library / Jobs / Chat / MiningJob observability 是否同源展示且不打开执行路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：PASS；validator 来源为 `confirmation_artifact_bundle_v1`，保留 `ready_for_execution=false`、`ready_for_controlled_dry_run=false`、`execution_permission=not_granted` 与 forbidden safety=false；source bundle drift 或 unsafe material drift 降级为 `needs_recheck`，正常 handoff copy 仅在完整 predicate 后出现。
+- **orchestrator 本地验证**：focused **5 passed**；related regression **143 passed**；targeted Ruff **All checks passed!**；node check pass；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke pass；narrow forbidden true/granted marker scan clean；`git diff --check` pass（CRLF warnings only）。
+- **roster_update**：workload cleared；mistakes none；lesson: normal user copy must appear only after predicate checks; drift is surfaced as recheck instead of being masked by reassuring hardcoded false markers.
 
 ## Tick loop282-controlled-dry-run-artifact-capture-bundle
 
