@@ -1,3 +1,56 @@
+# Orchestrator Report - loop280-controlled-dry-run-confirmation-state-contract
+
+**Updated**: 2026-06-24T09:45:00+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Controlled Dry-Run Confirmation State Contract.
+- **trigger**: loop279 made the operator/reviewer review gate visible, but the flow still needed a persisted, replayable confirmation state before any later controlled dry-run contract review.
+- **result**: Factor Library, Chat, Jobs, and MiningJob completed observability now share `controlled_dry_run_confirmation_state_contract_v1`. It exposes operator/reviewer unconfirmed, runner_config not connected, rollback-before audit not ready, audit/confirmation evidence no-secret, ready flags false, and the next route to a review-only controlled dry-run contract handoff.
+- **P2 fixed**: code-reviewer found Chat formatter drift risk. Chat now uses the same full fail-closed matrix as backend/Jobs/FactorLibrary before showing normal confirmation copy; drifted payloads show recheck.
+- **next**: `CONFIRMATION_STATE_CONTRACT_TO_CONTROLLED_DRY_RUN_CONTRACT_REVIEW_LOOP281`; build a review-only controlled dry-run contract handoff packet and confirmation artifacts without granting execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/real_runner_authorization_framework.py` | Adds `controlled_dry_run_confirmation_state_contract_v1` builder and fail-closed source-gate validation. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Exposes the confirmation state contract from completed product_state observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Adds the same contract to Factor Library safe-simulation review rows. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders consumer-grade 受控模拟确认状态合同 notes with full-matrix recheck fallback. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Shows the confirmation state contract and gates safe copy/markers with full fail-closed predicate. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Shows the confirmation state contract in Jobs cards and success/smoke surfaces. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds mocked confirmation state contract observability and smoke text checks. |
+| `apps/quant_assistant/tests/*loop280 related*` | Proves API/UI/Chat/Jobs visibility, source-gate drift recheck, full safety matrix, and no-execution boundaries. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `build_controlled_dry_run_confirmation_state_contract_v1` failed as expected |
+| focused GREEN | pass · **16 passed / 112 deselected** |
+| related regression | pass · **130 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| frontend eslint | pass · `FactorLibraryPage.tsx` + `JobsPage.tsx` |
+| web build | pass · `npm run build` |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, confirmation contract markers visible |
+| production forbidden true-marker scan | pass · no live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret-output enablement |
+| diff check | pass · CRLF warnings only |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success on the confirmation-state matrix. `executor` wrote the RED checkpoint and stopped; the orchestrator completed GREEN and final verification. `code-reviewer` initially reported a P2 Chat drift-masking risk; after the formatter was expanded to the full fail-closed matrix, final recheck reported success with no blockers.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop adds only a pending confirmation state contract; it does not authorize real execution.
+
+## Residual Risk
+
+The confirmation state contract is visible and fail-closed, but explicit confirmation artifacts and controlled dry-run contract handoff review are not yet represented. That is the next core framework slice.
+
+---
+
 # Orchestrator Report - loop279-controlled-dry-run-operator-review-gate
 
 **Updated**: 2026-06-24T09:18:03+08:00

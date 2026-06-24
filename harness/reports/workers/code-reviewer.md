@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T09:18:03+08:00
+更新时间：2026-06-24T09:45:00+08:00
+
+## Tick loop280-controlled-dry-run-confirmation-state-contract
+
+- **任务 ID**：loop280-controlled-dry-run-confirmation-state-contract-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.4 read-only recheck；本轮复核不编辑生产代码，但涉及执行授权边界与 UI drift-masking 风险。
+- **状态**：success after P2 recheck
+- **任务**：只读审查 `controlled_dry_run_confirmation_state_contract_v1` 是否只是可持久化/可回放的显式确认状态而非执行授权，source gate drift 是否降级 recheck，默认 operator/reviewer/runner/rollback 确认是否全 false/pending，audit/confirmation evidence 是否不含 secret，以及 Factor Library / Jobs / Chat / MiningJob observability 是否同源展示且不打开执行路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：初审发现 P2：`src/qa/ui/chat_brain.py` 的 confirmation contract formatter 未验证 source_gate_kind、contract state、confirmation defaults、audit/confirmation evidence secret flags 与 full safety matrix，可能在 `page_load_post_allowed=true` 漂移时仍显示正常确认状态。orchestrator 新增 Chat drift regression 并补齐 formatter full fail-closed predicate。最终 recheck PASS：未发现 live/default runner、adapter invocation、actual adapter dry-run、DB real batch、PL-H、page-load POST、background/migration/backfill 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused GREEN **16 passed / 112 deselected**；related regression **130 passed**；targeted Ruff **All checks passed!**；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke pass；production forbidden true-marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: confirmation-state consumers need the same full fail-closed matrix as the upstream gate before rendering normal user-facing progress copy.
 
 ## Tick loop279-controlled-dry-run-operator-review-gate
 
