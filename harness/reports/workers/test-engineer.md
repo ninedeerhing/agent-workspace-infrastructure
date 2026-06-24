@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T13:30:40+08:00
+更新时间：2026-06-24T13:56:39+08:00
+
+## Tick loop285-factor-factory-ui-selector-f6-plan
+
+- **任务 ID**：loop285-factor-factory-ui-selector-f6-plan-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及自动挖掘核心候选选择器与 F6 plan-only handoff。
+- **状态**：success
+- **任务**：只读复核 `factor_factory_selector_v1` / creation plan / Chat confirmation UI 的测试矩阵，确认 A-E 类/子类、手动触发、无想法/有想法/公式库 source modes、候选预览、质量闸解释、F6 plan-only handoff 与 no-screen/no-backtest safety。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；测试覆盖 visible A-E routing、active selection、manual trigger、candidate preview、quality gate explanations、`f6_plan_handoff` plan-only shape、`will_execute_screening=false`、`will_execute_backtest=false` 和 no-execution safety。建议后续若 source mode 路由更可见，再补公式/论文用户目标到 `formula_or_library_seed` 的分支断言。
+- **orchestrator 本地验证**：focused P2 **4 passed**；expanded related regression **77 passed**；targeted Ruff **All checks passed!**；source-only true enablement scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: selector tests must lock visible taxonomy, generation modes, candidate preview, quality explanations, and F6 no-screen/no-backtest safety.
 
 ## Tick loop284-factor-candidate-factory-v1
 

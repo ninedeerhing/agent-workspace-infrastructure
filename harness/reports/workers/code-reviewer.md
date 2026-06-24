@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T13:30:40+08:00
+更新时间：2026-06-24T13:56:39+08:00
+
+## Tick loop285-factor-factory-ui-selector-f6-plan
+
+- **任务 ID**：loop285-factor-factory-ui-selector-f6-plan-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及自动挖掘核心用户可见选择器、F6 计划交接和执行边界。
+- **状态**：success after P2 closure
+- **任务**：只读审查 `factor_factory_selector.py`、`batch_mining_flow.py`、`batch_mining_creation_helpers.py`、`batch_mining_creation_plan_view.py`、`chat_brain.py` 与相关测试，确认 selector 合同不会误表达执行授权，不引入 env/DB/runner/adapter/page-load POST/background/migration/backfill/PL-H/真实回测路径，并检查 F6 handoff 是否 fail-closed。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：`_is_f6_plan_only` 只检查 `will_execute_screening/backtest=false`，没有要求 `contract_kind=f6_screening_plan_handoff_v1`、`mode=plan_only_until_user_selects_candidates`、`selected_candidate_ids=[]`、`requires_manual_candidate_selection=true` 或完整 safety keys false；测试也缺少这些 drift 断言。
+- **闭环结论**：orchestrator 已补 drift 红测和 full-shape predicate。复核 PASS：现在 F6 安全文案必须匹配完整 handoff shape，漂移 payload 不再显示“不会自动筛选或回测”；未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused P2 **4 passed**；expanded related regression **77 passed**；targeted Ruff **All checks passed!**；source-only true enablement scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: safe F6 copy must be gated on full selector handoff shape, not only `will_execute=false`; drift regression should exercise the actual Chat rendering path.
 
 ## Tick loop284-factor-candidate-factory-v1
 

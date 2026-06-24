@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T13:30:40+08:00",
+  "updated_at": "2026-06-24T13:56:39+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "factor-candidate-factory-v1-loop284",
-  "next_atomic_action": "FACTOR_FACTORY_TO_UI_SELECTOR_AND_F6_PLAN_LOOP285：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 factor_factory_run_v1 接入用户可见的手动触发与分类选择/候选预览 UI：支持 A-E 类/子类筛选、用户有想法/没想法自动模式、候选批量预览、质量闸解释，并把用户选择的候选以 plan-only 方式汇入 F6 screening plan；仍不执行真实回测。",
-  "next_after": "After manual category selection and candidate preview are visible, connect selected candidates to F6 panel IC screening evidence and then reviewed backtest plan / manual-safe simulation.",
+  "current_slice": "factor-factory-ui-selector-f6-plan-loop285",
+  "next_atomic_action": "SELECTED_CANDIDATES_TO_F6_SCREENING_EVIDENCE_LOOP286：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 factor_factory_selector_v1 的候选选择结果接入 F6 panel IC screening evidence plan：支持 selected_candidate_ids 的 plan-only 输入、候选筛选证据摘要、IC/coverage 阈值解释、no-execution safety matrix，并为 reviewed backtest plan/manual-safe simulation 准备只读 evidence handoff；仍不执行真实筛选或真实回测。",
+  "next_after": "After selected candidates are represented as F6 screening evidence plan, connect that evidence to reviewed backtest plan and manual-safe simulation readiness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop284-factor-candidate-factory-v1",
+  "last_tick": "loop285-factor-factory-ui-selector-f6-plan",
   "last_sync_sources": [
+    "loop285 Factor Factory UI selector to F6 plan-only handoff",
+    "loop285 TDD RED: missing qa.quant_mining.factor_factory_selector and drifted F6 handoff UI still showing safe copy before predicate hardening",
+    "loop285 GREEN: factor_factory_selector_v1 exposes visible A-E classes/subclasses, active_selection, manual_trigger=start_factor_factory, source modes, candidate_preview, quality_gate_explanations, and f6_screening_plan_handoff_v1 plan-only payload",
+    "loop285 UI/Chat: batch mining creation plan display now uses batch_mining_creation_plan_view; Chat renders consumer-readable manual trigger, categories, generation modes, candidate preview, quality gates, and only shows F6 copy when the full fail-closed handoff shape is present",
+    "loop285 verification: focused P2 tests 4 passed; expanded candidate-generator/factory/selector/batch/executor/UI regression 77 passed; targeted Ruff pass; source-only true enablement scan clean",
+    "loop285 worker review: permanent test-engineer Galileo success; permanent code-reviewer Aquinas initial P2 then final recheck success",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.612",
     "loop283 Controlled Dry-Run Artifact Capture to Handoff Readiness Validator",
     "loop283 TDD RED: missing build_controlled_dry_run_handoff_readiness_validator_v1 before implementation",
     "loop283 GREEN: real_runner_authorization_framework builds controlled_dry_run_handoff_readiness_validator_v1 from loop282 confirmation_artifact_bundle_v1 with states missing_materials, ready_for_handoff_review, and needs_recheck; execution_permission=not_granted and ready flags false",
@@ -1211,7 +1218,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop284 completed Factor Candidate Factory v1. batch_mining_creation_plan now exposes no-execution factor_factory_run_v1 with A-E taxonomy, source_mode, candidate rationale, generation ops/source families, static/dimension/duplicate/coverage gates, trajectory to F6 panel screening, and manual_trigger=start_factor_factory. Safety remains fail-closed: no env/DB read, live/default runner, adapter invocation, actual dry-run, DB-backed backtest, PL-H, page-load POST, background/migration/backfill, or secret output was introduced. Next loop builds user-visible manual trigger/category selector/candidate preview and plan-only F6 screening handoff."
+    "note": "loop285 completed Factor Factory UI selector and F6 plan-only handoff. factor_factory_selector_v1 now exposes user-visible A-E category/subclass selection, manual start_factor_factory trigger, source modes, candidate preview, quality gate explanations, and f6_screening_plan_handoff_v1 with selected_candidate_ids=[], requires_manual_candidate_selection=true, will_execute_screening=false, will_execute_backtest=false, and full no-execution safety flags false. Chat/UI copy is gated on the full handoff shape so drifted payloads do not show safe F6 copy. Next loop connects selected candidates to F6 screening evidence plan without real screening/backtest."
   },
-  "last_completed_note": "loop284 Factor Candidate Factory v1 complete. Added qa.quant_mining.factor_factory build_factor_factory_run_v1 plus factor_factory_models/gates/recipes. batch_mining_creation_plan now exposes factor_factory_run_v1 and manual_trigger=start_factor_factory; factory run inherits A-E taxonomy, supports auto_from_category/formula_or_library_seed, emits candidate rationale, generation_op/source_family, static/dimension/duplicate/coverage gates, and trajectory_summary next_stage=F6_panel_ic_screen. Verification: RED missing module expected; Galileo gap RED for static_gate expected; factory focused 2 passed; candidate-generator/factory/creation-plan regression 10 passed; quant-mining/batch related 22 passed; targeted Ruff pass; core files <250 pure LOC except batch_mining_flow.py warning band 245. Aquinas review success; Galileo initial source-family/static reject gaps fixed and final recheck success. Next_atomic_action is FACTOR_FACTORY_TO_UI_SELECTOR_AND_F6_PLAN_LOOP285."
+  "last_completed_note": "loop285 Factor Factory UI selector to F6 plan-only handoff complete. Added qa.quant_mining.factor_factory_selector and factor_factory_selector_models plus qa.ui.batch_mining_creation_plan_view and qa.brain.batch_mining_creation_helpers; build_factor_mining_creation_plan now exposes factor_factory_selector_v1. Users can see A-E categories/subclasses, manual trigger, source modes, candidate preview, and quality gate explanations before F6. f6_plan_handoff remains plan-only: selected_candidate_ids=[], requires_manual_candidate_selection=true, will_execute_screening=false, will_execute_backtest=false, safety flags false. Verification: initial selector RED failed expected; drifted F6 handoff RED failed expected before predicate hardening; focused P2 tests 4 passed; expanded related regression 77 passed; targeted Ruff pass; source-only true enablement scan clean. Galileo success; Aquinas initial P2 then final recheck success. Next_atomic_action is SELECTED_CANDIDATES_TO_F6_SCREENING_EVIDENCE_LOOP286."
 }

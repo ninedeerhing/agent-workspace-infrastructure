@@ -1,3 +1,51 @@
+# Orchestrator Report - loop285-factor-factory-ui-selector-f6-plan
+
+**Updated**: 2026-06-24T13:56:39+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Factor Factory UI selector to F6 plan-only handoff.
+- **trigger**: user emphasized the four strict core areas: intent state machine, factor taxonomy, factor batch generation factory, and candidate quality gates; loop284 had produced the backend factory, but users still needed a visible manual trigger/category selector/candidate preview and F6 plan-only handoff.
+- **result**: `factor_factory_selector_v1` now exposes A-E class/subclass selection, `manual_trigger=start_factor_factory`, no-idea/idea/formula-library generation modes, candidate preview, quality gate explanations, and `f6_screening_plan_handoff_v1` with selected candidates empty and manual selection required.
+- **next**: `SELECTED_CANDIDATES_TO_F6_SCREENING_EVIDENCE_LOOP286`; connect selected candidates to F6 panel IC screening evidence plan without real screening/backtest.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/factor_factory_selector.py` | Adds the no-execution selector builder over factory runs. |
+| `apps/quant_assistant/src/qa/quant_mining/factor_factory_selector_models.py` | Adds typed selector, preview, quality explanation, and F6 handoff contracts. |
+| `apps/quant_assistant/src/qa/brain/batch_mining_flow.py` | Exposes `factor_factory_selector` from batch mining creation plans. |
+| `apps/quant_assistant/src/qa/brain/batch_mining_creation_helpers.py` | Extracts creation-plan helper logic from the flow module. |
+| `apps/quant_assistant/src/qa/ui/batch_mining_creation_plan_view.py` | Renders consumer-grade factor factory selector and full-shape F6 plan-only copy. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Delegates batch mining creation-plan display to the view helper. |
+| `apps/quant_assistant/tests/*loop285 related*` | Proves selector contract, batch plan exposure, Chat/confirmation rendering, and drift fail-closed behavior. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.factor_factory_selector` failed as expected |
+| drift RED | pass · drifted F6 handoff still showed safe copy before predicate hardening |
+| focused GREEN | pass · **4 passed** |
+| related regression | pass · candidate-generator/factory/selector/batch/executor/UI related **77 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| source-only true enablement scan | pass · no env/DB/runner/adapter/backtest/PL-H/page-load/background/migration/backfill/secret enablement markers flipped true |
+
+## Worker Notes
+
+Permanent worker threads were reused. `test-engineer` Galileo reported success on selector coverage across A-E classes, manual trigger, candidate preview, quality gates, and F6 no-screen/no-backtest safety. `code-reviewer` Aquinas initially returned P2 on the UI F6 predicate being too narrow; after the drift regression and full-shape `_is_f6_plan_only` predicate, Aquinas final recheck reported success.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, adapter invocation, actual dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop only exposes candidate selection and plan-only F6 handoff.
+
+## Residual Risk
+
+The UI/Chat selector and F6 plan handoff are visible, but selected candidates are not yet converted into a concrete F6 IC/coverage evidence plan. That is the next slice.
+
+---
+
 # Orchestrator Report - loop284-factor-candidate-factory-v1
 
 **Updated**: 2026-06-24T13:30:40+08:00
