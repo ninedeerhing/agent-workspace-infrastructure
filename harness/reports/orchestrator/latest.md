@@ -1,3 +1,54 @@
+# Orchestrator Report - loop279-controlled-dry-run-operator-review-gate
+
+**Updated**: 2026-06-24T09:18:03+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Controlled Dry-Run Operator Review Gate.
+- **trigger**: loop278 made controlled dry-run readiness visible, but users still needed a formal human review gate before any later controlled dry-run contract.
+- **result**: Factor Library, Chat, Jobs, and MiningJob completed observability now share `controlled_dry_run_operator_review_gate_v1`. It exposes pending reviewers, confirmation conditions, runner_config not_connected, rollback-before audit not_ready, missing evidence blockers, and the next route to a later controlled dry-run contract.
+- **P2 fixed**: code-reviewer found fail-closed predicate gaps across backend / Jobs / FactorLibrary / Chat. All surfaces now recheck source_review_kind/state, runner_config, rollback_audit, missing_runner_fail_closed, and the full execution-danger safety matrix before showing safe copy; drifted payloads show recheck.
+- **next**: `CONTROLLED_DRY_RUN_OPERATOR_REVIEW_GATE_TO_CONFIRMATION_STATE_CONTRACT_LOOP280`; persist explicit operator/reviewer confirmation evidence without granting execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/real_runner_authorization_framework.py` | Adds `controlled_dry_run_operator_review_gate_v1` builder and fail-closed safety matrix checks. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Exposes the operator review gate from completed product_state observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Adds the same gate to Factor Library safe-simulation review rows. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders consumer-grade 受控模拟人工复核门 notes with recheck fallback. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Shows the operator review gate and gates safe copy/markers with full fail-closed predicate. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Shows the operator review gate in Jobs cards and success/smoke surfaces. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds mocked operator review gate observability and smoke text checks. |
+| `apps/quant_assistant/tests/*loop279 related*` | Proves API/UI/Chat/Jobs visibility, drift recheck, full safety matrix, and no-execution boundaries. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| related regression | pass · **126 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| frontend eslint | pass · `FactorLibraryPage.tsx` + `JobsPage.tsx` |
+| web build | pass · `npm run build` |
+| web lint | pass · 0 errors, one pre-existing `ShellLayoutContext.tsx` Fast Refresh warning |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, operator review gate markers visible |
+| forbidden true-marker scan | pass · no live/default runner, adapter invocation, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret-output enablement |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success on the gate matrix. `executor` implemented the bounded code slice. `code-reviewer` initially reported P2 predicate gaps across backend and UI surfaces; after the fail-closed checks were expanded, final recheck reported success with no blockers.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop adds only a human review gate; it does not authorize real execution.
+
+## Residual Risk
+
+The review gate is visible and fail-closed, but operator/reviewer confirmation evidence is not yet persisted as a state contract. That is the next core framework slice.
+
+---
+
 # Orchestrator Report - loop278-manual-acceptance-to-controlled-dry-run-readiness
 
 **Updated**: 2026-06-24T08:45:02+08:00

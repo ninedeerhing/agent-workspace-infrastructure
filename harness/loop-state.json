@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T08:45:02+08:00",
+  "updated_at": "2026-06-24T09:18:03+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "manual-acceptance-to-controlled-dry-run-readiness-loop278",
-  "next_atomic_action": "CONTROLLED_DRY_RUN_READINESS_TO_OPERATOR_REVIEW_GATE_LOOP279：把 loop278 的 review-only readiness package 推进为 operator/reviewer 人工复核门，形成可审查的受控 dry-run 前置框架：用户可看到待确认人、确认条件、runner_config 连接要求、rollback-before audit 要求、缺失证据 blocker、以及通过后才允许进入后续受控 dry-run contract 的路线；同源接入 Factor Library / Chat / Jobs，继续禁止 live/default runner、adapter invocation、DB-backed real batch、PL-H、page-load POST、background/migration/backfill、secret 输出。",
-  "next_after": "After controlled dry-run readiness review is visible across Factor Library, Chat, and Jobs, build the explicit operator/reviewer review gate that can collect review evidence without granting execution or connecting live/default runner paths.",
+  "current_slice": "controlled-dry-run-operator-review-gate-loop279",
+  "next_atomic_action": "CONTROLLED_DRY_RUN_OPERATOR_REVIEW_GATE_TO_CONFIRMATION_STATE_CONTRACT_LOOP280：把 loop279 的 operator/reviewer 人工复核门推进为可持久化、可回放的显式确认状态合同：定义 operator_confirmed、reviewer_confirmed、runner_config_connected、rollback_before_audit_ready 的 fail-closed input schema、API/Jobs/Factor Library/Chat 同源展示与审计 evidence，占位下一步 controlled dry-run contract handoff；继续不连接 live/default runner、不触发 adapter/DB-backed real batch/PL-H/page-load POST/background/migration/backfill、不输出 secret。",
+  "next_after": "After the operator/reviewer review gate is visible and fail-closed, build a persisted explicit confirmation state contract that can collect review evidence without connecting a live/default runner or granting execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop278-manual-acceptance-to-controlled-dry-run-readiness",
+  "last_tick": "loop279-controlled-dry-run-operator-review-gate",
   "last_sync_sources": [
+    "loop279 Controlled Dry-Run Operator Review Gate",
+    "loop279 TDD RED: missing controlled_dry_run_operator_review_gate_v1 in MiningJob API observability, Factor Library review rows, Chat follow-up, FactorLibraryPage, JobsPage, and smoke text checks",
+    "loop279 GREEN: real_runner_authorization_framework now builds controlled_dry_run_operator_review_gate_v1 from readiness_review with operator/reviewer pending, confirmation conditions, runner_config not_connected, rollback-before audit not_ready, propagated blockers, and ready flags false",
+    "loop279 fail-closed hardening: backend, Chat, FactorLibraryPage, and JobsPage gate visible safe copy on source_review_kind/state, runner_config, rollback_audit, missing_runner_fail_closed, and full execution-danger safety matrix; drifted payloads show recheck copy",
+    "loop279 verification: final focused regression 126 passed; targeted ruff pass; FactorLibraryPage/JobsPage eslint pass; web build pass; full web lint pass with one pre-existing ShellLayoutContext warning; Jobs smoke ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] and operator review gate markers visible; forbidden true-marker scan pass",
+    "loop279 worker review: permanent test-engineer success; permanent executor success; permanent code-reviewer P2 fail-closed predicate gaps fixed and final recheck success",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.606",
     "loop278 Manual Acceptance to Controlled Dry-Run Readiness",
     "loop278 TDD RED: missing controlled_dry_run_readiness_review in factor-library review rows, FactorLibraryPage source, Chat follow-up, Jobs page, and MiningJob API observability",
     "loop278 GREEN: real_runner_authorization_framework now builds controlled_dry_run_readiness_review_v1 as review_only/blocked with operator/reviewer pending, runner_config not_connected, rollback/audit not_ready, explicit blockers, completed refs, and all execution-danger flags false",
@@ -1174,7 +1181,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop278 completed the manual acceptance to controlled dry-run readiness bridge. Factor Library, Chat, Jobs, and MiningJob observability now share controlled_dry_run_readiness_review_v1 as a review-only package with operator/reviewer pending, runner_config not_connected, rollback/audit not_ready, completed refs, blockers, and fail-closed safety flags. UI safe copy/markers are derived from the full fail-closed payload predicate; drifted payloads show recheck instead of false safety claims. Safety remains fail-closed: no env/DB read, live/default runner, unauthorized adapter invocation, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret output was introduced. Next loop builds the operator/reviewer review gate."
+    "note": "loop279 completed the controlled dry-run operator review gate. Factor Library, Chat, Jobs, and MiningJob completed observability now share controlled_dry_run_operator_review_gate_v1 as a fail-closed human review gate layered on loop278 readiness. Users can see pending reviewers, confirmation conditions, runner_config not_connected, rollback-before audit not_ready, missing evidence blockers, and the route to a later controlled dry-run contract. Backend, Chat, FactorLibraryPage, and JobsPage all recheck the full fail-closed payload and safety matrix before showing safe copy; drifted payloads show recheck. Safety remains fail-closed: no env/DB read, live/default runner, unauthorized adapter invocation, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret output was introduced. Next loop builds the persisted explicit confirmation state contract."
   },
-  "last_completed_note": "loop278 Manual Acceptance to Controlled Dry-Run Readiness complete. Factor Library review rows, Chat follow-up, Jobs cards, and MiningJob completed observability now share controlled_dry_run_readiness_review_v1. The package is review-only: operator/reviewer pending, runner_config not_connected, rollback/audit not_ready, completed safe_sim refs carried, manual_acceptance blockers propagated, and ready_for_execution/ready_for_controlled_dry_run false. UI safe copy/markers now require a full fail-closed predicate; malformed or future-drifted payloads show 执行安全状态需要重新核查 instead of claiming no execution permission. Verification: TDD RED 8 failed expected; final related regression 122 passed; targeted ruff pass; FactorLibraryPage and JobsPage eslint pass; web build pass; forbidden scan pass; git diff --check pass with CRLF warnings only. Permanent test-engineer success; permanent code-reviewer raised P2 drift-masking risk twice and the fixes were applied. Next_atomic_action is CONTROLLED_DRY_RUN_READINESS_TO_OPERATOR_REVIEW_GATE_LOOP279."
+  "last_completed_note": "loop279 Controlled Dry-Run Operator Review Gate complete. Factor Library review rows, Chat follow-up, Jobs cards, and MiningJob completed observability now share controlled_dry_run_operator_review_gate_v1 layered on loop278 readiness. The gate is review-only and fail-closed: operator/reviewer pending, confirmation conditions explicit, runner_config not_connected, rollback-before audit not_ready, missing evidence blockers propagated, and ready_for_execution/ready_for_controlled_dry_run false. Backend, Chat, FactorLibraryPage, and JobsPage require source_review_kind/state, runner_config, rollback_audit, missing_runner_fail_closed, and the full execution-danger safety matrix before showing safe copy; malformed payloads show 执行安全状态需要重新核查. Verification: final related regression 126 passed; targeted ruff pass; FactorLibraryPage/JobsPage eslint pass; web build pass; full web lint pass with one pre-existing ShellLayoutContext warning; Jobs smoke pass; forbidden true-marker scan pass. Permanent test-engineer, executor, and code-reviewer reports success after P2 fail-closed predicate fixes. Next_atomic_action is CONTROLLED_DRY_RUN_OPERATOR_REVIEW_GATE_TO_CONFIRMATION_STATE_CONTRACT_LOOP280."
 }

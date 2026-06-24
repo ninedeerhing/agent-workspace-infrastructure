@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-24T04:44:41+08:00
+**Updated**: 2026-06-24T09:18:03+08:00
+
+## Tick loop279-controlled-dry-run-operator-review-gate
+
+- **任务 ID**：loop279-controlled-dry-run-operator-review-gate-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及受控 dry-run 人工复核门、执行授权边界与用户可见安全状态。
+- **状态**：success
+- **任务**：有界实现 `controlled_dry_run_operator_review_gate_v1`，接入 MiningJob observability、Factor Library review rows、Chat follow-up、FactorLibraryPage、JobsPage 与 Jobs smoke fixture；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 operator review gate builder 与跨面消费；补齐 API/UI/Chat/Jobs tests 与 fixture checks。orchestrator 后续按 code-reviewer P2 扩展 backend/UI/Chat fail-closed predicates 到 full safety matrix。
+- **orchestrator 本地验证**：focused regression **126 passed**；targeted Ruff **All checks passed!**；FactorLibraryPage/JobsPage eslint pass；web build pass；full web lint pass（仅既有 `ShellLayoutContext.tsx` warning）；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `controlled_dry_run_operator_review_gate_visible=true`；forbidden true-marker scan pass。
+- **roster_update**：workload cleared；mistakes none；lesson: operator/reviewer review gates need the same full fail-closed predicate in backend, Chat, and UI markers before any safe copy can be shown.
 
 ## Tick loop267-real-runner-authorization-config-rollback-audit-framework
 
