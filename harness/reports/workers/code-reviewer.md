@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T09:45:00+08:00
+更新时间：2026-06-24T10:12:00+08:00
+
+## Tick loop281-controlled-dry-run-contract-review-packet
+
+- **任务 ID**：loop281-controlled-dry-run-contract-review-packet-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.4 read-only recheck；本轮复核不编辑生产代码，但涉及执行授权边界与 UI drift-masking 风险。
+- **状态**：success after P2 recheck
+- **任务**：只读审查 `controlled_dry_run_contract_review_packet_v1` 是否只是 review-only 前置材料包而非执行授权，source contract drift 是否降级 recheck，operator/reviewer artifact、runner_config evidence、rollback-before audit evidence、replay audit evidence 是否 fail-closed missing，以及 Factor Library / Jobs / Chat / MiningJob observability 是否同源展示且不打开执行路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：初审发现 P2：`src/qa/ui/chat_brain.py` 的 contract review packet formatter 未验证 operator/reviewer artifact `contains_secret_values=false`、rollback-before audit `contains_secret_values=false`、`replay_audit_evidence.present=false`，可能在 drifted packet 中仍显示正常 missing-material copy。orchestrator 新增 Chat drift regression 并补齐 formatter full fail-closed predicate。最终 recheck PASS：未发现 live/default runner、adapter invocation、actual adapter dry-run、DB real batch、PL-H、page-load POST、background/migration/backfill 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused GREEN **7 passed**；Chat P2 drift focused **2 passed**；related regression **134 passed**；targeted Ruff **All checks passed!**；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke pass；strict production/fixture forbidden execution marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: review-packet consumers need to validate both secret-bearing evidence fields and replay presence before rendering normal missing-material guidance.
 
 ## Tick loop280-controlled-dry-run-confirmation-state-contract
 

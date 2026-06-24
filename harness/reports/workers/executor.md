@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-24T09:45:00+08:00
+**Updated**: 2026-06-24T10:12:00+08:00
+
+## Tick loop281-controlled-dry-run-contract-review-packet
+
+- **任务 ID**：loop281-controlled-dry-run-contract-review-packet-red-checkpoint
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及受控 dry-run contract review packet、artifact/evidence 前置材料与执行授权边界。
+- **状态**：partial -> orchestrator takeover completed
+- **任务**：为 `controlled_dry_run_contract_review_packet_v1` 先写 RED tests，范围覆盖 API/Jobs/Factor Library/Chat/smoke 可见性、artifact/evidence defaults、source contract drift 与 no-execution boundaries；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：executor 完成 RED checkpoint 后停止；orchestrator 接管 GREEN，实现 contract review packet builder、MiningJob/FactorLibrary/Chat/Jobs/smoke wiring，并按 code-reviewer P2 补齐 Chat artifact/evidence fail-closed predicate。
+- **orchestrator 本地验证**：focused GREEN **7 passed**；Chat P2 drift focused **2 passed**；related regression **134 passed**；targeted Ruff **All checks passed!**；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `controlled_dry_run_contract_review_packet_visible=true`；strict production/fixture forbidden execution marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: shared hot-file implementation can checkpoint RED, then orchestrator can take over GREEN after STOP/rendezvous while preserving worker identity and evidence.
 
 ## Tick loop280-controlled-dry-run-confirmation-state-contract
 

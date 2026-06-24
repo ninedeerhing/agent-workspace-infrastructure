@@ -1,3 +1,57 @@
+# Orchestrator Report - loop281-controlled-dry-run-contract-review-packet
+
+**Updated**: 2026-06-24T10:12:00+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Controlled Dry-Run Contract Review Packet.
+- **trigger**: loop280 made the pending confirmation state contract visible, but the flow still needed a review-only packet that tells users exactly which confirmation artifacts and evidence are missing before any later artifact capture or contract handoff.
+- **result**: Factor Library, Chat, Jobs, and MiningJob completed observability now share `controlled_dry_run_contract_review_packet_v1`. It exposes missing operator/reviewer confirmation artifacts, disconnected runner_config evidence, rollback-before audit evidence not ready, replay audit evidence missing, ready flags false, `execution_permission=not_granted`, and the next route to artifact capture.
+- **P2 fixed**: code-reviewer found Chat formatter drift risk. Chat now uses the same artifact/evidence fail-closed matrix as Jobs/FactorLibrary before showing normal missing-material copy; drifted payloads show recheck.
+- **next**: `CONTROLLED_DRY_RUN_CONTRACT_REVIEW_TO_ARTIFACT_CAPTURE_LOOP282`; build an operator/reviewer artifact capture read-model and consumer-grade material checklist without granting execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/real_runner_authorization_framework.py` | Adds `controlled_dry_run_contract_review_packet_v1` builder and fail-closed source-contract validation. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Exposes the review packet from completed product_state observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Adds the same packet to Factor Library safe-simulation review rows. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders consumer-grade 受控 dry-run contract 复核前置 notes with full-matrix recheck fallback. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Shows the contract review packet and gates safe copy/markers with full fail-closed predicate. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Shows the contract review packet in Jobs cards and success/smoke surfaces. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds mocked contract review packet observability and smoke text checks. |
+| `apps/quant_assistant/tests/*loop281 related*` | Proves API/UI/Chat/Jobs visibility, source-contract drift recheck, artifact/evidence fail-closed matrix, and no-execution boundaries. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `build_controlled_dry_run_contract_review_packet_v1` failed as expected |
+| focused GREEN | pass · **7 passed** |
+| Chat P2 focused | pass · **2 passed** |
+| related regression | pass · **134 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| frontend eslint | pass · `FactorLibraryPage.tsx` + `JobsPage.tsx` |
+| web build | pass · `npm run build` |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, contract review packet markers visible |
+| strict production/fixture forbidden execution marker scan | pass · no live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret-output enablement |
+| diff check | pass · CRLF warnings only |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success on the review-packet matrix. `executor` wrote the RED checkpoint and stopped; the orchestrator completed GREEN and final verification. `code-reviewer` initially reported a P2 Chat drift-masking risk; after the formatter was expanded to include artifact/evidence secret flags and replay presence, final recheck reported success with no blockers.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop adds only a review-only contract packet; it does not authorize real execution.
+
+## Residual Risk
+
+The review packet is visible and fail-closed, but the operator/reviewer artifact capture read-model is not yet represented. That is the next core framework slice.
+
+---
+
 # Orchestrator Report - loop280-controlled-dry-run-confirmation-state-contract
 
 **Updated**: 2026-06-24T09:45:00+08:00
