@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T11:10:36+08:00
+更新时间：2026-06-24T13:30:40+08:00
+
+## Tick loop284-factor-candidate-factory-v1
+
+- **任务 ID**：loop284-factor-candidate-factory-v1-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及自动挖掘核心候选工厂与后续 F6 handoff。
+- **状态**：success after gap closure
+- **任务**：只读复核 `factor_factory_run_v1` 测试矩阵，确认 `auto_from_category` 批量候选、多 `generation_op`、多 `source_family`、static/dimension/duplicate/coverage gates、`formula_or_library_seed` 的 fail-closed rejects、creation plan `manual_trigger` / `factor_factory` 暴露，以及 no backtest/DB/background/runner/PL-H/secret safety。
+- **变更**：worker 未修改文件。
+- **复核结论**：初审 partial：主路径已绿，但缺少直接 `source_families` 多样性断言和 `static_gate` reject 覆盖。orchestrator 补 `len(payload["source_families"]) >= 2`、`static_gate` reject 断言和 `lead(close, 1)` static stress probe 后，二次复核 PASS。
+- **orchestrator 本地验证**：factory focused **2 passed**；candidate-generator/factory/creation-plan regression **10 passed**；quant-mining/batch related **22 passed**；targeted Ruff **All checks passed!**。
+- **roster_update**：workload cleared；mistakes none；lesson: source-family diversity and static reject paths should be directly asserted, not inferred from recipes.
 
 ## Tick loop283-controlled-dry-run-handoff-readiness-validator
 

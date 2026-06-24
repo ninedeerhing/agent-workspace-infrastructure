@@ -1,3 +1,50 @@
+# Orchestrator Report - loop284-factor-candidate-factory-v1
+
+**Updated**: 2026-06-24T13:30:40+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Factor Candidate Factory v1.
+- **trigger**: user confirmed the recommended candidate-factory path and asked to keep the mainline moving toward automatic factor mining -> automatic backtest, with goal-oriented phases rather than proof-only micro-slices.
+- **result**: `factor_factory_run_v1` now provides a no-execution candidate factory contract. It inherits A-E taxonomy, supports `auto_from_category` and `formula_or_library_seed`, emits candidate rationale plus generation op/source family, attaches static/dimension/duplicate/coverage gates, records trajectory to F6 panel screening, and is exposed from `user_facing_batch_mining_creation_plan_v1` through `manual_trigger=start_factor_factory`.
+- **next**: `FACTOR_FACTORY_TO_UI_SELECTOR_AND_F6_PLAN_LOOP285`; expose manual trigger/category selector/candidate preview and route selected candidates into plan-only F6 screening.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/factor_factory.py` | Adds the public no-execution factory run builder. |
+| `apps/quant_assistant/src/qa/quant_mining/factor_factory_models.py` | Adds typed factory run/candidate/gate/trajectory contracts. |
+| `apps/quant_assistant/src/qa/quant_mining/factor_factory_gates.py` | Adds static, dimension, duplicate, and coverage gate helpers. |
+| `apps/quant_assistant/src/qa/quant_mining/factor_factory_recipes.py` | Adds A-E recipe families and formula/library seed probes. |
+| `apps/quant_assistant/src/qa/brain/batch_mining_flow.py` | Uses the factory run in creation plans and exposes the manual trigger. |
+| `apps/quant_assistant/tests/test_quant_mining_factor_factory_unit.py` | Proves factory contract, quality gates, trajectory, and fail-closed rejects. |
+| `apps/quant_assistant/tests/test_batch_mining_flow_unit.py` | Proves creation plan exposes manual trigger and factory payload. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.factor_factory` failed as expected |
+| focused factory | pass · **2 passed** after adding source-family and static reject assertions |
+| related regression | pass · candidate-generator/factory/creation-plan **10 passed**; quant-mining/batch related **22 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| file-size gate | pass · core new/modified files <250 pure LOC; `batch_mining_flow.py` at 245 warning band |
+
+## Worker Notes
+
+Permanent worker threads were reused, not duplicated. `code-reviewer` Aquinas reported success with no execution-boundary blocker. `test-engineer` Galileo initially returned partial, identifying missing direct `source_families` and `static_gate` reject assertions; both gaps were fixed, re-verified locally, and Galileo's final read-only recheck reported success.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, adapter invocation, actual dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop only generates candidates and plan metadata.
+
+## Residual Risk
+
+The backend factory contract is in place, but users still need a visible manual trigger, A-E selector, candidate preview, and selected-candidate handoff into F6 screening. That is the next slice.
+
+---
+
 # Orchestrator Report - loop283-controlled-dry-run-handoff-readiness-validator
 
 **Updated**: 2026-06-24T11:10:36+08:00

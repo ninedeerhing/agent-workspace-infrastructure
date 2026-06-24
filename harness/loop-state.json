@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T11:10:36+08:00",
+  "updated_at": "2026-06-24T13:30:40+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "controlled-dry-run-handoff-readiness-validator-loop283",
-  "next_atomic_action": "CONTROLLED_DRY_RUN_HANDOFF_READINESS_TO_ARTIFACT_SUBMISSION_REVIEW_UX_LOOP284：在不连接 live/default runner、不触发 adapter/actual dry-run/DB-backed real batch/PL-H/page-load POST/background/migration/backfill、不输出 secret 的前提下，把 loop283 的 controlled_dry_run_handoff_readiness_validator_v1 推进为 operator/reviewer artifact submission/review UX：让用户能提交、查看、复核 operator artifact、reviewer artifact、runner_config evidence、rollback-before audit、replay audit refs 的材料状态与缺口，形成可审计的人工交接复核包；仍保持 execution_permission=not_granted、ready_for_execution=false、ready_for_controlled_dry_run=false，任何 drift/secret/default-runner/unsafe marker 都降级为 needs_recheck。",
-  "next_after": "After the operator/reviewer artifact submission/review UX is fail-closed and auditable, build the manual handoff review packet that can aggregate signed artifacts without granting execution or connecting a live/default runner.",
+  "current_slice": "factor-candidate-factory-v1-loop284",
+  "next_atomic_action": "FACTOR_FACTORY_TO_UI_SELECTOR_AND_F6_PLAN_LOOP285：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 factor_factory_run_v1 接入用户可见的手动触发与分类选择/候选预览 UI：支持 A-E 类/子类筛选、用户有想法/没想法自动模式、候选批量预览、质量闸解释，并把用户选择的候选以 plan-only 方式汇入 F6 screening plan；仍不执行真实回测。",
+  "next_after": "After manual category selection and candidate preview are visible, connect selected candidates to F6 panel IC screening evidence and then reviewed backtest plan / manual-safe simulation.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop283-controlled-dry-run-handoff-readiness-validator",
+  "last_tick": "loop284-factor-candidate-factory-v1",
   "last_sync_sources": [
     "loop283 Controlled Dry-Run Artifact Capture to Handoff Readiness Validator",
     "loop283 TDD RED: missing build_controlled_dry_run_handoff_readiness_validator_v1 before implementation",
@@ -1211,7 +1211,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop283 completed the controlled dry-run handoff readiness validator. Factor Library, Chat, Jobs, and MiningJob completed observability now share controlled_dry_run_handoff_readiness_validator_v1 as a fail-closed review-readiness validator layered on loop282 artifact bundle. Users can see missing_materials, ready_for_handoff_review, or needs_recheck; ready_for_handoff_review means human handoff review only, while execution_permission remains not_granted and ready flags remain false. Safety remains fail-closed: no env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret output was introduced. Next loop builds artifact submission/review UX, not real execution."
+    "note": "loop284 completed Factor Candidate Factory v1. batch_mining_creation_plan now exposes no-execution factor_factory_run_v1 with A-E taxonomy, source_mode, candidate rationale, generation ops/source families, static/dimension/duplicate/coverage gates, trajectory to F6 panel screening, and manual_trigger=start_factor_factory. Safety remains fail-closed: no env/DB read, live/default runner, adapter invocation, actual dry-run, DB-backed backtest, PL-H, page-load POST, background/migration/backfill, or secret output was introduced. Next loop builds user-visible manual trigger/category selector/candidate preview and plan-only F6 screening handoff."
   },
-  "last_completed_note": "loop283 Controlled Dry-Run Artifact Capture to Handoff Readiness Validator complete. Factor Library review rows, Chat follow-up, Jobs cards/smoke, and MiningJob completed observability now share controlled_dry_run_handoff_readiness_validator_v1 layered on loop282 confirmation_artifact_bundle_v1. The validator is a read-model and fail-closed human handoff review gate: missing materials -> missing_materials, complete safe materials -> ready_for_handoff_review, source/material drift -> needs_recheck; ready_for_execution=false, ready_for_controlled_dry_run=false, execution_permission=not_granted, and all execution-danger safety flags false. Drifted sources or unsafe materials show 执行安全状态需要重新核查. Verification: focused 5 passed; related regression 143 passed; targeted ruff pass; node --check pass; FactorLibraryPage/JobsPage eslint pass; web build pass; Jobs smoke pass with pageLoadTriggerRequests=[] and duplicateTriggerUrls=[] and controlled_dry_run_handoff_readiness_validator_visible=true; narrow forbidden true/granted marker scan clean; diff check pass with CRLF warnings only. Permanent test-engineer and code-reviewer reported success. Next_atomic_action is CONTROLLED_DRY_RUN_HANDOFF_READINESS_TO_ARTIFACT_SUBMISSION_REVIEW_UX_LOOP284."
+  "last_completed_note": "loop284 Factor Candidate Factory v1 complete. Added qa.quant_mining.factor_factory build_factor_factory_run_v1 plus factor_factory_models/gates/recipes. batch_mining_creation_plan now exposes factor_factory_run_v1 and manual_trigger=start_factor_factory; factory run inherits A-E taxonomy, supports auto_from_category/formula_or_library_seed, emits candidate rationale, generation_op/source_family, static/dimension/duplicate/coverage gates, and trajectory_summary next_stage=F6_panel_ic_screen. Verification: RED missing module expected; Galileo gap RED for static_gate expected; factory focused 2 passed; candidate-generator/factory/creation-plan regression 10 passed; quant-mining/batch related 22 passed; targeted Ruff pass; core files <250 pure LOC except batch_mining_flow.py warning band 245. Aquinas review success; Galileo initial source-family/static reject gaps fixed and final recheck success. Next_atomic_action is FACTOR_FACTORY_TO_UI_SELECTOR_AND_F6_PLAN_LOOP285."
 }
