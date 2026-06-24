@@ -1,3 +1,53 @@
+# Orchestrator Report - loop276-simulation-summary-to-factor-library-review
+
+**Updated**: 2026-06-24T08:03:01+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Simulation Summary to Factor Library Review.
+- **trigger**: loop275 generated completed `safe_sim_*` results after explicit submit, but users still needed those results tied back to factor identity, A-E category, F6/IC evidence, and reviewed backtest-plan inspection in the Factor Library.
+- **result**: Factor Library now exposes read-only completed safe simulation review rows keyed by `factor_version_id` and run ids. The review surface includes A-E category, candidate source, expression, F6/IC evidence, reviewed backtest plan status/evidence, next step, and explicit safety evidence.
+- **P2 fixed**: code-reviewer found missing `manual_safe_status.safety` could be coerced into false safety guarantees. The helper now skips completed jobs when safety evidence is missing/non-mapping and preserves alias risk flags as true when present.
+- **next**: `FACTOR_LIBRARY_SIMULATION_REVIEW_TO_MANUAL_ACCEPTANCE_LOOP277`; connect Factor Library simulation reviews to manual acceptance / next-action state and Chat follow-up.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Adds read-only `list_manual_safe_simulation_reviews(...)` and helpers to summarize completed safe_sim observability into factor-library review rows with explicit safety evidence. |
+| `apps/quant_assistant/src/qa/api/quant_routes.py` | Adds `simulation_reviews` / `simulation_error` to factor-library API without poisoning core factor library errors. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Adds safety simulation review section filtered by the same A-E category controls and showing run ids, evidence, reviewed plan, and next step. |
+| `apps/quant_assistant/tests/test_factor_library_insights_unit.py` | Proves completed safe runs summarize correctly, alias risk flags are preserved, and missing safety evidence is skipped fail-closed. |
+| `apps/quant_assistant/tests/test_factor_library_page_source_unit.py` | Proves the Factor Library page exposes the safe simulation review surface. |
+| `apps/quant_assistant/tests/test_mining_job_api_unit.py` | Proves factor-library API exposes simulation reviews and isolates simulation review failures. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · initial **3 failed expected** for missing helper/API/page surface |
+| focused GREEN | pass · **3 passed** |
+| factor-library/API regression | pass · **46 passed** |
+| Chat related | pass · `uv run pytest tests/test_ui_chat_brain_unit.py -q` -> **46 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| web build | pass · `npm run build` |
+| FactorLibraryPage eslint | pass · `npx eslint src/pages/FactorLibraryPage.tsx` |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]` |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success and recommended API linkage, Factor Library review surface, Jobs fixture visibility, Chat follow-up, and no-runner/no-adapter/no-DB/no-PL-H/no-page-load safety as the test matrix. `code-reviewer` initially reported P2 missing-safety-evidence false-guarantee risk; after fail-closed skip and alias-risk regression, recheck reported success with no remaining blockers.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop adds only a read-only review surface and does not authorize real execution.
+
+## Residual Risk
+
+The safe_sim result review is now visible in Factor Library, but the next loop still needs to convert that evidence into a clear manual acceptance / next-action state and Chat follow-up so users can decide whether to continue, request more evidence, or stay in controlled dry-run readiness review.
+
+---
+
 # Orchestrator Report - loop275-manual-safe-simulation-trigger-api
 
 **Updated**: 2026-06-24T07:42:01+08:00
