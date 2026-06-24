@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-24T10:12:00+08:00
+updated_at: 2026-06-24T10:38:29+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-24T10:12:00+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-24 loop282 · 已完成 Controlled Dry-Run Contract Review to Artifact Capture：Factor Library、Chat、Jobs 与 MiningJob completed observability 现在共享 fail-closed `confirmation_artifact_bundle_v1`。该 bundle 基于 loop281 `controlled_dry_run_contract_review_packet_v1`，展示 operator confirmation artifact、reviewer confirmation artifact、runner_config evidence、rollback-before audit evidence、replay audit refs 的 `missing/present/invalid/needs_recheck` 材料清单；默认 source_state=`collecting_artifacts`，`execution_permission=not_granted`，`ready_for_execution=false`，`ready_for_controlled_dry_run=false`，不连接 live/default runner，不触发 adapter/actual dry-run/DB-backed real batch/PL-H/page-load POST/background/migration/backfill，不输出 secret。漂移时降级为 `needs_recheck` 并显示“执行安全状态需要重新核查”。改动：`src/qa/quant_mining/real_runner_authorization_framework.py`、`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/factor_library_insights.py`、`src/qa/ui/chat_brain.py`、`web/src/pages/FactorLibraryPage.tsx`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、相关 tests。验证：related regression 138 passed；targeted Ruff pass；node --check pass；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / confirmation_artifact_bundle_visible=true / material statuses missing / ready flags false；strict production/fixture forbidden execution marker scan clean；test-engineer success；executor success；code-reviewer success。下一动作：`CONTROLLED_DRY_RUN_ARTIFACT_CAPTURE_TO_HANDOFF_READINESS_VALIDATOR_LOOP283`，把材料清单推进为 handoff readiness validator；仍禁止 live/default runner、未授权 adapter、actual adapter dry-run、DB-backed real batch、PL-H、page-load POST、background/migration/backfill/secret 输出。
+
 [CONTEXT] 2026-06-24 loop281 · 已完成 Controlled Dry-Run Contract Review Packet：Factor Library、Chat、Jobs 与 MiningJob completed observability 现在共享 fail-closed `controlled_dry_run_contract_review_packet_v1`。该 packet 基于 loop280 confirmation state contract，显示 operator/reviewer confirmation artifact missing、runner_config evidence not connected、rollback-before audit evidence not ready、replay audit evidence missing、ready_for_execution=false、ready_for_controlled_dry_run=false、execution_permission=not_granted，以及后续进入 artifact capture read-model 的路线。Backend / Chat / FactorLibraryPage / JobsPage 均改为完整 fail-closed predicate：source contract/state、artifact/evidence secret flags、replay presence=false 与 full execution-danger safety matrix 任一漂移都会显示“执行安全状态需要重新核查”。Chat P2 已修复：normal copy 必须同时检查 operator/reviewer artifact contains_secret_values=false、rollback-before audit contains_secret_values=false、replay_audit present=false 且 contains_secret_values=false。改动：`src/qa/quant_mining/real_runner_authorization_framework.py`、`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/factor_library_insights.py`、`src/qa/ui/chat_brain.py`、`web/src/pages/FactorLibraryPage.tsx`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、相关 tests。验证：focused GREEN 7 passed；Chat P2 drift focused 2 passed；related regression 134 passed；ruff targeted pass；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / review packet visible；strict production/fixture forbidden execution marker scan clean；test-engineer success；executor RED checkpoint then orchestrator GREEN；code-reviewer P2 fixed then final recheck success。下一动作：`CONTROLLED_DRY_RUN_CONTRACT_REVIEW_TO_ARTIFACT_CAPTURE_LOOP282`，把 review-only packet 推进为 operator/reviewer artifact capture read-model；仍禁止 live/default runner、未授权 adapter、actual adapter dry-run、DB-backed real batch、PL-H、page-load POST、background/migration/backfill/secret 输出。
 
 [CONTEXT] 2026-06-24 loop280 · 已完成 Controlled Dry-Run Confirmation State Contract：Factor Library、Chat、Jobs 与 MiningJob completed observability 现在共享 fail-closed `controlled_dry_run_confirmation_state_contract_v1`。该 contract 基于 loop279 operator review gate，显示 operator/reviewer 未确认、runner_config 未连接、rollback-before audit 未就绪、audit_evidence/confirmation_evidence contains_secret_values=false、ready_for_execution=false、ready_for_controlled_dry_run=false，以及后续才允许进入 controlled dry-run contract review 的路线。Backend / Chat / FactorLibraryPage / JobsPage 均改为完整 fail-closed predicate：source gate/review/state、confirmation defaults、audit/confirmation evidence secret flags 与 full execution-danger safety matrix 任一漂移都会显示“执行安全状态需要重新核查”。改动：`src/qa/quant_mining/real_runner_authorization_framework.py`、`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/factor_library_insights.py`、`src/qa/ui/chat_brain.py`、`web/src/pages/FactorLibraryPage.tsx`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、相关 tests。验证：focused GREEN 16 passed / 112 deselected；related regression 130 passed；ruff targeted pass；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / confirmation contract visible；production forbidden true-marker scan clean；test-engineer success；executor RED checkpoint then orchestrator GREEN；code-reviewer P2 fixed then final recheck success。下一动作：`CONFIRMATION_STATE_CONTRACT_TO_CONTROLLED_DRY_RUN_CONTRACT_REVIEW_LOOP281`，把 pending confirmation state contract 推进为 review-only controlled dry-run contract handoff packet；仍禁止 live/default runner、未授权 adapter、actual adapter dry-run、DB-backed real batch、PL-H、page-load POST、background/migration/backfill/secret 输出。
@@ -188,18 +190,18 @@ updated_at: 2026-06-24T10:12:00+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | user-facing-batch-mining-creation-intent-planner-loop272 |
-| `last_tick` | loop272-user-facing-batch-mining-creation-intent-planner |
+| `current_slice` | controlled-dry-run-artifact-capture-bundle-loop282 |
+| `last_tick` | loop282-controlled-dry-run-artifact-capture-bundle |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-INTENT_BATCH_MINING_CONFIRMATION_STATE_MACHINE_LOOP273：把 loop272 `batch_mining_creation_plan` 接入 Chat pending/continuation 与 intent state machine，使用户确认“开始/确认/继续”后沿同一对话进入 MiningJob 创建、candidate_generator、F6 screening、reviewed_backtest_plan 和 manual-safe readiness；API/Chat/Jobs 继续同源展示 A-E 分类、候选/筛选/计划来源与 no-env/no-DB/no-runner safety；禁止 live/default runner、PL-H、DB-backed real batch、page-load POST、background/migration/backfill、secret 输出。
+CONTROLLED_DRY_RUN_ARTIFACT_CAPTURE_TO_HANDOFF_READINESS_VALIDATOR_LOOP283：把 loop282 `confirmation_artifact_bundle_v1` 推进为 controlled dry-run contract handoff readiness validator，判定 operator/reviewer artifact、runner_config evidence、rollback-before audit、replay audit refs 的组合是否足以进入下一轮人工交接复核；仍保持 `execution_permission=not_granted`、`ready_for_execution=false`，只展示“可进入复核/仍缺材料/需要重核”的消费级状态；禁止 live/default runner、actual adapter dry-run、DB-backed real batch、PL-H、page-load POST、background/migration/backfill、secret 输出。
 
 ### next_after
 
-After confirmation-state loop is stable, build the consumer-grade result/evaluation loop from reviewed_backtest_plan and manual-safe simulation outcomes; real runner/PL-H remains gated until explicit authorization/config/rollback-audit and real-batch demand gates.
+After the readiness validator proves a complete artifact bundle remains fail-closed, build explicit operator/reviewer artifact submission/review UX without granting execution or connecting a live/default runner.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -304,11 +306,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed；loop271 已完成 PL-G `factor_discovery_workflow_v1`，把 A-E taxonomy、candidate generation、panel/F6 screening、reviewed plan、manual-safe simulation 收束为一个 mining job workflow contract + intent state transition；loop272 已完成 `user_facing_batch_mining_creation_plan_v1`，把自然语言挖掘目标接到确认前 creation plan 与确认后 MiningJob/candidate/F6/reviewed plan/workflow payload，且 confirmed path 不读 env/DB。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。下一步把 batch mining creation plan 的确认/继续态接入 Chat pending 与 intent state machine。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed。TREE-6 / PL-G 为唯一前台主线：loop271–272 已把 A-E taxonomy、candidate generation、F6 screening、reviewed plan、manual-safe simulation 接入 factor discovery workflow 与用户发起/意图理解 creation planner；loop273–277 已完成确认状态机、manual-safe result、trigger API、Factor Library 复核与人工验收；loop278–282 已把人工验收状态推进为 controlled dry-run readiness、operator review gate、confirmation state contract、contract review packet 与 `confirmation_artifact_bundle_v1` 材料清单。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `INTENT_BATCH_MINING_CONFIRMATION_STATE_MACHINE_LOOP273`：把 loop272 `batch_mining_creation_plan` 接入 Chat pending/continuation 与 intent state machine，使用户确认“开始/确认/继续”后沿同一对话进入 MiningJob 创建、candidate_generator、F6 screening、reviewed_backtest_plan 和 manual-safe readiness；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、PL-H batch execution、manual acceptance grant、authorization grant 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `CONTROLLED_DRY_RUN_ARTIFACT_CAPTURE_TO_HANDOFF_READINESS_VALIDATOR_LOOP283`：把 loop282 `confirmation_artifact_bundle_v1` 推进为 handoff readiness validator，判定 operator/reviewer artifact、runner_config evidence、rollback-before audit、replay audit refs 的组合是否可进入下一轮人工交接复核，或仍缺材料/需要重核；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、manual acceptance grant、authorization grant 与 secret 输出。
 
 ## Resume Command
 

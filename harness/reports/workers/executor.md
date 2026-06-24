@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-24T10:12:00+08:00
+**Updated**: 2026-06-24T10:38:29+08:00
+
+## Tick loop282-controlled-dry-run-artifact-capture-bundle
+
+- **任务 ID**：loop282-controlled-dry-run-artifact-capture-bundle-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 confirmation artifact bundle、材料状态、执行授权边界与用户可见安全状态。
+- **状态**：success
+- **任务**：有界实现 `confirmation_artifact_bundle_v1`，接入 MiningJob observability、Factor Library review rows、Chat follow-up、FactorLibraryPage、JobsPage 与 Jobs smoke fixture；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 artifact bundle builder 与跨面消费；补齐 API/UI/Chat/Jobs tests 与 fixture checks；保留 fail-closed `needs_recheck` drift 路径和 `execution_permission=not_granted`。
+- **orchestrator 本地验证**：related regression **138 passed**；targeted Ruff **All checks passed!**；node check pass；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke pass with `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `confirmation_artifact_bundle_visible=true`, material statuses missing, ready flags false；strict production/fixture forbidden execution marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: material checklist implementation should stay API-first and shared by Chat/Jobs/Factor Library, with execution permission fixed to not_granted until a later gate.
 
 ## Tick loop281-controlled-dry-run-contract-review-packet
 

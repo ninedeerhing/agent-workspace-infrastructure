@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T10:12:00+08:00
+更新时间：2026-06-24T10:38:29+08:00
+
+## Tick loop282-controlled-dry-run-artifact-capture-bundle
+
+- **任务 ID**：loop282-controlled-dry-run-artifact-capture-bundle-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.4 read-only recheck；本轮复核不编辑生产代码，但涉及执行授权边界与 UI drift-masking 风险。
+- **状态**：success
+- **任务**：只读审查 `confirmation_artifact_bundle_v1` 是否只是 material checklist/read-model 而非执行授权，source packet drift 是否降级 recheck，operator/reviewer artifact、runner_config evidence、rollback-before audit evidence、replay audit refs 是否 fail-closed missing，以及 Factor Library / Jobs / Chat / MiningJob observability 是否同源展示且不打开执行路径。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：PASS；未发现 live/default runner、adapter invocation、actual adapter dry-run、DB real batch、PL-H、page-load POST、background/migration/backfill 或 secret-output 新路径；默认 bundle 保持 `execution_permission=not_granted`、ready flags false，source drift 显示 recheck。
+- **orchestrator 本地验证**：related regression **138 passed**；targeted Ruff **All checks passed!**；node check pass；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke pass；strict production/fixture forbidden execution marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: artifact-bundle consumers must not translate missing material lists into readiness or authorization; readiness needs a separate later validator.
 
 ## Tick loop281-controlled-dry-run-contract-review-packet
 

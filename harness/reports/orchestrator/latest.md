@@ -1,3 +1,55 @@
+# Orchestrator Report - loop282-controlled-dry-run-artifact-capture-bundle
+
+**Updated**: 2026-06-24T10:38:29+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Controlled Dry-Run Contract Review to Artifact Capture.
+- **trigger**: loop281 made the controlled dry-run contract review packet visible, but the flow still needed a concrete, consumer-visible material checklist before any later handoff readiness review.
+- **result**: Factor Library, Chat, Jobs, and MiningJob completed observability now share `confirmation_artifact_bundle_v1`. It exposes operator artifact missing, reviewer artifact missing, runner_config evidence missing, rollback-before audit evidence missing, replay audit refs missing, ready flags false, `execution_permission=not_granted`, and fail-closed `needs_recheck` behavior for source drift.
+- **next**: `CONTROLLED_DRY_RUN_ARTIFACT_CAPTURE_TO_HANDOFF_READINESS_VALIDATOR_LOOP283`; build a handoff readiness validator over the artifact bundle without granting execution or connecting a live/default runner.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/real_runner_authorization_framework.py` | Adds `confirmation_artifact_bundle_v1` builder and fail-closed source-packet validation. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Exposes the artifact bundle from completed product_state observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Adds the same bundle to Factor Library safe-simulation review rows. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders consumer-grade material checklist notes with recheck fallback. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Shows artifact bundle material status and gates safe copy with fail-closed predicates. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Shows artifact bundle material status in Jobs cards and smoke surfaces. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Adds mocked artifact bundle observability and smoke text checks. |
+| `apps/quant_assistant/tests/*loop282 related*` | Proves API/UI/Chat/Jobs visibility, source-packet drift recheck, material statuses, and no-execution boundaries. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `build_confirmation_artifact_bundle_v1` failed as expected |
+| related regression | pass · **138 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| node check | pass · `web/scripts/smoke-jobs-page-fixture.mjs` |
+| frontend eslint | pass · `FactorLibraryPage.tsx` + `JobsPage.tsx` |
+| web build | pass · `npm run build` |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `confirmation_artifact_bundle_visible=true`, material statuses missing, ready flags false |
+| strict production/fixture forbidden execution marker scan | pass · no live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret-output enablement |
+| diff check | pass · CRLF warnings only |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success on the artifact-bundle matrix. `executor` implemented the bounded bundle and cross-surface wiring. `code-reviewer` reported final success with no blockers and no execution-enabling path.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop adds only a material checklist read-model; it does not authorize real execution.
+
+## Residual Risk
+
+The artifact bundle is visible and fail-closed, but it does not yet decide whether a complete material set is ready for handoff review. That is the next core framework slice.
+
+---
+
 # Orchestrator Report - loop281-controlled-dry-run-contract-review-packet
 
 **Updated**: 2026-06-24T10:12:00+08:00
