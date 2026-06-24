@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T14:46:00+08:00",
+  "updated_at": "2026-06-24T15:06:00+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "f6-evidence-plan-to-reviewed-backtest-readiness-loop287",
-  "next_atomic_action": "REVIEWED_PLAN_READINESS_TO_MANUAL_SAFE_SIMULATION_PLAN_LOOP288：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 reviewed_backtest_plan_readiness_v1 接到 manual-safe simulation plan/action readiness：当 readiness 仍 waiting/needs_recheck 时只展示缺口和下一步；当 ready_for_reviewed_plan 且 rank_ic/coverage/panel_sample 证据齐备时，生成 no-execution reviewed plan preview 与显式手动安全模拟触发准备，继续不执行真实回测。",
-  "next_after": "After reviewed readiness can prepare a manual-safe simulation plan/action, connect it to explicit trigger handling and later controlled dry-run/manual acceptance gates.",
+  "current_slice": "reviewed-readiness-to-manual-safe-simulation-plan-loop288",
+  "next_atomic_action": "MANUAL_SAFE_PLAN_READINESS_TO_EXPLICIT_TRIGGER_HANDOFF_LOOP289：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 manual_safe_simulation_plan_readiness_v1 的 ready 状态接到 Chat/pending/confirmation 与后端 explicit trigger handoff 的最小可恢复状态；waiting/needs_recheck 继续只展示缺口，ready 只生成显式手动触发请求和 controlled dry-run/manual acceptance 后续路线，不自动 POST、不调用 runner/adapter/DB、不读取 env/DB。",
+  "next_after": "After explicit trigger handoff is recoverable and still no-execution by default, connect it to the existing server-owned manual-safe simulation trigger and later controlled dry-run/manual acceptance gates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,17 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop287-f6-evidence-plan-to-reviewed-backtest-plan-readiness",
+  "last_tick": "loop288-reviewed-readiness-to-manual-safe-simulation-plan",
   "last_sync_sources": [
+    "loop288 Reviewed readiness to manual-safe simulation plan/action readiness",
+    "loop288 TDD RED: missing qa.quant_mining.manual_safe_simulation_plan_readiness before implementation",
+    "loop288 GREEN: manual_safe_simulation_plan_readiness_v1 derives waiting_for_reviewed_plan, needs_recheck, and ready_for_manual_safe_simulation_plan from reviewed_backtest_plan_readiness_v1",
+    "loop288 no-execution contract: ready state prepares manual_safe_plan_preview and explicit-trigger-required action preview only; manual_safe_action_preview.enabled=false and trigger_request keeps auto_execute/will_execute_backtest/read_env/read_db/live/default runner/adapter/actual dry-run/DB-backed/page-load/background/migration/backfill/PL-H/secret false",
+    "loop288 UI/Chat: batch mining creation plan renders consumer-grade safety simulation readiness only when full top-level safety plus nested plan/action/trigger/next_route no-execution fields prove no-execution; drifted action payloads hide normal copy",
+    "loop288 refactor: batch_mining_flow.py now delegates creation-plan construction to batch_mining_creation_plan_builder.py, keeping intent state-machine file at 147 lines and builder at 120 lines",
+    "loop288 verification: RED missing module failed expected; focused manual-safe readiness/UI group 6 passed; related reviewed/batch/UI regression 67 passed; targeted Ruff pass; source-only forbidden true scan clean; diff check CRLF warnings only",
+    "loop288 worker dispatch: permanent code-reviewer and verifier read-only final reviews dispatched with gpt-5.5; permanent test-engineer channel remains waitingOnApproval/channel_stale and was not duplicated",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.615",
     "loop287 F6 evidence plan to reviewed backtest plan readiness",
     "loop287 TDD RED: missing qa.quant_mining.reviewed_backtest_plan_readiness before implementation",
     "loop287 GREEN: reviewed_backtest_plan_readiness_v1 derives waiting_for_f6_evidence_selection, needs_recheck, and ready_for_reviewed_plan from f6_screening_evidence_plan_v1",
@@ -1234,7 +1243,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop287 completed F6 evidence plan to reviewed backtest plan readiness. reviewed_backtest_plan_readiness_v1 now derives waiting/needs_recheck/ready states from f6_screening_evidence_plan_v1 and only allows ready_for_reviewed_plan when source_status=ready_for_f6_evidence_review, rank_ic passes threshold, coverage passes threshold, and panel_sample evidence is present. Missing or drifted evidence fails closed with explicit gaps, including f6_evidence_plan_source_status. Chat/UI copy is gated on top-level safety plus nested reviewed_plan_preview/next_route/execution_gate no-execution fields. Next loop connects reviewed readiness to manual-safe simulation plan/action readiness without real backtest execution."
+    "note": "loop288 completed reviewed readiness to manual-safe simulation plan/action readiness. manual_safe_simulation_plan_readiness_v1 now derives waiting_for_reviewed_plan, needs_recheck, and ready_for_manual_safe_simulation_plan from reviewed_backtest_plan_readiness_v1. Ready only prepares a no-execution manual_safe_plan_preview plus explicit-trigger-required action preview; action enabled remains false and trigger_request keeps auto_execute, backtest, env/DB, live/default runner, adapter, actual dry-run, DB-backed, page-load, background, migration/backfill, PL-H, and secret flags false. Chat/UI safety simulation copy is gated on full top-level and nested plan/action/trigger/next_route no-execution predicates. Next loop connects this readiness payload to recoverable explicit trigger handoff without automatic execution."
   },
-  "last_completed_note": "loop287 F6 evidence plan to reviewed backtest plan readiness complete. Added qa.quant_mining.reviewed_backtest_plan_readiness and reviewed_backtest_plan_readiness_models; build_factor_mining_creation_plan now exposes reviewed_backtest_plan_readiness_v1; qa.ui.batch_mining_reviewed_plan_view renders consumer-grade readiness copy. The contract supports waiting_for_f6_evidence_selection, needs_recheck, and ready_for_reviewed_plan; ready requires source_status=ready_for_f6_evidence_review, rank_ic threshold pass, coverage threshold pass, and panel_sample evidence. Waiting-source payloads with injected measured candidate rows fail closed with f6_evidence_plan_source_status; missing selected-candidate metrics fail closed with rank_ic/coverage/panel_sample gaps. will_read_env=false, will_read_db=false, will_execute_backtest=false, full safety flags false. Verification: RED missing module failed expected; focused readiness 5 passed; final related regression 87 passed; targeted Ruff pass; source-only true enablement scan clean; diff check CRLF warnings only. Aquinas semantic blocker and final P2 were fixed; Galileo remains stale/waitingOnApproval and was not duplicated. Next_atomic_action is REVIEWED_PLAN_READINESS_TO_MANUAL_SAFE_SIMULATION_PLAN_LOOP288."
+  "last_completed_note": "loop288 reviewed readiness to manual-safe simulation plan/action readiness complete. Added qa.quant_mining.manual_safe_simulation_plan_readiness and manual_safe_simulation_plan_readiness_models; build_factor_mining_creation_plan now exposes manual_safe_simulation_plan_readiness_v1 via the split batch_mining_creation_plan_builder; qa.ui.batch_mining_manual_safe_plan_view renders consumer-grade safety simulation readiness copy. The contract supports waiting_for_reviewed_plan, needs_recheck, and ready_for_manual_safe_simulation_plan; ready prepares manual_safe_plan_preview and explicit-trigger-required action preview only, with manual_safe_action_preview.enabled=false and trigger_request safety flags all no-execution. Drifted reviewed readiness or nested action/trigger route payloads fail closed and hide normal UI copy. Verification: RED missing module failed expected; focused manual-safe/UI group 6 passed; related reviewed/batch/UI regression 67 passed; targeted Ruff pass; source-only forbidden true scan clean; diff check CRLF warnings only. Code-reviewer and verifier read-only final reviews were dispatched; test-engineer channel remains stale/waitingOnApproval and was not duplicated. Next_atomic_action is MANUAL_SAFE_PLAN_READINESS_TO_EXPLICIT_TRIGGER_HANDOFF_LOOP289."
 }

@@ -1,3 +1,52 @@
+# Orchestrator Report - loop288-reviewed-readiness-to-manual-safe-simulation-plan
+
+**Updated**: 2026-06-24T15:06:00+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G reviewed readiness to manual-safe simulation plan/action readiness.
+- **trigger**: loop287 created `reviewed_backtest_plan_readiness_v1`; the chain still needed a fail-closed manual-safe simulation plan/action readiness layer before any explicit trigger handoff.
+- **result**: `manual_safe_simulation_plan_readiness_v1` now derives `waiting_for_reviewed_plan`, `needs_recheck`, and `ready_for_manual_safe_simulation_plan` from `reviewed_backtest_plan_readiness_v1`. Ready prepares a no-execution plan preview and an explicit-trigger-required action preview only; the action remains disabled by default.
+- **next**: `MANUAL_SAFE_PLAN_READINESS_TO_EXPLICIT_TRIGGER_HANDOFF_LOOP289`; connect ready manual-safe readiness to recoverable explicit trigger handoff without automatic execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/manual_safe_simulation_plan_readiness.py` | Adds the no-execution manual-safe simulation readiness builder over reviewed plan readiness. |
+| `apps/quant_assistant/src/qa/quant_mining/manual_safe_simulation_plan_readiness_models.py` | Adds typed readiness, plan preview, action preview, trigger request, route, and safety contracts. |
+| `apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py` | Splits batch mining creation-plan construction out of the intent state-machine flow module and wires manual-safe readiness. |
+| `apps/quant_assistant/src/qa/brain/batch_mining_flow.py` | Keeps public API stable while delegating creation-plan construction to the new builder. |
+| `apps/quant_assistant/src/qa/ui/batch_mining_manual_safe_plan_view.py` | Renders consumer-readable safety simulation readiness copy with a full nested no-execution predicate. |
+| `apps/quant_assistant/src/qa/ui/batch_mining_creation_plan_view.py` | Includes manual-safe readiness in creation plan notes and panel output. |
+| `apps/quant_assistant/tests/*loop288 related*` | Proves waiting, ready, reviewed-readiness drift, creation-plan exposure, Chat copy, and nested action/trigger drift fail-closed behavior. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.manual_safe_simulation_plan_readiness` failed as expected |
+| focused manual-safe/UI group | pass · **6 passed** |
+| related regression | pass · reviewed readiness + batch flow + Chat UI **67 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| source-only forbidden true scan | pass · no env/DB/runner/adapter/backtest/PL-H/page-load/background/migration/backfill/secret enablement markers flipped true |
+| size gate | pass · `batch_mining_flow.py` now 147 lines; builder 120 lines |
+| diff check | pass · CRLF warnings only |
+
+## Worker Notes
+
+Permanent worker identities were preserved. `code-reviewer` Aquinas returned success with no P1/P2 blockers, confirming manual-safe readiness remains plan/action-preview only and opens no env/DB/runner/adapter/backtest path. `verifier` returned success, confirming the state derivation, nested no-execution predicates, builder split, and reported verification matrix are sufficient. `test-engineer` Galileo remains in a stale/waitingOnApproval channel from an older assignment and was not duplicated; orchestrator covered TDD RED/GREEN and related regression locally.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, adapter invocation, actual dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop only prepares a manual-safe simulation preview and explicit-trigger-required handoff shape.
+
+## Residual Risk
+
+The manual-safe readiness payload is visible and fail-closed, but it is not yet wired into recoverable Chat/pending/confirmation explicit trigger handoff. That is the next slice.
+
+---
+
 # Orchestrator Report - loop287-f6-evidence-plan-to-reviewed-backtest-plan-readiness
 
 **Updated**: 2026-06-24T14:46:00+08:00
