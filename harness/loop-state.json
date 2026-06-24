@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T08:03:01+08:00",
+  "updated_at": "2026-06-24T08:22:43+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "simulation-summary-to-factor-library-review-loop276",
-  "next_atomic_action": "FACTOR_LIBRARY_SIMULATION_REVIEW_TO_MANUAL_ACCEPTANCE_LOOP277：把 Factor Library 中的安全模拟复核结果接到人工验收/下一步行动状态，使用户能基于 factor_version_id、safe_sim run_id、A-E 分类、候选来源、F6/IC evidence、reviewed_backtest_plan 与显式 safety evidence 判断“可继续人工验收 / 需补安全证据 / 仅允许 controlled dry-run readiness review”；同源接入 Chat follow-up。继续不授予 live/default runner、adapter invocation、DB-backed real batch、PL-H、page-load POST、background/migration/backfill、secret 输出。",
-  "next_after": "After Factor Library simulation reviews are connected to manual acceptance and Chat follow-up, advance toward controlled dry-run readiness only through explicit safety evidence and operator/reviewer acceptance gates.",
+  "current_slice": "factor-library-simulation-review-to-manual-acceptance-loop277",
+  "next_atomic_action": "MANUAL_ACCEPTANCE_TO_CONTROLLED_DRY_RUN_READINESS_LOOP278：把 loop277 的人工验收/下一步状态接到受控 dry-run readiness review 包，使用户在人工确认后能看到 operator/reviewer 待确认、runner_config/rollback-audit 缺口、缺失安全证据阻断与不会执行真实回测的下一步；同源接入 Factor Library / Chat / Jobs 状态。继续不授予 live/default runner、adapter invocation、DB-backed real batch、PL-H、page-load POST、background/migration/backfill、secret 输出。",
+  "next_after": "After manual acceptance state is visible in Factor Library and Chat, build a controlled dry-run readiness review package that remains review-only until explicit operator/reviewer acceptance, runner_config, rollback-audit, and real-batch gates are satisfied.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop276-simulation-summary-to-factor-library-review",
+  "last_tick": "loop277-factor-library-simulation-review-to-manual-acceptance",
   "last_sync_sources": [
+    "loop277 Factor Library simulation review to manual acceptance",
+    "loop277 TDD RED: missing manual_acceptance in factor-library review rows, missing FactorLibraryPage source markers, and missing Chat follow-up recovery from factor_library_simulation_review",
+    "loop277 GREEN: factor_library_insights now derives manual_acceptance states ready_for_manual_acceptance, needs_safety_evidence, reviewed_plan_not_ready, and missing_simulation_result from explicit safety evidence, reviewed_backtest_plan status, and completed safe_sim run_ids",
+    "loop277 API/UI/Chat: FactorLibraryPage shows 人工验收状态 + 受控模拟准备, and Chat follow-up renders 因子库复核 with factor_version_id, safe_sim run_ids, A-E category, F6/IC evidence, manual acceptance state, and no-execution safety copy",
+    "loop277 consumer copy: next_step now uses 受控模拟回测准备度复核（controlled dry-run readiness review） instead of English-only engineering jargon",
+    "loop277 verification: initial RED 4 failed expected; focused GREEN 4 passed; related regression 95 passed; ruff targeted pass; FactorLibraryPage eslint pass; web build pass; diff forbidden scan only protective no-execution text",
+    "loop277 worker review: permanent test-engineer success; permanent code-reviewer success; optional branch tests for reviewed_plan_not_ready and missing_simulation_result added and passed",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.604",
     "loop276 Simulation summary to Factor Library review",
     "loop276 TDD RED: missing list_manual_safe_simulation_reviews helper, factor-library API simulation_reviews payload, and FactorLibraryPage safe simulation review surface",
     "loop276 GREEN: factor_library_insights now read-only summarizes completed safe simulation observability into factor-library review rows keyed by factor_version_id/run_ids with A-E category, candidate source, F6/IC evidence, reviewed_backtest_plan, next_step, and explicit safety evidence",
@@ -1158,7 +1166,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop276 completed the simulation summary to Factor Library review bridge. Factor Library now exposes read-only completed safe_sim review rows keyed by factor_version_id and run_ids, with A-E category, candidate source, F6/IC evidence, reviewed_backtest_plan, next step, and explicit safety evidence. Missing/non-mapping safety evidence is skipped fail-closed, and alias risk flags remain true when present. Safety remains fail-closed: no env/DB read, live/default runner, unauthorized adapter invocation, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret output was introduced. Next loop connects these review rows to manual acceptance and Chat follow-up."
+    "note": "loop277 completed the Factor Library simulation review to manual acceptance bridge. Factor Library review rows now expose manual_acceptance states derived from explicit safety evidence, reviewed_backtest_plan readiness, and completed safe_sim run_ids. The page shows 人工验收状态 and 受控模拟准备; Chat follow-up renders the same 因子库复核 summary with factor_version_id, run ids, A-E category, F6/IC evidence, next step, and no-execution copy. Safety remains fail-closed: no env/DB read, live/default runner, unauthorized adapter invocation, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret output was introduced. Next loop builds a review-only controlled dry-run readiness package."
   },
-  "last_completed_note": "loop276 Simulation Summary to Factor Library Review complete. Completed safe_sim observability is now summarized into factor-library review rows keyed by factor_version_id/run_ids, including A-E category, candidate source, F6/IC evidence, reviewed_backtest_plan, next_step, and explicit safety evidence. Factor Library API returns simulation_reviews plus simulation_error, and FactorLibraryPage displays a filtered safety simulation review section. Missing safety evidence skips rows fail-closed; alias risk flags preserve true risks. Verification: TDD RED 3 failed expected; focused GREEN 3 passed; related factor-library/API regression 46 passed; Chat brain 46 passed; ruff targeted pass; web build pass; FactorLibraryPage eslint pass; Jobs smoke ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[]. Permanent test-engineer success; permanent code-reviewer partial P2 then recheck success. Next_atomic_action is FACTOR_LIBRARY_SIMULATION_REVIEW_TO_MANUAL_ACCEPTANCE_LOOP277."
+  "last_completed_note": "loop277 Factor Library Simulation Review to Manual Acceptance complete. Completed safe_sim review rows now include manual_acceptance: ready_for_manual_acceptance, needs_safety_evidence, reviewed_plan_not_ready, or missing_simulation_result. FactorLibraryPage shows 人工验收状态 and 受控模拟准备, while Chat follow-up recovers observability.factor_library_simulation_review / simulation_reviews and renders a consumer-grade 因子库复核 summary with factor_version_id, safe_sim run ids, A-E category, F6/IC evidence, reviewed_backtest_plan evidence, next step, and no-execution safety copy. Consumer copy now says 受控模拟回测准备度复核（controlled dry-run readiness review）. Verification: TDD RED 4 failed expected; focused GREEN 4 passed; related regression 95 passed; ruff targeted pass; FactorLibraryPage eslint pass; web build pass; diff forbidden scan only protective no-execution text. Permanent test-engineer success; permanent code-reviewer success; optional branch tests for reviewed_plan_not_ready and missing_simulation_result added. Next_atomic_action is MANUAL_ACCEPTANCE_TO_CONTROLLED_DRY_RUN_READINESS_LOOP278."
 }

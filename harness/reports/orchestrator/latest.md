@@ -1,3 +1,52 @@
+# Orchestrator Report - loop277-factor-library-simulation-review-to-manual-acceptance
+
+**Updated**: 2026-06-24T08:22:43+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Factor Library Simulation Review to Manual Acceptance.
+- **trigger**: loop276 made completed `safe_sim_*` review evidence visible in Factor Library, but users still needed a clear decision state: whether the result is ready for manual acceptance, needs more safety evidence, has an unready reviewed plan, or has an incomplete simulation result.
+- **result**: Factor Library review rows now expose `manual_acceptance` states derived from explicit safety evidence, reviewed backtest-plan readiness, and completed run ids. FactorLibraryPage shows 人工验收状态 and 受控模拟准备, and Chat follow-up recovers the same 因子库复核 summary from `observability.factor_library_simulation_review` / `simulation_reviews[]`.
+- **copy fix**: the next step now uses “受控模拟回测准备度复核（controlled dry-run readiness review）” instead of English-only engineering jargon.
+- **next**: `MANUAL_ACCEPTANCE_TO_CONTROLLED_DRY_RUN_READINESS_LOOP278`; connect manual acceptance to a review-only controlled dry-run readiness package across Factor Library / Chat / Jobs.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Adds `_manual_acceptance_state(...)` and attaches review-only manual acceptance states to completed safe simulation review rows. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Recovers factor-library simulation review metadata in manual-safe follow-up replies and renders consumer-grade 因子库复核 notes. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Shows manual acceptance state and controlled simulation readiness on the Factor Library review surface. |
+| `apps/quant_assistant/tests/test_factor_library_insights_unit.py` | Proves ready, safety-risk blocked, missing-safety skip, reviewed-plan-not-ready, and missing-result states. |
+| `apps/quant_assistant/tests/test_factor_library_page_source_unit.py` | Proves the Factor Library page exposes manual acceptance and controlled dry-run readiness markers. |
+| `apps/quant_assistant/tests/test_ui_chat_brain_unit.py` | Proves Chat follow-up can render the same factor-library review without leaking POST/API internals. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · initial **4 failed expected** for missing manual_acceptance/page source/Chat follow-up |
+| focused GREEN | pass · **4 passed** |
+| related regression | pass · **95 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| FactorLibraryPage eslint | pass · `npx eslint src/pages/FactorLibraryPage.tsx` |
+| web build | pass · `npm run build` |
+| diff forbidden scan | pass · only protective no-execution text / tests matched |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success: the matrix covers manual_acceptance ready/blocked states, safety evidence fail-closed, Factor Library markers, Chat recovery, and no-execution boundaries. `code-reviewer` reported success: no live/default runner, adapter invocation, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret-output path found. Reviewer suggested branch tests for `reviewed_plan_not_ready` and `missing_simulation_result`; both were added and included in the 95 passed regression.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop adds only review/acceptance state and Chat recovery; it does not authorize real execution.
+
+## Residual Risk
+
+Manual acceptance is now visible, but the controlled dry-run readiness package still needs to be assembled so users can see operator/reviewer acceptance, runner_config, rollback-audit, missing safety evidence blockers, and no-execution next steps in one review-only state.
+
+---
+
 # Orchestrator Report - loop276-simulation-summary-to-factor-library-review
 
 **Updated**: 2026-06-24T08:03:01+08:00
