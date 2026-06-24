@@ -1,3 +1,53 @@
+# Orchestrator Report - loop278-manual-acceptance-to-controlled-dry-run-readiness
+
+**Updated**: 2026-06-24T08:45:02+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Manual Acceptance to Controlled Dry-Run Readiness.
+- **trigger**: loop277 made Factor Library manual acceptance visible, but the next user-facing step still needed a unified review-only readiness package before any later controlled dry-run gate.
+- **result**: Factor Library, Chat, Jobs, and MiningJob completed observability now share `controlled_dry_run_readiness_review_v1`. It exposes operator/reviewer pending, runner_config not_connected, rollback/audit not_ready, completed refs, blockers, and fail-closed no-execution/recheck copy.
+- **P2 fixed**: code-reviewer found UI drift-masking risks in JobsPage and FactorLibraryPage. Both surfaces now derive safe copy/markers from full fail-closed payload predicates; drifted payloads show “执行安全状态需要重新核查”.
+- **next**: `CONTROLLED_DRY_RUN_READINESS_TO_OPERATOR_REVIEW_GATE_LOOP279`; convert the readiness package into an explicit operator/reviewer human review gate without granting execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/real_runner_authorization_framework.py` | Adds `controlled_dry_run_readiness_review_v1` builder with review-only/blocked states and fail-closed safety flags. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Exposes the readiness review from completed product_state observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Adds readiness review to Factor Library safe-simulation review rows and propagates manual_acceptance blockers. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders consumer-grade 受控模拟准备复核 notes in manual-safe follow-up replies. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Shows the readiness review and gates safe copy/markers with a full fail-closed predicate. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Shows the readiness review and gates fail-closed markers with a full payload predicate. |
+| `apps/quant_assistant/tests/*loop278 related*` | Proves API/UI/Chat/Jobs visibility, blocked propagation, fail-closed markers, and no-execution boundaries. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · initial **8 failed expected** for missing readiness package across Factor Library / Chat / Jobs / API |
+| related regression | pass · **122 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| frontend eslint | pass · `FactorLibraryPage.tsx` + `JobsPage.tsx` |
+| web build | pass · `npm run build` |
+| forbidden scan | pass · no live/default runner, adapter invocation, DB-backed real batch, PL-H, page-load POST, background/migration/backfill, or secret-output enablement |
+| diff check | pass · CRLF warnings only |
+
+## Worker Notes
+
+Permanent worker threads were used. `test-engineer` reported success on the readiness matrix. `code-reviewer` initially reported P2 UI drift-masking risks, first in JobsPage/FactorLibraryPage and then in FactorLibraryPage's single-field safe copy. Both were fixed; final recheck reported success with no blockers.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, unauthorized adapter invocation, actual adapter dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop adds only review-only readiness state; it does not authorize real execution.
+
+## Residual Risk
+
+Readiness is now visible and fail-closed, but operator/reviewer review evidence is not yet collected as a formal gate. That is the next core framework slice.
+
+---
+
 # Orchestrator Report - loop277-factor-library-simulation-review-to-manual-acceptance
 
 **Updated**: 2026-06-24T08:22:43+08:00

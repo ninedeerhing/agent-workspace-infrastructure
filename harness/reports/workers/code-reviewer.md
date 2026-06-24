@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T08:22:43+08:00
+更新时间：2026-06-24T08:45:02+08:00
+
+## Tick loop278-manual-acceptance-to-controlled-dry-run-readiness
+
+- **任务 ID**：loop278-controlled-dry-run-readiness-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及受控 dry-run readiness、执行授权边界与用户可见安全文案。
+- **状态**：success after P2 recheck
+- **任务**：只读审查 `controlled_dry_run_readiness_review_v1` 是否被误表达为执行授权，是否新增真实/default runner、adapter invocation、DB/backfill/migration/page-load POST/PL-H/secret 输出路径，以及 Factor Library / Jobs safe copy 是否 fail-closed。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：初审发现 P2：JobsPage 与 FactorLibraryPage 有硬编码 false marker / safe copy 风险，可能在 payload 漂移时继续宣称安全。orchestrator 先给 JobsPage 增加 `isFailClosedControlledDryRunReadinessReview(...)` 并门控 markers；随后 worker 复审又指出 FactorLibraryPage 仍只凭 `ready_for_execution=false` 展示“不会自动启动”。orchestrator 最终给 FactorLibraryPage 同步完整 fail-closed predicate，并让 hidden markers 输出 `readiness_review_fail_closed=true/false`。最终 recheck PASS，无剩余 blocker。
+- **orchestrator 本地验证**：RED **8 failed expected**；final related regression **122 passed**；targeted Ruff **All checks passed!**；FactorLibraryPage/JobsPage eslint pass；web build pass；forbidden scan pass；`git diff --check` pass（CRLF warnings only）。
+- **roster_update**：workload cleared；mistakes none；lesson: readiness review surfaces should derive both visible copy and hidden markers from the same fail-closed predicate.
 
 ## Tick loop277-factor-library-simulation-review-to-manual-acceptance
 

@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T08:22:43+08:00
+更新时间：2026-06-24T08:45:02+08:00
+
+## Tick loop278-manual-acceptance-to-controlled-dry-run-readiness
+
+- **任务 ID**：loop278-controlled-dry-run-readiness-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 Factor Library / Chat / Jobs / MiningJob 的受控 dry-run readiness 与执行授权边界。
+- **状态**：success
+- **任务**：只读复核 loop278 测试设计，确认 `controlled_dry_run_readiness_review_v1` 覆盖 manual_acceptance -> readiness package、Factor Library source markers、Chat follow-up、Jobs visibility、MiningJob completed observability、blocked propagation 与 no-execution boundaries。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；测试矩阵覆盖 readiness review remains review-only even when manual_acceptance is ready、blocked manual_acceptance propagates blocked readiness、operator/reviewer pending、runner_config not_connected、rollback/audit not_ready、no live/default runner、no adapter invocation、no actual adapter dry-run、no page-load POST、no background/migration/backfill/DB-backed backtest/PL-H/secret output。建议保留 UI drift guard，避免 readiness copy 退回硬编码 false。
+- **orchestrator 本地验证**：RED **8 failed expected**；final related regression **122 passed**；targeted Ruff **All checks passed!**；FactorLibraryPage/JobsPage eslint pass；web build pass；forbidden scan pass；`git diff --check` pass（CRLF warnings only）。
+- **roster_update**：workload cleared；mistakes none；lesson: readiness review remains review-only even when manual_acceptance is ready; blocked manual_acceptance must propagate blocked readiness.
 
 ## Tick loop277-factor-library-simulation-review-to-manual-acceptance
 
