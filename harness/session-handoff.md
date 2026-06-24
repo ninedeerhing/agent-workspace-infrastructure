@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-24T13:56:39+08:00
+updated_at: 2026-06-24T14:21:44+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,7 @@ updated_at: 2026-06-24T13:56:39+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-24 loop285 · 已完成 Factor Factory UI selector to F6 plan-only handoff：新增 `qa.quant_mining.factor_factory_selector.build_factor_factory_selector_v1(...)` 与 `factor_factory_selector_models.py`，并新增 `qa.ui.batch_mining_creation_plan_view` / `qa.brain.batch_mining_creation_helpers`，把 loop284 的 `factor_factory_run_v1` 接到用户可见的候选选择层。现在 `build_factor_mining_creation_plan(...)` 暴露 `factor_factory_selector_v1`：A-E 类/子类、`manual_trigger=start_factor_factory`、无想法/有想法/公式库生成模式、候选预览、质量闸解释，以及 `f6_screening_plan_handoff_v1`。F6 交接保持 full-shape fail-closed：`selected_candidate_ids=[]`、`requires_manual_candidate_selection=true`、`will_execute_screening=false`、`will_execute_backtest=false`、完整 no-execution safety flags false；漂移 payload 不显示 F6 安全文案。验证：selector RED expected；F6 drift RED expected；focused P2 4 passed；expanded related regression 77 passed；targeted Ruff pass；source-only true enablement scan clean；Galileo success；Aquinas initial P2 then final recheck success。下一动作：`SELECTED_CANDIDATES_TO_F6_SCREENING_EVIDENCE_LOOP286`，把用户选择的候选以 plan-only 输入接入 F6 screening evidence plan；仍禁止真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill/secret 输出。
+[CONTEXT] 2026-06-24 loop286 · 已完成 Selected candidates to F6 screening evidence plan：新增 `qa.quant_mining.f6_screening_evidence_plan.build_f6_screening_evidence_plan_v1(...)` 与 `f6_screening_evidence_plan_models.py`，并把 `batch_mining_creation_plan` / Chat UI 接到 `f6_screening_evidence_plan_v1`。该计划把 `selected_candidate_ids` 映射为 candidate_evidence rows，保留 A-E 分类、子类、表达式、source family、generation op、quality gates、IC/coverage 阈值、evidence requirements 和 blocked reviewed-backtest handoff。空选择为 `waiting_for_manual_candidate_selection`，有效选择为 `ready_for_f6_evidence_review`，非法 id 为 `needs_manual_selection_recheck`；`reviewed_backtest_plan_handoff.status=blocked_until_f6_evidence`，`will_execute_screening=false`、`will_execute_backtest=false`、`read_env=false`、`read_db=false`，完整 safety flags false。Chat/UI 的 F6 copy 只有在 top-level safety 加 nested `evidence_requirements`、`reviewed_backtest_plan_handoff`、`next_route` 全部证明 no-execution 时才显示。验证：RED missing module expected；nested drift RED expected before hardening；final related regression 81 passed；targeted Ruff pass；source-only true enablement scan clean；Aquinas initial P2 then final recheck success；Galileo timed out/no report。下一动作：`F6_EVIDENCE_PLAN_TO_REVIEWED_BACKTEST_PLAN_READINESS_LOOP287`，把 F6 evidence plan 派生为 reviewed backtest plan readiness；仍禁止真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill/secret 输出。
 
 [CONTEXT] 2026-06-24 loop283 · 已完成 Controlled Dry-Run Artifact Capture to Handoff Readiness Validator：Factor Library、Chat、Jobs 与 MiningJob completed observability 现在共享 fail-closed `controlled_dry_run_handoff_readiness_validator_v1`。该 validator 基于 loop282 `confirmation_artifact_bundle_v1`，判定 operator artifact、reviewer artifact、runner_config evidence、rollback-before audit evidence、replay audit refs 的组合状态为 `missing_materials` / `ready_for_handoff_review` / `needs_recheck`；`ready_for_handoff_review` 只表示可进入人工交接复核，不表示执行授权；`execution_permission=not_granted`，`ready_for_execution=false`，`ready_for_controlled_dry_run=false`。任何 source bundle drift、secret/default-runner/unsafe marker 漂移都会降级为 `needs_recheck` 并显示“执行安全状态需要重新核查”。改动：`src/qa/quant_mining/real_runner_authorization_framework.py`、`src/qa/quant_mining/mining_runner.py`、`src/qa/ui/factor_library_insights.py`、`src/qa/ui/chat_brain.py`、`web/src/pages/FactorLibraryPage.tsx`、`web/src/pages/JobsPage.tsx`、`web/scripts/smoke-jobs-page-fixture.mjs`、相关 tests。验证：focused 5 passed；related regression 143 passed；targeted Ruff pass；node --check pass；FactorLibraryPage/JobsPage eslint pass；web build pass；Jobs smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / controlled_dry_run_handoff_readiness_validator_visible=true / handoff_review_only_not_execution；narrow forbidden true/granted marker scan clean；diff check pass（CRLF warnings only）；test-engineer success；code-reviewer success。下一动作：`CONTROLLED_DRY_RUN_HANDOFF_READINESS_TO_ARTIFACT_SUBMISSION_REVIEW_UX_LOOP284`，把交接复核准备度推进为 operator/reviewer artifact submission/review UX；仍禁止 live/default runner、未授权 adapter、actual adapter dry-run、DB-backed real batch、PL-H、page-load POST、background/migration/backfill/secret 输出。
 
@@ -194,18 +194,18 @@ updated_at: 2026-06-24T13:56:39+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | controlled-dry-run-handoff-readiness-validator-loop283 |
-| `last_tick` | loop283-controlled-dry-run-handoff-readiness-validator |
+| `current_slice` | selected-candidates-to-f6-screening-evidence-loop286 |
+| `last_tick` | loop286-selected-candidates-to-f6-screening-evidence |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-CONTROLLED_DRY_RUN_HANDOFF_READINESS_TO_ARTIFACT_SUBMISSION_REVIEW_UX_LOOP284：把 loop283 `controlled_dry_run_handoff_readiness_validator_v1` 推进为 operator/reviewer artifact submission/review UX，让用户能提交、查看、复核 operator artifact、reviewer artifact、runner_config evidence、rollback-before audit、replay audit refs 的材料状态与缺口，形成可审计的人工交接复核包；仍保持 `execution_permission=not_granted`、`ready_for_execution=false`、`ready_for_controlled_dry_run=false`；禁止 live/default runner、actual adapter dry-run、DB-backed real batch、PL-H、page-load POST、background/migration/backfill、secret 输出。
+F6_EVIDENCE_PLAN_TO_REVIEWED_BACKTEST_PLAN_READINESS_LOOP287：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 `f6_screening_evidence_plan_v1` 接入 reviewed backtest plan readiness：从 selected_candidate_ids / candidate_evidence / thresholds / evidence_requirements 派生只读 reviewed-plan readiness，区分 waiting、needs_recheck、ready_for_reviewed_plan 三种状态，展示哪些候选可进入 reviewed backtest plan、还缺哪些 F6/IC/coverage 证据，并继续保持 manual-safe simulation 仅为后续显式手动触发准备，不执行真实筛选或真实回测。
 
 ### next_after
 
-After the operator/reviewer artifact submission/review UX is fail-closed and auditable, build the manual handoff review packet that can aggregate signed artifacts without granting execution or connecting a live/default runner.
+After F6 evidence readiness can feed a reviewed backtest plan readiness contract, connect the reviewed plan to manual-safe simulation readiness and later explicit execution gates.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -222,7 +222,7 @@ After the operator/reviewer artifact submission/review UX is fail-closed and aud
 ```powershell
 cd E:\raindeer\apps\quant_assistant
 $env:PYTHONPATH='src'
-# 下一拍按 loop-state 执行 controlled real-runner dry-run adapter contract；先跑 goal/product gate、worker dispatch gate 与 worker cluster/rendezvous gate，并验证永久 worker codex_thread_id 可达；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要授予 manual acceptance/authorization/execution，也不要调用真实/default runner、adapter invocation、actual adapter dry-run execution 或 PL-H 批量执行。
+# 下一拍按 loop-state 执行 F6 evidence plan -> reviewed backtest plan readiness；先跑 goal/product gate、worker dispatch gate 与 worker cluster/rendezvous gate，并验证永久 worker codex_thread_id 可达；不要打印 DSN/token；不要重启 daily_bar/daily_trade_status/adj_factor；不要授予 manual acceptance/authorization/execution，也不要调用真实/default runner、adapter invocation、actual adapter dry-run execution、真实筛选、真实回测或 PL-H 批量执行。
 ```
 
 ### Blockers
@@ -314,7 +314,7 @@ TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete 
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `CONTROLLED_DRY_RUN_HANDOFF_READINESS_TO_ARTIFACT_SUBMISSION_REVIEW_UX_LOOP284`：把 loop283 `controlled_dry_run_handoff_readiness_validator_v1` 推进为 operator/reviewer artifact submission/review UX，让用户能提交、查看、复核材料状态与缺口，并形成可审计的人工交接复核包；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、manual acceptance grant、authorization grant 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `F6_EVIDENCE_PLAN_TO_REVIEWED_BACKTEST_PLAN_READINESS_LOOP287`：把 loop286 `f6_screening_evidence_plan_v1` 派生为 reviewed backtest plan readiness，明确 waiting / needs_recheck / ready_for_reviewed_plan 状态、可进入 reviewed plan 的候选、缺失 F6/IC/coverage 证据与 no-execution safety；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、manual acceptance grant、authorization grant 与 secret 输出。
 
 ## Resume Command
 

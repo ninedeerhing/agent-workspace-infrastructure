@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T13:56:39+08:00",
+  "updated_at": "2026-06-24T14:21:44+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "factor-factory-ui-selector-f6-plan-loop285",
-  "next_atomic_action": "SELECTED_CANDIDATES_TO_F6_SCREENING_EVIDENCE_LOOP286：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 factor_factory_selector_v1 的候选选择结果接入 F6 panel IC screening evidence plan：支持 selected_candidate_ids 的 plan-only 输入、候选筛选证据摘要、IC/coverage 阈值解释、no-execution safety matrix，并为 reviewed backtest plan/manual-safe simulation 准备只读 evidence handoff；仍不执行真实筛选或真实回测。",
-  "next_after": "After selected candidates are represented as F6 screening evidence plan, connect that evidence to reviewed backtest plan and manual-safe simulation readiness.",
+  "current_slice": "selected-candidates-to-f6-screening-evidence-loop286",
+  "next_atomic_action": "F6_EVIDENCE_PLAN_TO_REVIEWED_BACKTEST_PLAN_READINESS_LOOP287：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 f6_screening_evidence_plan_v1 接入 reviewed backtest plan readiness：从 selected_candidate_ids / candidate_evidence / thresholds / evidence_requirements 派生只读 reviewed-plan readiness，区分 waiting、needs_recheck、ready_for_reviewed_plan 三种状态，展示哪些候选可进入 reviewed backtest plan、还缺哪些 F6/IC/coverage 证据，并继续保持 manual-safe simulation 仅为后续显式手动触发准备，不执行真实筛选或真实回测。",
+  "next_after": "After F6 evidence readiness can feed a reviewed backtest plan readiness contract, connect the reviewed plan to manual-safe simulation readiness and later explicit execution gates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop285-factor-factory-ui-selector-f6-plan",
+  "last_tick": "loop286-selected-candidates-to-f6-screening-evidence",
   "last_sync_sources": [
+    "loop286 Selected candidates to F6 screening evidence plan",
+    "loop286 TDD RED: missing qa.quant_mining.f6_screening_evidence_plan and nested F6 evidence UI drift still showing safe copy before predicate hardening",
+    "loop286 GREEN: f6_screening_evidence_plan_v1 supports empty/manual waiting state, valid selected_candidate_ids evidence rows, invalid id needs_manual_selection_recheck, IC/coverage thresholds, evidence requirements, reviewed_backtest_plan_handoff blocked_until_f6_evidence, next_route, and full no-execution safety matrix",
+    "loop286 UI/Chat: batch mining creation plan now renders F6 evidence plan and threshold copy only when top-level safety plus nested evidence_requirements/reviewed_backtest_plan_handoff/next_route all prove no-execution",
+    "loop286 verification: focused GREEN 6 passed; nested drift regression 1 failed expected then fixed; final related regression 81 passed; targeted Ruff pass; source-only true enablement scan clean; diff check CRLF warnings only",
+    "loop286 worker review: permanent code-reviewer Aquinas initial P2 then final recheck success; permanent test-engineer Galileo assignment timed out/no report and kept as same worker identity, not duplicated",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.613",
     "loop285 Factor Factory UI selector to F6 plan-only handoff",
     "loop285 TDD RED: missing qa.quant_mining.factor_factory_selector and drifted F6 handoff UI still showing safe copy before predicate hardening",
     "loop285 GREEN: factor_factory_selector_v1 exposes visible A-E classes/subclasses, active_selection, manual_trigger=start_factor_factory, source modes, candidate_preview, quality_gate_explanations, and f6_screening_plan_handoff_v1 plan-only payload",
@@ -1218,7 +1225,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop285 completed Factor Factory UI selector and F6 plan-only handoff. factor_factory_selector_v1 now exposes user-visible A-E category/subclass selection, manual start_factor_factory trigger, source modes, candidate preview, quality gate explanations, and f6_screening_plan_handoff_v1 with selected_candidate_ids=[], requires_manual_candidate_selection=true, will_execute_screening=false, will_execute_backtest=false, and full no-execution safety flags false. Chat/UI copy is gated on the full handoff shape so drifted payloads do not show safe F6 copy. Next loop connects selected candidates to F6 screening evidence plan without real screening/backtest."
+    "note": "loop286 completed selected candidates to F6 screening evidence plan. f6_screening_evidence_plan_v1 now accepts selected_candidate_ids plan-only input, maps valid candidate rows with A-E taxonomy/expression/source/gate evidence, fail-closes invalid ids to needs_manual_selection_recheck, carries IC/coverage thresholds, evidence requirements, blocked reviewed_backtest_plan_handoff, next_route, and full no-execution safety flags false. Chat/UI copy is gated on top-level safety plus nested evidence_requirements/reviewed_backtest_plan_handoff/next_route so drifted payloads do not show safe F6 evidence copy. Next loop connects F6 evidence readiness to reviewed backtest plan readiness without real screening/backtest."
   },
-  "last_completed_note": "loop285 Factor Factory UI selector to F6 plan-only handoff complete. Added qa.quant_mining.factor_factory_selector and factor_factory_selector_models plus qa.ui.batch_mining_creation_plan_view and qa.brain.batch_mining_creation_helpers; build_factor_mining_creation_plan now exposes factor_factory_selector_v1. Users can see A-E categories/subclasses, manual trigger, source modes, candidate preview, and quality gate explanations before F6. f6_plan_handoff remains plan-only: selected_candidate_ids=[], requires_manual_candidate_selection=true, will_execute_screening=false, will_execute_backtest=false, safety flags false. Verification: initial selector RED failed expected; drifted F6 handoff RED failed expected before predicate hardening; focused P2 tests 4 passed; expanded related regression 77 passed; targeted Ruff pass; source-only true enablement scan clean. Galileo success; Aquinas initial P2 then final recheck success. Next_atomic_action is SELECTED_CANDIDATES_TO_F6_SCREENING_EVIDENCE_LOOP286."
+  "last_completed_note": "loop286 Selected candidates to F6 screening evidence plan complete. Added qa.quant_mining.f6_screening_evidence_plan and f6_screening_evidence_plan_models; build_factor_mining_creation_plan now exposes f6_screening_evidence_plan_v1; qa.ui.batch_mining_selector_view renders selector and F6 evidence copy while batch_mining_creation_plan_view stays below size ceiling. The plan supports waiting_for_manual_candidate_selection, ready_for_f6_evidence_review, and needs_manual_selection_recheck; valid selected ids produce candidate_evidence rows and invalid ids fail closed. reviewed_backtest_plan_handoff stays blocked_until_f6_evidence; will_execute_screening=false, will_execute_backtest=false, read_env/read_db=false, all safety flags false. Verification: RED missing module failed expected; nested drift RED failed expected before predicate hardening; final related regression 81 passed; targeted Ruff pass; source-only true enablement scan clean; diff check CRLF warnings only. Aquinas initial P2 then final recheck success; Galileo assignment timed out/no report. Next_atomic_action is F6_EVIDENCE_PLAN_TO_REVIEWED_BACKTEST_PLAN_READINESS_LOOP287."
 }

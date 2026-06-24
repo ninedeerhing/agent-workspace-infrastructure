@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T13:56:39+08:00
+更新时间：2026-06-24T14:21:44+08:00
+
+## Tick loop286-selected-candidates-to-f6-screening-evidence
+
+- **任务 ID**：loop286-selected-candidates-to-f6-screening-evidence-test-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及自动挖掘核心 F6 evidence plan、候选证据 rows 和 reviewed-backtest readiness 前置边界。
+- **状态**：partial / timed_out_no_report
+- **任务**：只读复核 `f6_screening_evidence_plan_v1` 测试矩阵，确认 empty selection、selected ids、invalid id recheck、IC/coverage thresholds、candidate evidence rows、reviewed handoff blocked、nested no-execution safety 与 UI drift fail-closed。
+- **变更**：worker 未修改文件。
+- **复核结论**：Galileo assignment 等待两次超时，未返回 report；未创建同职责替代 worker，保留永久身份并由 orchestrator 本地验证兜底。
+- **orchestrator 本地验证**：focused GREEN **6 passed**；nested drift regression **1 failed expected then fixed**；final related regression **81 passed**；targeted Ruff **All checks passed!**；source-only true enablement scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: timed-out worker must be recorded as no-report and kept as the same permanent identity, not duplicated.
 
 ## Tick loop285-factor-factory-ui-selector-f6-plan
 

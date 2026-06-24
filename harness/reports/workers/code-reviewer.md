@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T13:56:39+08:00
+更新时间：2026-06-24T14:21:44+08:00
+
+## Tick loop286-selected-candidates-to-f6-screening-evidence
+
+- **任务 ID**：loop286-selected-candidates-to-f6-screening-evidence-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及自动挖掘核心 F6 证据计划、reviewed backtest handoff 边界与用户可见安全文案。
+- **状态**：success after P2 closure
+- **任务**：只读审查 `f6_screening_evidence_plan_v1`、batch mining creation plan 与 UI/Chat 渲染，确认 selected candidates -> F6 evidence plan 不会误表达筛选/回测执行授权，不引入 env/DB/runner/adapter/page-load POST/background/migration/backfill/PL-H/secret 路径，并检查 F6 evidence copy 是否 fail-closed。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：UI F6 evidence safe copy 只验证 top-level no-execution flags，未验证 nested `evidence_requirements.will_read_env=false/will_read_db=false`、`reviewed_backtest_plan_handoff.status=blocked_until_f6_evidence` / `requires_reviewed_f6_evidence=true` / `will_execute_backtest=false`、`next_route.requires_f6_evidence=true` / `will_execute_backtest=false`；漂移 payload 可能仍显示安全文案。
+- **闭环结论**：orchestrator 已补 nested drift 红测并加固 predicate。复核 PASS：正常 F6 文案必须同时满足 top-level safety 与 nested evidence/handoff/route safety；漂移 payload 不再显示 safe copy。未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused GREEN **6 passed**；nested drift regression **1 failed expected then fixed**；final related regression **81 passed**；targeted Ruff **All checks passed!**；source-only true enablement scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: F6 evidence safe copy must validate nested evidence/handoff/route contracts, not just top-level no-execution flags.
 
 ## Tick loop285-factor-factory-ui-selector-f6-plan
 

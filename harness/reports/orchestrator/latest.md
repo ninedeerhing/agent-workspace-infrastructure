@@ -1,3 +1,51 @@
+# Orchestrator Report - loop286-selected-candidates-to-f6-screening-evidence
+
+**Updated**: 2026-06-24T14:21:44+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Selected candidates to F6 screening evidence plan.
+- **trigger**: user marked intent understanding state machine, factor taxonomy, factor batch generation factory, and candidate quality gates as the strict core; loop285 exposed the selector but selected candidates still needed a concrete F6 evidence plan before any reviewed backtest plan.
+- **result**: `f6_screening_evidence_plan_v1` now converts `selected_candidate_ids` into candidate evidence rows with A-E taxonomy, subclass, expression, source family, generation op, quality gates, IC/coverage thresholds, evidence requirements, blocked reviewed-backtest handoff, next route, and full no-execution safety.
+- **next**: `F6_EVIDENCE_PLAN_TO_REVIEWED_BACKTEST_PLAN_READINESS_LOOP287`; derive reviewed backtest plan readiness from the F6 evidence plan without real screening/backtest.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/f6_screening_evidence_plan.py` | Adds the no-execution F6 evidence plan builder over selected candidates. |
+| `apps/quant_assistant/src/qa/quant_mining/f6_screening_evidence_plan_models.py` | Adds typed F6 plan, candidate evidence, threshold, evidence requirement, handoff, route, and safety contracts. |
+| `apps/quant_assistant/src/qa/brain/batch_mining_flow.py` | Exposes `f6_screening_evidence_plan` from batch mining creation plans. |
+| `apps/quant_assistant/src/qa/ui/batch_mining_selector_view.py` | Renders selector and F6 evidence plan copy with fail-closed predicates. |
+| `apps/quant_assistant/src/qa/ui/batch_mining_creation_plan_view.py` | Delegates selector/F6 sections to the split view module. |
+| `apps/quant_assistant/tests/*loop286 related*` | Proves empty selection, selected candidates, invalid id recheck, UI copy, and nested drift fail-closed behavior. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.f6_screening_evidence_plan` failed as expected |
+| nested drift RED | pass · UI still showed F6 copy before nested predicate hardening |
+| focused GREEN | pass · **6 passed** |
+| related regression | pass · candidate-generator/factory/selector/F6/batch/executor/UI/confirmation **81 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| source-only true enablement scan | pass · no env/DB/runner/adapter/backtest/PL-H/page-load/background/migration/backfill/secret enablement markers flipped true |
+| size gate | pass · new production files below 250 pure LOC; `batch_mining_flow.py` in warning band at 235 pure LOC |
+
+## Worker Notes
+
+Permanent worker identities were preserved. `code-reviewer` Aquinas initially returned P2 because F6 safe copy checked top-level flags but not nested `evidence_requirements`, `reviewed_backtest_plan_handoff`, or `next_route`; after adding the drift regression and full nested predicate, Aquinas final recheck reported success. `test-engineer` Galileo assignment timed out twice and produced no report; the worker identity was kept rather than duplicated.
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, adapter invocation, actual dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop only creates a reviewable F6 evidence plan.
+
+## Residual Risk
+
+The F6 evidence plan is visible and fail-closed, but it does not yet produce a reviewed backtest plan readiness contract. That is the next slice.
+
+---
+
 # Orchestrator Report - loop285-factor-factory-ui-selector-f6-plan
 
 **Updated**: 2026-06-24T13:56:39+08:00
