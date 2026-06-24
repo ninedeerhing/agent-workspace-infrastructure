@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-24T18:18:00+08:00",
+  "updated_at": "2026-06-25T01:34:11+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "manual-safe-plan-readiness-to-explicit-trigger-handoff-loop289",
-  "next_atomic_action": "EXPLICIT_TRIGGER_HANDOFF_TO_SERVER_OWNED_MANUAL_SAFE_TRIGGER_LOOP290：在不允许 page-load POST、自动执行、live/default runner、未授权 adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出的前提下，把 manual_safe_trigger_handoff_v1 的 ready_for_manual_safe_trigger 接到现有 server-owned manual-safe simulation trigger 的显式用户动作表面；waiting/needs_recheck 继续只展示缺口，ready 只在用户点击后提交受控请求，并保留 Chat/pending/Jobs 恢复证据与安全模拟结果后续路线。",
-  "next_after": "After explicit trigger action is connected to the server-owned manual-safe simulation trigger with no page-load auto execution, reconcile completed safe_sim results with Factor Library review, manual acceptance, and controlled dry-run readiness in the current factor-factory chain.",
+  "current_slice": "explicit-trigger-server-owned-safe-simulation-loop290",
+  "next_atomic_action": "POST_TRIGGER_SAFE_SIM_RESULT_TO_FACTOR_LIBRARY_CHAIN_LOOP291：在 loop290 已证明显式点击才能触发 server-owned safe simulation 的基础上，把触发后的 safe_sim_* 结果与 Chat/Jobs/Factor Library 的候选复核、人工验收和 controlled dry-run readiness 链做同源一致性收口；用户应能看懂哪批候选被模拟、模拟编号是什么、质量闸/人工验收下一步是什么；缺失或伪造 safety evidence 必须 fail-closed；仍禁止 live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。",
+  "next_after": "After post-trigger safe_sim results are reconciled across Chat, Jobs, and Factor Library, advance the user-visible decision path from manual acceptance/readiness toward controlled dry-run readiness review without enabling real execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop289-manual-safe-plan-readiness-to-explicit-trigger-handoff",
+  "last_tick": "loop290-explicit-trigger-server-owned-safe-simulation",
   "last_sync_sources": [
+    "loop290 Explicit trigger handoff to server-owned manual-safe trigger",
+    "loop290 TDD RED: API trigger/audit tests failed until explicit body gate and target-candidate audit contract were implemented",
+    "loop290 GREEN: Jobs explicit manual trigger now posts gate=explicit_user_click_required plus job/action/target ids only after user confirmation; API rejects non-explicit gates before DSN/job lookup",
+    "loop290 server-owned target binding: trigger_request/audit carry target_candidate_ids from persisted auto_backtest_plan.factor_version_ids; client-forged body target ids do not change server audit/target",
+    "loop290 no-execution contract: default runner remains server-owned safe simulation only; no page-load POST, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, background/migration/backfill, or secret output",
+    "loop290 verification: related API/runner/Chat/Jobs regression 143 passed; targeted Ruff pass; web build pass; Jobs smoke pass with pageLoadTriggerRequests=[] and explicit gate/target POST bodies",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.617",
     "loop289 Manual-safe plan readiness to explicit trigger handoff",
     "loop289 TDD RED: missing qa.quant_mining.manual_safe_trigger_handoff before implementation",
     "loop289 GREEN: manual_safe_trigger_handoff_v1 derives waiting_for_reviewed_plan, needs_recheck, and ready_for_manual_safe_trigger from manual_safe_simulation_plan_readiness_v1",
@@ -1251,7 +1258,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop289 completed manual-safe plan readiness to explicit trigger handoff. manual_safe_trigger_handoff_v1 now derives waiting_for_reviewed_plan, needs_recheck, and ready_for_manual_safe_trigger from manual_safe_simulation_plan_readiness_v1. Ready creates recoverable pending_confirmation and an explicit manual trigger handoff visible/enabled only for a user click; trigger_request keeps auto_execute, backtest, env/DB, live/default runner, adapter, actual dry-run, DB-backed, page-load, background, migration/backfill, PL-H, and secret flags false. Batch mining creation plan carries the handoff so Chat/pending/confirmation can recover it, and UI copy is gated on full no-execution predicates. Next loop connects this handoff to the server-owned manual-safe simulation trigger surface without automatic execution."
+    "note": "loop290 completed explicit trigger handoff to server-owned manual-safe trigger. Ready manual_safe_trigger_handoff_v1 now reaches the existing Jobs/API explicit user action surface: the browser only POSTs after the two-click manual trigger with gate=explicit_user_click_required, job/action ids, and target ids. API rejects non-explicit gates before DSN/job lookup; trigger_request/audit derive target_candidate_ids from persisted auto_backtest_plan.factor_version_ids, not client-forged body targets. The default runner remains server-owned safe simulation only, with no page-load POST, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, background/migration/backfill, or secret output. Next loop reconciles completed safe_sim results across Chat, Jobs, Factor Library review, manual acceptance, and controlled dry-run readiness."
   },
-  "last_completed_note": "loop289 manual-safe plan readiness to explicit trigger handoff complete. Added qa.quant_mining.manual_safe_trigger_handoff and manual_safe_trigger_handoff_models; build_factor_mining_creation_plan now exposes manual_safe_trigger_handoff_v1; qa.ui.batch_mining_manual_safe_trigger_view renders consumer-grade explicit handoff copy in creation-plan notes and confirmation panel. The contract supports waiting_for_reviewed_plan, needs_recheck, and ready_for_manual_safe_trigger; ready prepares recoverable pending_confirmation plus trigger_handoff enabled/visible only for explicit manual click, with non-empty target_candidate_ids bound into trigger_request and all safety flags no-execution. Drifted manual-safe readiness, missing candidate targets, or trigger request payload drift fail closed and hide normal UI copy. Verification: RED missing module failed expected; focused handoff/UI/batch group 11 passed; related manual-safe/batch/Chat regression 68 passed; targeted Ruff pass; source-only dangerous true flag scan clean; file-size gate pass. Verifier read-only final review succeeded; code-reviewer initial P2 candidate-target drift was fixed and final recheck succeeded. Next_atomic_action is EXPLICIT_TRIGGER_HANDOFF_TO_SERVER_OWNED_MANUAL_SAFE_TRIGGER_LOOP290."
+  "last_completed_note": "loop290 explicit trigger handoff to server-owned manual-safe trigger complete. JobsPage now carries trigger_request.body/target_candidate_ids/server_owned_manual_safe_simulation, submits gate=explicit_user_click_required only after manual confirmation, and renders target/server-owned diagnostics. quant_routes now requires AutoBacktestTriggerBody, rejects non-explicit gates before DSN/job lookup, and keeps controlled dry-run contracts server-owned. mining_runner trigger_request/audit now carry target_candidate_ids, requires_explicit_trigger, and server_owned_manual_safe_simulation; server targets come from persisted auto_backtest_plan.factor_version_ids so forged client targets are ignored. Verification: related API/runner/Chat/Jobs regression 143 passed; targeted Ruff pass; npm run build pass; npm run smoke:jobs-page pass with pageLoadTriggerRequests=[] and explicit gate/target POST bodies. Next_atomic_action is POST_TRIGGER_SAFE_SIM_RESULT_TO_FACTOR_LIBRARY_CHAIN_LOOP291."
 }

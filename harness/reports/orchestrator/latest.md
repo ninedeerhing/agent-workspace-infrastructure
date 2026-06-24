@@ -1,3 +1,43 @@
+# Orchestrator Report - loop290-explicit-trigger-server-owned-safe-simulation
+
+**Updated**: 2026-06-25T01:34:11+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G explicit trigger handoff to server-owned manual-safe trigger.
+- **trigger**: loop289 exposed a recoverable `manual_safe_trigger_handoff_v1`; the product chain still needed the existing safe simulation trigger surface to accept only explicit user clicks.
+- **result**: Jobs now submits the handoff only after the two-click manual action, with `gate=explicit_user_click_required`, candidate targets, and server-owned simulation markers. API rejects non-explicit gates before DSN/job lookup, and the server derives audit/target candidates from persisted `auto_backtest_plan.factor_version_ids`, not client-forged target ids.
+- **next**: `POST_TRIGGER_SAFE_SIM_RESULT_TO_FACTOR_LIBRARY_CHAIN_LOOP291`; reconcile the completed `safe_sim_*` results across Chat, Jobs, Factor Library review, manual acceptance, and controlled dry-run readiness without enabling real execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/api/quant_routes.py` | Adds explicit trigger body/gate validation and passes server-owned target ids into action trigger requests. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds target candidates, explicit trigger markers, and server-owned safe-simulation markers to trigger requests/audit. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Posts the explicit gate/body only after manual confirmation and shows target/server-owned markers in diagnostics. |
+| `apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs` | Captures trigger POST bodies and asserts explicit gate + target ids with no page-load POST. |
+| `apps/quant_assistant/tests/*loop290 related*` | Proves endpoint gate rejection, server-owned safe runner, audit target binding, client-forged body ignored, Chat recovery, and Jobs rendering. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| focused related regression | pass · **143 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| web build | pass · `npm run build` |
+| Jobs smoke | pass · `smoke:jobs-page PASS`; `pageLoadTriggerRequests=[]`; trigger body includes `explicit_user_click_required` and `target_candidate_ids=[fe_one]` |
+
+## Safety
+
+No `.env`, `.env.local`, DSN password, token, or secret was printed or persisted. No env/DB read, live/default runner, adapter invocation, actual dry-run, DB-backed execution, PL-H batch, page-load POST, background process, migration, or backfill was started. This loop only wires an explicit user click to the existing server-owned safe simulation runner.
+
+## Residual Risk
+
+The explicit trigger surface is now wired and tested, but the post-trigger `safe_sim_*` result still needs a same-source reconciliation pass across Chat, Jobs, Factor Library review, manual acceptance, and controlled dry-run readiness. That is loop291.
+
+---
+
 # Orchestrator Report - loop289-manual-safe-plan-readiness-to-explicit-trigger-handoff
 
 **Updated**: 2026-06-24T18:18:00+08:00
