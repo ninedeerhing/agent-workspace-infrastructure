@@ -1,3 +1,53 @@
+# Orchestrator Report - loop291-safe-sim-result-to-candidate-promotion-decision
+
+**Updated**: 2026-06-25T09:01:36+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G safe simulation result to candidate promotion decision.
+- **trigger**: loop290 made server-owned safe simulation reachable only after explicit user click; the product chain still needed to turn completed safe_sim result/audit into a candidate-level decision instead of only displaying completion state.
+- **result**: `candidate_promotion_decision_v1` is now derived in `build_mining_job_observability(...)` and consumed by API/Jobs/Chat/Factor Library as the shared read-model. Each target candidate receives `advance_to_factor_library_review`, `hold_for_recheck`, or `reject`, with reasons, evidence refs, thresholds, A-E taxonomy, next action, and no-execution safety flags.
+- **next**: `CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292`; turn advance decisions into a human Factor Library review intake/read-model without auto-promote or execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/candidate_promotion_decision.py` | Adds the pure candidate promotion decision builder and fail-closed safety/target/result gates. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `candidate_promotion_decision_v1` to MiningJob observability as the single source. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Carries the shared decision read-model into Factor Library simulation review rows. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders candidate promotion follow-up notes from the shared read-model. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` | Shows candidate promotion decision, reasons, next action, and no-execution markers. |
+| `apps/quant_assistant/web/src/pages/JobsPage.tsx` | Shows the candidate promotion block and smoke-visible hidden markers. |
+| `apps/quant_assistant/tests/*loop291 related*` | Proves decision scoring, fail-closed behavior, shared observability, Jobs/Factor Library rendering, and Chat consumption. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.candidate_promotion_decision` failed as expected |
+| candidate promotion unit | pass · **4 passed** |
+| focused related regression | pass · **27 passed** |
+| expanded related regression | pass · **112 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| web build | pass · `npm run build` |
+| Jobs smoke | pass · `ok=true`; `pageLoadTriggerRequests=[]`; `duplicateTriggerUrls=[]` |
+| web lint | pass · exit 0 with one pre-existing `ShellLayoutContext.tsx` warning |
+
+## Worker Notes
+
+Planck returned a successful read-only exploration report and recommended deriving the read-model in `build_mining_job_observability(...)` rather than duplicating logic in Chat and Factor Library. The implementation follows that advice.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H batch, background process, migration, or backfill was started. This loop only derives and displays a review decision read-model; it does not auto-promote or grant execution.
+
+## Residual Risk
+
+The system can now decide which candidates should advance, hold, or reject, but the actual human Factor Library review intake/queue is still next. That is loop292.
+
+---
+
 # Orchestrator Report - loop-protocol-function-first-gate-v1.6
 
 **Updated**: 2026-06-25T02:41:51+08:00

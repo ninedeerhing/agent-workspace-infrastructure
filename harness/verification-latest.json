@@ -1,13 +1,11 @@
 {
-  "recorded_at": "2026-06-24T18:09:39Z",
-  "last_tick": "loop290-explicit-trigger-server-owned-safe-simulation",
-  "pytest_passed": 143,
+  "recorded_at": "2026-06-25T01:09:55Z",
+  "last_tick": "loop291-safe-sim-result-to-candidate-promotion-decision",
+  "pytest_passed": 112,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md",
-    "harness/reports/orchestrator/latest.md",
-    "harness/sync-coherence-index.json"
+    "loop291 candidate promotion: pytest 112 passed; targeted ruff ok; web build pass; jobs smoke ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[]; npm lint exit0 pre-existing warning"
   ],
-  "section5_ref": "5.618",
+  "section5_ref": "5.619",
   "source": "manual"
 }

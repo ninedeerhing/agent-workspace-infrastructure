@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-25T02:41:51+08:00
+updated_at: 2026-06-25T09:01:36+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,7 +17,9 @@ updated_at: 2026-06-25T02:41:51+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
-[CONTEXT] 2026-06-25 LOOP-PROTOCOL v1.6 · 用户要求 loop 设计必须始终以核心功能规划和总目标为导向，不再把展示、UI 文案、门禁、业务原则、方法论、lifecycle 或真源同步作为单独业务 loop 完结项。已写入 `docs/LOOP_ENGINEERING.md`、`harness/templates/loop-tick-prompt.md`、`harness/scripts/codex-self-check.ps1`：每个业务 loop 必须声明 `core_function_artifact`、`phase_plan`（contract/TDD -> implementation -> consumer_surface -> closing_work）、`functional_acceptance`、`closing_work_only`；closing work 只能在核心功能验收后执行。业务下一动作不变：`SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291`，从 safe_sim result/audit + reviewed_backtest_plan + F6 evidence + A-E taxonomy + target_candidate_ids 生成 `candidate_promotion_decision_v1`。
+[CONTEXT] 2026-06-25 loop291 · 已完成 safe simulation result to candidate promotion decision：新增 `qa.quant_mining.candidate_promotion_decision.build_candidate_promotion_decision_v1(...)`，并把 `candidate_promotion_decision_v1` 接入 `build_mining_job_observability(...)`、Factor Library review rows、Chat follow-up、JobsPage、FactorLibraryPage。该 read-model 从 completed server-owned `safe_sim_*` result/audit、manual_safe_status safety、reviewed plan/F6 evidence、A-E taxonomy、服务端 target ids 生成每个候选的 `advance_to_factor_library_review` / `hold_for_recheck` / `reject`、理由、证据 refs 和下一步动作；缺失 safety、target ids、completed result/audit、reviewed plan 或 unsafe flags fail-closed，unknown target 只 hold for recheck。验证：RED missing module expected；candidate unit 4 passed；focused related 27 passed；expanded related 112 passed；Ruff pass；web build pass；Jobs smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]；web lint pass with one pre-existing ShellLayoutContext warning。下一动作：`CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292`，把 advance 候选汇入人工因子库复核 intake/read-model；仍禁止自动入库、自动验收、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。Methodology: `M-17-zero-write`。
+
+[CONTEXT] 2026-06-25 LOOP-PROTOCOL v1.6 · 用户要求 loop 设计必须始终以核心功能规划和总目标为导向，不再把展示、UI 文案、门禁、业务原则、方法论、lifecycle 或真源同步作为单独业务 loop 完结项。已写入 `docs/LOOP_ENGINEERING.md`、`harness/templates/loop-tick-prompt.md`、`harness/scripts/codex-self-check.ps1`：每个业务 loop 必须声明 `core_function_artifact`、`phase_plan`（contract/TDD -> implementation -> consumer_surface -> closing_work）、`functional_acceptance`、`closing_work_only`；closing work 只能在核心功能验收后执行。该协议已应用到 loop291，下一业务动作现在是 `CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292`。
 
 [CONTEXT] 2026-06-25 SYNC-294 · 用户校准 loop 节奏：下一轮不得把展示、UI 文案、门禁或规范同步作为完整 loop；这些只能作为功能收尾。loop291 已从旧 `POST_TRIGGER_SAFE_SIM_RESULT_TO_FACTOR_LIBRARY_CHAIN_LOOP291` 改为 `SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291`：从 safe_sim result/audit、reviewed_backtest_plan、F6 evidence、A-E taxonomy、target_candidate_ids 派生 `candidate_promotion_decision_v1`，为每个候选输出 `advance_to_factor_library_review` / `hold_for_recheck` / `reject`、理由、证据 refs 和下一步动作，再由 Chat/Jobs/Factor Library 消费同源 read-model。缺失或伪造 safety evidence、candidate target 或 result/audit 必须 fail-closed；仍禁止 live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。方法论：`METHODOLOGY_MEMORY §步骤-digest-20260625-function-first-loop`。上一功能完成点仍是 loop290 explicit trigger handoff：显式点击后才 POST，非显式 gate 在 DSN/job lookup 前 400 fail-closed，服务端计划 target 绑定 audit/run，验证 143 passed + Ruff/build/smoke pass。
 
