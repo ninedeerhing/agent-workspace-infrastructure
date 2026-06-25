@@ -1,3 +1,43 @@
+# Orchestrator Report - sync296-planner-dispatcher-worker-split
+
+**Updated**: 2026-06-25T09:18:05+08:00
+
+## Tick Summary
+
+- **trigger**: User identified that Orchestrator was still doing too much core implementation work and that Planner and task dispatch should be separate permanent responsibilities.
+- **result**: Planner/Dispatcher split is now encoded in loop governance, loop tick prompt, agent prompts, roster, self-check, and registry.
+- **business route**: unchanged. The next product loop remains `CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292`.
+- **thread state**: `dispatcher` role is registered, but no permanent Codex thread is bound yet. No loop292 business work was dispatched.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `docs/LOOP_ENGINEERING.md` | Adds Planner/Dispatcher split, Orchestrator non-executor rule, same-role uniqueness, and runtime-only subagent boundary. |
+| `harness/templates/loop-tick-prompt.md` | Requires Planner loop_plan and Dispatcher assignment_matrix before business execution. |
+| `agents/orchestrator.md` | Tightens Orchestrator as coordinator/validator, not core implementer. |
+| `agents/planner.md` | Defines loop_plan output and forbids worker/thread assignment. |
+| `agents/dispatcher.md` | Adds the new task assignment worker role. |
+| `harness/reports/EMPLOYEE_ROSTER.md` | Registers dispatcher as user-approved but channel_pending. |
+| `harness/reports/workers/dispatcher.md` | Adds initial dispatcher report and blocker. |
+| `harness/scripts/codex-self-check.ps1` | Adds checks for Planner -> Dispatcher, assignment_matrix, self-execution exception, and dispatcher roster row. |
+| `harness/agent-registry.json` / `harness/team-manifest.default.json` | Regenerated after adding dispatcher. |
+
+## Verification
+
+- `.\harness\scripts\Build-AgentRegistryFromAgentsDir.ps1 -WriteFiles -EnsureScaffold`: role_count=24, worker_count=23.
+- Full self-check and lifecycle verification should run after truth-source sync is complete.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No runner, adapter, DB-backed backtest, PL-H batch, background process, migration, or backfill was started.
+
+## Next
+
+Report this architecture change to the user and wait. On approval, bind a permanent Dispatcher Codex thread, then start loop292 through Planner -> Dispatcher -> workers.
+
+---
+
 # Orchestrator Report - loop291-safe-sim-result-to-candidate-promotion-decision
 
 **Updated**: 2026-06-25T09:01:36+08:00

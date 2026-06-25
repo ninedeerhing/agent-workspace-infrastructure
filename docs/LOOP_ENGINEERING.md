@@ -146,6 +146,9 @@ python harness/skill_router.py --query "<bounded task text>" --top-k 5 --pretty 
 
 每轮执行前必须读取 `harness/reports/EMPLOYEE_ROSTER.md` 并做 dispatch 决策：
 
+- **Planner / Dispatcher 分权（v1.7）**：Planner 只回答“这一轮做什么、为什么、验收什么”，输出 `loop_plan`；Dispatcher 只回答“谁来做、怎么拆、何时汇合”，输出 `assignment_matrix`。两者不得互相代替；Planner 不派工，Dispatcher 不改目标。
+- **总调度非执行者**：业务 loop 默认链路为 `Orchestrator -> Planner -> Dispatcher -> Executor/Test Engineer/Code Reviewer/Verifier -> Orchestrator`。Orchestrator 不写核心业务代码、不设计主测试、不自审代码；若确需亲自执行，必须记录 `orchestrator_self_execution_exception`，枚举限于 `single_command | single_file_trivial | tool_unavailable | urgent_blocker_unblock | worker_unreachable_after_repair_attempt`，并在下一轮恢复 worker 链。
+- **同职责唯一**：相同职责必须使用同一 roster worker。Dirac/Boyle/Planck 等 runtime subagent 只能作为 `runtime-only` 辅助证据，不得替代已有同职责永久 worker；若永久跨对话 worker 不可达，标记 `channel_stale` 并修复/重绑，不创建同职责临时替身。
 - 默认优先跨对话 CodeX worker 线程（`create_thread` / `send_message_to_thread`）；临时 `multi_agent` subagent 只作为旁路审查或工具层辅助，不替代长期 worker 清单。
 - 2+ 独立切片、多文件实现、计划审查、代码审查、QA、安全、governance 或 verification 任务，必须派发既有 roster worker（最多 6 个），并写回 worker report / roster。
 - 不派发必须记录 `dispatch_decision=no_dispatch` 与 `no_dispatch_reason`，只能使用 `single_bounded_slice | no_independent_slices | read_only_review | shared_file_conflict | worker_overloaded | role_not_found | missing_subagent_tool | risk_requires_user | already_running_task`。

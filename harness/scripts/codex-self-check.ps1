@@ -84,6 +84,9 @@ if ($null -ne $loopPromptText) {
         "cold_path_reason",
         "Skill Routing Gate",
         "Worker Dispatch Gate",
+        "Planner -> Dispatcher",
+        "assignment_matrix",
+        "orchestrator_self_execution_exception",
         "Worker Cluster/Rendezvous Gate",
         "goal_bundle",
         "slice_family",
@@ -211,12 +214,12 @@ else {
 $rosterText = Get-Text (Join-Path $HarnessDir "reports/EMPLOYEE_ROSTER.md")
 if ($null -ne $rosterText) {
     $workerRows = ([regex]::Matches($rosterText, '^\| [a-z0-9-]+ \| worker:', [System.Text.RegularExpressions.RegexOptions]::Multiline)).Count
-    if ($workerRows -ge 21) {
+    if ($workerRows -ge 22 -and $rosterText.Contains("| dispatcher | worker:dispatcher |")) {
         Add-Check "employee roster workers" "PASS" "workers=$workerRows"
     }
     else {
         Add-Check "employee roster workers" "FAIL" "workers=$workerRows"
-        Add-Finding "error" "CX-ROSTER" "Employee roster incomplete" "Expected at least 21 worker rows." "Refresh harness/reports/EMPLOYEE_ROSTER.md from agent registry."
+        Add-Finding "error" "CX-ROSTER" "Employee roster incomplete" "Expected at least 22 worker rows including dispatcher." "Refresh harness/reports/EMPLOYEE_ROSTER.md from agent registry and add dispatcher."
     }
 }
 

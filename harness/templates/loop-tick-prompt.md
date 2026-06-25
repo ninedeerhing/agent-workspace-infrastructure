@@ -62,6 +62,10 @@
 ### 2.3 Worker Dispatch Gate
 
 - 读取 `harness/reports/EMPLOYEE_ROSTER.md`，按 role boundary / workload / risk_notes / mistake_count / lesson_count 选择 worker。
+- 每个业务 loop 默认必须先走 `Planner -> Dispatcher` 两段：Planner 输出 `loop_plan`（core_function_artifact、phase_plan、acceptance_tests、non_goals、next_after）；Dispatcher 输出 `assignment_matrix`（role_id、thread_id、task_id、write_scope、model_tier、model_reason、expected_report）。
+- Planner 不派工，Dispatcher 不改计划目标；二者职责不可合并。若缺任一 worker，标记 `role_not_found` 或 `channel_stale`，不得让 orchestrator 直接代替完整职责链。
+- Orchestrator 不写核心业务代码、不设计主测试、不自审代码；业务实现交给 Executor，测试设计交给 Test Engineer，代码风险交给 Code Reviewer，最终证据交给 Verifier。例外必须记录 `orchestrator_self_execution_exception`，枚举限于 `single_command | single_file_trivial | tool_unavailable | urgent_blocker_unblock | worker_unreachable_after_repair_attempt`。
+- 相同职责必须使用同一 roster worker；Dirac/Boyle/Planck 等 runtime subagent 只能记录为 `runtime-only` 辅助证据，不得替代同职责永久 worker 或制造重复职责。
 - 默认优先跨对话 CodeX worker 线程（`create_thread` / `send_message_to_thread`）；`multi_agent` 临时 subagent 只用于旁路审查或工具层辅助，不替代长期 worker 清单。
 - 若存在 2+ 独立切片、多文件实现、计划审查、代码审查、QA、security、governance 或 verification 任务，必须 dispatch 对应既有 roster worker（最多 6 个）；共享文件冲突时拆分为不重叠任务或改为串行。
 - 不派发时必须记录 `dispatch_decision=no_dispatch` 与 `no_dispatch_reason`，枚举限于 `single_bounded_slice | no_independent_slices | read_only_review | shared_file_conflict | worker_overloaded | role_not_found | missing_subagent_tool | risk_requires_user | already_running_task`。

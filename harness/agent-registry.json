@@ -1,12 +1,12 @@
 {
   "version": "0.1.0",
-  "generated_at": "2026-06-23T10:45:10+08:00",
+  "generated_at": "2026-06-25T09:20:41+08:00",
   "source": "harness/scripts/Build-AgentRegistryFromAgentsDir.ps1",
   "project_root": "E:\\raindeer",
   "orchestrator_role": "orchestrator",
   "user_facing_role": "orchestrator",
-  "role_count": 23,
-  "worker_count": 22,
+  "role_count": 24,
+  "worker_count": 23,
   "roles": [
     {
       "role_id": "orchestrator",
@@ -162,6 +162,26 @@
         "processed": "harness/mailbox/designer/processed"
       },
       "worklog": "harness/worklogs/designer.md",
+      "platform_binding": {
+        "platform": null,
+        "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "dispatcher",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/dispatcher.md",
+      "session_name": "AWI / dispatcher",
+      "model": "sonnet",
+      "description": "name: dispatcher",
+      "mailbox": {
+        "inbox": "harness/mailbox/dispatcher/inbox",
+        "processed": "harness/mailbox/dispatcher/processed"
+      },
+      "worklog": "harness/worklogs/dispatcher.md",
       "platform_binding": {
         "platform": null,
         "session_id": null,

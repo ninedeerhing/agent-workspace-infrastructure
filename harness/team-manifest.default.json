@@ -1,7 +1,7 @@
 {
   "version": "0.1.0",
   "template_id": "default-full-roster",
-  "generated_at": "2026-06-23T10:45:10+08:00",
+  "generated_at": "2026-06-25T09:20:41+08:00",
   "orchestrator_role": "orchestrator",
   "user_facing_role": "orchestrator",
   "roles": [
@@ -68,6 +68,14 @@
       "session_name": "AWI / designer",
       "model": "sonnet",
       "source_file": "agents/designer.md"
+    },
+    {
+      "role_id": "dispatcher",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / dispatcher",
+      "model": "sonnet",
+      "source_file": "agents/dispatcher.md"
     },
     {
       "role_id": "executor",

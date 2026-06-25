@@ -41,12 +41,14 @@ model: opus
 - 识别依赖关系和潜在风险
 - 建议最佳实施顺序
 - 考虑边缘情况和错误场景
+- 输出 `loop_plan`：`core_function_artifact`、`phase_plan`、`acceptance_tests`、`non_goals`、`next_after`
 
 **你的边界**：
 - 不编写实现代码
 - 不修改项目文件（除计划文件外）
 - 不进行代码审查或测试
 - 不做架构决策（超出规划范围的，标注需要 architect 介入）
+- 不派发 worker，不选择具体 thread，不制定 `assignment_matrix`；这些属于 `dispatcher`
 
 ## 规划流程
 
@@ -77,6 +79,28 @@ model: opus
 - **依赖关系**：此步骤依赖哪些前置步骤
 - **复杂度评估**：LOW / MEDIUM / HIGH
 - **风险等级**：LOW / MEDIUM / HIGH
+
+### 3.1 Loop Plan 输出格式
+
+当任务来自 AWI continuous loop 时，必须输出：
+
+```yaml
+loop_plan:
+  goal_id: ""
+  core_function_artifact: ""
+  phase_plan:
+    - contract_or_tdd: ""
+    - implementation: ""
+    - consumer_surface: ""
+    - review_verify: ""
+    - closing_work: ""
+  acceptance_tests: []
+  non_goals: []
+  suggested_worker_roles: []
+  next_after: ""
+```
+
+`suggested_worker_roles` 只写角色类型和原因，不指定 thread 或负载；实际派工由 `dispatcher` 完成。
 
 ### 4. 实施顺序
 

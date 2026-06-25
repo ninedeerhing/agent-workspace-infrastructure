@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-25T09:01:36+08:00",
+  "updated_at": "2026-06-25T09:18:05+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
@@ -21,6 +21,13 @@
   ],
   "last_tick": "loop291-safe-sim-result-to-candidate-promotion-decision",
   "last_sync_sources": [
+    "SYNC-296 Planner/Dispatcher worker split",
+    "User calibration: Planner and Dispatcher must be separate workers; Orchestrator must not do core implementation work",
+    "Planner now outputs loop_plan only; Dispatcher outputs assignment_matrix only; Executor/Test Engineer/Code Reviewer/Verifier own implementation/test/review/verification",
+    "Dispatcher role registered in agents/dispatcher.md, EMPLOYEE_ROSTER, worker report, agent registry, and team manifest; codex_thread_id pending binding; no business dispatch started",
+    "Business next action unchanged: CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.620",
+    "METHODOLOGY_MEMORY §步骤-digest-20260625-planner-dispatcher-split",
     "loop291 Safe simulation result to candidate promotion decision",
     "loop291 TDD RED: missing qa.quant_mining.candidate_promotion_decision failed before implementation",
     "loop291 GREEN: candidate_promotion_decision_v1 derives advance_to_factor_library_review / hold_for_recheck / reject from completed safe_sim product_state, manual_safe_status safety, reviewed plan result, server target ids, and A-E taxonomy",

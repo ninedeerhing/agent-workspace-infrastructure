@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-25T01:10:37Z",
+  "updated_at": "2026-06-25T01:23:03Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
@@ -10,14 +10,14 @@
   "task_trees_next_hint": "CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292：在 loop291 已生成同源 candidate_promotion_decision_v1 的基础上，实现人工因子库复核 intake/read-model：只消费 decision=advance_to_factor_library_review 的候选，保留 hold_for_recheck/reject 的复查或拒绝理由，把通过候选的 factor_version_id、A-E taxonomy、safe_sim run/audit refs、reviewed plan/F6 evidence、quality reasons 和下一步人工动作汇入 Factor Library 可复核入口；缺失 candidate_promotion_decision_v1、source job/audit、target ids、safety matrix 或 evidence refs 必须 fail-closed；仍禁止自动入库、自动验收、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。",
   "foreground_tree": "TREE-6",
   "foreground_slice": "",
-  "latest_section5_id": "619",
-  "latest_section5_title": "loop291 Safe simulation result to candidate promotion decision：安全模拟结果生成候选晋级决策（2026-06-25 · orchestrator · TREE-6/PL-G）",
-  "top_summary_section5_ref": "619",
+  "latest_section5_id": "620",
+  "latest_section5_title": "SYNC-296 Planner/Dispatcher worker split：总调度退出核心实现链（2026-06-25 · orchestrator · AWI/Loop Governance）",
+  "top_summary_section5_ref": "620",
   "top_summary_last_tick": "loop291-safe-sim-result-to-candidate-promotion-decision",
   "loop_last_tick": "loop291-safe-sim-result-to-candidate-promotion-decision",
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-25T01:10:37Z",
+    "at": "2026-06-25T01:23:03Z",
     "finding_count": 0,
     "warning_count": 0,
     "error_count": 0
