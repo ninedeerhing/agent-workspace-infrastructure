@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-25T09:18:05+08:00
+updated_at: 2026-06-27T14:52:09+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-25T09:18:05+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-27 SYNC-297 · 已完成 loop292 Candidate promotion to Factor Library review intake：新增 `qa.quant_mining.factor_library_review_intake.build_factor_library_review_intake_v1(...)`，并把 `factor_library_review_intake_v1` 接入 `build_mining_job_observability(...)`、Factor Library review rows、Chat follow-up、JobsPage、FactorLibraryPage。该 read-model 只把 `candidate_promotion_decision_v1` 中 `advance_to_factor_library_review` 的候选放入 `review_candidates`，保留 `hold_for_recheck` / `reject` 理由，展示 `factor_version_id`、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence、quality reasons 和下一步人工动作。P2 已修复 source top-level `state`、`ready_for_execution`、`ready_for_controlled_dry_run`、`execution_permission` 漂移 fail-closed。验证：RED missing module expected；focused **113 passed**；related backend **118 passed**；targeted Ruff pass；`npm run build` pass；dangerous true-marker scan clean；permanent verifier success；permanent code-reviewer P2 fixed + recheck success。下一动作：`FACTOR_LIBRARY_REVIEW_INTAKE_TO_HUMAN_ACCEPTANCE_LOOP293`，从 review intake 生成显式人工接受/拒绝/复查决策；仍禁止自动入库、自动验收、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。Methodology: `M-17-zero-write`。
+
 [CONTEXT] 2026-06-25 SYNC-296 · 用户校准 AWI worker 架构：Planner 和 Dispatcher 必须分成两个 worker，Orchestrator 不再承担核心业务代码实现。已更新 `docs/LOOP_ENGINEERING.md`、`harness/templates/loop-tick-prompt.md`、`agents/orchestrator.md`、`agents/planner.md`，新增 `agents/dispatcher.md` 和 `harness/reports/workers/dispatcher.md`；agent registry/team manifest 已再生成。新规则：Planner 只输出 `loop_plan`；Dispatcher 只输出 `assignment_matrix`；Executor/Test Engineer/Code Reviewer/Verifier 分别负责实现/测试设计/审查/验收；同职责必须用同一永久 worker，runtime-only subagent 不能替代永久 worker。Dispatcher 角色已登记，但 `codex_thread_id` pending；本次未启动 loop292 业务派工。业务下一动作仍是 `CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292`。
 
 [CONTEXT] 2026-06-25 loop291 · 已完成 safe simulation result to candidate promotion decision：新增 `qa.quant_mining.candidate_promotion_decision.build_candidate_promotion_decision_v1(...)`，并把 `candidate_promotion_decision_v1` 接入 `build_mining_job_observability(...)`、Factor Library review rows、Chat follow-up、JobsPage、FactorLibraryPage。该 read-model 从 completed server-owned `safe_sim_*` result/audit、manual_safe_status safety、reviewed plan/F6 evidence、A-E taxonomy、服务端 target ids 生成每个候选的 `advance_to_factor_library_review` / `hold_for_recheck` / `reject`、理由、证据 refs 和下一步动作；缺失 safety、target ids、completed result/audit、reviewed plan 或 unsafe flags fail-closed，unknown target 只 hold for recheck。验证：RED missing module expected；candidate unit 4 passed；focused related 27 passed；expanded related 112 passed；Ruff pass；web build pass；Jobs smoke ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[]；web lint pass with one pre-existing ShellLayoutContext warning。下一动作：`CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292`，把 advance 候选汇入人工因子库复核 intake/read-model；仍禁止自动入库、自动验收、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。Methodology: `M-17-zero-write`。
@@ -204,18 +206,18 @@ updated_at: 2026-06-25T09:18:05+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | f6-evidence-plan-to-reviewed-backtest-readiness-loop287 |
-| `last_tick` | loop287-f6-evidence-plan-to-reviewed-backtest-plan-readiness |
+| `current_slice` | factor-library-review-intake-to-human-acceptance-loop293 |
+| `last_tick` | loop292-candidate-promotion-to-factor-library-review-intake |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-REVIEWED_PLAN_READINESS_TO_MANUAL_SAFE_SIMULATION_PLAN_LOOP288：在不触发真实 runner、DB-backed backtest、PL-H、page-load POST、background/migration/backfill、不输出 secret 的前提下，把 `reviewed_backtest_plan_readiness_v1` 接到 manual-safe simulation plan/action readiness：当 readiness 仍 waiting/needs_recheck 时只展示缺口和下一步；当 `ready_for_reviewed_plan` 且 source_status/rank_ic/coverage/panel_sample 证据齐备时，生成 no-execution reviewed plan preview 与显式手动安全模拟触发准备，继续不执行真实回测。
+FACTOR_LIBRARY_REVIEW_INTAKE_TO_HUMAN_ACCEPTANCE_LOOP293：在 loop292 `factor_library_review_intake_v1` 的基础上，实现显式人工接受/拒绝/复查决策 read-model；只消费 intake 中 `awaiting_human_review` 的 review candidates，记录人工 decision、理由、reviewer/audit refs、factor_version_id、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 no-execution safety；accept 只表示进入因子库待验收/待发布决策，不自动入库、不自动回测、不授予 controlled dry-run 或 PL-H 权限；缺失 intake、source decision、human decision/evidence、target ids 或 safety matrix 必须 fail-closed。
 
 ### next_after
 
-After F6 evidence readiness can feed a reviewed backtest plan readiness contract, connect the reviewed plan to manual-safe simulation readiness and later explicit execution gates.
+After explicit human acceptance/promote-to-library decision is captured, wire controlled dry-run readiness review without enabling automatic execution.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -320,11 +322,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed。TREE-6 / PL-G 为唯一前台主线：loop271–272 已把 A-E taxonomy、candidate generation、F6 screening、reviewed plan、manual-safe simulation 接入 factor discovery workflow 与用户发起/意图理解 creation planner；loop273–277 已完成确认状态机、manual-safe result、trigger API、Factor Library 复核与人工验收；loop278–283 已把人工验收状态推进为 controlled dry-run readiness、operator review gate、confirmation state contract、contract review packet、`confirmation_artifact_bundle_v1` 材料清单与 `controlled_dry_run_handoff_readiness_validator_v1` 交接复核准备度。用户策略：数据 closure 后退出 backfill-monitoring，连续推进 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed。TREE-6 / PL-G 为唯一前台主线：loop271–292 已把 A-E taxonomy、candidate generation、F6 screening、reviewed plan、manual-safe simulation、explicit trigger、candidate promotion decision 与 Factor Library human review intake 接入 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph。用户策略：数据 closure 后退出 backfill-monitoring；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `REVIEWED_PLAN_READINESS_TO_MANUAL_SAFE_SIMULATION_PLAN_LOOP288`：把 loop287 `reviewed_backtest_plan_readiness_v1` 派生为 manual-safe simulation plan/action readiness；waiting/needs_recheck 只展示缺口和下一步，ready 且 source_status/rank_ic/coverage/panel_sample 证据齐备时只生成 no-execution 手动安全模拟准备；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、manual acceptance grant、authorization grant 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `FACTOR_LIBRARY_REVIEW_INTAKE_TO_HUMAN_ACCEPTANCE_LOOP293`：把 loop292 `factor_library_review_intake_v1` 派生为显式人工接受/拒绝/复查决策 read-model；accept 只表示进入因子库待验收/待发布决策，不自动入库、不自动回测、不授予 controlled dry-run 或 PL-H 权限；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、automatic promotion、authorization grant 与 secret 输出。
 
 ## Resume Command
 

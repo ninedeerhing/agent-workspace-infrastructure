@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-24T18:18:00+08:00
+更新时间：2026-06-27T14:45:00+08:00
+
+## Tick loop292-candidate-promotion-to-factor-library-review-intake
+
+- **任务 ID**：loop292-factor-library-review-intake-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 Factor Library 人工复核入口、候选入库语义和执行授权边界。
+- **状态**：success after P2 closure
+- **任务**：只读风险复核 `factor_library_review_intake_v1`、MiningJob observability、Factor Library / Jobs / Chat consumption 与相关测试，确认 review intake 不误表达自动入库、自动验收、真实 runner 或 controlled dry-run 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：builder 未验证 `candidate_promotion_decision_v1` 顶层 `state`、`ready_for_execution`、`ready_for_controlled_dry_run`、`execution_permission`；若 source payload 漂移为非 ready 或含执行授权标记，旧实现仍可能暴露 `review_candidates`。
+- **闭环结论**：executor 已补 fail-closed validation 和 regressions：source 非 ready、`ready_for_execution=true`、`ready_for_controlled_dry_run=true`、`execution_permission` 非 `not_granted` 均清空 `review_candidates` 并降级/阻断；Aquinas 窄复核 PASS，确认 P2 已关闭。未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused intake/UI/Chat/JSPages **113 passed**；related backend regression **118 passed**；targeted Ruff **All checks passed!**；`npm run build` pass；dangerous true-marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: review-intake readiness must validate source top-level state and execution permission, not only per-candidate decision rows.
 
 ## Tick loop289-manual-safe-plan-readiness-to-explicit-trigger-handoff
 

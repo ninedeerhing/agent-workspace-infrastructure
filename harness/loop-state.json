@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-25T09:18:05+08:00",
+  "updated_at": "2026-06-27T14:52:09+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "candidate-promotion-to-factor-library-review-intake-loop292",
-  "next_atomic_action": "CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292：在 loop291 已生成同源 candidate_promotion_decision_v1 的基础上，实现人工因子库复核 intake/read-model：只消费 decision=advance_to_factor_library_review 的候选，保留 hold_for_recheck/reject 的复查或拒绝理由，把通过候选的 factor_version_id、A-E taxonomy、safe_sim run/audit refs、reviewed plan/F6 evidence、quality reasons 和下一步人工动作汇入 Factor Library 可复核入口；缺失 candidate_promotion_decision_v1、source job/audit、target ids、safety matrix 或 evidence refs 必须 fail-closed；仍禁止自动入库、自动验收、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。",
-  "next_after": "After factor-library review intake is generated from candidate_promotion_decision_v1, wire explicit human acceptance/promote-to-library decision and then controlled dry-run readiness without enabling automatic execution.",
+  "current_slice": "factor-library-review-intake-to-human-acceptance-loop293",
+  "next_atomic_action": "FACTOR_LIBRARY_REVIEW_INTAKE_TO_HUMAN_ACCEPTANCE_LOOP293：在 loop292 factor_library_review_intake_v1 的基础上，实现显式人工接受/拒绝/复查决策 read-model：只消费 intake 中 awaiting_human_review 的 review candidates，记录人工 decision、理由、reviewer/audit refs、factor_version_id、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 no-execution safety；accept 只表示进入因子库待验收/待发布决策，不自动入库、不自动回测、不授予 controlled dry-run 或 PL-H 权限；缺失 intake、source decision、human decision/evidence、target ids 或 safety matrix 必须 fail-closed。",
+  "next_after": "After explicit human acceptance/promote-to-library decision is captured, wire controlled dry-run readiness review without enabling automatic execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop291-safe-sim-result-to-candidate-promotion-decision",
+  "last_tick": "loop292-candidate-promotion-to-factor-library-review-intake",
   "last_sync_sources": [
+    "SYNC-297 loop292 Candidate promotion to Factor Library review intake",
+    "loop292 TDD RED: missing qa.quant_mining.factor_library_review_intake failed before implementation",
+    "loop292 GREEN: factor_library_review_intake_v1 admits advance_to_factor_library_review candidates to human review intake, preserves hold_for_recheck/reject reasons, and carries factor_version_id, A-E taxonomy, safe_sim/audit refs, reviewed plan/F6 evidence, quality reasons, and next manual action",
+    "loop292 shared read-model: MiningJob observability remains the single source; Factor Library, Jobs, and Chat consume factor_library_review_intake_v1 without independent derivation",
+    "loop292 P2 fix: source top-level state, ready_for_execution, ready_for_controlled_dry_run, and execution_permission drift now fail-closed before any review candidate is exposed",
+    "loop292 verification: focused intake/UI/Chat/JSPages 113 passed; related backend regression 118 passed; targeted Ruff pass; npm run build pass; dangerous true-marker scan clean",
+    "loop292 worker dispatch: permanent executor implemented with gpt-5.5; permanent verifier success; permanent code-reviewer found P2 source drift and final recheck success after fix",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.621",
     "SYNC-296 Planner/Dispatcher worker split",
     "User calibration: Planner and Dispatcher must be separate workers; Orchestrator must not do core implementation work",
     "Planner now outputs loop_plan only; Dispatcher outputs assignment_matrix only; Executor/Test Engineer/Code Reviewer/Verifier own implementation/test/review/verification",
@@ -1281,7 +1289,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop291 completed safe simulation result to candidate promotion decision. Completed server-owned safe_sim product_state and manual_safe_status safety now derive candidate_promotion_decision_v1 in build_mining_job_observability, with per-candidate advance_to_factor_library_review / hold_for_recheck / reject decisions, reasons, evidence refs, target ids, thresholds, A-E taxonomy, and no-execution safety flags. API, Jobs, Chat, and Factor Library consume the same read-model. Missing safety, target ids, result/audit, reviewed plan, or unsafe flags fail-closed; unknown target candidates hold for recheck. The next core function is Factor Library review intake from advance decisions, still without auto-promote, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, background/migration/backfill, or secret output."
+    "note": "loop292 completed candidate promotion to Factor Library review intake. factor_library_review_intake_v1 now admits only advance_to_factor_library_review candidates into human review, preserves hold_for_recheck and reject reasons, and carries factor_version_id, A-E taxonomy, safe_sim/audit refs, reviewed plan/F6 evidence, quality reasons, and next manual action across MiningJob observability, Factor Library, Jobs, and Chat. Source top-level state, ready flags, and execution_permission drift fail-closed. The next core function is explicit human acceptance/reject/recheck decision from the intake, still without auto-promote, auto-acceptance, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, background/migration/backfill, or secret output."
   },
-  "last_completed_note": "loop291 safe simulation result to candidate promotion decision complete. Added qa.quant_mining.candidate_promotion_decision.build_candidate_promotion_decision_v1 and wired candidate_promotion_decision_v1 into MiningJob observability, Factor Library review rows, Chat notes, Jobs cards, and Factor Library UI. The read-model converts completed server-owned safe_sim result/audit plus reviewed plan/F6 evidence/A-E taxonomy/target ids into advance_to_factor_library_review, hold_for_recheck, or reject, with reasons/evidence refs/next action and ready_for_execution=false. Verification: RED missing module failed as expected; candidate promotion unit 4 passed; focused related regression 27 passed; expanded related regression 112 passed; targeted Ruff pass; web build pass; Jobs smoke pass pageLoadTriggerRequests=[] duplicateTriggerUrls=[]; web lint pass with one pre-existing ShellLayoutContext warning. Next_atomic_action is CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292."
+  "last_completed_note": "loop292 candidate promotion to Factor Library review intake complete. Added qa.quant_mining.factor_library_review_intake.build_factor_library_review_intake_v1 and wired factor_library_review_intake_v1 into MiningJob observability, Factor Library rows, Chat notes, Jobs cards, and Factor Library UI. The read-model converts candidate_promotion_decision_v1 advance decisions into review_candidates, keeps hold_for_recheck and reject reasons, and preserves no-execution safety. P2 fixed source top-level state/ready flags/execution_permission drift fail-closed. Verification: RED missing module failed as expected; focused intake/UI/Chat/JSPages 113 passed; related backend regression 118 passed; targeted Ruff pass; npm run build pass; dangerous true-marker scan clean; verifier success; code-reviewer P2 fixed and final recheck success. Next_atomic_action is FACTOR_LIBRARY_REVIEW_INTAKE_TO_HUMAN_ACCEPTANCE_LOOP293."
 }

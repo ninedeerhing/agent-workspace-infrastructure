@@ -1,3 +1,52 @@
+# Orchestrator Report - loop292-candidate-promotion-to-factor-library-review-intake
+
+**Updated**: 2026-06-27T14:52:09+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G candidate promotion to Factor Library review intake.
+- **trigger**: loop291 produced `candidate_promotion_decision_v1`; the product chain needed a shared human-review intake instead of leaving advance/hold/reject as display-only decisions.
+- **result**: `factor_library_review_intake_v1` is now derived from `candidate_promotion_decision_v1` in MiningJob observability and consumed by Factor Library, Jobs, and Chat. Advance candidates enter `review_candidates`; hold/reject candidates keep their reasons; no execution or auto-promotion authority is granted.
+- **next**: `FACTOR_LIBRARY_REVIEW_INTAKE_TO_HUMAN_ACCEPTANCE_LOOP293`; capture explicit human accept/reject/recheck decision without enabling auto-promote, controlled dry-run, or PL-H.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/factor_library_review_intake.py` | Adds the pure fail-closed Factor Library review intake builder. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `factor_library_review_intake_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` | Carries the intake read-model into Factor Library rows. |
+| `apps/quant_assistant/src/qa/ui/chat_brain.py` | Renders review intake follow-up notes from the shared read-model. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` / `JobsPage.tsx` | Shows review candidates, recheck/reject reasons, and no-execution markers. |
+| `apps/quant_assistant/tests/*loop292 related*` | Proves intake derivation, source-drift fail-closed behavior, and UI/Chat consumption. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.factor_library_review_intake` failed as expected |
+| focused intake/UI/Chat/JSPages | pass · **113 passed** |
+| related backend regression | pass · **118 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| web build | pass · `npm run build` |
+| no-execution marker scan | pass · dangerous true-marker scan returned no matches |
+| verifier | success · human-review only, no page-load/runner/DB execution boundary preserved |
+| code-reviewer | P2 found then closed · top-level source state/ready flags/execution_permission drift now fail-closed |
+
+## Worker Notes
+
+Permanent `executor` implemented loop292 with gpt-5.5. Permanent `verifier` returned success. Permanent `code-reviewer` found a P2 source-drift gap; the same permanent `executor` fixed it, and `code-reviewer` final recheck passed. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H batch, background process, migration, or backfill was started. Human review intake is not auto-promotion, human acceptance, controlled dry-run permission, or execution authorization.
+
+## Residual Risk
+
+The system can now build a Factor Library human-review queue, but it still needs loop293 to capture explicit human accept/reject/recheck decisions and keep that decision separate from execution authority.
+
+---
+
 # Orchestrator Report - sync296-planner-dispatcher-worker-split
 
 **Updated**: 2026-06-25T09:18:05+08:00

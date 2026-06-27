@@ -1,6 +1,19 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-24T18:18:00+08:00
+更新时间：2026-06-27T14:40:00+08:00
+
+## Tick loop292-candidate-promotion-to-factor-library-review-intake
+
+- **任务 ID**：loop292-factor-library-review-intake-verifier
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 Factor Library 人工复核入口和 no-execution 边界。
+- **状态**：success
+- **任务**：只读最终验收 `CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292`，确认 review intake 只消费 advance candidates、保留 hold/reject 理由、暴露 A-E taxonomy / safe_sim / reviewed plan / F6 evidence，并保持 no-execution boundary。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：PASS；确认 `review_candidates` 只来自 `advance_to_factor_library_review`，hold/reject 留在 recheck/rejected lists；Factor Library、Jobs、Chat 共享同一 read-model；无 page-load POST、DB read、runner/default-runner、adapter、actual dry-run、PL-H、background、migration、backfill 或 secret-output 路径；reported verification matrix 为 RED missing module expected、focused **113 passed**、related backend **118 passed**、targeted Ruff pass、`npm run build` pass、dangerous true-marker scan clean。
+- **roster_update**：workload unchanged；mistakes none；lesson: final verification for review-intake gates must include hold/reject preservation and no-execution marker scan, not only positive review candidate copy。
+- **残余风险**：显式人工 accept/reject/recheck 决策尚未实现；loop293 必须证明 accept 不等于自动入库、controlled dry-run permission 或 PL-H execution authority。
 
 ## Tick loop289-manual-safe-plan-readiness-to-explicit-trigger-handoff
 

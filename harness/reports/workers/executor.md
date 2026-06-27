@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-24T10:38:29+08:00
+**Updated**: 2026-06-27T14:42:00+08:00
+
+## Tick loop292-candidate-promotion-to-factor-library-review-intake
+
+- **任务 ID**：loop292-factor-library-review-intake-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 Factor Library 人工复核入口、候选入库边界、执行授权边界和用户可见安全状态。
+- **状态**：success after P2 closure
+- **任务**：有界实现 `factor_library_review_intake_v1`，接入 MiningJob observability、Factor Library review rows、Chat follow-up、FactorLibraryPage、JobsPage；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 `qa.quant_mining.factor_library_review_intake`；补齐 intake derivation、Factor Library/Jobs/Chat rendering、source-drift fail-closed tests；按 code-reviewer P2 收紧 top-level source `state`、`ready_for_execution`、`ready_for_controlled_dry_run`、`execution_permission` 漂移。
+- **orchestrator 本地验证**：focused intake/UI/Chat/JSPages **113 passed**；related backend regression **118 passed**；targeted Ruff **All checks passed!**；`npm run build` pass；dangerous true-marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: review intake must validate upstream top-level state/ready/execution-permission fields before exposing human review candidates.
 
 ## Tick loop282-controlled-dry-run-artifact-capture-bundle
 
