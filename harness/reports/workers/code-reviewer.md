@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-27T15:48:00+08:00
+更新时间：2026-06-27T16:39:13+08:00
+
+## Tick loop295-controlled-dry-run-readiness-to-publish-gate-review
+
+- **任务 ID**：loop295-controlled-dry-run-publish-gate-review-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 publish/controlled-dry-run gate review、manual requirements 与执行授权边界。
+- **状态**：success after P2 closure
+- **任务**：只读风险复核 `controlled_dry_run_publish_gate_review_v1`、MiningJob observability、Factor Library / Jobs / Chat consumption 与相关测试，确认 gate review 不误表达自动发布、真实 runner、adapter、DB-backed real batch、controlled dry-run 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：builder 可能把 operator/reviewer approved、runner_config connected、rollback ready 当成 requirements 已满足；若上游 readiness payload 漂移为这些值，旧实现可能保留 candidate_refs 并显示条件已满足，而不是 fail-closed。
+- **闭环结论**：修复后 `_requirement_blockers(...)` 将 pending/not_connected/not_ready 之外的值视为 `*_status_drift`；新增 parametrized regression 覆盖 operator approved、reviewer approved、runner connected、rollback ready，断言 `state=blocked`、`candidate_refs=[]`、execution flags false/not_granted。Aquinas same-thread narrow recheck PASS，确认 P2 已关闭。未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST 或 secret-output 新路径。
+- **orchestrator 本地验证**：gate unit **9 passed**；focused+related **118 passed**；targeted Ruff **All checks passed!**；`npm run lint` pass with known ShellLayout warning；`npm run build` pass；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`；added-line forbidden execution/secret scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: gate-review builders must treat unexpectedly satisfied upstream manual requirements as source drift until a later explicit artifact/review gate grants them.
 
 ## Tick loop294-human-acceptance-controlled-dry-run-readiness
 

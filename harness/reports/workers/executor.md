@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-27T15:45:00+08:00
+**Updated**: 2026-06-27T16:39:13+08:00
+
+## Tick loop295-controlled-dry-run-readiness-to-publish-gate-review
+
+- **任务 ID**：loop295-controlled-dry-run-publish-gate-review-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 controlled dry-run readiness 到 publish/controlled-dry-run gate review 的发布/执行权限边界。
+- **状态**：success after P2 closure
+- **任务**：有界实现 `controlled_dry_run_publish_gate_review_v1`，接入 MiningJob observability、Factor Library rows、Chat follow-up、FactorLibraryPage、JobsPage；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 `qa.quant_mining.controlled_dry_run_publish_gate_review`；补齐 gate review derivation、Factor Library/Jobs/Chat rendering、source drift/malformed refs/no-execution tests；按 code-reviewer P2 收紧 manual requirement drift：operator/reviewer approved、runner connected、rollback ready 等非 pending/not_connected/not_ready 值均 fail-closed blocked 并清空 candidate refs。
+- **orchestrator 本地验证**：gate unit **9 passed**；focused+related **118 passed**；targeted Ruff **All checks passed!**；`npm run lint` pass with known ShellLayout warning；`npm run build` pass；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`；`git diff --check` pass（CRLF warnings only）；added-line forbidden execution/secret scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: publish/controlled-dry-run gate review must treat upstream manual requirement values that look satisfied as readiness drift unless an explicit later gate grants them.
 
 ## Tick loop294-human-acceptance-controlled-dry-run-readiness
 

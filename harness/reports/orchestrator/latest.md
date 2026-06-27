@@ -1,3 +1,54 @@
+# Orchestrator Report - loop295-controlled-dry-run-readiness-to-publish-gate-review
+
+**Updated**: 2026-06-27T16:39:13+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G controlled dry-run readiness to publish gate review.
+- **trigger**: loop294 produced a review-only controlled dry-run readiness packet; the product chain needed a shared publish/controlled-dry-run gate review instead of treating readiness as publish or execution authority.
+- **result**: `controlled_dry_run_publish_gate_review_v1` is now derived from `human_acceptance_controlled_dry_run_readiness_v1` in MiningJob observability and consumed by Factor Library, Jobs, and Chat. It lists source readiness refs, accepted candidate refs, requirements, blockers, and manual next actions. Manual requirement drift fails closed and clears candidate refs. No execution, publish, runner, adapter, DB-backed real batch, or PL-H authority is granted.
+- **next**: `PUBLISH_GATE_REVIEW_TO_EXPLICIT_PUBLISH_REQUEST_INTAKE_LOOP296`; derive explicit publish / controlled-dry-run request intake review from the gate review packet without enabling execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/controlled_dry_run_publish_gate_review.py` | Adds the pure fail-closed gate review builder. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `controlled_dry_run_publish_gate_review_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries the gate review into Factor Library rows and Chat follow-up notes. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` / `JobsPage.tsx` | Shows gate review blockers, requirements, and no-execution status. |
+| `apps/quant_assistant/tests/*loop295 related*` | Proves gate derivation, manual requirement drift fail-closed behavior, and UI/Chat consumption. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.controlled_dry_run_publish_gate_review` failed as expected |
+| gate unit | pass · **9 passed** |
+| focused related regression | pass · **118 passed in 1.34s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| web lint | pass · existing `ShellLayoutContext.tsx` Fast Refresh warning only |
+| web build | pass · `npm run build` |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5` |
+| diff check | pass · CRLF warnings only |
+| added-line forbidden scan | pass · no new env/DB/backtest/runner/page-load/secret execution entries |
+| code-reviewer | success after P2 closure · manual requirement drift now blocked and clears candidate refs |
+| verifier | success · gate review is review-only/not-granted |
+
+## Worker Notes
+
+Permanent `executor` implemented loop295 with gpt-5.5. Permanent `verifier` independently verified the no-execution boundary. Permanent `code-reviewer` found one P2 manual-requirement drift gap; the fix was applied and same-thread narrow recheck passed. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H batch, background process, migration, or backfill was started. The publish/controlled-dry-run gate review is not auto-publish, auto-backtest, controlled dry-run permission, execution permission, or runner/adapter authority.
+
+## Residual Risk
+
+The system can now explain the publish/controlled-dry-run gate blockers, but loop296 still needs to derive the explicit request intake/review packet and keep it review-only/fail-closed.
+
+---
+
 # Orchestrator Report - loop294-human-acceptance-controlled-dry-run-readiness
 
 **Updated**: 2026-06-27T16:07:40+08:00

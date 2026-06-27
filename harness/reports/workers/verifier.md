@@ -1,6 +1,19 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-27T15:50:00+08:00
+更新时间：2026-06-27T16:39:13+08:00
+
+## Tick loop295-controlled-dry-run-readiness-to-publish-gate-review
+
+- **任务 ID**：loop295-controlled-dry-run-publish-gate-review-verifier
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 readiness 到 publish/controlled-dry-run gate review 的 no-execution 边界。
+- **状态**：success
+- **任务**：只读最终验收 `CONTROLLED_DRY_RUN_READINESS_TO_PUBLISH_GATE_REVIEW_LOOP295`，确认 gate review 只消费 `human_acceptance_controlled_dry_run_readiness_v1`，保留候选证据链，并明确 operator/reviewer、runner_config、rollback/audit 的未就绪状态。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：PASS；确认当前 diff 包含 gate builder/tests、observability wiring、Factor Library rows、Jobs/FactorLibrary passive UI markers、Chat copy；builder 保持 read-model only，ready/execution/publish flags false/not_granted；未发现 active DB-backed execution、page-load POST、background、migration、backfill、PL-H、runner/adapter execution 或 secret output。reported verification matrix 包含 focused pytest **114 passed**、targeted Ruff pass、web lint/build pass、Jobs smoke pass。code-reviewer 随后发现 P2 manual requirement drift，已由 orchestrator 本地修复并复验 gate unit **9 passed**、focused related **118 passed**、Ruff/build/lint/smoke pass。
+- **roster_update**：workload unchanged；mistakes none；lesson: final verification for gate reviews should include manual requirement drift, not only top-level execution flags and passive UI markers.
+- **残余风险**：explicit publish / controlled-dry-run request intake review 尚未实现；loop296 必须继续证明 request intake 不等于自动发布、真实 runner/adapter 授权或 execution permission。
 
 ## Tick loop294-human-acceptance-controlled-dry-run-readiness
 
