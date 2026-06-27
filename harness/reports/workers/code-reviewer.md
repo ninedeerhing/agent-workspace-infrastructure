@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-27T16:39:13+08:00
+更新时间：2026-06-27T17:29:14+08:00
+
+## Tick loop296-publish-gate-review-to-explicit-request-intake
+
+- **任务 ID**：loop296-request-intake-review-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 request intake、manual artifacts 与执行授权边界。
+- **状态**：success after P2 #2b closure
+- **任务**：只读风险复核 `controlled_dry_run_request_intake_review_v1`、MiningJob observability、Factor Library / Jobs / Chat consumption、split tests 与 smoke fixture，确认 request intake 不误表达自动发布、真实 runner、adapter、DB-backed real batch、controlled dry-run、manual acceptance 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：`_artifact_status` 需要拒绝 artifact-level execution-bearing markers；present request artifact 如果携带 live/default runner、adapter invocation、DB-backed backtest、page-load POST、background、migration、backfill、secret output 等 true marker，不得被当成 present。
+- **闭环结论**：修复后 `ARTIFACT_FORBIDDEN_TRUE_MARKERS` 覆盖 ready/auto/actual adapter/PL-H 以及 live/default runner、adapter invocation、DB-backed backtest、page-load POST、background、migration、backfill、secret output；新增 artifact marker regression 文件覆盖 9 个 marker。Aquinas same-thread narrow recheck PASS，确认 P2 #2b 已关闭。未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST 或 secret-output 新路径。
+- **orchestrator 本地验证**：request-intake split tests **31 passed**；loop293-296 related regression **165 passed**；targeted Ruff **All checks passed!**；`node --check` pass；`npm run lint` pass with known ShellLayout warning；`npm run build` pass；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`；source/UI/fixture dangerous true-marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: request-intake gates must treat execution-bearing fields inside manual artifacts as malformed evidence, not as harmless metadata.
 
 ## Tick loop295-controlled-dry-run-readiness-to-publish-gate-review
 

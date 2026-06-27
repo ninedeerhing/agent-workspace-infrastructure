@@ -1,6 +1,19 @@
 # Worker 工作汇报 · verifier
 
-更新时间：2026-06-27T16:39:13+08:00
+更新时间：2026-06-27T17:29:14+08:00
+
+## Tick loop296-publish-gate-review-to-explicit-request-intake
+
+- **任务 ID**：loop296-request-intake-review-verifier
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed2-dbc0-7313-8d64-f9c6f199c68b`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 request intake 到 manual artifact review 前的 no-execution 边界。
+- **状态**：success
+- **任务**：只读最终验收 `PUBLISH_GATE_REVIEW_TO_EXPLICIT_PUBLISH_REQUEST_INTAKE_LOOP296`，确认 request intake 只消费 `controlled_dry_run_publish_gate_review_v1`，保留候选证据链，并明确 operator/reviewer request artifacts、runner_config、rollback/audit 的未就绪状态。
+- **变更**：worker 只读复核，未修改文件。
+- **验证**：PASS；确认当前 diff 包含 request-intake builder/support/tests、observability wiring、Factor Library rows、Jobs/FactorLibrary passive UI markers、Chat copy 与 smoke fixture markers；builder 保持 read-model only，ready/execution/publish flags false/not_granted；malformed artifacts 与 artifact execution markers fail-closed；未发现 active DB-backed execution、page-load POST、background、migration、backfill、PL-H、runner/adapter execution 或 secret output。orchestrator final evidence: split tests **31 passed**；related regression **165 passed**；targeted Ruff pass；node check pass；web lint/build pass；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`。
+- **roster_update**：workload unchanged；mistakes none；lesson: final verification for request-intake gates must include artifact-provenance and artifact-level forbidden marker checks, not only top-level no-execution fields.
+- **残余风险**：manual request artifact capture/review 尚未实现；loop297 必须继续证明 artifact review 不等于 manual acceptance、publish、runner/adapter authorization 或 execution permission。
 
 ## Tick loop295-controlled-dry-run-readiness-to-publish-gate-review
 

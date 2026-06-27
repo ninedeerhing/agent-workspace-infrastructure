@@ -1,3 +1,56 @@
+# Orchestrator Report - loop296-publish-gate-review-to-explicit-request-intake
+
+**Updated**: 2026-06-27T17:29:14+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G publish gate review to explicit request intake.
+- **trigger**: loop295 produced a review-only publish/controlled-dry-run gate review packet; the product chain needed a shared request-intake gate instead of treating gate review as publish or execution authority.
+- **result**: `controlled_dry_run_request_intake_review_v1` is now derived from `controlled_dry_run_publish_gate_review_v1` in MiningJob observability and consumed by Factor Library, Jobs, and Chat. It lists request artifact statuses, source gate refs, candidate refs, blockers, required artifacts, and manual next actions. Extra hard blockers, malformed artifacts, and artifact-level execution markers fail closed and clear candidate refs. No execution, publish, runner, adapter, DB-backed real batch, manual acceptance, or PL-H authority is granted.
+- **next**: `MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297`; derive manual request artifact capture/review from the request-intake packet without enabling execution. Current loop is paused by user instruction after completing loop296.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/controlled_dry_run_request_intake_review.py` | Adds the pure fail-closed request-intake review builder. |
+| `apps/quant_assistant/src/qa/quant_mining/controlled_dry_run_request_intake_review_support.py` | Holds small support helpers for source/candidate/manual-action validation. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `controlled_dry_run_request_intake_review_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries the request-intake review into Factor Library rows and Chat follow-up notes. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` / `JobsPage.tsx` / `web/scripts/smoke-jobs-page-fixture.mjs` | Shows request-intake blockers, required artifacts, and no-execution status. |
+| `apps/quant_assistant/tests/*loop296 related*` | Proves request-intake derivation, artifact malformed/forbidden-marker fail-closed behavior, and UI/Chat consumption. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.controlled_dry_run_request_intake_review` failed as expected |
+| request-intake split tests | pass · **31 passed** |
+| loop293-296 related regression | pass · **165 passed in 1.66s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| node fixture check | pass · `node --check web/scripts/smoke-jobs-page-fixture.mjs` |
+| web lint | pass · existing `ShellLayoutContext.tsx` Fast Refresh warning only |
+| web build | pass · `npm run build` |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5` |
+| diff check | pass · CRLF warnings only |
+| dangerous true-marker scan | pass · source/UI/fixture scan returned no active enablement |
+| code-reviewer | success · P2 #2b closed; no remaining P1/P2 findings |
+| verifier | success · request intake is review-only/not-granted |
+
+## Worker Notes
+
+Permanent `executor` implemented loop296 with gpt-5.5, including the final artifact-marker test split. Permanent `code-reviewer` found and then cleared the artifact-marker P2 gap. Permanent `verifier` independently confirmed the request-intake gate remains passive and no-execution. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H batch, background process, migration, or backfill was started. The request-intake review is not auto-publish, auto-backtest, manual acceptance, controlled dry-run permission, execution permission, or runner/adapter authority.
+
+## Residual Risk
+
+The system can now explain missing/malformed request-intake materials, but loop297 still needs to derive manual request artifact capture/review and keep it review-only/fail-closed. Per user instruction, the orchestrator stops after loop296 and waits for the next command.
+
+---
+
 # Orchestrator Report - loop295-controlled-dry-run-readiness-to-publish-gate-review
 
 **Updated**: 2026-06-27T16:39:13+08:00

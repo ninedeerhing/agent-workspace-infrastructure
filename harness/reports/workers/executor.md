@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-27T16:39:13+08:00
+**Updated**: 2026-06-27T17:29:14+08:00
+
+## Tick loop296-publish-gate-review-to-explicit-request-intake
+
+- **任务 ID**：loop296-request-intake-review-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 explicit publish / controlled-dry-run request intake 与执行授权边界。
+- **状态**：success after P2 closure and size split
+- **任务**：有界实现 `controlled_dry_run_request_intake_review_v1`，接入 MiningJob observability、Factor Library rows、Chat follow-up、FactorLibraryPage、JobsPage 与 Jobs smoke fixture；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 `qa.quant_mining.controlled_dry_run_request_intake_review` 与 support helpers；补齐 request intake derivation、Factor Library/Jobs/Chat rendering、source drift/malformed artifact/no-execution tests；按 code-reviewer P2 收紧 extra hard blockers、operator/reviewer malformed request artifacts 与 artifact-level execution markers fail-closed；把 artifact marker regression 拆到 `tests/test_controlled_dry_run_request_intake_review_artifact_markers_unit.py`，保持 split files <=250 pure LOC。
+- **orchestrator 本地验证**：request-intake split tests **31 passed**；loop293-296 related regression **165 passed**；targeted Ruff **All checks passed!**；`node --check` pass；`npm run lint` pass with known ShellLayout warning；`npm run build` pass；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`；`git diff --check` pass（CRLF warnings only）；source/UI/fixture dangerous true-marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: request-intake artifact validation must reject execution-bearing markers inside otherwise present-looking manual artifacts, and broad fail-closed tests should split by behavior before hitting the 250 LOC ceiling.
 
 ## Tick loop295-controlled-dry-run-readiness-to-publish-gate-review
 
