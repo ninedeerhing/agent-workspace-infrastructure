@@ -1,6 +1,19 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-27T15:02:00+08:00
+更新时间：2026-06-27T15:48:00+08:00
+
+## Tick loop294-human-acceptance-controlled-dry-run-readiness
+
+- **任务 ID**：loop294-human-acceptance-controlled-dry-run-readiness-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 accepted human decision、controlled dry-run readiness、发布/执行权限边界。
+- **状态**：success
+- **任务**：只读风险复核 `human_acceptance_controlled_dry_run_readiness_v1`、MiningJob observability、Factor Library / Jobs / Chat consumption 与相关测试，确认 readiness 不误表达自动发布、真实 runner、adapter、DB-backed real batch、controlled dry-run 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **复核结论**：PASS；readiness 只消费 `accepted_pending_publish_gate` 并保留 human decision/evidence、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence；operator/reviewer 仍 pending，runner_config not_connected，rollback/audit not_ready。未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused+related **125 passed**；targeted Ruff **All checks passed!**；`npm run build` pass；`npm run lint` pass with known ShellLayout warning；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`；dangerous authorization/execution marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: readiness review must validate source decision state and no-execution safety, and must expose blockers/manual next actions rather than execution authority.
 
 ## Tick loop293-factor-library-human-acceptance-decision
 

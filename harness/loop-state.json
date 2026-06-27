@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-27T15:28:59+08:00",
+  "updated_at": "2026-06-27T16:07:40+08:00",
   "mode": "autonomous",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "human-acceptance-to-controlled-dry-run-readiness-loop294",
-  "next_atomic_action": "HUMAN_ACCEPTANCE_TO_CONTROLLED_DRY_RUN_READINESS_LOOP294：在 loop293 factor_library_human_acceptance_decision_v1 的基础上，实现已人工接受候选的受控 dry-run readiness review read-model：只消费 accepted_pending_publish_gate，继续携带 human decision/evidence、factor_version_id、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 no-execution safety；输出 operator/reviewer pending、runner_config not_connected、rollback/audit not_ready 与 blockers；不得自动发布因子库、不得自动回测、不得连接 live/default runner、不得授予 PL-H。",
-  "next_after": "After controlled dry-run readiness review is derived from accepted human decisions, wire publish/controlled-dry-run gate review without enabling execution.",
+  "current_slice": "controlled-dry-run-readiness-to-publish-gate-review-loop295",
+  "next_atomic_action": "CONTROLLED_DRY_RUN_READINESS_TO_PUBLISH_GATE_REVIEW_LOOP295：在 loop294 human_acceptance_controlled_dry_run_readiness_v1 的基础上，实现 publish/controlled-dry-run gate review read-model：只消费 review-only readiness packet，校验 accepted human decision、operator/reviewer pending、runner_config not_connected、rollback/audit not_ready、factor_version_id、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 no-execution safety；输出 publish/controlled-dry-run gate review 的 blockers、requirements、manual next actions；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H 或 execution permission。",
+  "next_after": "After publish/controlled-dry-run gate review is derived, implement explicit publish request/intake review only if the gate remains review-only and fail-closed.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop293-factor-library-human-acceptance-decision",
+  "last_tick": "loop294-human-acceptance-controlled-dry-run-readiness",
   "last_sync_sources": [
+    "SYNC-299 loop294 Human acceptance to controlled dry-run readiness",
+    "loop294 TDD RED: missing qa.quant_mining.human_acceptance_controlled_dry_run_readiness failed before implementation",
+    "loop294 GREEN: human_acceptance_controlled_dry_run_readiness_v1 derives review-only controlled dry-run readiness from factor_library_human_acceptance_decision_v1 accepted_pending_publish_gate candidates",
+    "loop294 readiness semantics: carries human decision/evidence, factor_version_id, A-E taxonomy, safe_sim/audit refs, reviewed plan/F6 evidence, operator/reviewer pending, runner_config not_connected, rollback/audit not_ready, blockers, and manual next actions",
+    "loop294 fail-closed safety: missing accepted candidates, source state drift, source no-execution drift, malformed materials, or missing evidence do not expose publish/execution authority",
+    "loop294 verification: executor focused 17 passed and related 125 passed; verifier expanded 163 passed; orchestrator final focused+related 125 passed; targeted Ruff pass; npm build pass; npm lint pass with known ShellLayout warning; Jobs smoke ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5; dangerous authorization/execution marker scan clean",
+    "loop294 worker dispatch: permanent executor implemented with gpt-5.5; permanent code-reviewer success no P2+ findings; permanent verifier success",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.623",
     "SYNC-298 loop293 Factor Library review intake to human acceptance decision",
     "loop293 TDD RED: missing qa.quant_mining.factor_library_human_acceptance_decision failed before implementation",
     "loop293 GREEN: factor_library_human_acceptance_decision_v1 derives explicit accept/reject/recheck decisions from factor_library_review_intake_v1 awaiting_human_review candidates",
@@ -1297,7 +1305,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop293 completed Factor Library review intake to human acceptance decision. factor_library_human_acceptance_decision_v1 now derives explicit accept/reject/recheck decisions from factor_library_review_intake_v1 awaiting_human_review candidates and carries factor_version_id, A-E taxonomy, safe_sim/audit refs, reviewed plan/F6 evidence, reviewer/audit/evidence refs, human reason, and no-execution safety across MiningJob observability, Factor Library, Jobs, and Chat. accept means accepted_pending_publish_gate only; source requires_human_acceptance=false drift now fail-closes. The next core function is controlled dry-run readiness review from accepted human decisions, still without auto-publish, auto-backtest, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, background/migration/backfill, or secret output."
+    "note": "loop294 completed Human acceptance to controlled dry-run readiness. human_acceptance_controlled_dry_run_readiness_v1 now derives review-only controlled dry-run readiness from factor_library_human_acceptance_decision_v1 accepted_pending_publish_gate candidates and carries human decision/evidence, factor_version_id, A-E taxonomy, safe_sim/audit refs, reviewed plan/F6 evidence, operator/reviewer pending, runner_config not_connected, rollback/audit not_ready, blockers, and manual next actions across MiningJob observability, Factor Library, Jobs, and Chat. readiness is not auto-publish, auto-backtest, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, background/migration/backfill, execution permission, or secret output. The next core function is publish/controlled-dry-run gate review from the readiness packet."
   },
-  "last_completed_note": "loop293 Factor Library review intake to human acceptance decision complete. Added qa.quant_mining.factor_library_human_acceptance_decision.build_factor_library_human_acceptance_decision_v1 and wired factor_library_human_acceptance_decision_v1 into MiningJob observability, Factor Library rows, Chat notes, Jobs cards, and Factor Library UI. The read-model converts awaiting_human_review intake candidates into explicit accept/reject/recheck decisions; accept is only accepted_pending_publish_gate and never automatic library publication, backtest execution, controlled dry-run permission, or PL-H authority. P2 fixed source requires_human_acceptance=false drift fail-closed. Verification: RED missing module failed as expected; unit 7 passed after P2 fix; focused+related regression 121 passed; targeted Ruff pass; npm run build pass; npm run lint pass with known ShellLayout warning; Jobs smoke ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5; verifier success; code-reviewer P2 fixed and final recheck success. Next_atomic_action is HUMAN_ACCEPTANCE_TO_CONTROLLED_DRY_RUN_READINESS_LOOP294."
+  "last_completed_note": "loop294 Human acceptance to controlled dry-run readiness complete. Added qa.quant_mining.human_acceptance_controlled_dry_run_readiness.build_human_acceptance_controlled_dry_run_readiness_v1 and wired human_acceptance_controlled_dry_run_readiness_v1 into MiningJob observability, Factor Library rows, Chat notes, Jobs cards, and Factor Library UI. The read-model converts accepted_pending_publish_gate candidates into review-only controlled dry-run readiness with operator/reviewer pending, runner_config not_connected, rollback/audit not_ready, blockers, and manual next actions; it never grants automatic library publication, backtest execution, runner/adapter connection, actual dry-run, DB-backed real batch, controlled dry-run permission, PL-H authority, or execution permission. Verification: RED missing module failed as expected; executor focused 17 passed and related 125 passed; verifier expanded 163 passed; orchestrator final focused+related 125 passed; targeted Ruff pass; npm run build pass; npm run lint pass with known ShellLayout warning; Jobs smoke ok=true pageLoadTriggerRequests=[] duplicateTriggerUrls=[] miningJobsReadCount=5; dangerous authorization/execution marker scan clean; code-reviewer/verifier success. Next_atomic_action is CONTROLLED_DRY_RUN_READINESS_TO_PUBLISH_GATE_REVIEW_LOOP295."
 }

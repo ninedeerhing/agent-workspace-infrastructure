@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-27T15:00:00+08:00
+**Updated**: 2026-06-27T15:45:00+08:00
+
+## Tick loop294-human-acceptance-controlled-dry-run-readiness
+
+- **任务 ID**：loop294-human-acceptance-controlled-dry-run-readiness-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 accepted human decision 到 controlled dry-run readiness 的发布/执行权限边界。
+- **状态**：success
+- **任务**：有界实现 `human_acceptance_controlled_dry_run_readiness_v1`，接入 MiningJob observability、Factor Library rows、Chat follow-up、FactorLibraryPage、JobsPage；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 `qa.quant_mining.human_acceptance_controlled_dry_run_readiness`；扩展 human acceptance decision 保留 source candidate taxonomy/F6/safe-sim metadata；补齐 Factor Library/Jobs/Chat rendering 与 fail-closed tests；保持 readiness review-only/not-granted。
+- **orchestrator 本地验证**：focused+related **125 passed**；targeted Ruff **All checks passed!**；`npm run build` pass；`npm run lint` pass with known ShellLayout warning；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`；dangerous authorization/execution marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: accepted human decisions can feed readiness review, but readiness must not imply publish, runner, adapter, actual dry-run, DB-backed real batch, PL-H, or execution permission.
 
 ## Tick loop293-factor-library-human-acceptance-decision
 

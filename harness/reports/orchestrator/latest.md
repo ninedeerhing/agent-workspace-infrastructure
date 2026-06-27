@@ -1,3 +1,55 @@
+# Orchestrator Report - loop294-human-acceptance-controlled-dry-run-readiness
+
+**Updated**: 2026-06-27T16:07:40+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G human acceptance to controlled dry-run readiness.
+- **trigger**: loop293 produced explicit human accept/reject/recheck decisions; the product chain needed a shared readiness packet from accepted human decisions instead of treating acceptance as publish or execution authority.
+- **result**: `human_acceptance_controlled_dry_run_readiness_v1` is now derived from `factor_library_human_acceptance_decision_v1.accepted_pending_publish_gate` in MiningJob observability and consumed by Factor Library, Jobs, and Chat. It lists operator/reviewer pending, runner_config not_connected, rollback/audit not_ready, blockers, and manual next actions. No execution, publish, runner, adapter, DB-backed real batch, or PL-H authority is granted.
+- **next**: `CONTROLLED_DRY_RUN_READINESS_TO_PUBLISH_GATE_REVIEW_LOOP295`; derive publish/controlled-dry-run gate review from the readiness packet without enabling execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/human_acceptance_controlled_dry_run_readiness.py` | Adds the pure fail-closed readiness builder. |
+| `apps/quant_assistant/src/qa/quant_mining/factor_library_human_acceptance_decision.py` | Preserves source candidate taxonomy/F6/safe-sim metadata for accepted candidates. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `human_acceptance_controlled_dry_run_readiness_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries readiness into Factor Library rows and Chat follow-up notes. |
+| `apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx` / `JobsPage.tsx` | Shows readiness blockers and no-execution status. |
+| `apps/quant_assistant/tests/*loop294 related*` | Proves readiness derivation, fail-closed behavior, and UI/Chat consumption. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.human_acceptance_controlled_dry_run_readiness` failed as expected |
+| executor focused/related | pass · **17 passed** focused, **125 passed** related |
+| verifier expanded | pass · **163 passed** plus targeted Ruff and Jobs smoke |
+| orchestrator final pytest | pass · focused+related **125 passed in 1.21s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| web build | pass · `npm run build` |
+| web lint | pass · existing `ShellLayoutContext.tsx` Fast Refresh warning only |
+| Jobs smoke | pass · `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5` |
+| marker scan | pass · dangerous authorization/execution true-marker scan returned no matches |
+| code-reviewer | success · no P2+ findings |
+| verifier | success · readiness is review-only/not-granted |
+
+## Worker Notes
+
+Permanent `executor` implemented loop294 with gpt-5.5. Permanent `code-reviewer` reviewed the same slice and found no P2+ issues. Permanent `verifier` independently ran expanded regression and Jobs smoke. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H batch, background process, migration, or backfill was started. Controlled dry-run readiness is not auto-publish, auto-backtest, controlled dry-run permission, execution permission, or runner/adapter authority.
+
+## Residual Risk
+
+The system can now explain what remains before a controlled dry-run/publish gate, but loop295 still needs to derive the gate-review packet itself and keep it review-only/fail-closed.
+
+---
+
 # Orchestrator Report - loop292-candidate-promotion-to-factor-library-review-intake
 
 **Updated**: 2026-06-27T14:52:09+08:00

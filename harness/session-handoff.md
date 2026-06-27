@@ -1,6 +1,6 @@
 # Session Handoff
 
-updated_at: 2026-06-27T15:28:59+08:00
+updated_at: 2026-06-27T16:07:40+08:00
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 
@@ -17,6 +17,8 @@ updated_at: 2026-06-27T15:28:59+08:00
 ### 当前上下文一行（粘贴到首聊 prompt 末尾）
 
 ```text
+[CONTEXT] 2026-06-27 SYNC-299 · 已完成 loop294 Human acceptance to controlled dry-run readiness：新增 `qa.quant_mining.human_acceptance_controlled_dry_run_readiness.build_human_acceptance_controlled_dry_run_readiness_v1(...)`，并把 `human_acceptance_controlled_dry_run_readiness_v1` 接入 `build_mining_job_observability(...)`、Factor Library rows、Chat follow-up、JobsPage、FactorLibraryPage。该 read-model 只消费 loop293 `factor_library_human_acceptance_decision_v1.accepted_pending_publish_gate` accepted candidates，携带 human decision/evidence、`factor_version_id`、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence，并输出 operator/reviewer pending、runner_config not_connected、rollback/audit not_ready、blockers 与 manual next actions。readiness 只表示 review-only 准备审查，不自动发布因子库、不自动回测、不连接 live/default runner/adapter、不执行 actual dry-run、不授予 PL-H 或 execution permission。验证：RED missing module expected；executor focused **17 passed** / related **125 passed**；verifier expanded **163 passed**；orchestrator final focused+related **125 passed**；targeted Ruff pass；`npm run build` pass；`npm run lint` pass with known ShellLayout warning；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`；dangerous authorization/execution true-marker scan clean；permanent code-reviewer/verifier success。下一动作：`CONTROLLED_DRY_RUN_READINESS_TO_PUBLISH_GATE_REVIEW_LOOP295`，从 readiness packet 生成 publish/controlled-dry-run gate review；仍禁止自动发布、自动回测、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。Methodology: `M-17-zero-write`。
+
 [CONTEXT] 2026-06-27 SYNC-298 · 已完成 loop293 Factor Library review intake to human acceptance decision：新增 `qa.quant_mining.factor_library_human_acceptance_decision.build_factor_library_human_acceptance_decision_v1(...)`，并把 `factor_library_human_acceptance_decision_v1` 接入 `build_mining_job_observability(...)`、Factor Library review rows、Chat follow-up、JobsPage、FactorLibraryPage。该 read-model 把 `factor_library_review_intake_v1` 中 `awaiting_human_review` 候选转成显式人工 `accept` / `reject` / `recheck` 决策；accept 只表示 `accepted_pending_publish_gate`，要求 reviewer/audit/evidence/reason 与 source `requires_human_acceptance=true`，不自动入库、不自动发布、不自动回测、不授予 controlled dry-run 或 PL-H 权限。P2 已修复 source `requires_human_acceptance=false` 漂移 fail-closed。验证：RED missing module expected；unit **7 passed** after P2 fix；focused+related **121 passed**；targeted Ruff pass；`npm run build` pass；`npm run lint` pass with known ShellLayout warning；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`；permanent verifier success；permanent code-reviewer P2 fixed + final recheck success。下一动作：`HUMAN_ACCEPTANCE_TO_CONTROLLED_DRY_RUN_READINESS_LOOP294`，从 accepted human decision 生成 controlled dry-run readiness review；仍禁止自动发布、自动回测、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。Methodology: `M-17-zero-write`。
 
 [CONTEXT] 2026-06-25 SYNC-296 · 用户校准 AWI worker 架构：Planner 和 Dispatcher 必须分成两个 worker，Orchestrator 不再承担核心业务代码实现。已更新 `docs/LOOP_ENGINEERING.md`、`harness/templates/loop-tick-prompt.md`、`agents/orchestrator.md`、`agents/planner.md`，新增 `agents/dispatcher.md` 和 `harness/reports/workers/dispatcher.md`；agent registry/team manifest 已再生成。新规则：Planner 只输出 `loop_plan`；Dispatcher 只输出 `assignment_matrix`；Executor/Test Engineer/Code Reviewer/Verifier 分别负责实现/测试设计/审查/验收；同职责必须用同一永久 worker，runtime-only subagent 不能替代永久 worker。Dispatcher 角色已登记，但 `codex_thread_id` pending；本次未启动 loop292 业务派工。业务下一动作仍是 `CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292`。
@@ -206,18 +208,18 @@ updated_at: 2026-06-27T15:28:59+08:00
 |---|---|
 | `mode` | autonomous |
 | `current_tree` | TREE-6 |
-| `current_slice` | human-acceptance-to-controlled-dry-run-readiness-loop294 |
-| `last_tick` | loop293-factor-library-human-acceptance-decision |
+| `current_slice` | controlled-dry-run-readiness-to-publish-gate-review-loop295 |
+| `last_tick` | loop294-human-acceptance-controlled-dry-run-readiness |
 | `stop_reason` | null |
 | `closure_gate.status` | closed (partial_closed on TREE-2 data) |
 
 ### next_atomic_action
 
-HUMAN_ACCEPTANCE_TO_CONTROLLED_DRY_RUN_READINESS_LOOP294：在 loop293 `factor_library_human_acceptance_decision_v1` 的基础上，实现已人工接受候选的受控 dry-run readiness review read-model；只消费 `accepted_pending_publish_gate`，继续携带 human decision/evidence、factor_version_id、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 no-execution safety；输出 operator/reviewer pending、runner_config not_connected、rollback/audit not_ready 与 blockers；不得自动发布因子库、不得自动回测、不得连接 live/default runner、不得授予 PL-H。
+CONTROLLED_DRY_RUN_READINESS_TO_PUBLISH_GATE_REVIEW_LOOP295：在 loop294 `human_acceptance_controlled_dry_run_readiness_v1` 的基础上，实现 publish/controlled-dry-run gate review read-model；只消费 review-only readiness packet，校验 accepted human decision、operator/reviewer pending、runner_config not_connected、rollback/audit not_ready、factor_version_id、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 no-execution safety；输出 publish/controlled-dry-run gate review 的 blockers、requirements、manual next actions；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H 或 execution permission。
 
 ### next_after
 
-After controlled dry-run readiness review is derived from accepted human decisions, wire publish/controlled-dry-run gate review without enabling execution.
+After publish/controlled-dry-run gate review is derived, implement explicit publish request/intake review only if the gate remains review-only and fail-closed.
 
 ### Running Processes（poll 2026-06-22T01:49）
 
@@ -322,11 +324,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed。TREE-6 / PL-G 为唯一前台主线：loop271–293 已把 A-E taxonomy、candidate generation、F6 screening、reviewed plan、manual-safe simulation、explicit trigger、candidate promotion decision、Factor Library human review intake 与 human acceptance decision 接入 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph。用户策略：数据 closure 后退出 backfill-monitoring；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed。TREE-6 / PL-G 为唯一前台主线：loop271–294 已把 A-E taxonomy、candidate generation、F6 screening、reviewed plan、manual-safe simulation、explicit trigger、candidate promotion decision、Factor Library human review intake、human acceptance decision 与 controlled dry-run readiness review 接入 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph。用户策略：数据 closure 后退出 backfill-monitoring；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `HUMAN_ACCEPTANCE_TO_CONTROLLED_DRY_RUN_READINESS_LOOP294`：把 loop293 `factor_library_human_acceptance_decision_v1` 的 `accepted_pending_publish_gate` 派生为受控 dry-run readiness review read-model；readiness 只展示 operator/reviewer pending、runner_config not_connected、rollback/audit not_ready 与 blockers，不自动发布因子库、不自动回测、不授予 controlled dry-run 或 PL-H 权限；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、automatic promotion、authorization grant 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `CONTROLLED_DRY_RUN_READINESS_TO_PUBLISH_GATE_REVIEW_LOOP295`：把 loop294 `human_acceptance_controlled_dry_run_readiness_v1` 的 review-only readiness packet 派生为 publish/controlled-dry-run gate review read-model；gate review 只展示 blockers、requirements、manual next actions，不自动发布因子库、不自动回测、不连接 live/default runner/adapter、不执行 actual dry-run、不授予 PL-H 或 execution permission；继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、automatic promotion、authorization grant 与 secret 输出。
 
 ## Resume Command
 
