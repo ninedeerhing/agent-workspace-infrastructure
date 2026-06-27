@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-27T17:29:14+08:00",
+  "updated_at": "2026-06-27T18:12:39+08:00",
   "mode": "autonomous",
   "stop_reason": "USER_REQUESTED_STOP_AFTER_CURRENT_TASK_LOOP296",
   "current_tree": "TREE-6",
@@ -21,6 +21,13 @@
   ],
   "last_tick": "loop296-publish-gate-review-to-explicit-request-intake",
   "last_sync_sources": [
+    "SYNC-302 Planner/Dispatcher visible worker channel binding",
+    "User escalation: Planner/Dispatcher split existed in governance rules but was not fully implemented in visible CodeX worker threads",
+    "Planner permanent thread bound: 019f0890-69e6-7270-a742-1178836608ef title=planner pinned=true model_tier=gpt-5.4",
+    "Dispatcher permanent thread bound: 019f0890-af82-7ad3-a19a-d319d9aa8bb5 title=dispatcher pinned=true model_tier=gpt-5.4",
+    "Planner bootstrap report received: loop297 not started, Planner boundary confirmed",
+    "Dispatcher rebootstrap report received: channel bound, eligible only after Planner loop_plan, loop297 not dispatched",
+    "loop297 next_atomic_action unchanged; before business implementation resumes, Orchestrator must request Planner loop_plan then Dispatcher assignment_matrix",
     "SYNC-301 loop296 Publish gate review to explicit request intake",
     "loop296 TDD RED: missing qa.quant_mining.controlled_dry_run_request_intake_review failed before implementation",
     "loop296 GREEN: controlled_dry_run_request_intake_review_v1 derives review-only explicit publish/controlled-dry-run request intake from controlled_dry_run_publish_gate_review_v1",

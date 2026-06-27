@@ -1,13 +1,14 @@
 # Worker Report - dispatcher
 
-**Updated**: 2026-06-25T09:18:05+08:00
+**Updated**: 2026-06-27T18:12:39+08:00
 
 ## Status
 
 - **role_id**: dispatcher
-- **status**: blocked
-- **reason**: role registered from user-approved Planner/Dispatcher split; cross-dialogue `codex_thread_id` is not yet bound.
-- **current_task**: none
+- **status**: idle
+- **reason**: permanent visible cross-dialogue `codex_thread_id` is now bound and pinned.
+- **current_task**: bootstrap complete; waiting for Planner `loop_plan` before any business assignment matrix.
+- **codex_thread_id**: `019f0890-af82-7ad3-a19a-d319d9aa8bb5`
 
 ## Responsibility
 
@@ -31,19 +32,52 @@ Dispatcher converts Planner's `loop_plan` into an `assignment_matrix`:
 ```yaml
 report:
   role_id: "dispatcher"
-  status: "blocked"
-  task: "register dispatcher role"
-  changes: []
+  status: "partial"
+  task: "bind permanent visible Dispatcher worker thread"
+  changes:
+    - file: "Codex thread"
+      summary: "Created, titled, and pinned permanent dispatcher thread 019f0890-af82-7ad3-a19a-d319d9aa8bb5."
   verification:
-    - command: "not run"
-      result: "initial role registration only; no business dispatch"
+    - command: "codex_app.create_thread(project=E:\\raindeer, model=gpt-5.4, ROLE_ID=dispatcher)"
+      result: "threadId=019f0890-af82-7ad3-a19a-d319d9aa8bb5"
+    - command: "codex_app.set_thread_title + set_thread_pinned"
+      result: "title=dispatcher; pinned=true"
+    - command: "codex_app.read_thread(019f0890-af82-7ad3-a19a-d319d9aa8bb5)"
+      result: "Dispatcher follow-up report success; channel bound=true; business dispatch eligible only after Planner loop_plan"
   roster_update:
-    workload_delta: "unchanged"
+    workload_delta: "increased"
     mistakes: []
     lessons:
       - "Planner and Dispatcher are separate responsibilities: Planner defines loop_plan; Dispatcher defines assignment_matrix."
-    performance_note: "Registered but not yet usable for business loops until a permanent Codex thread is bound."
+      - "Dispatcher must be a visible permanent cross-dialogue worker, not a pending roster placeholder."
+    performance_note: "Channel binding complete; bootstrap and rebootstrap reports received."
   blockers:
-    - "codex_thread_id pending binding"
-  next: "Bind a permanent Dispatcher Codex worker thread before using Dispatcher for loop292 business dispatch."
+    - "No Planner loop_plan has been provided yet."
+    - "loop297 remains paused by user stop state from loop296."
+  next: "After Planner returns a loop_plan, send that plan to Dispatcher for assignment_matrix before Executor/Test Engineer/Code Reviewer/Verifier work."
+```
+
+## SYNC-302 rebootstrap report
+
+```yaml
+status: success
+dispatcher_channel:
+  codex_thread_id: "019f0890-af82-7ad3-a19a-d319d9aa8bb5"
+  bound: true
+  reachable: true
+  reachability_evidence: "codex_app.read_thread returned completed follow-up report"
+business_dispatch_eligibility:
+  dispatcher_role: "eligible_after_planner_input"
+  current_loop297_dispatch: "blocked_do_not_dispatch"
+  reason:
+    - "Dispatcher may only convert a Planner loop_plan into assignment_matrix."
+    - "loop-state stop_reason remains USER_REQUESTED_STOP_AFTER_CURRENT_TASK_LOOP296."
+    - "No Planner loop_plan has been provided yet."
+blockers:
+  - "No Planner loop_plan has been provided to Dispatcher yet."
+  - "loop297 remains paused by user stop state from loop296."
+next:
+  - "Wait for Orchestrator to resume business work."
+  - "Require Planner to emit loop297 loop_plan first."
+  - "After loop_plan arrives, Dispatcher may produce assignment_matrix only, without changing goals or creating workers."
 ```

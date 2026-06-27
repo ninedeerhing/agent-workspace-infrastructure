@@ -1,3 +1,34 @@
+# Orchestrator Report - sync302-planner-dispatcher-visible-worker-binding
+
+**Updated**: 2026-06-27T18:12:39+08:00
+
+## Trigger
+
+User identified a real governance gap: the Planner/Dispatcher split had been written into loop governance and roster, but the visible permanent CodeX worker threads were not bound. As a result, the Orchestrator could still appear to plan/dispatch/implement too much directly, and the user could not see the Planner worker.
+
+## Result
+
+- Created, titled, and pinned permanent Planner thread: `019f0890-69e6-7270-a742-1178836608ef` (`planner`, model tier `gpt-5.4`).
+- Created, titled, and pinned permanent Dispatcher thread: `019f0890-af82-7ad3-a19a-d319d9aa8bb5` (`dispatcher`, model tier `gpt-5.4`).
+- Updated `EMPLOYEE_ROSTER.md`, `planner.md`, `dispatcher.md`, `loop-state.json`, and session handoff to make the channel binding a truth-source fact.
+- Business next action remains `MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297`; this was a governance/runtime binding repair, not a business loop.
+
+## Policy Effect
+
+Before loop297 business work resumes:
+
+1. Orchestrator sends the loop objective to Planner.
+2. Planner returns `loop_plan`: `core_function_artifact`, `phase_plan`, `acceptance_tests`, `non_goals`, `next_after`.
+3. Orchestrator sends that `loop_plan` to Dispatcher.
+4. Dispatcher returns `assignment_matrix`: worker thread ids, write scopes, model tiers/reasons, expected reports, rendezvous rules.
+5. Executor/Test Engineer/Code Reviewer/Verifier do the implementation/test/review/verification work; Orchestrator integrates, verifies, and syncs truth sources.
+
+## Residual Risk
+
+Planner and Dispatcher bootstrap reports have been received. This does not approve loop297 execution: the user stop gate remains active, and Dispatcher cannot produce an assignment matrix until Planner first returns a loop297 `loop_plan`.
+
+---
+
 # Orchestrator Report - loop296-publish-gate-review-to-explicit-request-intake
 
 **Updated**: 2026-06-27T17:29:14+08:00
