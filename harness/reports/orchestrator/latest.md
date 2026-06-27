@@ -2740,6 +2740,38 @@ Verification remains mocked-only. Real/default runner invocation, adapter invoca
 
 ---
 
+# Orchestrator Report - loop293-factor-library-human-acceptance-decision
+
+**Updated**: 2026-06-27T15:28:59+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G Factor Library review intake to human acceptance decision
+- **result**: `factor_library_human_acceptance_decision_v1` now derives explicit accept/reject/recheck decisions from `factor_library_review_intake_v1` `awaiting_human_review` candidates. Accept means `accepted_pending_publish_gate` only.
+- **next**: `HUMAN_ACCEPTANCE_TO_CONTROLLED_DRY_RUN_READINESS_LOOP294`
+- **safety**: no auto-publish, auto-backtest, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H, background/migration/backfill, or secret output.
+
+## Worker Rendezvous
+
+- `executor` (`019eeece-c617-71c3-a80a-39a693ad3ac3`, gpt-5.5): success, implemented builder/wiring/tests and P2 fix.
+- `code-reviewer` (`019eeed1-7e14-7342-9d45-d7948aec94d2`, gpt-5.5): initial P2 on source `requires_human_acceptance=false` drift; final recheck success after fail-closed fix.
+- `verifier` (`019eeed2-dbc0-7313-8d64-f9c6f199c68b`, gpt-5.5): success, verified accept remains pending publish gate and no-execution boundary holds.
+
+## Verification
+
+- RED missing module expected before implementation.
+- `uv run pytest tests/test_factor_library_human_acceptance_decision_unit.py ...` focused+related group: **121 passed**.
+- `uv run ruff check ...`: **All checks passed!**
+- `npm run build`: pass.
+- `npm run lint`: pass with known `ShellLayoutContext.tsx` Fast Refresh warning.
+- `npm run smoke:jobs-page`: `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`, `miningJobsReadCount=5`.
+
+## Next
+
+Loop294 should derive a controlled dry-run readiness review from accepted human decisions, still as read-only/no-execution evidence. It must not become automatic publication, backtest execution, runner/adapter connection, or PL-H eligibility.
+
+---
+
 # Orchestrator Report - governance-methodology-visibility-ref
 
 **Updated**: 2026-06-23T11:05:41+08:00

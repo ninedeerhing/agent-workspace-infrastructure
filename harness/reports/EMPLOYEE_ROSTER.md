@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-27T14:52:09+08:00
+Updated: 2026-06-27T15:28:59+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,20 +50,20 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop292 | active | gpt-5.5 | 2026-06-27T14:52:09+08:00 | loop292 factor_library_review_intake_v1 complete; next explicit human acceptance decision loop293 | workload light; continue function-first mainline; next slice must create human accept/reject/recheck decision from review intake, not UI-only polish |
+| orchestrator | current-thread | loop293 | active | gpt-5.5 | 2026-06-27T15:28:59+08:00 | loop293 factor_library_human_acceptance_decision_v1 complete; next controlled dry-run readiness review loop294 | workload light; continue function-first mainline; next slice must derive readiness from accepted human decisions, not UI-only polish |
 | dispatcher | pending-codex-thread | governance-20260625 | channel_pending | gpt-5.4 | 2026-06-25T09:18:05+08:00 | user-approved Planner/Dispatcher split; dispatcher role registered, thread binding pending | workload unchanged; do not dispatch business work until codex_thread_id is bound |
 | planck-runtime | runtime_agent_id=019efc40-08c3-76c0-90df-6e52a83594c4 (not codex_thread_id) | loop291 | cleared | gpt-5.4 | 2026-06-25T09:01:36+08:00 | read-only exploration recommended build_mining_job_observability as shared read-model source | runtime-only evidence; not a permanent worker replacement; closed after report |
 | explorer-runtime | runtime_agent_id=019ef455-19aa-7703-91cf-e91e53aab025 (not codex_thread_id) | loop255 | cleared | gpt-5.4 | 2026-06-23T20:18:00+08:00 | historical read-only exploration recommended API+UI readiness consistency over more proof-only bundle | runtime-only evidence; not a permanent worker replacement; closed after report |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop292 | idle | gpt-5.5 | 2026-06-27T14:42:00+08:00 | loop292 implementation success; factor_library_review_intake_v1 wired across observability/UI/Chat with P2 source-drift fix | workload cleared; no live/default runner, env/DB read, adapter invocation, actual dry-run, DB-backed path, auto-promote, or PL-H authority added |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop293 | idle | gpt-5.5 | 2026-06-27T15:00:00+08:00 | loop293 implementation success; factor_library_human_acceptance_decision_v1 wired across observability/UI/Chat with P2 requires_human_acceptance source-drift fix | workload cleared; no live/default runner, env/DB read, adapter invocation, actual dry-run, DB-backed path, auto-publish, controlled dry-run permission, or PL-H authority added |
 | test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop288 | idle | gpt-5.5 | 2026-06-24T15:06:00+08:00 | loop288 channel stale/no new duplicate; orchestrator local manual-safe readiness tests passed | workload unchanged/channel_stale; keep same permanent worker identity and do not duplicate |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop292 | idle | gpt-5.5 | 2026-06-27T14:45:00+08:00 | loop292 P2 source top-level state/ready flags/execution_permission drift fixed and final recheck success | workload cleared; review intake must fail closed before exposing review candidates if upstream source implies execution authority |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop292 | idle | gpt-5.5 | 2026-06-27T14:40:00+08:00 | loop292 final verification success | workload unchanged; Factor Library intake must remain human-review only and preserve no page-load/runner/DB execution boundary |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop293 | idle | gpt-5.5 | 2026-06-27T15:02:00+08:00 | loop293 P2 source requires_human_acceptance=false drift fixed and final recheck success | workload cleared; human acceptance must fail closed if source intake no longer requires human acceptance |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop293 | idle | gpt-5.5 | 2026-06-27T15:01:00+08:00 | loop293 final verification success | workload unchanged; accept means accepted_pending_publish_gate only and preserves no page-load/runner/DB execution boundary |
 
 ## Latest Roster Notes
 
-- **loop292**：Implementation stayed with permanent `executor` thread `019eeece-c617-71c3-a80a-39a693ad3ac3`; review stayed with permanent `code-reviewer` thread `019eeed1-7e14-7342-9d45-d7948aec94d2`; final verification stayed with permanent `verifier` thread `019eeed2-dbc0-7313-8d64-f9c6f199c68b`. No same-role duplicate worker was created.
-- **lesson**：Factor Library review intake must validate upstream top-level `state`, `ready_for_execution`, `ready_for_controlled_dry_run`, and `execution_permission` before exposing `review_candidates`; otherwise a drifted source can falsely look ready for human review.
-- **next dispatch**：loop293 should again route code work to `executor`, code risk to `code-reviewer`, and acceptance evidence to `verifier`; `dispatcher` remains channel_pending unless a permanent Codex thread is bound.
+- **loop293**：Implementation stayed with permanent `executor` thread `019eeece-c617-71c3-a80a-39a693ad3ac3`; review stayed with permanent `code-reviewer` thread `019eeed1-7e14-7342-9d45-d7948aec94d2`; final verification stayed with permanent `verifier` thread `019eeed2-dbc0-7313-8d64-f9c6f199c68b`. No same-role duplicate worker was created.
+- **lesson**：Human acceptance decisions must validate source intake `requires_human_acceptance=true` before exposing `accepted_pending_publish_gate`; otherwise a drifted source can falsely look accepted by a human gate.
+- **next dispatch**：loop294 should again route code work to `executor`, code risk to `code-reviewer`, and acceptance evidence to `verifier`; `dispatcher` remains channel_pending unless a permanent Codex thread is bound.
 
 ## Manager
 

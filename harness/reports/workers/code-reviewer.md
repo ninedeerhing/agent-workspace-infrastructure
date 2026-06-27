@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-27T14:45:00+08:00
+更新时间：2026-06-27T15:02:00+08:00
+
+## Tick loop293-factor-library-human-acceptance-decision
+
+- **任务 ID**：loop293-factor-library-human-acceptance-decision-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 Factor Library 人工接受/拒绝/复查决策、候选入库语义和执行授权边界。
+- **状态**：success after P2 closure
+- **任务**：只读风险复核 `factor_library_human_acceptance_decision_v1`、MiningJob observability、Factor Library / Jobs / Chat consumption 与相关测试，确认 accept 不误表达自动入库、自动发布、真实 runner、controlled dry-run 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：builder 未验证 source intake 的 `requires_human_acceptance` 仍为 true；若 source payload 漂移为 false，旧实现仍可能暴露 `accepted_pending_publish_gate`。
+- **闭环结论**：executor 已补 fail-closed validation 和 regression：source `requires_human_acceptance=false` 时清空 accepted/pending 决策并加入 `factor_library_review_intake_requires_human_acceptance_drift` blocker；Aquinas 窄复核 PASS，确认 P2 已关闭。未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST 或 secret-output 新路径。
+- **orchestrator 本地验证**：human acceptance unit **7 passed** after P2 fix；focused+related regression **121 passed**；targeted Ruff **All checks passed!**；`npm run build` pass；`npm run lint` pass with known ShellLayout warning；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`。
+- **roster_update**：workload cleared；mistakes none；lessons: human-acceptance readiness must validate source `requires_human_acceptance`, not only decision rows and reviewer evidence.
 
 ## Tick loop292-candidate-promotion-to-factor-library-review-intake
 

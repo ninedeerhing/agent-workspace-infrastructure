@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-27T14:42:00+08:00
+**Updated**: 2026-06-27T15:00:00+08:00
+
+## Tick loop293-factor-library-human-acceptance-decision
+
+- **任务 ID**：loop293-factor-library-human-acceptance-decision-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 Factor Library 人工接受/拒绝/复查决策、因子库发布边界、controlled dry-run 权限边界和用户可见安全状态。
+- **状态**：success after P2 closure
+- **任务**：有界实现 `factor_library_human_acceptance_decision_v1`，接入 MiningJob observability、Factor Library review rows、Chat follow-up、FactorLibraryPage、JobsPage；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 `qa.quant_mining.factor_library_human_acceptance_decision`；补齐 accept/reject/recheck derivation、Factor Library/Jobs/Chat rendering、source-intake drift fail-closed tests；按 code-reviewer P2 收紧 source `requires_human_acceptance=false` 漂移，禁止暴露 accepted decision。
+- **orchestrator 本地验证**：unit **7 passed** after P2 fix；focused+related regression **121 passed**；targeted Ruff **All checks passed!**；`npm run build` pass；`npm run lint` pass with known ShellLayout warning；Jobs smoke `ok=true / pageLoadTriggerRequests=[] / duplicateTriggerUrls=[] / miningJobsReadCount=5`。
+- **roster_update**：workload cleared；mistakes none；lesson: accepted human decision must validate the source intake still requires human acceptance before exposing `accepted_pending_publish_gate`.
 
 ## Tick loop292-candidate-promotion-to-factor-library-review-intake
 
