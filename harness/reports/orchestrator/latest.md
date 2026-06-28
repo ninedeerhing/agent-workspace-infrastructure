@@ -1,3 +1,51 @@
+# Orchestrator Report - loop304-operator-reviewer-handoff-review-packet
+
+**Updated**: 2026-06-28T23:05:20+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G operator/reviewer handoff review packet.
+- **trigger**: loop303 produced a review-only later evidence bundle / handoff readiness packet; the product chain needed a shared operator/reviewer handoff review packet before explicit manual handoff acceptance.
+- **result**: `operator_reviewer_handoff_review_packet_v1` is now derived from `later_evidence_bundle_handoff_readiness_v1` in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists handoff review status, operator handoff packet refs, blockers, required actions, source readiness refs, manual checklist state, no-execution safety, and manual next actions. Missing source, wrong source kind/status, blocked source, upstream actions/blockers, checklist gaps, candidate/source/nested safety drift, runner/rollback/PL-H/manual-acceptance drift, malformed evidence, missing F6/safe_sim/audit refs, and execution-bearing markers fail closed and clear/suppress operator handoff packet refs. No authorization grant, manual acceptance, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **next**: `OPERATOR_HANDOFF_REVIEW_TO_MANUAL_HANDOFF_ACCEPTANCE_PACKET_LOOP305`; derive an explicit manual handoff acceptance packet from the handoff review without connecting runner/adapter, marking rollback ready, or granting execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/operator_reviewer_handoff_review_packet.py` | Adds the pure fail-closed review-only handoff review packet builder. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `operator_reviewer_handoff_review_packet_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries handoff review into Factor Library rows and Chat notes. |
+| `apps/quant_assistant/tests/test_operator_reviewer_handoff_review_packet_*.py` | Proves derivation, source actions/blockers ref suppression, drift blockers, no-execution markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.operator_reviewer_handoff_review_packet` failed as expected |
+| P2 RED | pass · refs were exposed while source blockers/actions remained (**1 failed / 15 passed**) |
+| focused tests | pass · **16 passed** |
+| related regression | pass · loop303-loop304 **41 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass · CRLF warnings only |
+| semantic marker scan | pass · only fail-closed drift blocker and negative assertions matched |
+| code-reviewer | success · P2 refs suppression gap closed; no remaining P2+ findings |
+| verifier | success · handoff review remains passive, no-grant, no-rollback-ready, and no-execution |
+
+## Worker Notes
+
+Permanent `planner` selected loop305 as explicit manual handoff acceptance packet. Permanent `dispatcher` produced the loop304 assignment matrix. Permanent `test-engineer` designed the read-only TDD matrix. Permanent `executor` implemented loop304 with gpt-5.5 and closed the P2 regression. Permanent `code-reviewer` found the P2 gap and then cleared it. Permanent `verifier` independently confirmed the handoff review packet remains passive, no-grant, no-rollback-ready, and no-execution. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, rollback-ready action, PL-H batch, background process, migration, or backfill was started. The handoff review packet is not auto-publish, auto-backtest, authorization grant, manual acceptance, controlled dry-run permission, execution permission, rollback ready, or runner/adapter authority.
+
+## Residual Risk
+
+The system can now express operator/reviewer handoff review, but loop305 still needs to derive an explicit manual handoff acceptance packet as review-only/no-connection/no-execution.
+
+---
+
 # Orchestrator Report - loop303-later-evidence-bundle-handoff-readiness
 
 **Updated**: 2026-06-28T22:33:42+08:00
