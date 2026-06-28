@@ -1,3 +1,51 @@
+# Orchestrator Report - loop303-later-evidence-bundle-handoff-readiness
+
+**Updated**: 2026-06-28T22:33:42+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G later evidence bundle handoff readiness.
+- **trigger**: loop302 produced a review-only manual evidence recheck decision; the product chain needed a shared handoff readiness packet before operator/reviewer handoff review.
+- **result**: `later_evidence_bundle_handoff_readiness_v1` is now derived from `manual_evidence_recheck_decision_v1` plus mandatory actual loop301 `manual_evidence_supplement_recheck_readiness_v1` and loop300 `config_rollback_evidence_package_review_v1` contexts in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists handoff readiness status, handoff candidate refs, blockers, required actions, source refs, A-E taxonomy, safe_sim/audit refs, reviewed plan/F6 evidence, and manual next actions. Missing or drifted loop301/loop300 contexts, source drift, nested safety drift, runner/rollback/PL-H/manual-acceptance drift, malformed evidence, missing F6/safe_sim/audit refs, and execution-bearing markers fail closed and clear handoff candidate refs. No authorization grant, manual acceptance, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **next**: `LATER_HANDOFF_READINESS_TO_OPERATOR_HANDOFF_REVIEW_PACKET_LOOP304`; derive an operator/reviewer handoff review packet from the handoff readiness without connecting runner/adapter, marking rollback ready, or granting execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/later_evidence_bundle_handoff_readiness.py` | Adds the pure fail-closed review-only handoff readiness builder. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `later_evidence_bundle_handoff_readiness_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries handoff readiness into Factor Library rows and Chat notes. |
+| `apps/quant_assistant/tests/test_later_evidence_bundle_handoff_readiness_*.py` | Proves derivation, mandatory actual loop301/loop300 contexts, drift blockers, fail-closed candidate clearing, no-execution markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.later_evidence_bundle_handoff_readiness` failed as expected |
+| P2 RED | pass · missing/drifted actual loop301 and loop300 contexts failed before fix (**6 failed / 19 passed**) |
+| focused tests | pass · **25 passed in 0.69s** |
+| related regression | pass · loop302-loop303 **51 passed in 0.81s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass · CRLF warnings only |
+| semantic marker scan | pass · no active grant/execution markers in loop303 touched files |
+| code-reviewer | success · P2 context validation gap closed; no remaining P2+ findings |
+| verifier | success · handoff readiness remains passive, no-grant, no-rollback-ready, and no-execution |
+
+## Worker Notes
+
+Permanent `planner` produced the loop plan. Permanent `dispatcher` produced the assignment matrix. Permanent `test-engineer` designed the read-only TDD matrix. Permanent `executor` implemented loop303 with gpt-5.5 and closed the P2 regression. Permanent `code-reviewer` found the P2 gap and then cleared it. Permanent `verifier` independently confirmed the handoff readiness packet remains passive, no-grant, no-rollback-ready, and no-execution. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, rollback-ready action, PL-H batch, background process, migration, or backfill was started. The handoff readiness packet is not auto-publish, auto-backtest, authorization grant, manual acceptance, controlled dry-run permission, execution permission, rollback ready, or runner/adapter authority.
+
+## Residual Risk
+
+The system can now express later evidence bundle / handoff readiness, but loop304 still needs to derive an operator/reviewer handoff review packet as review-only/no-connection/no-execution.
+
+---
+
 # Orchestrator Report - loop302-manual-evidence-recheck-decision
 
 **Updated**: 2026-06-28T21:58:45+08:00

@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-28T21:58:45+08:00
+更新时间：2026-06-28T22:33:42+08:00
+
+## Tick loop303-later-evidence-bundle-handoff-readiness
+
+- **任务 ID**：loop303-later-evidence-bundle-handoff-readiness-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 handoff readiness、actual source context provenance 与执行授权边界。
+- **状态**：success after P2 closure
+- **任务**：只读风险复核 `later_evidence_bundle_handoff_readiness_v1`、MiningJob observability、Factor Library / Chat consumption 与相关测试，确认 handoff readiness 不误表达 runner/adapter connection、rollback ready、authorization grant、manual acceptance、真实 runner、adapter、DB-backed real batch、execution permission 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：handoff readiness 只依赖 loop302 decision 可让 valid decision 掩盖 missing/drifted actual loop301 readiness 与 loop300 config review contexts，可能保留 `handoff_candidate_refs`。
+- **闭环结论**：修复后 actual loop301 and loop300 contexts are required；missing/drifted contexts、runner connected、rollback ready、PL-H drift、manual acceptance drift、nested safety drift 均 blocked 且 `handoff_candidate_refs=[]`。Same-thread final review PASS，未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST、authorization grant、manual acceptance、rollback-ready 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused **25 passed**；related **51 passed**；targeted Ruff **All checks passed!**；dangerous semantic marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: downstream handoff gates must validate actual upstream context packets directly, not rely on refs carried by adjacent decision packets.
 
 ## Tick loop302-manual-evidence-recheck-decision
 
