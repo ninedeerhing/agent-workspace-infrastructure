@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-26T12:01:13Z",
+  "updated_at": "2026-06-27T12:00:41Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
@@ -15,21 +15,21 @@
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 34.85518886166667,
+  "age_hours": 58.84635098388889,
   "stale": true,
   "findings": [
     {
       "severity": "warning",
       "code": "VER-STALE",
-      "detail": "verification snapshot age=34.9h with git dirty",
+      "detail": "verification snapshot age=58.8h with git dirty",
       "recommendation": "Run record after verify: python harness/verification_snapshot_lifecycle.py record ..."
     }
   ],
   "last_lifecycle": {
-    "at": "2026-06-26T12:01:13Z",
+    "at": "2026-06-27T12:00:41Z",
     "apply": true,
     "stale": true,
     "git_dirty": true,
-    "age_hours": 34.85518886166667
+    "age_hours": 58.84635098388889
   }
 }

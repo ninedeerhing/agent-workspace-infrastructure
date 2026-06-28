@@ -1,8 +1,8 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-27T18:12:39+08:00",
+  "updated_at": "2026-06-28T18:26:57+08:00",
   "mode": "autonomous",
-  "stop_reason": "USER_REQUESTED_STOP_AFTER_CURRENT_TASK_LOOP296",
+  "stop_reason": null,
   "current_tree": "TREE-6",
   "current_slice": "manual-request-artifact-capture-review-loop297",
   "next_atomic_action": "MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297：在 loop296 controlled_dry_run_request_intake_review_v1 的基础上，实现 manual request artifact capture/review read-model：只消费 review-only request intake packet 与 operator/reviewer explicit request artifact envelope，校验 artifact provenance、actor_role、source_gate_kind/state、no-execution markers、runner_config still not_connected、rollback/audit still not_ready、candidate refs、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 manual next actions；输出 accepted/malformed/missing request artifacts、blockers、artifact_review_status 与下一步人工补料/复核动作；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。",
@@ -21,6 +21,9 @@
   ],
   "last_tick": "loop296-publish-gate-review-to-explicit-request-intake",
   "last_sync_sources": [
+    "SYNC-303 user resumed continuous loop mode after temporary stop gate",
+    "User instruction 2026-06-28: no longer stop after each task; continue loop engineering until planning is fully closed",
+    "loop297 remains next_atomic_action; must use Planner -> Dispatcher -> Executor/Test Engineer/Code Reviewer/Verifier",
     "SYNC-302 Planner/Dispatcher visible worker channel binding",
     "User escalation: Planner/Dispatcher split existed in governance rules but was not fully implemented in visible CodeX worker threads",
     "Planner permanent thread bound: 019f0890-69e6-7270-a742-1178836608ef title=planner pinned=true model_tier=gpt-5.4",

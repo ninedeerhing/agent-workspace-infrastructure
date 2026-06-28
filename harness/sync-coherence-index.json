@@ -1,25 +1,56 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-26T12:01:13Z",
+  "updated_at": "2026-06-27T12:00:41Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292：在 loop291 已生成同源 candidate_promotion_decision_v1 的基础上，实现人工因子库复核 intake/read-model：只消费 decision=advance_to_factor_library_review 的候选，保留 hold_for_recheck/reject 的复查或拒绝理由，把通过候选的 factor_version_id、A-E taxonomy、safe_sim run/audit refs、reviewed plan/F6 evidence、quality reasons 和下一步人工动作汇入 Factor Library 可复核入口；缺失 candidate_promotion_decision_v1、source job/audit、target ids、safety matrix 或 evidence refs 必须 fail-closed；仍禁止自动入库、自动验收、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。",
-  "continuation_next_action": "CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292：在 loop291 已生成同源 candidate_promotion_decision_v1 的基础上，实现人工因子库复核 intake/read-model：只消费 decision=advance_to_factor_library_review 的候选，保留 hold_for_recheck/reject 的复查或拒绝理由，把通过候选的 factor_version_id、A-E taxonomy、safe_sim run/audit refs、reviewed plan/F6 evidence、quality reasons 和下一步人工动作汇入 Factor Library 可复核入口；缺失 candidate_promotion_decision_v1、source job/audit、target ids、safety matrix 或 evidence refs 必须 fail-closed；仍禁止自动入库、自动验收、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。",
-  "task_trees_next_hint": "CANDIDATE_PROMOTION_TO_FACTOR_LIBRARY_REVIEW_INTAKE_LOOP292：在 loop291 已生成同源 candidate_promotion_decision_v1 的基础上，实现人工因子库复核 intake/read-model：只消费 decision=advance_to_factor_library_review 的候选，保留 hold_for_recheck/reject 的复查或拒绝理由，把通过候选的 factor_version_id、A-E taxonomy、safe_sim run/audit refs、reviewed plan/F6 evidence、quality reasons 和下一步人工动作汇入 Factor Library 可复核入口；缺失 candidate_promotion_decision_v1、source job/audit、target ids、safety matrix 或 evidence refs 必须 fail-closed；仍禁止自动入库、自动验收、live/default runner、adapter invocation、actual adapter dry-run、DB-backed real batch、PL-H、background/migration/backfill、secret 输出。",
+  "loop_next_atomic_action": "MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297：在 loop296 controlled_dry_run_request_intake_review_v1 的基础上，实现 manual request artifact capture/review read-model：只消费 review-only request intake packet 与 operator/reviewer explicit request artifact envelope，校验 artifact provenance、actor_role、source_gate_kind/state、no-execution markers、runner_config still not_connected、rollback/audit still not_ready、candidate refs、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 manual next actions；输出 accepted/malformed/missing request artifacts、blockers、artifact_review_status 与下一步人工补料/复核动作；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。",
+  "continuation_next_action": "MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297：在 loop296 `controlled_dry_run_request_intake_review_v1` 的基础上，实现 manual request artifact capture/review read-model：只消费 review-only request intake packet 与 operator/reviewer explicit request artifact envelope，校验 artifact provenance、actor_role、source_gate_kind/state、no-execution markers、runner_config still not_connected、rollback/audit still not_ready、candidate refs、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 manual next actions；输出 accepted/malformed/missing request artifacts、blockers、artifact_review_status 与下一步人工补料/复核动作；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。",
+  "task_trees_next_hint": "MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297：在 loop296 `controlled_dry_run_request_intake_review_v1` 的基础上，实现 manual request artifact capture/review read-model：只消费 review-only request intake packet 与 operator/reviewer explicit request artifact envelope，校验 artifact provenance、actor_role、source_gate_kind/state、no-execution markers、runner_config still not_connected、rollback/audit still not_ready、candidate refs、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 manual next actions；输出 accepted/malformed/missing request artifacts、blockers、artifact_review_status 与下一步人工补料/复核动作；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。",
   "foreground_tree": "TREE-6",
   "foreground_slice": "",
-  "latest_section5_id": "620",
-  "latest_section5_title": "SYNC-296 Planner/Dispatcher worker split：总调度退出核心实现链（2026-06-25 · orchestrator · AWI/Loop Governance）",
-  "top_summary_section5_ref": "620",
-  "top_summary_last_tick": "loop291-safe-sim-result-to-candidate-promotion-decision",
-  "loop_last_tick": "loop291-safe-sim-result-to-candidate-promotion-decision",
-  "findings": [],
+  "latest_section5_id": "626",
+  "latest_section5_title": "SYNC-302 Planner/Dispatcher visible worker binding：worker 管理运行面修复（2026-06-27 · orchestrator · AWI/Loop Governance）",
+  "top_summary_section5_ref": "626",
+  "top_summary_last_tick": "loop296-publish-gate-review-to-explicit-request-intake",
+  "loop_last_tick": "loop296-publish-gate-review-to-explicit-request-intake",
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "SYNC-LOOP-CONT",
+      "paths": [
+        "harness\\loop-state.json",
+        "apps\\quant_assistant\\docs\\CONTINUATION_PROMPT.md"
+      ],
+      "detail": "loop-state next_atomic_action='MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297：在 loop296 controlled_dry_run_request_intake_review_v1 的基础上，实现 manual request artifact capture/review read-model：只消费 review-only request intake packet 与 operator/reviewer explicit request artifact envelope，校验 artifact provenance、actor_role、source_gate_kind/state、no-execution markers、runner_config still not_connected、rollback/audit still not_ready、candidate refs、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 manual next actions；输出 accepted/malformed/missing request artifacts、blockers、artifact_review_status 与下一步人工补料/复核动作；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。' vs CONTINUATION 下一动作='MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297：在 loop296 `controlled_dry_run_request_intake_review_v1` 的基础上，实现 manual request artifact capture/review read-model：只消费 review-only request intake packet 与 operator/reviewer explicit request artifact envelope，校验 artifact provenance、actor_role、source_gate_kind/state、no-execution markers、runner_config still not_connected、rollback/audit still not_ready、candidate refs、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 manual next actions；输出 accepted/malformed/missing request artifacts、blockers、artifact_review_status 与下一步人工补料/复核动作；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。'",
+      "recommendation": "对齐 loop-state.json 与 CONTINUATION_PROMPT 下一动作字段。"
+    },
+    {
+      "severity": "info",
+      "code": "SYNC-LOOP-TREES",
+      "paths": [
+        "harness\\loop-state.json",
+        "apps\\quant_assistant\\docs\\TASK_TREES.md"
+      ],
+      "detail": "loop-state='MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297：在 loop296 controlled_dry_run_request_intake_review_v1 的基础上，实现 manual request artifact capture/review read-model：只消费 review-only request intake packet 与 operator/reviewer explicit request artifact envelope，校验 artifact provenance、actor_role、source_gate_kind/state、no-execution markers、runner_config still not_connected、rollback/audit still not_ready、candidate refs、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 manual next actions；输出 accepted/malformed/missing request artifacts、blockers、artifact_review_status 与下一步人工补料/复核动作；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。' vs TASK_TREES 下一未勾选项='MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297：在 loop296 `controlled_dry_run_request_intake_review_v1` 的基础上，实现 manual request artifact capture/review read-model：只消费 review-only request intake packet 与 operator/reviewer explicit request artifact envelope，校验 artifact provenance、actor_role、source_gate_kind/state、no-execution markers、runner_config still not_connected、rollback/audit still not_ready、candidate refs、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 manual next actions；输出 accepted/malformed/missing request artifacts、blockers、artifact_review_status 与下一步人工补料/复核动作；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。'",
+      "recommendation": "确认 TASK_TREES 排序与 loop-state 已同步。"
+    },
+    {
+      "severity": "warning",
+      "code": "SYNC-TOP-NEXT",
+      "paths": [
+        "apps\\quant_assistant\\docs\\PROJECT_STATUS.md",
+        "harness\\loop-state.json"
+      ],
+      "detail": "顶部摘要未体现 loop-state 下一动作：'MANUAL_REQUEST_ARTIFACT_CAPTURE_REVIEW_LOOP297：在 loop296 controlled_dry_run_request_intake_review_v1 的基础上，实现 manual request artifact capture/review read-model：只消费 review-only request intake packet 与 operator/reviewer explicit request artifact envelope，校验 artifact provenance、actor_role、source_gate_kind/state、no-execution markers、runner_config still not_connected、rollback/audit still not_ready、candidate refs、A-E taxonomy、safe_sim/audit refs、reviewed plan/F6 evidence 与 manual next actions；输出 accepted/malformed/missing request artifacts、blockers、artifact_review_status 与下一步人工补料/复核动作；不得自动发布因子库、不得自动回测、不得连接 live/default runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。'",
+      "recommendation": "更新顶部「下一方向」与 next_atomic_action 一致。"
+    }
+  ],
   "last_lifecycle": {
-    "at": "2026-06-26T12:01:13Z",
-    "finding_count": 0,
-    "warning_count": 0,
+    "at": "2026-06-27T12:00:41Z",
+    "finding_count": 3,
+    "warning_count": 2,
     "error_count": 0
   }
 }
