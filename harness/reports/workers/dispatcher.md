@@ -1,13 +1,13 @@
 # Worker Report - dispatcher
 
-**Updated**: 2026-06-27T18:12:39+08:00
+**Updated**: 2026-06-28T18:54:59+08:00
 
 ## Status
 
 - **role_id**: dispatcher
 - **status**: idle
 - **reason**: permanent visible cross-dialogue `codex_thread_id` is now bound and pinned.
-- **current_task**: bootstrap complete; waiting for Planner `loop_plan` before any business assignment matrix.
+- **current_task**: loop297 assignment_matrix complete; idle before loop298 Planner input.
 - **codex_thread_id**: `019f0890-af82-7ad3-a19a-d319d9aa8bb5`
 
 ## Responsibility
@@ -28,6 +28,25 @@ Dispatcher converts Planner's `loop_plan` into an `assignment_matrix`:
 - Does not treat runtime-only subagents as permanent workers.
 
 ## Latest Report
+
+```yaml
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "produce loop297 assignment_matrix from Planner loop_plan"
+  changes: []
+  verification:
+    - command: "read EMPLOYEE_ROSTER permanent codex_thread_id entries"
+      result: "Planner, test-engineer, executor, code-reviewer, and verifier permanent identities used; no duplicate same-role worker created"
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Assignment matrix should keep one write owner for hot implementation files and route test/review/verification read-only."
+    performance_note: "Routed loop297 to existing permanent workers with model_tier reasons."
+  blockers: []
+  next: "Wait for loop298 Planner loop_plan before producing the next assignment_matrix."
+```
 
 ```yaml
 report:

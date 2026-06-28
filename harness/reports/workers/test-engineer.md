@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-24T15:06:00+08:00
+更新时间：2026-06-28T18:54:59+08:00
+
+## Tick loop297-manual-request-artifact-capture-review
+
+- **任务 ID**：loop297-manual-request-artifact-review-test-design
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 manual request artifact review、候选证据链与 no-execution 边界。
+- **状态**：success
+- **任务**：只读测试设计复核 `manual_request_artifact_capture_review_v1`，确认 missing intake/artifacts、valid artifacts、provenance drift、actor_role drift、forbidden execution markers、runner/rollback drift、missing candidate/evidence refs、manual next actions、API/Factor/Jobs/Chat passive surfaces 均应覆盖。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；测试矩阵应覆盖 source=request-intake、operator/reviewer explicit request artifact envelope、runner_config not_connected、rollback/audit not_ready、F6 evidence refs、A-E taxonomy、no real/default runner、no adapter invocation、no page-load POST、no background/migration/backfill/DB backtest/secret output。Executor 后续实现与 P2 回归已覆盖该矩阵。
+- **orchestrator 本地验证**：focused **20 passed**；loop293-297 related regression **182 passed**；targeted Ruff **All checks passed!**；exact enabling assignment scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: artifact review tests must cover both local artifact status and upstream source/evidence drift before consumer surfaces can render safe copy.
 
 ## Tick loop288-reviewed-readiness-to-manual-safe-simulation-plan
 

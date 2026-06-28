@@ -1,3 +1,54 @@
+# Orchestrator Report - loop297-manual-request-artifact-capture-review
+
+**Updated**: 2026-06-28T18:54:59+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G manual request artifact capture/review.
+- **trigger**: loop296 produced a review-only request-intake packet; the product chain needed a shared artifact capture/review layer before any explicit authorization/config/rollback-audit boundary could be discussed.
+- **result**: `manual_request_artifact_capture_review_v1` is now derived from `controlled_dry_run_request_intake_review_v1` in MiningJob observability and consumed by Factor Library, Chat, and API assertion surfaces. It lists accepted/malformed/missing request artifacts, artifact review status, source refs, candidate refs, blockers, and manual next actions. Source hard blockers, source gate drift, missing/wrong F6 evidence kind, artifact role/provenance drift, and artifact-level execution markers fail closed and clear candidate refs. No execution, publish, runner, adapter, DB-backed real batch, manual acceptance, or PL-H authority is granted.
+- **next**: `EXPLICIT_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_BOUNDARY_LOOP298`; derive a planning/readiness boundary from the artifact review packet without granting authorization or execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/manual_request_artifact_capture_review.py` | Adds the pure fail-closed manual request artifact review builder. |
+| `apps/quant_assistant/src/qa/quant_mining/controlled_dry_run_request_intake_review_support.py` | Adds support validation for source blockers, source gate refs, F6 evidence kind, and forbidden artifact markers. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `manual_request_artifact_capture_review_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries artifact review into Factor Library rows and Chat follow-up notes. |
+| `apps/quant_assistant/tests/test_manual_request_artifact_capture_review_*.py` / `tests/test_mining_job_api_unit.py` | Proves derivation, fail-closed drift handling, no-execution markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.manual_request_artifact_capture_review` failed as expected |
+| P2 RED | pass · source blocker / F6 kind / PL-H marker / source gate drift regressions failed before fix (**6 failed / 11 passed**) |
+| focused tests | pass · **20 passed in 0.86s** |
+| loop293-297 related regression | pass · **182 passed in 1.24s** |
+| executor expanded related | pass · **184 passed** |
+| verifier subset | pass · **121 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass · CRLF warnings only |
+| exact enabling assignment scan | pass · no active `ready_for_execution` / `auto_backtest` / `manual_acceptance_granted` / `execution_permission=granted` / `pl_h_batch_execution_allowed=True` assignments in touched source |
+| code-reviewer | success · P2 findings closed; no remaining P1/P2 findings |
+| verifier | success · artifact review is review-only/not-granted |
+
+## Worker Notes
+
+Permanent `planner` produced the loop plan. Permanent `dispatcher` produced the assignment matrix. Permanent `test-engineer` designed the read-only TDD matrix. Permanent `executor` implemented loop297 with gpt-5.5 and closed the P2 regressions. Permanent `code-reviewer` found the P2 gaps and then cleared them. Permanent `verifier` independently confirmed the artifact review remains passive and no-execution. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, PL-H batch, background process, migration, or backfill was started. The manual request artifact review is not auto-publish, auto-backtest, manual acceptance, controlled dry-run permission, execution permission, or runner/adapter authority.
+
+## Residual Risk
+
+The system can now explain accepted/malformed/missing manual request artifacts, but loop298 still needs to derive the explicit authorization/config/rollback-audit boundary as planning/readiness only and keep it fail-closed.
+
+---
+
 # Orchestrator Report - sync302-planner-dispatcher-visible-worker-binding
 
 **Updated**: 2026-06-27T18:12:39+08:00

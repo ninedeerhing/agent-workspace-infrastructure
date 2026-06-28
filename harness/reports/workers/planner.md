@@ -1,6 +1,27 @@
 # Worker 工作汇报 · planner
 
-更新时间：2026-06-27T18:12:39+08:00
+更新时间：2026-06-28T18:54:59+08:00
+
+## Tick loop297-manual-request-artifact-capture-review
+
+```yaml
+report:
+  role_id: "planner"
+  status: "success"
+  task: "produce loop297 loop_plan"
+  changes: []
+  verification:
+    - command: "read loop-state + PROJECT_STATUS + TASK_TREES hot path"
+      result: "loop297 selected as core function after loop296 request-intake completion"
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Loop plans must name a core function artifact first, then leave UI/gate/truth-source sync as closing work."
+    performance_note: "Produced loop_plan for manual_request_artifact_capture_review_v1."
+  blockers: []
+  next: "After loop297 completion, loop298 should derive explicit authorization/config/rollback-audit boundary planning/readiness without granting authorization or execution."
+```
 
 ## SYNC-302 · permanent Planner thread binding
 

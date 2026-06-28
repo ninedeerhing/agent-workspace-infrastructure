@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-27T17:29:14+08:00
+更新时间：2026-06-28T18:54:59+08:00
+
+## Tick loop297-manual-request-artifact-capture-review
+
+- **任务 ID**：loop297-manual-request-artifact-review-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 manual request artifacts、F6 evidence provenance 与执行授权边界。
+- **状态**：success after P2 closures
+- **任务**：只读风险复核 `manual_request_artifact_capture_review_v1`、MiningJob observability、Factor Library / Chat consumption、API assertion 与相关测试，确认 artifact review 不误表达自动发布、真实 runner、adapter、DB-backed real batch、manual acceptance、execution permission 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：source unexpected/hard blockers 未继承时可能保留 candidate_refs；reviewed plan validation 只看 status 而不验证 F6 evidence kind；artifact-level forbidden markers 缺 `pl_h_batch_execution_allowed`。
+- **闭环结论**：修复后 source blockers/source_gate_ref drift 均 fail-closed 且清空 candidate_refs；`reviewed_backtest_plan_refs.evidence_kind` 必须为 `local_panel_f6_screening_evidence`；artifact forbidden markers 覆盖 `pl_h_batch_execution_allowed`。Same-thread final review PASS，未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused **20 passed**；loop293-297 related regression **182 passed**；targeted Ruff **All checks passed!**；exact enabling assignment scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: artifact review must inherit source blockers and validate evidence kind, not only the local artifact shape.
 
 ## Tick loop296-publish-gate-review-to-explicit-request-intake
 

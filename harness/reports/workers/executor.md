@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-27T17:29:14+08:00
+**Updated**: 2026-06-28T18:54:59+08:00
+
+## Tick loop297-manual-request-artifact-capture-review
+
+- **任务 ID**：loop297-manual-request-artifact-review-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 manual request artifact review 与后续 explicit authorization/config/rollback-audit 边界。
+- **状态**：success after P2 closure
+- **任务**：有界实现 `manual_request_artifact_capture_review_v1`，接入 MiningJob observability、Factor Library rows、Chat follow-up 与 MiningJob API assertion；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 `qa.quant_mining.manual_request_artifact_capture_review`；扩展 request-intake support helpers；补齐 artifact review derivation、surface consumption、source blocker/source gate drift/F6 evidence kind/artifact forbidden marker/no-execution tests；按 code-reviewer P2 收紧 source hard blockers、source_gate_ref kind/state、`reviewed_backtest_plan_refs.evidence_kind` 和 artifact-level `pl_h_batch_execution_allowed` fail-closed。
+- **orchestrator 本地验证**：focused **20 passed**；loop293-297 related regression **182 passed**；executor expanded related **184 passed**；verifier subset **121 passed**；targeted Ruff **All checks passed!**；`git diff --check` pass（CRLF warnings only）；exact enabling assignment scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: downstream artifact-review builders must inherit upstream hard blockers and verify evidence kind before preserving candidate refs.
 
 ## Tick loop296-publish-gate-review-to-explicit-request-intake
 
