@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-28T20:41:15+08:00
+**Updated**: 2026-06-28T21:19:51+08:00
+
+## Tick loop301-manual-evidence-supplement-recheck-readiness
+
+- **任务 ID**：loop301-manual-evidence-supplement-recheck-readiness-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 manual supplement/recheck readiness 与后续 recheck decision gate 边界。
+- **状态**：success after P2 closure
+- **任务**：有界实现 `manual_evidence_supplement_recheck_readiness_v1`，接入 MiningJob observability、Factor Library rows 与 Chat follow-up；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 `qa.quant_mining.manual_evidence_supplement_recheck_readiness`；补齐 supplement/recheck readiness derivation、surface consumption、source_authorization_review_ref provenance、operator/reviewer no-grant statuses、runner/rollback drift、config/rollback evidence missing/present/malformed、F6/safe_sim/audit refs 与 no-execution tests；按 code-reviewer P2 收紧 mandatory `source_authorization_review_ref`，optional authorization review 不能掩盖 source ref 缺失或漂移。
+- **orchestrator 本地验证**：focused **18 passed**；loop299-loop301 related regression **49 passed**；surface **6 passed**；targeted Ruff **All checks passed!**；`git diff --check` pass（CRLF warnings only）；semantic dangerous-marker scan clean；code-reviewer recheck success；verifier final success。
+- **roster_update**：workload cleared；mistakes none；lesson: downstream readiness builders must require their direct source ref and validate optional upstream evidence separately before preserving candidate refs.
 
 ## Tick loop300-config-rollback-evidence-package-review
 

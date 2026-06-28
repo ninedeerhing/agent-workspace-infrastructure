@@ -1,6 +1,27 @@
 # Worker 工作汇报 · planner
 
-更新时间：2026-06-28T20:41:15+08:00
+更新时间：2026-06-28T21:19:51+08:00
+
+## Tick loop301-manual-evidence-supplement-recheck-readiness
+
+```yaml
+report:
+  role_id: "planner"
+  status: "success"
+  task: "produce loop301 loop_plan"
+  changes: []
+  verification:
+    - command: "read loop-state + PROJECT_STATUS + TASK_TREES hot path"
+      result: "loop301 selected as core function after loop300 config/rollback evidence package review completion"
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Manual supplement/recheck readiness must remain separate from recheck decision, authorization grant, rollback readiness, and execution permission."
+    performance_note: "Produced loop_plan for manual_evidence_supplement_recheck_readiness_v1."
+  blockers: []
+  next: "After loop301 completion, loop302 should derive a manual evidence recheck decision gate without connecting runner/adapter or granting execution."
+```
 
 ## Tick loop300-config-rollback-evidence-package-review
 

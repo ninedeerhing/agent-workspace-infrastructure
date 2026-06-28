@@ -1,3 +1,52 @@
+# Orchestrator Report - loop301-manual-evidence-supplement-recheck-readiness
+
+**Updated**: 2026-06-28T21:19:51+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G manual evidence supplement/recheck readiness.
+- **trigger**: loop300 produced a review-only config/rollback evidence package review; the product chain needed a shared manual supplement/recheck readiness packet before a later recheck decision gate.
+- **result**: `manual_evidence_supplement_recheck_readiness_v1` is now derived from `config_rollback_evidence_package_review_v1` in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists supplement/recheck status, required manual supplements, evidence recheck blockers, source refs, candidate refs, A-E taxonomy, safe_sim/audit refs, reviewed plan/F6 evidence, and manual next actions. Missing or drifted `source_authorization_review_ref`, hard source blockers, malformed evidence, grant drift, runner/config drift, rollback-ready drift, missing F6/safe_sim/audit refs, and execution-bearing markers fail closed and clear candidate refs. No authorization grant, manual acceptance, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **next**: `MANUAL_EVIDENCE_RECHECK_DECISION_GATE_LOOP302`; derive a manual evidence recheck decision gate from the readiness packet without connecting runner/adapter, marking rollback ready, or granting execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/manual_evidence_supplement_recheck_readiness.py` | Adds the pure fail-closed review-only manual supplement/recheck readiness builder. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `manual_evidence_supplement_recheck_readiness_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries supplement/recheck readiness into Factor Library rows and Chat notes. |
+| `apps/quant_assistant/tests/test_manual_evidence_supplement_recheck_readiness_*.py` | Proves derivation, source authorization review provenance, missing/malformed evidence handling, fail-closed blockers, no-execution markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.manual_evidence_supplement_recheck_readiness` failed as expected |
+| P2 RED | pass · missing/drifted mandatory `source_authorization_review_ref` with optional authorization review failed before fix |
+| focused tests | pass · **18 passed in 0.33s** |
+| related regression | pass · loop299-loop301 **49 passed in 0.42s** |
+| surface regression | pass · loop300-loop301 surfaces **6 passed in 0.65s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass · CRLF warnings only |
+| dangerous marker scan | pass · no active grant/execution markers in loop301 touched files |
+| code-reviewer | success · P2 source ref masking finding closed; no remaining P2+ findings |
+| verifier | success · supplement/recheck readiness is review-only/not-granted/no-execution |
+
+## Worker Notes
+
+Permanent `planner` produced the loop plan. Permanent `dispatcher` produced the assignment matrix. Permanent `test-engineer` designed the read-only TDD matrix. Permanent `executor` implemented loop301 with gpt-5.5 and closed the P2 regression. Permanent `code-reviewer` found the P2 gap and then cleared it. Permanent `verifier` independently confirmed the readiness packet remains passive, no-grant, no-rollback-ready, and no-execution. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, rollback-ready action, PL-H batch, background process, migration, or backfill was started. The supplement/recheck readiness packet is not auto-publish, auto-backtest, authorization grant, manual acceptance, controlled dry-run permission, execution permission, rollback ready, or runner/adapter authority.
+
+## Residual Risk
+
+The system can now explain required manual supplements and recheck blockers, but loop302 still needs to derive a recheck decision gate as review-only/no-connection/no-execution.
+
+---
+
 # Orchestrator Report - loop300-config-rollback-evidence-package-review
 
 **Updated**: 2026-06-28T20:41:15+08:00

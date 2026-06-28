@@ -1,6 +1,19 @@
 # Worker 工作汇报 · test-engineer
 
-更新时间：2026-06-28T20:41:15+08:00
+更新时间：2026-06-28T21:19:51+08:00
+
+## Tick loop301-manual-evidence-supplement-recheck-readiness
+
+- **任务 ID**：loop301-manual-evidence-supplement-recheck-readiness-test-design
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-52d7-7b73-868a-7beb496ba303`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 manual supplement/recheck readiness 与 no-grant/no-execution 边界。
+- **状态**：success
+- **任务**：只读测试设计复核 `manual_evidence_supplement_recheck_readiness_v1`，确认 source=loop300 evidence package review、source_authorization_review_ref mandatory、operator/reviewer 仍未授权、runner/config 未连接、rollback/audit not_ready、config/rollback evidence missing/present/malformed、missing runner fail-closed、PL-H not eligible、no real/default runner、no adapter invocation、no actual adapter dry-run、no page-load POST、no background/migration/backfill/DB backtest/secret output 均应覆盖。
+- **变更**：worker 未修改文件。
+- **复核结论**：PASS；测试矩阵覆盖 missing source packet、valid readiness shape、missing/drifted source_authorization_review_ref、optional authorization review cannot mask source drift、operator/reviewer state drift、runner/rollback drift、malformed evidence、candidate refs clear-on-hard-blocker、consumer surfaces 与 no-execution matrix。Executor 后续实现与 P2 回归已覆盖该矩阵。
+- **orchestrator 本地验证**：focused **18 passed**；loop299-loop301 related regression **49 passed**；surface **6 passed**；targeted Ruff **All checks passed!**；semantic dangerous-marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lesson: supplement/recheck readiness tests must make the direct source_authorization_review_ref mandatory and prevent optional upstream review packets from masking source drift.
 
 ## Tick loop300-config-rollback-evidence-package-review
 

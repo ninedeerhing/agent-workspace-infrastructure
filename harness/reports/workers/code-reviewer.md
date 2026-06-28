@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-28T20:41:15+08:00
+更新时间：2026-06-28T21:19:51+08:00
+
+## Tick loop301-manual-evidence-supplement-recheck-readiness
+
+- **任务 ID**：loop301-manual-evidence-supplement-recheck-readiness-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 supplement/recheck readiness、source provenance 与执行授权边界。
+- **状态**：success after P2 closure
+- **任务**：只读风险复核 `manual_evidence_supplement_recheck_readiness_v1`、MiningJob observability、Factor Library / Chat consumption 与相关测试，确认 readiness 不误表达 runner/adapter connection、rollback ready、authorization grant、manual acceptance、真实 runner、adapter、DB-backed real batch、execution permission 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：`source_authorization_review_ref` 可被 optional `operator_reviewer_authorization_evidence_review` 掩盖，missing/drifted source ref 可能仍 pass。
+- **闭环结论**：修复后 `source_authorization_review_ref` 为 mandatory，optional loop299 authorization review 独立验证且不能掩盖 source ref 缺失/漂移。Same-thread final review PASS，未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST、authorization grant、manual acceptance、rollback-ready 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused **18 passed**；related **49 passed**；surface **6 passed**；targeted Ruff **All checks passed!**；semantic dangerous-marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: downstream readiness packets must validate the direct source ref separately from optional upstream evidence reviews.
 
 ## Tick loop300-config-rollback-evidence-package-review
 
