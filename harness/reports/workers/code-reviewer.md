@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-28T20:04:44+08:00
+更新时间：2026-06-28T20:41:15+08:00
+
+## Tick loop300-config-rollback-evidence-package-review
+
+- **任务 ID**：loop300-config-rollback-evidence-package-review-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 config/rollback evidence review、source provenance 与执行授权边界。
+- **状态**：success after P2 closures
+- **任务**：只读风险复核 `config_rollback_evidence_package_review_v1`、MiningJob observability、Factor Library / Chat consumption 与相关测试，确认 evidence package review 不误表达 runner/adapter connection、rollback ready、authorization grant、manual acceptance、真实 runner、adapter、DB-backed real batch、execution permission 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：hard source drift 未强制 present evidence packages 的 `config_evidence_review_status` / `rollback_audit_evidence_review_status` blocked，可能留下 `present_pending_review`；Chat formatter 可能把 blocked/malformed config/rollback packets 渲染成 routine supplement/review copy。
+- **闭环结论**：修复后 source hard blockers、malformed evidence 和 candidate blockers 均强制 config/rollback statuses 为 blocked 并清空 candidate_refs；Chat normal copy 只允许 missing/present_pending_review + expected missing-evidence blockers + safe no-execution flags，否则显示 conservative recheck copy。Same-thread final review PASS，未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST、authorization grant、manual acceptance、rollback-ready 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused **19 passed**；loop291-loop300 adjacent regression **130 passed**；targeted Ruff **All checks passed!**；semantic dangerous-marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: config/rollback evidence reviews must hard-block present-looking evidence under source drift, and consumer copy must distinguish routine missing-evidence supplementation from blocked/malformed recheck states.
 
 ## Tick loop299-operator-reviewer-authorization-evidence-review
 

@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-28T20:04:44+08:00
+**Updated**: 2026-06-28T20:41:15+08:00
+
+## Tick loop300-config-rollback-evidence-package-review
+
+- **任务 ID**：loop300-config-rollback-evidence-package-review-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 config/rollback evidence package review 与后续人工补证/复查 readiness 边界。
+- **状态**：success after P2 closure
+- **任务**：有界实现 `config_rollback_evidence_package_review_v1`，接入 MiningJob observability、Factor Library rows 与 Chat follow-up；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 `qa.quant_mining.config_rollback_evidence_package_review`；补齐 evidence package review derivation、surface consumption、source review provenance drift、operator/reviewer no-grant statuses、runner/rollback drift、config/rollback evidence missing/present/malformed、F6/safe_sim/audit refs 与 no-execution tests；按 code-reviewer P2 收紧 hard source drift / malformed evidence / candidate blockers 对 config/rollback statuses 的 blocked promotion，并让 Chat blocked/malformed/drifted review 显示 conservative recheck copy。
+- **orchestrator 本地验证**：focused **19 passed**；loop291-loop300 adjacent regression **130 passed**；executor related regression **165 passed**；targeted Ruff **All checks passed!**；`git diff --check` pass（CRLF warnings only）；semantic dangerous-marker scan clean；code-reviewer recheck success；verifier final success。
+- **roster_update**：workload cleared；mistakes none；lessons: config/rollback evidence reviews must promote upstream hard blockers and malformed evidence to blocked statuses before preserving candidate refs or rendering normal supplement copy.
 
 ## Tick loop299-operator-reviewer-authorization-evidence-review
 
