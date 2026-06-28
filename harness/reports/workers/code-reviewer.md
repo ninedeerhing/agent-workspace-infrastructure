@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-28T19:32:04+08:00
+更新时间：2026-06-28T20:04:44+08:00
+
+## Tick loop299-operator-reviewer-authorization-evidence-review
+
+- **任务 ID**：loop299-operator-reviewer-authorization-evidence-review-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 operator/reviewer evidence review、source provenance 与执行授权边界。
+- **状态**：success after P2 closures
+- **任务**：只读风险复核 `operator_reviewer_authorization_evidence_review_v1`、MiningJob observability、Factor Library / Chat consumption 与相关测试，确认 evidence review 不误表达 authorization grant、manual acceptance、真实 runner、adapter、DB-backed real batch、rollback ready、execution permission 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：未验证 nested `source_review_ref.review_kind` / `artifact_review_status` provenance，可能接受错误上游 review；Chat formatter 未按 `review_status` 区分 blocked review，可能把 blocked evidence review 渲染成正常 pending copy。
+- **闭环结论**：修复后 source review kind/status drift 均 fail-closed 并清空 candidate_refs；Chat normal copy 只在 pending evidence review status 下显示，blocked review 显示 recheck copy。Same-thread final review PASS，未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST、authorization grant、manual acceptance、rollback-ready 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused **18 passed**；loop293-loop299 related regression **165 passed**；targeted Ruff **All checks passed!**；dangerous grant/execution assignment scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: evidence-review gates must validate nested source provenance, and consumer copy must be status-sensitive before presenting normal next-step language.
 
 ## Tick loop298-explicit-authorization-config-rollback-audit-boundary
 

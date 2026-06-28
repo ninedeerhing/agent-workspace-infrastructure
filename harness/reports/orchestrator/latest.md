@@ -1,3 +1,51 @@
+# Orchestrator Report - loop299-operator-reviewer-authorization-evidence-review
+
+**Updated**: 2026-06-28T20:04:44+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G operator/reviewer authorization evidence review.
+- **trigger**: loop298 produced a planning/readiness-only explicit authorization/config/rollback-audit boundary; the product chain needed a review-only evidence packet for operator/reviewer authorization evidence before config/rollback evidence package review.
+- **result**: `operator_reviewer_authorization_evidence_review_v1` is now derived from `explicit_authorization_config_rollback_audit_boundary_v1` in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists evidence review status, operator/reviewer evidence statuses, source refs, candidate refs, blockers, A-E taxonomy, safe_sim/audit refs, reviewed plan/F6 evidence, and manual next actions. Source review provenance drift, blocked boundary, non-required operator/reviewer states, connected runner/config drift, ready rollback/audit drift, missing F6/safe_sim/audit refs, and execution-bearing markers fail closed and clear candidate refs. No authorization grant, manual acceptance, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **next**: `CONFIG_ROLLBACK_EVIDENCE_PACKAGE_REVIEW_LOOP300`; derive review-only config/rollback evidence package status from the operator/reviewer evidence review packet without connecting runner/adapter or granting execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/operator_reviewer_authorization_evidence_review.py` | Adds the pure fail-closed review-only operator/reviewer authorization evidence builder. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `operator_reviewer_authorization_evidence_review_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries evidence review status into Factor Library rows and Chat follow-up notes, with blocked reviews demoted to recheck copy. |
+| `apps/quant_assistant/tests/test_operator_reviewer_authorization_evidence_review_*.py` | Proves derivation, source provenance drift, fail-closed blockers, no-execution markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.operator_reviewer_authorization_evidence_review` failed as expected |
+| P2 RED | pass · source review provenance drift and blocked Chat rendering regressions failed before fix (**3 failed / 15 passed**) |
+| focused tests | pass · **18 passed in 0.64s** |
+| related regression | pass · loop293-loop299 **165 passed in 1.11s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass · CRLF warnings only |
+| dangerous grant/execution marker scan | pass · no active grant/execution markers in loop299 touched files |
+| code-reviewer | success · P2 findings closed; no remaining P1/P2 findings |
+| verifier | success · evidence review is review-only/not-granted/no-execution |
+
+## Worker Notes
+
+Permanent `planner` produced the loop plan. Permanent `dispatcher` produced the assignment matrix. Permanent `test-engineer` designed the read-only TDD matrix. Permanent `executor` implemented loop299 with gpt-5.5 and closed the P2 regressions. Permanent `code-reviewer` found the P2 gaps and then cleared them. Permanent `verifier` independently confirmed the evidence review remains passive, no-grant, and no-execution. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, rollback-ready action, PL-H batch, background process, migration, or backfill was started. The operator/reviewer authorization evidence review is not auto-publish, auto-backtest, authorization grant, manual acceptance, controlled dry-run permission, execution permission, or runner/adapter authority.
+
+## Residual Risk
+
+The system can now explain operator/reviewer authorization evidence as still pending review, but loop300 still needs to derive config/rollback evidence package review as review-only/no-connection/no-rollback-ready and keep it separate from execution permission.
+
+---
+
 # Orchestrator Report - loop298-explicit-authorization-config-rollback-audit-boundary
 
 **Updated**: 2026-06-28T19:32:04+08:00

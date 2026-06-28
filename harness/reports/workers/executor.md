@@ -1,6 +1,18 @@
 # Executor Worker Report
 
-**Updated**: 2026-06-28T19:32:04+08:00
+**Updated**: 2026-06-28T20:04:44+08:00
+
+## Tick loop299-operator-reviewer-authorization-evidence-review
+
+- **任务 ID**：loop299-operator-reviewer-authorization-evidence-review-implementation
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical implementation；本轮涉及 operator/reviewer authorization evidence review 与后续 config/rollback evidence package review 边界。
+- **状态**：success after P2 closure
+- **任务**：有界实现 `operator_reviewer_authorization_evidence_review_v1`，接入 MiningJob observability、Factor Library rows 与 Chat follow-up；不读取/打印 secret，不连接 DB/runner，不启动 adapter/backtest/migration/backfill。
+- **变更**：新增 `qa.quant_mining.operator_reviewer_authorization_evidence_review`；补齐 evidence review derivation、surface consumption、source review provenance drift、operator/reviewer no-grant statuses、runner/rollback drift、F6/safe_sim/audit refs 与 no-execution tests；按 code-reviewer P2 收紧 `source_review_ref.review_kind` / `artifact_review_status` fail-closed，并让 Chat blocked review 显示 recheck copy 而非正常 pending-evidence copy。
+- **orchestrator 本地验证**：focused **18 passed**；loop293-loop299 related regression **165 passed**；targeted Ruff **All checks passed!**；`git diff --check` pass（CRLF warnings only）；dangerous grant/execution assignment scan clean；code-reviewer recheck success；verifier final success。
+- **roster_update**：workload cleared；mistakes none；lessons: authorization evidence review builders must validate nested source review provenance and Chat copy must gate normal copy on review_status, not just payload presence.
 
 ## Tick loop298-explicit-authorization-config-rollback-audit-boundary
 
