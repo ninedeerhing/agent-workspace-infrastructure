@@ -1,3 +1,52 @@
+# Orchestrator Report - loop302-manual-evidence-recheck-decision
+
+**Updated**: 2026-06-28T21:58:45+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G manual evidence recheck decision.
+- **trigger**: loop301 produced a review-only manual supplement/recheck readiness packet; the product chain needed a shared manual recheck decision before later evidence bundle / handoff readiness.
+- **result**: `manual_evidence_recheck_decision_v1` is now derived from `manual_evidence_supplement_recheck_readiness_v1` plus required `config_rollback_evidence_package_review_v1` in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists recheck decision status, required actions, not-ready reasons, source refs, candidate refs, A-E taxonomy, safe_sim/audit refs, reviewed plan/F6 evidence, and manual next actions. Missing config review, config review kind drift, nested safety drift, runner/config drift, rollback-ready drift, PL-H drift, manual acceptance drift, missing source authorization review ref, malformed evidence, missing F6/safe_sim/audit refs, and execution-bearing markers fail closed and clear candidate refs. No authorization grant, manual acceptance, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **next**: `MANUAL_EVIDENCE_RECHECK_TO_HANDOFF_READINESS_LOOP303`; derive later evidence bundle / handoff readiness from the recheck decision without connecting runner/adapter, marking rollback ready, or granting execution.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/manual_evidence_recheck_decision.py` | Adds the pure fail-closed review-only manual evidence recheck decision builder. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `manual_evidence_recheck_decision_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries manual recheck decision into Factor Library rows and Chat notes. |
+| `apps/quant_assistant/tests/test_manual_evidence_recheck_decision_*.py` | Proves derivation, required config review provenance, drift blockers, fail-closed candidate clearing, no-execution markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.manual_evidence_recheck_decision` failed as expected |
+| P2 RED | pass · missing config review, runner connected, rollback ready, PL-H drift, manual acceptance drift, and nested safety drift failed before fix (**6 failed / 17 passed**) |
+| focused tests | pass · **23 passed in 0.33s** |
+| related regression | pass · loop300-loop302 **57 passed in 0.42s** |
+| surface regression | pass · loop301-loop302 surfaces **6 passed in 0.73s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass · CRLF warnings only |
+| forbidden marker scan | pass · no active grant/execution markers in loop302 touched files |
+| code-reviewer | success · P2 config review validation gap closed; no remaining P2+ findings |
+| verifier | success · focused 26 passed + Ruff; decision remains passive, no-grant, no-rollback-ready, and no-execution |
+
+## Worker Notes
+
+Permanent `planner` produced the loop plan. Permanent `dispatcher` produced the assignment matrix. Permanent `test-engineer` designed the read-only TDD matrix. Permanent `executor` implemented loop302 with gpt-5.5 and closed the P2 regression. Permanent `code-reviewer` found the P2 gap and then cleared it. Permanent `verifier` independently confirmed the decision packet remains passive, no-grant, no-rollback-ready, and no-execution. No same-role duplicate worker was created.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, rollback-ready action, PL-H batch, background process, migration, or backfill was started. The manual evidence recheck decision is not auto-publish, auto-backtest, authorization grant, manual acceptance, controlled dry-run permission, execution permission, rollback ready, or runner/adapter authority.
+
+## Residual Risk
+
+The system can now express manual evidence recheck decisions, but loop303 still needs to derive later evidence bundle / handoff readiness as review-only/no-connection/no-execution.
+
+---
+
 # Orchestrator Report - loop301-manual-evidence-supplement-recheck-readiness
 
 **Updated**: 2026-06-28T21:19:51+08:00

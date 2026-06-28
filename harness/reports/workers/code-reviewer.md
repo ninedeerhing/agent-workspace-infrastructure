@@ -1,6 +1,20 @@
 # Worker 工作汇报 · code-reviewer
 
-更新时间：2026-06-28T21:19:51+08:00
+更新时间：2026-06-28T21:58:45+08:00
+
+## Tick loop302-manual-evidence-recheck-decision
+
+- **任务 ID**：loop302-manual-evidence-recheck-decision-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 recheck decision、config review provenance 与执行授权边界。
+- **状态**：success after P2 closure
+- **任务**：只读风险复核 `manual_evidence_recheck_decision_v1`、MiningJob observability、Factor Library / Chat consumption 与相关测试，确认 recheck decision 不误表达 runner/adapter connection、rollback ready、authorization grant、manual acceptance、真实 runner、adapter、DB-backed real batch、execution permission 或 PL-H 授权。
+- **变更**：worker 只读复核，未修改文件。
+- **初审 P2**：`_config_review_blockers` 未把 loop300 `config_rollback_evidence_package_review_v1` 作为必需输入，也未独立 fail-closed 校验 nested safety、runner_config_status connected、rollback_audit_status ready、PL-H drift、manual acceptance drift，可能被 valid loop301 readiness 掩盖。
+- **闭环结论**：修复后 loop300 config review is required；missing config review、runner connected、rollback ready、PL-H drift、manual acceptance drift、nested safety drift 均 blocked 且 `candidate_refs=[]`。Same-thread final review PASS，未发现 live/default runner、adapter、DB、backfill、background、PL-H、page-load POST、authorization grant、manual acceptance、rollback-ready 或 secret-output 新路径。
+- **orchestrator 本地验证**：focused **23 passed**；related **57 passed**；surface **6 passed**；targeted Ruff **All checks passed!**；forbidden execution/grant marker scan clean。
+- **roster_update**：workload cleared；mistakes none；lessons: downstream decision gates must validate required upstream evidence packets directly, not rely on adjacent readiness packets to imply provenance.
 
 ## Tick loop301-manual-evidence-supplement-recheck-readiness
 
