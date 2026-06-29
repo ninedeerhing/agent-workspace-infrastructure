@@ -2,7 +2,7 @@
 
 Status: living-catalog
 Owner: orchestrator
-Last updated: 2026-06-29T13:07:10+08:00
+Last updated: 2026-06-29T13:29:57+08:00
 
 This is the long-lived reference catalog for AWI. It is not a one-time research report. It exists to keep external projects, official docs, user-provided videos, local research files, and implementation lessons deduplicated, categorized, and traceable across long-running projects.
 
@@ -142,7 +142,7 @@ Update protocol:
 |---|---|---|
 | Reference catalog | This living catalog + `harness/source-index.json` now provide traceable source inventory. | Keep adding sources and dedupe notes during future research. |
 | DAG / DRG-style task graph | P2 implemented: Capability DAG + Runtime Task DAG schema + validator + loop305 example. | Add runtime generation from Planner/Dispatcher outputs. |
-| Memory / RAG / knowledge system | Design integrated from memory video and official docs; not yet implemented as Memory OS v2. | P4 typed memory slots, source-index retrieval, method promotion, graph recall. |
+| Memory / RAG / knowledge system | P4 B1 implemented: `harness/memory-os.json`, schema, validator, and self-check now enforce typed slots, source-index refs, promotion rules, hot-path light retrieval, one-hop graph recall, and lifecycle requirements. | P4 B2 should add a context assembler/query surface that selects slot summaries for real loop prompts and records retrieval telemetry. |
 | Harness / Loop / Eval | Design integrated; P1/P2 enforce source indexing and DAG selection. | P5 run traces, empty-loop detection, token/context eval. |
 | Skills | Existing router and prototype are indexed; Skill OS v2 remains planned. | P3 skill cards, top-K exposure, telemetry, sibling-risk suppression. |
 | Workers | Planner/Dispatcher split and permanent worker policy already in loop docs; P2 example DAG models roles. | Runtime DAG-driven dispatch and worker report linkage. |
@@ -161,4 +161,5 @@ Use this section for references that are mentioned but not yet recovered or deep
 
 | Date | Change | Evidence |
 |---|---|---|
+| 2026-06-29 | Implemented P4 B1 Memory/RAG OS contract and registered it as a source-index-backed AWI truth source. | `harness/memory-os.json`, `harness/validate_awi_memory.py`, `docs/ENGINEERING/ADR-005-AWI-Memory-RAG-OS-v2.md` |
 | 2026-06-29 | Created living catalog from dated AWI architecture refresh, source-index, three video transcripts, and user-provided reference list. | `docs/ENGINEERING/AWI-REFERENCE-CATALOG.md`, `harness/source-index.json` |

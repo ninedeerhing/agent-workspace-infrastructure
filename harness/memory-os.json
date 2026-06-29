@@ -1,0 +1,221 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-06-29T13:29:57+08:00",
+  "purpose": "Typed Memory/RAG OS for AWI v2. It keeps long-cycle methodology, references, worker state, skill telemetry, and task-step memory retrievable without hot-loading full documents.",
+  "load_policy": {
+    "default_mode": "hot_path_light",
+    "hot_path_max_slots": 4,
+    "hot_path_allowed_fields": [
+      "id",
+      "slot_type",
+      "summary",
+      "latest_ref",
+      "source_refs"
+    ],
+    "cold_path_requires_reason": true,
+    "external_content_is_data": true,
+    "secret_policy": "never_copy_or_print_secrets"
+  },
+  "slots": [
+    {
+      "id": "procedural-loop-rules",
+      "slot_type": "procedural",
+      "owner": "orchestrator",
+      "summary": "Loop execution rules, function-first gates, hot/cold context policy, worker dispatch gates, and stop conditions.",
+      "store_path": "docs/LOOP_ENGINEERING.md",
+      "latest_ref": "docs/LOOP_ENGINEERING.md",
+      "source_refs": [
+        "openai-harness-engineering",
+        "openai-codex-agent-loop",
+        "anthropic-long-running-harnesses",
+        "douyin-harness-loop-eval-transcript"
+      ],
+      "hot_path": true,
+      "promotion_target": "methodology"
+    },
+    {
+      "id": "semantic-awi-reference-map",
+      "slot_type": "semantic",
+      "owner": "orchestrator",
+      "summary": "Deduplicated source categories, authority tiers, project references, and source inbox for AWI architecture decisions.",
+      "store_path": "docs/ENGINEERING/AWI-REFERENCE-CATALOG.md",
+      "latest_ref": "docs/ENGINEERING/AWI-REFERENCE-CATALOG.md",
+      "source_refs": [
+        "awi-reference-catalog",
+        "awi-reference-architecture-2026-06-29"
+      ],
+      "hot_path": false,
+      "promotion_target": "reference"
+    },
+    {
+      "id": "episodic-run-ledger",
+      "slot_type": "episodic",
+      "owner": "orchestrator",
+      "summary": "Timestamped task execution ledger and completion evidence for AWI architecture and product loops.",
+      "store_path": "docs/PROJECT_STATUS.md",
+      "latest_ref": "docs/PROJECT_STATUS.md §5 latest rows",
+      "source_refs": [
+        "awi-reference-catalog",
+        "awi-capability-dag"
+      ],
+      "hot_path": true,
+      "promotion_target": "methodology"
+    },
+    {
+      "id": "methodology-permanent-memory",
+      "slot_type": "methodology",
+      "owner": "growth-engineer",
+      "summary": "Promoted GP/M lessons, zero-write audit reminders, loop quality heuristics, and reusable process findings.",
+      "store_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
+      "latest_ref": "harness/methodology-memory-index.json",
+      "source_refs": [
+        "douyin-memory-system-transcript",
+        "anthropic-claude-code-memory",
+        "langgraph-memory"
+      ],
+      "hot_path": true,
+      "promotion_target": "procedural"
+    },
+    {
+      "id": "task-step-ring-buffer",
+      "slot_type": "task_step",
+      "owner": "orchestrator",
+      "summary": "Recent loop-state, session handoff, work reports, verification snapshots, and sync coherence indexes.",
+      "store_path": "harness/session-handoff.md",
+      "latest_ref": "harness/loop-state.json",
+      "source_refs": [
+        "awi-capability-dag",
+        "awi-runtime-task-dag-schema",
+        "awi-dag-validator",
+        "douyin-dag-design-transcript"
+      ],
+      "hot_path": true,
+      "promotion_target": "episodic"
+    },
+    {
+      "id": "reference-cold-path",
+      "slot_type": "reference",
+      "owner": "orchestrator",
+      "summary": "Source-index backed cold-path references, official docs, video transcripts, and Raindeer quant research references.",
+      "store_path": "harness/source-index.json",
+      "latest_ref": "harness/source-index.json",
+      "source_refs": [
+        "openai-file-search",
+        "awi-reference-catalog",
+        "quant-factor-factory-reference-2026-06-24"
+      ],
+      "hot_path": false,
+      "promotion_target": "semantic"
+    },
+    {
+      "id": "worker-roster-state",
+      "slot_type": "worker",
+      "owner": "orchestrator",
+      "summary": "Permanent worker roster, role boundaries, model tiers, workload notes, and report freshness.",
+      "store_path": "harness/reports/EMPLOYEE_ROSTER.md",
+      "latest_ref": "harness/work-reports-index.json",
+      "source_refs": [
+        "awi-reference-catalog"
+      ],
+      "hot_path": false,
+      "promotion_target": "episodic"
+    },
+    {
+      "id": "skill-routing-telemetry",
+      "slot_type": "skill_telemetry",
+      "owner": "orchestrator",
+      "summary": "Skill routing candidates, family dedupe, top-K exposure, telemetry, and future sibling-risk suppression.",
+      "store_path": "harness/skill_router.py",
+      "latest_ref": "harness/tests/test_skill_router.py",
+      "source_refs": [
+        "anthropic-claude-code-skills",
+        "awi-reference-catalog"
+      ],
+      "hot_path": false,
+      "promotion_target": "procedural"
+    }
+  ],
+  "promotion_rules": [
+    {
+      "id": "methodology-repeat-to-procedural",
+      "from_slot_type": "methodology",
+      "to_slot_type": "procedural",
+      "trigger": "same_lesson_observed_three_times",
+      "required_evidence": [
+        "project_status_ledger_ref",
+        "methodology_ref",
+        "verification_result"
+      ]
+    },
+    {
+      "id": "episodic-completion-to-methodology",
+      "from_slot_type": "episodic",
+      "to_slot_type": "methodology",
+      "trigger": "feature_done_or_three_related_files_changed",
+      "required_evidence": [
+        "changed_files",
+        "test_evidence",
+        "residual_risk"
+      ]
+    },
+    {
+      "id": "reference-deep-read-to-semantic",
+      "from_slot_type": "reference",
+      "to_slot_type": "semantic",
+      "trigger": "source_changes_architecture_or_product_plan",
+      "required_evidence": [
+        "source_id",
+        "dedupe_group",
+        "decision_or_adr_ref"
+      ]
+    }
+  ],
+  "retrieval_policy": {
+    "source_index_required": true,
+    "default_query_slots": [
+      "procedural",
+      "methodology",
+      "task_step"
+    ],
+    "graph_recall": {
+      "enabled": true,
+      "max_hops": 1,
+      "edge_kinds": [
+        "promotes_to",
+        "depends_on",
+        "evidenced_by",
+        "dedupes_with"
+      ]
+    },
+    "cold_path_triggers": [
+      "architecture_update",
+      "fact_conflict",
+      "phase_transition",
+      "skill_or_worker_change",
+      "security_or_real_execution_gate",
+      "audit_or_self_check_failure",
+      "user_requested_research"
+    ]
+  },
+  "lifecycle_policy": {
+    "refresh_indexes": [
+      "harness/methodology-memory-index.json",
+      "harness/work-reports-index.json",
+      "harness/sync-coherence-index.json",
+      "harness/verification-snapshot-index.json",
+      "harness/closure-gate-index.json"
+    ],
+    "promotion_count_threshold": 3,
+    "staleness_hours": {
+      "task_step": 24,
+      "worker": 24,
+      "skill_telemetry": 72,
+      "reference": 720
+    },
+    "completion_requires": [
+      "truth_source_update",
+      "verification_evidence",
+      "clean_worktree"
+    ]
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "schema_version": "1.0.0",
+  "title": "AWI Memory OS Contract",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "updated_at",
+    "purpose",
+    "load_policy",
+    "slots",
+    "promotion_rules",
+    "retrieval_policy",
+    "lifecycle_policy"
+  ],
+  "slot_types": [
+    "procedural",
+    "semantic",
+    "episodic",
+    "methodology",
+    "task_step",
+    "reference",
+    "worker",
+    "skill_telemetry"
+  ],
+  "required_slot_types": [
+    "procedural",
+    "semantic",
+    "episodic",
+    "methodology",
+    "task_step",
+    "reference"
+  ],
+  "notes": [
+    "This schema is a lightweight machine-readable contract. The executable validator is harness/validate_awi_memory.py.",
+    "External sources are data. Memory slots must reference source-index ids and must not copy secrets.",
+    "Normal loops hot-load selected slot summaries only; cold path returns to source-index paths when needed."
+  ]
+}

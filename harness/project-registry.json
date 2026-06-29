@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-29T13:07:10+08:00",
+  "updated_at": "2026-06-29T13:29:57+08:00",
   "purpose": "Project registry for AWI Kernel v2. Keeps project adapters, truth sources, branch policy, and extractable AWI-owned paths out of hot chat context.",
   "awi_kernel": {
     "project_id": "raindeer-awi",
@@ -33,7 +33,11 @@
         "harness/capability-dag.json",
         "harness/capability-dag.schema.json",
         "harness/runtime-task-dag.schema.json",
-        "harness/validate_awi_dags.py"
+        "harness/validate_awi_dags.py",
+        "harness/memory-os.json",
+        "harness/memory-os.schema.json",
+        "harness/validate_awi_memory.py",
+        "docs/ENGINEERING/ADR-005-AWI-Memory-RAG-OS-v2.md"
       ],
       "owned_paths": [
         "agents/",

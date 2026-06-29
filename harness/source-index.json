@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-29T13:07:10+08:00",
+  "updated_at": "2026-06-29T13:29:57+08:00",
   "purpose": "Cold-path source index for AWI v2. It lets the loop reference official docs, local truth sources, external research, and video transcripts by id instead of hot-loading full documents.",
   "hot_path_policy": {
     "default_load": [
@@ -271,6 +271,64 @@
         "race_group",
         "phase_bundle"
       ]
+    },
+    {
+      "id": "awi-memory-os",
+      "title": "AWI Memory OS Contract",
+      "category": "memory_rag",
+      "authority": "local_truth_source",
+      "path": "harness/memory-os.json",
+      "status": "indexed",
+      "hot_path": true,
+      "tags": [
+        "memory_os",
+        "typed_slots",
+        "retrieval_policy",
+        "promotion_rules"
+      ]
+    },
+    {
+      "id": "awi-memory-os-schema",
+      "title": "AWI Memory OS Schema",
+      "category": "memory_rag",
+      "authority": "local_contract",
+      "path": "harness/memory-os.schema.json",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": [
+        "memory_os",
+        "schema",
+        "required_slot_types"
+      ]
+    },
+    {
+      "id": "awi-memory-validator",
+      "title": "AWI Memory OS Validator",
+      "category": "memory_rag",
+      "authority": "local_contract",
+      "path": "harness/validate_awi_memory.py",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": [
+        "memory_os",
+        "validator",
+        "source_ref_validation"
+      ]
+    },
+    {
+      "id": "awi-memory-os-adr-005",
+      "title": "ADR-005 AWI Memory/RAG OS v2 Contract",
+      "category": "awi_architecture",
+      "authority": "local_truth_source",
+      "path": "docs/ENGINEERING/ADR-005-AWI-Memory-RAG-OS-v2.md",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": [
+        "adr",
+        "memory_os",
+        "rag",
+        "context_budget"
+      ]
     }
   ],
   "required_categories": [
@@ -293,6 +351,9 @@
     "douyin-harness-loop-eval-transcript",
     "awi-capability-dag",
     "awi-runtime-task-dag-schema",
-    "awi-dag-validator"
+    "awi-dag-validator",
+    "awi-memory-os",
+    "awi-memory-validator",
+    "awi-memory-os-adr-005"
   ]
 }

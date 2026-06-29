@@ -74,6 +74,9 @@ Test-RequiredFile (Join-Path $HarnessDir "capability-dag.json") "CX-CAPABILITY-D
 Test-RequiredFile (Join-Path $HarnessDir "capability-dag.schema.json") "CX-CAPABILITY-DAG-SCHEMA" "AWI capability DAG schema" "Restore harness/capability-dag.schema.json." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "runtime-task-dag.schema.json") "CX-RUNTIME-DAG-SCHEMA" "AWI runtime task DAG schema" "Restore harness/runtime-task-dag.schema.json." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "validate_awi_dags.py") "CX-DAG-VALIDATOR" "AWI DAG validator" "Restore harness/validate_awi_dags.py and keep DAG invariants executable." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "memory-os.json") "CX-MEMORY-OS" "AWI Memory OS" "Restore harness/memory-os.json so typed memory and retrieval policy remain machine-readable." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "memory-os.schema.json") "CX-MEMORY-OS-SCHEMA" "AWI Memory OS schema" "Restore harness/memory-os.schema.json." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "validate_awi_memory.py") "CX-MEMORY-VALIDATOR" "AWI Memory OS validator" "Restore harness/validate_awi_memory.py and keep Memory/RAG invariants executable." | Out-Null
 
 $loopPromptPath = Join-Path $HarnessDir "templates/loop-tick-prompt.md"
 $loopPromptText = Get-Text $loopPromptPath
@@ -369,6 +372,27 @@ if (Test-Path $dagValidatorPath) {
     catch {
         Add-Check "AWI DAG validator" "FAIL" $_.Exception.Message
         Add-Finding "error" "CX-DAG-VALIDATOR" "AWI DAG validator output parse failed" $_.Exception.Message "Run python harness/validate_awi_dags.py --repo-root . --json and fix its output/errors."
+    }
+}
+
+$memoryValidatorPath = Join-Path $HarnessDir "validate_awi_memory.py"
+if (Test-Path $memoryValidatorPath) {
+    $memoryRaw = & python $memoryValidatorPath --repo-root $ProjectRoot --json 2>&1 | Out-String
+    try {
+        $memoryReport = $memoryRaw | ConvertFrom-Json
+        if ([int]$memoryReport.summary.findings -eq 0) {
+            Add-Check "AWI Memory OS validator" "PASS" "checks=$($memoryReport.summary.checks); findings=0"
+        }
+        else {
+            Add-Check "AWI Memory OS validator" "FAIL" "findings=$($memoryReport.summary.findings)"
+            foreach ($finding in @($memoryReport.findings)) {
+                Add-Finding $finding.severity "MEM-$($finding.code)" $finding.title $finding.detail "Fix harness/memory-os.json, memory-os.schema.json, or source-index references before continuing memory/RAG work."
+            }
+        }
+    }
+    catch {
+        Add-Check "AWI Memory OS validator" "FAIL" $_.Exception.Message
+        Add-Finding "error" "CX-MEMORY-VALIDATOR" "AWI Memory OS validator output parse failed" $_.Exception.Message "Run python harness/validate_awi_memory.py --repo-root . --json and fix its output/errors."
     }
 }
 
