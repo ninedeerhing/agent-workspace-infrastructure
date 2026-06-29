@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-06-29T23:51:27+08:00",
+  "updated_at": "2026-06-30T00:15:01+08:00",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
   "active_entry_count": 67,
   "archived_round_count": 0,
@@ -1525,7 +1525,7 @@
   "dream_candidates": [],
   "closure_candidates": [],
   "last_lifecycle": {
-    "at": "2026-06-29T23:51:27+08:00",
+    "at": "2026-06-30T00:15:01+08:00",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
@@ -1533,9 +1533,7 @@
     "archived_rounds": [],
     "active_step_digests": 35,
     "completed_tasks_hint": [
-      "loop320 Auto-backtest queue write implementation boundary review complete. Added qa.quant_mining.auto_backtest_queue_write_implementation_boundary_review.build_auto_backtest_queue_write_implementation_boundary_review_v1 plus fail-closed helper checks and UI notes, wired auto_backtest_queue_write_implementation_boundary_review_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED missing module; focused tests 24 passed; adjacent chain 330 passed; consumer regression 78 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; refined forbidden marker scan clean; code-reviewer success; verifier success. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_WRITE_IMPLEMENTATION_BOUNDARY_REVIEW_LOOP321.",
-      "auto-backtest-queue-write-implementation-boundary-review-loop320",
-      "loop320-auto-backtest-queue-write-implementation-boundary-review"
+      "loop321 Auto-backtest no-execution real queue write plan preflight complete. Added qa.quant_mining.auto_backtest_no_execution_real_queue_write_plan_preflight.build_auto_backtest_no_execution_real_queue_write_plan_preflight_v1 plus fail-closed helper checks and UI notes, wired auto_backtest_no_execution_real_queue_write_plan_preflight_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED surface missing packet; focused tests 24 passed; adjacent auto-backtest chain 354 passed; consumer regression 123 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; refined active marker scan clean; code-reviewer success; verifier PASS. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_PLAN_PREFLIGHT_LOOP322：由 Planner 基于总规划、当前进度和 loop321 auto_backtest_no_execution_real_queue_write_plan_preflight_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 controlled real queue write planning / no-execution queue persistence authorization design 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。 auto-backtest-no-execution-real-queue-write-plan-preflight-loop321 loop321-auto-backtest-no-execution-real-queue-write-plan-preflight"
     ],
     "ttl_days": 180
   }

@@ -1,3 +1,22 @@
+
+## loop321 — 2026-06-30T00:15:01+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "loop321 assignment_matrix"
+  changes: []
+  verification:
+    - command: "assignment_matrix"
+      result: "routed test-engineer, executor, code-reviewer, verifier with permanent identities"
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "No duplicate same-role workers."
+  blockers: []
+  next: "permanent workers"
+
 ## loop320 auto-backtest queue write implementation boundary review
 
 report:

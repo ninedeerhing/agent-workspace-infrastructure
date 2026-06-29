@@ -1,15 +1,15 @@
 {
-  "recorded_at": "2026-06-29T23:13:50+08:00",
-  "last_tick": "loop319-auto-backtest-queue-write-readiness-review",
-  "pytest_passed": 306,
+  "recorded_at": "2026-06-30T00:15:01+08:00",
+  "last_tick": "loop321-auto-backtest-no-execution-real-queue-write-plan-preflight",
+  "pytest_passed": 354,
   "ruff": "pass",
   "evidence_paths": [
-    "focused pytest: tests/test_auto_backtest_queue_write_readiness_review_unit.py tests/test_auto_backtest_queue_write_readiness_review_surface_unit.py -q gave 26 passed",
-    "adjacent loop308-loop319 read-model chain gave 306 passed",
-    "consumer regression mining/factor-library/chat gave 78 passed",
-    "targeted Ruff gave All checks passed",
-    "git diff --check pass; forbidden active marker scan clean; verifier success"
+    "focused 24 passed",
+    "adjacent 354 passed",
+    "consumer 123 passed",
+    "Ruff pass",
+    "diff/marker/code-review/verifier pass"
   ],
-  "section5_ref": "5.650",
+  "section5_ref": "5.652",
   "source": "manual"
 }

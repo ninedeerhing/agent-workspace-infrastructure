@@ -1,21 +1,21 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-29T23:51:27+08:00",
+  "updated_at": "2026-06-30T00:15:01+08:00",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-29T23:51:27+08:00",
-    "last_tick": "loop320-auto-backtest-queue-write-implementation-boundary-review",
-    "pytest_passed": 330,
+    "recorded_at": "2026-06-30T00:15:01+08:00",
+    "last_tick": "loop321-auto-backtest-no-execution-real-queue-write-plan-preflight",
+    "pytest_passed": 354,
     "ruff": "pass",
     "evidence_paths": [
-      "focused pytest: implementation boundary unit/guard/surface gave 24 passed",
-      "adjacent loop308-loop320 read-model chain gave 330 passed",
-      "consumer regression mining/factor-library/chat gave 78 passed",
+      "focused pytest: no-execution real queue write plan preflight unit/guard/surface gave 24 passed",
+      "adjacent auto-backtest chain gave 354 passed",
+      "consumer regression mining/factor-library/chat gave 123 passed",
       "targeted Ruff gave All checks passed",
-      "git diff --check pass with CRLF warnings only; refined forbidden marker scan clean; code-reviewer and verifier success"
+      "git diff --check pass with CRLF warnings only; refined active marker scan clean; code-reviewer success; verifier PASS"
     ],
-    "section5_ref": "5.651",
+    "section5_ref": "5.652",
     "source": "manual"
   },
   "git_dirty": false,
@@ -23,7 +23,7 @@
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-29T23:51:27+08:00",
+    "at": "2026-06-30T00:15:01+08:00",
     "apply": true,
     "stale": false,
     "git_dirty": false,
