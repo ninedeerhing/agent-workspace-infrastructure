@@ -1,3 +1,8 @@
+## loop312 — 2026-06-29T18:51:10+08:00
+
+loop312 success: assignment_matrix routed executor write-owner plus read-only test-engineer/code-reviewer/verifier to permanent workers; model_tier recorded; workload cleared.
+
+---
 # loop311 report
 updated_at: 2026-06-29T18:02:19+08:00
 status: success

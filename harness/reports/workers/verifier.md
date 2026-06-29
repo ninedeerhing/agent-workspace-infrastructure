@@ -1,3 +1,8 @@
+## loop312 — 2026-06-29T18:51:10+08:00
+
+loop312 success: focused 37 passed, adjacent 127 passed, Ruff pass, diff check pass with CRLF warnings only, dangerous true/grant marker scan clean; packet remains review-only/no-execution.
+
+---
 # loop311 report
 updated_at: 2026-06-29T18:02:19+08:00
 status: success

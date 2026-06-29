@@ -1,3 +1,8 @@
+## loop312 — 2026-06-29T18:51:10+08:00
+
+loop312 success/partial: implemented builder and surfaces, verified initial GREEN; during P2 fix added RED Chat drift tests then STOP/waitingOnApproval, Orchestrator completed bounded fix. Lesson: on takeover, stop immediately and avoid waitingOnApproval stalls.
+
+---
 # loop311 report
 updated_at: 2026-06-29T18:08:40+08:00
 status: blocked

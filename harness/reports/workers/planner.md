@@ -1,3 +1,8 @@
+## loop312 — 2026-06-29T18:51:10+08:00
+
+loop312 success: selected auto_backtest_worker_handoff_readiness_v1 from loop311 queue-write authorization preflight; next_after points to worker handoff artifact review / DB-enqueue planning preflight / queue-write artifact review; workload cleared.
+
+---
 # loop311 report
 updated_at: 2026-06-29T18:02:19+08:00
 status: success

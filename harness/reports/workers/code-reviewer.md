@@ -1,3 +1,8 @@
+## loop312 — 2026-06-29T18:51:10+08:00
+
+loop312 success: found P2 narrow Chat normal-copy guard; P2 recheck passed after full no-execution/no-grant/no-runner/no-rollback/no-PL-H guard matrix; no remaining P1/P2/P3.
+
+---
 # loop311 report
 updated_at: 2026-06-29T18:02:19+08:00
 status: success

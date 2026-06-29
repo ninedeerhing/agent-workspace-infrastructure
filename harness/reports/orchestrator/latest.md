@@ -1,5 +1,53 @@
 # Orchestrator Latest Report
 
+updated_at: 2026-06-29T18:51:10+08:00
+loop: loop312-auto-backtest-worker-handoff-readiness
+status: success
+current_tree: TREE-6
+current_slice: auto-backtest-worker-handoff-readiness-loop312
+next_atomic_action: PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_AUTO_BACKTEST_WORKER_HANDOFF_READINESS_LOOP313：由 Planner 基于总规划、当前进度和 loop312 auto_backtest_worker_handoff_readiness_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 worker handoff readiness 之后的 worker handoff artifact review / safe DB-enqueue planning preflight / queue-write authorization artifact review 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+
+## Summary
+
+auto_backtest_worker_handoff_readiness_v1 is complete. It derives a review-only worker handoff readiness packet from loop311 auto_backtest_queue_write_authorization_preflight_v1, preserving candidate refs only when upstream queue-write authorization preflight is clean and all no-execution safety markers remain false/not_granted/not_connected/not_ready.
+
+## Changes
+
+- Added src/qa/quant_mining/auto_backtest_worker_handoff_readiness.py.
+- Wired auto_backtest_worker_handoff_readiness_v1 into src/qa/quant_mining/mining_runner.py, src/qa/ui/factor_library_insights.py, and src/qa/ui/chat_brain.py.
+- Added focused unit, surface, and Chat fail-closed guard tests for source drift, blockers, malformed refs, safety drift, and normal-copy drift.
+
+## Verification
+
+- RED: missing module failed before implementation.
+- RED addendum: Chat drift matrix failed 9 / passed 3 before fail-closed guard fix.
+- GREEN: focused 37 passed.
+- GREEN: adjacent queue-intake/review/dispatch/write-preflight/worker-handoff chain 127 passed.
+- GREEN: targeted Ruff pass.
+- GREEN: git diff --check pass with CRLF warnings only.
+- GREEN: dangerous true/grant marker scan clean.
+- Code Reviewer: P2 found, then P2 recheck success.
+- Verifier: success.
+
+## Worker Reports
+
+- Planner: success.
+- Dispatcher: success.
+- Test Engineer: partial test matrix.
+- Executor: success initial implementation; partial STOP during P2 waitingOnApproval; Orchestrator used bounded liveness takeover.
+- Code Reviewer: P2 + final success.
+- Verifier: success.
+
+## Safety
+
+Still forbidden: real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, and execution permission.
+
+## Next
+
+Proceed to loop313 Planner selection under continuous loop mode after clean-worktree gate.
+
+---# Orchestrator Latest Report
+
 updated_at: 2026-06-29T18:08:40+08:00
 loop: loop311-auto-backtest-queue-write-authorization-preflight
 status: success

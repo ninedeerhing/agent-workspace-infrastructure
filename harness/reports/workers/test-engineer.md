@@ -1,3 +1,8 @@
+## loop312 — 2026-06-29T18:51:10+08:00
+
+loop312 partial: provided bounded RED matrix for worker handoff readiness and Chat fail-closed surface; ACL/no approval limited direct command evidence; matrix incorporated by Executor/Orchestrator.
+
+---
 # loop311 report
 updated_at: 2026-06-29T18:02:19+08:00
 status: partial

@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-29T18:02:19+08:00
+Updated: 2026-06-29T18:55:27+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,16 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop311 | active | gpt-5.5 | 2026-06-29T18:00:27+08:00 | loop311 complete; truth-source sync/commit in progress; loop312 Planner selection next under continuous mode | workload light; liveness takeover used only for executor/test-engineer ACL channel gaps; code-reviewer/verifier success recorded |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop311 | idle | gpt-5.4 | 2026-06-29T18:00:27+08:00 | selected auto_backtest_queue_write_authorization_preflight_v1 and next_after worker handoff readiness / queue-write authorization artifact review / safe DB-enqueue planning preflight | workload cleared; Planner owns loop_plan only |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop311 | idle | gpt-5.4 | 2026-06-29T18:00:27+08:00 | assignment_matrix routed executor write-owner plus read-only test/review/verify to permanent workers | workload cleared; Dispatcher owns assignment_matrix only |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop311 | blocked | gpt-5.5 | 2026-06-29T18:00:27+08:00 | implementation channel blocked by Windows sandbox ACL/no approval; Orchestrator liveness takeover completed bounded implementation/verification | mark channel_stale before future write-owner dispatch; no duplicate executor created |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop311 | partial | gpt-5.5 | 2026-06-29T18:00:27+08:00 | read-only test design partial; ACL/no approval prevented file inspection/tests but RED matrix was incorporated | workload cleared; continue permanent identity, require reachability before trusted command evidence |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop311 | idle | gpt-5.5 | 2026-06-29T18:00:27+08:00 | final code risk review success: no P1/P2/P3; no real queue/DB enqueue/runner/adapter/execution path found | workload cleared; completion evidence accepted |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop311 | idle | gpt-5.5 | 2026-06-29T18:00:27+08:00 | final verification success: focused 28, adjacent 160, mining 20, Ruff, diff check, semantic forbidden-marker scan pass | workload cleared; confirms preflight remains review-only/no-queue-write/no-execution |
+| orchestrator | current-thread | loop312 | active | gpt-5.5 | 2026-06-29T18:55:27+08:00 | loop312 complete; truth-source sync/commit in progress; loop313 Planner selection next under continuous mode | workload light; bounded liveness takeover used only for Executor P2 waitingOnApproval after RED; no duplicate worker created |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop312 | idle | gpt-5.4 | 2026-06-29T18:55:27+08:00 | selected auto_backtest_worker_handoff_readiness_v1 and next_after worker handoff artifact review / DB-enqueue planning preflight / queue-write artifact review | workload cleared; Planner owns loop_plan only |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop312 | idle | gpt-5.4 | 2026-06-29T18:55:27+08:00 | assignment_matrix routed executor write-owner plus read-only test/review/verify to permanent workers | workload cleared; Dispatcher owns assignment_matrix only |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop312 | idle | gpt-5.5 | 2026-06-29T18:55:27+08:00 | initial implementation success; P2 RED added then STOP/waitingOnApproval, Orchestrator completed bounded fix | workload cleared; lesson added: stop immediately on orchestrator takeover / avoid waitingOnApproval stalls |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop312 | idle | gpt-5.5 | 2026-06-29T18:55:27+08:00 | read-only test design partial; RED matrix incorporated | workload cleared; continue permanent identity |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop312 | idle | gpt-5.5 | 2026-06-29T18:55:27+08:00 | P2 found and final recheck success: Chat normal copy now requires full no-execution/no-grant guard matrix | workload cleared; lesson recorded |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop312 | idle | gpt-5.5 | 2026-06-29T18:55:27+08:00 | final verification success: focused 37, adjacent 127, Ruff, diff check, dangerous marker scan pass | workload cleared; confirms readiness remains review-only/no-execution |
 ## Latest Roster Notes
+
+- **loop312**：完成 `auto_backtest_worker_handoff_readiness_v1`；Planner/Dispatcher 成功，Test Engineer partial，Executor 初始实现 success 后在 P2 修复阶段 waitingOnApproval/STOP partial，Orchestrator 使用 bounded liveness takeover 修复 Chat guard；Code Reviewer P2 + final recheck success；Verifier final success。验证：focused 37 passed；adjacent queue-intake/review/dispatch/write-preflight/worker-handoff chain 127 passed；Ruff pass；diff check pass；dangerous marker scan clean。未创建同职责重复 worker。Next dispatch is loop313 after Planner selects the next core function from `auto_backtest_worker_handoff_readiness_v1`.
 
 - **loop311**：完成 auto_backtest_queue_write_authorization_preflight_v1；Planner/Dispatcher 成功，Test Engineer partial 与 Executor blocked 均由 Windows sandbox ACL/no approval 造成，Orchestrator 使用 bounded liveness takeover；Code Reviewer final success；Verifier final success。验证：focused 28 passed；adjacent queue-intake/review/dispatch/write-preflight chain 160 passed；mining adjacent 20 passed；Ruff pass；diff check pass；semantic forbidden-marker scan pass。未创建同职责重复 worker。Next dispatch is loop312 after Planner selects the next core function from auto_backtest_queue_write_authorization_preflight_v1.
 

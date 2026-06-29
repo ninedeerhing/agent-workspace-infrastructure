@@ -1,7 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-29T18:02:19+08:00
+updated_at: 2026-06-29T18:55:27+08:00
 
+## Latest Handoff — SYNC-319 loop312
+
+- [DONE] auto_backtest_worker_handoff_readiness_v1 is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: src/qa/quant_mining/auto_backtest_worker_handoff_readiness.py, src/qa/quant_mining/mining_runner.py, src/qa/ui/factor_library_insights.py, src/qa/ui/chat_brain.py, tests/test_auto_backtest_worker_handoff_readiness_unit.py, tests/test_auto_backtest_worker_handoff_readiness_surface_unit.py, tests/test_auto_backtest_worker_handoff_readiness_chat_guard_unit.py, plus truth sources in docs/PROJECT_STATUS.md, docs/CONTINUATION_PROMPT.md, and docs/TASK_TREES.md.
+- [VERIFY] TDD RED missing module; RED Chat drift matrix 9 failed / 3 passed before guard fix; GREEN focused 37 passed; adjacent chain 127 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; dangerous true/grant marker scan clean; code-reviewer P2 recheck success; verifier success.
+- [BLOCKED] No product blocker. Executor P2 fix channel hit waitingOnApproval after RED, so Orchestrator used bounded liveness takeover; record as worker lesson, not duplicate-worker creation.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_AUTO_BACKTEST_WORKER_HANDOFF_READINESS_LOOP313：由 Planner 基于总规划、当前进度和 loop312 auto_backtest_worker_handoff_readiness_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 worker handoff readiness 之后的 worker handoff artifact review / safe DB-enqueue planning preflight / queue-write authorization artifact review 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+- [ROSTER] Planner/Dispatcher success; Test Engineer partial; Executor success then P2 partial/STOP; Code Reviewer P2+final success; Verifier success. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not repeat loop312 as a real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 ## Latest Handoff — SYNC-318 loop311
 
 - [DONE] auto_backtest_queue_write_authorization_preflight_v1 is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
