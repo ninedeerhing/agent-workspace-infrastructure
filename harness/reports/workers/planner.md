@@ -3,6 +3,23 @@
 report:
   role_id: "planner"
   status: "success"
+  task: "loop324 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected auto_backtest_queue_persistence_authorization_preflight_v1 after loop323 queue persistence authorization design. User stop gate applies after closeout."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Selected a functional auto-backtest chain step, not governance-only cleanup."
+  blockers: []
+  next: "STOP_AFTER_LOOP324_USER_REST"
+# Worker Report — planner
+
+report:
+  role_id: "planner"
+  status: "success"
   task: "loop323 core-function selection"
   changes: []
   verification:

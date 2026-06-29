@@ -2,6 +2,24 @@
 
 report:
   role_id: "verifier"
+  status: "partial"
+  task: "loop324 queue persistence authorization preflight verification"
+  changes: []
+  verification:
+    - command: "canonical thread status"
+      result: "Verifier did not return before closeout; not counted as worker completion evidence. Orchestrator used fresh local pytest/Ruff/diff/scan evidence."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "If verifier report is unavailable before a user stop gate, record the gap and rely only on fresh local command evidence."
+    performance_note: "No false verifier PASS claimed for loop324."
+  blockers: []
+  next: "STOP_AFTER_LOOP324_USER_REST"
+# Worker Report — verifier
+
+report:
+  role_id: "verifier"
   status: "success"
   task: "loop323 queue persistence authorization design verification"
   changes: []

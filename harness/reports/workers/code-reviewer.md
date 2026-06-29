@@ -2,6 +2,25 @@
 
 report:
   role_id: "code-reviewer"
+  status: "blocked"
+  task: "loop324 queue persistence authorization preflight code review"
+  changes: []
+  verification:
+    - command: "canonical thread status"
+      result: "WaitingOnApproval; not counted as loop324 completion evidence. Local tests and forbidden-marker scans provided final evidence."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Do not create duplicate reviewer when canonical channel is waitingOnApproval."
+    performance_note: "Channel evidence gap recorded; no reviewer success claimed."
+  blockers:
+    - "Canonical code-reviewer channel waitingOnApproval."
+  next: "STOP_AFTER_LOOP324_USER_REST"
+# Worker Report — code-reviewer
+
+report:
+  role_id: "code-reviewer"
   status: "success"
   task: "loop323 queue persistence authorization design code review"
   changes: []

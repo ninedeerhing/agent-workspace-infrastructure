@@ -1,7 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T01:18:00+08:00
+updated_at: 2026-06-30T02:15:00+08:00
 
+## Latest Handoff — SYNC-331 loop324
+
+- [DONE] `auto_backtest_queue_persistence_authorization_preflight_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/auto_backtest_queue_persistence_authorization_preflight.py`, `src/qa/quant_mining/auto_backtest_queue_persistence_authorization_preflight_checks.py`, `src/qa/ui/auto_backtest_queue_persistence_authorization_preflight_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_auto_backtest_queue_persistence_authorization_preflight_unit.py`, `tests/test_auto_backtest_queue_persistence_authorization_preflight_guard_unit.py`, `tests/test_auto_backtest_queue_persistence_authorization_preflight_surface_unit.py`, `tests/test_auto_backtest_queue_persistence_authorization_preflight_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; GREEN focused 24 passed; adjacent queue chain 72 passed; consumer regression 70 passed; auto_backtest chain 444 passed; targeted Ruff pass; git diff --check pass with LF->CRLF warnings only; source forbidden marker scan clean.
+- [BLOCKED] No product blocker. Executor canonical thread waitingOnApproval; Code Reviewer waitingOnApproval and not completion evidence; Verifier did not return before closeout. Orchestrator used bounded liveness takeover and local command evidence.
+- [NEXT] STOP_AFTER_LOOP324_USER_REST：用户要求本轮 loop 收口后总结并停止；do not start loop325 until user resumes.
+- [ROSTER] Planner success; Dispatcher success; Test Engineer success; Executor waitingOnApproval; Code Reviewer waitingOnApproval/not evidence; Verifier not returned before closeout. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop324 as real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 ## Latest Handoff — SYNC-330 loop323
 
 - [DONE] `auto_backtest_queue_persistence_authorization_design_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
