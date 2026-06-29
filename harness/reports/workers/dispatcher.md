@@ -1,5 +1,18 @@
 # Worker Report — dispatcher
 
+updated_at: 2026-06-29T21:55:59+08:00
+loop: loop317
+task: assignment matrix for auto_backtest_real_queue_write_implementation_boundary_v1
+status: success
+model_tier: gpt-5.4
+summary: routed bounded implementation/testing/review/verification to permanent workers with Executor as write owner and read-only Test Engineer/Code Reviewer/Verifier.
+verification: assignment consumed; duplicate same-role worker creation avoided despite stale reviewer channel.
+next: loop318 dispatch after Planner plan.
+
+---
+
+# Worker Report — dispatcher
+
 updated_at: 2026-06-29T20:41:00+08:00
 loop: loop315
 task: route auto_backtest_db_enqueue_authorization_artifact_review_v1 implementation

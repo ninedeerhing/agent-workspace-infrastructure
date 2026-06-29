@@ -1,5 +1,18 @@
 # Worker Report — planner
 
+updated_at: 2026-06-29T21:55:59+08:00
+loop: loop317
+task: loop plan for auto_backtest_real_queue_write_implementation_boundary_v1
+status: success
+model_tier: gpt-5.4
+summary: selected real queue write implementation boundary as the next core function after loop316 queue write execution authorization review.
+verification: plan consumed by dispatcher and implementation completed.
+next: loop318 Planner selects the next core function after auto_backtest_real_queue_write_implementation_boundary_v1.
+
+---
+
+# Worker Report — planner
+
 updated_at: 2026-06-29T20:41:00+08:00
 loop: loop315
 task: select next core function after safe DB enqueue planning preflight

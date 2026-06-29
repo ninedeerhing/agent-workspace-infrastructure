@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-29T13:26:58Z",
-  "last_tick": "loop316-auto-backtest-queue-write-execution-authorization-review",
-  "pytest_passed": 227,
+  "recorded_at": "2026-06-29T14:00:04Z",
+  "last_tick": "loop317-auto-backtest-real-queue-write-implementation-boundary",
+  "pytest_passed": 254,
   "ruff": "ok",
   "evidence_paths": [
-    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.647"
+    "apps/quant_assistant/docs/PROJECT_STATUS.md#5.648"
   ],
-  "section5_ref": "5.647",
+  "section5_ref": "5.648",
   "source": "manual"
 }
