@@ -1,3 +1,51 @@
+# Orchestrator Report - loop305-manual-handoff-acceptance-packet
+
+**Updated**: 2026-06-29T14:21:31+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G manual handoff acceptance packet.
+- **trigger**: loop304 produced a review-only operator/reviewer handoff review packet; the product chain needed a shared manual handoff acceptance packet before the next core handoff/readiness step.
+- **result**: manual_handoff_acceptance_packet_v1 is now derived from operator_reviewer_handoff_review_packet_v1 in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists manual handoff acceptance status, pending items, blockers, acceptance refs, source refs, no-execution safety, and manual next actions. Missing/wrong/blocked source, source/provenance/safety drift, missing clean-source refs, runner/rollback/PL-H/grant/manual-acceptance drift, and execution-bearing markers fail closed. No authorization grant, manual acceptance grant, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **next**: PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_MANUAL_HANDOFF_ACCEPTANCE_PACKET_LOOP306; Planner must select the next core function in the auto mining -> auto backtest chain, then Dispatcher routes implementation/testing/review/verification to permanent workers.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| pps/quant_assistant/src/qa/quant_mining/manual_handoff_acceptance_packet.py | Adds the pure fail-closed review-only manual handoff acceptance packet builder. |
+| pps/quant_assistant/src/qa/quant_mining/mining_runner.py | Adds manual_handoff_acceptance_packet_v1 to MiningJob observability. |
+| pps/quant_assistant/src/qa/ui/factor_library_insights.py / chat_brain.py | Carries manual handoff acceptance into Factor Library rows and Chat notes. |
+| pps/quant_assistant/tests/test_manual_handoff_acceptance_packet_*.py | Proves derivation, P2 missing-ref blocker, drift blockers, no-execution markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing qa.quant_mining.manual_handoff_acceptance_packet, missing surface wiring, and P2 clean-source-empty-refs failed as expected |
+| focused tests | pass · **19 passed in 0.68s** |
+| related regression | pass · loop304-loop305 **35 passed in 0.74s** |
+| consumer regression | pass · **105 passed in 0.91s** |
+| Chat / Factor Library targeted | pass · Chat **56 passed**, Factor Library **14 passed** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass · CRLF warnings only |
+| semantic marker scan | pass · only fail-closed drift blocker and negative assertions matched |
+| code-reviewer | success · P2 missing-ref gap closed; no remaining P2+ findings |
+| verifier | success · manual handoff acceptance remains passive, no-grant, no-rollback-ready, and no-execution |
+
+## Worker Notes
+
+Permanent planner selected loop305 as a core function. Permanent dispatcher produced the loop305 assignment matrix. Permanent 	est-engineer designed the read-only TDD matrix. Permanent xecutor started RED test work but was stopped after a cross-dialogue approval stall; Orchestrator performed a liveness takeover for implementation and verification without creating a duplicate same-role worker. Permanent code-reviewer found the P2 missing-ref gap and then cleared it. Permanent erifier independently confirmed the packet remains passive, no-grant, no-rollback-ready, and no-execution.
+
+## Safety
+
+No .env, .env.local, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, rollback-ready action, PL-H batch, background process, migration, or backfill was started. The manual handoff acceptance packet is not auto-publish, auto-backtest, authorization grant, manual acceptance grant, controlled dry-run permission, execution permission, rollback ready, or runner/adapter authority.
+
+## Residual Risk
+
+Planner still needs to select loop306's next core function after the manual handoff acceptance packet. User resumed continuous mode, so no per-loop pause remains unless a stop-whitelist condition is hit.
+
+---
 # Orchestrator Report - loop304-operator-reviewer-handoff-review-packet
 
 **Updated**: 2026-06-28T23:05:20+08:00
