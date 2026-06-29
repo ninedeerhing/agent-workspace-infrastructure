@@ -1413,3 +1413,23 @@ report:
   next: "Loop251 should remain review-only and require the same no-execution semantic guard."
 
 ---
+
+## loop316 Report — 2026-06-29T21:18:14+08:00
+
+report:
+  role_id: "code-reviewer"
+  status: "blocked"
+  task: "Read-only code review for auto_backtest_queue_write_execution_authorization_review_v1."
+  changes: []
+  verification:
+    - command: "Canonical thread status"
+      result: "stale on loop313/waitingOnApproval; not counted as loop316 completion evidence"
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Stale canonical review channel must be recorded as channel_stale, not replaced by a duplicate same-role worker."
+    performance_note: "No usable loop316 review report returned; verifier covered final semantic proof."
+  blockers:
+    - "Canonical code-reviewer channel stale/waitingOnApproval."
+  next: "Repair/recheck reviewer reachability before relying on it for critical loop317 review."

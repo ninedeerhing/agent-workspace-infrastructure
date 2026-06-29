@@ -320,3 +320,21 @@ next:
   - "Require Planner to emit loop297 loop_plan first."
   - "After loop_plan arrives, Dispatcher may produce assignment_matrix only, without changing goals or creating workers."
 ```
+
+## loop316 Report — 2026-06-29T21:18:14+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "Create assignment matrix for auto_backtest_queue_write_execution_authorization_review_v1."
+  changes: []
+  verification:
+    - command: "Dispatcher assignment_matrix reviewed by orchestrator"
+      result: "executor write-owner; test-engineer/code-reviewer/verifier read-only; permanent worker identities preserved"
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "No duplicate same-role worker created; bounded takeover recorded after executor channel block."
+  blockers: []
+  next: "Dispatcher loop317 after Planner produces loop_plan."

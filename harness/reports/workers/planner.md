@@ -301,3 +301,21 @@ report:
 - **更新时间**：2026-06-19T05:00:59Z
 
 > 被委派切片时更新本节；同步 TASK_TREES + §5 + CONTINUATION + METHODOLOGY + WORKFLOWS + loop-state + 本报告。
+
+## loop316 Report — 2026-06-29T21:18:14+08:00
+
+report:
+  role_id: "planner"
+  status: "success"
+  task: "Select loop316 core function after auto_backtest_db_enqueue_authorization_artifact_review_v1."
+  changes: []
+  verification:
+    - command: "Planner loop_plan reviewed by orchestrator"
+      result: "selected auto_backtest_queue_write_execution_authorization_review_v1; next_after real queue write implementation boundary / no-execution queue write readiness"
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Core-function selection stayed on automatic mining -> automatic backtest path and avoided governance/UI-only loop."
+  blockers: []
+  next: "Planner loop317 after auto_backtest_queue_write_execution_authorization_review_v1."
