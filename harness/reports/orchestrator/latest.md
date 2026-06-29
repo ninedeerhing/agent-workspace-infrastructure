@@ -1,4 +1,49 @@
-# Orchestrator Report - loop307-human-acceptance-decision-packet
+# Orchestrator Report - loop308-auto-backtest-queue-intake-readiness
+
+**Updated**: 2026-06-29T16:09:41+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G auto-backtest queue intake readiness.
+- **trigger**: loop307 produced a review-only human acceptance decision packet; the product chain needed a shared queue-intake readiness packet before any later queue review/preparation/dispatch planning step.
+- **result**: uto_backtest_queue_intake_readiness_v1 is now derived from human_acceptance_decision_packet_v1 in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists queue intake status, required actions, blockers, candidate refs, review readiness, no-execution safety, and manual next actions. Missing/wrong/blocked source, source actions/blockers, missing clean refs, source/provenance/safety drift, runner/rollback/PL-H/grant/acceptance drift, malformed refs, and execution-bearing markers fail closed. No real queue write, DB enqueue, authorization grant, manual/human acceptance grant, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **next**: PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_AUTO_BACKTEST_QUEUE_INTAKE_READINESS_LOOP309：由 Planner 基于总规划、当前进度和 loop308 auto_backtest_queue_intake_readiness_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进自动回测队列入口复核后的 read-only queue review / preparation / dispatch planning readiness 或下一段 auto-backtest flow readiness；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| pps/quant_assistant/src/qa/quant_mining/auto_backtest_queue_intake_readiness.py | Adds the pure fail-closed review-only auto-backtest queue-intake readiness builder. |
+| pps/quant_assistant/src/qa/quant_mining/mining_runner.py | Adds uto_backtest_queue_intake_readiness_v1 to MiningJob observability. |
+| pps/quant_assistant/src/qa/ui/factor_library_insights.py / chat_brain.py | Carries queue-intake readiness into Factor Library rows and Chat notes. |
+| pps/quant_assistant/tests/test_auto_backtest_queue_intake_readiness_*.py | Proves derivation, missing refs blocker, drift blockers, no-execution/no-queue-write markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing qa.quant_mining.auto_backtest_queue_intake_readiness failed before implementation |
+| focused tests | pass · **16 passed in 0.72s** |
+| adjacent regression | pass · loop307-loop308 **35 passed in 0.77s** |
+| consumer regression | pass · **70 passed in 0.70s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass |
+| production forbidden marker scan | pass · zero positive enablement hits for queue write, execution grants, runner, DB-backed backtest, or PL-H |
+| verifier | success · focused 16, adjacent 35, consumer 70, Ruff, diff, and semantic no-real-queue/no-execution review pass |
+
+## Worker Notes
+
+Planner and Dispatcher were kept in the permanent worker chain. Planner remained stale on approval/waitingOnApproval during loop308 and Dispatcher only produced a partial assignment; Test Engineer, Executor, and Code Reviewer were not counted as completion evidence. Orchestrator performed a bounded liveness takeover for implementation, local code review, and verification without creating duplicate same-role workers. Permanent verifier independently confirmed the packet remains passive, no-queue-write, no-grant, no-rollback-ready, and no-execution.
+
+## Safety
+
+No .env, .env.local, token, DSN value, or secret was read or printed. No real queue write, DB enqueue, live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, rollback-ready action, PL-H batch, background process, migration, or backfill was started. The queue-intake readiness packet is not auto-publish, auto-backtest execution, authorization grant, manual acceptance grant, human acceptance grant, controlled dry-run permission, execution permission, rollback ready, or runner/adapter authority.
+
+## Residual Risk
+
+Planner still needs to select loop309's next core function after the queue-intake readiness packet. Test Engineer / Executor / Code Reviewer canonical threads must be checked or repaired before they are trusted for future write-owner/review-critical completion evidence; until then Orchestrator may use bounded liveness takeover plus independent verifier evidence.
+
+---# Orchestrator Report - loop307-human-acceptance-decision-packet
 
 **Updated**: 2026-06-29T15:20:43+08:00
 
