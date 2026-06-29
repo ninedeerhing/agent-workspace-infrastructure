@@ -1,3 +1,8 @@
+## loop313 — 2026-06-29T19:32:30+08:00
+
+loop313 blocked/channel-limited: read-only code review request remained waitingOnApproval; not counted as completion evidence. Local verification plus permanent Verifier success used for closure; no duplicate code-reviewer created.
+
+---
 ## loop312 — 2026-06-29T18:51:10+08:00
 
 loop312 success: found P2 narrow Chat normal-copy guard; P2 recheck passed after full no-execution/no-grant/no-runner/no-rollback/no-PL-H guard matrix; no remaining P1/P2/P3.

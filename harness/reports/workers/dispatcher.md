@@ -1,3 +1,8 @@
+## loop313 — 2026-06-29T19:33:17+08:00
+
+loop313 success: assignment_matrix used permanent worker identities; executor write-owner, test-engineer/code-reviewer/verifier read-only; no duplicate same-role workers created; model_tier recorded as gpt-5.5 for critical execution-gate boundary workers.
+
+---
 ## loop312 — 2026-06-29T18:51:10+08:00
 
 loop312 success: assignment_matrix routed executor write-owner plus read-only test-engineer/code-reviewer/verifier to permanent workers; model_tier recorded; workload cleared.

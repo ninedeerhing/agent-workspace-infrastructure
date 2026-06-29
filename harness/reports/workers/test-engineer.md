@@ -1,3 +1,8 @@
+## loop313 — 2026-06-29T19:32:30+08:00
+
+loop313 partial: provided/confirmed bounded test matrix for worker handoff artifact review; Windows ACL/no approval limited direct command evidence; matrix incorporated by Orchestrator.
+
+---
 ## loop312 — 2026-06-29T18:51:10+08:00
 
 loop312 partial: provided bounded RED matrix for worker handoff readiness and Chat fail-closed surface; ACL/no approval limited direct command evidence; matrix incorporated by Executor/Orchestrator.

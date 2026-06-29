@@ -1,3 +1,8 @@
+## loop313 — 2026-06-29T19:32:30+08:00
+
+loop313 blocked/channel-limited: canonical executor channel hit Windows ACL/no approval; Orchestrator performed bounded liveness takeover for implementation without creating a duplicate executor.
+
+---
 ## loop312 — 2026-06-29T18:51:10+08:00
 
 loop312 success/partial: implemented builder and surfaces, verified initial GREEN; during P2 fix added RED Chat drift tests then STOP/waitingOnApproval, Orchestrator completed bounded fix. Lesson: on takeover, stop immediately and avoid waitingOnApproval stalls.

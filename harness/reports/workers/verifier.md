@@ -1,3 +1,8 @@
+## loop313 — 2026-06-29T19:32:30+08:00
+
+loop313 success: focused 23 passed, adjacent loop308-loop313 chain accepted, consumer regression passed, Ruff pass, diff check pass with CRLF warning only, forbidden true/grant marker scan clean; packet remains review-only/no-execution/zero-write.
+
+---
 ## loop312 — 2026-06-29T18:51:10+08:00
 
 loop312 success: focused 37 passed, adjacent 127 passed, Ruff pass, diff check pass with CRLF warnings only, dangerous true/grant marker scan clean; packet remains review-only/no-execution.
