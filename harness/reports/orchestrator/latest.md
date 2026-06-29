@@ -1,4 +1,49 @@
-# Orchestrator Report - loop306-human-acceptance-review-packet
+# Orchestrator Report - loop307-human-acceptance-decision-packet
+
+**Updated**: 2026-06-29T15:20:43+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G human acceptance decision packet.
+- **trigger**: loop306 produced a review-only human acceptance review packet; the product chain needed a shared explicit human acceptance decision packet before the next acceptance artifact/readiness step.
+- **result**: `human_acceptance_decision_packet_v1` is now derived from `human_acceptance_review_packet_v1` in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists human acceptance decision status, required actions, blockers, decision refs, source review refs, no-execution safety, and manual next actions. Missing/wrong/blocked source, source actions/blockers, missing clean refs, source/provenance/safety drift, runner/rollback/PL-H/grant/manual-or-human-acceptance drift, and execution-bearing markers fail closed. No authorization grant, manual acceptance grant, human acceptance grant, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **next**: PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_HUMAN_ACCEPTANCE_DECISION_PACKET_LOOP308; Planner must select the next core function in the auto mining -> auto backtest chain, then Dispatcher routes implementation/testing/review/verification to permanent workers.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/human_acceptance_decision_packet.py` | Adds the pure fail-closed review-only human acceptance decision packet builder. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `human_acceptance_decision_packet_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries human acceptance decision into Factor Library rows and Chat notes. |
+| `apps/quant_assistant/tests/test_human_acceptance_decision_packet_*.py` | Proves derivation, missing clean refs blocker, drift blockers, no-execution markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · missing `qa.quant_mining.human_acceptance_decision_packet` failed before implementation |
+| focused tests | pass · **19 passed in 0.69s** |
+| adjacent regression | pass · loop304-loop307 **74 passed in 0.89s** |
+| consumer regression | pass · **70 passed in 0.68s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass |
+| production forbidden marker scan | pass · zero positive enablement hits for execution grants, runner, DB-backed backtest, or PL-H |
+| verifier | success · focused 19, adjacent 74, consumer 70, Ruff, diff, and semantic no-execution review pass |
+
+## Worker Notes
+
+Planner selected loop307 as a core function. Dispatcher produced the loop307 assignment matrix. Test Engineer, Executor, and Code Reviewer canonical threads remained stale on old approval/waitingOnApproval states and did not produce loop307 completion evidence. Orchestrator performed a liveness takeover for implementation, local code review, and verification without creating a duplicate same-role worker. Permanent verifier independently confirmed the packet remains passive, no-grant, no-rollback-ready, and no-execution. Roster now marks the stale workers as channel_stale/blocked before future critical dispatch.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, rollback-ready action, PL-H batch, background process, migration, or backfill was started. The human acceptance decision packet is not auto-publish, auto-backtest, authorization grant, manual acceptance grant, human acceptance grant, controlled dry-run permission, execution permission, rollback ready, or runner/adapter authority.
+
+## Residual Risk
+
+Planner still needs to select loop308's next core function after the human acceptance decision packet. Test Engineer / Executor / Code Reviewer canonical threads must be checked or repaired before they are trusted for future write-owner/review-critical completion evidence; until then Orchestrator may use bounded liveness takeover plus independent verifier evidence.
+
+---# Orchestrator Report - loop306-human-acceptance-review-packet
 
 **Updated**: 2026-06-29T14:48:36+08:00
 

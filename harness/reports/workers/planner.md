@@ -1,5 +1,21 @@
 # Worker 工作汇报 · planner
 
+更新时间：2026-06-29T15:20:43+08:00
+
+## Tick loop307-human-acceptance-decision-packet
+
+- **任务 ID**：loop307-human-acceptance-decision-packet-loop-plan
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019f0890-69e6-7270-a742-1178836608ef`
+- **模型策略**：gpt-5.4 planning；loop_plan only。
+- **状态**：success
+- **任务**：在 loop306 human_acceptance_review_packet_v1 之后选择下一条核心功能 loop。
+- **输出**：选择 `human_acceptance_decision_packet_v1`，从 review packet 生成 explicit review-only human acceptance decision packet；next_after 为 Planner loop308 core-function selection。
+- **边界**：不写代码、不选 worker、不做 assignment_matrix；仍禁止 runner/adapter、rollback ready、manual/human acceptance grant、authorization grant、actual dry-run、DB-backed real batch、PL-H、background/migration/backfill。
+- **roster_update**：workload cleared；lesson none。
+
+---# Worker 工作汇报 · planner
+
 更新时间：2026-06-28T23:05:20+08:00
 
 ## Tick loop305-selection-after-loop304

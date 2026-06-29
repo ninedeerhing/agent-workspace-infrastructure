@@ -1,4 +1,20 @@
-# Worker Report - dispatcher
+# Worker 工作汇报 · dispatcher
+
+更新时间：2026-06-29T15:20:43+08:00
+
+## Tick loop307-human-acceptance-decision-packet
+
+- **任务 ID**：loop307-human-acceptance-decision-packet-assignment-matrix
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019f0890-af82-7ad3-a19a-d319d9aa8bb5`
+- **模型策略**：gpt-5.4 dispatch；assignment_matrix only。
+- **状态**：success
+- **任务**：把 Planner loop_plan 转成 worker assignment matrix。
+- **输出**：executor 为 write_owner；test-engineer/code-reviewer/verifier 为 read-only；全部 critical no-execution/authorization boundary 使用 gpt-5.5。
+- **后续事实**：test-engineer/executor/code-reviewer canonical channels later proved stale on old approval/waitingOnApproval; verifier completed success and Orchestrator used liveness takeover. Future dispatch must perform channel_liveness check before assigning write_owner/review-critical work.
+- **roster_update**：workload cleared；lesson: assignment_matrix is necessary but not sufficient; actual worker channel liveness must be rechecked before counting completion evidence。
+
+---# Worker Report - dispatcher
 
 **Updated**: 2026-06-28T23:05:20+08:00
 

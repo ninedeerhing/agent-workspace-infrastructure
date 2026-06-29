@@ -1,5 +1,22 @@
 # Worker 工作汇报 · code-reviewer
 
+更新时间：2026-06-29T15:20:43+08:00
+
+## Tick loop307-human-acceptance-decision-packet
+
+- **任务 ID**：loop307-human-acceptance-decision-packet-code-review
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeed1-7e14-7342-9d45-d7948aec94d2`
+- **模型策略**：gpt-5.5 critical read-only；本轮涉及 human acceptance decision 的授权/执行边界。
+- **状态**：blocked/channel_stale；不是 completion evidence。
+- **任务**：原计划只读风险复核 `human_acceptance_decision_packet_v1`、MiningJob observability、Factor Library / Chat consumption 与相关测试。
+- **结果**：`read_thread` 显示 canonical thread 仍处于旧 loop306 approval/waitingOnApproval 悬挂；loop307 审查未实际完成。Orchestrator 本地 code-review + permanent verifier success 作为 liveness takeover 证据。
+- **变更**：worker 未修改文件。
+- **roster_update**：mark channel_stale before future dispatch；mistakes none；lesson: stale approval threads must not be counted as review completion and must not trigger duplicate same-role worker creation.
+- **残余风险**：未来 critical review 前需要恢复/清理该 thread 的 approval stall，或由用户批准 rebind canonical code-reviewer channel。
+
+---# Worker 工作汇报 · code-reviewer
+
 更新时间：2026-06-28T23:05:20+08:00
 
 ## Tick loop304-operator-reviewer-handoff-review-packet

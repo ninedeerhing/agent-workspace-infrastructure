@@ -1,4 +1,21 @@
-# Executor Worker Report
+# Worker 工作汇报 · executor
+
+更新时间：2026-06-29T15:20:43+08:00
+
+## Tick loop307-human-acceptance-decision-packet
+
+- **任务 ID**：loop307-human-acceptance-decision-packet-executor
+- **任务树**：TREE-6 / PL-G
+- **Permanent codex_thread_id**：`019eeece-c617-71c3-a80a-39a693ad3ac3`
+- **模型策略**：gpt-5.5 critical write-owner planned；本轮涉及 shared runner/read-model/consumer files。
+- **状态**：blocked/channel_stale；不是 completion evidence。
+- **任务**：原计划作为 write-owner 实现 `human_acceptance_decision_packet_v1`。
+- **结果**：canonical thread 仍处于旧任务 approval/waitingOnApproval stale 状态，loop307 未实际完成实现。Orchestrator liveness takeover 完成实现、验证和真源同步，不创建重复 executor。
+- **变更**：worker 未修改文件。
+- **roster_update**：mark channel_stale before future write-owner dispatch；mistakes none；lesson: write-owner approval stalls require explicit takeover accounting, not silent worker substitution.
+- **残余风险**：未来核心写入任务前需要恢复/清理 executor thread approval stall，或由用户批准 rebind canonical executor channel。
+
+---# Executor Worker Report
 
 **Updated**: 2026-06-28T23:05:20+08:00
 
