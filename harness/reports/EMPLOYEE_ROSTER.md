@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-30T00:15:01+08:00
+Updated: 2026-06-30T00:44:45+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop321 | active | gpt-5.5 | 2026-06-30T00:15:01+08:00 | loop321 complete; truth-source sync/commit in progress; loop322 Planner selection next under continuous mode | workload light; bounded liveness takeover used because executor channel hit ACL/no approval; no duplicate worker created |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop321 | idle | gpt-5.4 | 2026-06-30T00:15:01+08:00 | selected auto_backtest_no_execution_real_queue_write_plan_preflight_v1 after loop320 | workload cleared; Planner owns loop_plan only |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop321 | idle | gpt-5.4 | 2026-06-30T00:15:01+08:00 | assignment_matrix routed functional slice to permanent workers; no duplicate same-role worker | workload cleared; Dispatcher owns assignment_matrix only |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop321 | idle | gpt-5.5 | 2026-06-30T00:15:01+08:00 | channel blocked by Windows ACL/no approval; Orchestrator completed bounded implementation takeover | workload cleared; lesson reinforced: bounded takeover must be recorded and not spawn duplicate executor |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop321 | idle | gpt-5.5 | 2026-06-30T00:15:01+08:00 | read-only RED/test matrix partial due ACL; matrix incorporated | workload cleared; continue permanent identity |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop321 | idle | gpt-5.5 | 2026-06-30T00:15:01+08:00 | read-only review success/no findings | workload cleared; confirms no-execution real queue write plan preflight semantics |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop321 | idle | gpt-5.5 | 2026-06-30T00:15:01+08:00 | final verification PASS: focused 24, adjacent chain 354, consumer regression 123, Ruff, diff check, forbidden-marker scan pass | workload cleared; confirms planning signal is not execution/queue authorization |
+| orchestrator | current-thread | loop322 | active | gpt-5.5 | 2026-06-30T00:44:45+08:00 | loop322 complete; truth-source sync/commit in progress; loop323 Planner selection next under continuous mode | workload light; bounded liveness takeover used because executor channel hit ACL/no approval; no duplicate worker created |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop322 | idle | gpt-5.4 | 2026-06-30T00:44:45+08:00 | selected auto_backtest_controlled_real_queue_write_planning_v1 after loop321 | workload cleared; Planner owns loop_plan only |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop322 | idle | gpt-5.4 | 2026-06-30T00:44:45+08:00 | assignment_matrix routed functional slice to permanent workers; no duplicate same-role worker | workload cleared; Dispatcher owns assignment_matrix only |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop322 | idle | gpt-5.5 | 2026-06-30T00:44:45+08:00 | channel blocked by Windows ACL/no approval; Orchestrator completed bounded implementation takeover | workload cleared; lesson reinforced: bounded takeover must be recorded and not spawn duplicate executor |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop322 | idle | gpt-5.5 | 2026-06-30T00:44:45+08:00 | read-only RED/test matrix incorporated | workload cleared; continue permanent identity |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop322 | idle | gpt-5.5 | 2026-06-30T00:44:45+08:00 | read-only review success/no findings | workload cleared; confirms controlled real queue write planning remains no-execution planning material |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop322 | idle | gpt-5.5 | 2026-06-30T00:44:45+08:00 | final verification PASS: focused 24, adjacent chain 378, consumer regression 123, Ruff, diff check, semantic inspection pass | workload cleared; confirms planning signal is not execution/queue authorization |
 ## Latest Roster Notes
+- **loop322**：完成 `auto_backtest_controlled_real_queue_write_planning_v1`；Planner 路径已用，Dispatcher assignment_matrix 已用，Test Engineer matrix incorporated，Executor blocked 由 Windows ACL/no approval 造成，Orchestrator 使用 bounded liveness takeover；Code Reviewer success/no findings；Verifier PASS。验证：focused 24 passed；adjacent auto-backtest chain 378 passed；consumer regression 123 passed；Ruff pass；diff check pass（CRLF warnings only）；semantic inspection clean。未创建同职责重复 worker。Next dispatch is loop323 after Planner selects the next core function from `auto_backtest_controlled_real_queue_write_planning_v1`.
 - **loop321**：完成 `auto_backtest_no_execution_real_queue_write_plan_preflight_v1`；Planner 路径已用，Dispatcher assignment_matrix 已用，Test Engineer partial due ACL，Executor blocked 由 Windows ACL/no approval 造成，Orchestrator 使用 bounded liveness takeover；Code Reviewer success/no findings；Verifier PASS。验证：focused 24 passed；adjacent auto-backtest chain 354 passed；consumer regression 123 passed；Ruff pass；diff check pass（CRLF warnings only）；refined active marker scan clean。未创建同职责重复 worker。Next dispatch is loop322 after Planner selects the next core function from `auto_backtest_no_execution_real_queue_write_plan_preflight_v1`.
 - **loop320**：完成 `auto_backtest_queue_write_implementation_boundary_review_v1`；Planner 路径已用，Dispatcher assignment intent 已用，Test Engineer success，Executor blocked 由 Windows ACL/no approval 造成，Orchestrator 使用 bounded liveness takeover；Code Reviewer success/no findings；Verifier final success。验证：focused 24 passed；adjacent loop308-loop320 chain 330 passed；consumer regression 78 passed；Ruff pass；diff check pass（CRLF warnings only）；refined forbidden active marker scan clean。未创建同职责重复 worker。Next dispatch is loop321 after Planner selects the next core function from `auto_backtest_queue_write_implementation_boundary_review_v1`.
 - **loop318**：完成 `auto_backtest_no_execution_queue_write_readiness_v1`；Planner 路径已用，Dispatcher waitingOnApproval，Test Engineer success，Executor blocked 由 Windows ACL/no approval 造成，Orchestrator 使用 bounded liveness takeover；Code Reviewer canonical thread stale/waitingOnApproval，不作为 loop318 completion evidence；Verifier final success。验证：focused 26 passed；adjacent loop308-loop318 chain 280 passed；consumer regression 78 passed；Ruff pass；diff check pass；control-char scan clean；forbidden active marker scan clean。未创建同职责重复 worker。Next dispatch is loop319 after Planner selects the next core function from `auto_backtest_no_execution_queue_write_readiness_v1`.
@@ -100,7 +101,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | identity_id | display_name | responsibility | report_path | status | workload | intensity | performance | mistake_count | lesson_count | last_assigned_at | last_report_at | current_task | handoff_notes | risk_notes |
 |---|---|---|---|---|---|---|---|---|---:|---:|---|---|---|---|---|
-| orchestrator | current-thread | loop306 | active | gpt-5.5 | 2026-06-29T14:48:36+08:00 | loop306 complete; truth-source sync/commit in progress; loop307 Planner selection next under continuous mode | workload light; liveness takeover recorded for approval-stalled workers |
+| orchestrator | current-thread | loop322 | active | gpt-5.5 | 2026-06-30T00:44:45+08:00 | loop322 complete; truth-source sync/commit in progress; loop323 Planner selection next under continuous mode | workload light; bounded liveness takeover used because executor channel hit ACL/no approval; no duplicate worker created |
 
 ## Workers
 

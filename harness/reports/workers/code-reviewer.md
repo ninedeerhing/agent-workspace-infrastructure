@@ -1506,3 +1506,20 @@ report:
   blockers:
     - "Canonical code-reviewer channel stale/waitingOnApproval."
   next: "Repair/recheck reviewer reachability before relying on it for critical loop317 review."
+## 2026-06-30T00:44:45+08:00 · loop322 code review
+
+report:
+  role_id: "code-reviewer"
+  status: "success"
+  task: "loop322 code review controlled real queue write planning"
+  changes: []
+  verification:
+    - command: "read-only review"
+      result: "Inspected builder, checks helper, UI notes, MiningJob/Factor Library/Chat integration diff, and unit/guard/surface tests. No findings; packet remains read-only/no-execution planning material."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "No real queue write authorization, DB enqueue, worker handoff, runner/adapter, PL-H, rollback-ready, actual dry-run, or execution permission semantics introduced."
+  blockers: []
+  next: "verifier signoff or orchestrator finalization"

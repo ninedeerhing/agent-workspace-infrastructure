@@ -1,7 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T00:15:01+08:00
+updated_at: 2026-06-30T00:44:45+08:00
 
+## Latest Handoff — SYNC-329 loop322
+
+- [DONE] uto_backtest_controlled_real_queue_write_planning_v1 is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: src/qa/quant_mining/auto_backtest_controlled_real_queue_write_planning.py, src/qa/quant_mining/auto_backtest_controlled_real_queue_write_planning_checks.py, src/qa/ui/auto_backtest_controlled_real_queue_write_planning_notes.py, src/qa/quant_mining/mining_runner.py, src/qa/ui/factor_library_insights.py, src/qa/ui/chat_brain.py, 	ests/test_auto_backtest_controlled_real_queue_write_planning_unit.py, 	ests/test_auto_backtest_controlled_real_queue_write_planning_guard_unit.py, 	ests/test_auto_backtest_controlled_real_queue_write_planning_surface_unit.py, plus truth sources.
+- [VERIFY] RED missing module before implementation; GREEN focused 24 passed; adjacent auto-backtest chain 378 passed; consumer regression 123 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; Code Reviewer success/no findings; Verifier PASS.
+- [BLOCKED] No product blocker. Executor channel hit Windows ACL/no approval; Orchestrator used bounded liveness takeover and did not create duplicate same-role workers.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_CONTROLLED_REAL_QUEUE_WRITE_PLANNING_LOOP323：由 Planner 基于总规划、当前进度和 loop322 auto_backtest_controlled_real_queue_write_planning_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 no-execution queue persistence authorization design / queue persistence authorization preflight 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+- [ROSTER] Planner selected function; Dispatcher assignment matrix success; Test Engineer matrix used; Executor blocked/ACL; Code Reviewer success/no findings; Verifier PASS. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop322 as real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 ## Latest Handoff — SYNC-328 loop321
 
 - [DONE] `auto_backtest_no_execution_real_queue_write_plan_preflight_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
