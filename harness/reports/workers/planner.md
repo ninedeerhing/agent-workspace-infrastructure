@@ -1,3 +1,21 @@
+## loop320 auto-backtest queue write implementation boundary review
+
+report:
+  role_id: planner
+  status: success
+  task: select next core function after loop319
+  changes: []
+  verification:
+    - command: loop plan review
+      result: selected auto_backtest_queue_write_implementation_boundary_review_v1
+  roster_update:
+    workload_delta: cleared
+    mistakes: []
+    lessons: []
+    performance_note: Selected a functional PL-G auto-backtest chain step, not governance-only work.
+  blockers: []
+  next: loop321 Planner selection after queue write implementation boundary review
+
 ## loop319 auto-backtest queue write readiness review
 
 report:

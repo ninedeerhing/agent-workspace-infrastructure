@@ -1,7 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-29T23:06:45+08:00
+updated_at: 2026-06-29T23:51:27+08:00
 
+## Latest Handoff — SYNC-327 loop320
+
+- [DONE] `auto_backtest_queue_write_implementation_boundary_review_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/auto_backtest_queue_write_implementation_boundary_review.py`, `src/qa/quant_mining/auto_backtest_queue_write_implementation_boundary_review_checks.py`, `src/qa/ui/auto_backtest_queue_write_boundary_review_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_auto_backtest_queue_write_implementation_boundary_review_unit.py`, `tests/test_auto_backtest_queue_write_implementation_boundary_review_guard_unit.py`, `tests/test_auto_backtest_queue_write_implementation_boundary_review_surface_unit.py`, plus truth sources.
+- [VERIFY] TDD RED missing module; GREEN focused 24 passed; adjacent loop308-loop320 chain 330 passed; consumer regression 78 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; refined forbidden active marker scan clean; Code Reviewer success; Verifier success.
+- [BLOCKED] No product blocker. Executor channel hit Windows ACL/no approval; Orchestrator used bounded liveness takeover and did not create duplicate same-role workers.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_WRITE_IMPLEMENTATION_BOUNDARY_REVIEW_LOOP321：由 Planner 基于总规划、当前进度和 loop320 auto_backtest_queue_write_implementation_boundary_review_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 no-execution real queue write plan preflight / controlled real queue write planning 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+- [ROSTER] Planner selected function; Dispatcher assignment intent used; Test Engineer success; Executor blocked/ACL; Code Reviewer success/no findings; Verifier success. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not repeat loop320 as a real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 ## Latest Handoff — SYNC-326 loop319
 
 - [DONE] `auto_backtest_queue_write_readiness_review_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.

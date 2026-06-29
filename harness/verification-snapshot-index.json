@@ -1,32 +1,32 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-29T23:13:50+08:00",
+  "updated_at": "2026-06-29T23:51:27+08:00",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-29T23:13:50+08:00",
-    "last_tick": "loop319-auto-backtest-queue-write-readiness-review",
-    "pytest_passed": 306,
+    "recorded_at": "2026-06-29T23:51:27+08:00",
+    "last_tick": "loop320-auto-backtest-queue-write-implementation-boundary-review",
+    "pytest_passed": 330,
     "ruff": "pass",
     "evidence_paths": [
-      "focused pytest: tests/test_auto_backtest_queue_write_readiness_review_unit.py tests/test_auto_backtest_queue_write_readiness_review_surface_unit.py -q gave 26 passed",
-      "adjacent loop308-loop319 read-model chain gave 306 passed",
+      "focused pytest: implementation boundary unit/guard/surface gave 24 passed",
+      "adjacent loop308-loop320 read-model chain gave 330 passed",
       "consumer regression mining/factor-library/chat gave 78 passed",
       "targeted Ruff gave All checks passed",
-      "git diff --check pass; forbidden active marker scan clean; verifier success"
+      "git diff --check pass with CRLF warnings only; refined forbidden marker scan clean; code-reviewer and verifier success"
     ],
-    "section5_ref": "5.650",
+    "section5_ref": "5.651",
     "source": "manual"
   },
-  "git_dirty": true,
+  "git_dirty": false,
   "age_hours": 0.0,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-29T23:13:50+08:00",
+    "at": "2026-06-29T23:51:27+08:00",
     "apply": true,
     "stale": false,
-    "git_dirty": true,
+    "git_dirty": false,
     "age_hours": 0.0
   }
 }

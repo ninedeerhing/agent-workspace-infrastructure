@@ -1,3 +1,21 @@
+## loop320 auto-backtest queue write implementation boundary review
+
+report:
+  role_id: test-engineer
+  status: success
+  task: read-only RED/test matrix for queue write implementation boundary review
+  changes: []
+  verification:
+    - command: test design matrix
+      result: covered missing/wrong source, blockers/actions, empty/malformed refs, F6/safe_sim/audit/human refs, queue/DB/worker/runner/rollback/grants/PL-H drift, and passive surface consistency
+  roster_update:
+    workload_delta: cleared
+    mistakes: []
+    lessons: []
+    performance_note: Matrix incorporated into focused tests.
+  blockers: []
+  next: Verifier recheck after implementation.
+
 ## loop319 auto-backtest queue write readiness review
 
 report:

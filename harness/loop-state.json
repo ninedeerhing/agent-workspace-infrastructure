@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-29T23:06:45+08:00",
+  "updated_at": "2026-06-29T23:51:27+08:00",
   "mode": "autonomous",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "auto-backtest-queue-write-readiness-review-loop319",
-  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_WRITE_READINESS_REVIEW_LOOP320：由 Planner 基于总规划、当前进度和 loop319 auto_backtest_queue_write_readiness_review_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 queue write readiness review 之后的 queue write implementation boundary review / controlled real queue write planning / no-execution real queue write plan preflight 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
-  "next_after": "After Planner loop320 core function is selected, Dispatcher should produce an assignment_matrix if its channel is repaired; otherwise record dispatcher channel_stale and route bounded implementation/testing/review/verification to permanent workers with Executor as sole write owner; closing governance only follows functional delivery.",
+  "current_slice": "auto-backtest-queue-write-implementation-boundary-review-loop320",
+  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_WRITE_IMPLEMENTATION_BOUNDARY_REVIEW_LOOP321：由 Planner 基于总规划、当前进度和 loop320 auto_backtest_queue_write_implementation_boundary_review_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 no-execution real queue write plan preflight / controlled real queue write planning 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
+  "next_after": "After Planner loop321 core function is selected, Dispatcher should produce an assignment_matrix if its channel is repaired; otherwise record dispatcher channel_stale and route bounded implementation/testing/review/verification to permanent workers with Executor as sole write owner; closing governance only follows functional delivery.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,18 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop319-auto-backtest-queue-write-readiness-review",
+  "last_tick": "loop320-auto-backtest-queue-write-implementation-boundary-review",
   "last_sync_sources": [
+    "SYNC-327 loop320 Auto-backtest queue write implementation boundary review",
+    "loop320 Planner selected auto_backtest_queue_write_implementation_boundary_review_v1; Dispatcher assigned functional slice; Test Engineer success with RED/test matrix; Executor blocked due Windows ACL/no approval; Orchestrator bounded liveness takeover completed implementation; Code Reviewer success/no findings; Verifier success",
+    "loop320 TDD RED: missing qa.quant_mining.auto_backtest_queue_write_implementation_boundary_review failed before implementation",
+    "loop320 GREEN: auto_backtest_queue_write_implementation_boundary_review_v1 derives review-only queue-write implementation boundary review from loop319 auto_backtest_queue_write_readiness_review_v1",
+    "loop320 verification: focused 24 passed; adjacent loop308-loop320 chain 330 passed; consumer regression 78 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; refined forbidden active marker scan clean; code-reviewer success; verifier success",
+    "loop320 LOC: new builder 220 pure LOC, checks 101, boundary notes 98, unit test 164, guard test 185, surface test 245 warning band; inherited mining_runner/factor_library_insights/chat_brain oversized files unchanged except narrow wiring",
+    "loop320 five lifecycles pass: methodology active_entries=67 active_step_digests=35; work_report record_count=28; verification section5_ref=5.651 pytest_passed=330 ruff=ok; closure open_count=0 closed_count=17 explicit_none_count=3; sync finding_count=0 latest_section5=651 top_section5_ref=651",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.651",
+    "methodology_ref: M-17-zero-write",
+    "next: PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_WRITE_IMPLEMENTATION_BOUNDARY_REVIEW_LOOP321：由 Planner 基于总规划、当前进度和 loop320 auto_backtest_queue_write_implementation_boundary_review_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 no-execution real queue write plan preflight / controlled real queue write planning 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
     "SYNC-326 loop319 Auto-backtest queue write readiness review",
     "loop319 Planner selected auto_backtest_queue_write_readiness_review_v1; Dispatcher stalled waitingOnApproval; Test Engineer success with RED/test matrix; Executor blocked due ACL/no approval; Code Reviewer canonical thread stale/waitingOnApproval and not completion evidence; Orchestrator bounded liveness takeover completed implementation; Verifier success",
     "loop319 TDD RED: missing qa.quant_mining.auto_backtest_queue_write_readiness_review failed before implementation",
@@ -120,7 +130,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop319 completed Auto-backtest queue write readiness review. auto_backtest_queue_write_readiness_review_v1 now derives review-only queue-write readiness review material from loop318 auto_backtest_no_execution_queue_write_readiness_v1, carrying source refs/status/actions/blockers/candidate refs and hard false/not_granted/not_connected/not_ready no-execution safety across MiningJob observability, Factor Library, and Chat. Continuous loop remains active; next is Planner-selected loop320 core function."
+    "note": "loop320 completed Auto-backtest queue write implementation boundary review. auto_backtest_queue_write_implementation_boundary_review_v1 now derives review-only queue-write implementation boundary review material from loop319 auto_backtest_queue_write_readiness_review_v1, carrying source refs/status/actions/blockers/candidate refs and hard false/not_granted/not_connected/not_ready no-execution safety across MiningJob observability, Factor Library, and Chat. Continuous loop remains active; next is Planner-selected loop321 core function."
   },
-  "last_completed_note": "loop319 Auto-backtest queue write readiness review complete. Added qa.quant_mining.auto_backtest_queue_write_readiness_review.build_auto_backtest_queue_write_readiness_review_v1 plus fail-closed helper checks and Chat queue review notes; wired auto_backtest_queue_write_readiness_review_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED missing module; focused 26 passed; adjacent loop308-loop319 chain 306 passed; consumer regression 78 passed; targeted Ruff pass; git diff --check pass; forbidden active marker scan clean; verifier success. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_WRITE_READINESS_REVIEW_LOOP320."
+  "last_completed_note": "loop320 Auto-backtest queue write implementation boundary review complete. Added qa.quant_mining.auto_backtest_queue_write_implementation_boundary_review.build_auto_backtest_queue_write_implementation_boundary_review_v1 plus fail-closed helper checks and shared UI notes; wired auto_backtest_queue_write_implementation_boundary_review_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED missing module; focused 24 passed; adjacent loop308-loop320 chain 330 passed; consumer regression 78 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; refined forbidden marker scan clean; code-reviewer success; verifier success. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_WRITE_IMPLEMENTATION_BOUNDARY_REVIEW_LOOP321."
 }
