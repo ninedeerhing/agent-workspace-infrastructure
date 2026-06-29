@@ -1,3 +1,7 @@
+## SYNC-325 loop318 — 2026-06-29T22:34:55+08:00
+
+Code Reviewer loop318 canonical thread remained stale/waitingOnApproval; not counted as completion evidence, no duplicate reviewer created.
+
 # Worker Report — code-reviewer
 
 updated_at: 2026-06-29T21:55:59+08:00

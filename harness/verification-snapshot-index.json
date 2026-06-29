@@ -1,32 +1,32 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-29T12:16:49Z",
+  "updated_at": "2026-06-29T22:38:05+08:00",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-29T12:13:00Z",
-    "last_tick": "loop314-auto-backtest-safe-db-enqueue-planning-preflight",
-    "pytest_passed": 23,
+    "recorded_at": "2026-06-29T22:38:05+08:00",
+    "last_tick": "loop318-auto-backtest-no-execution-queue-write-readiness",
+    "pytest_passed": 280,
     "ruff": "pass",
     "evidence_paths": [
-      "focused pytest: tests/test_auto_backtest_safe_db_enqueue_planning_preflight_unit.py tests/test_auto_backtest_safe_db_enqueue_planning_preflight_surface_unit.py -q -> 23 passed",
-      "adjacent loop308-loop314 read-model chain -> 164 passed",
-      "consumer regression mining/factor-library/chat -> 78 passed",
-      "targeted Ruff -> All checks passed",
-      "git diff --check pass; production dangerous true assignment scan clean; verifier success"
+      "focused pytest: tests/test_auto_backtest_no_execution_queue_write_readiness_unit.py tests/test_auto_backtest_no_execution_queue_write_readiness_surface_unit.py -q gave 26 passed",
+      "adjacent loop308-loop318 read-model chain gave 280 passed",
+      "consumer regression mining/factor-library/chat gave 78 passed",
+      "targeted Ruff gave All checks passed",
+      "git diff --check pass; control-char and forbidden active marker scans clean; verifier success"
     ],
-    "section5_ref": "5.645",
+    "section5_ref": "5.649",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.06381951888888888,
+  "age_hours": 0.0,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-29T12:16:49Z",
+    "at": "2026-06-29T22:38:05+08:00",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.06381951888888888
+    "age_hours": 0.0
   }
 }

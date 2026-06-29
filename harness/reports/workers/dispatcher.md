@@ -1,3 +1,7 @@
+## SYNC-325 loop318 — 2026-06-29T22:34:55+08:00
+
+Dispatcher loop318 channel stalled waitingOnApproval before usable assignment_matrix; identity preserved, no duplicate dispatcher created.
+
 # Worker Report — dispatcher
 
 updated_at: 2026-06-29T21:55:59+08:00

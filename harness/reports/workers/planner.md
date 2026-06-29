@@ -1,3 +1,7 @@
+## SYNC-325 loop318 — 2026-06-29T22:34:55+08:00
+
+Planner selected auto_backtest_no_execution_queue_write_readiness_v1 for loop318 and is cleared; next is loop319 core-function selection.
+
 # Worker Report — planner
 
 updated_at: 2026-06-29T21:55:59+08:00

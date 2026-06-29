@@ -1,3 +1,7 @@
+## SYNC-325 loop318 — 2026-06-29T22:34:55+08:00
+
+Verifier loop318 success: focused 26 passed, adjacent chain 280 passed, consumer regression 78 passed, Ruff/diff/control-char/forbidden-marker scans pass; no-execution readiness semantics confirmed.
+
 # Worker Report — verifier
 
 updated_at: 2026-06-29T21:55:59+08:00
