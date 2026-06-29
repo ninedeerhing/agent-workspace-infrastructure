@@ -1,3 +1,22 @@
+
+## loop314-auto-backtest-safe-db-enqueue-planning-preflight (2026-06-29T20:13:00+08:00)
+
+report:
+  role_id: code-reviewer
+  status: partial
+  task: loop314 read-only review
+  changes: []
+  verification:
+    - command: permanent thread review request
+      result: waitingOnApproval; not counted as completion evidence
+  roster_update:
+    workload_delta: cleared
+    mistakes: []
+    lessons: [waitingOnApproval must be recorded instead of creating duplicate reviewer]
+    performance_note: no usable report for loop314
+  blockers: [waitingOnApproval]
+  next: repair/reuse canonical reviewer channel before trusting review evidence
+
 ## loop313 — 2026-06-29T19:32:30+08:00
 
 loop313 blocked/channel-limited: read-only code review request remained waitingOnApproval; not counted as completion evidence. Local verification plus permanent Verifier success used for closure; no duplicate code-reviewer created.

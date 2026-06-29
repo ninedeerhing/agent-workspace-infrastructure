@@ -1,11 +1,15 @@
 {
-  "recorded_at": "2026-06-29T04:58:43Z",
-  "last_tick": "loop304-operator-reviewer-handoff-review-packet",
-  "pytest_passed": 4,
-  "ruff": "docs-only",
+  "recorded_at": "2026-06-29T12:13:00Z",
+  "last_tick": "loop314-auto-backtest-safe-db-enqueue-planning-preflight",
+  "pytest_passed": 23,
+  "ruff": "pass",
   "evidence_paths": [
-    "AWI P2 DAG validation: validate_awi_dags checks=7 findings=0; pytest harness/tests/test_awi_dag_validation.py 4 passed; CodeX self-check 97 checks / 0 findings"
+    "focused pytest: tests/test_auto_backtest_safe_db_enqueue_planning_preflight_unit.py tests/test_auto_backtest_safe_db_enqueue_planning_preflight_surface_unit.py -q -> 23 passed",
+    "adjacent loop308-loop314 read-model chain -> 164 passed",
+    "consumer regression mining/factor-library/chat -> 78 passed",
+    "targeted Ruff -> All checks passed",
+    "git diff --check pass; production dangerous true assignment scan clean; verifier success"
   ],
-  "section5_ref": "5.635",
+  "section5_ref": "5.645",
   "source": "manual"
 }

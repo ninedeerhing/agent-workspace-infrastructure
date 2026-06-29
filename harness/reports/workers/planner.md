@@ -1,3 +1,22 @@
+
+## loop314-auto-backtest-safe-db-enqueue-planning-preflight (2026-06-29T20:13:00+08:00)
+
+report:
+  role_id: planner
+  status: success
+  task: loop314 core-function selection
+  changes: []
+  verification:
+    - command: read truth-source hot path
+      result: selected auto_backtest_safe_db_enqueue_planning_preflight_v1 after loop313
+  roster_update:
+    workload_delta: cleared
+    mistakes: []
+    lessons: []
+    performance_note: selected core function, not governance-only work
+  blockers: []
+  next: dispatcher assignment_matrix
+
 ## loop313 — 2026-06-29T19:33:17+08:00
 
 loop313 success: selected auto_backtest_worker_handoff_artifact_review_v1 after loop312 worker handoff readiness; next_after points to safe DB-enqueue planning preflight / DB enqueue authorization artifact review / queue-write authorization artifact review under no-execution constraints.
