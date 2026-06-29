@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-29T12:41:29+08:00",
+  "updated_at": "2026-06-29T12:57:15+08:00",
   "purpose": "Cold-path source index for AWI v2. It lets the loop reference official docs, local truth sources, external research, and video transcripts by id instead of hot-loading full documents.",
   "hot_path_policy": {
     "default_load": [
@@ -30,7 +30,11 @@
       "uri": "https://openai.com/index/harness-engineering/",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["harness", "eval", "scaffolding"]
+      "tags": [
+        "harness",
+        "eval",
+        "scaffolding"
+      ]
     },
     {
       "id": "openai-codex-agent-loop",
@@ -40,7 +44,11 @@
       "uri": "https://openai.com/index/unrolling-the-codex-agent-loop/",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["codex", "loop", "trace"]
+      "tags": [
+        "codex",
+        "loop",
+        "trace"
+      ]
     },
     {
       "id": "anthropic-long-running-harnesses",
@@ -50,7 +58,11 @@
       "uri": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["long_running", "durable_state", "eval"]
+      "tags": [
+        "long_running",
+        "durable_state",
+        "eval"
+      ]
     },
     {
       "id": "anthropic-claude-code-skills",
@@ -60,7 +72,10 @@
       "uri": "https://docs.anthropic.com/en/docs/claude-code/skills",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["skills", "progressive_disclosure"]
+      "tags": [
+        "skills",
+        "progressive_disclosure"
+      ]
     },
     {
       "id": "anthropic-claude-code-memory",
@@ -70,7 +85,11 @@
       "uri": "https://docs.anthropic.com/en/docs/claude-code/memory",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["memory", "project_memory", "user_memory"]
+      "tags": [
+        "memory",
+        "project_memory",
+        "user_memory"
+      ]
     },
     {
       "id": "langgraph-overview",
@@ -80,7 +99,11 @@
       "uri": "https://docs.langchain.com/oss/python/langgraph/overview",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["graph", "state", "checkpointing"]
+      "tags": [
+        "graph",
+        "state",
+        "checkpointing"
+      ]
     },
     {
       "id": "langgraph-memory",
@@ -90,7 +113,11 @@
       "uri": "https://docs.langchain.com/oss/python/langgraph/memory",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["memory", "long_term", "short_term"]
+      "tags": [
+        "memory",
+        "long_term",
+        "short_term"
+      ]
     },
     {
       "id": "openai-file-search",
@@ -100,7 +127,11 @@
       "uri": "https://platform.openai.com/docs/guides/tools-file-search",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["retrieval", "file_search", "tools"]
+      "tags": [
+        "retrieval",
+        "file_search",
+        "tools"
+      ]
     },
     {
       "id": "awi-reference-architecture-2026-06-29",
@@ -110,7 +141,14 @@
       "path": "docs/ENGINEERING/2026-06-29-awi-reference-projects-and-long-cycle-architecture.md",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["reference_catalog", "skill_os", "worker_os", "memory_os", "token_budget", "eval"]
+      "tags": [
+        "reference_catalog",
+        "skill_os",
+        "worker_os",
+        "memory_os",
+        "token_budget",
+        "eval"
+      ]
     },
     {
       "id": "douyin-dag-design-transcript",
@@ -121,7 +159,11 @@
       "status": "transcribed",
       "transcript_chars": 2819,
       "hot_path": false,
-      "tags": ["runtime_task_dag", "topological_layers", "race_groups"]
+      "tags": [
+        "runtime_task_dag",
+        "topological_layers",
+        "race_groups"
+      ]
     },
     {
       "id": "douyin-memory-system-transcript",
@@ -132,7 +174,12 @@
       "status": "transcribed",
       "transcript_chars": 4447,
       "hot_path": false,
-      "tags": ["typed_memory", "dual_write", "graph_recall", "lifecycle"]
+      "tags": [
+        "typed_memory",
+        "dual_write",
+        "graph_recall",
+        "lifecycle"
+      ]
     },
     {
       "id": "douyin-harness-loop-eval-transcript",
@@ -143,7 +190,14 @@
       "status": "transcribed",
       "transcript_chars": 22807,
       "hot_path": false,
-      "tags": ["procedural_memory", "semantic_memory", "episodic_memory", "trace", "eval", "llmops"]
+      "tags": [
+        "procedural_memory",
+        "semantic_memory",
+        "episodic_memory",
+        "trace",
+        "eval",
+        "llmops"
+      ]
     },
     {
       "id": "quant-factor-factory-reference-2026-06-24",
@@ -153,7 +207,55 @@
       "path": "apps/quant_assistant/docs/ENGINEERING/2026-06-24-factor-candidate-factory-reference.md",
       "status": "indexed",
       "hot_path": false,
-      "tags": ["rd_agent", "alphagen", "autoalpha", "factor_factory"]
+      "tags": [
+        "rd_agent",
+        "alphagen",
+        "autoalpha",
+        "factor_factory"
+      ]
+    },
+    {
+      "id": "awi-capability-dag",
+      "title": "AWI Capability DAG",
+      "category": "dag_runtime",
+      "authority": "local_truth_source",
+      "path": "harness/capability-dag.json",
+      "status": "indexed",
+      "hot_path": true,
+      "tags": [
+        "capability_dag",
+        "phase_bundle",
+        "portfolio_planning"
+      ]
+    },
+    {
+      "id": "awi-runtime-task-dag-schema",
+      "title": "AWI Runtime Task DAG Schema",
+      "category": "dag_runtime",
+      "authority": "local_contract",
+      "path": "harness/runtime-task-dag.schema.json",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": [
+        "runtime_task_dag",
+        "worker_dispatch",
+        "dependency_validation"
+      ]
+    },
+    {
+      "id": "awi-dag-validator",
+      "title": "AWI DAG Validator",
+      "category": "dag_runtime",
+      "authority": "local_contract",
+      "path": "harness/validate_awi_dags.py",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": [
+        "validator",
+        "cycle_detection",
+        "race_group",
+        "phase_bundle"
+      ]
     }
   ],
   "required_categories": [
@@ -172,6 +274,9 @@
     "awi-reference-architecture-2026-06-29",
     "douyin-dag-design-transcript",
     "douyin-memory-system-transcript",
-    "douyin-harness-loop-eval-transcript"
+    "douyin-harness-loop-eval-transcript",
+    "awi-capability-dag",
+    "awi-runtime-task-dag-schema",
+    "awi-dag-validator"
   ]
 }

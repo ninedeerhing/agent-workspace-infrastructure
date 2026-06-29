@@ -1,0 +1,111 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-06-29T12:51:45+08:00",
+  "purpose": "Capability DAG for AWI v2. Select phase bundles from durable goals before generating per-loop runtime task DAGs.",
+  "north_star": {
+    "awi": "Support long-cycle large projects with portfolio-first planning, bounded worker dispatch, typed memory, skill routing, trace/eval, and extractable project adapters.",
+    "raindeer_product": "Deliver a consumer-satisfying Raindeer quant assistant centered on auto mining -> auto backtest full flow plus intent understanding state machine."
+  },
+  "selection_policy": {
+    "loop_must_select_phase_bundle": true,
+    "no_free_floating_micro_tasks": true,
+    "governance_only_allowed_when": ["user_requested_architecture", "audit_failure", "real_blocker", "safety_policy_update"],
+    "bundle_exit_requires": ["core_artifact", "acceptance_evidence", "truth_source_update", "clean_worktree"]
+  },
+  "capabilities": [
+    {
+      "id": "AWI-P1-SOURCE-REGISTRY",
+      "title": "Project Registry + Source Index",
+      "status": "done",
+      "depends_on": [],
+      "evidence": ["harness/project-registry.json", "harness/source-index.json", "harness/scripts/codex-self-check.ps1"]
+    },
+    {
+      "id": "AWI-P2-CAPABILITY-RUNTIME-DAG",
+      "title": "Capability DAG + Runtime Task DAG",
+      "status": "active",
+      "depends_on": ["AWI-P1-SOURCE-REGISTRY"],
+      "evidence": ["harness/capability-dag.json", "harness/runtime-task-dag.schema.json", "harness/runtime-task-dags/loop305-manual-handoff-acceptance.example.json"]
+    },
+    {
+      "id": "AWI-P3-SKILL-OS-V2",
+      "title": "Skill cards, family dedupe, telemetry, phase-gate binding",
+      "status": "planned",
+      "depends_on": ["AWI-P1-SOURCE-REGISTRY", "AWI-P2-CAPABILITY-RUNTIME-DAG"],
+      "evidence": []
+    },
+    {
+      "id": "AWI-P4-MEMORY-RAG-OS-V2",
+      "title": "Typed memory slots, method promotion, source-index retrieval, graph recall",
+      "status": "planned",
+      "depends_on": ["AWI-P1-SOURCE-REGISTRY", "AWI-P2-CAPABILITY-RUNTIME-DAG"],
+      "evidence": []
+    },
+    {
+      "id": "AWI-P5-CONTEXT-BUDGET-EVAL",
+      "title": "Context assembler, token budget, run trace, eval, empty-loop detection",
+      "status": "planned",
+      "depends_on": ["AWI-P2-CAPABILITY-RUNTIME-DAG", "AWI-P4-MEMORY-RAG-OS-V2"],
+      "evidence": []
+    },
+    {
+      "id": "RQ-AUTO-MINING-TO-BACKTEST",
+      "title": "Raindeer auto mining -> auto backtest full flow",
+      "status": "in_progress_paused_by_user",
+      "depends_on": [],
+      "evidence": ["apps/quant_assistant/docs/PROJECT_STATUS.md", "apps/quant_assistant/docs/TASK_TREES.md"]
+    },
+    {
+      "id": "RQ-LOOP305-MANUAL-HANDOFF-ACCEPTANCE",
+      "title": "Manual handoff acceptance packet from operator/reviewer handoff review",
+      "status": "next_paused",
+      "depends_on": ["RQ-AUTO-MINING-TO-BACKTEST"],
+      "evidence": ["harness/loop-state.json", "apps/quant_assistant/docs/CONTINUATION_PROMPT.md"]
+    }
+  ],
+  "phase_bundles": [
+    {
+      "id": "AWI-P2-B1-DAG-CONTRACT",
+      "capability_id": "AWI-P2-CAPABILITY-RUNTIME-DAG",
+      "status": "active",
+      "core_artifact": "Machine-readable capability DAG and runtime task DAG schema with self-check validation.",
+      "items": [
+        "Define durable Capability DAG for AWI and Raindeer product mainline.",
+        "Define Runtime Task DAG schema for per-loop Planner/Dispatcher/worker/tool execution.",
+        "Provide loop305 no-execution example graph for future dispatch.",
+        "Wire CodeX self-check validation for required DAG files and ids."
+      ],
+      "acceptance": [
+        "JSON parses cleanly.",
+        "CodeX self-check validates DAG files and required ids.",
+        "No product code changes required.",
+        "Worktree is clean after commit."
+      ]
+    },
+    {
+      "id": "RQ-LOOP305-B1-MANUAL-HANDOFF-ACCEPTANCE",
+      "capability_id": "RQ-LOOP305-MANUAL-HANDOFF-ACCEPTANCE",
+      "status": "paused_until_user_resumes_product_loop",
+      "core_artifact": "manual_handoff_acceptance_packet_v1 read-model",
+      "items": [
+        "Planner loop_plan",
+        "Dispatcher assignment_matrix",
+        "Test Engineer RED contract",
+        "Executor implementation",
+        "Code Reviewer risk review",
+        "Verifier final no-execution proof"
+      ],
+      "acceptance": [
+        "Consumes operator_reviewer_handoff_review_packet_v1 only.",
+        "Does not grant runner/adapter connection, rollback readiness, authorization, actual dry-run, DB-backed real batch, PL-H, or execution permission."
+      ]
+    }
+  ],
+  "active": {
+    "awi_capability_id": "AWI-P2-CAPABILITY-RUNTIME-DAG",
+    "awi_phase_bundle_id": "AWI-P2-B1-DAG-CONTRACT",
+    "product_capability_id": "RQ-LOOP305-MANUAL-HANDOFF-ACCEPTANCE",
+    "product_phase_bundle_id": "RQ-LOOP305-B1-MANUAL-HANDOFF-ACCEPTANCE",
+    "product_stop_reason": "paused_by_user_after_loop304_report"
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema_version": "1.0.0",
+  "dag_id": "runtime-loop305-manual-handoff-acceptance-example",
+  "goal_id": "RQ-LOOP305-MANUAL-HANDOFF-ACCEPTANCE",
+  "phase_bundle_id": "RQ-LOOP305-B1-MANUAL-HANDOFF-ACCEPTANCE",
+  "created_at": "2026-06-29T12:51:45+08:00",
+  "planner": "planner",
+  "dispatcher": "dispatcher",
+  "context_pack": {
+    "hot_sources": [
+      "harness/loop-state.json",
+      "apps/quant_assistant/docs/PROJECT_STATUS.md §5 latest",
+      "apps/quant_assistant/docs/CONTINUATION_PROMPT.md current entry",
+      "harness/reports/EMPLOYEE_ROSTER.md selected worker rows"
+    ],
+    "cold_source_ids": [
+      "awi-reference-architecture-2026-06-29",
+      "douyin-dag-design-transcript"
+    ],
+    "skills_considered": ["skill-router", "test-driven-development", "verification-before-completion"]
+  },
+  "nodes": [
+    {
+      "id": "plan-loop305",
+      "kind": "plan",
+      "owner": "planner",
+      "model_tier": "gpt-5.4",
+      "task": "Produce loop305 loop_plan for manual_handoff_acceptance_packet_v1.",
+      "depends_on": [],
+      "skills": [],
+      "read_scope": ["harness/loop-state.json", "apps/quant_assistant/docs/PROJECT_STATUS.md"],
+      "write_scope": [],
+      "outputs": ["loop_plan"],
+      "status": "planned",
+      "no_execution_boundaries": ["no_runner", "no_adapter", "no_db_backtest", "no_pl_h"]
+    },
+    {
+      "id": "dispatch-loop305",
+      "kind": "dispatch",
+      "owner": "dispatcher",
+      "model_tier": "gpt-5.4",
+      "task": "Map loop_plan to Test Engineer, Executor, Code Reviewer, and Verifier assignments.",
+      "depends_on": ["plan-loop305"],
+      "skills": ["dispatching-parallel-agents"],
+      "read_scope": ["harness/reports/EMPLOYEE_ROSTER.md"],
+      "write_scope": [],
+      "outputs": ["assignment_matrix"],
+      "status": "planned",
+      "no_execution_boundaries": ["no_duplicate_role_worker"]
+    },
+    {
+      "id": "test-contract-loop305",
+      "kind": "worker",
+      "owner": "test-engineer",
+      "model_tier": "gpt-5.5",
+      "task": "Design RED tests for review-only manual handoff acceptance packet.",
+      "depends_on": ["dispatch-loop305"],
+      "skills": ["test-driven-development"],
+      "read_scope": ["apps/quant_assistant/src/qa/quant_mining/", "apps/quant_assistant/tests/"],
+      "write_scope": ["apps/quant_assistant/tests/"],
+      "outputs": ["red_test_contract"],
+      "status": "planned",
+      "no_execution_boundaries": ["no_real_runner", "no_actual_dry_run"]
+    },
+    {
+      "id": "implement-loop305",
+      "kind": "worker",
+      "owner": "executor",
+      "model_tier": "gpt-5.5",
+      "task": "Implement manual_handoff_acceptance_packet_v1 from operator_reviewer_handoff_review_packet_v1.",
+      "depends_on": ["test-contract-loop305"],
+      "skills": ["programming", "karpathy-guidelines"],
+      "read_scope": ["apps/quant_assistant/src/qa/quant_mining/"],
+      "write_scope": ["apps/quant_assistant/src/qa/quant_mining/"],
+      "outputs": ["implementation_patch"],
+      "status": "planned",
+      "no_execution_boundaries": ["no_authorization_grant", "no_execution_permission"]
+    },
+    {
+      "id": "review-loop305",
+      "kind": "worker",
+      "owner": "code-reviewer",
+      "model_tier": "gpt-5.5",
+      "task": "Review fail-closed semantics and no-execution boundaries.",
+      "depends_on": ["implement-loop305"],
+      "skills": ["code-review"],
+      "read_scope": ["apps/quant_assistant/src/qa/quant_mining/", "apps/quant_assistant/tests/"],
+      "write_scope": [],
+      "outputs": ["code_review_report"],
+      "status": "planned",
+      "no_execution_boundaries": ["read_only_review"]
+    },
+    {
+      "id": "verify-loop305",
+      "kind": "verification",
+      "owner": "verifier",
+      "model_tier": "gpt-5.5",
+      "task": "Run focused/related tests and no-execution marker scans before truth-source sync.",
+      "depends_on": ["review-loop305"],
+      "skills": ["verification-before-completion"],
+      "read_scope": ["apps/quant_assistant/tests/", "apps/quant_assistant/docs/"],
+      "write_scope": [],
+      "outputs": ["verification_report"],
+      "status": "planned",
+      "no_execution_boundaries": ["no_env_secret_output", "no_background_process"]
+    },
+    {
+      "id": "aggregate-loop305",
+      "kind": "aggregation",
+      "owner": "orchestrator",
+      "model_tier": "gpt-5.5",
+      "task": "Integrate worker reports, verify repository facts, update truth sources, and keep the worktree clean.",
+      "depends_on": ["verify-loop305"],
+      "skills": ["verification-before-completion"],
+      "read_scope": ["worker reports", "git status", "test output"],
+      "write_scope": ["truth sources only after verification"],
+      "outputs": ["integrated_orchestrator_report", "truth_source_sync"],
+      "status": "planned",
+      "no_execution_boundaries": ["no_core_implementation_by_orchestrator", "no_unverified_completion_claim"]
+    }
+  ],
+  "edges": [
+    {"from": "plan-loop305", "to": "dispatch-loop305", "type": "feeds"},
+    {"from": "dispatch-loop305", "to": "test-contract-loop305", "type": "feeds"},
+    {"from": "test-contract-loop305", "to": "implement-loop305", "type": "blocks"},
+    {"from": "implement-loop305", "to": "review-loop305", "type": "reviews"},
+    {"from": "review-loop305", "to": "verify-loop305", "type": "verifies"},
+    {"from": "verify-loop305", "to": "aggregate-loop305", "type": "feeds"}
+  ],
+  "race_groups": [],
+  "validation_rules": [
+    "all depends_on references must point to existing nodes",
+    "no cycle is allowed",
+    "write_scope must be disjoint for parallel write nodes",
+    "planner cannot dispatch and dispatcher cannot change goal_id",
+    "verification node must depend on review or implementation node",
+    "no-execution boundaries must be preserved in every node for PL-G/loop305"
+  ],
+  "fallback": {
+    "on_invalid_graph": "fail_closed_to_planner_replan",
+    "on_worker_unavailable": "mark_channel_stale_and_rebind_same_role_without_creating_duplicate_worker",
+    "on_verification_failure": "return_to_executor_or_block_with_report"
+  }
+}

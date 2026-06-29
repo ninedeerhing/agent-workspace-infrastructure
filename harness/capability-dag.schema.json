@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raindeer.local/schemas/capability-dag.schema.json",
+  "title": "AWI Capability DAG",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "updated_at", "north_star", "selection_policy", "capabilities", "phase_bundles", "active"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "updated_at": {"type": "string"},
+    "purpose": {"type": "string"},
+    "north_star": {"type": "object"},
+    "selection_policy": {"type": "object"},
+    "capabilities": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/capability"}
+    },
+    "phase_bundles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/phase_bundle"}
+    },
+    "active": {"type": "object"}
+  },
+  "$defs": {
+    "capability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "title", "status", "depends_on", "evidence"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string"},
+        "status": {"type": "string"},
+        "depends_on": {"type": "array", "items": {"type": "string"}},
+        "evidence": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "phase_bundle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "capability_id", "status", "core_artifact", "items", "acceptance"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "capability_id": {"type": "string", "minLength": 1},
+        "status": {"type": "string"},
+        "core_artifact": {"type": "string", "minLength": 1},
+        "items": {"type": "array", "minItems": 3, "maxItems": 7, "items": {"type": "string"}},
+        "acceptance": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    }
+  }
+}

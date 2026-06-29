@@ -1,28 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-29T04:46:38Z",
+  "updated_at": "2026-06-29T04:59:01Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-29T04:45:43Z",
+    "recorded_at": "2026-06-29T04:58:43Z",
     "last_tick": "loop304-operator-reviewer-handoff-review-packet",
-    "pytest_passed": 0,
+    "pytest_passed": 4,
     "ruff": "docs-only",
     "evidence_paths": [
-      "AWI P1 docs-only validation: project/source JSON parse OK; source-index transcript artifacts present; CodeX self-check P1 registry/source-index checks wired"
+      "AWI P2 DAG validation: validate_awi_dags checks=7 findings=0; pytest harness/tests/test_awi_dag_validation.py 4 passed; CodeX self-check 97 checks / 0 findings"
     ],
     "section5_ref": "5.635",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 0.015315008888888888,
+  "age_hours": 0.0050165274999999995,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-29T04:46:38Z",
+    "at": "2026-06-29T04:59:01Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 0.015315008888888888
+    "age_hours": 0.0050165274999999995
   }
 }

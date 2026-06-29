@@ -70,6 +70,10 @@ Test-RequiredFile (Join-Path $HarnessDir "skill_router.py") "CX-009" "CodeX skil
 Test-RequiredFile (Join-Path $HarnessDir "tests/test_skill_router.py") "CX-010" "CodeX skill router tests" "Restore harness/tests/test_skill_router.py." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "project-registry.json") "CX-PROJECT-REGISTRY" "AWI project registry" "Restore harness/project-registry.json so Project Registry + Source Index P1 remains machine-readable." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "source-index.json") "CX-SOURCE-INDEX" "AWI source index" "Restore harness/source-index.json so cold-path references are traceable without hot-loading full documents." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "capability-dag.json") "CX-CAPABILITY-DAG" "AWI capability DAG" "Restore harness/capability-dag.json so loop selection remains portfolio-first." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "capability-dag.schema.json") "CX-CAPABILITY-DAG-SCHEMA" "AWI capability DAG schema" "Restore harness/capability-dag.schema.json." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "runtime-task-dag.schema.json") "CX-RUNTIME-DAG-SCHEMA" "AWI runtime task DAG schema" "Restore harness/runtime-task-dag.schema.json." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "validate_awi_dags.py") "CX-DAG-VALIDATOR" "AWI DAG validator" "Restore harness/validate_awi_dags.py and keep DAG invariants executable." | Out-Null
 
 $loopPromptPath = Join-Path $HarnessDir "templates/loop-tick-prompt.md"
 $loopPromptText = Get-Text $loopPromptPath
@@ -344,6 +348,27 @@ if (Test-Path $sourceIndexPath) {
     catch {
         Add-Check "source-index JSON" "FAIL" $_.Exception.Message
         Add-Finding "error" "CX-SOURCE-INDEX-JSON" "Source index parse failed" $_.Exception.Message "Fix harness/source-index.json."
+    }
+}
+
+$dagValidatorPath = Join-Path $HarnessDir "validate_awi_dags.py"
+if (Test-Path $dagValidatorPath) {
+    $dagRaw = & python $dagValidatorPath --repo-root $ProjectRoot --json 2>&1 | Out-String
+    try {
+        $dagReport = $dagRaw | ConvertFrom-Json
+        if ([int]$dagReport.summary.findings -eq 0) {
+            Add-Check "AWI DAG validator" "PASS" "checks=$($dagReport.summary.checks); findings=0"
+        }
+        else {
+            Add-Check "AWI DAG validator" "FAIL" "findings=$($dagReport.summary.findings)"
+            foreach ($finding in @($dagReport.findings)) {
+                Add-Finding $finding.severity "DAG-$($finding.code)" $finding.title $finding.detail "Fix harness/capability-dag.json or runtime task DAG files before continuing loop selection."
+            }
+        }
+    }
+    catch {
+        Add-Check "AWI DAG validator" "FAIL" $_.Exception.Message
+        Add-Finding "error" "CX-DAG-VALIDATOR" "AWI DAG validator output parse failed" $_.Exception.Message "Run python harness/validate_awi_dags.py --repo-root . --json and fix its output/errors."
     }
 }
 

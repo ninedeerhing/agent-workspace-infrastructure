@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-29T12:41:29+08:00",
+  "updated_at": "2026-06-29T12:57:15+08:00",
   "purpose": "Project registry for AWI Kernel v2. Keeps project adapters, truth sources, branch policy, and extractable AWI-owned paths out of hot chat context.",
   "awi_kernel": {
     "project_id": "raindeer-awi",
@@ -28,7 +28,11 @@
         "harness/loop-state.json",
         "harness/session-handoff.md",
         "harness/reports/EMPLOYEE_ROSTER.md",
-        "harness/source-index.json"
+        "harness/source-index.json",
+        "harness/capability-dag.json",
+        "harness/capability-dag.schema.json",
+        "harness/runtime-task-dag.schema.json",
+        "harness/validate_awi_dags.py"
       ],
       "owned_paths": [
         "agents/",

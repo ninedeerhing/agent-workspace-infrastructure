@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raindeer.local/schemas/runtime-task-dag.schema.json",
+  "title": "AWI Runtime Task DAG",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "dag_id", "goal_id", "phase_bundle_id", "created_at", "nodes", "edges", "validation_rules", "fallback"],
+  "properties": {
+    "schema_version": {"type": "string"},
+    "dag_id": {"type": "string", "minLength": 1},
+    "goal_id": {"type": "string", "minLength": 1},
+    "phase_bundle_id": {"type": "string", "minLength": 1},
+    "created_at": {"type": "string"},
+    "planner": {"type": "string"},
+    "dispatcher": {"type": "string"},
+    "context_pack": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "hot_sources": {"type": "array", "items": {"type": "string"}},
+        "cold_source_ids": {"type": "array", "items": {"type": "string"}},
+        "skills_considered": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/node"}
+    },
+    "edges": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/edge"}
+    },
+    "race_groups": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/race_group"}
+    },
+    "validation_rules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string"}
+    },
+    "fallback": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["on_invalid_graph", "on_worker_unavailable", "on_verification_failure"],
+      "properties": {
+        "on_invalid_graph": {"type": "string"},
+        "on_worker_unavailable": {"type": "string"},
+        "on_verification_failure": {"type": "string"}
+      }
+    }
+  },
+  "$defs": {
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "owner", "task", "depends_on", "outputs", "write_scope", "status"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "kind": {"type": "string", "enum": ["plan", "dispatch", "worker", "tool", "verification", "aggregation", "handoff"]},
+        "owner": {"type": "string"},
+        "model_tier": {"type": "string"},
+        "task": {"type": "string"},
+        "depends_on": {"type": "array", "items": {"type": "string"}},
+        "skills": {"type": "array", "items": {"type": "string"}},
+        "read_scope": {"type": "array", "items": {"type": "string"}},
+        "write_scope": {"type": "array", "items": {"type": "string"}},
+        "outputs": {"type": "array", "items": {"type": "string"}},
+        "status": {"type": "string", "enum": ["planned", "assigned", "running", "reported", "integrated", "blocked", "failed", "done"]},
+        "no_execution_boundaries": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "edge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "type"],
+      "properties": {
+        "from": {"type": "string"},
+        "to": {"type": "string"},
+        "type": {"type": "string", "enum": ["depends_on", "blocks", "feeds", "reviews", "verifies"]}
+      }
+    },
+    "race_group": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "nodes", "winner_policy", "cancel_losers"],
+      "properties": {
+        "id": {"type": "string"},
+        "nodes": {"type": "array", "items": {"type": "string"}},
+        "winner_policy": {"type": "string", "enum": ["first_success", "best_score", "all_required"]},
+        "cancel_losers": {"type": "boolean"}
+      }
+    }
+  }
+}
