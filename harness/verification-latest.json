@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-06-25T01:09:55Z",
-  "last_tick": "loop291-safe-sim-result-to-candidate-promotion-decision",
-  "pytest_passed": 112,
-  "ruff": "ok",
+  "recorded_at": "2026-06-29T04:45:43Z",
+  "last_tick": "loop304-operator-reviewer-handoff-review-packet",
+  "pytest_passed": 0,
+  "ruff": "docs-only",
   "evidence_paths": [
-    "loop291 candidate promotion: pytest 112 passed; targeted ruff ok; web build pass; jobs smoke ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[]; npm lint exit0 pre-existing warning"
+    "AWI P1 docs-only validation: project/source JSON parse OK; source-index transcript artifacts present; CodeX self-check P1 registry/source-index checks wired"
   ],
-  "section5_ref": "5.619",
+  "section5_ref": "5.635",
   "source": "manual"
 }

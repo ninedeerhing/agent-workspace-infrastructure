@@ -1,56 +1,25 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-28T12:01:38Z",
+  "updated_at": "2026-06-29T04:46:23Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "OPERATOR_REVIEWER_AUTHORIZATION_EVIDENCE_REVIEW_LOOP299：基于 loop298 explicit_authorization_config_rollback_audit_boundary_v1，实现 explicit operator/reviewer authorization evidence review packet：只消费 boundary planning/readiness 证据，校验 boundary_status、required_authorization_artifacts、operator_authorization still required_not_granted、reviewer_authorization still required_not_approved、runner_config still not_connected、rollback/audit still not_ready、source blockers/fail-closed evidence、candidate refs、A-E taxonomy、safe_sim/audit/F6 refs 与 no-execution matrix；输出 evidence_review_status、operator_authorization_evidence_status、reviewer_authorization_evidence_status、blockers 与 manual next actions；不得把 evidence review 解释为 authorization grant、manual acceptance、runner/adapter connection、actual dry-run、DB-backed real batch、PL-H 或 execution permission。",
-  "continuation_next_action": "OPERATOR_REVIEWER_AUTHORIZATION_EVIDENCE_REVIEW_LOOP299：基于 loop298 `explicit_authorization_config_rollback_audit_boundary_v1`，实现 explicit operator/reviewer authorization evidence review packet：只消费 boundary planning/readiness 证据，校验 `boundary_status`、`required_authorization_artifacts`、operator authorization still required_not_granted、reviewer authorization still required_not_approved、runner_config still not_connected、rollback/audit still not_ready、source blockers/fail-closed evidence、candidate refs、A-E taxonomy、safe_sim/audit/F6 refs 与 no-execution matrix；输出 `evidence_review_status`、`operator_authorization_evidence_status`、`reviewer_authorization_evidence_status`、blockers 与 manual next actions；不得把 evidence review 解释为 authorization grant、manual acceptance、runner/adapter connection、actual dry-run、DB-backed real batch、PL-H 或 execution permission。",
-  "task_trees_next_hint": "EXPLICIT_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_BOUNDARY_LOOP298：基于 loop297 `manual_request_artifact_capture_review_v1`，实现 explicit authorization/config/rollback-audit boundary planning/readiness packet：只消费 artifact review 的 review-only 证据，校验 artifact provenance、source gate/intake refs、runner_config still not_connected、rollback/audit still not_ready、required evidence package、missing-runner fail-closed、PL-H still not eligible、no-execution matrix 与 manual next actions；输出 boundary_status、required_authorization_artifacts、config_evidence_status、rollback_audit_evidence_status、blockers 与人工补料动作；不得连接 runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。",
+  "loop_next_atomic_action": "OPERATOR_HANDOFF_REVIEW_TO_MANUAL_HANDOFF_ACCEPTANCE_PACKET_LOOP305：基于 loop304 operator_reviewer_handoff_review_packet_v1，先由 Dispatcher 根据 Planner loop305 计划派工，实现 review-only explicit manual handoff acceptance packet：只消费 handoff review packet，收口 handoff_review_status、operator_handoff_packet_refs、handoff_review_blockers、handoff_review_required_actions、manual handoff checklist、candidate refs、A-E taxonomy、safe_sim/audit/F6 refs、source provenance 与 no-execution matrix；输出 manual_handoff_acceptance_packet_v1、manual_handoff_acceptance_status、acceptance_pending_items、acceptance_blockers、acceptance_packet_refs 与 manual_next_actions；不得把 acceptance packet 解释为 runner/adapter connection、rollback ready、authorization grant、actual dry-run、DB-backed real batch、PL-H 或 execution permission。",
+  "continuation_next_action": "OPERATOR_HANDOFF_REVIEW_TO_MANUAL_HANDOFF_ACCEPTANCE_PACKET_LOOP305：基于 loop304 operator_reviewer_handoff_review_packet_v1，先由 Dispatcher 根据 Planner loop305 计划派工，实现 review-only explicit manual handoff acceptance packet：只消费 handoff review packet，收口 handoff_review_status、operator_handoff_packet_refs、handoff_review_blockers、handoff_review_required_actions、manual handoff checklist、candidate refs、A-E taxonomy、safe_sim/audit/F6 refs、source provenance 与 no-execution matrix；输出 manual_handoff_acceptance_packet_v1、manual_handoff_acceptance_status、acceptance_pending_items、acceptance_blockers、acceptance_packet_refs 与 manual_next_actions；不得把 acceptance packet 解释为 runner/adapter connection、rollback ready、authorization grant、actual dry-run、DB-backed real batch、PL-H 或 execution permission。",
+  "task_trees_next_hint": "OPERATOR_HANDOFF_REVIEW_TO_MANUAL_HANDOFF_ACCEPTANCE_PACKET_LOOP305：基于 loop304 operator_reviewer_handoff_review_packet_v1，先由 Dispatcher 根据 Planner loop305 计划派工，实现 review-only explicit manual handoff acceptance packet：只消费 handoff review packet，收口 handoff_review_status、operator_handoff_packet_refs、handoff_review_blockers、handoff_review_required_actions、manual handoff checklist、candidate refs、A-E taxonomy、safe_sim/audit/F6 refs、source provenance 与 no-execution matrix；输出 manual_handoff_acceptance_packet_v1、manual_handoff_acceptance_status、acceptance_pending_items、acceptance_blockers、acceptance_packet_refs 与 manual_next_actions；不得把 acceptance packet 解释为 runner/adapter connection、rollback ready、authorization grant、actual dry-run、DB-backed real batch、PL-H 或 execution permission。",
   "foreground_tree": "TREE-6",
   "foreground_slice": "",
-  "latest_section5_id": "629",
-  "latest_section5_title": "loop298 Explicit authorization/config/rollback-audit boundary：显式授权/config/rollback-audit 边界规划读模型（2026-06-28 · orchestrator + Planner/Dispatcher + executor · TREE-6/PL-G）",
-  "top_summary_section5_ref": "629",
-  "top_summary_last_tick": "loop298-explicit-authorization-config-rollback-audit-boundary",
-  "loop_last_tick": "loop298-explicit-authorization-config-rollback-audit-boundary",
-  "findings": [
-    {
-      "severity": "warning",
-      "code": "SYNC-LOOP-CONT",
-      "paths": [
-        "harness\\loop-state.json",
-        "apps\\quant_assistant\\docs\\CONTINUATION_PROMPT.md"
-      ],
-      "detail": "loop-state next_atomic_action='OPERATOR_REVIEWER_AUTHORIZATION_EVIDENCE_REVIEW_LOOP299：基于 loop298 explicit_authorization_config_rollback_audit_boundary_v1，实现 explicit operator/reviewer authorization evidence review packet：只消费 boundary planning/readiness 证据，校验 boundary_status、required_authorization_artifacts、operator_authorization still required_not_granted、reviewer_authorization still required_not_approved、runner_config still not_connected、rollback/audit still not_ready、source blockers/fail-closed evidence、candidate refs、A-E taxonomy、safe_sim/audit/F6 refs 与 no-execution matrix；输出 evidence_review_status、operator_authorization_evidence_status、reviewer_authorization_evidence_status、blockers 与 manual next actions；不得把 evidence review 解释为 authorization grant、manual acceptance、runner/adapter connection、actual dry-run、DB-backed real batch、PL-H 或 execution permission。' vs CONTINUATION 下一动作='OPERATOR_REVIEWER_AUTHORIZATION_EVIDENCE_REVIEW_LOOP299：基于 loop298 `explicit_authorization_config_rollback_audit_boundary_v1`，实现 explicit operator/reviewer authorization evidence review packet：只消费 boundary planning/readiness 证据，校验 `boundary_status`、`required_authorization_artifacts`、operator authorization still required_not_granted、reviewer authorization still required_not_approved、runner_config still not_connected、rollback/audit still not_ready、source blockers/fail-closed evidence、candidate refs、A-E taxonomy、safe_sim/audit/F6 refs 与 no-execution matrix；输出 `evidence_review_status`、`operator_authorization_evidence_status`、`reviewer_authorization_evidence_status`、blockers 与 manual next actions；不得把 evidence review 解释为 authorization grant、manual acceptance、runner/adapter connection、actual dry-run、DB-backed real batch、PL-H 或 execution permission。'",
-      "recommendation": "对齐 loop-state.json 与 CONTINUATION_PROMPT 下一动作字段。"
-    },
-    {
-      "severity": "info",
-      "code": "SYNC-LOOP-TREES",
-      "paths": [
-        "harness\\loop-state.json",
-        "apps\\quant_assistant\\docs\\TASK_TREES.md"
-      ],
-      "detail": "loop-state='OPERATOR_REVIEWER_AUTHORIZATION_EVIDENCE_REVIEW_LOOP299：基于 loop298 explicit_authorization_config_rollback_audit_boundary_v1，实现 explicit operator/reviewer authorization evidence review packet：只消费 boundary planning/readiness 证据，校验 boundary_status、required_authorization_artifacts、operator_authorization still required_not_granted、reviewer_authorization still required_not_approved、runner_config still not_connected、rollback/audit still not_ready、source blockers/fail-closed evidence、candidate refs、A-E taxonomy、safe_sim/audit/F6 refs 与 no-execution matrix；输出 evidence_review_status、operator_authorization_evidence_status、reviewer_authorization_evidence_status、blockers 与 manual next actions；不得把 evidence review 解释为 authorization grant、manual acceptance、runner/adapter connection、actual dry-run、DB-backed real batch、PL-H 或 execution permission。' vs TASK_TREES 下一未勾选项='EXPLICIT_AUTHORIZATION_CONFIG_ROLLBACK_AUDIT_BOUNDARY_LOOP298：基于 loop297 `manual_request_artifact_capture_review_v1`，实现 explicit authorization/config/rollback-audit boundary planning/readiness packet：只消费 artifact review 的 review-only 证据，校验 artifact provenance、source gate/intake refs、runner_config still not_connected、rollback/audit still not_ready、required evidence package、missing-runner fail-closed、PL-H still not eligible、no-execution matrix 与 manual next actions；输出 boundary_status、required_authorization_artifacts、config_evidence_status、rollback_audit_evidence_status、blockers 与人工补料动作；不得连接 runner/adapter、不得 actual dry-run、不得 DB-backed real batch、不得授予 PL-H、manual acceptance 或 execution permission。'",
-      "recommendation": "确认 TASK_TREES 排序与 loop-state 已同步。"
-    },
-    {
-      "severity": "warning",
-      "code": "SYNC-TOP-NEXT",
-      "paths": [
-        "apps\\quant_assistant\\docs\\PROJECT_STATUS.md",
-        "harness\\loop-state.json"
-      ],
-      "detail": "顶部摘要未体现 loop-state 下一动作：'OPERATOR_REVIEWER_AUTHORIZATION_EVIDENCE_REVIEW_LOOP299：基于 loop298 explicit_authorization_config_rollback_audit_boundary_v1，实现 explicit operator/reviewer authorization evidence review packet：只消费 boundary planning/readiness 证据，校验 boundary_status、required_authorization_artifacts、operator_authorization still required_not_granted、reviewer_authorization still required_not_approved、runner_config still not_connected、rollback/audit still not_ready、source blockers/fail-closed evidence、candidate refs、A-E taxonomy、safe_sim/audit/F6 refs 与 no-execution matrix；输出 evidence_review_status、operator_authorization_evidence_status、reviewer_authorization_evidence_status、blockers 与 manual next actions；不得把 evidence review 解释为 authorization grant、manual acceptance、runner/adapter connection、actual dry-run、DB-backed real batch、PL-H 或 execution permission。'",
-      "recommendation": "更新顶部「下一方向」与 next_atomic_action 一致。"
-    }
-  ],
+  "latest_section5_id": "635",
+  "latest_section5_title": "loop304 Operator/reviewer handoff review packet：operator/reviewer 交接复核读模型（2026-06-28 · orchestrator + Planner/Dispatcher + executor · TREE-6/PL-G）",
+  "top_summary_section5_ref": "635",
+  "top_summary_last_tick": "loop304-operator-reviewer-handoff-review-packet",
+  "loop_last_tick": "loop304-operator-reviewer-handoff-review-packet",
+  "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-28T12:01:38Z",
-    "finding_count": 3,
-    "warning_count": 2,
+    "at": "2026-06-29T04:46:23Z",
+    "finding_count": 0,
+    "warning_count": 0,
     "error_count": 0
   }
 }

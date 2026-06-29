@@ -68,6 +68,8 @@ Test-RequiredFile (Join-Path $HarnessDir "templates/daily-ops-prompt.md") "CX-DA
 Test-RequiredFile (Join-Path $HarnessDir "scripts/daily-ops.ps1") "CX-DAILY-OPS-SCRIPT" "Daily ops wrapper" "Restore harness/scripts/daily-ops.ps1." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "skill_router.py") "CX-009" "CodeX skill router" "Restore harness/skill_router.py and keep the loop skill routing gate executable." | Out-Null
 Test-RequiredFile (Join-Path $HarnessDir "tests/test_skill_router.py") "CX-010" "CodeX skill router tests" "Restore harness/tests/test_skill_router.py." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "project-registry.json") "CX-PROJECT-REGISTRY" "AWI project registry" "Restore harness/project-registry.json so Project Registry + Source Index P1 remains machine-readable." | Out-Null
+Test-RequiredFile (Join-Path $HarnessDir "source-index.json") "CX-SOURCE-INDEX" "AWI source index" "Restore harness/source-index.json so cold-path references are traceable without hot-loading full documents." | Out-Null
 
 $loopPromptPath = Join-Path $HarnessDir "templates/loop-tick-prompt.md"
 $loopPromptText = Get-Text $loopPromptPath
@@ -269,6 +271,79 @@ if (Test-Path $automationRegistryPath) {
     catch {
         Add-Check "CodeX automation registry JSON" "FAIL" $_.Exception.Message
         Add-Finding "error" "CX-AUTO-JSON" "Automation registry parse failed" $_.Exception.Message "Fix harness/codex-automation-registry.json."
+    }
+}
+
+$projectRegistryPath = Join-Path $HarnessDir "project-registry.json"
+if (Test-Path $projectRegistryPath) {
+    try {
+        $projectRegistry = Get-Content -LiteralPath $projectRegistryPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $projectIds = @($projectRegistry.projects | ForEach-Object { $_.project_id })
+        foreach ($requiredProjectId in @("raindeer-awi", "raindeer-quant-assistant")) {
+            if ($projectIds -contains $requiredProjectId) {
+                Add-Check "project-registry:$requiredProjectId" "PASS" "registered"
+            }
+            else {
+                Add-Check "project-registry:$requiredProjectId" "FAIL" "missing"
+                Add-Finding "error" "CX-PROJECT-REGISTRY" "Project registry missing project" "harness/project-registry.json does not include project_id=$requiredProjectId." "Add the missing project adapter to harness/project-registry.json."
+            }
+        }
+        $awiProject = $projectRegistry.projects | Where-Object { $_.project_id -eq "raindeer-awi" } | Select-Object -First 1
+        if ($awiProject -and $awiProject.truth_sources -contains "harness/source-index.json") {
+            Add-Check "project-registry source-index truth source" "PASS" "present"
+        }
+        else {
+            Add-Check "project-registry source-index truth source" "FAIL" "missing"
+            Add-Finding "error" "CX-PROJECT-REGISTRY" "Project registry missing source-index truth source" "raindeer-awi truth_sources must include harness/source-index.json." "Add harness/source-index.json to the AWI truth source list."
+        }
+    }
+    catch {
+        Add-Check "project-registry JSON" "FAIL" $_.Exception.Message
+        Add-Finding "error" "CX-PROJECT-REGISTRY-JSON" "Project registry parse failed" $_.Exception.Message "Fix harness/project-registry.json."
+    }
+}
+
+$sourceIndexPath = Join-Path $HarnessDir "source-index.json"
+if (Test-Path $sourceIndexPath) {
+    try {
+        $sourceIndex = Get-Content -LiteralPath $sourceIndexPath -Raw -Encoding UTF8 | ConvertFrom-Json
+        $sourceIds = @($sourceIndex.sources | ForEach-Object { $_.id })
+        foreach ($requiredSourceId in @($sourceIndex.required_source_ids)) {
+            if ($sourceIds -contains $requiredSourceId) {
+                Add-Check "source-index:$requiredSourceId" "PASS" "indexed"
+            }
+            else {
+                Add-Check "source-index:$requiredSourceId" "FAIL" "missing"
+                Add-Finding "error" "CX-SOURCE-INDEX" "Required source missing" "harness/source-index.json required_source_ids includes $requiredSourceId, but sources does not contain it." "Add or correct the missing source index entry."
+            }
+        }
+        $categories = @($sourceIndex.sources | ForEach-Object { $_.category } | Sort-Object -Unique)
+        foreach ($requiredCategory in @($sourceIndex.required_categories)) {
+            if ($categories -contains $requiredCategory) {
+                Add-Check "source-index category:$requiredCategory" "PASS" "present"
+            }
+            else {
+                Add-Check "source-index category:$requiredCategory" "FAIL" "missing"
+                Add-Finding "error" "CX-SOURCE-INDEX-CATEGORY" "Required source category missing" "harness/source-index.json lacks category=$requiredCategory." "Add at least one source entry for this category."
+            }
+        }
+        foreach ($transcriptId in @("douyin-dag-design-transcript", "douyin-memory-system-transcript", "douyin-harness-loop-eval-transcript")) {
+            $entry = $sourceIndex.sources | Where-Object { $_.id -eq $transcriptId } | Select-Object -First 1
+            if ($entry -and $entry.path) {
+                $transcriptPath = Join-Path $ProjectRoot $entry.path
+                if (Test-Path $transcriptPath) {
+                    Add-Check "source-index transcript:$transcriptId" "PASS" $entry.path
+                }
+                else {
+                    Add-Check "source-index transcript:$transcriptId" "FAIL" "missing file"
+                    Add-Finding "error" "CX-SOURCE-INDEX-TRANSCRIPT" "Transcript file missing" "$transcriptId points to missing path: $($entry.path)." "Restore the transcript file or update harness/source-index.json."
+                }
+            }
+        }
+    }
+    catch {
+        Add-Check "source-index JSON" "FAIL" $_.Exception.Message
+        Add-Finding "error" "CX-SOURCE-INDEX-JSON" "Source index parse failed" $_.Exception.Message "Fix harness/source-index.json."
     }
 }
 

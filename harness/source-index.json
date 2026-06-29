@@ -1,0 +1,177 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-06-29T12:41:29+08:00",
+  "purpose": "Cold-path source index for AWI v2. It lets the loop reference official docs, local truth sources, external research, and video transcripts by id instead of hot-loading full documents.",
+  "hot_path_policy": {
+    "default_load": [
+      "current loop-state",
+      "current phase gate",
+      "latest 1-3 ledger rows",
+      "selected skill cards",
+      "selected worker rows",
+      "source ids only"
+    ],
+    "cold_path_triggers": [
+      "architecture_update",
+      "fact_conflict",
+      "phase_transition",
+      "skill_or_worker_change",
+      "security_or_real_execution_gate",
+      "audit_or_self_check_failure",
+      "user_requested_research"
+    ]
+  },
+  "sources": [
+    {
+      "id": "openai-harness-engineering",
+      "title": "OpenAI Harness Engineering",
+      "category": "harness_loop_eval",
+      "authority": "official",
+      "uri": "https://openai.com/index/harness-engineering/",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["harness", "eval", "scaffolding"]
+    },
+    {
+      "id": "openai-codex-agent-loop",
+      "title": "OpenAI Unrolling the Codex Agent Loop",
+      "category": "harness_loop_eval",
+      "authority": "official",
+      "uri": "https://openai.com/index/unrolling-the-codex-agent-loop/",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["codex", "loop", "trace"]
+    },
+    {
+      "id": "anthropic-long-running-harnesses",
+      "title": "Anthropic Effective Harnesses for Long-Running Agents",
+      "category": "harness_loop_eval",
+      "authority": "official",
+      "uri": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["long_running", "durable_state", "eval"]
+    },
+    {
+      "id": "anthropic-claude-code-skills",
+      "title": "Anthropic Claude Code Skills Docs",
+      "category": "skills",
+      "authority": "official",
+      "uri": "https://docs.anthropic.com/en/docs/claude-code/skills",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["skills", "progressive_disclosure"]
+    },
+    {
+      "id": "anthropic-claude-code-memory",
+      "title": "Anthropic Claude Code Memory Docs",
+      "category": "memory_rag",
+      "authority": "official",
+      "uri": "https://docs.anthropic.com/en/docs/claude-code/memory",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["memory", "project_memory", "user_memory"]
+    },
+    {
+      "id": "langgraph-overview",
+      "title": "LangGraph Overview",
+      "category": "dag_runtime",
+      "authority": "official",
+      "uri": "https://docs.langchain.com/oss/python/langgraph/overview",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["graph", "state", "checkpointing"]
+    },
+    {
+      "id": "langgraph-memory",
+      "title": "LangGraph Memory Docs",
+      "category": "memory_rag",
+      "authority": "official",
+      "uri": "https://docs.langchain.com/oss/python/langgraph/memory",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["memory", "long_term", "short_term"]
+    },
+    {
+      "id": "openai-file-search",
+      "title": "OpenAI File Search Docs",
+      "category": "memory_rag",
+      "authority": "official",
+      "uri": "https://platform.openai.com/docs/guides/tools-file-search",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["retrieval", "file_search", "tools"]
+    },
+    {
+      "id": "awi-reference-architecture-2026-06-29",
+      "title": "AWI Reference Projects and Long-Cycle Architecture Refresh",
+      "category": "awi_architecture",
+      "authority": "local_truth_source",
+      "path": "docs/ENGINEERING/2026-06-29-awi-reference-projects-and-long-cycle-architecture.md",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["reference_catalog", "skill_os", "worker_os", "memory_os", "token_budget", "eval"]
+    },
+    {
+      "id": "douyin-dag-design-transcript",
+      "title": "User-provided DAG Design Video Transcript",
+      "category": "dag_runtime",
+      "authority": "supplemental_transcript",
+      "path": "docs/ENGINEERING/references/awi-video-transcripts/dag-design.md",
+      "status": "transcribed",
+      "transcript_chars": 2819,
+      "hot_path": false,
+      "tags": ["runtime_task_dag", "topological_layers", "race_groups"]
+    },
+    {
+      "id": "douyin-memory-system-transcript",
+      "title": "User-provided Memory System Video Transcript",
+      "category": "memory_rag",
+      "authority": "supplemental_transcript",
+      "path": "docs/ENGINEERING/references/awi-video-transcripts/memory-system.md",
+      "status": "transcribed",
+      "transcript_chars": 4447,
+      "hot_path": false,
+      "tags": ["typed_memory", "dual_write", "graph_recall", "lifecycle"]
+    },
+    {
+      "id": "douyin-harness-loop-eval-transcript",
+      "title": "User-provided Harness Loop Eval Video Transcript",
+      "category": "harness_loop_eval",
+      "authority": "supplemental_transcript",
+      "path": "docs/ENGINEERING/references/awi-video-transcripts/harness-loop-eval.md",
+      "status": "transcribed",
+      "transcript_chars": 22807,
+      "hot_path": false,
+      "tags": ["procedural_memory", "semantic_memory", "episodic_memory", "trace", "eval", "llmops"]
+    },
+    {
+      "id": "quant-factor-factory-reference-2026-06-24",
+      "title": "Factor Candidate Factory Reference",
+      "category": "raindeer_quant",
+      "authority": "local_product_reference",
+      "path": "apps/quant_assistant/docs/ENGINEERING/2026-06-24-factor-candidate-factory-reference.md",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": ["rd_agent", "alphagen", "autoalpha", "factor_factory"]
+    }
+  ],
+  "required_categories": [
+    "harness_loop_eval",
+    "skills",
+    "memory_rag",
+    "dag_runtime",
+    "awi_architecture",
+    "raindeer_quant"
+  ],
+  "required_source_ids": [
+    "openai-harness-engineering",
+    "anthropic-claude-code-skills",
+    "anthropic-claude-code-memory",
+    "langgraph-memory",
+    "awi-reference-architecture-2026-06-29",
+    "douyin-dag-design-transcript",
+    "douyin-memory-system-transcript",
+    "douyin-harness-loop-eval-transcript"
+  ]
+}

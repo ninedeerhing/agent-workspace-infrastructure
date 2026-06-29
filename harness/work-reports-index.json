@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-28T12:01:38Z",
+  "updated_at": "2026-06-29T04:43:50Z",
   "orchestrator_path": "harness/reports/orchestrator",
   "workers_dir": "harness/reports/workers",
   "worker_count": 21,
@@ -14,7 +14,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-28T12:01:38Z",
+      "last_updated_at": "2026-06-29T04:43:50Z",
       "source_path": "harness\\reports\\orchestrator\\latest.md"
     },
     "architect:loop202-worker-cluster-architecture-review": {
@@ -31,8 +31,8 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\architect.md"
     },
-    "code-reviewer:loop298-explicit-authorization-config-rollback-audit-boundary": {
-      "report_id": "loop298-explicit-authorization-config-rollback-audit-boundary",
+    "code-reviewer:loop304-operator-reviewer-handoff-review-packet": {
+      "report_id": "loop304-operator-reviewer-handoff-review-packet",
       "worker_id": "code-reviewer",
       "task_id": "loop203-pl-g-acceptance-consolidation-code-review",
       "tree": "TREE-6 / PL-G",
@@ -78,7 +78,7 @@
       ],
       "verification": "live API 复现 **5.2s**（`tmp/kb_m2_sse_repro_loop22_result.json`）",
       "status": "resolved（executor 已落地修复）",
-      "last_updated_at": "2026-06-28T12:01:38Z",
+      "last_updated_at": "2026-06-29T04:43:50Z",
       "source_path": "harness\\reports\\workers\\debugger.md"
     },
     "designer:designer-ui-a-2-spec": {
@@ -95,8 +95,8 @@
       "last_updated_at": "2026-06-19T16:45:00Z",
       "source_path": "harness\\reports\\workers\\designer.md"
     },
-    "executor:loop298-explicit-authorization-config-rollback-audit-boundary": {
-      "report_id": "loop298-explicit-authorization-config-rollback-audit-boundary",
+    "executor:loop304-operator-reviewer-handoff-review-packet": {
+      "report_id": "loop304-operator-reviewer-handoff-review-packet",
       "worker_id": "executor",
       "task_id": "loop203-pl-g-acceptance-consolidation-implementation",
       "tree": "TREE-6 / PL-G",
@@ -104,7 +104,7 @@
       "files": [],
       "verification": "orchestrator verification after patch: RED **1 failed** expected, GREEN focused pytest **1 passed**, related regression **23 passed**, smoke/build/eslint/ruff/family scan/enablement scan/runtime cleanup pass。",
       "status": "success",
-      "last_updated_at": "2026-06-28T12:01:38Z",
+      "last_updated_at": "2026-06-29T04:43:50Z",
       "source_path": "harness\\reports\\workers\\executor.md"
     },
     "explore:explore-idle": {
@@ -154,7 +154,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-28T12:01:38Z",
+      "last_updated_at": "2026-06-29T04:43:50Z",
       "source_path": "harness\\reports\\workers\\governance-coordinator.md"
     },
     "growth-engineer:growth-engineer-idle": {
@@ -169,8 +169,8 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\growth-engineer.md"
     },
-    "planner:loop298-explicit-authorization-config-rollback-audit-boundary": {
-      "report_id": "loop298-explicit-authorization-config-rollback-audit-boundary",
+    "planner:loop305-selection-after-loop304": {
+      "report_id": "loop305-selection-after-loop304",
       "worker_id": "planner",
       "task_id": "",
       "tree": "",
@@ -190,7 +190,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-28T12:01:38Z",
+      "last_updated_at": "2026-06-29T04:43:50Z",
       "source_path": "harness\\reports\\workers\\qa-tester.md"
     },
     "researcher:loop202-worker-cluster-evidence-scan": {
@@ -231,8 +231,8 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\security-reviewer.md"
     },
-    "test-engineer:loop298-explicit-authorization-config-rollback-audit-boundary": {
-      "report_id": "loop298-explicit-authorization-config-rollback-audit-boundary",
+    "test-engineer:loop304-operator-reviewer-handoff-review-packet": {
+      "report_id": "loop304-operator-reviewer-handoff-review-packet",
       "worker_id": "test-engineer",
       "task_id": "loop203-pl-g-acceptance-consolidation-test-design",
       "tree": "TREE-6 / PL-G",
@@ -255,8 +255,8 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\tracer.md"
     },
-    "verifier:loop298-explicit-authorization-config-rollback-audit-boundary": {
-      "report_id": "loop298-explicit-authorization-config-rollback-audit-boundary",
+    "verifier:loop304-operator-reviewer-handoff-review-packet": {
+      "report_id": "loop304-operator-reviewer-handoff-review-packet",
       "worker_id": "verifier",
       "task_id": "verifier",
       "tree": "TREE-RT",
@@ -285,7 +285,7 @@
     }
   },
   "last_lifecycle": {
-    "at": "2026-06-28T12:01:38Z",
+    "at": "2026-06-29T04:43:50Z",
     "apply": true,
     "dedupe_actions": 0,
     "record_count": 22,

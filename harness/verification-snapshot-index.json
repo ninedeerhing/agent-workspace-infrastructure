@@ -1,35 +1,28 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-28T12:01:38Z",
+  "updated_at": "2026-06-29T04:46:38Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-06-25T01:09:55Z",
-    "last_tick": "loop291-safe-sim-result-to-candidate-promotion-decision",
-    "pytest_passed": 112,
-    "ruff": "ok",
+    "recorded_at": "2026-06-29T04:45:43Z",
+    "last_tick": "loop304-operator-reviewer-handoff-review-packet",
+    "pytest_passed": 0,
+    "ruff": "docs-only",
     "evidence_paths": [
-      "loop291 candidate promotion: pytest 112 passed; targeted ruff ok; web build pass; jobs smoke ok pageLoadTriggerRequests=[] duplicateTriggerUrls=[]; npm lint exit0 pre-existing warning"
+      "AWI P1 docs-only validation: project/source JSON parse OK; source-index transcript artifacts present; CodeX self-check P1 registry/source-index checks wired"
     ],
-    "section5_ref": "5.619",
+    "section5_ref": "5.635",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 82.86222152472222,
-  "stale": true,
-  "findings": [
-    {
-      "severity": "warning",
-      "code": "VER-STALE",
-      "detail": "verification snapshot age=82.9h with git dirty",
-      "recommendation": "Run record after verify: python harness/verification_snapshot_lifecycle.py record ..."
-    }
-  ],
+  "age_hours": 0.015315008888888888,
+  "stale": false,
+  "findings": [],
   "last_lifecycle": {
-    "at": "2026-06-28T12:01:38Z",
+    "at": "2026-06-29T04:46:38Z",
     "apply": true,
-    "stale": true,
+    "stale": false,
     "git_dirty": true,
-    "age_hours": 82.86222152472222
+    "age_hours": 0.015315008888888888
   }
 }

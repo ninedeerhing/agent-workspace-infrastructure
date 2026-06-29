@@ -1,0 +1,96 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-06-29T12:41:29+08:00",
+  "purpose": "Project registry for AWI Kernel v2. Keeps project adapters, truth sources, branch policy, and extractable AWI-owned paths out of hot chat context.",
+  "awi_kernel": {
+    "project_id": "raindeer-awi",
+    "mode": "extractable_process_layer",
+    "hot_path_policy": "Load only current slice, latest ledger rows, selected skill/worker cards, and source-index pointers by default.",
+    "cold_path_policy": "Return to indexed sources by id/path/mtime/hash when audits, conflicts, high-risk gates, or architecture work require it."
+  },
+  "projects": [
+    {
+      "project_id": "raindeer-awi",
+      "kind": "awi_runtime",
+      "root": ".",
+      "branch_policy": {
+        "local_branch": "main",
+        "upstream": "origin/raindeer-AWI",
+        "main_only": true,
+        "clean_worktree_required": true
+      },
+      "truth_sources": [
+        "AGENTS.md",
+        "docs/PROJECT_STATUS.md",
+        "docs/TASK_TREES.md",
+        "docs/CONTINUATION_PROMPT.md",
+        "docs/LOOP_ENGINEERING.md",
+        "harness/loop-state.json",
+        "harness/session-handoff.md",
+        "harness/reports/EMPLOYEE_ROSTER.md",
+        "harness/source-index.json"
+      ],
+      "owned_paths": [
+        "agents/",
+        "skills/",
+        "harness/",
+        "docs/ENGINEERING/",
+        "docs/LOOP_ENGINEERING.md",
+        "docs/PROJECT_STATUS.md",
+        "docs/TASK_TREES.md",
+        "docs/CONTINUATION_PROMPT.md"
+      ],
+      "acceptance_surfaces": [
+        "harness/scripts/codex-self-check.ps1",
+        "harness/compliance-check.ps1",
+        "harness/tests/"
+      ]
+    },
+    {
+      "project_id": "raindeer-quant-assistant",
+      "kind": "product_adapter",
+      "root": "apps/quant_assistant",
+      "branch_policy": {
+        "local_branch": "main",
+        "upstream": "origin/main",
+        "main_only": true,
+        "clean_worktree_required": true
+      },
+      "truth_sources": [
+        "apps/quant_assistant/docs/PROJECT_STATUS.md",
+        "apps/quant_assistant/docs/TASK_TREES.md",
+        "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
+        "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
+        "apps/quant_assistant/docs/WORKFLOWS.md"
+      ],
+      "product_code_paths": [
+        "apps/quant_assistant/src/",
+        "apps/quant_assistant/tests/",
+        "apps/quant_assistant/web/"
+      ],
+      "acceptance_surfaces": [
+        "uv run pytest",
+        "uv run ruff check",
+        "npm run build",
+        "npm run smoke:jobs-page"
+      ]
+    }
+  ],
+  "external_read_only_sources": [
+    "E:/Google/rd-agent-research/",
+    "E:/Google/intent-state-machine-final.md",
+    "E:/Google/quant-needs-coverage-analysis.md",
+    "E:/Google/query-parse-to-route-analysis.md",
+    "E:/NINEDEER-WIKI/docs/ENGINEERING/react-vite-ui-design-workflow-2026-06-28.md",
+    "E:/NINEDEER-WIKI/docs/ENGINEERING/ui-replication-toolflow-2026-06-28.md"
+  ],
+  "extract_policy": {
+    "awi_owned_paths_must_be_removable": true,
+    "product_runtime_must_not_depend_on_harness": true,
+    "pre_extract_checks": [
+      "git status -sb",
+      "harness/scripts/codex-self-check.ps1 -Format json",
+      "harness/compliance-check.ps1 -Mode post-bootstrap -Format json"
+    ]
+  }
+}
