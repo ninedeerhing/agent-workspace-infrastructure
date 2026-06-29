@@ -1,3 +1,20 @@
+## loop319 auto-backtest queue write readiness review
+
+report:
+  role_id: planner
+  status: success
+  task: select next core function after loop318
+  changes: []
+  verification:
+    - command: loop plan review
+      result: selected auto_backtest_queue_write_readiness_review_v1
+  roster_update:
+    workload_delta: cleared
+    mistakes: []
+    lessons: []
+    performance_note: Selected a functional PL-G auto-backtest chain step, not governance-only work.
+  blockers: []
+  next: loop320 Planner selection after queue write readiness review
 ## SYNC-325 loop318 — 2026-06-29T22:34:55+08:00
 
 Planner selected auto_backtest_no_execution_queue_write_readiness_v1 for loop318 and is cleared; next is loop319 core-function selection.

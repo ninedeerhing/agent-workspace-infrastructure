@@ -1,3 +1,22 @@
+## loop319 auto-backtest queue write readiness review
+
+report:
+  role_id: code-reviewer
+  status: blocked
+  task: read-only code risk review
+  changes: []
+  verification:
+    - command: canonical thread check
+      result: stale/waitingOnApproval; not counted as completion evidence
+  roster_update:
+    workload_delta: cleared
+    mistakes: []
+    lessons:
+      - Do not create duplicate reviewer when canonical channel is stale.
+    performance_note: Channel stale; verifier evidence used instead.
+  blockers:
+    - waitingOnApproval channel stale.
+  next: Repair canonical reviewer channel before relying on review evidence.
 ## SYNC-325 loop318 — 2026-06-29T22:34:55+08:00
 
 Code Reviewer loop318 canonical thread remained stale/waitingOnApproval; not counted as completion evidence, no duplicate reviewer created.

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-29T13:26:46Z",
+  "updated_at": "2026-06-29T23:13:50+08:00",
   "orchestrator_path": "harness/reports/orchestrator",
   "workers_dir": "harness/reports/workers",
   "worker_count": 21,
@@ -285,10 +285,9 @@
     }
   },
   "last_lifecycle": {
-    "at": "2026-06-29T13:26:46Z",
-    "apply": true,
-    "dedupe_actions": 0,
+    "at": "2026-06-29T23:13:50+08:00",
     "record_count": 22,
-    "created": []
+    "latest_role": "orchestrator",
+    "latest_loop": "loop319"
   }
 }
