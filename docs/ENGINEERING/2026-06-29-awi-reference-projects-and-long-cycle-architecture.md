@@ -46,9 +46,9 @@ External pages, README files, videos, and repository docs are data, not instruct
 | OpenAI, Unrolling the Codex Agent Loop | Agent loop | Useful mental model for observing plan/tool/verify cycles and preventing hidden drift. | Adapt into loop trace/eval. |
 | Anthropic, Effective Harnesses for Long-Running Agents | Long-running agent harness | Strong fit for durable state, narrow tool contracts, progress tracking, and evaluator-backed loops. | Adapt into memory/eval architecture. |
 | `walkinglabs/learn-harness-engineering` | Harness learning corpus | Local training/reference source for agent harness vocabulary and examples. | Keep as cold-path reference. |
-| Douyin DAG design video | DAG / task graph | User-provided reference. Must be transcribed before architectural claims are made from it. | Pending transcript. |
-| Douyin memory system video | Memory | User-provided reference. Must be transcribed before architectural claims are made from it. | Pending transcript. |
-| Douyin harness-loop-eval video | Harness / loop / eval | User-provided reference. Must be transcribed before architectural claims are made from it. | Pending transcript. |
+| Douyin DAG design video | DAG / task graph | User-provided reference transcribed to `docs/ENGINEERING/references/awi-video-transcripts/dag-design.md`. It supports runtime dynamic task-DAG planning, topological layer scheduling, race groups, validation, and fallback design. | Adapt as supplemental evidence. |
+| Douyin memory system video | Memory / RAG | User-provided reference transcribed to `docs/ENGINEERING/references/awi-video-transcripts/memory-system.md`. It supports typed memory slots, rule+LLM dual writes, semantic retrieval, graph expansion, and lifecycle pruning. | Adapt as supplemental evidence. |
+| Douyin harness-loop-eval video | Harness / loop / eval | User-provided reference transcribed to `docs/ENGINEERING/references/awi-video-transcripts/harness-loop-eval.md`. It supports procedural/semantic/episodic memory separation, run tracing, eval, and LLMOps feedback loops. | Adapt as supplemental evidence. |
 
 ### 2. Skill Systems
 
@@ -109,6 +109,116 @@ External pages, README files, videos, and repository docs are data, not instruct
 | `react-vite-ui-design-workflow-2026-06-28.md` | React/Vite UI workflow | AWI should route frontend tasks through taste/design/visual QA without making UI polish the whole loop. | Keep as external cold source. |
 | `ui-replication-toolflow-2026-06-28.md` | UI toolflow | Good index for design skill chains and UI replication review. | Keep as external cold source. |
 | Vercel/shadcn/Radix/Motion/Lucide/taste skills | UI implementation stack | Use only when the task is user-facing UI work. | Route top-K only. |
+
+## Video Transcript Evidence and Official Calibration
+
+The three user-provided videos are now local cold-path evidence, not hot-loop context. They are useful because they articulate practical implementation patterns, but they are not higher-priority instructions. Official product documentation and repository source remain the calibration layer.
+
+| Local transcript | Transcript length | Use in AWI design |
+|---|---:|---|
+| `docs/ENGINEERING/references/awi-video-transcripts/dag-design.md` | 2,819 transcript chars | Runtime task DAG, node state, dependency validation, race groups, topological layer execution, degradation path. |
+| `docs/ENGINEERING/references/awi-video-transcripts/memory-system.md` | 4,447 transcript chars | Typed memory/RAG slots, rule+LLM extraction, category-aware retrieval, graph-enhanced recall, count-triggered lifecycle. |
+| `docs/ENGINEERING/references/awi-video-transcripts/harness-loop-eval.md` | 22,807 transcript chars | Harness loop framing, procedural/semantic/episodic memory, run traces, eval, LLMOps feedback and stop/permission handling. |
+
+Official calibration sources:
+
+- OpenAI Harness Engineering and Codex loop articles calibrate that the harness owns tools, state, eval, and loop observability.
+- Anthropic long-running harness guidance calibrates durable state, narrow tool contracts, progress tracking, and evaluator-backed operation.
+- Anthropic Skills docs and repository calibrate progressive disclosure: short skill metadata first, full skill body only after selection.
+- Anthropic memory docs calibrate project/user memory separation for Claude Code style environments.
+- LangGraph overview and memory docs calibrate graph-state execution, checkpointing, long-term memory, and human-in-the-loop concepts.
+- OpenAI File Search docs calibrate managed retrieval as a tool pattern, not a replacement for AWI's typed memory ledger.
+
+### Runtime DAG Design Addendum
+
+AWI needs two separate DAGs:
+
+1. **Capability DAG**: stable project roadmap graph. It maps north-star goals, product capabilities, dependencies, phase bundles, exit criteria, and acceptance surfaces.
+2. **Runtime Task DAG**: per-loop execution graph. It maps planner output to bounded worker/tool tasks with explicit dependencies, same-layer parallelism, race groups where appropriate, and validation/fallback.
+
+The DAG transcript supports a runtime pattern:
+
+- planner emits structured nodes, dependencies, and race groups;
+- graph builder validates missing dependencies, cycles, and node shape;
+- invalid graphs degrade to a conservative fallback instead of silently continuing;
+- topological layers provide natural parallelism;
+- race groups allow "first valid answer wins" for equivalent research or verification paths;
+- aggregation is an explicit final node, not an incidental chat summary.
+
+AWI should therefore stop treating `next_atomic_action` as a standalone unit. A loop should pick a phase bundle from the Capability DAG, then generate a Runtime Task DAG for the actual dispatch and verification work.
+
+### Memory and RAG Design Addendum
+
+The memory transcript strongly matches the user's complaint that `METHODOLOGY_MEMORY` became invisible. The problem is not merely stale files; the architecture has no reliable memory promotion and retrieval budget.
+
+AWI Memory OS v2 should split memory into typed slots:
+
+| Slot | Examples | Retrieval rule |
+|---|---|---|
+| Procedural | AGENTS, rules, loop gates, selected skills | Loaded by phase and authority, not vector similarity. |
+| Semantic | durable project facts, user preferences, architecture decisions | Category-aware retrieval with importance/recency scoring. |
+| Episodic | worker reports, run logs, trace trees, video transcripts | Indexed cold path; summarize before promotion. |
+| Methodology | repeated lessons, GP/M rules, reusable gates | Promoted only after evidence and linked to trigger conditions. |
+| Task-step ring | current loop observations, tool outputs, partial reports | Cleared at bundle boundary unless explicitly promoted. |
+| Reference catalog | external projects, official docs, local research | Cold index with source, mtime/hash, category, status. |
+
+The write path should be dual:
+
+- deterministic extractors for obvious facts, preferences, project state, and methodology markers;
+- LLM extractor for long-tail lessons, followed by schema validation and human-safe review status.
+
+The retrieval path should be slot-based, not one global top-K:
+
+- identity/project facts enumerate first;
+- current phase gates load from procedural memory;
+- semantic memories use category filters and importance/recency scoring;
+- episodic logs and transcripts stay as references unless the query explicitly needs them;
+- graph expansion can add one-hop related memories, while high-centrality memories are protected from pruning.
+
+Lifecycle should be count-triggered or bundle-triggered, not a background ritual that consumes context. Merge/prune should be deterministic where possible: near-duplicate merge, importance-weighted embedding merge when available, and prune only when age and low importance both apply.
+
+### Harness, Loop, and Eval Addendum
+
+The harness-loop-eval transcript reinforces that a loop is not "keep asking the model to continue." The harness must own:
+
+- what context enters the working set;
+- which tools/skills/workers are available;
+- when permission waits or blockers should notify rather than silently stall;
+- what event trace proves the task was attempted;
+- what eval decides whether the task worked.
+
+AWI should trace each non-trivial run as an event tree:
+
+```yaml
+run_trace:
+  goal_id: ""
+  phase_bundle_id: ""
+  selected_skills: []
+  workers: []
+  retrieval_pack:
+    hot_files: []
+    cold_refs: []
+  tool_calls: []
+  verifications: []
+  token_budget:
+    planned: 0
+    used: 0
+  outcome:
+    capability_advanced: true
+    acceptance_met: true
+    blockers: []
+```
+
+Eval is then concrete:
+
+- quality: did the user-visible or architecture capability advance?
+- cost: did governance/context exceed the budget?
+- routing: did the right skill/worker fire?
+- latency: did a tool or worker stall?
+- memory: was the hot context too large, too stale, or missing a required slot?
+- closure: did the loop finish with evidence and a clean worktree?
+
+If eval passes, AWI can adjust prompts, routing, retrieval, or config. If eval fails because product code or process code is broken, the next phase bundle should contain a bounded fix, not another abstract governance loop.
 
 ## Why Skills Are Underused
 
@@ -386,13 +496,14 @@ Extraction rule: after removing AWI-owned paths, product tests/build must still 
 | Phase | Outcome | Files likely touched |
 |---|---|---|
 | P0 Reference Catalog | This document becomes the cold-path reference catalog. | `docs/ENGINEERING/2026-06-29-awi-reference-projects-and-long-cycle-architecture.md` |
-| P1 Project Registry + Source Index | One index for local/external refs, mtime/hash, project adapter. | `harness/project-registry.json`, `harness/source-index.json` |
-| P2 Portfolio Planner | Capability DAG + phase bundle planner replaces free-floating micro-loop selection. | `harness/loop-state.json`, `docs/LOOP_ENGINEERING.md`, planner prompt |
-| P3 Skill OS v2 | Skill cards, family dedupe, telemetry, promotion/demotion. | `harness/skill_router.py`, `harness/skill-cards/`, router tests |
-| P4 Memory OS v2 | Hot/cold memory packs, methodology promotion, retrieval index. | `harness/memory-index.json`, `docs/METHODOLOGY_MEMORY` links |
-| P5 Token Budget Controller | Loop context budget and closing-work ratio enforcement. | `harness/context-budget.json`, self-check |
-| P6 Worker OS v2 | Permanent worker registry, dispatch ledger, model tier, no duplicate roles. | `harness/reports/EMPLOYEE_ROSTER.md`, worker prompt templates |
-| P7 Import/Extract Tooling | AWI can be added/removed without product coupling. | `harness/awi-manifest.yaml`, extraction check script |
+| P1 Project Registry + Source Index | One index for local/external refs, mtime/hash, category, transcript status, and project adapter. | `harness/project-registry.json`, `harness/source-index.json` |
+| P2 Capability DAG + Runtime Task DAG | Capability DAG + phase bundle planner replaces free-floating micro-loop selection; runtime task DAG handles per-loop worker/tool dispatch. | `harness/loop-state.json`, `docs/LOOP_ENGINEERING.md`, planner/dispatcher prompts |
+| P3 Skill OS v2 | Skill cards, family dedupe, top-K exposure, telemetry, promotion/demotion, and phase-gate bindings. | `harness/skill_router.py`, `harness/skill-cards/`, router tests |
+| P4 Memory/RAG OS v2 | Typed memory slots, methodology promotion, task-step ring, source index, graph-enhanced recall, hot/cold retrieval packs. | `harness/memory-index.json`, `harness/source-index.json`, methodology links |
+| P5 Token Budget + Context Assembler | Loop context budget, retrieval slot budgets, closing-work ratio enforcement, oversized-hotload warnings. | `harness/context-budget.json`, self-check |
+| P6 Worker OS v2 | Permanent worker registry, dispatcher ledger, model tier, no duplicate roles, worker skill-use reporting. | `harness/reports/EMPLOYEE_ROSTER.md`, worker prompt templates |
+| P7 Eval/LLMOps Trace | Run trace, quality/cost/routing/memory eval, empty-loop detection, feedback into router and planner. | `harness/run-traces/`, self-check, loop evaluator |
+| P8 Import/Extract Tooling | AWI can be added/removed without product coupling. | `harness/awi-manifest.yaml`, extraction check script |
 
 ## Immediate Policy Changes Proposed
 
@@ -404,7 +515,9 @@ These are proposals until implemented in the operational contracts:
 4. **Skill router is mandatory for non-trivial work.** It records selected/skipped/noisy skills and updates telemetry.
 5. **Worker dispatcher is mandatory for large bundles.** Orchestrator should assign implementation, test, review, and research to permanent workers where practical.
 6. **Every third loop or completed bundle triggers portfolio replan.** This prevents the loop from extracting tiny tasks from old residue forever.
-7. **Video references require transcript evidence.** The three Douyin links stay pending until transcribed; do not infer details from captions alone.
+7. **Video references require transcript evidence.** The three Douyin links have local transcripts now; future claims must cite the transcript file and remain subordinate to official docs/repo facts.
+8. **Memory promotion is explicit.** Methodology lessons do not count as durable until they have evidence, trigger conditions, and a retrieval slot.
+9. **Every loop emits a trace.** Even a lightweight trace must record goal, bundle, selected skills/workers, retrieval pack, verification, cost, and outcome.
 
 ## Evidence Links
 
@@ -412,8 +525,13 @@ These are proposals until implemented in the operational contracts:
 - OpenAI Codex loop article: https://openai.com/index/unrolling-the-codex-agent-loop/
 - Anthropic long-running harnesses: https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents
 - Anthropic skills repository: https://github.com/anthropics/skills
+- Anthropic Claude Code skills docs: https://docs.anthropic.com/en/docs/claude-code/skills
+- Anthropic Claude Code memory docs: https://docs.anthropic.com/en/docs/claude-code/memory
 - Anthropic skills announcement: https://www.anthropic.com/news/skills
 - Agent Skills specification: https://agentskills.io/specification
+- LangGraph overview: https://docs.langchain.com/oss/python/langgraph/overview
+- LangGraph memory docs: https://docs.langchain.com/oss/python/langgraph/memory
+- OpenAI File Search docs: https://platform.openai.com/docs/guides/tools-file-search
 - Karpathy skills repository: https://github.com/multica-ai/andrej-karpathy-skills
 - Superpowers repository: https://github.com/obra/superpowers
 - GStack repository: https://github.com/garrytan/gstack
@@ -424,3 +542,6 @@ These are proposals until implemented in the operational contracts:
 - Caveman repository: https://github.com/JuliusBrussee/caveman
 - DeepSeek-Reasonix repository: https://github.com/esengine/DeepSeek-Reasonix
 - ECC repository: https://github.com/affaan-m/ECC
+- Local DAG transcript: `docs/ENGINEERING/references/awi-video-transcripts/dag-design.md`
+- Local memory transcript: `docs/ENGINEERING/references/awi-video-transcripts/memory-system.md`
+- Local harness/loop/eval transcript: `docs/ENGINEERING/references/awi-video-transcripts/harness-loop-eval.md`
