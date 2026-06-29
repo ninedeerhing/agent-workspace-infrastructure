@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-29T17:20:33+08:00
+updated_at: 2026-06-29T18:02:19+08:00
+
+## Latest Handoff — SYNC-318 loop311
+
+- [DONE] auto_backtest_queue_write_authorization_preflight_v1 is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: src/qa/quant_mining/auto_backtest_queue_write_authorization_preflight.py, src/qa/quant_mining/mining_runner.py, src/qa/ui/factor_library_insights.py, src/qa/ui/chat_brain.py, tests/test_auto_backtest_queue_write_authorization_preflight_unit.py, tests/test_auto_backtest_queue_write_authorization_preflight_surface_unit.py, plus truth sources in docs/PROJECT_STATUS.md, docs/CONTINUATION_PROMPT.md, and docs/TASK_TREES.md.
+- [VERIFY] TDD RED missing module; RED addendum for source_dispatch_planning_status_drift / source_ready_for_dispatch_planning_drift; GREEN focused 28 passed; adjacent queue-intake/review/dispatch/write-preflight chain 160 passed; mining runner adjacent 20 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; code-reviewer success; verifier success.
+- [BLOCKED] No product blocker. Known environment issue: some worker and local read channels hit Windows sandbox ACL/no approval; Orchestrator used bounded liveness takeover without creating duplicate same-role workers.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_AUTO_BACKTEST_QUEUE_WRITE_AUTHORIZATION_PREFLIGHT_LOOP312：由 Planner 基于总规划、当前进度和 loop311 auto_backtest_queue_write_authorization_preflight_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 queue-write authorization preflight 之后的 review-only auto-backtest worker handoff readiness / queue-write authorization artifact review / safe DB-enqueue planning preflight 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+- [ROSTER] Planner and Dispatcher succeeded; Test Engineer partial due ACL; Executor blocked due ACL; Code Reviewer success; Verifier success. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not repeat loop311 as a real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Codex Migration Block（Cursor → CodeX 无损接手）
 

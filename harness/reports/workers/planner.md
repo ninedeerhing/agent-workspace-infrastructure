@@ -1,3 +1,26 @@
+# loop311 report
+updated_at: 2026-06-29T18:02:19+08:00
+status: success
+task: selected auto_backtest_queue_write_authorization_preflight_v1 after loop310 dispatch planning readiness and preserved the loop312 next-after lane toward worker handoff readiness / queue-write authorization artifact review / safe DB-enqueue planning preflight.
+changes: []
+verification: report consumed by Orchestrator; no file edits by Planner.
+roster_update: workload cleared; model_tier=gpt-5.4; permanent thread unchanged.
+blockers: []
+next: Planner selects loop312 core function after current truth-source commit.
+
+---
+
+# loop311 report
+updated_at: 2026-06-29T18:00:27+08:00
+status: success
+task: selected auto_backtest_queue_write_authorization_preflight_v1 after loop310 dispatch planning readiness and preserved the loop312 next-after lane toward worker handoff readiness / queue-write authorization artifact review / safe DB-enqueue planning preflight.
+changes: []
+verification: report consumed by Orchestrator; no file edits by Planner.
+roster_update: workload cleared; model_tier=gpt-5.4; permanent thread unchanged.
+blockers: []
+next: Planner selects loop312 core function after current truth-source commit.
+
+---
 # loop310 report
 updated_at: 2026-06-29T17:20:33+08:00
 status: success

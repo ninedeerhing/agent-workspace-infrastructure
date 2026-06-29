@@ -1,3 +1,26 @@
+# loop311 report
+updated_at: 2026-06-29T18:02:19+08:00
+status: success
+task: routed loop311 assignment_matrix to permanent workers: Executor write-owner, Test Engineer read-only TDD matrix, Code Reviewer read-only risk review, Verifier final verification.
+changes: []
+verification: assignment consumed by Orchestrator; no duplicate same-role workers created.
+roster_update: workload cleared; model_tier=gpt-5.4; permanent thread unchanged.
+blockers: []
+next: Dispatch loop312 after Planner returns the next core-function plan.
+
+---
+
+# loop311 report
+updated_at: 2026-06-29T18:00:27+08:00
+status: success
+task: routed loop311 assignment_matrix to permanent workers: Executor write-owner, Test Engineer read-only TDD matrix, Code Reviewer read-only risk review, Verifier final verification.
+changes: []
+verification: assignment consumed by Orchestrator; no duplicate same-role workers created.
+roster_update: workload cleared; model_tier=gpt-5.4; permanent thread unchanged.
+blockers: []
+next: Dispatch loop312 after Planner returns the next core-function plan.
+
+---
 # loop310 report
 updated_at: 2026-06-29T17:20:33+08:00
 status: success

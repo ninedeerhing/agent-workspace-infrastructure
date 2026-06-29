@@ -1,3 +1,26 @@
+# loop311 report
+updated_at: 2026-06-29T18:02:19+08:00
+status: partial
+task: loop311 read-only test design for queue-write authorization preflight.
+changes: []
+verification: channel could not inspect files/run commands due Windows sandbox ACL/no approval; provided RED matrix incorporated by Orchestrator.
+roster_update: workload cleared; model_tier=gpt-5.5 for critical authorization/execution gate; permanent thread unchanged.
+blockers: Windows sandbox ACL/no approval prevented trusted command evidence.
+next: For loop312, verify reachability before relying on command evidence.
+
+---
+
+# loop311 report
+updated_at: 2026-06-29T18:00:27+08:00
+status: partial
+task: loop311 read-only test design for queue-write authorization preflight.
+changes: []
+verification: channel could not inspect files/run commands due Windows sandbox ACL/no approval; provided RED matrix incorporated by Orchestrator.
+roster_update: workload cleared; model_tier=gpt-5.5 for critical authorization/execution gate; permanent thread unchanged.
+blockers: Windows sandbox ACL/no approval prevented trusted command evidence.
+next: For loop312, verify reachability before relying on command evidence.
+
+---
 # loop310 report
 updated_at: 2026-06-29T17:20:33+08:00
 status: partial
