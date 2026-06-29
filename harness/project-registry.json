@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-29T12:57:15+08:00",
+  "updated_at": "2026-06-29T13:07:10+08:00",
   "purpose": "Project registry for AWI Kernel v2. Keeps project adapters, truth sources, branch policy, and extractable AWI-owned paths out of hot chat context.",
   "awi_kernel": {
     "project_id": "raindeer-awi",
@@ -25,6 +25,7 @@
         "docs/TASK_TREES.md",
         "docs/CONTINUATION_PROMPT.md",
         "docs/LOOP_ENGINEERING.md",
+        "docs/ENGINEERING/AWI-REFERENCE-CATALOG.md",
         "harness/loop-state.json",
         "harness/session-handoff.md",
         "harness/reports/EMPLOYEE_ROSTER.md",

@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-29T12:57:15+08:00",
+  "updated_at": "2026-06-29T13:07:10+08:00",
   "purpose": "Cold-path source index for AWI v2. It lets the loop reference official docs, local truth sources, external research, and video transcripts by id instead of hot-loading full documents.",
   "hot_path_policy": {
     "default_load": [
@@ -131,6 +131,21 @@
         "retrieval",
         "file_search",
         "tools"
+      ]
+    },
+    {
+      "id": "awi-reference-catalog",
+      "title": "AWI Reference Catalog",
+      "category": "awi_architecture",
+      "authority": "local_truth_source",
+      "path": "docs/ENGINEERING/AWI-REFERENCE-CATALOG.md",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": [
+        "reference_catalog",
+        "dedupe",
+        "source_index",
+        "long_cycle"
       ]
     },
     {
@@ -271,6 +286,7 @@
     "anthropic-claude-code-skills",
     "anthropic-claude-code-memory",
     "langgraph-memory",
+    "awi-reference-catalog",
     "awi-reference-architecture-2026-06-29",
     "douyin-dag-design-transcript",
     "douyin-memory-system-transcript",
