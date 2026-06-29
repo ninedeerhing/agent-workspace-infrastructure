@@ -1,5 +1,39 @@
 # Orchestrator Latest Report
 
+updated_at: 2026-06-29T17:20:33+08:00
+loop: loop310-auto-backtest-dispatch-planning-readiness
+status: success
+current_tree: TREE-6
+current_slice: auto-backtest-dispatch-planning-readiness-loop310
+methodology_ref: M-17-zero-write
+
+## Summary
+
+- Built `auto_backtest_dispatch_planning_readiness_v1 as a review-only packet derived from loop309 `auto_backtest_queue_review_preparation_v1.
+- Wired the packet into MiningJob observability, Factor Library rows, and Chat follow-up copy.
+- Kept hard false/not_granted/no-execution boundaries: no real queue write, DB enqueue, worker handoff execution, runner/adapter connection, rollback ready, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, manual/human acceptance grant, or execution permission.
+
+## Verification
+
+- RED: missing qa.quant_mining.auto_backtest_dispatch_planning_readiness failed before implementation.
+- GREEN: focused dispatch-planning readiness tests 23 passed.
+- Adjacent/surface: queue intake/review/dispatch + Chat + Factor Library regression 132 passed.
+- Mining adjacent: 20 passed.
+- Ruff: targeted changed files All checks passed!.
+- git diff --check: pass.
+- Forbidden true-marker scan: only Chat fail-closed guard checks; no active enablement path.
+- Verifier: success.
+
+## Worker/Roster Note
+
+- Planner and Dispatcher succeeded on permanent threads. Test Engineer returned partial due ACL/no approval; Executor blocked due ACL/no approval; Code Reviewer waitingOnApproval did not return trusted completion evidence. Orchestrator used bounded liveness takeover and final verifier evidence; no duplicate same-role worker was created.
+
+## Next
+
+PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_AUTO_BACKTEST_DISPATCH_PLANNING_READINESS_LOOP311：由 Planner 基于总规划、当前进度和 loop310 auto_backtest_dispatch_planning_readiness_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 dispatch planning readiness 之后的 review-only queue-write authorization preflight / auto-backtest worker handoff readiness 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+
+---# Orchestrator Latest Report
+
 updated_at: 2026-06-29T16:46:33+08:00
 loop: loop309-auto-backtest-queue-review-preparation
 status: success
@@ -9,7 +43,7 @@ methodology_ref: M-17-zero-write
 
 ## Summary
 
-- Built uto_backtest_queue_review_preparation_v1 as a review-only packet derived from loop308 uto_backtest_queue_intake_readiness_v1.
+- Built `auto_backtest_queue_review_preparation_v1 as a review-only packet derived from loop308 `auto_backtest_queue_intake_readiness_v1.
 - Wired the packet into MiningJob observability, Factor Library rows, and Chat follow-up copy.
 - Kept hard false/not_granted/no-execution boundaries: no real queue write, DB enqueue, runner/adapter connection, rollback ready, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, manual/human acceptance grant, or execution permission.
 
@@ -40,17 +74,17 @@ PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_AUTO_BACKTEST_QUEUE_REVIEW_PREPARATION_L
 
 - **slice**: TREE-6 / PL-G auto-backtest queue intake readiness.
 - **trigger**: loop307 produced a review-only human acceptance decision packet; the product chain needed a shared queue-intake readiness packet before any later queue review/preparation/dispatch planning step.
-- **result**: uto_backtest_queue_intake_readiness_v1 is now derived from human_acceptance_decision_packet_v1 in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists queue intake status, required actions, blockers, candidate refs, review readiness, no-execution safety, and manual next actions. Missing/wrong/blocked source, source actions/blockers, missing clean refs, source/provenance/safety drift, runner/rollback/PL-H/grant/acceptance drift, malformed refs, and execution-bearing markers fail closed. No real queue write, DB enqueue, authorization grant, manual/human acceptance grant, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **result**: `auto_backtest_queue_intake_readiness_v1 is now derived from human_acceptance_decision_packet_v1 in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists queue intake status, required actions, blockers, candidate refs, review readiness, no-execution safety, and manual next actions. Missing/wrong/blocked source, source actions/blockers, missing clean refs, source/provenance/safety drift, runner/rollback/PL-H/grant/acceptance drift, malformed refs, and execution-bearing markers fail closed. No real queue write, DB enqueue, authorization grant, manual/human acceptance grant, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
 - **next**: PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_AUTO_BACKTEST_QUEUE_INTAKE_READINESS_LOOP309：由 Planner 基于总规划、当前进度和 loop308 auto_backtest_queue_intake_readiness_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进自动回测队列入口复核后的 read-only queue review / preparation / dispatch planning readiness 或下一段 auto-backtest flow readiness；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
 
 ## Changes
 
 | File | Summary |
 |------|---------|
-| pps/quant_assistant/src/qa/quant_mining/auto_backtest_queue_intake_readiness.py | Adds the pure fail-closed review-only auto-backtest queue-intake readiness builder. |
-| pps/quant_assistant/src/qa/quant_mining/mining_runner.py | Adds uto_backtest_queue_intake_readiness_v1 to MiningJob observability. |
-| pps/quant_assistant/src/qa/ui/factor_library_insights.py / chat_brain.py | Carries queue-intake readiness into Factor Library rows and Chat notes. |
-| pps/quant_assistant/tests/test_auto_backtest_queue_intake_readiness_*.py | Proves derivation, missing refs blocker, drift blockers, no-execution/no-queue-write markers, and passive consumer surfaces. |
+| `pps/quant_assistant/src/qa/quant_mining/auto_backtest_queue_intake_readiness.py | Adds the pure fail-closed review-only auto-backtest queue-intake readiness builder. |
+| `pps/quant_assistant/src/qa/quant_mining/mining_runner.py | Adds `auto_backtest_queue_intake_readiness_v1 to MiningJob observability. |
+| `pps/quant_assistant/src/qa/ui/factor_library_insights.py / chat_brain.py | Carries queue-intake readiness into Factor Library rows and Chat notes. |
+| `pps/quant_assistant/tests/test_auto_backtest_queue_intake_readiness_*.py | Proves derivation, missing refs blocker, drift blockers, no-execution/no-queue-write markers, and passive consumer surfaces. |
 
 ## Verification
 
@@ -182,10 +216,10 @@ Planner still needs to select loop307's next core function after the human accep
 
 | File | Summary |
 |------|---------|
-| pps/quant_assistant/src/qa/quant_mining/manual_handoff_acceptance_packet.py | Adds the pure fail-closed review-only manual handoff acceptance packet builder. |
-| pps/quant_assistant/src/qa/quant_mining/mining_runner.py | Adds manual_handoff_acceptance_packet_v1 to MiningJob observability. |
-| pps/quant_assistant/src/qa/ui/factor_library_insights.py / chat_brain.py | Carries manual handoff acceptance into Factor Library rows and Chat notes. |
-| pps/quant_assistant/tests/test_manual_handoff_acceptance_packet_*.py | Proves derivation, P2 missing-ref blocker, drift blockers, no-execution markers, and passive consumer surfaces. |
+| `pps/quant_assistant/src/qa/quant_mining/manual_handoff_acceptance_packet.py | Adds the pure fail-closed review-only manual handoff acceptance packet builder. |
+| `pps/quant_assistant/src/qa/quant_mining/mining_runner.py | Adds manual_handoff_acceptance_packet_v1 to MiningJob observability. |
+| `pps/quant_assistant/src/qa/ui/factor_library_insights.py / chat_brain.py | Carries manual handoff acceptance into Factor Library rows and Chat notes. |
+| `pps/quant_assistant/tests/test_manual_handoff_acceptance_packet_*.py | Proves derivation, P2 missing-ref blocker, drift blockers, no-execution markers, and passive consumer surfaces. |
 
 ## Verification
 
