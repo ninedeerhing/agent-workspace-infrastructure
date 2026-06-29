@@ -1,5 +1,54 @@
 # Orchestrator Latest Report
 
+updated_at: 2026-06-29T20:41:00+08:00
+loop: loop315-auto-backtest-db-enqueue-authorization-artifact-review
+status: success
+current_tree: TREE-6
+current_slice: auto-backtest-db-enqueue-authorization-artifact-review-loop315
+next_atomic_action: PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_DB_ENQUEUE_AUTHORIZATION_ARTIFACT_REVIEW_LOOP316：由 Planner 基于总规划、当前进度和 loop315 auto_backtest_db_enqueue_authorization_artifact_review_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 DB enqueue authorization artifact review 之后的 queue write execution authorization review / real queue write implementation boundary / no-execution queue write readiness 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+
+## Summary
+
+auto_backtest_db_enqueue_authorization_artifact_review_v1 is complete. It derives a review-only DB enqueue authorization artifact review packet from loop314 auto_backtest_safe_db_enqueue_planning_preflight_v1, preserving reviewed candidate refs only when upstream planning preflight is clean and all no-execution safety markers remain false/not_granted/not_connected/not_ready.
+
+## Changes
+
+- Added src/qa/quant_mining/auto_backtest_db_enqueue_authorization_artifact_review.py.
+- Wired auto_backtest_db_enqueue_authorization_artifact_review_v1 into src/qa/quant_mining/mining_runner.py, src/qa/ui/factor_library_insights.py, and src/qa/ui/chat_brain.py.
+- Added focused unit and surface tests for source drift, blockers, malformed refs, safety drift, consumer surfaces, and no-execution boundary.
+
+## Verification
+
+- RED: missing module failed before implementation.
+- GREEN: focused 27 passed.
+- GREEN: adjacent loop308-loop315 read-model chain 200 passed.
+- GREEN: consumer regression 78 passed.
+- GREEN: targeted Ruff pass.
+- GREEN: git diff --check pass.
+- GREEN: forbidden active marker scan clean.
+- GREEN: control-char scan clean.
+- Verifier: success.
+
+## Worker Reports
+
+- Planner: core function selected.
+- Dispatcher: permanent-worker assignment path used.
+- Test Engineer: success.
+- Executor: blocked due Windows ACL/no approval; Orchestrator used bounded liveness takeover.
+- Code Reviewer: loop315 stale/waitingOnApproval; not completion evidence.
+- Verifier: success.
+
+## Safety
+
+Still forbidden: real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, and execution permission.
+
+## Next
+
+Proceed to loop316 Planner selection under continuous loop mode after clean-worktree gate.
+
+---
+# Orchestrator Latest Report
+
 updated_at: 2026-06-29T20:13:00+08:00
 loop: loop314-auto-backtest-safe-db-enqueue-planning-preflight
 status: success

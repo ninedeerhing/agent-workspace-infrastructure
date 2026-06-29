@@ -1,3 +1,15 @@
+# Worker Report — planner
+
+updated_at: 2026-06-29T20:41:00+08:00
+loop: loop315
+task: select next core function after safe DB enqueue planning preflight
+status: success
+model_tier: gpt-5.4
+summary: selected auto_backtest_db_enqueue_authorization_artifact_review_v1 as the next core function and pointed next_after toward queue write execution authorization review / real queue write implementation boundary while preserving no-execution constraints.
+verification: read-only planning report integrated by orchestrator.
+next: dispatcher assignment_matrix, then loop316 Planner selection after sync.
+
+---
 
 ## loop314-auto-backtest-safe-db-enqueue-planning-preflight (2026-06-29T20:13:00+08:00)
 

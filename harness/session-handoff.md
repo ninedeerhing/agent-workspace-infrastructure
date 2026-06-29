@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-29T20:13:00+08:00
+updated_at: 2026-06-29T20:41:00+08:00
+
+## Latest Handoff — SYNC-322 loop315
+
+- [DONE] auto_backtest_db_enqueue_authorization_artifact_review_v1 is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: src/qa/quant_mining/auto_backtest_db_enqueue_authorization_artifact_review.py, src/qa/quant_mining/mining_runner.py, src/qa/ui/factor_library_insights.py, src/qa/ui/chat_brain.py, tests/test_auto_backtest_db_enqueue_authorization_artifact_review_unit.py, tests/test_auto_backtest_db_enqueue_authorization_artifact_review_surface_unit.py, plus truth sources in docs/PROJECT_STATUS.md, docs/CONTINUATION_PROMPT.md, docs/TASK_TREES.md, harness/loop-state.json, harness/session-handoff.md, harness/reports/EMPLOYEE_ROSTER.md, and reports.
+- [VERIFY] TDD RED missing module; GREEN focused 27 passed; adjacent loop308-loop315 chain 200 passed; consumer regression 78 passed; targeted Ruff pass; git diff --check pass; forbidden active marker scan clean; control-char scan clean; Verifier success.
+- [BLOCKED] No product blocker. Executor channel hit Windows ACL/no approval; Code Reviewer loop315 stale/waitingOnApproval and is not completion evidence; Orchestrator used bounded liveness takeover and permanent Verifier success without creating duplicate same-role workers.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_DB_ENQUEUE_AUTHORIZATION_ARTIFACT_REVIEW_LOOP316：由 Planner 基于总规划、当前进度和 loop315 auto_backtest_db_enqueue_authorization_artifact_review_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 DB enqueue authorization artifact review 之后的 queue write execution authorization review / real queue write implementation boundary / no-execution queue write readiness 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+- [ROSTER] Planner/Dispatcher assignment path used; Test Engineer success; Executor blocked/ACL; Code Reviewer stale/not evidence; Verifier success. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not repeat loop315 as a real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-321 loop314
 
