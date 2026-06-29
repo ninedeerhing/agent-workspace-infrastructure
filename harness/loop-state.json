@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-29T14:24:05+08:00",
+  "updated_at": "2026-06-29T14:48:36+08:00",
   "mode": "autonomous",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "manual-handoff-acceptance-to-next-core-planner-loop306",
-  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_MANUAL_HANDOFF_ACCEPTANCE_PACKET_LOOP306：由 Planner 基于总规划、当前进度和 loop305 manual_handoff_acceptance_packet_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 manual handoff acceptance 之后的显式人工验收/请求 artifact 或真实执行前 readiness 链，不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得连接 runner/adapter、标记 rollback ready、授予 authorization/manual acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
-  "next_after": "After Planner loop306 core function is selected, Dispatcher must produce assignment_matrix and route bounded implementation/testing/review/verification to permanent workers; closing governance only follows the functional delivery.",
+  "current_slice": "human-acceptance-review-packet-loop306",
+  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_HUMAN_ACCEPTANCE_REVIEW_PACKET_LOOP307：由 Planner 基于总规划、当前进度和 loop306 human_acceptance_review_packet_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进人工验收复核后的显式人工验收 artifact/decision 或真实执行前 readiness 链，不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得连接 runner/adapter、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
+  "next_after": "After Planner loop307 core function is selected, Dispatcher must produce assignment_matrix and route bounded implementation/testing/review/verification to permanent workers; closing governance only follows the functional delivery.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop305-manual-handoff-acceptance-packet",
+  "last_tick": "loop306-human-acceptance-review-packet",
   "last_sync_sources": [
+    "SYNC-313 loop306 Human acceptance review packet",
+    "loop306 TDD RED: initial surface RED 17 passed / 3 failed before Factor Library/Chat wiring",
+    "loop306 GREEN: human_acceptance_review_packet_v1 derives review-only human acceptance review packet from loop305 manual_handoff_acceptance_packet_v1",
+    "loop306 verification: focused 20 passed; adjacent loop304-loop306 regression 55 passed; consumer surface regression 70 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; dangerous marker scan only false/not_granted/drift blockers/negative tests; verifier final success",
+    "loop306 worker dispatch: Planner loop_plan, Dispatcher assignment_matrix, Test Engineer/Executor/Code Reviewer approval-stall with STOP; Orchestrator liveness takeover; Verifier final success; no duplicate same-role worker",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.637",
+    "methodology_ref: M-17-zero-write",
+    "next: Planner selects loop307 core function after human_acceptance_review_packet_v1; still no runner/adapter connection, rollback ready, actual dry-run, DB-backed real batch, PL-H, manual/human acceptance grant, authorization grant, or execution permission",
     "SYNC-312 loop305 Manual handoff acceptance packet",
     "loop305 TDD RED: missing qa.quant_mining.manual_handoff_acceptance_packet and missing surface wiring failed before implementation",
     "loop305 GREEN: manual_handoff_acceptance_packet_v1 derives review-only manual handoff acceptance packet from loop304 operator_reviewer_handoff_review_packet_v1",
@@ -1413,7 +1421,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop305 completed Manual handoff acceptance packet. manual_handoff_acceptance_packet_v1 now derives a review-only manual handoff acceptance packet from loop304 operator_reviewer_handoff_review_packet_v1, carrying source refs, acceptance refs, pending items, blockers, manual next actions, no-execution safety, and A-E/safe_sim/audit/F6 evidence across MiningJob observability, Factor Library, and Chat. Missing/wrong/blocked source, source/provenance/safety drift, missing clean-source refs, runner connected drift, rollback ready drift, PL-H drift, operator/reviewer grant drift, manual acceptance drift, and execution-bearing markers fail close. The packet is not authorization grant, manual acceptance grant, auto-publish, auto-backtest, live/default runner, adapter invocation, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, rollback ready, execution permission, or secret output. User resumed continuous loop mode; next is Planner-selected loop306 core function."
+    "note": "loop306 completed Human acceptance review packet. human_acceptance_review_packet_v1 now derives a review-only human acceptance review packet from loop305 manual_handoff_acceptance_packet_v1, carrying source refs, review refs, required actions, blockers, manual next actions, no-execution safety, and A-E/safe_sim/audit/F6 evidence across MiningJob observability, Factor Library, and Chat. Missing/wrong/blocked source, source actions/blockers, missing clean refs, source/provenance/safety drift, runner connected drift, rollback ready drift, PL-H drift, operator/reviewer grant drift, manual/human acceptance drift, execution_permission drift, and execution-bearing markers fail close. The packet is not authorization grant, manual acceptance grant, human acceptance grant, auto-publish, auto-backtest, live/default runner, adapter invocation, actual dry-run, DB-backed real batch, PL-H, background/migration/backfill, rollback ready, execution permission, or secret output. User resumed continuous loop mode; next is Planner-selected loop307 core function."
   },
-  "last_completed_note": "loop305 Manual handoff acceptance packet complete. Added qa.quant_mining.manual_handoff_acceptance_packet.build_manual_handoff_acceptance_packet_v1, wired manual_handoff_acceptance_packet_v1 into MiningJob observability, Factor Library rows, and Chat notes. The read-model converts loop304 operator_reviewer_handoff_review_packet_v1 into a review-only manual handoff acceptance packet with source refs, acceptance refs, pending items, blockers, manual next actions, A-E taxonomy, safe_sim/audit/F6 refs, and no-execution safety; it never grants automatic publication, backtest execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H authority, manual acceptance, authorization grant, rollback ready, or execution permission. P2 closure: clean source with empty operator_handoff_packet_refs now fails closed as missing_manual_handoff_acceptance_candidate_refs; source actions/blockers remain acceptance_packet_not_ready. Verification: focused tests 19 passed; related loop304-loop305 regression 35 passed; consumer regression 105 passed; Chat 56 passed; Factor Library 14 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; code-reviewer P2 recheck success; verifier final pass. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_MANUAL_HANDOFF_ACCEPTANCE_PACKET_LOOP306."
+  "last_completed_note": "loop306 Human acceptance review packet complete. Added qa.quant_mining.human_acceptance_review_packet.build_human_acceptance_review_packet_v1, wired human_acceptance_review_packet_v1 into MiningJob observability, Factor Library rows, and Chat notes. The read-model converts loop305 manual_handoff_acceptance_packet_v1 into a review-only human acceptance review packet with source refs, review refs, required actions, blockers, manual next actions, A-E taxonomy, safe_sim/audit/F6 refs, and no-execution safety; it never grants automatic publication, backtest execution, runner/adapter connection, actual dry-run, DB-backed real batch, PL-H authority, manual/human acceptance, authorization grant, rollback ready, or execution permission. Verification: focused tests 20 passed; adjacent loop304-loop306 regression 55 passed; consumer surface regression 70 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; verifier final success. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_HUMAN_ACCEPTANCE_REVIEW_PACKET_LOOP307."
 }

@@ -1,4 +1,49 @@
-# Orchestrator Report - loop305-manual-handoff-acceptance-packet
+# Orchestrator Report - loop306-human-acceptance-review-packet
+
+**Updated**: 2026-06-29T14:48:36+08:00
+
+## Tick Summary
+
+- **slice**: TREE-6 / PL-G human acceptance review packet.
+- **trigger**: loop305 produced a review-only manual handoff acceptance packet; the product chain needed a shared human acceptance review packet before the next explicit human acceptance artifact/decision or execution-readiness step.
+- **result**: `human_acceptance_review_packet_v1` is now derived from `manual_handoff_acceptance_packet_v1` in MiningJob observability and consumed by Factor Library and Chat follow-up surfaces. It lists human acceptance review status, required actions, blockers, review refs, source refs, no-execution safety, and manual next actions. Missing/wrong/blocked source, source actions/blockers, missing clean refs, source/provenance/safety drift, runner/rollback/PL-H/grant/manual-or-human-acceptance drift, and execution-bearing markers fail closed. No authorization grant, manual acceptance grant, human acceptance grant, execution, publish, runner, adapter, DB-backed real batch, rollback-ready, or PL-H authority is granted.
+- **next**: PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_HUMAN_ACCEPTANCE_REVIEW_PACKET_LOOP307; Planner must select the next core function in the auto mining -> auto backtest chain, then Dispatcher routes implementation/testing/review/verification to permanent workers.
+
+## Changes
+
+| File | Summary |
+|------|---------|
+| `apps/quant_assistant/src/qa/quant_mining/human_acceptance_review_packet.py` | Adds the pure fail-closed review-only human acceptance review packet builder. |
+| `apps/quant_assistant/src/qa/quant_mining/mining_runner.py` | Adds `human_acceptance_review_packet_v1` to MiningJob observability. |
+| `apps/quant_assistant/src/qa/ui/factor_library_insights.py` / `chat_brain.py` | Carries human acceptance review into Factor Library rows and Chat notes. |
+| `apps/quant_assistant/tests/test_human_acceptance_review_packet_*.py` | Proves derivation, missing clean refs blocker, drift blockers, no-execution markers, and passive consumer surfaces. |
+
+## Verification
+
+| Gate | Result |
+|------|--------|
+| TDD RED | pass · initial surface RED **17 passed / 3 failed** before wiring |
+| focused tests | pass · **20 passed** |
+| adjacent regression | pass · loop304-loop306 **55 passed in 0.86s** |
+| consumer regression | pass · **70 passed in 0.70s** |
+| Python ruff | pass · targeted files -> **All checks passed!** |
+| diff check | pass · CRLF warnings only |
+| semantic marker scan | pass · only false/not_granted/drift blockers and negative assertions matched |
+| verifier | success · focused 20 passed, Ruff pass, diff check pass, and semantic no-execution review pass |
+
+## Worker Notes
+
+Planner selected loop306 as a core function. Dispatcher produced the loop306 assignment matrix. Test Engineer, Executor, and Code Reviewer loop306 cross-dialogue requests entered CodeX approval/waitingOnApproval stalls and did not produce completion evidence; STOP was sent to prevent duplicate/concurrent work. Orchestrator performed a liveness takeover for implementation, local code review, and verification without creating a duplicate same-role worker. Permanent verifier independently confirmed the packet remains passive, no-grant, no-rollback-ready, and no-execution.
+
+## Safety
+
+No `.env`, `.env.local`, token, DSN value, or secret was read or printed. No live/default runner, adapter invocation, actual adapter dry-run, DB-backed real batch, rollback-ready action, PL-H batch, background process, migration, or backfill was started. The human acceptance review packet is not auto-publish, auto-backtest, authorization grant, manual acceptance grant, human acceptance grant, controlled dry-run permission, execution permission, rollback ready, or runner/adapter authority.
+
+## Residual Risk
+
+Planner still needs to select loop307's next core function after the human acceptance review packet. Existing shared consumer files remain inherited oversized modules; loop306 only added thin passive wiring and records the split as engineering debt rather than blocking the core chain.
+
+---# Orchestrator Report - loop305-manual-handoff-acceptance-packet
 
 **Updated**: 2026-06-29T14:21:31+08:00
 
