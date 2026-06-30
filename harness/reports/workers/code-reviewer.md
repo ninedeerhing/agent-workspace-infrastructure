@@ -3,6 +3,24 @@
 report:
   role_id: "code-reviewer"
   status: "blocked"
+  task: "loop330 real queue write review gate to authorization packet code review"
+  changes: []
+  verification:
+    - command: "canonical thread status"
+      result: "No usable current code-reviewer inspection was counted before closeout; not counted as loop330 completion evidence. Local tests, Ruff, and adjacent/auto_backtest regression provided final evidence."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Do not claim reviewer PASS when canonical reviewer cannot inspect files."
+    performance_note: "Channel evidence gap recorded; no reviewer success claimed."
+  blockers:
+    - "Canonical code-reviewer report not available as completion evidence."
+  next: "loop331 code review after Planner/Dispatcher"
+
+report:
+  role_id: "code-reviewer"
+  status: "blocked"
   task: "loop329 real queue write review gate code review"
   changes: []
   verification:
