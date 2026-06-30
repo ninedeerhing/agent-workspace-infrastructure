@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-06-30T18:33:00+08:00
+updated_at: 2026-06-30T18:46:32+08:00
+
+## Latest Handoff — SYNC-358 loop351
+
+- [DONE] `operator_reviewer_queue_write_permission_confirmation_to_queue_write_permission_confirmation_archive_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/operator_reviewer_queue_write_permission_confirmation_to_queue_write_permission_confirmation_archive.py`, `src/qa/quant_mining/operator_reviewer_queue_write_permission_confirmation_to_queue_write_permission_confirmation_archive_checks.py`, `src/qa/ui/queue_write_permission_confirmation_archive_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_operator_reviewer_queue_write_permission_confirmation_to_queue_write_permission_confirmation_archive_unit.py`, `tests/test_operator_reviewer_queue_write_permission_confirmation_to_queue_write_permission_confirmation_archive_guard_unit.py`, `tests/test_operator_reviewer_queue_write_permission_confirmation_to_queue_write_permission_confirmation_archive_surface_unit.py`, `tests/test_operator_reviewer_queue_write_permission_confirmation_to_queue_write_permission_confirmation_archive_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] Focused 32 passed; authorization/archive-chain selector 549 passed / 3349 deselected / 1 LangGraph warning; auto-backtest/queue-write related selector 1275 passed / 2623 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; production forbidden marker scan clean. Full pytest was not rerun because loop350 already documented local Postgres refused plus unrelated existing alpha101/PL-G pressure/old safe-simulation copy failures.
+- [BLOCKED] No loop351 product blocker. Nietzsche provided read-only risk review and warned that confirmation archive must not become permission grant, authorization grant, queue-write readiness, or execution permission. Permanent Planner/Code Reviewer/Verifier channel repair remains separate; no duplicate same-role worker was created.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_WRITE_PERMISSION_CONFIRMATION_ARCHIVE_LOOP352：由 Planner 基于 loop351 `operator_reviewer_queue_write_permission_confirmation_to_queue_write_permission_confirmation_archive_v1` 选择下一条核心功能 loop；优先推进 `queue_write_permission_confirmation_archive_to_final_queue_write_permission_confirmation_review_v1`；仍 review-only/no-execution until explicit later authorization.
+- [FORBIDDEN] Do not treat loop351 as queue-write permission grant, execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-357 loop350
 
