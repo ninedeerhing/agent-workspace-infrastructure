@@ -3,6 +3,26 @@
 report:
   role_id: "planner"
   status: "blocked"
+  task: "loop339 core-function selection"
+  changes: []
+  verification:
+    - command: "known channel state"
+      result: "Fixed Planner thread remained no-client-found from loop338 send attempt; no usable loop339 loop_plan returned."
+    - command: "orchestrator bounded local plan"
+      result: "Orchestrator used loop-state next_atomic_action to proceed with final_authorization_verdict_to_human_authorization_record_v1 without creating a duplicate planner."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A no-client-found Planner channel state is not loop_plan evidence; keep the identity and avoid duplicate same-role Planner threads."
+    performance_note: "Channel exception; loop339 direction was recovered from loop-state and truth sources."
+  blockers:
+    - "Permanent Planner thread no-client-found channel blocker persists."
+  next: "repair channel separately; next loop still uses the same Planner identity"
+
+report:
+  role_id: "planner"
+  status: "blocked"
   task: "loop338 core-function selection"
   changes: []
   verification:

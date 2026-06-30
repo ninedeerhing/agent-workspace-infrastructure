@@ -3,6 +3,26 @@
 report:
   role_id: "code-reviewer"
   status: "blocked"
+  task: "loop339 read-only code review"
+  changes: []
+  verification:
+    - command: "known channel state"
+      result: "Fixed Code Reviewer thread remained no-client-found from loop338 send attempt; no usable loop339 code-review report returned."
+    - command: "orchestrator local review gates"
+      result: "focused 32 passed; related selector 745 passed; Ruff/compileall/diff/active enabled-marker scan passed; code-reviewer not counted as completion evidence."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Do not replace a blocked permanent code-reviewer with a duplicate same-role thread during loop closeout."
+    performance_note: "Channel exception persists; loop339 accepted on fresh orchestrator-local verification, not reviewer report."
+  blockers:
+    - "Permanent code-reviewer thread no-client-found channel blocker persists."
+  next: "repair channel separately; next loop may proceed with local verification only if channel remains blocked and no duplicate reviewer is created"
+
+report:
+  role_id: "code-reviewer"
+  status: "blocked"
   task: "loop338 read-only code review"
   changes: []
   verification:

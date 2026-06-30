@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T15:38:45+08:00
+updated_at: 2026-06-30T15:47:55+08:00
+
+## Latest Handoff — SYNC-346 loop339
+
+- [DONE] `final_authorization_verdict_to_human_authorization_record_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/final_authorization_verdict_to_human_authorization_record.py`, `src/qa/quant_mining/final_authorization_verdict_to_human_authorization_record_checks.py`, `src/qa/ui/human_authorization_record_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_final_authorization_verdict_to_human_authorization_record_unit.py`, `tests/test_final_authorization_verdict_to_human_authorization_record_guard_unit.py`, `tests/test_final_authorization_verdict_to_human_authorization_record_surface_unit.py`, `tests/test_final_authorization_verdict_to_human_authorization_record_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; focused 32 passed; related selector 745 passed / 2767 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; active enabled-marker scan clean.
+- [BLOCKED] No product blocker. Fixed worker channel blocker persists as `no-client-found`; Orchestrator used loop-state bounded local plan; no duplicate Planner/Dispatcher/Reviewer/Verifier was created.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_HUMAN_AUTHORIZATION_RECORD_REVIEW_LOOP340：由 Planner 基于 loop339 `final_authorization_verdict_to_human_authorization_record_v1` 选择下一条核心功能 loop；优先推进 `human_authorization_record_to_pre_execution_authorization_evidence_review_v1`；仍 review-only/no-execution until explicit later authorization.
+- [ROSTER] Planner/code-reviewer/verifier channels still need repair (`no-client-found`); permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop339 as execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-345 loop338
 
