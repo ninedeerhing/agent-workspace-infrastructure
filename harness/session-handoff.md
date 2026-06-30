@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T17:42:39+08:00
+updated_at: 2026-06-30T17:55:16+08:00
+
+## Latest Handoff — SYNC-354 loop347
+
+- [DONE] `operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet.py`, `src/qa/quant_mining/operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_checks.py`, `src/qa/ui/final_queue_write_authorization_packet_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_unit.py`, `tests/test_operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_guard_unit.py`, `tests/test_operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_surface_unit.py`, `tests/test_operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; focused 33 passed; authorization/archive-chain selector 421 passed / 3349 deselected / 1 LangGraph warning; auto-backtest/queue-write related selector 1147 passed / 2623 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; forbidden marker scan clean.
+- [BLOCKED] No product blocker. Nietzsche provided read-only plan/risk review and confirmed the final queue-write authorization packet direction. Fixed Planner/Reviewer/Verifier channel repair remains separate; no duplicate same-role worker was created.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_QUEUE_WRITE_AUTHORIZATION_PACKET_LOOP348：由 Planner 基于 loop347 `operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1` 选择下一条核心功能 loop；优先推进 `final_queue_write_authorization_packet_to_pre_queue_write_execution_readiness_review_v1`；仍 review-only/no-execution until explicit later authorization.
+- [ROSTER] Permanent worker identities remain unchanged; Nietzsche report is a read-only runtime review, not a replacement for Planner/Dispatcher/Reviewer/Verifier.
+- [FORBIDDEN] Do not treat loop347 as queue-write permission, execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-353 loop346
 
