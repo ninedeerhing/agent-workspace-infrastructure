@@ -3,6 +3,23 @@
 report:
   role_id: "dispatcher"
   status: "success"
+  task: "loop326 assignment matrix"
+  changes: []
+  verification:
+    - command: "assignment_matrix handoff"
+      result: "Routed controlled real queue write review implementation, tests, review, and verification to permanent workers with corrected file paths and no duplicate same-role worker."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Planner partial plans can be normalized into exact file boundaries before dispatch."
+    performance_note: "Assignment matrix was usable; executor/channel blockage required bounded takeover."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_CONTROLLED_REAL_QUEUE_WRITE_REVIEW_LOOP327"
+
+report:
+  role_id: "dispatcher"
+  status: "success"
   task: "loop325 assignment matrix"
   changes: []
   verification:

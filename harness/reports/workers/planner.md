@@ -2,6 +2,23 @@
 
 report:
   role_id: "planner"
+  status: "partial"
+  task: "loop326 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected auto_backtest_controlled_real_queue_write_review_v1 after loop325 boundary/candidate contract; some ACL/path details were incomplete but the core function direction was correct."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "After queue boundary/candidate contract, the next core function should advance controlled real queue write review without granting queue or execution authority."
+    performance_note: "Functional direction accepted; dispatcher corrected target file paths."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_CONTROLLED_REAL_QUEUE_WRITE_REVIEW_LOOP327"
+
+report:
+  role_id: "planner"
   status: "success"
   task: "loop325 core-function selection"
   changes: []

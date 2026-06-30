@@ -2,6 +2,35 @@
 
 report:
   role_id: "verifier"
+  status: "partial"
+  task: "loop326 final verification"
+  changes: []
+  verification:
+    - command: "focused controlled real queue write review pytest"
+      result: "27 passed"
+    - command: "adjacent queue persistence pytest"
+      result: "79 passed"
+    - command: "pytest -k auto_backtest"
+      result: "499 passed"
+    - command: "Ruff / diff / semantic inspection"
+      result: "PASS: packet consumes loop325 boundary/candidate contract only; review-readiness flags do not grant queue write, DB enqueue, worker handoff execution, runner/adapter, rollback, PL-H, or execution permission."
+    - command: "refined production forbidden-marker scan"
+      result: "PARTIAL: verifier channel ACL-blocked; orchestrator local source forbidden marker scan was clean and is final marker evidence."
+  residual_risks:
+    - "Independent verifier refined marker scan was ACL-blocked; local orchestrator scan remains required evidence."
+    - "Code Reviewer canonical thread was waitingOnApproval and not completion evidence."
+    - "Known LangGraph/LangChain deprecation warning is pre-existing environmental noise."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Controlled real queue write review can expose review readiness while all queue, DB, worker, runner, rollback, PL-H, and execution authority stays disabled."
+    performance_note: "P0 focused, adjacent, auto_backtest, Ruff, diff, and semantic inspection passed; signoff remains partial due ACL-blocked extra scan."
+  blockers: []
+  next: "orchestrator may sync truth sources and commit using its clean forbidden-marker scan evidence"
+
+report:
+  role_id: "verifier"
   status: "success"
   task: "loop325 final verification"
   changes: []
