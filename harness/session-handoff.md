@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-06-30T18:58:54+08:00
+updated_at: 2026-06-30T19:08:11+08:00
+
+## Latest Handoff — SYNC-360 loop353
+
+- [DONE] `final_queue_write_permission_confirmation_review_to_operator_reviewer_final_queue_write_permission_decision_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/final_queue_write_permission_confirmation_review_to_operator_reviewer_final_queue_write_permission_decision.py`, `src/qa/quant_mining/final_queue_write_permission_confirmation_review_to_operator_reviewer_final_queue_write_permission_decision_checks.py`, `src/qa/ui/operator_reviewer_final_queue_write_permission_decision_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_final_queue_write_permission_confirmation_review_to_operator_reviewer_final_queue_write_permission_decision_unit.py`, `tests/test_final_queue_write_permission_confirmation_review_to_operator_reviewer_final_queue_write_permission_decision_guard_unit.py`, `tests/test_final_queue_write_permission_confirmation_review_to_operator_reviewer_final_queue_write_permission_decision_surface_unit.py`, `tests/test_final_queue_write_permission_confirmation_review_to_operator_reviewer_final_queue_write_permission_decision_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] Focused 32 passed; authorization/archive-chain selector 613 passed / 3349 deselected / 1 LangGraph warning; auto-backtest/queue-write related selector 1339 passed / 2623 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; production forbidden marker scan clean.
+- [BLOCKED] No loop353 product blocker. Permanent Planner thread returned `no-client-found`; recorded as channel_stale, no duplicate Planner created. Nietzsche confirmed source/target boundary and no-grant/no-execution semantics.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_PERMISSION_DECISION_LOOP354：由 Planner 基于 loop353 `final_queue_write_permission_confirmation_review_to_operator_reviewer_final_queue_write_permission_decision_v1` 选择下一条核心功能 loop；优先推进 `operator_reviewer_final_queue_write_permission_decision_to_final_queue_write_permission_decision_archive_v1`；仍 review-only/no-execution until explicit later authorization.
+- [FORBIDDEN] Do not treat loop353 as queue-write permission grant, execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-359 loop352
 
