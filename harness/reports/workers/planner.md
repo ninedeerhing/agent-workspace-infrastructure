@@ -3,6 +3,22 @@
 report:
   role_id: "planner"
   status: "success"
+  task: "loop336 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected explicit_execution_authorization_packet_review_v1 after loop335 explicit execution authorization packet; next_after is explicit_execution_authorization_review_to_decision_gate_v1."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Function-first selection kept loop336 focused on a core auto-backtest chain increment."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_EXPLICIT_EXECUTION_AUTHORIZATION_PACKET_REVIEW_LOOP337"
+
+report:
+  role_id: "planner"
+  status: "success"
   task: "loop335 core-function selection"
   changes: []
   verification:

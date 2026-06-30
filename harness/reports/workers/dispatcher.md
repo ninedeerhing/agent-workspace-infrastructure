@@ -3,6 +3,22 @@
 report:
   role_id: "dispatcher"
   status: "success"
+  task: "loop336 assignment matrix"
+  changes: []
+  verification:
+    - command: "assignment_matrix"
+      result: "Executor stayed sole write owner; test-engineer, code-reviewer, and verifier were read-only; no duplicate same-role worker was created."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Permanent worker identities and model-tier routing were preserved."
+  blockers: []
+  next: "orchestrator integrated local verification and truth-source sync; code-reviewer/verifier channel exceptions recorded as non-evidence"
+
+report:
+  role_id: "dispatcher"
+  status: "success"
   task: "loop335 assignment matrix"
   changes: []
   verification:

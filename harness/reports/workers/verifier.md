@@ -2,6 +2,26 @@
 
 report:
   role_id: "verifier"
+  status: "blocked"
+  task: "loop336 final verification"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Loop336 verifier thread returned systemError/empty response; no usable verifier report returned."
+    - command: "orchestrator final verification"
+      result: "focused 31 passed; related selector 651 passed / 2767 deselected / 1 warning; auto_backtest 583 passed / 2835 deselected / 1 warning; targeted Ruff passed; compileall passed; diff check passed with LF/CRLF warnings only; production forbidden active-marker scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A systemError/empty verifier response is not completion evidence; keep the identity and avoid duplicate same-role verifier threads."
+    performance_note: "Loop336 accepted on fresh orchestrator-local verification, not verifier report."
+  blockers:
+    - "Permanent verifier thread systemError/empty response for loop336."
+  next: "repair channel separately; next loop still uses the same verifier identity"
+
+report:
+  role_id: "verifier"
   status: "success"
   task: "loop335 final verification"
   changes: []

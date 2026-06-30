@@ -2,6 +2,26 @@
 
 report:
   role_id: "code-reviewer"
+  status: "blocked"
+  task: "loop336 read-only code review"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Loop336 code-reviewer thread returned systemError/empty response twice; no usable loop336 code-review report returned."
+    - command: "orchestrator local review gates"
+      result: "focused 31 passed; related selector 651 passed; auto_backtest 583 passed; Ruff/compileall/diff/production forbidden scan passed; code-reviewer not counted as completion evidence."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Do not replace a blocked permanent code-reviewer with a duplicate same-role thread during loop closeout."
+    performance_note: "Channel exception; loop336 accepted on fresh orchestrator-local verification, not reviewer report."
+  blockers:
+    - "Permanent code-reviewer thread systemError/empty response for loop336."
+  next: "repair channel separately; next loop may proceed with local verification only if channel remains blocked and no duplicate reviewer is created"
+
+report:
+  role_id: "code-reviewer"
   status: "success"
   task: "loop335 read-only code review"
   changes: []
