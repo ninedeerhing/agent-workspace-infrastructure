@@ -1,18 +1,18 @@
 # Loop Tick Brief
 
-generated_at: 2026-06-30T19:39:46+08:00
+generated_at: 2026-06-30T20:38:23+08:00
 mode: autonomous
 current_tree: TREE-6
-current_slice: operator-reviewer-final-queue-write-permission-archive-confirmation-loop355
-last_tick: loop355-operator-reviewer-final-queue-write-permission-archive-confirmation
+current_slice: explicit-final-queue-write-permission-archive-confirmation-review-loop356
+last_tick: loop356-explicit-final-queue-write-permission-archive-confirmation-review
 
 ## Execute Now
 
-PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_LOOP356：由 Planner 基于总规划、当前进度和 loop355 final_queue_write_permission_decision_archive_to_operator_reviewer_final_queue_write_permission_archive_confirmation_v1 选择下一条核心功能 loop；优先推进 operator/reviewer final queue-write permission archive confirmation 之后的显式最终确认 / 人工复核链路下一段；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_EXPLICIT_FINAL_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP357：由 Planner 基于总规划、当前进度和 loop356 operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review_v1 选择下一条核心功能 loop；优先推进显式最终许可归档确认复核之后的人工决策 / 最终确认链路下一段；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
 
 ## Then
 
-Next candidate is the explicit final confirmation / human review segment after loop355 operator/reviewer final queue-write permission archive confirmation; still review-only/no-execution unless explicitly authorized later.
+Next candidate is the human decision / final confirmation segment after loop356 explicit final queue-write permission archive confirmation review; still review-only/no-execution unless explicitly authorized later.
 
 ## Blockers
 

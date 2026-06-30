@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-06-30T19:39:46+08:00
+updated_at: 2026-06-30T20:38:23+08:00
+
+## Latest Handoff — SYNC-363 loop356
+
+- [DONE] `operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review.py`, `src/qa/quant_mining/operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review_checks.py`, `src/qa/quant_mining/operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review_support.py`, `src/qa/ui/explicit_final_queue_write_permission_archive_confirmation_review_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review_unit.py`, `tests/test_operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review_guard_unit.py`, `tests/test_operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review_surface_unit.py`, `tests/test_operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module expected; focused 34 passed; authorization/archive-chain selector 198 passed / 3866 deselected / 1 LangGraph warning; auto-backtest/queue-write related selector 1441 passed / 2623 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; production forbidden marker scan clean; new production pure LOC 232/217/105/131.
+- [BLOCKED] No loop356 product blocker. Laplace runtime executor `019f185a-de6d-7662-8ad3-dc7b3afbabff` errored due Codex usage limit; Orchestrator liveness takeover completed the bounded implementation and closed the failed runtime agent without creating a duplicate same-role worker.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_EXPLICIT_FINAL_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP357：由 Planner 基于 loop356 `operator_reviewer_final_queue_write_permission_archive_confirmation_to_explicit_final_queue_write_permission_archive_confirmation_review_v1` 选择下一条核心功能 loop；优先推进人工决策 / 最终确认链路下一段；仍 review-only/no-execution until explicit later authorization.
+- [FORBIDDEN] Do not treat loop356 as queue-write permission grant, execution authorization, human/manual acceptance, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, or execution permission.
 
 ## Latest Handoff — SYNC-362 loop355
 
