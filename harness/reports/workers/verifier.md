@@ -3,6 +3,29 @@
 report:
   role_id: "verifier"
   status: "partial"
+  task: "loop328 final verification"
+  changes: []
+  verification:
+    - command: "verifier channel status"
+      result: "No final verifier report returned before closeout; not counted as completion evidence."
+    - command: "orchestrator local focused/adjacent/auto_backtest/Ruff/diff/marker checks"
+      result: "Completion evidence recorded in orchestrator report: focused 28 passed; adjacent 110 passed; auto_backtest 554 passed; Ruff pass; diff pass with LF/CRLF warnings only; refined active forbidden marker scan clean."
+  residual_risks:
+    - "Independent verifier report did not return before closeout; local orchestrator verification remains required evidence."
+    - "Executor and Code Reviewer canonical threads were blocked before completion evidence."
+    - "Known LangGraph/LangChain deprecation warning is pre-existing environmental noise."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Real queue write readiness review readiness must remain review-material readiness only, separate from queue write, DB enqueue, worker handoff, and execution permission."
+    performance_note: "No verifier PASS claimed; local evidence is used for closeout."
+  blockers: []
+  next: "orchestrator may sync truth sources and commit using local verification evidence"
+
+report:
+  role_id: "verifier"
+  status: "partial"
   task: "loop327 final verification"
   changes: []
   verification:

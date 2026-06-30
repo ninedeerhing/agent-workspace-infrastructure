@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-30T10:45:52+08:00
+Updated: 2026-06-30T11:02:30+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop327 | active | gpt-5.5 | 2026-06-30T10:45:52+08:00 | loop327 complete; next loop328 Planner selection | workload light; bounded liveness takeover used; no duplicate worker created |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop327 | idle | gpt-5.4 | 2026-06-30T10:45:52+08:00 | selected queue persistence review gate | cleared |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop327 | idle | gpt-5.4 | 2026-06-30T10:45:52+08:00 | routed permanent workers; executor sole write owner | cleared |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop327 | idle | gpt-5.4 | 2026-06-30T10:45:52+08:00 | supplied queue persistence review gate matrix | cleared |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop327 | idle | gpt-5.5 | 2026-06-30T10:45:52+08:00 | waitingOnApproval/channel blocked; orchestrator bounded takeover | cleared; channel gap recorded |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop327 | idle | gpt-5.5 | 2026-06-30T10:45:52+08:00 | waitingOnApproval; not completion evidence | cleared; channel gap recorded |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop327 | idle | gpt-5.5 | 2026-06-30T10:45:52+08:00 | loop327 partial verification with key checks pass | cleared; ACL-blocked extra scan noted |
+| orchestrator | current-thread | loop328 | active | gpt-5.5 | 2026-06-30T11:02:30+08:00 | loop328 complete; next loop329 Planner selection | workload light; bounded liveness takeover used; no duplicate worker created |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop328 | idle | gpt-5.4 | 2026-06-30T11:02:30+08:00 | selected real queue write readiness review | cleared |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop328 | idle | gpt-5.4 | 2026-06-30T11:02:30+08:00 | routed permanent workers; executor sole write owner | cleared |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop328 | idle | gpt-5.4 | 2026-06-30T11:02:30+08:00 | supplied real queue write readiness review matrix | cleared |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop328 | idle | gpt-5.5 | 2026-06-30T11:02:30+08:00 | channel_blocked_waitingOnApproval/no changes; orchestrator bounded takeover | cleared; channel gap recorded |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop328 | idle | gpt-5.5 | 2026-06-30T11:02:30+08:00 | waitingOnApproval; not completion evidence | cleared; channel gap recorded |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop328 | idle | gpt-5.5 | 2026-06-30T11:02:30+08:00 | not returned before closeout; not completion evidence | cleared; local verification used |
 ## Latest Roster Notes
+- **loop328**：完成 `auto_backtest_real_queue_write_readiness_review_v1`；Planner success，Dispatcher success，Test Engineer success matrix incorporated，Executor canonical thread channel_blocked_waitingOnApproval/no changes，Orchestrator 使用 bounded liveness takeover；Code Reviewer waitingOnApproval/not completion evidence；Verifier not returned before closeout/not evidence。验证：focused 28 passed；adjacent 110 passed；auto_backtest 554 passed；Ruff pass；diff check pass（LF/CRLF warnings only）；refined active forbidden marker scan clean。未创建同职责重复 worker。下一步由 Planner 选择 loop329 core function，优先 `auto_backtest_real_queue_write_review_gate_v1` / `real_queue_write_review_gate_to_authorization_packet_v1`。
 - **loop327**：完成 `auto_backtest_queue_persistence_review_gate_v1`；Planner success，Dispatcher success，Test Engineer partial matrix incorporated，Executor canonical thread waitingOnApproval/channel blocked，Orchestrator 使用 bounded liveness takeover；Code Reviewer waitingOnApproval/not completion evidence；Verifier partial（focused 27 passed、adjacent 82 passed、auto_backtest 526 passed、Ruff/diff pass；source scan ACL-blocked）。最终完成证据包含 Orchestrator 本地 source forbidden marker scan clean。未创建同职责重复 worker。下一步由 Planner 选择 loop328 core function，优先 `auto_backtest_real_queue_write_readiness_review_v1`。
 - **loop326**：完成 `auto_backtest_controlled_real_queue_write_review_v1`；Planner partial但核心方向正确，Dispatcher success，Test Engineer partial matrix incorporated，Executor canonical thread waitingOnApproval/channel blocked，Orchestrator 使用 bounded liveness takeover；Code Reviewer waitingOnApproval/not completion evidence；Verifier partial（focused 27 passed、adjacent 79 passed、auto_backtest 499 passed、Ruff/diff/semantic inspection pass；refined marker scan ACL-blocked）。最终完成证据包含 Orchestrator 本地 source forbidden marker scan clean。未创建同职责重复 worker。下一步由 Planner 选择 loop327 core function，优先 `auto_backtest_queue_persistence_review_gate_v1` / `auto_backtest_real_queue_write_readiness_review_v1`。
 - **loop325**：完成 `auto_backtest_queue_persistence_boundary_and_candidate_contract_v1`；Planner success，Dispatcher success，Test Engineer partial matrix incorporated，Executor canonical thread waitingOnApproval/channel blocked，Orchestrator 使用 bounded liveness takeover；Code Reviewer waitingOnApproval/not completion evidence；Verifier success。验证：focused 28 passed；adjacent 78 passed；queue persistence/planning regression 148 passed；auto_backtest 472 passed；Verifier 复核 focused 28 passed、adjacent 78 passed、consumer 70 passed；Ruff pass；diff check pass（LF/CRLF warnings only）；source/semantic forbidden marker scan clean。未创建同职责重复 worker。下一步由 Planner 选择 loop326 core function，优先 `auto_backtest_controlled_real_queue_write_review_v1`。

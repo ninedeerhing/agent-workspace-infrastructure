@@ -3,6 +3,22 @@
 report:
   role_id: "planner"
   status: "success"
+  task: "loop328 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected auto_backtest_real_queue_write_readiness_review_v1 after loop327 queue persistence review gate; next should continue to a real queue write review gate or authorization packet without granting execution."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Selected a function-first core auto-backtest chain increment."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_READINESS_REVIEW_LOOP329"
+
+report:
+  role_id: "planner"
+  status: "success"
   task: "loop327 core-function selection"
   changes: []
   verification:
