@@ -3,6 +3,23 @@
 report:
   role_id: "dispatcher"
   status: "success"
+  task: "loop327 assignment matrix"
+  changes: []
+  verification:
+    - command: "assignment_matrix handoff"
+      result: "Routed test design, implementation, code review, and verification to permanent workers; executor remained sole write owner; no duplicate same-role worker created."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Queue persistence review gate must remain read-model-only and share one packet across consumers."
+    performance_note: "Assignment matrix was usable; executor/reviewer channel blockage required bounded takeover and non-evidence recording."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_REVIEW_GATE_LOOP328"
+
+report:
+  role_id: "dispatcher"
+  status: "success"
   task: "loop326 assignment matrix"
   changes: []
   verification:

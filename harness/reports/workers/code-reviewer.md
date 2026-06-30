@@ -3,6 +3,24 @@
 report:
   role_id: "code-reviewer"
   status: "blocked"
+  task: "loop327 queue persistence review gate code review"
+  changes: []
+  verification:
+    - command: "canonical thread status"
+      result: "WaitingOnApproval/ACL blocked before file inspection; not counted as loop327 completion evidence. Local tests, Ruff, diff, forbidden-marker scan, and verifier partial checks provided final evidence."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Do not claim reviewer PASS when canonical reviewer cannot inspect files."
+    performance_note: "Channel evidence gap recorded; no reviewer success claimed."
+  blockers:
+    - "Canonical code-reviewer channel waitingOnApproval."
+  next: "loop328 code review after Planner/Dispatcher"
+
+report:
+  role_id: "code-reviewer"
+  status: "blocked"
   task: "loop326 controlled real queue write review code review"
   changes: []
   verification:

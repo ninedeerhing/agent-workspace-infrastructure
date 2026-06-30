@@ -3,6 +3,35 @@
 report:
   role_id: "verifier"
   status: "partial"
+  task: "loop327 final verification"
+  changes: []
+  verification:
+    - command: "focused queue persistence review gate pytest"
+      result: "27 passed"
+    - command: "adjacent queue persistence pytest"
+      result: "82 passed"
+    - command: "pytest -k auto_backtest"
+      result: "526 passed"
+    - command: "Ruff / diff"
+      result: "PASS: All checks passed; diff check pass with CRLF warnings only."
+    - command: "independent source forbidden-marker scan"
+      result: "PARTIAL: verifier channel ACL-blocked; orchestrator local source forbidden marker scan was clean and is final marker evidence."
+  residual_risks:
+    - "Independent verifier source scan was ACL-blocked; local orchestrator scan remains required evidence."
+    - "Executor and Code Reviewer canonical threads were blocked before completion evidence."
+    - "Known LangGraph/LangChain deprecation warning is pre-existing environmental noise."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Queue persistence review gate readiness must remain review-material readiness only, separate from queue write, DB enqueue, worker handoff, and execution permission."
+    performance_note: "P0/P1 verification passed; final status remains partial due ACL-blocked extra scan."
+  blockers: []
+  next: "orchestrator may sync truth sources and commit using its clean forbidden-marker scan evidence"
+
+report:
+  role_id: "verifier"
+  status: "partial"
   task: "loop326 final verification"
   changes: []
   verification:

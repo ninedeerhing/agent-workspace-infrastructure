@@ -2,6 +2,22 @@
 
 report:
   role_id: "planner"
+  status: "success"
+  task: "loop327 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected auto_backtest_queue_persistence_review_gate_v1 before real queue write readiness review to close persistence-side gate verdict first."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Selected a function-first core auto-backtest chain increment."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_REVIEW_GATE_LOOP328"
+
+report:
+  role_id: "planner"
   status: "partial"
   task: "loop326 core-function selection"
   changes: []

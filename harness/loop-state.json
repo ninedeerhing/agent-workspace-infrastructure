@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-30T10:30:36+08:00",
+  "updated_at": "2026-06-30T10:45:52+08:00",
   "mode": "autonomous",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "auto-backtest-controlled-real-queue-write-review-loop326",
-  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_CONTROLLED_REAL_QUEUE_WRITE_REVIEW_LOOP327：由 Planner 基于总规划、当前进度和 loop326 auto_backtest_controlled_real_queue_write_review_v1 选择下一条核心功能 loop；优先推进 auto_backtest_queue_persistence_review_gate_v1 或 auto_backtest_real_queue_write_readiness_review_v1；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
-  "next_after": "Next candidate is auto_backtest_queue_persistence_review_gate_v1 or auto_backtest_real_queue_write_readiness_review_v1; still review-only/no-execution unless explicitly authorized later.",
+  "current_slice": "auto-backtest-queue-persistence-review-gate-loop327",
+  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_REVIEW_GATE_LOOP328：由 Planner 基于总规划、当前进度和 loop327 auto_backtest_queue_persistence_review_gate_v1 选择下一条核心功能 loop；优先推进 auto_backtest_real_queue_write_readiness_review_v1；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
+  "next_after": "Next candidate is auto_backtest_real_queue_write_readiness_review_v1; still review-only/no-execution unless explicitly authorized later.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,17 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop326-auto-backtest-controlled-real-queue-write-review",
+  "last_tick": "loop327-auto-backtest-queue-persistence-review-gate",
   "last_sync_sources": [
+    "SYNC-334 loop327 Auto-backtest queue persistence review gate",
+    "loop327 Planner selected auto_backtest_queue_persistence_review_gate_v1; Dispatcher assigned functional slice; Test Engineer partial matrix incorporated; Executor canonical thread waitingOnApproval/channel blocked, Orchestrator bounded liveness takeover completed implementation; Code Reviewer waitingOnApproval/not completion evidence; Verifier partial with focused/adjacent/auto_backtest/Ruff/diff pass",
+    "loop327 TDD RED: missing qa.quant_mining.auto_backtest_queue_persistence_review_gate failed before implementation",
+    "loop327 GREEN: auto_backtest_queue_persistence_review_gate_v1 derives review-only queue persistence review gate from loop326 auto_backtest_controlled_real_queue_write_review_v1",
+    "loop327 verification: focused 27 passed; adjacent 82 passed; auto_backtest chain 526 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; source forbidden marker scan clean",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.658",
+    "methodology_ref: M-17-zero-write",
+    "next: ",
+    "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_REVIEW_GATE_LOOP328：由 Planner 基于总规划、当前进度和 loop327 auto_backtest_queue_persistence_review_gate_v1 选择下一条核心功能 loop；优先推进 auto_backtest_real_queue_write_readiness_review_v1；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
     "SYNC-333 loop326 Auto-backtest controlled real queue write review",
     "loop326 Planner partial selected auto_backtest_controlled_real_queue_write_review_v1; Dispatcher assigned functional slice; Test Engineer partial matrix incorporated; Executor canonical thread waitingOnApproval/channel blocked, Orchestrator bounded liveness takeover completed implementation; Code Reviewer waitingOnApproval/not completion evidence; Verifier partial with focused/adjacent/auto_backtest/Ruff/diff/semantic pass",
     "loop326 TDD RED: missing qa.quant_mining.auto_backtest_controlled_real_queue_write_review failed before implementation; initial GREEN had 7 failures before source-blocker semantics were fixed",

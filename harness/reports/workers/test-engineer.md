@@ -3,6 +3,24 @@
 report:
   role_id: "test-engineer"
   status: "partial"
+  task: "loop327 queue persistence review gate test matrix"
+  changes: []
+  verification:
+    - command: "read-only test design"
+      result: "Matrix covered source kind/status drift, blockers/actions propagation, empty/malformed refs, candidate/ref drift, boundary/contract/mapping/idempotency/rollback/manual authorization gaps, forbidden execution markers, and shared MiningJob/Factor Library/Chat packet semantics."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "RED suite should prove queue persistence gate readiness is only review-material readiness."
+    performance_note: "Matrix incorporated into focused unit, guard, surface, and chat tests."
+  blockers:
+    - "Local read-only inspection was ACL-limited; matrix was contract-derived and final tests passed."
+  next: "loop328 real queue write readiness review tests"
+
+report:
+  role_id: "test-engineer"
+  status: "partial"
   task: "loop326 controlled real queue write review test matrix"
   changes: []
   verification:
