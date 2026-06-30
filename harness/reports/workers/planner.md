@@ -2,6 +2,22 @@
 
 report:
   role_id: "planner"
+  status: "success"
+  task: "loop333 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected operator_reviewer_execution_boundary_review_packet_v1 after loop332 execution-boundary review materials; deferred real_queue_write_execution_boundary_to_operator_reviewer_final_gate_v1 to the next loop."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Function-first selection kept loop333 focused on a core auto-backtest chain increment."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_EXECUTION_BOUNDARY_PACKET_LOOP334"
+
+report:
+  role_id: "planner"
   status: "partial"
   task: "loop332 core-function selection"
   changes: []

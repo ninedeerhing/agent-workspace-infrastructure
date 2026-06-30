@@ -2,6 +2,26 @@
 
 report:
   role_id: "code-reviewer"
+  status: "blocked"
+  task: "loop333 read-only code review"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Loop333 review request is inProgress/waitingOnApproval; no usable loop333 code-review report returned before closeout."
+    - command: "orchestrator local review gates"
+      result: "focused/adjacent/auto_backtest/Ruff/diff/forbidden scan passed; code-reviewer not counted as completion evidence."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Do not replace a blocked permanent code-reviewer with a duplicate same-role thread during loop closeout."
+    performance_note: "Channel blocked; previous loop332 report was success but loop333 has no returned review."
+  blockers:
+    - "Permanent code-reviewer thread waitingOnApproval/inProgress."
+  next: "repair channel separately; next loop may proceed with local verification only if channel remains blocked and no duplicate reviewer is created"
+
+report:
+  role_id: "code-reviewer"
   status: "success"
   task: "loop332 real_queue_write_authorization_review_to_execution_boundary_v1 code risk review"
   changes: []
