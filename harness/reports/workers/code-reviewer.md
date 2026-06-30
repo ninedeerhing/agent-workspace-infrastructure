@@ -3,6 +3,24 @@
 report:
   role_id: "code-reviewer"
   status: "blocked"
+  task: "loop329 real queue write review gate code review"
+  changes: []
+  verification:
+    - command: "canonical thread status"
+      result: "WaitingOnApproval before usable inspection; not counted as loop329 completion evidence. Local tests, Ruff, diff, and active forbidden-marker scan provided final evidence."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Do not claim reviewer PASS when canonical reviewer cannot inspect files."
+    performance_note: "Channel evidence gap recorded; no reviewer success claimed."
+  blockers:
+    - "Canonical code-reviewer channel waitingOnApproval."
+  next: "loop330 code review after Planner/Dispatcher"
+
+report:
+  role_id: "code-reviewer"
+  status: "blocked"
   task: "loop328 real queue write readiness review code review"
   changes: []
   verification:

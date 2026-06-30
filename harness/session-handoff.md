@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T11:02:30+08:00
+updated_at: 2026-06-30T11:18:25+08:00
+
+## Latest Handoff — SYNC-336 loop329
+
+- [DONE] `auto_backtest_real_queue_write_review_gate_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/auto_backtest_real_queue_write_review_gate.py`, `src/qa/quant_mining/auto_backtest_real_queue_write_review_gate_checks.py`, `src/qa/ui/auto_backtest_real_queue_write_review_gate_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_auto_backtest_real_queue_write_review_gate_unit.py`, `tests/test_auto_backtest_real_queue_write_review_gate_guard_unit.py`, `tests/test_auto_backtest_real_queue_write_review_gate_surface_unit.py`, `tests/test_auto_backtest_real_queue_write_review_gate_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; GREEN focused 28 passed; adjacent 83 passed; auto_backtest chain 582 passed; targeted Ruff pass; git diff --check pass with LF/CRLF warnings only; active forbidden marker scan clean.
+- [BLOCKED] No product blocker. Executor canonical thread channel_blocked_waitingOnApproval/no changes; Code Reviewer waitingOnApproval/not completion evidence; Verifier success with focused/adjacent/auto_backtest/Ruff/diff/semantic inspection pass. Orchestrator local verification and permanent verifier report are the final completion evidence.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_REVIEW_GATE_LOOP330：由 Planner 基于总规划、当前进度和 loop329 `auto_backtest_real_queue_write_review_gate_v1` 选择下一条核心功能 loop；优先推进 `real_queue_write_review_gate_to_authorization_packet_v1`；仍 review-only/no-execution until explicit later authorization.
+- [ROSTER] Planner success; Dispatcher success; Test Engineer success matrix used; Executor waitingOnApproval/channel blocked; Code Reviewer waitingOnApproval/not evidence; Verifier success. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop329 as real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-335 loop328
 
