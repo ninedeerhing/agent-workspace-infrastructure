@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-06-30T19:24:25+08:00
+updated_at: 2026-06-30T19:39:46+08:00
+
+## Latest Handoff — SYNC-362 loop355
+
+- [DONE] `final_queue_write_permission_decision_archive_to_operator_reviewer_final_queue_write_permission_archive_confirmation_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/final_queue_write_permission_decision_archive_to_operator_reviewer_final_queue_write_permission_archive_confirmation.py`, `src/qa/quant_mining/final_queue_write_permission_decision_archive_to_operator_reviewer_final_queue_write_permission_archive_confirmation_checks.py`, `src/qa/ui/operator_reviewer_final_queue_write_permission_archive_confirmation_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_final_queue_write_permission_decision_archive_to_operator_reviewer_final_queue_write_permission_archive_confirmation_unit.py`, `tests/test_final_queue_write_permission_decision_archive_to_operator_reviewer_final_queue_write_permission_archive_confirmation_guard_unit.py`, `tests/test_final_queue_write_permission_decision_archive_to_operator_reviewer_final_queue_write_permission_archive_confirmation_surface_unit.py`, `tests/test_final_queue_write_permission_decision_archive_to_operator_reviewer_final_queue_write_permission_archive_confirmation_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] Focused 34 passed; authorization/archive-chain selector 164 passed / 3866 deselected / 1 LangGraph warning; auto-backtest/queue-write related selector 1407 passed / 2623 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; production forbidden marker scan clean.
+- [BLOCKED] No loop355 product blocker. Permanent Planner thread remains treated as channel_stale from prior `no-client-found`; no duplicate Planner was created. Nietzsche confirmed source/target boundary, read-only MiningJob/Factor Library/Chat wiring, and no-grant/no-execution semantics.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_LOOP356：由 Planner 基于 loop355 `final_queue_write_permission_decision_archive_to_operator_reviewer_final_queue_write_permission_archive_confirmation_v1` 选择下一条核心功能 loop；优先推进 archive confirmation 之后的显式最终确认 / 人工复核链路下一段；仍 review-only/no-execution until explicit later authorization.
+- [FORBIDDEN] Do not treat loop355 as queue-write permission grant, execution authorization, human/manual acceptance, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, or execution permission.
 
 ## Latest Handoff — SYNC-361 loop354
 
