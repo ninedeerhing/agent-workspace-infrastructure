@@ -3,6 +3,23 @@
 report:
   role_id: "planner"
   status: "partial"
+  task: "loop332 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected real_queue_write_authorization_review_to_execution_boundary_v1 after loop331 authorization review; worker output was partial, but direction matched loop-state/task tree and was bounded by orchestrator."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "After authorization review exists, the next core function should prepare execution-boundary review materials while preserving no-execution semantics."
+    performance_note: "Functional direction accepted; partial output recorded without blocking liveness."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_EXECUTION_BOUNDARY_REVIEW_LOOP333"
+
+report:
+  role_id: "planner"
+  status: "partial"
   task: "loop331 core-function selection"
   changes: []
   verification:

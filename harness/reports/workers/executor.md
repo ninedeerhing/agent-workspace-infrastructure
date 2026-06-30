@@ -3,6 +3,24 @@
 report:
   role_id: "executor"
   status: "blocked"
+  task: "loop332 implementation write owner"
+  changes: []
+  verification:
+    - command: "channel/rendezvous status"
+      result: "Canonical executor thread returned channel_blocked_waitingOnApproval/helper_unknown_error before useful implementation; no worker-owned file edits counted. Orchestrator performed bounded liveness takeover and reran local verification."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "When the canonical executor is channel-blocked, keep the worker identity, record non-evidence, and use bounded verified takeover only to preserve loop liveness."
+    performance_note: "Blocked by channel approval/tooling, not product logic."
+  blockers:
+    - "Canonical executor channel waitingOnApproval/channel blocked."
+  next: "loop333 implementation assignment after Planner/Dispatcher"
+
+report:
+  role_id: "executor"
+  status: "blocked"
   task: "loop331 implementation write owner"
   changes: []
   verification:

@@ -2,6 +2,29 @@
 
 report:
   role_id: "verifier"
+  status: "blocked"
+  task: "loop332 final verification"
+  changes: []
+  verification:
+    - command: "canonical verifier thread status"
+      result: "Verifier thread entered waitingOnApproval before returning a usable report; not counted as loop332 completion evidence."
+    - command: "orchestrator local focused/adjacent/auto_backtest/Ruff/diff/forbidden-marker checks"
+      result: "Completion evidence recorded in orchestrator report: focused 37 passed; adjacent 132 passed; auto_backtest 582 passed; Ruff pass; diff check pass with LF/CRLF warnings only; active forbidden marker scan clean."
+  residual_risks:
+    - "Verifier channel should be repaired before relying on it for next trusted final verification."
+    - "Known LangGraph/LangChain deprecation warning is pre-existing environmental noise."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Do not create a duplicate verifier when the permanent verifier thread stalls; record channel state and use local verification evidence."
+    performance_note: "Channel blocked; loop332 closed on orchestrator local verification evidence."
+  blockers:
+    - "Canonical verifier thread waitingOnApproval."
+  next: "Repair or nudge verifier channel before loop333 final verification; keep identity worker:verifier."
+
+report:
+  role_id: "verifier"
   status: "success"
   task: "loop331 final verification"
   changes: []

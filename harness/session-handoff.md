@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T11:52:10+08:00
+updated_at: 2026-06-30T12:06:32+08:00
+
+## Latest Handoff — SYNC-339 loop332
+
+- [DONE] `real_queue_write_authorization_review_to_execution_boundary_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/real_queue_write_authorization_review_to_execution_boundary.py`, `src/qa/quant_mining/real_queue_write_authorization_review_to_execution_boundary_checks.py`, `src/qa/ui/real_queue_write_authorization_review_to_execution_boundary_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_real_queue_write_authorization_review_to_execution_boundary_unit.py`, `tests/test_real_queue_write_authorization_review_to_execution_boundary_guard_unit.py`, `tests/test_real_queue_write_authorization_review_to_execution_boundary_surface_unit.py`, `tests/test_real_queue_write_authorization_review_to_execution_boundary_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; Chat surface trigger RED fixed; focused 37 passed; adjacent 132 passed; auto_backtest chain 582 passed; targeted Ruff pass; git diff --check pass with LF/CRLF warnings only; active forbidden marker scan clean.
+- [BLOCKED] No product blocker. Executor canonical thread channel_blocked_waitingOnApproval/no changes; Code Reviewer success/no P1/P2; Verifier canonical thread waitingOnApproval/not completion evidence. Orchestrator local verification is completion evidence; no duplicate verifier was created.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_EXECUTION_BOUNDARY_REVIEW_LOOP333：由 Planner 基于 loop332 `real_queue_write_authorization_review_to_execution_boundary_v1` 选择下一条核心功能 loop；优先推进 operator/reviewer final execution-boundary review material；仍 review-only/no-execution until explicit later authorization.
+- [ROSTER] Planner partial but direction correct; Dispatcher success; Test Engineer success matrix used; Executor waitingOnApproval/channel blocked; Code Reviewer success; Verifier waitingOnApproval. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop332 as real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-338 loop331
 
