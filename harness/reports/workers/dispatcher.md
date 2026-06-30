@@ -3,6 +3,24 @@
 report:
   role_id: "dispatcher"
   status: "partial"
+  task: "loop363 assignment matrix"
+  changes: []
+  verification:
+    - command: "dispatch gate"
+      result: "Dispatcher was not asked for a new matrix because Planner fixed thread remained channel_stale; no duplicate dispatcher was created."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "If Planner loop_plan is missing because of channel failure, record the dispatch gap and preserve worker identities instead of creating duplicate same-role workers."
+    performance_note: "No loop363 dispatcher output; orchestrator used bounded local plan and local verification for liveness."
+  blockers:
+    - "Planner channel failure prevented normal Planner -> Dispatcher path for loop363."
+  next: "repair Planner channel separately; use dispatcher again after a valid loop_plan is available"
+
+report:
+  role_id: "dispatcher"
+  status: "partial"
   task: "loop362 assignment matrix"
   changes: []
   verification:

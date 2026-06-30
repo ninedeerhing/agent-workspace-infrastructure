@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-06-30T23:05:18+08:00
+updated_at: 2026-06-30T23:19:41+08:00
+
+## Latest Handoff — SYNC-370 loop363
+
+- [DONE] `human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review.py`, `src/qa/quant_mining/human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_checks.py`, `src/qa/quant_mining/human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_support.py`, `src/qa/quant_mining/human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_constants.py`, `src/qa/ui/final_human_queue_write_permission_archive_confirmation_review_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, 4 focused tests, plus truth sources.
+- [VERIFY] RED expected ModuleNotFoundError 4 errors; focused 19 passed; archive/final-human selector 54 passed / 4220 deselected / 1 LangGraph warning; auto-backtest/queue-write selector 1473 passed / 2801 deselected / 1 LangGraph warning; Ruff pass; compileall pass; diff check pass with LF/CRLF warnings only; production forbidden marker scan clean; new production pure LOC 177/119/110/25/140.
+- [BLOCKED] No loop363 product blocker. Permanent worker channel repair remains a separate governance concern; no duplicate same-role worker was created.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364：由 Planner 基于 loop363 `human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1` 选择下一条核心功能 loop；优先推进只读后继链路；仍 review-only/no-execution until explicit later authorization.
+- [FORBIDDEN] Do not treat loop363 as human approval, manual acceptance, queue-write permission grant, execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, formal human approval, or execution permission.
 
 ## Latest Handoff — SYNC-369 loop362
 
