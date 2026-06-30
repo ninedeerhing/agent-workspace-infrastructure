@@ -3,6 +3,26 @@
 report:
   role_id: "code-reviewer"
   status: "blocked"
+  task: "loop337 read-only code review"
+  changes: []
+  verification:
+    - command: "dispatch decision"
+      result: "No new loop337 code-review assignment was sent after fixed worker channels returned systemError/empty response in loop336/Planner loop337; no duplicate code-reviewer was created."
+    - command: "orchestrator local review gates"
+      result: "focused 31 passed; related selector 682 passed; Ruff/compileall/diff/production forbidden scan passed; code-reviewer not counted as completion evidence."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Do not replace a blocked permanent code-reviewer with a duplicate same-role thread during loop closeout."
+    performance_note: "Channel exception persists; loop337 accepted on fresh orchestrator-local verification, not reviewer report."
+  blockers:
+    - "Permanent code-reviewer thread still needs repair before trusted review evidence."
+  next: "repair channel separately; next loop may proceed with local verification only if channel remains blocked and no duplicate reviewer is created"
+
+report:
+  role_id: "code-reviewer"
+  status: "blocked"
   task: "loop336 read-only code review"
   changes: []
   verification:

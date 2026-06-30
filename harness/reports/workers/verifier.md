@@ -3,6 +3,26 @@
 report:
   role_id: "verifier"
   status: "blocked"
+  task: "loop337 final verification"
+  changes: []
+  verification:
+    - command: "dispatch decision"
+      result: "No new loop337 verifier assignment was sent after fixed worker channels returned systemError/empty response in loop336/Planner loop337; no duplicate verifier was created."
+    - command: "orchestrator final verification"
+      result: "focused 31 passed; related selector 682 passed / 2767 deselected / 1 warning; targeted Ruff passed; compileall passed; diff check passed with LF/CRLF warnings only; production forbidden active-marker scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A missing verifier report is not completion evidence; keep the identity and avoid duplicate same-role verifier threads."
+    performance_note: "Loop337 accepted on fresh orchestrator-local verification, not verifier report."
+  blockers:
+    - "Permanent verifier thread still needs repair before trusted final evidence."
+  next: "repair channel separately; next loop still uses the same verifier identity"
+
+report:
+  role_id: "verifier"
+  status: "blocked"
   task: "loop336 final verification"
   changes: []
   verification:

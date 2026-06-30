@@ -2,6 +2,26 @@
 
 report:
   role_id: "planner"
+  status: "blocked"
+  task: "loop337 core-function selection"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Planner fixed thread returned systemError/empty response; no usable loop337 loop_plan returned."
+    - command: "orchestrator bounded local plan"
+      result: "Orchestrator used loop-state next_atomic_action to proceed with explicit_execution_authorization_review_to_decision_gate_v1 without creating a duplicate planner."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A systemError/empty planner response is not loop_plan evidence; keep the identity and avoid duplicate same-role Planner threads."
+    performance_note: "Channel exception; loop337 direction was recovered from loop-state and truth sources."
+  blockers:
+    - "Permanent Planner thread systemError/empty response for loop337."
+  next: "repair channel separately; next loop still uses the same Planner identity"
+
+report:
+  role_id: "planner"
   status: "success"
   task: "loop336 core-function selection"
   changes: []
