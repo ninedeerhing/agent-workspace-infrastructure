@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T17:30:29+08:00
+updated_at: 2026-06-30T17:42:39+08:00
+
+## Latest Handoff — SYNC-353 loop346
+
+- [DONE] `explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision.py`, `src/qa/quant_mining/explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_checks.py`, `src/qa/ui/operator_reviewer_final_queue_write_authorization_decision_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_unit.py`, `tests/test_explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_guard_unit.py`, `tests/test_explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_surface_unit.py`, `tests/test_explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; focused 32 passed; authorization/archive-chain selector 388 passed / 3349 deselected / 1 LangGraph warning; auto-backtest/queue-write related selector 1114 passed / 2623 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; active execution-marker scan clean.
+- [BLOCKED] No product blocker. Fixed Planner thread `019f0890-69e6-7270-a742-1178836608ef` returned `no-client-found`; this is not loop_plan evidence. Runtime explorer `019f17e3-9c1d-72e0-b9d0-b4419a04fd8d` provided read-only pattern mapping only. No duplicate Planner/Dispatcher/Reviewer/Verifier was created.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_AUTHORIZATION_DECISION_LOOP347：由 Planner 基于 loop346 `explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1` 选择下一条核心功能 loop；优先推进 `operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1`；仍 review-only/no-execution until explicit later authorization.
+- [ROSTER] Planner/code-reviewer/verifier channels still need repair; permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop346 as queue-write permission, execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-352 loop345
 
