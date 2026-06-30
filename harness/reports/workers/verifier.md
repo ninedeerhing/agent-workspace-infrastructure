@@ -2,6 +2,37 @@
 
 report:
   role_id: "verifier"
+  status: "success"
+  task: "loop325 final verification"
+  changes: []
+  verification:
+    - command: "focused boundary/candidate contract pytest"
+      result: "28 passed"
+    - command: "adjacent queue persistence pytest"
+      result: "78 passed"
+    - command: "queue persistence subset pytest"
+      result: "124 passed"
+    - command: "consumer pytest"
+      result: "70 passed"
+    - command: "Ruff / diff / semantic inspection"
+      result: "PASS: packet consumes loop324 preflight only; queue write, DB enqueue, worker handoff, runner/adapter, actual dry-run, PL-H, grants, and execution_permission remain false/not_granted/not_connected/not_ready."
+  residual_risks:
+    - "Executor and Code Reviewer canonical threads were blocked/waitingOnApproval, so signoff relies on orchestrator takeover plus fresh verifier checks."
+    - "Known LangGraph/LangChain deprecation warning is pre-existing environmental noise."
+    - "Existing integration files remain inherited oversized; loop325 adds scoped wiring only."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Boundary proof plus real queue candidate contract can be merged into one review-only packet while preserving no queue write, no DB enqueue, no worker handoff, and no execution permission."
+    performance_note: "Fresh verifier checks support loop325 completion."
+  blockers: []
+  next: "controlled real queue write review without enabling actual queue, DB, worker, runner, or adapter execution"
+
+# Worker Report — verifier
+
+report:
+  role_id: "verifier"
   status: "partial"
   task: "loop324 queue persistence authorization preflight verification"
   changes: []

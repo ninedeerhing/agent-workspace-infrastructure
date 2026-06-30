@@ -3,6 +3,26 @@
 report:
   role_id: "executor"
   status: "blocked"
+  task: "loop325 implementation write owner"
+  changes: []
+  verification:
+    - command: "channel/rendezvous status"
+      result: "Canonical executor thread remained waitingOnApproval/channel blocked before implementation takeover; no worker-owned file edits counted. Orchestrator reran local verification after bounded takeover."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Record waitingOnApproval write-owner channels and use bounded liveness takeover without creating duplicate executor."
+    performance_note: "Blocked by channel approval, not product logic."
+  blockers:
+    - "Canonical executor channel waitingOnApproval/channel blocked."
+  next: "controlled real queue write review implementation assignment after Planner/Dispatcher loop326"
+
+# Worker Report — executor
+
+report:
+  role_id: "executor"
+  status: "blocked"
   task: "loop324 implementation write owner"
   changes: []
   verification:

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-30T02:15:00+08:00",
-  "mode": "paused_by_user",
-  "stop_reason": "USER_REQUESTED_STOP_AFTER_LOOP324_CLOSEOUT",
+  "updated_at": "2026-06-30T10:10:16+08:00",
+  "mode": "autonomous",
+  "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "auto-backtest-queue-persistence-authorization-preflight-loop324",
-  "next_atomic_action": "STOP_AFTER_LOOP324_USER_REST：loop324 auto_backtest_queue_persistence_authorization_preflight_v1 已按用户要求收口；本线程停止，不继续启动 loop325，等待用户下一次明确指令。",
-  "next_after": "User requested stop after loop324 closeout; do not start loop325 until user resumes. Next candidate when resumed: auto_backtest_queue_persistence_boundary_proof_v1 or auto_backtest_real_queue_candidate_contract_v1, still review-only/no-execution unless explicitly authorized later.",
+  "current_slice": "auto-backtest-queue-persistence-boundary-and-candidate-contract-loop325",
+  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_BOUNDARY_AND_CANDIDATE_CONTRACT_LOOP326：由 Planner 基于总规划、当前进度和 loop325 auto_backtest_queue_persistence_boundary_and_candidate_contract_v1 选择下一条核心功能 loop；优先推进 auto_backtest_controlled_real_queue_write_review_v1；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
+  "next_after": "Next candidate is auto_backtest_controlled_real_queue_write_review_v1 based on boundary proof + candidate contract; still review-only/no-execution unless explicitly authorized later.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,17 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop324-auto-backtest-queue-persistence-authorization-preflight",
+  "last_tick": "loop325-auto-backtest-queue-persistence-boundary-and-candidate-contract",
   "last_sync_sources": [
+    "SYNC-332 loop325 Auto-backtest queue persistence boundary and candidate contract",
+    "loop325 Planner selected merged boundary proof + real queue candidate contract; Dispatcher assigned functional slice; Test Engineer partial matrix incorporated; Executor canonical thread waitingOnApproval/channel blocked, Orchestrator bounded liveness takeover completed implementation; Code Reviewer waitingOnApproval/not completion evidence; Verifier success",
+    "loop325 TDD RED: missing qa.quant_mining.auto_backtest_queue_persistence_boundary_and_candidate_contract failed before implementation; surface/chat RED proved missing MiningJob/Factor Library/Chat exposure",
+    "loop325 GREEN: auto_backtest_queue_persistence_boundary_and_candidate_contract_v1 derives review-only boundary proof + real queue candidate contract from loop324 auto_backtest_queue_persistence_authorization_preflight_v1",
+    "loop325 verification: focused 28 passed; adjacent 78 passed; queue persistence/planning regression 148 passed; auto_backtest chain 472 passed; targeted Ruff pass; git diff --check pass with LF/CRLF warnings only; source forbidden marker scan clean",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.656",
+    "methodology_ref: M-17-zero-write",
+    "next: ",
+    "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_BOUNDARY_AND_CANDIDATE_CONTRACT_LOOP326：由 Planner 基于总规划、当前进度和 loop325 auto_backtest_queue_persistence_boundary_and_candidate_contract_v1 选择下一条核心功能 loop；优先推进 auto_backtest_controlled_real_queue_write_review_v1；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
     "SYNC-331 loop324 Auto-backtest queue persistence authorization preflight",
     "loop324 Planner selected auto_backtest_queue_persistence_authorization_preflight_v1; Dispatcher assigned functional slice; Test Engineer matrix incorporated; Executor canonical thread waitingOnApproval, Orchestrator bounded liveness takeover completed implementation; Code Reviewer waitingOnApproval/not completion evidence; Verifier not returned before closeout",
     "loop324 TDD RED: missing qa.quant_mining.auto_backtest_queue_persistence_authorization_preflight failed before implementation",
@@ -28,8 +37,7 @@
     "loop324 verification: focused 24 passed; adjacent queue chain 72 passed; consumer regression 70 passed; auto_backtest chain 444 passed; targeted Ruff pass; git diff --check pass with LF->CRLF warnings only; source forbidden marker scan clean",
     "apps/quant_assistant/docs/PROJECT_STATUS.md §5.655",
     "methodology_ref: M-17-zero-write",
-    "next: ",
-    "STOP_AFTER_LOOP324_USER_REST：loop324 auto_backtest_queue_persistence_authorization_preflight_v1 已按用户要求收口；本线程停止，不继续启动 loop325，等待用户下一次明确指令。",
+    "next: loop325 completed queue persistence boundary and candidate contract",
     "SYNC-330 loop323 Auto-backtest queue persistence authorization design",
     "loop323 Planner selected auto_backtest_queue_persistence_authorization_design_v1; Dispatcher assigned functional slice; Test Engineer matrix incorporated; Executor channel blocked after RED test files due Windows ACL/no approval; Orchestrator bounded liveness takeover completed implementation; Code Reviewer success/no findings; Verifier success",
     "loop323 TDD RED: missing qa.quant_mining.auto_backtest_queue_persistence_authorization_design failed before implementation",
@@ -119,7 +127,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop324 completed Auto-backtest queue persistence authorization preflight. auto_backtest_queue_persistence_authorization_preflight_v1 now derives review-only preflight material from loop323 auto_backtest_queue_persistence_authorization_design_v1, carrying source refs/status/actions/blockers/candidate refs and hard false/not_granted/not_connected/not_ready safety across MiningJob observability, Factor Library, and Chat. User explicitly requested stop after this loop closeout; loop325 must not start until user resumes."
+    "note": "loop325 completed Auto-backtest queue persistence boundary and candidate contract. auto_backtest_queue_persistence_boundary_and_candidate_contract_v1 now derives review-only boundary proof plus real queue candidate contract material from loop324 auto_backtest_queue_persistence_authorization_preflight_v1, carrying field mapping, idempotency design, rollback audit gap, manual authorization gap, candidate refs, and hard false/not_granted/not_connected/not_ready safety across MiningJob observability, Factor Library, and Chat. User resumed the mainline on 2026-06-30 morning; next is Planner selection for loop326."
   },
-  "last_completed_note": "loop324 Auto-backtest queue persistence authorization preflight complete. Added qa.quant_mining.auto_backtest_queue_persistence_authorization_preflight.build_auto_backtest_queue_persistence_authorization_preflight_v1 plus fail-closed checks and UI notes; wired auto_backtest_queue_persistence_authorization_preflight_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED missing module before implementation; focused 24 passed; adjacent queue chain 72 passed; consumer regression 70 passed; auto_backtest chain 444 passed; targeted Ruff pass; git diff --check pass with LF->CRLF warnings only; source forbidden marker scan clean. Code Reviewer canonical thread waitingOnApproval and Verifier did not return before closeout, so completion evidence is local command evidence. Next_atomic_action is STOP_AFTER_LOOP324_USER_REST."
+  "last_completed_note": "loop325 Auto-backtest queue persistence boundary and candidate contract complete. Added qa.quant_mining.auto_backtest_queue_persistence_boundary_and_candidate_contract.build_auto_backtest_queue_persistence_boundary_and_candidate_contract_v1 plus fail-closed checks and UI notes; wired auto_backtest_queue_persistence_boundary_and_candidate_contract_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED missing module before implementation; surface/chat RED exposed missing consumer wiring; focused 28 passed; adjacent 78 passed; queue persistence/planning regression 148 passed; auto_backtest chain 472 passed; targeted Ruff pass; git diff --check pass with LF/CRLF warnings only; source forbidden marker scan clean; Verifier success with focused/adjacent/consumer/Ruff/diff/semantic scan pass. Executor and Code Reviewer canonical threads were waitingOnApproval/channel blocked and are not completion evidence. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_BOUNDARY_AND_CANDIDATE_CONTRACT_LOOP326."
 }

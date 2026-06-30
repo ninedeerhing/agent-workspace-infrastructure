@@ -3,6 +3,24 @@
 report:
   role_id: "planner"
   status: "success"
+  task: "loop325 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected merged auto_backtest_queue_persistence_boundary_and_candidate_contract_v1 after loop324 authorization preflight; next should continue to controlled real queue write review."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Selected a functional auto-backtest chain step, not governance-only cleanup."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_BOUNDARY_AND_CANDIDATE_CONTRACT_LOOP326"
+
+# Worker Report — planner
+
+report:
+  role_id: "planner"
+  status: "success"
   task: "loop324 core-function selection"
   changes: []
   verification:

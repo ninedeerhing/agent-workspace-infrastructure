@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T02:15:00+08:00
+updated_at: 2026-06-30T10:10:16+08:00
+
+## Latest Handoff — SYNC-332 loop325
+
+- [DONE] `auto_backtest_queue_persistence_boundary_and_candidate_contract_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/auto_backtest_queue_persistence_boundary_and_candidate_contract.py`, `src/qa/quant_mining/auto_backtest_queue_persistence_boundary_and_candidate_contract_checks.py`, `src/qa/ui/auto_backtest_queue_persistence_boundary_and_candidate_contract_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_auto_backtest_queue_persistence_boundary_and_candidate_contract_unit.py`, `tests/test_auto_backtest_queue_persistence_boundary_and_candidate_contract_guard_unit.py`, `tests/test_auto_backtest_queue_persistence_boundary_and_candidate_contract_surface_unit.py`, `tests/test_auto_backtest_queue_persistence_boundary_and_candidate_contract_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; surface/chat RED proved missing consumer exposure; GREEN focused 28 passed; adjacent 78 passed; queue persistence/planning regression 148 passed; auto_backtest chain 472 passed; targeted Ruff pass; git diff --check pass with LF/CRLF warnings only; source forbidden marker scan clean.
+- [BLOCKED] No product blocker. Executor canonical thread waitingOnApproval/channel blocked; Code Reviewer waitingOnApproval/not completion evidence. Verifier success with focused/adjacent/consumer/Ruff/diff/semantic scan pass.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_BOUNDARY_AND_CANDIDATE_CONTRACT_LOOP326：由 Planner 基于总规划、当前进度和 loop325 `auto_backtest_queue_persistence_boundary_and_candidate_contract_v1` 选择下一条核心功能 loop；优先推进 `auto_backtest_controlled_real_queue_write_review_v1`；仍 review-only/no-execution until explicit later authorization.
+- [ROSTER] Planner success; Dispatcher success; Test Engineer partial matrix used; Executor waitingOnApproval/channel blocked; Code Reviewer waitingOnApproval/not evidence; Verifier success. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop325 as real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-331 loop324
 

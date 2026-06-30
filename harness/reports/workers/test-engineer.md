@@ -2,6 +2,25 @@
 
 report:
   role_id: "test-engineer"
+  status: "partial"
+  task: "loop325 boundary and candidate contract test matrix"
+  changes: []
+  verification:
+    - command: "read-only test design"
+      result: "Matrix covered source loop324 preflight, source drift, candidate count drift, operator/reviewer not granted, runner/adapter not connected, rollback audit not ready, PL-H not eligible, no real/default runner, no DB enqueue, no worker handoff, no actual dry-run/backtest, passive MiningJob/Factor Library/Chat surfaces, and forbidden marker scan."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Matrix incorporated into focused unit, guard, surface, and chat tests."
+  blockers:
+    - "Some read-only helper access hit local ACL, but matrix was usable and final verifier passed."
+  next: "controlled real queue write review tests"
+
+# Worker Report — test-engineer
+
+report:
+  role_id: "test-engineer"
   status: "success"
   task: "loop324 queue persistence authorization preflight test matrix"
   changes: []

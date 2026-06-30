@@ -3,6 +3,24 @@
 report:
   role_id: "dispatcher"
   status: "success"
+  task: "loop325 assignment matrix"
+  changes: []
+  verification:
+    - command: "assignment_matrix handoff"
+      result: "Routed test design, implementation, code review, and verification to permanent workers; no duplicate same-role worker created."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Executor was the intended write owner; orchestrator takeover was bounded after waitingOnApproval/channel block."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_QUEUE_PERSISTENCE_BOUNDARY_AND_CANDIDATE_CONTRACT_LOOP326"
+
+# Worker Report — dispatcher
+
+report:
+  role_id: "dispatcher"
+  status: "success"
   task: "loop324 assignment matrix"
   changes: []
   verification:
