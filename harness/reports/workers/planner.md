@@ -3,6 +3,28 @@
 report:
   role_id: "planner"
   status: "blocked"
+  task: "loop338 core-function selection"
+  changes: []
+  verification:
+    - command: "codex_app.list_threads"
+      result: "Permanent Planner thread 019f0890-69e6-7270-a742-1178836608ef was discoverable."
+    - command: "codex_app.send_message_to_thread"
+      result: "Returned no-client-found; no usable loop338 loop_plan returned."
+    - command: "orchestrator bounded local plan"
+      result: "Orchestrator used loop-state next_atomic_action to proceed with explicit_execution_decision_gate_to_final_authorization_verdict_v1 without creating a duplicate planner."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A no-client-found Planner send failure is channel evidence, not loop_plan evidence; keep the identity and avoid duplicate same-role Planner threads."
+    performance_note: "Channel exception; loop338 direction was recovered from loop-state and truth sources."
+  blockers:
+    - "Permanent Planner thread send_message_to_thread no-client-found for loop338."
+  next: "repair channel separately; next loop still uses the same Planner identity"
+
+report:
+  role_id: "planner"
+  status: "blocked"
   task: "loop337 core-function selection"
   changes: []
   verification:

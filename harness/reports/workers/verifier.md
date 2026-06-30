@@ -3,6 +3,28 @@
 report:
   role_id: "verifier"
   status: "blocked"
+  task: "loop338 final verification"
+  changes: []
+  verification:
+    - command: "codex_app.list_threads"
+      result: "Permanent Verifier thread 019eeed2-dbc0-7313-8d64-f9c6f199c68b was discoverable."
+    - command: "codex_app.send_message_to_thread"
+      result: "Returned no-client-found; no usable loop338 verifier report returned."
+    - command: "orchestrator final verification"
+      result: "focused 31 passed; related selector 713 passed / 2767 deselected / 1 warning; targeted Ruff passed; compileall passed; diff check passed with LF/CRLF warnings only; active enabled-marker scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A no-client-found verifier send failure is not completion evidence; keep the identity and avoid duplicate same-role verifier threads."
+    performance_note: "Loop338 accepted on fresh orchestrator-local verification, not verifier report."
+  blockers:
+    - "Permanent verifier thread send_message_to_thread no-client-found for loop338."
+  next: "repair channel separately; next loop still uses the same verifier identity"
+
+report:
+  role_id: "verifier"
+  status: "blocked"
   task: "loop337 final verification"
   changes: []
   verification:

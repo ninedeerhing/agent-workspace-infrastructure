@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T13:30:55+08:00
+updated_at: 2026-06-30T15:38:45+08:00
+
+## Latest Handoff — SYNC-345 loop338
+
+- [DONE] `explicit_execution_decision_gate_to_final_authorization_verdict_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/explicit_execution_decision_gate_to_final_authorization_verdict.py`, `src/qa/quant_mining/explicit_execution_decision_gate_to_final_authorization_verdict_checks.py`, `src/qa/ui/explicit_execution_final_authorization_verdict_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_explicit_execution_decision_gate_to_final_authorization_verdict_unit.py`, `tests/test_explicit_execution_decision_gate_to_final_authorization_verdict_guard_unit.py`, `tests/test_explicit_execution_decision_gate_to_final_authorization_verdict_surface_unit.py`, `tests/test_explicit_execution_decision_gate_to_final_authorization_verdict_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; focused 31 passed; related selector 713 passed / 2767 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; active enabled-marker scan clean.
+- [BLOCKED] No product blocker. Planner / Code Reviewer / Verifier fixed threads were discoverable via `list_threads`, but `send_message_to_thread` returned `no-client-found`; this is worker channel repair work, not completion evidence. Orchestrator used loop-state bounded local plan; no duplicate Planner/Dispatcher/Reviewer/Verifier was created.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_AUTHORIZATION_VERDICT_REVIEW_LOOP339：由 Planner 基于 loop338 `explicit_execution_decision_gate_to_final_authorization_verdict_v1` 选择下一条核心功能 loop；优先推进 `final_authorization_verdict_to_human_authorization_record_v1`；仍 review-only/no-execution until explicit later authorization.
+- [ROSTER] Planner/code-reviewer/verifier channels need repair (`no-client-found`); Dispatcher not re-dispatched because Planner report unavailable; Executor local bounded implementation completed by orchestrator. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop338 as execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-344 loop337
 
