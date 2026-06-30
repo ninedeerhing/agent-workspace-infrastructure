@@ -2,6 +2,24 @@
 
 report:
   role_id: "planner"
+  status: "partial"
+  task: "loop331 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected real_queue_write_authorization_review_v1 after loop330 authorization packet; PROJECT_STATUS read had a local ACL gap, but direction matched loop-state and task tree."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "After authorization packet material exists, the next core function should review the packet into a still-passive authorization review conclusion before any execution boundary work."
+    performance_note: "Functional direction accepted; ACL gap recorded as partial rather than blocking."
+  blockers:
+    - "PROJECT_STATUS read failed in worker channel due local ACL/tool issue."
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_AUTHORIZATION_REVIEW_LOOP332"
+
+report:
+  role_id: "planner"
   status: "success"
   task: "loop330 core-function selection"
   changes: []

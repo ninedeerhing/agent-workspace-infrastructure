@@ -2,6 +2,30 @@
 
 report:
   role_id: "code-reviewer"
+  status: "partial"
+  task: "loop331 real queue write authorization review code review"
+  changes: []
+  verification:
+    - command: "read-only inspection of loop331 builder/checks/notes"
+      result: "Core read-model stayed passive and source-bound; found P2 consumer-surface guard drift where worker_handoff_allowed was omitted."
+    - command: "orchestrator fix verification"
+      result: "P2 fixed by adding worker_handoff_allowed to the recheck guard and a chat-surface regression; focused 37 passed, adjacent 123 passed, auto_backtest 582 passed, Ruff pass."
+  findings:
+    - severity: "P2"
+      file: "apps/quant_assistant/src/qa/ui/real_queue_write_authorization_review_notes.py"
+      issue: "worker_handoff_allowed drift was not part of the fail-closed recheck guard."
+      status: "fixed"
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Consumer-surface fail-closed guards must include the full no-execution marker matrix, not only execution-specific worker flags."
+    performance_note: "Useful reviewer evidence; P2 fixed before closeout."
+  blockers: []
+  next: "loop332 code review after Planner/Dispatcher"
+
+report:
+  role_id: "code-reviewer"
   status: "blocked"
   task: "loop330 real queue write review gate to authorization packet code review"
   changes: []

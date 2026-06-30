@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T11:34:29+08:00
+updated_at: 2026-06-30T11:52:10+08:00
+
+## Latest Handoff — SYNC-338 loop331
+
+- [DONE] `real_queue_write_authorization_review_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/real_queue_write_authorization_review.py`, `src/qa/quant_mining/real_queue_write_authorization_review_checks.py`, `src/qa/ui/real_queue_write_authorization_review_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_real_queue_write_authorization_review_unit.py`, `tests/test_real_queue_write_authorization_review_guard_unit.py`, `tests/test_real_queue_write_authorization_review_surface_unit.py`, `tests/test_real_queue_write_authorization_review_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; Code Reviewer P2 `worker_handoff_allowed` guard drift reproduced and fixed; focused 37 passed; adjacent 123 passed; auto_backtest chain 582 passed; targeted Ruff pass; git diff --check pass with LF/CRLF warnings only; active forbidden marker scan clean.
+- [BLOCKED] No product blocker. Executor canonical thread channel_blocked_waitingOnApproval/no changes; Code Reviewer partial P2 fixed; Verifier success. Orchestrator local verification plus permanent verifier report are completion evidence.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_AUTHORIZATION_REVIEW_LOOP332：由 Planner 基于 loop331 `real_queue_write_authorization_review_v1` 选择下一条核心功能 loop；优先推进 `real_queue_write_authorization_review_to_execution_boundary_v1`；仍 review-only/no-execution until explicit later authorization.
+- [ROSTER] Planner partial but selected correct function; Dispatcher success; Test Engineer success matrix used; Executor waitingOnApproval/channel blocked; Code Reviewer partial P2 fixed; Verifier success. Permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop331 as real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-337 loop330
 

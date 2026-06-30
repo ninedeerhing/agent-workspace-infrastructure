@@ -2,6 +2,33 @@
 
 report:
   role_id: "verifier"
+  status: "success"
+  task: "loop331 final verification"
+  changes: []
+  verification:
+    - command: "scoped git status"
+      result: "PASS: dirty scope was limited to expected loop331 files before truth sync."
+    - command: "focused real queue write authorization review pytest"
+      result: "PASS: 37 passed after P2 regression fix."
+    - command: "adjacent authorization/review/readiness pytest"
+      result: "PASS: 123 passed, 3115 deselected, one known LangGraph/LangChain warning."
+    - command: "pytest -k auto_backtest"
+      result: "PASS: 582 passed, 2656 deselected, one known LangGraph/LangChain warning."
+    - command: "Ruff / diff / semantic inspection"
+      result: "PASS: all checks passed; active forbidden marker scan clean; no real queue write, DB enqueue, worker handoff, runner/adapter, rollback ready, PL-H, acceptance/authorization grant, execution permission, actual dry-run/backtest, background, migration, backfill, or secret output."
+  residual_risks:
+    - "Known LangGraph/LangChain deprecation warning is pre-existing environmental noise."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Authorization review can summarize an authorization packet as a review conclusion while preserving not-granted/no-execution semantics."
+    performance_note: "Fresh verifier checks support loop331 completion."
+  blockers: []
+  next: "orchestrator may sync truth sources and commit if final clean-worktree gate passes; next loop must remain no-execution until separately authorized and verified."
+
+report:
+  role_id: "verifier"
   status: "partial"
   task: "loop330 final verification"
   changes: []
