@@ -2,6 +2,30 @@
 
 report:
   role_id: "verifier"
+  status: "success"
+  task: "loop335 final verification"
+  changes: []
+  verification:
+    - command: "git status --short"
+      result: "PASS: dirty scope limited to expected loop335 files before truth sync."
+    - command: "focused explicit execution authorization packet pytest"
+      result: "PASS: 38 passed."
+    - command: "targeted Ruff"
+      result: "PASS: All checks passed."
+    - command: "git diff --check and forbidden active marker scan"
+      result: "PASS: no whitespace errors beyond LF/CRLF warnings; no active true/granted markers for queue write, DB enqueue, worker handoff, runner/adapter, rollback ready, PL-H, actual dry-run/backtest, background, migration, backfill, manual/human acceptance grant, authorization grant, or execution permission."
+    - command: "read-only semantic review"
+      result: "PASS: loop335 packet is passive/read-only and shares one packet across MiningJob, Factor Library, and Chat without creating execution or write paths."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Fresh verifier checks support loop335 completion evidence."
+  blockers: []
+  next: "orchestrator may sync truth sources and commit if final clean-worktree gate passes"
+
+report:
+  role_id: "verifier"
   status: "blocked"
   task: "loop334 final verification"
   changes: []

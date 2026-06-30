@@ -3,6 +3,25 @@
 report:
   role_id: "code-reviewer"
   status: "success"
+  task: "loop335 read-only code review"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Loop335 review returned success/no P1/P2."
+    - command: "orchestrator local review gates"
+      result: "focused/adjacent/auto_backtest/Ruff/compileall/diff/production forbidden scan passed; code-reviewer report is additional review evidence."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Do not let authorization material wording imply granted execution permission."
+    performance_note: "Reviewed source provenance, fail-closed candidate refs, no-execution flags, and consumer-facing wording."
+  blockers: []
+  next: "verifier acceptance or orchestrator final signoff"
+
+report:
+  role_id: "code-reviewer"
+  status: "success"
   task: "loop334 read-only code review"
   changes: []
   verification:

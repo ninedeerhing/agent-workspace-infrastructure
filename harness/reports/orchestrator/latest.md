@@ -1,27 +1,27 @@
-# Orchestrator Latest Report — SYNC-341 loop334
+# Orchestrator Latest Report — SYNC-342 loop335
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "loop334 operator/reviewer final execution-boundary gate"
+  task: "loop335 explicit execution authorization packet material"
   changes:
-    - file: "apps/quant_assistant/src/qa/quant_mining/real_queue_write_execution_boundary_to_operator_reviewer_final_gate.py"
-      summary: "Added the review-only/no-execution operator/reviewer final gate builder from loop333 operator/reviewer execution-boundary packet materials."
-    - file: "apps/quant_assistant/src/qa/quant_mining/real_queue_write_execution_boundary_to_operator_reviewer_final_gate_checks.py"
+    - file: "apps/quant_assistant/src/qa/quant_mining/operator_reviewer_final_gate_to_explicit_execution_authorization_packet.py"
+      summary: "Added the review-only/not-granted explicit execution authorization packet builder from loop334 operator/reviewer final gate materials."
+    - file: "apps/quant_assistant/src/qa/quant_mining/operator_reviewer_final_gate_to_explicit_execution_authorization_packet_checks.py"
       summary: "Added source, candidate-ref, operator/reviewer, runner, rollback, PL-H, safety, and forbidden-marker fail-closed checks."
-    - file: "apps/quant_assistant/src/qa/ui/real_queue_write_operator_reviewer_final_gate_notes.py"
-      summary: "Added consumer-facing notes that state the final gate is still review-only and not execution authorization."
+    - file: "apps/quant_assistant/src/qa/ui/explicit_execution_authorization_packet_notes.py"
+      summary: "Added consumer-facing notes that state the packet is only authorization material and not execution authorization."
     - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
-      summary: "Wired the final gate packet into MiningJob observability."
+      summary: "Wired the authorization packet into MiningJob observability."
     - file: "apps/quant_assistant/src/qa/ui/factor_library_insights.py"
-      summary: "Wired the final gate packet into Factor Library rows."
+      summary: "Wired the authorization packet into Factor Library rows."
     - file: "apps/quant_assistant/src/qa/ui/chat_brain.py"
-      summary: "Wired final gate notes into manual safe follow-up replies."
+      summary: "Wired authorization packet notes into manual safe follow-up replies."
   verification:
-    - command: "focused operator/reviewer final gate pytest"
-      result: "RED missing module before implementation; final GREEN 37 passed"
-    - command: "adjacent authorization/execution-boundary/final-gate pytest"
-      result: "148 passed"
+    - command: "focused explicit execution authorization packet pytest"
+      result: "RED missing module before implementation; final GREEN 38 passed"
+    - command: "adjacent loop331-loop335 pytest"
+      result: "186 passed"
     - command: "pytest -k auto_backtest"
       result: "582 passed, one LangGraph/LangChain deprecation warning"
     - command: "targeted Ruff"
@@ -31,14 +31,14 @@ report:
     - command: "git diff --check + production forbidden marker scan"
       result: "pass; LF/CRLF warnings only; no production forbidden marker hits"
     - command: "Code Reviewer / Verifier cross-dialogue reports"
-      result: "Code Reviewer success/no P1/P2; Verifier loop334 inProgress/not counted as completion evidence; no duplicate same-role worker was created."
+      result: "Code Reviewer success/no P1/P2; Verifier success; no duplicate same-role worker was created."
   roster_update:
     workload_delta: "cleared"
     mistakes: []
     lessons:
-      - "Operator/reviewer final gate is still passive evidence; it must not be described as queue-write permission, DB enqueue permission, worker handoff permission, or execution authorization."
-      - "A 200-250 pure LOC builder is a warning band; avoid adding future logic there without splitting."
-      - "Stuck permanent review threads are channel facts, not completion evidence; keep identity stable and avoid same-role duplicates."
-    performance_note: "Loop334 closed as a core auto-backtest chain increment; next loop should advance explicit execution authorization packet review without crossing into execution."
+      - "Explicit execution authorization packet material is still passive evidence; it must not be described as queue-write permission, DB enqueue permission, worker handoff permission, or execution authorization."
+      - "The loop335 builder reached 249 pure LOC; future logic must split support code before adding more behavior."
+      - "A permanent verifier may recover after earlier waitingOnApproval; use fresh returned report when available, but keep identity stable."
+    performance_note: "Loop335 closed as a core auto-backtest chain increment; next loop should advance explicit execution authorization packet review without crossing into execution."
   blockers: []
-  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_GATE_LOOP335"
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_EXPLICIT_EXECUTION_AUTHORIZATION_PACKET_LOOP336"
