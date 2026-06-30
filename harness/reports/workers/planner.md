@@ -3,6 +3,22 @@
 report:
   role_id: "planner"
   status: "success"
+  task: "loop334 core-function selection"
+  changes: []
+  verification:
+    - command: "loop_plan handoff"
+      result: "Selected real_queue_write_execution_boundary_to_operator_reviewer_final_gate_v1 after loop333 operator/reviewer execution-boundary packet; next_after is explicit execution authorization packet review."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Function-first selection kept loop334 focused on a core auto-backtest chain increment."
+  blockers: []
+  next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_GATE_LOOP335"
+
+report:
+  role_id: "planner"
+  status: "success"
   task: "loop333 core-function selection"
   changes: []
   verification:

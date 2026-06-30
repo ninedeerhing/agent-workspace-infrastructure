@@ -3,6 +3,26 @@
 report:
   role_id: "verifier"
   status: "blocked"
+  task: "loop334 final verification"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Canonical verifier thread remains waitingOnApproval; no usable loop334 verifier report returned before closeout."
+    - command: "orchestrator final verification"
+      result: "focused 37 passed; adjacent 148 passed; auto_backtest 582 passed; targeted Ruff passed; compileall passed; diff check passed with LF/CRLF warnings only; production forbidden marker scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A waitingOnApproval verifier is not completion evidence; keep the identity and avoid duplicate same-role verifier threads."
+    performance_note: "Loop334 accepted on fresh orchestrator-local verification, not verifier report."
+  blockers:
+    - "Permanent verifier channel waitingOnApproval."
+  next: "repair channel separately; next loop still uses the same verifier identity"
+
+report:
+  role_id: "verifier"
+  status: "blocked"
   task: "loop333 final verification"
   changes: []
   verification:
