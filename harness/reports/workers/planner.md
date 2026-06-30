@@ -3,6 +3,26 @@
 report:
   role_id: "planner"
   status: "blocked"
+  task: "loop342 core-function selection"
+  changes: []
+  verification:
+    - command: "known channel state"
+      result: "Fixed Planner thread remained channel-blocked from prior loops; no usable loop342 loop_plan returned."
+    - command: "orchestrator bounded local plan"
+      result: "Orchestrator used loop-state next_atomic_action plus runtime explorer read-only mapping to proceed with pre_execution_queue_write_authorization_review_to_archive_review_v1 without creating a duplicate planner."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A stale or unreachable Planner channel is not loop_plan evidence; keep the permanent identity and avoid duplicate same-role Planner threads."
+    performance_note: "Channel exception; loop342 direction was recovered from loop-state and truth sources."
+  blockers:
+    - "Permanent Planner thread channel blocker persists."
+  next: "repair channel separately; next loop still uses the same Planner identity"
+
+report:
+  role_id: "planner"
+  status: "blocked"
   task: "loop341 core-function selection"
   changes: []
   verification:

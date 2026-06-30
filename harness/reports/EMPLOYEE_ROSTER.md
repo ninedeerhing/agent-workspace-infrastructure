@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-06-30T16:48:37+08:00
+Updated: 2026-06-30T16:58:30+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop341 | active | gpt-5.5 | 2026-06-30T16:48:37+08:00 | loop341 complete; next loop342 Planner selection | workload light; runtime explorer read-only mapping used; no duplicate same-role worker created |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop341 | blocked | gpt-5.4 | 2026-06-30T16:48:37+08:00 | channel blocker persists; no loop341 loop_plan evidence | channel repair needed; do not create duplicate |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop341 | idle | gpt-5.4 | 2026-06-30T16:48:37+08:00 | not dispatched because Planner loop_plan unavailable | channel path repair needed |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop341 | idle | gpt-5.4 | 2026-06-30T16:48:37+08:00 | local TDD matrix used; no independent loop341 report | partial |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop341 | idle | gpt-5.5 | 2026-06-30T16:48:37+08:00 | not dispatched; orchestrator bounded local implementation | channel repair needed |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop341 | blocked | gpt-5.4 | 2026-06-30T16:48:37+08:00 | channel blocker persists; no loop341 review evidence | channel repair needed; do not create duplicate |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop341 | blocked | gpt-5.4 | 2026-06-30T16:48:37+08:00 | channel blocker persists; no loop341 verifier evidence | channel repair needed; do not create duplicate |
+| orchestrator | current-thread | loop342 | active | gpt-5.5 | 2026-06-30T16:58:30+08:00 | loop342 complete; next loop343 Planner selection | workload light; runtime explorer read-only mapping used; no duplicate same-role worker created |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop342 | blocked | gpt-5.4 | 2026-06-30T16:58:30+08:00 | channel blocker persists; no loop342 loop_plan evidence | channel repair needed; do not create duplicate |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop342 | idle | gpt-5.4 | 2026-06-30T16:58:30+08:00 | not dispatched because Planner loop_plan unavailable | channel path repair needed |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop342 | idle | gpt-5.4 | 2026-06-30T16:58:30+08:00 | local TDD matrix used; no independent loop342 report | partial |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop342 | idle | gpt-5.5 | 2026-06-30T16:58:30+08:00 | not dispatched; orchestrator bounded local implementation | channel repair needed |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop342 | blocked | gpt-5.4 | 2026-06-30T16:58:30+08:00 | channel blocker persists; no loop342 review evidence | channel repair needed; do not create duplicate |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop342 | blocked | gpt-5.4 | 2026-06-30T16:58:30+08:00 | channel blocker persists; no loop342 verifier evidence | channel repair needed; do not create duplicate |
 ## Latest Roster Notes
+- **loop342**：完成 `pre_execution_queue_write_authorization_review_to_archive_review_v1`；runtime explorer `019f17a6-8695-7d82-8cee-b8e86f5af2e5` 只读映射 builder/checks/UI/test 模式，固定 worker channel blocker 仍未修复，Orchestrator 基于 loop-state next_atomic_action 做 bounded local plan 并完成实现；未创建重复 Planner/Dispatcher/Executor/Code Reviewer/Verifier。验证：focused 32 passed；authorization/archive-chain selector 259 passed；auto-backtest/queue-write selector 985 passed；Ruff pass；compileall pass；diff check pass（LF/CRLF warnings only）；active execution-marker scan clean。下一步由 Planner 选择 loop343 core function，优先 `queue_write_authorization_archive_review_to_operator_reviewer_archive_confirmation_v1`。
 - **loop341**：完成 `pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1`；runtime explorer `019f17a6-8695-7d82-8cee-b8e86f5af2e5` 只读映射 builder/checks/UI/test 模式，固定 worker channel blocker 仍未修复，Orchestrator 基于 loop-state next_atomic_action 做 bounded local plan 并完成实现；未创建重复 Planner/Dispatcher/Executor/Code Reviewer/Verifier。验证：focused 32 passed；authorization-chain selector 227 passed；auto-backtest/queue-write selector 953 passed；Ruff pass；compileall pass；diff check pass（LF/CRLF warnings only）；active execution-marker scan clean。下一步由 Planner 选择 loop342 core function，优先 `pre_execution_queue_write_authorization_review_to_archive_review_v1`。
 - **loop340**：完成 `human_authorization_record_to_pre_execution_authorization_evidence_review_v1`；runtime explorer `019f17a6-8695-7d82-8cee-b8e86f5af2e5` 只读确认应镜像 loop339，固定 worker channel blocker 仍未修复，Orchestrator 基于 loop-state next_atomic_action 做 bounded local plan 并完成实现；未创建重复 Planner/Dispatcher/Executor/Code Reviewer/Verifier。验证：focused 32 passed；authorization-chain selector 195 passed；auto-backtest/queue-write selector 921 passed；Ruff pass；compileall pass；diff check pass（LF/CRLF warnings only）；active execution-marker scan clean。下一步由 Planner 选择 loop341 core function，优先 `pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1`。
 - **loop339**：完成 `final_authorization_verdict_to_human_authorization_record_v1`；固定 worker `no-client-found` channel blocker 仍未修复，Orchestrator 基于 loop-state next_atomic_action 做 bounded local plan 并完成实现；未创建重复 Planner/Dispatcher/Executor/Code Reviewer/Verifier。验证：focused 32 passed；related selector 745 passed；Ruff pass；compileall pass；diff check pass（LF/CRLF warnings only）；active enabled-marker scan clean。下一步由 Planner 选择 loop340 core function，优先 `human_authorization_record_to_pre_execution_authorization_evidence_review_v1`。
