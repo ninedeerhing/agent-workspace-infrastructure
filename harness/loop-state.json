@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-30T16:38:18+08:00",
+  "updated_at": "2026-06-30T16:48:37+08:00",
   "mode": "autonomous",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "pre-execution-authorization-evidence-review-loop340",
-  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_PRE_EXECUTION_AUTHORIZATION_EVIDENCE_REVIEW_LOOP341：由 Planner 基于总规划、当前进度和 loop340 human_authorization_record_to_pre_execution_authorization_evidence_review_v1 选择下一条核心功能 loop；优先推进 pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1 / pre-execution queue-write authorization review；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
-  "next_after": "Next candidate is pre-execution queue-write authorization review after loop340 pre-execution authorization evidence packet; still review-only/no-execution unless explicitly authorized later.",
+  "current_slice": "pre-execution-queue-write-authorization-review-loop341",
+  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_PRE_EXECUTION_QUEUE_WRITE_AUTHORIZATION_REVIEW_LOOP342：由 Planner 基于总规划、当前进度和 loop341 pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1 选择下一条核心功能 loop；优先推进 pre_execution_queue_write_authorization_review_to_archive_review_v1 / queue-write authorization archive review；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
+  "next_after": "Next candidate is queue-write authorization archive review after loop341 pre-execution queue-write authorization review packet; still review-only/no-execution unless explicitly authorized later.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,17 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop340-pre-execution-authorization-evidence-review",
+  "last_tick": "loop341-pre-execution-queue-write-authorization-review",
   "last_sync_sources": [
+    "SYNC-348 loop341 Pre-execution queue-write authorization review",
+    "loop341 runtime explorer 019f17a6-8695-7d82-8cee-b8e86f5af2e5 mapped the builder/checks/UI/test pattern; no duplicate permanent worker created",
+    "loop341 TDD RED: missing qa.quant_mining.pre_execution_authorization_evidence_review_to_queue_write_authorization_review failed before implementation",
+    "loop341 GREEN: pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1 derives a review-only/not-granted pre-execution queue-write authorization review packet from loop340 human_authorization_record_to_pre_execution_authorization_evidence_review_v1",
+    "loop341 verification: focused 32 passed; authorization-chain selector 227 passed / 3349 deselected / 1 warning; auto-backtest/queue-write related selector 953 passed / 2623 deselected / 1 warning; targeted Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; active execution-marker scan clean",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.672",
+    "methodology_ref: M-17-zero-write",
+    "next: ",
+    "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_PRE_EXECUTION_QUEUE_WRITE_AUTHORIZATION_REVIEW_LOOP342：由 Planner 基于总规划、当前进度和 loop341 pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1 选择下一条核心功能 loop；优先推进 pre_execution_queue_write_authorization_review_to_archive_review_v1 / queue-write authorization archive review；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
     "SYNC-347 loop340 Pre-execution authorization evidence review",
     "loop340 runtime explorer 019f17a6-8695-7d82-8cee-b8e86f5af2e5 confirmed loop340 should mirror loop339 shape; no duplicate permanent worker created",
     "loop340 TDD RED: missing qa.quant_mining.human_authorization_record_to_pre_execution_authorization_evidence_review failed before implementation",
@@ -70,7 +79,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop340 completed Pre-execution authorization evidence review. human_authorization_record_to_pre_execution_authorization_evidence_review_v1 now derives a review-only/not-granted pre-execution authorization evidence packet from loop339 final_authorization_verdict_to_human_authorization_record_v1, carrying evidence review status/mode/actions/blockers/candidate refs/evidence/required materials/no-execution safety flags/manual next actions across MiningJob observability, Factor Library, and Chat. Next is Planner selection for loop341 pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1 / pre-execution queue-write authorization review."
+    "note": "loop341 completed Pre-execution queue-write authorization review. pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1 now derives a review-only/not-granted pre-execution queue-write authorization review packet from loop340 human_authorization_record_to_pre_execution_authorization_evidence_review_v1, carrying queue-write authorization review status/mode/actions/blockers/candidate refs/evidence/required materials/no-execution safety flags/manual next actions across MiningJob observability, Factor Library, and Chat. Next is Planner selection for loop342 pre_execution_queue_write_authorization_review_to_archive_review_v1 / queue-write authorization archive review."
   },
-  "last_completed_note": "loop340 Pre-execution authorization evidence review complete. Added qa.quant_mining.human_authorization_record_to_pre_execution_authorization_evidence_review.build_human_authorization_record_to_pre_execution_authorization_evidence_review_v1, fail-closed checks, and UI notes; wired human_authorization_record_to_pre_execution_authorization_evidence_review_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED missing module before implementation; focused 32 passed; authorization-chain selector 195 passed; auto-backtest/queue-write related selector 921 passed; targeted Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; active execution-marker scan clean. Runtime explorer confirmed the loop340 pattern; fixed worker channel blocker persists, no duplicate same-role workers created. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_PRE_EXECUTION_AUTHORIZATION_EVIDENCE_REVIEW_LOOP341."
+  "last_completed_note": "loop341 Pre-execution queue-write authorization review complete. Added qa.quant_mining.pre_execution_authorization_evidence_review_to_queue_write_authorization_review.build_pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1, fail-closed checks, and UI notes; wired pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED missing module before implementation; focused 32 passed; authorization-chain selector 227 passed; auto-backtest/queue-write related selector 953 passed; targeted Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; active execution-marker scan clean. Runtime explorer Nietzsche mapped the loop341 pattern; fixed worker channel blocker persists, no duplicate same-role workers created. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_PRE_EXECUTION_QUEUE_WRITE_AUTHORIZATION_REVIEW_LOOP342."
 }

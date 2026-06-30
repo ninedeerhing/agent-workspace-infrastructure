@@ -3,6 +3,26 @@
 report:
   role_id: "verifier"
   status: "blocked"
+  task: "loop341 final verification"
+  changes: []
+  verification:
+    - command: "known channel state"
+      result: "Permanent Verifier channel remained unavailable; no usable loop341 verifier report returned."
+    - command: "orchestrator final verification"
+      result: "focused 32 passed; authorization-chain selector 227 passed / 3349 deselected / 1 warning; auto-backtest/queue selector 953 passed / 2623 deselected / 1 warning; targeted Ruff passed; compileall passed; diff check passed with LF/CRLF warnings only; active execution-marker scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A blocked verifier channel is not completion evidence; keep the identity and avoid duplicate same-role verifier threads."
+    performance_note: "Loop341 accepted on fresh orchestrator-local verification, not verifier report."
+  blockers:
+    - "Permanent verifier channel blocker persists."
+  next: "repair channel separately; next loop still uses the same verifier identity"
+
+report:
+  role_id: "verifier"
+  status: "blocked"
   task: "loop340 final verification"
   changes: []
   verification:

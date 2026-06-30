@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T16:38:18+08:00
+updated_at: 2026-06-30T16:48:37+08:00
+
+## Latest Handoff — SYNC-348 loop341
+
+- [DONE] `pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/pre_execution_authorization_evidence_review_to_queue_write_authorization_review.py`, `src/qa/quant_mining/pre_execution_authorization_evidence_review_to_queue_write_authorization_review_checks.py`, `src/qa/ui/pre_execution_queue_write_authorization_review_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_pre_execution_authorization_evidence_review_to_queue_write_authorization_review_unit.py`, `tests/test_pre_execution_authorization_evidence_review_to_queue_write_authorization_review_guard_unit.py`, `tests/test_pre_execution_authorization_evidence_review_to_queue_write_authorization_review_surface_unit.py`, `tests/test_pre_execution_authorization_evidence_review_to_queue_write_authorization_review_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module before implementation; focused 32 passed; authorization-chain selector 227 passed / 3349 deselected / 1 LangGraph warning; auto-backtest/queue-write related selector 953 passed / 2623 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; active execution-marker scan clean.
+- [BLOCKED] No product blocker. Fixed worker channel blocker persists; runtime explorer `019f17a6-8695-7d82-8cee-b8e86f5af2e5` provided read-only loop341 pattern mapping. No duplicate Planner/Dispatcher/Reviewer/Verifier was created.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_PRE_EXECUTION_QUEUE_WRITE_AUTHORIZATION_REVIEW_LOOP342：由 Planner 基于 loop341 `pre_execution_authorization_evidence_review_to_queue_write_authorization_review_v1` 选择下一条核心功能 loop；优先推进 `pre_execution_queue_write_authorization_review_to_archive_review_v1`；仍 review-only/no-execution until explicit later authorization.
+- [ROSTER] Planner/code-reviewer/verifier channels still need repair; permanent worker identities remain unchanged.
+- [FORBIDDEN] Do not treat loop341 as queue-write permission, execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, manual/human acceptance grant, or execution permission.
 
 ## Latest Handoff — SYNC-347 loop340
 
