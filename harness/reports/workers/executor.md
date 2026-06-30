@@ -3,7 +3,7 @@
 report:
   role_id: "executor"
   status: "partial"
-  task: "loop358 final queue-write permission archive confirmation decision archive"
+  task: "loop359 final queue-write permission archive confirmation final review"
   changes: []
   verification:
     - command: "executor canonical thread"
@@ -15,8 +15,8 @@ report:
     mistakes: []
     lessons:
       - "Do not count missing executor dispatch as worker success; keep implementation evidence orchestrator-owned when liveness takeover is used."
-      - "Checks modules must stay under the pure LOC ceiling; loop358 trimmed optional archive marker logic before closeout."
+      - "Late-chain final-review nodes must use weak review-only naming and avoid grant/ready/execution wording."
     performance_note: "partial because implementation evidence is orchestrator-owned"
   blockers:
     - "Executor fixed CodeX thread/channel and usage-budget path need repair before direct worker-owned patches can be trusted."
-  next: "Use executor for loop359 implementation only after confirming reachable assignment path or be ready for bounded liveness takeover."
+  next: "Use executor for loop360 implementation only after confirming reachable assignment path or be ready for bounded liveness takeover."

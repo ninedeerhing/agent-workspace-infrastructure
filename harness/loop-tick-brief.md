@@ -1,18 +1,18 @@
 # Loop Tick Brief
 
-generated_at: 2026-06-30T21:10:49+08:00
+generated_at: 2026-06-30T21:26:18+08:00
 mode: autonomous
 current_tree: TREE-6
-current_slice: final-permission-archive-confirmation-decision-archive-loop358
-last_tick: loop358-final-permission-archive-confirmation-decision-archive
+current_slice: final-permission-archive-confirmation-final-review-loop359
+last_tick: loop359-final-permission-archive-confirmation-final-review
 
 ## Execute Now
 
-PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_DECISION_ARCHIVE_LOOP359：由 Planner 基于总规划、当前进度和 loop358 operator_reviewer_final_queue_write_permission_archive_confirmation_decision_to_final_queue_write_permission_archive_confirmation_decision_archive_v1 选择下一条核心功能 loop；优先推进最终许可归档确认决策归档之后的最终确认 / 人工复核链路下一段；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_FINAL_REVIEW_LOOP360：由 Planner 基于总规划、当前进度和 loop359 final_queue_write_permission_archive_confirmation_decision_archive_to_final_queue_write_permission_archive_confirmation_final_review_v1 选择下一条核心功能 loop；优先推进最终许可归档确认复核之后的人工确认 / 显式最终人工复核链路下一段；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
 
 ## Then
 
-Next candidate is the final confirmation / human review segment after final queue-write permission archive confirmation decision archive; still review-only/no-execution unless explicitly authorized later.
+Next candidate is the human confirmation / explicit final human-review segment after final queue-write permission archive confirmation final review; still review-only/no-execution unless explicitly authorized later.
 
 ## Blockers
 
