@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-06-30T20:38:23+08:00
+updated_at: 2026-06-30T20:51:33+08:00
+
+## Latest Handoff — SYNC-364 loop357
+
+- [DONE] `explicit_final_queue_write_permission_archive_confirmation_review_to_operator_reviewer_final_queue_write_permission_archive_confirmation_decision_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/explicit_final_queue_write_permission_archive_confirmation_review_to_operator_reviewer_final_queue_write_permission_archive_confirmation_decision.py`, `src/qa/quant_mining/explicit_final_queue_write_permission_archive_confirmation_review_to_operator_reviewer_final_queue_write_permission_archive_confirmation_decision_checks.py`, `src/qa/quant_mining/explicit_final_queue_write_permission_archive_confirmation_review_to_operator_reviewer_final_queue_write_permission_archive_confirmation_decision_support.py`, `src/qa/ui/operator_reviewer_final_queue_write_permission_archive_confirmation_decision_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_explicit_final_queue_write_permission_archive_confirmation_review_to_operator_reviewer_final_queue_write_permission_archive_confirmation_decision_unit.py`, `tests/test_explicit_final_queue_write_permission_archive_confirmation_review_to_operator_reviewer_final_queue_write_permission_archive_confirmation_decision_guard_unit.py`, `tests/test_explicit_final_queue_write_permission_archive_confirmation_review_to_operator_reviewer_final_queue_write_permission_archive_confirmation_decision_surface_unit.py`, `tests/test_explicit_final_queue_write_permission_archive_confirmation_review_to_operator_reviewer_final_queue_write_permission_archive_confirmation_decision_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED missing module expected; focused 16 passed; authorization/archive-chain selector 214 passed / 3866 deselected / 1 LangGraph warning; auto-backtest/queue-write related selector 1457 passed / 2623 deselected / 1 LangGraph warning; targeted Ruff pass; compileall pass; production forbidden marker scan clean; new production pure LOC 242/233/119/54.
+- [BLOCKED] No loop357 product blocker. Permanent Planner/Dispatcher/Reviewer/Verifier channel repair remains a separate worker-governance concern; loop357 completion evidence is local TDD and verification owned by the orchestrator liveness path.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_DECISION_LOOP358：由 Planner 基于 loop357 `explicit_final_queue_write_permission_archive_confirmation_review_to_operator_reviewer_final_queue_write_permission_archive_confirmation_decision_v1` 选择下一条核心功能 loop；优先推进决策归档 / 最终确认链路下一段；仍 review-only/no-execution until explicit later authorization.
+- [FORBIDDEN] Do not treat loop357 as queue-write permission grant, execution authorization, human/manual acceptance, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, or execution permission.
 
 ## Latest Handoff — SYNC-363 loop356
 
