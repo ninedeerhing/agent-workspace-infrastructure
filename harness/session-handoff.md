@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-06-30T21:26:18+08:00
+updated_at: 2026-06-30T21:52:40+08:00
+
+## Latest Handoff — SYNC-367 loop360
+
+- [DONE] `final_queue_write_permission_archive_confirmation_final_review_to_human_final_queue_write_permission_archive_confirmation_review_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/final_queue_write_permission_archive_confirmation_final_review_to_human_final_queue_write_permission_archive_confirmation_review.py`, `src/qa/quant_mining/final_queue_write_permission_archive_confirmation_final_review_to_human_final_queue_write_permission_archive_confirmation_review_checks.py`, `src/qa/quant_mining/final_queue_write_permission_archive_confirmation_final_review_to_human_final_queue_write_permission_archive_confirmation_review_support.py`, `src/qa/ui/human_final_queue_write_permission_archive_confirmation_review_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, `tests/test_final_queue_write_permission_archive_confirmation_final_review_to_human_final_queue_write_permission_archive_confirmation_review_unit.py`, `tests/test_final_queue_write_permission_archive_confirmation_final_review_to_human_final_queue_write_permission_archive_confirmation_review_guard_unit.py`, `tests/test_final_queue_write_permission_archive_confirmation_final_review_to_human_final_queue_write_permission_archive_confirmation_review_surface_unit.py`, `tests/test_final_queue_write_permission_archive_confirmation_final_review_to_human_final_queue_write_permission_archive_confirmation_review_chat_surface_unit.py`, plus truth sources.
+- [VERIFY] RED expected ModuleNotFoundError; focused 35 passed; authorization/archive-chain selector 319 passed / 3866 deselected / 1 LangGraph warning; auto-backtest/queue-write related selector 1399 passed / 2786 deselected / 1 LangGraph warning; Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; production forbidden marker scan clean; new production pure LOC 239/235/121/142.
+- [BLOCKED] No loop360 product blocker. Nietzsche read-only review found no hard blocker and required the node to remain pending/not-granted human-facing review material only; implementation keeps all execution/authorization/acceptance gates not-granted or false. Permanent Planner/Dispatcher/Reviewer/Verifier channel repair remains a separate worker-governance concern.
+- [NEXT] PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_HUMAN_FINAL_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP361：由 Planner 基于 loop360 `final_queue_write_permission_archive_confirmation_final_review_to_human_final_queue_write_permission_archive_confirmation_review_v1` 选择下一条核心功能 loop；优先推进显式人工最终确认 / 人工复核归档链路下一段；仍 review-only/no-execution until explicit later authorization.
+- [FORBIDDEN] Do not treat loop360 as human approval, manual acceptance, queue-write permission grant, execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, or execution permission.
 
 ## Latest Handoff — SYNC-366 loop359
 
