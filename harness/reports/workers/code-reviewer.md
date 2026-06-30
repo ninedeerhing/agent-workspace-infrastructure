@@ -19,3 +19,24 @@ report:
   blockers:
     - "Permanent Code Reviewer channel needs repair before trusted independent review."
   next: "Review loop364 for false permission semantics and execution path drift."
+
+## loop364 Report — 2026-07-01T00:00:44+08:00
+
+report:
+  role_id: "code-reviewer"
+  status: "success"
+  task: "loop364 formal human review handoff code review and P2 recheck"
+  changes: []
+  verification:
+    - command: "read-only code review"
+      result: "Initial review found two P2s: source candidate_count drift not fail-closed and wrong non-empty reviewed evidence_kind not fail-closed."
+    - command: "read-only P2 recheck"
+      result: "Both P2s fixed; no remaining findings."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Late-chain handoff packets need explicit provenance count and evidence-kind drift checks, not only presence checks."
+    performance_note: "Permanent Code Reviewer thread reachable and provided useful independent review."
+  blockers: []
+  next: "Formal human acceptance required before successor execution-path implementation."

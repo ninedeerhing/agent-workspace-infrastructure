@@ -19,3 +19,21 @@ report:
   blockers:
     - "Independent test-engineer assignment path still not used for loop348."
   next: "For loop349, preserve focused RED/GREEN plus adjacent/broad queue-write selectors."
+
+## loop364 Report — 2026-07-01T00:00:44+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "loop364 formal human review handoff acceptance matrix"
+  changes: []
+  verification:
+    - command: "read-only acceptance matrix"
+      result: "Required missing/wrong source fail-closed, candidate_count drift fail-closed, reviewed evidence-kind drift fail-closed, no-execution/no-approval wording, and no real queue/DB/runner/PL-H path."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Acceptance matrix was used by implementation and regression tests."
+  blockers: []
+  next: "Verifier stop condition after focused/adjacent/broad selectors."

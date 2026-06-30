@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-06-30T23:19:41+08:00
+updated_at: 2026-07-01T00:00:44+08:00
+
+## Latest Handoff — SYNC-371 loop364
+
+- [DONE] `formal_human_queue_write_permission_review_handoff_packet_v1` is complete and wired into MiningJob observability, Factor Library rows, and Chat notes.
+- [DONE] Changed quant files: `src/qa/quant_mining/formal_human_queue_write_permission_review_handoff_packet.py`, `src/qa/quant_mining/formal_human_queue_write_permission_review_handoff_packet_checks.py`, `src/qa/ui/formal_human_queue_write_permission_review_handoff_notes.py`, `src/qa/quant_mining/mining_runner.py`, `src/qa/ui/factor_library_insights.py`, `src/qa/ui/chat_brain.py`, 3 focused tests, plus truth sources.
+- [VERIFY] focused 50 passed; formal/final selector 69 passed / 4255 deselected / 1 LangGraph warning; auto-backtest/queue-write selector 1523 passed / 2801 deselected / 1 LangGraph warning; Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; refined forbidden active-value scan clean; pure LOC 237/150/96/154/132/178.
+- [WORKERS] Planner success; Dispatcher success; Test Engineer acceptance matrix success; permanent Executor blocked with `channel_blocked_waitingOnApproval` and no file changes; runtime fallback Lagrange implemented inside Dispatcher write scope; Code Reviewer found 2 P2s, both fixed and rechecked success; Verifier final success.
+- [BLOCKED] No loop364 product blocker. Formal human review is now required before any successor implementation; permanent Executor channel repair remains a separate governance issue.
+- [NEXT] AWAIT_USER_FORMAL_HUMAN_ACCEPTANCE_LOOP364：等待用户正式人工接受/驳回/要求修改；未获显式正式接受前不得继续后继执行链路。
+- [FORBIDDEN] Do not treat loop364 as formal human approval, manual acceptance, queue-write permission grant, execution authorization, real queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, DB-backed real batch, PL-H, background/migration/backfill, authorization grant, rollback ready, or execution permission.
 
 ## Latest Handoff — SYNC-370 loop363
 

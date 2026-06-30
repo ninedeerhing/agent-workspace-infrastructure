@@ -19,3 +19,21 @@ report:
   blockers:
     - "Planner fixed CodeX thread needs repair/rebind before trusted loop_plan evidence."
   next: "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364"
+
+## loop364 Report — 2026-07-01T00:00:44+08:00
+
+report:
+  role_id: "planner"
+  status: "success"
+  task: "loop364 core-function selection"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Planner selected formal_human_queue_write_permission_review_handoff_packet_v1 as the next core function and required stop for formal human acceptance when ready."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Permanent Planner thread reachable and produced usable loop_plan."
+  blockers: []
+  next: "AWAIT_USER_FORMAL_HUMAN_ACCEPTANCE_LOOP364 after implementation and verification"

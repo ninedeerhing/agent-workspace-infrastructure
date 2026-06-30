@@ -641,6 +641,25 @@ report:
   next: "After Planner returns a loop_plan, send that plan to Dispatcher for assignment_matrix before Executor/Test Engineer/Code Reviewer/Verifier work."
 ```
 
+## loop364 Report — 2026-07-01T00:00:44+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "loop364 formal human review handoff assignment matrix"
+  changes: []
+  verification:
+    - command: "Dispatcher assignment_matrix reviewed by orchestrator"
+      result: "Executor write-owner, Test Engineer/Code Reviewer/Verifier read-only lanes, permanent worker identities preserved, write_scope and stop rules explicit."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Runtime fallback is allowed only after canonical Executor channel block and must stay inside Dispatcher write_scope."
+    performance_note: "No duplicate same-role worker created."
+  blockers: []
+  next: "Stop at formal human review until user formal acceptance."
+
 ## SYNC-302 rebootstrap report
 
 ```yaml

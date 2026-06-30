@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-30T23:19:41+08:00",
-  "mode": "autonomous",
-  "stop_reason": "",
+  "updated_at": "2026-07-01T00:00:44+08:00",
+  "mode": "paused_for_formal_human_review",
+  "stop_reason": "FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364",
   "current_tree": "TREE-6",
-  "current_slice": "final-human-permission-archive-confirmation-review-loop363",
-  "next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364：由 Planner 基于总规划、当前进度和 loop363 human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1 选择下一条核心功能 loop；优先推进最终人工许可归档确认复核之后的只读后继链路；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
-  "next_after": "Next candidate is the read-only successor segment after final human queue-write permission archive confirmation review; still review-only/no-execution unless explicitly authorized later.",
+  "current_slice": "formal-human-review-handoff-loop364",
+  "next_atomic_action": "AWAIT_USER_FORMAL_HUMAN_ACCEPTANCE_LOOP364：formal_human_queue_write_permission_review_handoff_packet_v1 已就绪，等待用户正式人工复核接受/驳回/要求修改；未获显式正式接受前不得继续后继执行链路，不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
+  "next_after": "After explicit user formal acceptance, Planner selects the next core function from formal_human_queue_write_permission_review_handoff_packet_v1; if rejected or changes requested, Planner must produce a fix loop first.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop363-final-human-permission-archive-confirmation-review",
+  "last_tick": "loop364-formal-human-review-handoff",
   "last_sync_sources": [
+    "SYNC-371 loop364 Formal human queue-write permission review handoff",
+    "loop364 GREEN: formal_human_queue_write_permission_review_handoff_packet_v1 derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review",
+    "loop364 verification: focused 50 passed; formal_human/final_human selector 69 passed / 4255 deselected / 1 warning; auto-backtest/queue-write selector 1523 passed / 2801 deselected / 1 warning; Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; refined forbidden active-value scan clean; pure LOC 237/150/96/154/132/178",
+    "loop364 workers: Planner success; Dispatcher success; Test Engineer acceptance matrix success; permanent Executor channel_blocked_waitingOnApproval with no file changes; runtime fallback Lagrange implemented inside Dispatcher write_scope; Code Reviewer P2 fixed and rechecked success; Verifier final success",
+    "apps/quant_assistant/docs/PROJECT_STATUS.md §5.695",
+    "methodology_ref: M-17-zero-write",
+    "stop: FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364",
+    "next: AWAIT_USER_FORMAL_HUMAN_ACCEPTANCE_LOOP364",
     "SYNC-370 loop363 Final human queue-write permission archive confirmation review",
     "loop363 GREEN: human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1 derives a review-only/not-granted final human permission archive confirmation review from loop362 human final permission archive confirmation archive review",
     "loop363 verification: RED expected ModuleNotFoundError 4 errors; focused 19 passed; archive/final-human selector 54 passed / 4220 deselected / 1 warning; auto-backtest/queue-write related selector 1473 passed / 2801 deselected / 1 warning; Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; production forbidden marker scan clean; new production pure LOC 177/119/110/25/140",
@@ -208,7 +216,7 @@
     "tree2_data_verdict": "partial_closed",
     "gen_p2_verdict": "stable",
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
-    "note": "loop363 completed Final human queue-write permission archive confirmation review. human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1 now derives a review-only/not-granted final human permission archive confirmation review from loop362 human final permission archive confirmation archive review, carrying final human review status/mode/actions/blockers/candidate refs/evidence/required materials/no-execution safety flags/manual next actions across MiningJob observability, Factor Library, and Chat. Next is Planner selection for loop364 read-only successor segment after the final human permission archive confirmation review."
+    "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop363 Final human queue-write permission archive confirmation review complete. Added qa.quant_mining.human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review.build_human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1, fail-closed checks, support/constants split, and UI notes; wired human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED expected ModuleNotFoundError 4 errors; focused 19 passed; archive/final-human selector 54 passed; auto-backtest/queue-write related selector 1473 passed; Ruff pass; compileall pass; diff check pass with LF/CRLF warnings only; production forbidden marker scan clean. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364."
+  "last_completed_note": "loop364 Formal human queue-write permission review handoff complete. Added qa.quant_mining.formal_human_queue_write_permission_review_handoff_packet.build_formal_human_queue_write_permission_review_handoff_packet_v1, fail-closed checks, UI notes, and focused unit/guard/surface tests; wired formal_human_queue_write_permission_review_handoff_packet_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: focused 50 passed; formal_human/final_human selector 69 passed; auto-backtest/queue-write selector 1523 passed; Ruff pass; compileall pass; diff check pass with LF/CRLF warnings only; refined forbidden active-value scan clean; Code Reviewer P2 recheck success; Verifier final success. Stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 and next_atomic_action is AWAIT_USER_FORMAL_HUMAN_ACCEPTANCE_LOOP364."
 }

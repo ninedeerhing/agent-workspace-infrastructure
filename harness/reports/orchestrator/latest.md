@@ -1,4 +1,62 @@
-# Orchestrator Latest Report — SYNC-370 loop363
+# Orchestrator Latest Report — SYNC-371 loop364
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop364 formal human queue-write permission review handoff"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/formal_human_queue_write_permission_review_handoff_packet.py"
+      summary: "Added passive/read-only/not-granted formal human review handoff packet builder from loop363 final human review."
+    - file: "apps/quant_assistant/src/qa/quant_mining/formal_human_queue_write_permission_review_handoff_packet_checks.py"
+      summary: "Added source, candidate-ref, candidate_count, evidence-kind, authorization, runner, rollback, PL-H, safety, and forbidden-marker fail-closed checks."
+    - file: "apps/quant_assistant/src/qa/ui/formal_human_queue_write_permission_review_handoff_notes.py"
+      summary: "Added consumer-facing formal human review handoff notes that say ready_for_formal_human_review but not approved/granted/executable."
+    - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
+      summary: "Wired formal human review handoff into MiningJob observability."
+    - file: "apps/quant_assistant/src/qa/ui/factor_library_insights.py"
+      summary: "Wired formal human review handoff into Factor Library rows."
+    - file: "apps/quant_assistant/src/qa/ui/chat_brain.py"
+      summary: "Wired formal human review handoff notes and follow-up triggers into Chat."
+  verification:
+    - command: "focused formal human review handoff pytest"
+      result: "50 passed."
+    - command: "formal_human/final_human selector pytest"
+      result: "69 passed, 4255 deselected, one LangGraph/LangChain deprecation warning."
+    - command: "auto-backtest/queue-write related selector pytest"
+      result: "1523 passed, 2801 deselected, one LangGraph/LangChain deprecation warning."
+    - command: "Ruff"
+      result: "All checks passed."
+    - command: "compileall"
+      result: "src files compiled successfully."
+    - command: "git diff --check"
+      result: "pass with LF/CRLF warnings only."
+    - command: "refined forbidden active-value scan"
+      result: "clean."
+    - command: "pure LOC"
+      result: "237 / 150 / 96 / 154 / 132 / 178."
+  worker_dispatch:
+    - "Planner permanent thread success."
+    - "Dispatcher permanent thread success."
+    - "Test Engineer permanent thread success."
+    - "Executor permanent thread blocked with channel_blocked_waitingOnApproval and no changes."
+    - "Runtime fallback Lagrange implemented inside Dispatcher write_scope; not a permanent worker replacement."
+    - "Code Reviewer permanent thread found two P2s; both fixed and rechecked success."
+    - "Verifier permanent thread final success and stop-whitelist decision."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Formal human review handoff is a real stop condition: ready_for_formal_human_review is not approval, grant, queue-write permission, or execution."
+      - "Worker hard gate must be recorded in both overlay and worker reports, including blocked canonical Executor and bounded fallback."
+    performance_note: "Loop364 closed as a core auto-backtest authorization-chain increment and now waits for user formal human acceptance."
+  blockers:
+    - "Stop whitelist: FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364."
+    - "Permanent Executor channel remains blocked for direct write-owner work; canonical identity preserved."
+  next: "AWAIT_USER_FORMAL_HUMAN_ACCEPTANCE_LOOP364"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-370 loop363
 
 report:
   role_id: "orchestrator"

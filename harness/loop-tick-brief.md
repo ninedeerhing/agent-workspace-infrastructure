@@ -1,18 +1,18 @@
 # Loop Tick Brief
 
-generated_at: 2026-06-30T23:19:41+08:00
-mode: autonomous
+generated_at: 2026-07-01T00:00:44+08:00
+mode: paused_for_formal_human_review
 current_tree: TREE-6
-current_slice: final-human-permission-archive-confirmation-review-loop363
-last_tick: loop363-final-human-permission-archive-confirmation-review
+current_slice: formal-human-review-handoff-loop364
+last_tick: loop364-formal-human-review-handoff
 
 ## Execute Now
 
-PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364：由 Planner 基于总规划、当前进度和 loop363 human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1 选择下一条核心功能 loop；优先推进最终人工许可归档确认复核之后的只读后继链路；不得把治理/UI/门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
+AWAIT_USER_FORMAL_HUMAN_ACCEPTANCE_LOOP364：`formal_human_queue_write_permission_review_handoff_packet_v1` 已就绪，等待用户正式人工复核接受/驳回/要求修改；未获显式正式接受前不得继续后继执行链路，不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。
 
 ## Then
 
-Next candidate is the read-only successor segment after final human queue-write permission archive confirmation review; still review-only/no-execution unless explicitly authorized later.
+After explicit user formal acceptance, Planner selects the next core function from `formal_human_queue_write_permission_review_handoff_packet_v1`; if rejected or changes are requested, Planner produces a fix loop before any successor execution-path implementation.
 
 ## Blockers
 
@@ -21,5 +21,5 @@ Next candidate is the read-only successor segment after final human queue-write 
 
 ## Continue Gate
 
-stop_reason=
+stop_reason=FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364
 closure_gate=closed
