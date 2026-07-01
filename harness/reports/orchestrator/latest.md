@@ -1,4 +1,59 @@
-# Orchestrator Latest Report — SYNC-400 loop391
+# Orchestrator Latest Report — SYNC-401 loop392
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop392 factor large candidate pool budget expansion"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_models.py"
+      summary: "Added generator candidate quotas and pool-level rejection telemetry to the no-execution candidate pool JSON."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_registry.py"
+      summary: "Separated final batch size from candidate-pool max_candidates with a 300 hard cap and source-family quotas."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_universe_generators.py"
+      summary: "Expanded deterministic no-execution generator families so one brief can produce a hundreds-scale candidate pool."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_flow.py"
+      summary: "Parsed manual/dialogue candidate budgets such as max_candidates=220 without inflating final factor batch size."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposed candidate_budget and rejection_telemetry in factor_construction_universe."
+    - file: "apps/quant_assistant/tests/test_factor_construction_generator_expansion_unit.py"
+      summary: "Covered large candidate budget, family quotas, rejection telemetry, and all-false side effects."
+    - file: "apps/quant_assistant/tests/test_factor_construction_registry_unit.py"
+      summary: "Updated strict generator report expectations for candidate_quota."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Covered dialogue budget parsing and creation-plan exposure of the expanded candidate pool budget."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_batch_mining_flow_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_pool_screening_prep_unit.py tests/test_factor_pool_quality_gate_trajectory_unit.py tests/test_factor_adaptive_generator_scheduler_unit.py tests/test_factor_trajectory_memory_read_model_unit.py tests/test_factor_real_panel_scoring_authorization_preflight_unit.py tests/test_factor_real_panel_scoring_formal_authorization_readiness_unit.py -q"
+      result: "40 passed."
+    - command: "uv run ruff check targeted loop392 source/test files"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q targeted loop392 source files"
+      result: "passed."
+    - command: "PYTHONPATH=src uv run python payload smoke for max_candidates=220"
+      result: "budget applied=220; candidate_count=184; survived=184; telemetry raw=211 accepted=184 dedup=5 hard_gate=2."
+    - command: "Select-String forbidden marker scan for env/secret/DB write/queue/runner/adapter/backtest/real scorer/external model/RL/MCTS/PL-H markers"
+      result: "clean except negative false safety fields and unsupported rl_mcts test strings."
+  worker_dispatch:
+    - "Permanent Planner thread received loop392 read-only loop_plan request using gpt-5.4-mini and returned success."
+    - "Permanent Dispatcher thread received loop392 boundary/assignment request using gpt-5.4-mini and returned success."
+    - "Permanent Test Engineer thread received loop392 acceptance matrix request using gpt-5.5 and returned success."
+    - "Permanent Code Reviewer thread received loop392 risk review request using gpt-5.5 and returned success."
+    - "Permanent Verifier thread received loop392 verification checklist request using gpt-5.4-mini and returned partial checklist; final local verification passed."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Large candidate generation must be budgeted separately from final selected factor count."
+      - "Hundreds-scale no-execution pools need rejection telemetry and family quotas before panel screening."
+    performance_note: "Loop392 turns preview-sized factor generation into a bounded hundreds-scale candidate pool without execution side effects."
+  blockers:
+    - "Factor construction is not complete enough for formal human audit; continue Phase 4 pool admission ranked shortlist."
+    - "No DB read/write, queue write, runner/adapter, external LLM/RL/MCTS call, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_POOL_ADMISSION_RANKED_SHORTLIST_LOOP393"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-400 loop391
 
 report:
   role_id: "orchestrator"

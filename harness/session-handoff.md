@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-01T21:48:58+08:00
+updated_at: 2026-07-01T22:18:58+08:00
+
+## Latest Handoff — SYNC-401 loop392
+
+- [DONE] Factor large candidate pool budget expansion is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_construction_models.py`, `src/qa/quant_mining/factor_construction_registry.py`, `src/qa/quant_mining/factor_construction_universe_generators.py`, `src/qa/brain/batch_mining_flow.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_construction_generator_expansion_unit.py`, `tests/test_factor_construction_registry_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] `FactorConstructionSpec` now separates final `batch_size` from candidate pool `max_candidates`; no-execution generation uses a 300 hard cap, source-family quotas, generator report candidate quotas, and pool-level rejection telemetry.
+- [DONE] Dialogue/manual brief parsing accepts `max_candidates=...`; creation plans expose `factor_construction_universe.candidate_budget` and `rejection_telemetry`.
+- [VERIFY] Focused REDs for budget separation and creation-plan exposure; expanded related chain 40 passed; targeted Ruff pass; targeted compileall pass; payload smoke with `max_candidates=220` produced budget applied=220 and 184 candidates / 184 survived with raw=211, accepted=184, dedup=5, hard_gate=2.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop392 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. The next core gap is Phase 4 pool admission ranked shortlist / panel screening budget allocation.
+- [NEXT] FACTOR_POOL_ADMISSION_RANKED_SHORTLIST_LOOP393：generate no-execution ranked shortlist and panel screening budget allocator read-model from survived candidates, family telemetry, rejection telemetry, candidate budget, novelty/marginal-gain placeholders, and top-candidate refs.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop393.
 
 ## Latest Handoff — SYNC-400 loop391
 
