@@ -1,5 +1,24 @@
 # Worker Report — planner
 
+## loop389 Report — 2026-07-01T21:10:58+08:00
+
+report:
+  role_id: "planner"
+  status: "success"
+  task: "loop389 factor real panel scoring operator/reviewer review material plan"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Planner selected factor_real_panel_scoring_operator_reviewer_review_material_v1 as the core function and kept it no-execution."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Operator/reviewer material should expose duties and evidence gaps without implying grant or execution."
+    performance_note: "Permanent Planner thread produced usable loop389 plan."
+  blockers: []
+  next: "FACTOR_REAL_PANEL_SCORING_EXPLICIT_REVIEW_DECISION_PACKET_LOOP390"
+
 ## loop388 Report — 2026-07-01T20:45:58+08:00
 
 report:

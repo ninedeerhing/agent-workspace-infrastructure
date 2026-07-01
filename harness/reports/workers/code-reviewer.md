@@ -1,5 +1,26 @@
 # Worker Report — code-reviewer
 
+## loop389 Report — 2026-07-01T21:10:58+08:00
+
+report:
+  role_id: "code-reviewer"
+  status: "success"
+  task: "loop389 operator/reviewer review material risk review"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Code Reviewer confirmed review material must not be expressed as approval, execution authorization, scorer readiness, queue write readiness, or runner/adapter connectivity."
+    - command: "local static checks"
+      result: "Ruff/compileall pass; forbidden marker scan clean except negative not_granted/not_allowed/False assertions and existing plan names."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Dual-review material must preserve source provenance and not hide missing blockers."
+    performance_note: "Permanent Code Reviewer thread supplied usable loop389 risk review."
+  blockers: []
+  next: "Review explicit decision packet language in loop390."
+
 ## loop388 Report — 2026-07-01T20:45:58+08:00
 
 report:

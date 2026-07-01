@@ -1,5 +1,26 @@
 # Worker Report — test-engineer
 
+## loop389 Report — 2026-07-01T21:10:58+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "loop389 operator/reviewer review material TDD matrix"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Test Engineer specified blocked review packet, ready-for-review-only packet, candidate refs, required evidence, missing blockers, duties, human authorization not-execution, audit/rollback, and all-false side-effect assertions."
+    - command: "local pytest evidence"
+      result: "Focused operator material + bridge 3 passed; related factor construction/scoring/operator-review chain 45 passed."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Human authorization evidence must remain distinct from execution permission."
+    performance_note: "Permanent Test Engineer thread supplied usable loop389 TDD checklist."
+  blockers: []
+  next: "Add explicit decision packet tests in loop390."
+
 ## loop388 Report — 2026-07-01T20:45:58+08:00
 
 report:

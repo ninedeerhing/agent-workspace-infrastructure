@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T20:45:58+08:00",
+  "updated_at": "2026-07-01T21:10:58+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "factor-real-panel-scoring-review-packet-loop388",
-  "next_atomic_action": "FACTOR_REAL_PANEL_SCORING_OPERATOR_REVIEW_MATERIAL_LOOP389：基于 loop388 factor_real_panel_scoring_review_packet_v1 派生 operator/reviewer review material，把候选 refs、required evidence、missing blockers、人工授权缺口、审计回滚要求与 no-execution safety 整理成双人复核材料；仍不得读取/写入真实 DB、不得写真实队列、DB enqueue、连接 runner/adapter、执行 real scorer/actual dry-run/backtest、启动 background/migration/backfill、调用外部 LLM/RL/MCTS 或授予 PL-H。",
-  "next_after": "After loop389 operator/reviewer material, continue toward explicit review decision packet only if material remains coherent and no-execution.",
+  "current_slice": "factor-real-panel-scoring-operator-review-material-loop389",
+  "next_atomic_action": "FACTOR_REAL_PANEL_SCORING_EXPLICIT_REVIEW_DECISION_PACKET_LOOP390：基于 loop389 factor_real_panel_scoring_operator_review_material_v1 派生 explicit review decision packet，把 operator/reviewer 可选决策、候选 refs、证据缺口、人工授权状态、审计回滚要求与 no-execution safety 收束为下一步显式复核决策包；仍不得读取/写入真实 DB、不得写真实队列、DB enqueue、连接 runner/adapter、执行 real scorer/actual dry-run/backtest、启动 background/migration/backfill、调用外部 LLM/RL/MCTS 或授予 PL-H。",
+  "next_after": "After loop390 explicit review decision packet, continue toward formal human authorization readiness only if decision packet remains coherent and no-execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop388-factor-real-panel-scoring-review-packet",
+  "last_tick": "loop389-factor-real-panel-scoring-operator-review-material",
   "last_sync_sources": [
+    "SYNC-398 loop389 Factor real panel scoring operator/reviewer review material",
+    "loop389 implementation: added FactorRealPanelScoringOperatorReviewMaterialV1 and wired real_panel_scoring_operator_review_material into user_facing_batch_mining_creation_plan_v1; material remains not_granted/not_allowed and all side effects false",
+    "loop389 changed: src/qa/quant_mining/factor_real_panel_scoring_operator_review_material.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_real_panel_scoring_operator_review_material_unit.py; tests/test_batch_mining_flow_unit.py; truth sources",
+    "loop389 verification: RED missing module; focused operator material + bridge 3 passed; related factor construction/scoring/operator-review chain 45 passed; targeted Ruff pass; targeted compileall pass; forbidden env/secret/DB-write/queue/runner/adapter/backtest/real-scorer/external-model/RL/MCTS/PL-H marker scan clean except negative not_granted/not_allowed/False assertions and existing plan names",
+    "loop389 worker: permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier reports collected; no duplicate same-role worker created",
+    "next: FACTOR_REAL_PANEL_SCORING_EXPLICIT_REVIEW_DECISION_PACKET_LOOP390",
     "SYNC-397 loop388 Factor real panel scoring review packet",
     "loop388 implementation: added FactorRealPanelScoringReviewPacketV1 and wired real_panel_scoring_review_packet into user_facing_batch_mining_creation_plan_v1; blocked preflight remains review_status=blocked and actual_execution_status=not_allowed",
     "loop388 changed: src/qa/quant_mining/factor_real_panel_scoring_review_packet.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_real_panel_scoring_review_packet_unit.py; tests/test_batch_mining_flow_unit.py; truth sources",
@@ -124,5 +130,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop388 Factor real panel scoring review packet complete. Added FactorRealPanelScoringReviewPacketV1 and wired real_panel_scoring_review_packet into user_facing_batch_mining_creation_plan_v1; blocked preflight remains review_status=blocked with headline 真实面板评分暂未开始 and actual_execution_status=not_allowed. Verification: RED missing module; focused review packet + bridge 3 passed; related factor construction/scoring/review chain 43 passed; targeted Ruff pass; targeted compileall pass; forbidden env/secret/DB-write/queue/runner/adapter/backtest/real-scorer/external-model/RL/MCTS marker scan clean. Next: FACTOR_REAL_PANEL_SCORING_OPERATOR_REVIEW_MATERIAL_LOOP389."
+  "last_completed_note": "loop389 Factor real panel scoring operator/reviewer review material complete. Added FactorRealPanelScoringOperatorReviewMaterialV1 and wired real_panel_scoring_operator_review_material into user_facing_batch_mining_creation_plan_v1; material remains authorization_status=not_granted, execution_status=not_allowed, and actual_execution_status=not_allowed. Verification: RED missing module; focused operator material + bridge 3 passed; related factor construction/scoring/operator-review chain 45 passed; targeted Ruff pass; targeted compileall pass; forbidden env/secret/DB-write/queue/runner/adapter/backtest/real-scorer/external-model/RL/MCTS/PL-H marker scan clean except negative not_granted/not_allowed/False assertions and existing plan names. Next: FACTOR_REAL_PANEL_SCORING_EXPLICIT_REVIEW_DECISION_PACKET_LOOP390."
 }

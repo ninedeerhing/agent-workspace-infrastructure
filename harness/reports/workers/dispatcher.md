@@ -1,5 +1,24 @@
 # Worker Report — dispatcher
 
+## loop389 Report — 2026-07-01T21:10:58+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "loop389 factor real panel scoring operator/reviewer review material assignment matrix"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Dispatcher assigned canonical implementation scope and read-only Test Engineer/Code Reviewer/Verifier lanes; no duplicate worker was created."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Review-material implementation should keep candidate refs and blockers passive and provenance-preserving."
+    performance_note: "Permanent Dispatcher thread produced usable loop389 assignment matrix."
+  blockers: []
+  next: "Keep fixed worker chain for loop390 explicit decision packet."
+
 ## loop388 Report — 2026-07-01T20:45:58+08:00
 
 report:

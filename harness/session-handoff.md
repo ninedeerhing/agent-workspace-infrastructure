@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-01T20:45:58+08:00
+updated_at: 2026-07-01T21:10:58+08:00
 
-## Latest Handoff — SYNC-397 loop388
+## Latest Handoff — SYNC-398 loop389
+
+- [DONE] Factor real panel scoring operator/reviewer review material is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_panel_scoring_operator_review_material.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_real_panel_scoring_operator_review_material_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] `FactorRealPanelScoringOperatorReviewMaterialV1` converts loop388 review packet into dual operator/reviewer material with candidate refs, required evidence, missing blockers, human authorization gap, audit/rollback requirements, role duties, decision options, and no-execution safety.
+- [DONE] `user_facing_batch_mining_creation_plan_v1` now includes `real_panel_scoring_operator_review_material`; blocked source remains blocked, and ready source only reaches awaiting_operator_reviewer_review, not approval or execution.
+- [VERIFY] RED missing module; focused operator material + bridge 3 passed; related factor construction/scoring/operator-review chain 45 passed; targeted Ruff pass; targeted compileall pass; forbidden marker scan clean except negative not_granted/not_allowed/False assertions and existing plan names.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop389 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. Continue explicit review decision packet.
+- [NEXT] FACTOR_REAL_PANEL_SCORING_EXPLICIT_REVIEW_DECISION_PACKET_LOOP390：derive explicit review decision packet from operator/reviewer material.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop390.
+
+## Previous Handoff — SYNC-397 loop388
 
 - [DONE] Factor real panel scoring review packet is implemented.
 - [DONE] Changed quant files: `src/qa/quant_mining/factor_real_panel_scoring_review_packet.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_real_panel_scoring_review_packet_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
