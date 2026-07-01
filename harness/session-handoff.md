@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-01T23:28:27+08:00
+updated_at: 2026-07-01T23:41:29+08:00
+
+## Latest Handoff — SYNC-411 decisions accepted
+
+- [DONE] User confirmed the real scoring rollout direction and the plan was updated.
+- [DONE] Confirmed decisions: first real scoring target is official `factor_value_daily`; fundamental/event/text/sentiment/alternative data domains are in scope; multi-factor combination search is a separate urgent path; UI button + confirmation dialog is the authorization source; Top50 target with full universe/window intent; `provisional_accepted` is allowed before final UI confirmation.
+- [BLOCKED] Remaining confirmations: maximum rows/chunking/timeout/retry/full-window scope; event/text/sentiment/fundamental data sources and PIT guarantees; multi-factor objective/max size/provisional participation/search budget.
+- [NEXT] `FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401`: implement no-execution authorization review and creation-plan bridge reflecting the confirmed policy and open blockers.
+- [FORBIDDEN] Do not start real scoring, DB reads/writes, `factor_value_daily` writes, accepted pool writes, queue writes, backtests, background jobs, or PL-H before UI authorization and unresolved confirmations are satisfied.
 
 ## Latest Handoff — SYNC-410 planning-only
 

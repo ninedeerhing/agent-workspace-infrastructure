@@ -1,4 +1,43 @@
-# Orchestrator Latest Report — SYNC-410 planning-only
+# Orchestrator Latest Report — SYNC-411 decisions accepted
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring rollout decision sync"
+  changes:
+    - file: "apps/quant_assistant/docs/ENGINEERING/2026-07-01-real-scoring-pool-backtest-rollout-plan.md"
+      summary: "Updated rollout plan from awaiting user review to planning accepted with open confirmations; recorded official factor_value_daily target, full data-domain scope, separate multi-factor path, UI authorization source, Top50/full-universe intent, and provisional accepted policy."
+    - file: "harness/loop-state.json"
+      summary: "Cleared planning stop_reason and set next_atomic_action to FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401 with explicit no-execution blockers."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Recorded SYNC-411 top status and §5.735 decision ledger."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Recorded latest decision sync for TREE-6/PL-G."
+    - file: "apps/quant_assistant/docs/CONTINUATION_PROMPT.md"
+      summary: "Updated hot-path continuation and next atomic action for loop401."
+    - file: "harness/session-handoff.md"
+      summary: "Added SYNC-411 handoff."
+  verification:
+    - command: "planning-only sync"
+      result: "No real scorer/backtest/DB path started; no secrets read or printed."
+  worker_dispatch:
+    - "No implementation worker dispatched in this micro-sync; next loop401 must use Planner -> Dispatcher before code implementation."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "User-confirmed defaults must override earlier conservative defaults; do not silently revert to staging, single-factor-only, small-sample, or chat authorization."
+      - "Event/text/sentiment and multi-factor combination search require explicit confirmation packets before real execution."
+    performance_note: "Decision state is now traceable and loop401 can start as a no-execution contract implementation."
+  blockers:
+    - "max_rows_and_chunking not confirmed."
+    - "event/text/sentiment/fundamental data sources and PIT guarantees not confirmed."
+    - "multi-factor objective, max combination size, eligibility, and search budget not confirmed."
+  next: "FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-410 planning-only
 
 report:
   role_id: "orchestrator"

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T23:28:27+08:00",
+  "updated_at": "2026-07-01T23:41:29+08:00",
   "mode": "continuous_implementation_loop",
-  "stop_reason": "USER_REVIEW_REAL_SCORING_POOL_BACKTEST_ROLLOUT_PLAN",
+  "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-pool-backtest-rollout-plan-loop401-planning",
-  "next_atomic_action": "USER_CONFIRM_REAL_SCORING_POOL_BACKTEST_ROLLOUT_PLAN：已新增 apps/quant_assistant/docs/ENGINEERING/2026-07-01-real-scoring-pool-backtest-rollout-plan.md，规划 factor_batch_scoring_plan_v1 之后 K-P 全链路：显式评分授权复核、注入式 compute runner、受控真实因子值计算、真实指标持久化与筛选、accepted pool admission、预算化自动回测、报告与 trajectory feedback。等待用户确认 open questions：factor_value_daily vs staging、首轮数据域、单因子 vs 多因子回测、授权入口、初始 compute budget、manual-first vs provisional accepted pool。",
-  "next_after": "After user confirms or edits the rollout plan, start FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401 as the first implementation loop; do not start real DB writes, factor value computation, accepted pool writes, queue writes, backtests, background jobs, or PL-H before explicit confirmation.",
+  "current_slice": "real-scoring-rollout-decisions-accepted-loop401",
+  "next_atomic_action": "FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401：按用户已确认的 rollout 决策实现 no-execution 授权复核/创建计划桥接：UI 按钮+确认框为授权源，展示 Top50 + 全量股票池/时间窗意图，后续目标直接写正式 factor_value_daily 但当前不得写入；暴露 provisional_accepted 后续状态；将 max_rows_and_chunking、event_text_sentiment_data_sources、multi_factor_combination_search_boundary 作为必须继续确认的 blockers。仍不读取/写入真实 DB、不运行 scorer/backtest、不写 accepted pool/queue、不授予 PL-H。",
+  "next_after": "After loop401, run EVENT_TEXT_SENTIMENT_FACTOR_RESEARCH_AND_DATA_SOURCE_CONFIRMATION_LOOP402 before non-market real scoring; then build UI run request + injected runner preflight and a separate multi-factor combination search path. No default runner, page-load execution, automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop400-factor-batch-scoring-plan",
+  "last_tick": "SYNC-411-real-scoring-rollout-decisions-accepted",
   "last_sync_sources": [
+    "SYNC-411 user-confirmed real scoring rollout decisions accepted",
+    "confirmed: first real scoring target is official factor_value_daily, but DB write remains blocked until UI authorization, run request validation, rollback metadata, max rows/chunking, and required data-source confirmations are satisfied",
+    "confirmed: data domains include fundamental, event, text, sentiment, and alternative data; event/text/sentiment requires renewed project research and data-source confirmation before real scoring",
+    "confirmed: multi-factor combination search is urgent and must be a separate first-class path, not hidden inside single-factor scoring",
+    "confirmed: UI button + confirmation dialog is the authorization source of truth; full workflow must be usable without chat",
+    "confirmed: Top50 target, full universe/window intent, provisional_accepted allowed with final UI confirmation",
+    "open: max_rows_and_chunking, event_text_sentiment_data_sources, multi_factor_combination_search_boundary",
+    "next: FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401",
     "SYNC-410 planning-only Real scoring/pool/backtest rollout plan",
     "planning doc added: apps/quant_assistant/docs/ENGINEERING/2026-07-01-real-scoring-pool-backtest-rollout-plan.md",
     "planning scope: K-P chain from factor_batch_scoring_plan_v1 to scoring authorization review, injected compute runner, controlled factor value computation, real metric persistence/screening, accepted pool admission, budgeted backtest allocation, reporting, and trajectory feedback",
