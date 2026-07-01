@@ -1,6 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-01T18:24:02+08:00
+updated_at: 2026-07-01T18:36:52+08:00
+
+## Latest Handoff — SYNC-408 loop399
+
+- [DONE] Factor construction completion review surface is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_construction_completion_review_surface.py`, `src/qa/quant_mining/factor_construction_completion_review_safety.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_construction_completion_review_surface_unit.py`, `tests/test_factor_construction_completion_review_surface_bridge_unit.py`, plus truth sources.
+- [DONE] `factor_construction_completion_review_surface` now appears in `user_facing_batch_mining_creation_plan_v1`, derived from the no-execution construction artifacts.
+- [DONE] The surface aggregates Phase 1-5 completion, candidate summary, remaining evidence gaps, formal human audit decision, user-visible steps, and all-false side effects.
+- [DONE] Code Reviewer found P2 semantic drift risk after implementation; fixed by adding artifact safety blockers for accepted-pool write, eligible backtest refs, queue/runner handoff, and forbidden true side effects.
+- [DONE] Payload smoke shows `ready_for_formal_human_audit_no_execution`, generated 184, survived 184, pool_review_refs 16, eligible_backtest_refs 0, all phases complete, and no execution/queue/runner grant.
+- [VERIFY] RED missing module; RED drifted artifact incorrectly ready before semantic safety fix; focused surface+bridge 4 passed; related construction/panel/pool/budget chain 13 passed; targeted Ruff pass; targeted compileall pass; payload smoke pass; precise forbidden scan clean; LOC surface 219 / safety 78 / builder 187.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop399 tasks were used. No duplicate same-role worker was created.
+- [BLOCKED] Stop whitelist is now hit: formal human audit/testing is required before continuing.
+- [NEXT] FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399：user should audit/test the factor construction flow, review surface wording, candidate generation chain, and decide whether to request fixes or authorize a next real-evidence slice.
+- [FORBIDDEN] Do not read/write real DB, write accepted pool, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills unless user explicitly authorizes the next stage.
 
 ## Latest Handoff — SYNC-407 loop398
 

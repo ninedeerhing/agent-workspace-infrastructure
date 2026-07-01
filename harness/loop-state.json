@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T18:24:02+08:00",
+  "updated_at": "2026-07-01T18:36:52+08:00",
   "mode": "continuous_implementation_loop",
-  "stop_reason": null,
+  "stop_reason": "FORMAL_FACTOR_CONSTRUCTION_HUMAN_AUDIT_REQUIRED_LOOP399",
   "current_tree": "TREE-6",
-  "current_slice": "factor-backtest-budget-gate-packet-loop398",
-  "next_atomic_action": "FACTOR_CONSTRUCTION_COMPLETION_REVIEW_SURFACE_LOOP399：对照 2026-07-01-factor-construction-universe.md 全链路，汇总 generator -> hard gates -> quality gate -> adaptive schedule -> trajectory memory -> creation plan bridge -> real panel preflight/review -> panel evidence plan -> pool admission evidence -> accepted pool audit -> backtest budget gate 的 no-execution artifacts，形成消费级因子构造完成度 / 仍缺真实证据 / 是否进入正式人工审核的 review surface；不得把 review surface 伪装成真实评分、真实入池、真实队列或真实回测授权。",
-  "next_after": "If loop399 completion review proves factor construction universe is complete enough for formal human audit, stop for user audit/testing; otherwise judge incomplete and select the next core gap from the factor construction universe blueprint.",
+  "current_slice": "factor-construction-completion-review-surface-loop399",
+  "next_atomic_action": "FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399：因子构造宇宙 no-execution 链路已形成正式人工审核/测试入口；等待用户人工验收 UI/产品体验、review surface 文案、候选生成链路、人工审核材料、以及是否允许进入下一阶段真实数据评分/入池/回测授权设计。用户显式通过/要求修改前，不推进真实执行、DB、队列、runner、backtest 或 PL-H。",
+  "next_after": "After user formal audit, either fix requested UX/logic issues or, if explicitly authorized, plan the next real-evidence authorization slice without bypassing DB/queue/runner/backtest gates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop398-factor-backtest-budget-gate-packet",
+  "last_tick": "loop399-factor-construction-completion-review-surface",
   "last_sync_sources": [
+    "SYNC-408 loop399 Factor construction completion review surface with semantic safety P2 fixed",
+    "loop399 implementation: added factor_construction_completion_review_surface_v1 and bridged factor_construction_completion_review_surface into user_facing_batch_mining_creation_plan_v1; added factor_construction_completion_review_safety.py so artifact presence must also satisfy no-execution semantic safety",
+    "loop399 changed: src/qa/quant_mining/factor_construction_completion_review_surface.py; src/qa/quant_mining/factor_construction_completion_review_safety.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_construction_completion_review_surface_unit.py; tests/test_factor_construction_completion_review_surface_bridge_unit.py; truth sources",
+    "loop399 verification: RED missing module; RED drifted artifact incorrectly ready before semantic safety fix; focused completion surface+bridge 4 passed; related construction/panel/pool/budget chain 13 passed; targeted Ruff pass; targeted compileall pass; payload smoke completion_status=ready_for_formal_human_audit_no_execution audit_ready=True generated=184 survived=184 pool_review_refs=16 eligible_backtest_refs=0 phases=5 all complete review_status=ready_for_formal_human_audit grants_execution=False grants_queue_write=False grants_runner_handoff=False actual_execution_status=not_allowed all side effects false; precise forbidden scan clean; LOC surface=219 safety=78 builder=187",
+    "loop399 worker: permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier reports collected/requested; Code Reviewer P2 semantic drift gap fixed and sent for recheck; no duplicate same-role worker created",
+    "stop: FORMAL_FACTOR_CONSTRUCTION_HUMAN_AUDIT_REQUIRED_LOOP399",
     "SYNC-407 loop398 Factor backtest budget gate packet",
     "loop398 implementation: added factor_backtest_budget_gate_packet_v1 and bridged backtest_budget_gate_packet into user_facing_batch_mining_creation_plan_v1; budget gate exposes review-only candidate refs, planned-only budget tiers, missing evidence reasons, blockers, and not_ready decision",
     "loop398 changed: src/qa/quant_mining/factor_backtest_budget_gate_packet.py; src/qa/brain/batch_mining_real_panel_surfaces.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_backtest_budget_gate_packet_unit.py; tests/test_factor_backtest_budget_gate_packet_bridge_unit.py; truth sources",
@@ -185,5 +191,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop398 Factor backtest budget gate packet complete. Added FactorBacktestBudgetGatePacketV1 and wired backtest_budget_gate_packet into user_facing_batch_mining_creation_plan_v1; budget gate exposes review-only candidate refs, planned-only budget tiers, missing evidence reasons, blockers, and not_ready backtest decision. Verification: focused gate+bridge 3 passed; related accepted-pool/pool-admission/panel-evidence chain 12 passed; targeted Ruff pass; targeted compileall pass; payload smoke candidate_count=184 survived=184 review_refs=16 eligible_refs=0 queue_write=not_allowed runner_handoff=not_allowed refs_match_audit=True all side effects false; precise forbidden scan only matched not_allowed safety strings. Next: FACTOR_CONSTRUCTION_COMPLETION_REVIEW_SURFACE_LOOP399."
+  "last_completed_note": "loop399 Factor construction completion review surface complete after Code Reviewer P2 semantic safety fix. Added FactorConstructionCompletionReviewSurfaceV1 and FactorConstructionCompletionReviewSafety blockers, wired factor_construction_completion_review_surface into user_facing_batch_mining_creation_plan_v1; surface aggregates Phase 1-5 completion, candidate summary, remaining real evidence gaps, formal human audit decision, and consumer-readable steps while fail-closing drifted execution/admission artifacts. Verification: RED missing module; RED drifted artifact incorrectly ready before semantic safety fix; focused surface+bridge 4 passed; related construction/panel/pool/budget chain 13 passed; targeted Ruff pass; targeted compileall pass; payload smoke completion_status=ready_for_formal_human_audit_no_execution audit_ready=True generated=184 survived=184 pool_review_refs=16 eligible_backtest_refs=0 all phases complete review_status=ready_for_formal_human_audit grants_execution=False grants_queue_write=False grants_runner_handoff=False actual_execution_status=not_allowed all side effects false; precise forbidden scan clean. Stop: FORMAL_FACTOR_CONSTRUCTION_HUMAN_AUDIT_REQUIRED_LOOP399."
 }
