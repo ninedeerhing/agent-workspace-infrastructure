@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-01T23:58:58+08:00
+updated_at: 2026-07-01T23:59:58+08:00
+
+## Latest Handoff — SYNC-406 loop397
+
+- [DONE] Factor accepted pool audit packet is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_accepted_pool_audit_packet.py`, `src/qa/brain/batch_mining_real_panel_surfaces.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_accepted_pool_audit_packet_unit.py`, `tests/test_factor_accepted_pool_audit_packet_bridge_unit.py`, plus truth sources.
+- [DONE] `accepted_factor_pool_audit_packet` now appears in `user_facing_batch_mining_creation_plan_v1`, derived from loop396 `pool_admission_evidence_package`.
+- [DONE] Audit packet exposes candidate refs, input panel metric keys, admission metric keys, human review checklist, missing evidence reasons, and accepted-pool write prohibition.
+- [DONE] `pool_admission_decision.status=not_evaluated` and `accepted_pool_write_policy.write_status=not_allowed`; no accepted pool write, human acceptance, PL-H, or real backtest permission was granted.
+- [VERIFY] RED missing module + missing creation-plan bridge; focused audit packet+bridge 3 passed; related pool-admission/panel-scoring chain 17 passed; targeted Ruff pass; targeted compileall pass; payload smoke pass; forbidden scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop397 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. The next core gap is backtest budget gate / candidate package.
+- [NEXT] FACTOR_BACKTEST_BUDGET_GATE_PACKET_LOOP398：derive a no-execution backtest budget gate / candidate package from accepted factor pool audit packet.
+- [FORBIDDEN] Do not read/write real DB, write accepted pool, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop398.
 
 ## Latest Handoff — SYNC-405 loop396
 
