@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-01T14:03:57+08:00
+updated_at: 2026-07-01T14:08:36+08:00
+
+## Latest Handoff — SYNC-379 loop370
+
+- [DONE] Factor mining screening readiness surface is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_mining_screening_readiness_surface.py`, `tests/test_factor_mining_screening_readiness_surface_unit.py`, plus truth sources.
+- [DONE] Candidate pool, screening prep, and mocked scorer report now aggregate into `FactorMiningScreeningReadinessSurfaceV1`, with user-visible steps: 候选已生成 / 评分准备完成 / 占位评分完成.
+- [DONE] Scorer count drift fails closed with `scorer_count_mismatch` and marks the score step blocked.
+- [VERIFY] focused 2 passed; related factor screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector/batch 58 passed; targeted Ruff pass; targeted compileall pass; pure LOC surface 98 / surface_test 75.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer threads were sent read-only loop370 requests. Orchestrator completed TDD read-model implementation without waiting for cross-dialogue reports and did not create duplicate same-role workers.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this surface does not read real DB, calculate true IC, authorize queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, PL-H, background/migration/backfill, formal approval, manual acceptance, or execution permission.
+- [NEXT] FACTOR_REAL_DATA_SCORER_AUTHORIZATION_PREFLIGHT_LOOP371：build a no-execution authorization preflight contract before any real-data scorer can read DB or calculate true IC.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run actual dry-run/backtest, start background jobs, migrations, or backfills in loop371.
 
 ## Latest Handoff — SYNC-378 loop369
 

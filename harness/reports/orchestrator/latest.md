@@ -1,4 +1,44 @@
-# Orchestrator Latest Report — SYNC-378 loop369
+# Orchestrator Latest Report — SYNC-379 loop370
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop370 factor mining screening readiness surface"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_mining_screening_readiness_surface.py"
+      summary: "Added consumer-facing read-model that aggregates candidate generation, screening prep, and mocked scoring into visible flow steps."
+    - file: "apps/quant_assistant/tests/test_factor_mining_screening_readiness_surface_unit.py"
+      summary: "Covered visible flow steps and scorer-count drift fail-closed blocker."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_mining_screening_readiness_surface_unit.py -q"
+      result: "2 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_mining_screening_readiness_surface_unit.py tests/test_factor_pool_mocked_scorer_unit.py tests/test_factor_pool_screening_prep_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_dsl_unit.py tests/test_factor_dedup_gate_unit.py tests/test_quant_mining_candidate_generator_unit.py tests/test_quant_mining_factor_factory_unit.py tests/test_quant_mining_factor_factory_selector_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "58 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_mining_screening_readiness_surface.py tests/test_factor_mining_screening_readiness_surface_unit.py"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q src/qa/quant_mining/factor_mining_screening_readiness_surface.py"
+      result: "compiled successfully."
+    - command: "pure LOC"
+      result: "98 / 75."
+  worker_dispatch:
+    - "Permanent Planner thread received a read-only loop370 planning request."
+    - "Permanent Dispatcher thread received a read-only loop370 assignment request."
+    - "Permanent Test Engineer thread received a read-only acceptance-matrix request."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD to avoid liveness stalls."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Consumer-facing read-models should expose stages and counts, while keeping real-data execution authorization separate."
+      - "Count drift between screening prep and scorer report must block the surface instead of showing misleading progress."
+    performance_note: "Loop370 makes the new factor construction universe visible as a coherent user-facing flow without crossing into real scoring."
+  blockers:
+    - "No product blocker. Formal queue-write review remains not-granted; no real DB read, true IC computation, DB queue, runner handoff, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_REAL_DATA_SCORER_AUTHORIZATION_PREFLIGHT_LOOP371"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-378 loop369
 
 report:
   role_id: "orchestrator"
