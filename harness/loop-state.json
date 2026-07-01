@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T15:25:24+08:00",
+  "updated_at": "2026-07-01T15:45:52+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "factor-real-data-scorer-review-packet-api-ui-bridge-loop373",
-  "next_atomic_action": "FACTOR_REAL_DATA_SCORER_FORMAL_REVIEW_ARTIFACT_LOOP374：基于 loop373 已接入的 real_data_scorer_review_packet，生成仍然 no-execution 的正式复核 artifact，区分用户可见准备清单与后续可人工批准的复核材料；不得读取真实 DB、写真实队列、DB enqueue、连接 runner/adapter、执行 real scorer/actual dry-run/backtest、启动 background/migration/backfill 或授予 PL-H。",
-  "next_after": "After loop374 formal review artifact, design an explicit approval record contract; only after explicit approval should any real-data scorer execution design be considered.",
+  "current_slice": "factor-real-data-scorer-formal-review-artifact-loop374",
+  "next_atomic_action": "FACTOR_REAL_DATA_SCORER_EXPLICIT_APPROVAL_RECORD_LOOP375：基于 loop374 formal review artifact 设计显式人工 approval record 合同；必须区分 approval record、execution design、actual execution，默认仍 not_granted/no-execution；不得读取真实 DB、写真实队列、DB enqueue、连接 runner/adapter、执行 real scorer/actual dry-run/backtest、启动 background/migration/backfill 或授予 PL-H。",
+  "next_after": "After loop375 approval record contract, add an execution-design-only packet; actual real-data scorer execution remains out of scope until explicit formal user authorization and separate safety gate.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop373-factor-real-data-scorer-review-packet-api-ui-bridge",
+  "last_tick": "loop374-factor-real-data-scorer-formal-review-artifact",
   "last_sync_sources": [
+    "SYNC-383 loop374 Factor real-data scorer formal review artifact",
+    "loop374 implementation: FactorRealDataScorerReviewPacketSurfaceV1 now derives a no-execution FactorRealDataScorerFormalReviewArtifactV1 with approval_status not_granted",
+    "loop374 changed: src/qa/quant_mining/factor_real_data_scorer_formal_review_artifact.py; tests/test_factor_real_data_scorer_formal_review_artifact_unit.py; truth sources",
+    "loop374 verification: RED expected ModuleNotFoundError; focused artifact 2 passed; related formal artifact + batch mining + factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector 64 passed; targeted Ruff pass",
+    "loop374 worker: permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier were sent read-only loop374 tasks; no duplicate same-role worker created",
+    "next: FACTOR_REAL_DATA_SCORER_EXPLICIT_APPROVAL_RECORD_LOOP375",
     "SYNC-382 loop373 Factor real-data scorer review packet API/UI bridge",
     "loop373 implementation: user_facing_batch_mining_creation_plan_v1 now includes real_data_scorer_review_packet so Chat/API/Jobs upstream read-model can show the real scoring readiness checklist",
     "loop373 changed: src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_batch_mining_flow_unit.py; truth sources",
@@ -279,5 +285,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop373 Factor real-data scorer review packet API/UI bridge complete. user_facing_batch_mining_creation_plan_v1 now includes real_data_scorer_review_packet so the shared Chat/API/Jobs upstream read-model can show the real scoring readiness checklist while defaulting human_authorized=false and preserving no-execution safety. Verification: RED expected KeyError; focused bridge 1 passed; related batch mining + factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector 62 passed; targeted Ruff pass. Next: FACTOR_REAL_DATA_SCORER_FORMAL_REVIEW_ARTIFACT_LOOP374."
+  "last_completed_note": "loop374 Factor real-data scorer formal review artifact complete. FactorRealDataScorerReviewPacketSurfaceV1 now derives a no-execution FactorRealDataScorerFormalReviewArtifactV1 with user-visible checklist material, data/isolation material, human authorization evidence state, audit/rollback material, blockers, and approval_status not_granted. Verification: RED expected ModuleNotFoundError; focused artifact 2 passed; related formal artifact + batch mining + factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector 64 passed; targeted Ruff pass. Next: FACTOR_REAL_DATA_SCORER_EXPLICIT_APPROVAL_RECORD_LOOP375."
 }
