@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-01T20:25:58+08:00
+updated_at: 2026-07-01T20:45:58+08:00
 
-## Latest Handoff — SYNC-396 loop387
+## Latest Handoff — SYNC-397 loop388
+
+- [DONE] Factor real panel scoring review packet is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_panel_scoring_review_packet.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_real_panel_scoring_review_packet_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] `FactorRealPanelScoringReviewPacketV1` converts loop387 preflight into a consumer review packet with required evidence, missing blockers, candidate refs, family coverage, consumer steps, and no-execution safety.
+- [DONE] `user_facing_batch_mining_creation_plan_v1` now includes `real_panel_scoring_review_packet`; blocked preflight shows `review_status=blocked`, headline `真实面板评分暂未开始`, and `actual_execution_status=not_allowed`.
+- [VERIFY] RED missing module; focused review packet + bridge 3 passed; related factor construction/scoring/review chain 43 passed; targeted Ruff pass; targeted compileall pass; forbidden env/secret/DB-write/queue/runner/adapter/backtest/real-scorer/external-model/RL/MCTS marker scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop388 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. Continue operator/reviewer review material.
+- [NEXT] FACTOR_REAL_PANEL_SCORING_OPERATOR_REVIEW_MATERIAL_LOOP389：derive dual operator/reviewer review material from the review packet.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop389.
+
+## Previous Handoff — SYNC-396 loop387
 
 - [DONE] Factor real panel scoring authorization preflight is implemented.
 - [DONE] Changed quant files: `src/qa/quant_mining/factor_real_panel_scoring_authorization_preflight.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_real_panel_scoring_authorization_preflight_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.

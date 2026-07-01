@@ -1,5 +1,26 @@
 # Worker Report — test-engineer
 
+## loop388 Report — 2026-07-01T20:45:58+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "loop388 real panel scoring review packet TDD matrix"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Test Engineer specified blocked-preflight, ready-for-review-only, candidate refs, required evidence, missing blockers, and no-execution side-effect assertions."
+    - command: "local pytest evidence"
+      result: "Focused review packet + bridge 3 passed; related factor construction/scoring/review chain 43 passed."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Review packet tests must distinguish ready_for_review from real scoring permission."
+    performance_note: "Permanent Test Engineer thread supplied usable loop388 TDD checklist."
+  blockers: []
+  next: "Add operator/reviewer material tests in loop389."
+
 report:
   role_id: "test-engineer"
   status: "partial"

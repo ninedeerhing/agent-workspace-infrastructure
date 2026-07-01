@@ -1,5 +1,24 @@
 # Worker Report — dispatcher
 
+## loop388 Report — 2026-07-01T20:45:58+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "loop388 factor real panel scoring review packet assignment matrix"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Dispatcher assigned canonical executor write ownership locally and read-only Test Engineer/Code Reviewer/Verifier lanes for review-packet TDD, risk, and verification."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Preflight-to-review packet implementation must keep all side effects false and keep missing authorization visible."
+    performance_note: "Permanent Dispatcher thread produced usable loop388 assignment matrix."
+  blockers: []
+  next: "Keep fixed worker chain for loop389 operator/reviewer material."
+
 report:
   role_id: "dispatcher"
   status: "partial"
