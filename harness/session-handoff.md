@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-01T13:53:45+08:00
+updated_at: 2026-07-01T13:59:10+08:00
+
+## Latest Handoff — SYNC-377 loop368
+
+- [DONE] Factor pool screening preparation contract is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_pool_screening_prep.py`, `tests/test_factor_pool_screening_prep_unit.py`, plus truth sources.
+- [DONE] `FactorCandidatePoolV1` can now derive read-only `FactorPoolScreeningPrepV1` with planned coverage, IC, turnover, cross-correlation, and diversity metrics for each eligible candidate.
+- [DONE] Unsafe source pools fail closed via `FactorConstructionSafetyError`; hard-gate failed candidates become blocked candidate plans and receive no planned metrics.
+- [VERIFY] focused 3 passed; related factor screening/construction/DSL/dedup/candidate/factory/selector/batch 54 passed; targeted Ruff pass; targeted compileall pass; pure LOC screening_prep 113 / screening_prep_test 98.
+- [WORKERS] Permanent Planner and Dispatcher threads were sent read-only loop368 requests. Orchestrator completed TDD contract implementation without waiting for cross-dialogue reports and did not create duplicate same-role workers.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this screening-prep layer does not read real DB, calculate true IC, authorize queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, PL-H, background/migration/backfill, formal approval, manual acceptance, or execution permission.
+- [NEXT] FACTOR_POOL_MOCKED_READ_ONLY_SCORER_ADAPTER_LOOP369：connect a mocked/read-only scorer adapter that emits structured planned score placeholders and scorer reports for eligible candidates.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run actual dry-run/backtest, start background jobs, migrations, or backfills in loop369.
 
 ## Latest Handoff — SYNC-376 loop367
 
