@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-01T16:34:12+08:00
+updated_at: 2026-07-01T16:49:28+08:00
+
+## Latest Handoff — SYNC-386 loop377
+
+- [DONE] Factor real-data scorer execution design review surface is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_data_scorer_execution_design_review_surface.py`, `tests/test_factor_real_data_scorer_execution_design_review_surface_unit.py`, plus truth sources.
+- [DONE] `FactorRealDataScorerExecutionDesignReviewSurfaceV1` derives from the design-only packet and gives users a clear review surface while preserving `approval_status=not_granted` and `actual_execution_status=not_allowed`.
+- [VERIFY] RED expected missing module; focused design review surface 2 passed; related design review surface + execution-design packet + explicit approval record + formal artifact + batch mining + factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector 70 passed; targeted Ruff pass; targeted compileall pass; loop-state JSON parse pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop377 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this review surface does not read DB, write queue/DB, connect runner/adapter, execute real scorer/dry-run/backtest, start background/migration/backfill, or grant PL-H.
+- [NEXT] FACTOR_REAL_DATA_SCORER_EXECUTION_DESIGN_REVIEW_BRIDGE_LOOP378：bridge loop377 review surface into factor mining creation plan / Jobs / Chat read-model; still no execution.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop378.
 
 ## Latest Handoff — SYNC-385 loop376
 
