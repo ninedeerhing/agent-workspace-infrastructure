@@ -34,7 +34,7 @@ report:
     - "Permanent Planner thread received loop397 read-only loop_plan request using gpt-5.4-mini and returned success."
     - "Permanent Dispatcher thread received loop397 boundary/assignment request using gpt-5.4-mini and returned success."
     - "Permanent Test Engineer thread received loop397 acceptance matrix request using gpt-5.5 and returned success."
-    - "Permanent Code Reviewer thread received loop397 risk review request using gpt-5.5 and returned success; implementation-after-review was sent and still in progress at root truth sync time."
+    - "Permanent Code Reviewer thread received loop397 risk review request using gpt-5.5 and returned success; implementation-after-review returned success with no P1/P2 findings."
     - "Permanent Verifier thread received loop397 checklist request using gpt-5.4-mini and returned partial checklist; implementation-after-verification confirmed focused/related/Ruff/compileall/payload/forbidden evidence pass and requested final truth/git clean evidence."
     - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
   roster_update:
