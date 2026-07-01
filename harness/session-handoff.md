@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-01T22:46:58+08:00
+updated_at: 2026-07-01T23:08:58+08:00
+
+## Latest Handoff — SYNC-403 loop394
+
+- [DONE] Factor real panel scoring shortlist preflight is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_panel_scoring_authorization_preflight.py`, `src/qa/quant_mining/factor_real_panel_scoring_review_packet.py`, `src/qa/quant_mining/factor_pool_admission_ranked_shortlist.py`, `tests/test_factor_real_panel_scoring_authorization_preflight_unit.py`, `tests/test_factor_real_panel_scoring_review_packet_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] Real panel scoring preflight/review packet now consumes `pool_admission_ranked_shortlist.screening_budget.allocated_candidate_refs` instead of all survived candidates.
+- [DONE] Missing ranked shortlist or empty allocation fail closed; payload smoke shows 184 survived candidates reduced to 20 allocated/review refs.
+- [VERIFY] RED missing shortlist fields and missing/empty allocation fail-closed; focused preflight 4 passed; creation-plan bridge 1 passed; related panel-scoring/factor-construction chain 32 passed; targeted Ruff pass; targeted compileall pass; payload smoke pass; forbidden scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop394 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. The next core gap is no-execution panel screening evidence plan for allocated refs.
+- [NEXT] FACTOR_PANEL_SCREENING_EVIDENCE_PLAN_LOOP395：plan small-sample panel screening evidence fields/thresholds for allocated refs without reading DB or calculating real metrics.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop395.
 
 ## Latest Handoff — SYNC-402 loop393
 
