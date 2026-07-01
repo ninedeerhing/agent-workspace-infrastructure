@@ -42,3 +42,24 @@ report:
     performance_note: "Permanent Verifier thread reachable and supplied stop-whitelist decision."
   blockers: []
   next: "AWAIT_USER_FORMAL_HUMAN_ACCEPTANCE_LOOP364"
+
+## loop386 Report — 2026-07-01T20:05:58+08:00
+
+report:
+  role_id: "verifier"
+  status: "partial"
+  task: "loop386 verification checklist"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Verifier supplied focused pytest, related chain, Ruff, compileall, forbidden scan, truth sync, diff check, and git clean checklist."
+    - command: "orchestrator final verification"
+      result: "Focused bridge 1 passed; related chain 37 passed; Ruff passed; compileall passed; forbidden marker scan clean."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Bridge completion must include both fresh command evidence and truth-source sync."
+    performance_note: "Permanent Verifier thread reachable; final pass came from orchestrator command evidence against verifier checklist."
+  blockers: []
+  next: "Verify loop387 authorization preflight with focused/related/Ruff/compileall/forbidden/truth/git clean checks."

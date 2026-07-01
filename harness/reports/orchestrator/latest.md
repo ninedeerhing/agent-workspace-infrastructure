@@ -1,4 +1,47 @@
-# Orchestrator Latest Report — SYNC-394 loop385
+# Orchestrator Latest Report — SYNC-395 loop386
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop386 factor construction universe plan bridge"
+  changes:
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Added factor_construction_universe bridge to the user-facing batch mining creation plan, including five generator families, quality gate, schedule, and trajectory memory intake summary."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Covered the construction universe bridge payload shape, five family names, survivor count, schedule status, memory write_not_allowed, and all-false side effects."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_batch_mining_flow_unit.py::test_build_factor_mining_creation_plan_explains_category_generation_screening_and_plan -q"
+      result: "RED KeyError for missing factor_construction_universe before implementation; GREEN 1 passed after implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_batch_mining_flow_unit.py tests/test_factor_trajectory_memory_read_model_unit.py tests/test_factor_adaptive_generator_scheduler_unit.py tests/test_factor_pool_quality_gate_trajectory_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_pool_screening_prep_unit.py tests/test_factor_pool_mocked_scorer_unit.py tests/test_factor_mining_screening_readiness_surface_unit.py -q"
+      result: "37 passed."
+    - command: "uv run ruff check src/qa/brain/batch_mining_creation_plan_builder.py tests/test_batch_mining_flow_unit.py"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q src/qa/brain/batch_mining_creation_plan_builder.py tests/test_batch_mining_flow_unit.py"
+      result: "passed."
+    - command: "Select-String forbidden marker scan for env/secret/DB write/queue/runner/adapter/backtest/external model/RL/MCTS markers"
+      result: "clean."
+  worker_dispatch:
+    - "Permanent Planner thread received loop386 read-only loop_plan request using gpt-5.4-mini and returned success."
+    - "Permanent Dispatcher thread received loop386 read-only assignment-matrix request using gpt-5.4-mini and returned success."
+    - "Permanent Test Engineer thread received loop386 acceptance-matrix request using gpt-5.5 and returned success."
+    - "Permanent Code Reviewer thread received loop386 read-only risk review request using gpt-5.5 and returned success."
+    - "Permanent Verifier thread received loop386 verification checklist request using gpt-5.4-mini and returned partial checklist; final local verification passed."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Construction universe internals need a compact consumer bridge before they become useful in Chat/API/Jobs."
+      - "Memory intake wording must keep write_not_allowed visible, otherwise users can misread the system as having persisted or learned from real outcomes."
+    performance_note: "Loop386 makes the factor construction universe visible in the batch mining creation plan while staying no-execution."
+  blockers:
+    - "Factor construction is not complete enough for formal human audit; continue real panel scoring authorization preflight as a no-execution read-model."
+    - "No DB read/write, queue write, runner/adapter, external LLM/RL/MCTS call, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_REAL_PANEL_SCORING_AUTHORIZATION_PREFLIGHT_LOOP387"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-394 loop385
 
 report:
   role_id: "orchestrator"

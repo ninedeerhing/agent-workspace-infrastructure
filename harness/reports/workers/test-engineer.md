@@ -37,3 +37,22 @@ report:
     performance_note: "Acceptance matrix was used by implementation and regression tests."
   blockers: []
   next: "Verifier stop condition after focused/adjacent/broad selectors."
+
+## loop386 Report — 2026-07-01T20:05:58+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "loop386 factor_construction_universe payload TDD matrix"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Test Engineer required factor_construction_universe payload, five family names/counts, survivor count, quality/schedule/memory status, write_not_allowed, and all-false side effects."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "memory_write_not_allowed must be asserted directly at creation-plan bridge level."
+    performance_note: "Acceptance matrix was reflected in focused RED/GREEN test."
+  blockers: []
+  next: "Design loop387 authorization preflight tests before implementation."

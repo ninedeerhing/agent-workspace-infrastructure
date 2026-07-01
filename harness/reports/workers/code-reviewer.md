@@ -40,3 +40,22 @@ report:
     performance_note: "Permanent Code Reviewer thread reachable and provided useful independent review."
   blockers: []
   next: "Formal human acceptance required before successor execution-path implementation."
+
+## loop386 Report — 2026-07-01T20:05:58+08:00
+
+report:
+  role_id: "code-reviewer"
+  status: "success"
+  task: "loop386 user-visible plan bridge pre-review"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Code Reviewer warned against internal debug noise, implying memory persistence, or implying real scoring/backtest execution."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Consumer bridge copy must say memory intake is not persisted and real scoring/backtest has not executed."
+    performance_note: "Permanent Code Reviewer thread reachable and provided useful semantic risk review."
+  blockers: []
+  next: "Review loop387 for authorization/preflight wording drift."

@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-01T19:45:58+08:00
+updated_at: 2026-07-01T20:05:58+08:00
+
+## Latest Handoff — SYNC-395 loop386
+
+- [DONE] Factor construction universe plan bridge is implemented.
+- [DONE] Changed quant files: `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] `user_facing_batch_mining_creation_plan_v1` now includes `factor_construction_universe` with five generator families, candidate/survived counts, quality gate status, adaptive schedule status, family summaries, trajectory memory `write_status=write_not_allowed` / `persisted_to_db=false`, and four consumer steps.
+- [DONE] Real-data scorer preflight construction spec now uses the same five-family universe, so user-visible creation plan and backend preflight candidate universe stay aligned.
+- [VERIFY] RED expected `KeyError` for missing `factor_construction_universe`; focused creation plan bridge 1 passed; related factor construction/quality/schedule/memory/screening/batch chain 37 passed; targeted Ruff pass; targeted compileall pass; forbidden env/secret/DB-write/queue/runner/adapter/backtest/external-model/RL/MCTS marker scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop386 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. Continue real panel scoring authorization preflight as no-execution read-model.
+- [NEXT] FACTOR_REAL_PANEL_SCORING_AUTHORIZATION_PREFLIGHT_LOOP387：build no-execution real panel scoring authorization preflight from the construction universe bridge.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop387.
 
 ## Latest Handoff — SYNC-394 loop385
 

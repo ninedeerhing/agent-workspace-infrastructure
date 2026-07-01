@@ -702,3 +702,22 @@ report:
     performance_note: "No duplicate same-role worker created; bounded takeover recorded after executor channel block."
   blockers: []
   next: "Dispatcher loop317 after Planner produces loop_plan."
+
+## loop386 Report — 2026-07-01T20:05:58+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "loop386 assignment matrix"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Dispatcher returned write-owner/read-only lanes for batch mining creation plan bridge, preserving permanent worker identities and no-execution scope."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Payload bridge loops should keep consumer-facing summaries compact and leave truth-source sync to the Orchestrator."
+    performance_note: "No duplicate same-role worker created."
+  blockers: []
+  next: "Dispatcher loop387 after Planner produces loop_plan."
