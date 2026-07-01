@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-01T13:34:34+08:00
+updated_at: 2026-07-01T13:53:45+08:00
+
+## Latest Handoff — SYNC-376 loop367
+
+- [DONE] Factor parameter sweep + symbolic mutation pool is implemented for the no-execution factor construction registry.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_construction_symbolic_mutation.py`, `factor_construction_models.py`, `factor_construction_pool_filters.py`, `factor_construction_registry.py`, `tests/test_factor_construction_generator_expansion_unit.py`, `tests/test_factor_construction_registry_unit.py`, `tests/test_factor_construction_registry_hardening_unit.py`, plus truth sources.
+- [DONE] Default registry now enables `template_parameter_sweep` and `symbolic_mutation`. Symbolic mutation emits delay-ratio, delta sweep, and price-size correlation candidates, with dedupe/hard-gate probes proving pool filtering works.
+- [DONE] Generator reports now distinguish `raw_candidate_count`, `accepted_count`, `dedup_rejected_count`, `hard_gate_rejected_count`; `candidate_count` means final accepted candidates after pool gates.
+- [VERIFY] focused 7 passed; related factor construction/DSL/dedup/candidate/factory/selector/batch 51 passed; targeted Ruff pass; targeted compileall pass; `git diff --check` pass with LF/CRLF warnings only; pure LOC models 145 / pool_filters 96 / registry 225 / symbolic_mutation 178 / generator_expansion_test 73.
+- [WORKERS] Permanent Planner and Dispatcher threads were sent read-only loop367 requests. Orchestrator completed TDD implementation without waiting for cross-dialogue reports and did not create duplicate same-role workers.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this candidate-pool layer does not authorize queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, PL-H, background/migration/backfill, formal approval, manual acceptance, or execution permission.
+- [NEXT] FACTOR_POOL_SCREENING_PREP_AND_PANEL_SCORING_CONTRACT_LOOP368：build a read-only small-sample panel screening/scoring preparation contract for the larger candidate pool, with planned coverage/IC/turnover/correlation/diversity fields and fail-closed input validation.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run actual dry-run/backtest, start background jobs, migrations, or backfills in loop368.
 
 ## Latest Handoff — SYNC-375 loop366
 

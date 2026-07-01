@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T13:34:34+08:00",
+  "updated_at": "2026-07-01T13:53:45+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "factor-typed-grammar-hard-gates-loop366",
-  "next_atomic_action": "FACTOR_PARAMETER_SWEEP_AND_SYMBOLIC_MUTATION_POOL_LOOP367：在 loop366 typed hard gates 之上扩展 template parameter sweep 与 symbolic mutation generator，形成百级候选池的 no-execution pool，输出每个 generator 的 accepted/rejected/dedup/hard-gate 统计；不得写真实队列、DB enqueue、连接 runner/adapter、执行 actual dry-run/backtest、启动 background/migration/backfill 或授予 PL-H。",
-  "next_after": "After loop367 larger no-execution candidate pool, add small-sample panel screening/read-only scoring preparation, then route only gate-passing candidates toward later formal review; loop364 queue-write formal human review remains not-granted until explicit formal acceptance.",
+  "current_slice": "factor-symbolic-mutation-pool-loop367",
+  "next_atomic_action": "FACTOR_POOL_SCREENING_PREP_AND_PANEL_SCORING_CONTRACT_LOOP368：基于 loop367 大候选池实现只读 small-sample panel screening/scoring preparation 合同，定义 coverage/IC/turnover/correlation/diversity 的计划字段与 fail-closed 输入校验；不得读取真实 DB、写真实队列、DB enqueue、连接 runner/adapter、执行 actual dry-run/backtest、启动 background/migration/backfill 或授予 PL-H。",
+  "next_after": "After loop368 scoring-prep contract, connect a mocked/read-only scorer adapter and surface pool screening readiness into the factor mining flow; loop364 queue-write formal human review remains not-granted until explicit formal acceptance.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop366-factor-typed-grammar-hard-gates",
+  "last_tick": "loop367-factor-symbolic-mutation-pool",
   "last_sync_sources": [
+    "SYNC-376 loop367 Factor parameter sweep + symbolic mutation pool",
+    "loop367 implementation: default no-execution registry now combines template_parameter_sweep and symbolic_mutation; candidate pool reports raw/accepted/dedup/hard-gate rejected stats per generator",
+    "loop367 changed: src/qa/quant_mining/factor_construction_symbolic_mutation.py; factor_construction_models.py; factor_construction_pool_filters.py; factor_construction_registry.py; tests/test_factor_construction_generator_expansion_unit.py; tests/test_factor_construction_registry_unit.py; tests/test_factor_construction_registry_hardening_unit.py",
+    "loop367 verification: focused 7 passed; related factor construction/DSL/dedup/candidate/factory/selector/batch 51 passed; targeted Ruff pass; targeted compileall pass; git diff --check pass with LF/CRLF warnings only; pure LOC healthy 145/96/225/178/73",
+    "loop367 worker: permanent Planner and Dispatcher were sent read-only loop367 tasks; Orchestrator completed TDD implementation without creating duplicate same-role workers",
+    "next: FACTOR_POOL_SCREENING_PREP_AND_PANEL_SCORING_CONTRACT_LOOP368",
     "SYNC-375 loop366 Factor typed grammar + early hard gates",
     "loop366 implementation: typed field catalog, PIT declared availability, dimension inference, AST canonical hash, family hash dedupe, complexity metrics, pool-level duplicate filtering, and no-execution safety flag fail-closed landed",
     "loop366 changed: src/qa/quant_mining/factor_construction_gates.py; factor_construction_field_catalog.py; factor_construction_complexity.py; factor_construction_pool_filters.py; factor_construction_models.py; factor_construction_registry.py; tests/test_factor_construction_hard_gates_unit.py; tests/test_factor_construction_registry_unit.py; tests/test_factor_construction_registry_hardening_unit.py",
@@ -237,5 +243,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop366 Factor typed grammar + early hard gates complete. Added typed field catalog, PIT availability declarations, dimension inference, AST/family hashes, complexity metrics, pool-level duplicate filtering, and execution-enabled safety flag fail-closed for the no-execution factor construction registry. Verification: focused 15 passed; related DSL/dedup/candidate/factory/selector/batch 49 passed; targeted Ruff pass; targeted compileall pass; pure LOC healthy. Next: FACTOR_PARAMETER_SWEEP_AND_SYMBOLIC_MUTATION_POOL_LOOP367."
+  "last_completed_note": "loop367 Factor parameter sweep + symbolic mutation pool complete. Default no-execution registry now combines template_parameter_sweep and symbolic_mutation, producing a larger gated candidate pool with per-generator raw/accepted/dedup/hard-gate rejected stats. Verification: focused 7 passed; related factor construction/DSL/dedup/candidate/factory/selector/batch 51 passed; targeted Ruff pass; targeted compileall pass; git diff --check pass with LF/CRLF warnings only; pure LOC healthy. Next: FACTOR_POOL_SCREENING_PREP_AND_PANEL_SCORING_CONTRACT_LOOP368."
 }

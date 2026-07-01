@@ -1,4 +1,55 @@
-# Orchestrator Latest Report — SYNC-375 loop366
+# Orchestrator Latest Report — SYNC-376 loop367
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop367 factor parameter sweep + symbolic mutation pool"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_symbolic_mutation.py"
+      summary: "Added no-execution symbolic mutation generator with delay-ratio, delta sweep, price-size correlation, and explicit dedupe/hard-gate probes."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_models.py"
+      summary: "Extended generator reports with raw, accepted, dedup-rejected, and hard-gate-rejected counts."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_pool_filters.py"
+      summary: "Added structured pool filter result so registry can report accepted/dedup/hard-gate filtering stats."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_registry.py"
+      summary: "Connected symbolic mutation to the default registry and rewrote generator reports after pool gates."
+    - file: "apps/quant_assistant/tests/test_factor_construction_generator_expansion_unit.py"
+      summary: "Covered multi-generator no-execution pool expansion and generator-level stats."
+    - file: "apps/quant_assistant/tests/test_factor_construction_registry_unit.py"
+      summary: "Updated registry report contract expectations for accepted/stat fields."
+    - file: "apps/quant_assistant/tests/test_factor_construction_registry_hardening_unit.py"
+      summary: "Pinned cross-generator duplicate filtering to accepted-vs-raw report semantics."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py -q"
+      result: "7 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_dsl_unit.py tests/test_factor_dedup_gate_unit.py tests/test_quant_mining_candidate_generator_unit.py tests/test_quant_mining_factor_factory_unit.py tests/test_quant_mining_factor_factory_selector_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "51 passed."
+    - command: "uv run ruff check targeted factor construction files"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q targeted factor construction src files"
+      result: "compiled successfully."
+    - command: "git diff --check"
+      result: "pass with LF/CRLF warnings only."
+    - command: "pure LOC"
+      result: "145 / 96 / 225 / 178 / 73."
+  worker_dispatch:
+    - "Permanent Planner thread received a read-only loop367 planning request."
+    - "Permanent Dispatcher thread received a read-only loop367 assignment request."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD to avoid liveness stalls."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Generator reports must distinguish raw generation from accepted post-gate candidates; otherwise large candidate pools hide quality loss."
+      - "Symbolic mutation can safely expand the search universe only after typed hard gates and pool-level dedupe are in place."
+    performance_note: "Loop367 moves Raindeer from a small recipe-backed plan layer toward a larger factor construction universe while preserving no-execution boundaries."
+  blockers:
+    - "No product blocker. Formal queue-write review remains not-granted; no real DB queue, runner handoff, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_POOL_SCREENING_PREP_AND_PANEL_SCORING_CONTRACT_LOOP368"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-375 loop366
 
 report:
   role_id: "orchestrator"
