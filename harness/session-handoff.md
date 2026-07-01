@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-01T18:09:10+08:00
+updated_at: 2026-07-01T18:45:58+08:00
 
-## Latest Handoff — SYNC-390 loop381
+## Latest Handoff — SYNC-391 loop382
+
+- [DONE] Factor construction universe generator families are implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_construction_universe_generators.py`, `src/qa/quant_mining/factor_construction_registry.py`, `tests/test_factor_construction_generator_expansion_unit.py`, plus truth sources.
+- [DONE] Default `FactorGeneratorRegistryV1` now builds a five-family no-execution candidate universe: `template_parameter_sweep`, `symbolic_mutation`, `trajectory_crossover`, `llm_hypothesis_seed`, and `event_text_alt_data`.
+- [DONE] Registry now applies source-family quota when three or more families are requested, preventing early generators from starving later families.
+- [VERIFY] RED unsupported/budget-exhausted tests failed as expected; focused generator expansion 4 passed; related factor construction/screening/batch chain 31 passed; targeted Ruff pass; targeted compileall pass; forbidden DB/queue/runner/backtest/secret marker scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop382 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. Continue Phase 4/5 quality gate, pool admission, trajectory feedback, and adaptive generator scheduling before returning to real execution authorization.
+- [NEXT] FACTOR_POOL_QUALITY_GATE_AND_TRAJECTORY_FEEDBACK_LOOP383：implement survival explanation, source-family quota telemetry, trajectory memory input contract, pool admission / novelty / marginal-gain placeholders; still no execution.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop383.
+
+## Previous Handoff — SYNC-390 loop381
 
 - [DONE] Factor real-data scorer authorization review surface is implemented.
 - [DONE] Changed quant files: `src/qa/quant_mining/factor_real_data_scorer_authorization_review_surface.py`, `tests/test_factor_real_data_scorer_authorization_review_surface_unit.py`, plus truth sources.
