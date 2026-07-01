@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-01T23:38:58+08:00
+updated_at: 2026-07-01T23:58:58+08:00
+
+## Latest Handoff — SYNC-405 loop396
+
+- [DONE] Factor pool admission evidence package is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_pool_admission_evidence_package.py`, `src/qa/brain/batch_mining_real_panel_surfaces.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_pool_admission_evidence_package_unit.py`, `tests/test_factor_pool_admission_evidence_package_bridge_unit.py`, plus truth sources.
+- [DONE] `pool_admission_evidence_package` now appears in `user_facing_batch_mining_creation_plan_v1`, derived from loop395 `real_panel_screening_evidence_plan`.
+- [DONE] Admission evidence slots are planned-only: mutual IC, accepted-pool correlation, novelty/diversity, marginal combination gain, complexity/crowding penalties, reproducibility, and lineage completeness. All observed values remain `None`.
+- [DONE] `pool_admission_decision.status=not_evaluated` and `accepted_factor_pool_write=not_allowed`; no accepted pool write or real scoring permission was granted.
+- [VERIFY] RED missing module + missing creation-plan bridge; focused evidence package+bridge 3 passed; related factor-construction/panel-scoring chain 24 passed; targeted Ruff pass; targeted compileall pass; payload smoke pass; forbidden scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop396 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. The next core gap is accepted factor pool audit / human review packet.
+- [NEXT] FACTOR_ACCEPTED_POOL_AUDIT_PACKET_LOOP397：derive a no-execution accepted factor pool audit / human review packet from pool admission evidence package.
+- [FORBIDDEN] Do not read/write real DB, write accepted pool, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop397.
 
 ## Latest Handoff — SYNC-404 loop395
 

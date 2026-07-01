@@ -1,4 +1,57 @@
-# Orchestrator Latest Report — SYNC-404 loop395
+# Orchestrator Latest Report — SYNC-405 loop396
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop396 factor pool admission evidence package"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_pool_admission_evidence_package.py"
+      summary: "Added no-execution pool admission evidence package with planned mutual IC, accepted-pool correlation, novelty/diversity, marginal gain, complexity/crowding, reproducibility, and lineage evidence slots."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_real_panel_surfaces.py"
+      summary: "Built the pool admission evidence package from the panel screening evidence plan inside the real-panel surface assembly."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Bridged pool_admission_evidence_package into the user-facing batch mining creation plan."
+    - file: "apps/quant_assistant/tests/test_factor_pool_admission_evidence_package_unit.py"
+      summary: "Covered slot matrix, threshold profile, candidate ref alignment, not-computed values, decision not_evaluated, all-false side effects, and empty-ref fail-closed behavior."
+    - file: "apps/quant_assistant/tests/test_factor_pool_admission_evidence_package_bridge_unit.py"
+      summary: "Covered creation-plan bridge exposure of the pool admission evidence package."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_pool_admission_evidence_package_unit.py tests/test_factor_pool_admission_evidence_package_bridge_unit.py -q"
+      result: "RED missing module / missing bridge before implementation; GREEN 3 passed."
+    - command: "PYTHONPATH=src uv run pytest loop396 related factor-construction/panel-scoring chain -q"
+      result: "24 passed."
+    - command: "uv run ruff check targeted loop396 source/test files"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q targeted loop396 source files"
+      result: "passed."
+    - command: "PYTHONPATH=src uv run python payload smoke for max_candidates=220"
+      result: "candidate_count=184; survived=184; package_status=planned_waiting_panel_metrics; candidate_refs=16; admission_slots=9; observed_values all None; decision not_evaluated; accepted_factor_pool_write=not_allowed; refs_match_panel=True; all side_effects false."
+    - command: "Select-String precise forbidden marker scan for active true/granted/execution markers"
+      result: "clean."
+    - command: "pure LOC check"
+      result: "factor_pool_admission_evidence_package.py=211 warning band; real-panel helper=67; builder=171; tests=96/22."
+  worker_dispatch:
+    - "Permanent Planner thread received loop396 read-only loop_plan request using gpt-5.4-mini and returned success."
+    - "Permanent Dispatcher thread received loop396 boundary/assignment request using gpt-5.4-mini and returned success."
+    - "Permanent Test Engineer thread received loop396 acceptance matrix request using gpt-5.5 and returned success."
+    - "Permanent Code Reviewer thread received loop396 risk review request using gpt-5.5 and returned success; implementation-after-review returned success with no P1/P2 findings."
+    - "Permanent Verifier thread received loop396 checklist request using gpt-5.4-mini and returned partial checklist; implementation-after-verification confirmed core evidence pass and requested final truth/git clean evidence."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Pool admission evidence must remain planned-only until real panel metrics and accepted-pool context are explicitly computed and reviewed."
+      - "Accepted factor pool writes need their own audit packet and formal review path; evidence-package planning is not admission."
+    performance_note: "Loop396 adds the pool admission evidence matrix and keeps accepted pool write not_allowed."
+  blockers:
+    - "Factor construction is not complete enough for formal human audit; continue accepted factor pool audit packet."
+    - "No DB read/write, accepted pool write, queue write, runner/adapter, external LLM/RL/MCTS call, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_ACCEPTED_POOL_AUDIT_PACKET_LOOP397"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-404 loop395
 
 report:
   role_id: "orchestrator"
