@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T22:50:30+08:00",
+  "updated_at": "2026-07-01T23:28:27+08:00",
   "mode": "continuous_implementation_loop",
-  "stop_reason": "",
+  "stop_reason": "USER_REVIEW_REAL_SCORING_POOL_BACKTEST_ROLLOUT_PLAN",
   "current_tree": "TREE-6",
-  "current_slice": "factor-batch-scoring-plan-loop400",
-  "next_atomic_action": "FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401：基于 loop400 factor_batch_scoring_plan_v1，设计并实现显式真实评分授权复核包与注入式 compute runner 前置边界；先收束 run request 所需字段、qa.env.load_env_files/DSN guard、chunk budget、audit/run id、rollback metadata、operator/reviewer decision，不启动默认 runner、不读写真实 DB、不自动入池、不自动队列、不自动回测或 PL-H。",
-  "next_after": "After loop401 scoring authorization review, implement explicit run request intake and controlled sample scorer execution, then real metric persistence, screening funnel, accepted pool admission, and budgeted backtest allocation in separate core-function loops.",
+  "current_slice": "real-scoring-pool-backtest-rollout-plan-loop401-planning",
+  "next_atomic_action": "USER_CONFIRM_REAL_SCORING_POOL_BACKTEST_ROLLOUT_PLAN：已新增 apps/quant_assistant/docs/ENGINEERING/2026-07-01-real-scoring-pool-backtest-rollout-plan.md，规划 factor_batch_scoring_plan_v1 之后 K-P 全链路：显式评分授权复核、注入式 compute runner、受控真实因子值计算、真实指标持久化与筛选、accepted pool admission、预算化自动回测、报告与 trajectory feedback。等待用户确认 open questions：factor_value_daily vs staging、首轮数据域、单因子 vs 多因子回测、授权入口、初始 compute budget、manual-first vs provisional accepted pool。",
+  "next_after": "After user confirms or edits the rollout plan, start FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401 as the first implementation loop; do not start real DB writes, factor value computation, accepted pool writes, queue writes, backtests, background jobs, or PL-H before explicit confirmation.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -21,6 +21,11 @@
   ],
   "last_tick": "loop400-factor-batch-scoring-plan",
   "last_sync_sources": [
+    "SYNC-410 planning-only Real scoring/pool/backtest rollout plan",
+    "planning doc added: apps/quant_assistant/docs/ENGINEERING/2026-07-01-real-scoring-pool-backtest-rollout-plan.md",
+    "planning scope: K-P chain from factor_batch_scoring_plan_v1 to scoring authorization review, injected compute runner, controlled factor value computation, real metric persistence/screening, accepted pool admission, budgeted backtest allocation, reporting, and trajectory feedback",
+    "planning worker: permanent Planner returned partial due read ACL but aligned on K-P phased business-core plan and explicit authorization boundaries; Orchestrator integrated local truth-source and code facts",
+    "stop: USER_REVIEW_REAL_SCORING_POOL_BACKTEST_ROLLOUT_PLAN",
     "SYNC-409 loop400 Factor batch scoring plan",
     "loop400 implementation: added factor_batch_scoring_plan_v1 and bridged factor_batch_scoring_plan into user_facing_batch_mining_creation_plan_v1; completion review surface now exposes scoring_candidate_refs from survived_candidate_refs so later real scoring has concrete refs rather than counts only",
     "loop400 changed: src/qa/quant_mining/factor_batch_scoring_plan.py; src/qa/quant_mining/factor_construction_completion_review_surface.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_batch_scoring_plan_unit.py; tests/test_batch_mining_flow_unit.py; truth sources",

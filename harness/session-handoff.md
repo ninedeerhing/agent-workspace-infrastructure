@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-01T22:50:30+08:00
+updated_at: 2026-07-01T23:28:27+08:00
+
+## Latest Handoff — SYNC-410 planning-only
+
+- [DONE] Added `apps/quant_assistant/docs/ENGINEERING/2026-07-01-real-scoring-pool-backtest-rollout-plan.md`.
+- [DONE] The plan extends `2026-07-01-factor-construction-universe.md` and covers K-P after `factor_batch_scoring_plan_v1`: scoring authorization review, injected compute runner preflight, controlled real factor value computation, real metric persistence/screening, accepted pool admission, budgeted auto backtest allocation, report/factor library/trajectory feedback.
+- [VERIFY] Read local truth sources and implementation facts including `loop-state.json`, PROJECT_STATUS §5.733, TASK_TREES top, factor-construction-universe, factor-candidate-factory reference, implementation master plan, PL-G MiningJob spec, DB schema, and backtest engine. No secrets read or printed.
+- [WORKERS] Permanent Planner returned partial due ACL/read instability, but aligned on K-P phased plan and explicit authorization boundaries.
+- [BLOCKED] Planning intentionally stops before implementation: `USER_REVIEW_REAL_SCORING_POOL_BACKTEST_ROLLOUT_PLAN`.
+- [NEXT] User should confirm or edit the six open questions in the rollout plan before loop401 implementation starts.
+- [FORBIDDEN] Do not start real scoring, DB writes, factor value persistence, accepted pool writes, queue writes, backtests, background jobs, or PL-H before explicit confirmation.
 
 ## Latest Handoff — SYNC-409 loop400
 
