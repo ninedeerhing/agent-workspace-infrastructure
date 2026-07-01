@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-01T23:59:58+08:00
+updated_at: 2026-07-01T18:24:02+08:00
+
+## Latest Handoff — SYNC-407 loop398
+
+- [DONE] Factor backtest budget gate packet is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_backtest_budget_gate_packet.py`, `src/qa/brain/batch_mining_real_panel_surfaces.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_backtest_budget_gate_packet_unit.py`, `tests/test_factor_backtest_budget_gate_packet_bridge_unit.py`, plus truth sources.
+- [DONE] `backtest_budget_gate_packet` now appears in `user_facing_batch_mining_creation_plan_v1`, derived from loop397 `accepted_factor_pool_audit_packet`.
+- [DONE] Gate packet exposes review-only candidate refs, planned-only budget tiers, missing evidence reasons, blockers, and a not-ready backtest decision.
+- [DONE] `backtest_budget_status=not_ready_pool_admission_pending`, `eligible_backtest_candidate_refs=[]`, `queue_write=not_allowed`, and `runner_handoff=not_allowed`; no accepted pool write, queue write, runner handoff, PL-H, or real backtest permission was granted.
+- [VERIFY] RED missing module; focused gate+bridge 3 passed; related accepted-pool/pool-admission/panel-evidence chain 12 passed; targeted Ruff pass; targeted compileall pass; payload smoke pass; precise forbidden scan only matched `not_allowed` safety strings.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop398 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not yet formally complete until loop399 completion review surface judges the end-to-end no-execution artifacts.
+- [NEXT] FACTOR_CONSTRUCTION_COMPLETION_REVIEW_SURFACE_LOOP399：summarize generator -> gates -> panel evidence -> pool audit -> budget gate artifacts and decide whether formal human audit/testing should begin.
+- [FORBIDDEN] Do not read/write real DB, write accepted pool, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop399.
 
 ## Latest Handoff — SYNC-406 loop397
 

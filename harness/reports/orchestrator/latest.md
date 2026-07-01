@@ -1,4 +1,57 @@
-# Orchestrator Latest Report — SYNC-406 loop397
+# Orchestrator Latest Report — SYNC-407 loop398
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop398 factor backtest budget gate packet"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_backtest_budget_gate_packet.py"
+      summary: "Added no-execution backtest budget gate packet with review-only refs, planned budget tiers, missing evidence reasons, blockers, and not-ready decision."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_real_panel_surfaces.py"
+      summary: "Built the backtest budget gate packet from the accepted factor pool audit packet inside the real-panel surface assembly."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Bridged backtest_budget_gate_packet into the user-facing batch mining creation plan."
+    - file: "apps/quant_assistant/tests/test_factor_backtest_budget_gate_packet_unit.py"
+      summary: "Covered source kind, audit ref alignment, missing evidence preservation, not-ready status, empty eligible refs, planned-only tiers, not_allowed queue/runner decision, all-false side effects, and empty-ref fail-closed behavior."
+    - file: "apps/quant_assistant/tests/test_factor_backtest_budget_gate_packet_bridge_unit.py"
+      summary: "Covered creation-plan bridge exposure of the backtest budget gate packet."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_backtest_budget_gate_packet_unit.py tests/test_factor_backtest_budget_gate_packet_bridge_unit.py -q"
+      result: "RED missing module before implementation; GREEN 3 passed."
+    - command: "PYTHONPATH=src uv run pytest loop398 related accepted-pool/pool-admission/panel-evidence chain -q"
+      result: "12 passed."
+    - command: "uv run ruff check targeted loop398 source/test files"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q targeted loop398 source files"
+      result: "passed."
+    - command: "PYTHONPATH=src uv run python payload smoke for max_candidates=220"
+      result: "candidate_count=184; survived=184; audit_status=ready_for_human_review_not_admitted; budget_status=not_ready_pool_admission_pending; review_refs=16; eligible_refs=0; queue_write=not_allowed; runner_handoff=not_allowed; refs_match_audit=True; all side_effects false."
+    - command: "Select-String precise forbidden marker scan for active true/granted/execution markers"
+      result: "only matched not_allowed safety strings."
+    - command: "pure LOC check"
+      result: "factor_backtest_budget_gate_packet.py=109; real-panel helper=81; builder=177; tests=108/22."
+  worker_dispatch:
+    - "Permanent Planner thread received loop398 read-only loop_plan request using gpt-5.4-mini and returned success."
+    - "Permanent Dispatcher thread received loop398 boundary/assignment request using gpt-5.4-mini and returned success."
+    - "Permanent Test Engineer thread received loop398 acceptance matrix request using gpt-5.5 and returned success."
+    - "Permanent Code Reviewer thread received loop398 risk review request using gpt-5.5 and returned success; implementation-after-review returned success with no P1/P2 findings."
+    - "Permanent Verifier thread received loop398 checklist request using gpt-5.4-mini and returned partial checklist; implementation-after-verification confirmed focused/related/Ruff/compileall/payload/forbidden evidence pass and requested final truth/git clean evidence."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Backtest budget gates are not execution gates while pool admission is not evaluated and accepted-pool write is not allowed."
+      - "Eligible backtest refs must stay empty until human review/admission/write authorization is complete."
+    performance_note: "Loop398 adds the backtest budget review packet and keeps all execution routes not_allowed."
+  blockers:
+    - "Factor construction needs loop399 completion review before formal human audit/testing."
+    - "No DB read/write, accepted pool write, queue write, runner/adapter, external LLM/RL/MCTS call, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_CONSTRUCTION_COMPLETION_REVIEW_SURFACE_LOOP399"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-406 loop397
 
 report:
   role_id: "orchestrator"
