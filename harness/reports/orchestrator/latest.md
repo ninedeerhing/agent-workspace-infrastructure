@@ -1,4 +1,47 @@
-# Orchestrator Latest Report — SYNC-393 loop384
+# Orchestrator Latest Report — SYNC-394 loop385
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop385 factor trajectory memory read-model"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_trajectory_memory_read_model.py"
+      summary: "Added no-execution trajectory memory read-model / persistence-intake with candidate trajectory rows, schedule summary, persist fields, and write_not_allowed state."
+    - file: "apps/quant_assistant/tests/test_factor_trajectory_memory_read_model_unit.py"
+      summary: "Covered persistence-intake behavior, no DB write, feedback input preservation, and schedule summary exposure."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_trajectory_memory_read_model_unit.py -q"
+      result: "RED missing module before implementation; GREEN 2 passed after implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_trajectory_memory_read_model_unit.py tests/test_factor_adaptive_generator_scheduler_unit.py tests/test_factor_pool_quality_gate_trajectory_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_pool_screening_prep_unit.py tests/test_factor_pool_mocked_scorer_unit.py tests/test_factor_mining_screening_readiness_surface_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "37 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_trajectory_memory_read_model.py tests/test_factor_trajectory_memory_read_model_unit.py"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q src/qa/quant_mining/factor_trajectory_memory_read_model.py tests/test_factor_trajectory_memory_read_model_unit.py"
+      result: "passed."
+    - command: "Select-String forbidden marker scan for env/secret/DB write/queue/runner/backtest/external model/RL markers"
+      result: "clean."
+  worker_dispatch:
+    - "Permanent Planner thread received loop385 read-only loop_plan request using gpt-5.4-mini."
+    - "Permanent Dispatcher thread received loop385 read-only assignment-matrix request using gpt-5.4-mini."
+    - "Permanent Test Engineer thread received loop385 acceptance-matrix request using gpt-5.5."
+    - "Permanent Code Reviewer thread received loop385 read-only risk review request using gpt-5.5."
+    - "Permanent Verifier thread received loop385 completion-evidence request using gpt-5.4-mini."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Trajectory memory should first exist as a persistence-intake read-model; DB writes remain a later explicit authorization."
+      - "Memory summaries are useful for users only when they explicitly say no real panel metrics exist yet."
+    performance_note: "Loop385 gives the factor construction universe a traceable memory intake without writing state."
+  blockers:
+    - "Factor construction is not complete enough for formal human audit; continue user-facing construction universe bridge."
+    - "No DB read/write, queue write, runner/adapter, external LLM/RL/MCTS call, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_CONSTRUCTION_UNIVERSE_PLAN_BRIDGE_LOOP386"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-393 loop384
 
 report:
   role_id: "orchestrator"

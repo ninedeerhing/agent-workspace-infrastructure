@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T19:25:58+08:00",
+  "updated_at": "2026-07-01T19:45:58+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "factor-adaptive-generator-scheduling-loop384",
-  "next_atomic_action": "FACTOR_TRAJECTORY_MEMORY_READ_MODEL_LOOP385：基于 loop384 adaptive schedule 与 loop383 trajectory feedback inputs，实现 no-execution trajectory memory read-model / persistence-intake contract；输出可展示的上一轮候选轨迹摘要、下一轮调度理由、待持久化字段与 write_not_allowed 状态；不得读取/写入真实 DB、不得写真实队列、DB enqueue、连接 runner/adapter、执行 real scorer/actual dry-run/backtest、启动 background/migration/backfill、调用外部 LLM/RL/MCTS 或授予 PL-H。",
-  "next_after": "After loop385 memory read-model, bridge construction universe read-model into user-facing factor mining plan and continue toward real panel scoring authorization only after factor construction factory/gates/scheduler/memory are complete.",
+  "current_slice": "factor-trajectory-memory-read-model-loop385",
+  "next_atomic_action": "FACTOR_CONSTRUCTION_UNIVERSE_PLAN_BRIDGE_LOOP386：把 loop382-385 的五族候选生成、质量闸、adaptive schedule、trajectory memory read-model 接入 factor mining creation plan / Chat / Jobs 共享 read-model，让用户可见“生成了哪些家族、为什么留下、下一轮怎么调度、记忆入口为何未写入”；仍不得读取/写入真实 DB、不得写真实队列、DB enqueue、连接 runner/adapter、执行 real scorer/actual dry-run/backtest、启动 background/migration/backfill、调用外部 LLM/RL/MCTS 或授予 PL-H。",
+  "next_after": "After loop386 bridge, continue to real panel scoring authorization only if construction universe remains coherent and user-visible.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop384-factor-adaptive-generator-scheduling",
+  "last_tick": "loop385-factor-trajectory-memory-read-model",
   "last_sync_sources": [
+    "SYNC-394 loop385 Factor trajectory memory read-model",
+    "loop385 implementation: FactorPoolQualityGateReportV1 + FactorAdaptiveGeneratorScheduleV1 now derive FactorTrajectoryMemoryReadModelV1 with candidate trajectory rows, schedule summary, persist fields, write_not_allowed, and persisted_to_db=false",
+    "loop385 changed: src/qa/quant_mining/factor_trajectory_memory_read_model.py; tests/test_factor_trajectory_memory_read_model_unit.py; truth sources",
+    "loop385 verification: RED missing module; focused memory read-model 2 passed; related factor construction/quality/schedule/screening/batch chain 37 passed; targeted Ruff pass; targeted compileall pass; forbidden DB-write/queue/runner/backtest/external-model/RL/secret marker scan clean",
+    "loop385 worker: permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier were sent read-only loop385 tasks with model budget policy; no duplicate same-role worker created",
+    "next: FACTOR_CONSTRUCTION_UNIVERSE_PLAN_BRIDGE_LOOP386",
     "SYNC-393 loop384 Factor adaptive generator scheduling",
     "loop384 implementation: FactorPoolQualityGateReportV1 now derives FactorAdaptiveGeneratorScheduleV1 with next-round family weights, candidate quotas, explore/exploit rationale, family actions, and all-false side effects",
     "loop384 changed: src/qa/quant_mining/factor_adaptive_generator_scheduler.py; tests/test_factor_adaptive_generator_scheduler_unit.py; truth sources",
@@ -345,5 +351,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop384 Factor adaptive generator scheduling complete. FactorPoolQualityGateReportV1 now derives FactorAdaptiveGeneratorScheduleV1 with next-round family weights, candidate quotas, explore/exploit rationale, family actions, and all-false side effects. Verification: RED missing module; focused scheduler 2 passed; related factor construction/quality/screening/batch chain 35 passed; targeted Ruff pass; targeted compileall pass; forbidden DB/queue/runner/backtest/external-model/RL/secret marker scan clean. Next: FACTOR_TRAJECTORY_MEMORY_READ_MODEL_LOOP385."
+  "last_completed_note": "loop385 Factor trajectory memory read-model complete. FactorPoolQualityGateReportV1 + FactorAdaptiveGeneratorScheduleV1 now derive FactorTrajectoryMemoryReadModelV1 with candidate trajectory rows, schedule summary, persist fields, write_not_allowed, and persisted_to_db=false. Verification: RED missing module; focused memory read-model 2 passed; related factor construction/quality/schedule/screening/batch chain 37 passed; targeted Ruff pass; targeted compileall pass; forbidden DB-write/queue/runner/backtest/external-model/RL/secret marker scan clean. Next: FACTOR_CONSTRUCTION_UNIVERSE_PLAN_BRIDGE_LOOP386."
 }

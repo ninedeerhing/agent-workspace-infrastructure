@@ -1,8 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-01T19:25:58+08:00
+updated_at: 2026-07-01T19:45:58+08:00
 
-## Latest Handoff — SYNC-393 loop384
+## Latest Handoff — SYNC-394 loop385
+
+- [DONE] Factor trajectory memory read-model is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_trajectory_memory_read_model.py`, `tests/test_factor_trajectory_memory_read_model_unit.py`, plus truth sources.
+- [DONE] `FactorTrajectoryMemoryReadModelV1` derives from quality feedback inputs + adaptive schedule and exposes candidate trajectory rows, next schedule summary, persist fields, `write_status=write_not_allowed`, and `persisted_to_db=false`.
+- [VERIFY] RED missing module; focused memory read-model 2 passed; related factor construction/quality/schedule/screening/batch chain 37 passed; targeted Ruff pass; targeted compileall pass; forbidden DB-write/queue/runner/backtest/external-model/RL/secret marker scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop385 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. Continue user-facing construction universe bridge.
+- [NEXT] FACTOR_CONSTRUCTION_UNIVERSE_PLAN_BRIDGE_LOOP386：bridge loop382-385 generator/quality/schedule/memory read-models into factor mining creation plan / Chat / Jobs.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop386.
+
+## Previous Handoff — SYNC-393 loop384
 
 - [DONE] Factor adaptive generator scheduling is implemented.
 - [DONE] Changed quant files: `src/qa/quant_mining/factor_adaptive_generator_scheduler.py`, `tests/test_factor_adaptive_generator_scheduler_unit.py`, plus truth sources.
