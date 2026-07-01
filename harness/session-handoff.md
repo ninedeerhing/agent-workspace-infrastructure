@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-01T17:27:44+08:00
+updated_at: 2026-07-01T17:48:32+08:00
+
+## Latest Handoff — SYNC-389 loop380
+
+- [DONE] Factor real-data scorer operator/reviewer authorization packet is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_data_scorer_operator_reviewer_authorization_packet.py`, `tests/test_factor_real_data_scorer_operator_reviewer_authorization_packet_unit.py`, plus truth sources.
+- [DONE] `FactorRealDataScorerOperatorReviewerAuthorizationPacketV1` derives from the formal execution preflight and lists dual-control review materials while keeping `authorization_status=not_granted` and `execution_status=not_allowed`.
+- [VERIFY] RED expected missing module; focused packet 2 passed; related operator/reviewer packet + formal authorization preflight + batch mining + design review surface + execution-design packet + explicit approval record + formal artifact + factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector 74 passed; targeted Ruff pass; targeted compileall pass; loop-state JSON parse pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop380 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this packet does not read DB, write queue/DB, connect runner/adapter, execute real scorer/dry-run/backtest, start background/migration/backfill, or grant PL-H.
+- [NEXT] FACTOR_REAL_DATA_SCORER_AUTHORIZATION_REVIEW_SURFACE_LOOP381：derive consumer authorization review surface; still no execution.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop381.
 
 ## Latest Handoff — SYNC-388 loop379
 
