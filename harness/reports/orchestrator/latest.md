@@ -1,4 +1,58 @@
-# Orchestrator Latest Report — SYNC-371 loop364
+# Orchestrator Latest Report — SYNC-375 loop366
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop366 factor typed grammar + early hard gates"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_gates.py"
+      summary: "Added no-execution hard-gate result model and checker with canonical expression, AST/family hash, dimension inference, dependency and complexity reporting."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_field_catalog.py"
+      summary: "Added typed field catalog, PIT declaration handling, unknown-field violations, and dependency JSON."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_complexity.py"
+      summary: "Added node/depth/window/time-series-operator complexity metrics."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_pool_filters.py"
+      summary: "Added pool-level AST/family dedupe filtering and execution-enabled safety flag fail-closed."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_models.py"
+      summary: "Attached hard-gate result to constructed factor candidates."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_registry.py"
+      summary: "Rechecked generated candidates through hard gates and carried seen AST/family hashes across generator families."
+    - file: "apps/quant_assistant/tests/test_factor_construction_hard_gates_unit.py"
+      summary: "Covered PIT, unknown fields, AST/family dedupe, dimensions, and complexity caps."
+    - file: "apps/quant_assistant/tests/test_factor_construction_registry_unit.py"
+      summary: "Kept baseline registry contract tests slim."
+    - file: "apps/quant_assistant/tests/test_factor_construction_registry_hardening_unit.py"
+      summary: "Covered registry safety fail-closed and cross-generator duplicate filtering."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_construction_hard_gates_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py -q"
+      result: "15 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_construction_hard_gates_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_dsl_unit.py tests/test_factor_dedup_gate_unit.py tests/test_quant_mining_candidate_generator_unit.py tests/test_quant_mining_factor_factory_unit.py tests/test_quant_mining_factor_factory_selector_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "49 passed."
+    - command: "uv run ruff check targeted factor construction files"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q targeted factor construction src files"
+      result: "compiled successfully."
+    - command: "pure LOC"
+      result: "196 / 112 / 72 / 137 / 193 / 68 / 115 / 115 / 153."
+  worker_dispatch:
+    - "Wegener runtime worker performed read-only gate review and returned P1/P2/P3 findings."
+    - "PIT fail-open, registry dedupe, no-execution safety, and unknown-field concerns were fixed with tests."
+    - "Wegener was closed after report incorporation."
+    - "Historical Beauvoir runtime id was unreachable and not treated as a reusable worker."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "A hard gate must enforce the boundary it names; PIT defaults and duplicate hashes cannot be merely reported."
+      - "Runtime worker ids are not permanent Codex worker identities; unreachable runtime ids must be recorded as stale, not reused."
+    performance_note: "Loop366 closed a core factor-construction stability layer and unlocks larger no-execution candidate pool generation."
+  blockers:
+    - "No product blocker. Formal queue-write review remains not-granted; no real DB queue, runner handoff, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_PARAMETER_SWEEP_AND_SYMBOLIC_MUTATION_POOL_LOOP367"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-371 loop364
 
 report:
   role_id: "orchestrator"

@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-01T13:13:56+08:00
+updated_at: 2026-07-01T13:34:34+08:00
+
+## Latest Handoff — SYNC-375 loop366
+
+- [DONE] Factor typed grammar + early hard gates are implemented for the no-execution factor construction registry.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_construction_gates.py`, `factor_construction_field_catalog.py`, `factor_construction_complexity.py`, `factor_construction_pool_filters.py`, `factor_construction_models.py`, `factor_construction_registry.py`, `tests/test_factor_construction_hard_gates_unit.py`, `tests/test_factor_construction_registry_unit.py`, `tests/test_factor_construction_registry_hardening_unit.py`, plus truth sources.
+- [DONE] Candidate JSON now includes canonical expression, AST hash, family hash, inferred dimension, typed data dependencies, PIT declaration status, complexity metrics, and violations/warnings. Registry-level candidate pool filtering carries seen AST/family hashes across generator families and drops duplicates.
+- [DONE] Safety hardening from Wegener review is incorporated: fundamental PIT defaults fail-closed, unknown fields add typed catalog violations, `max_nodes` threshold is pinned, and execution-enabled safety flags raise `FactorConstructionSafetyError`.
+- [VERIFY] focused 15 passed; related DSL/dedup/candidate/factory/selector/batch 49 passed; targeted Ruff pass; targeted compileall pass; pure LOC gates 196 / field_catalog 112 / complexity 72 / models 137 / registry 193 / pool_filters 68 / hard_gates_test 115 / registry_test 115 / hardening_test 153.
+- [WORKERS] Wegener read-only gate review returned P1/P2/P3 findings; P1/P2 were fixed and covered by tests; runtime worker was closed. Historical Beauvoir channel was not reachable in this client and was not treated as an available worker.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this hard-gate layer does not authorize queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, PL-H, background/migration/backfill, formal approval, manual acceptance, or execution permission.
+- [NEXT] FACTOR_PARAMETER_SWEEP_AND_SYMBOLIC_MUTATION_POOL_LOOP367：expand template parameter sweep and add/connect symbolic mutation as no-execution generators to produce a hundreds-scale gated candidate pool with accepted/rejected/dedup/hard-gate statistics.
+- [FORBIDDEN] Do not start real DB queue writes, runner/adapter handoff, actual dry-run/backtest, background jobs, migrations, or backfills in loop367.
 
 ## Latest Handoff — SYNC-374 loop365
 
