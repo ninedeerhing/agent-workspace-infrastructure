@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-01T13:59:10+08:00
+updated_at: 2026-07-01T14:03:57+08:00
+
+## Latest Handoff — SYNC-378 loop369
+
+- [DONE] Factor pool mocked/read-only scorer adapter is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_pool_mocked_scorer.py`, `tests/test_factor_pool_mocked_scorer_unit.py`, plus truth sources.
+- [DONE] `FactorPoolScreeningPrepV1` can now derive `FactorPoolMockedScorerReportV1`; eligible candidates get planned metric placeholders, blocked candidates are skipped, and all real metric values remain `None` with `requires_real_data=true`.
+- [VERIFY] focused 2 passed; related factor mocked scorer/screening/construction/DSL/dedup/candidate/factory/selector/batch 56 passed; targeted Ruff pass; targeted compileall pass; pure LOC mocked_scorer 113 / mocked_scorer_test 87.
+- [WORKERS] Permanent Planner and Dispatcher threads were sent read-only loop369 requests. Orchestrator completed TDD adapter implementation without waiting for cross-dialogue reports and did not create duplicate same-role workers.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this mocked scorer layer does not read real DB, calculate true IC, authorize queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, PL-H, background/migration/backfill, formal approval, manual acceptance, or execution permission.
+- [NEXT] FACTOR_MINING_FLOW_SCREENING_READINESS_SURFACE_LOOP370：surface candidate pool -> screening prep -> mocked scorer report into the factor mining/manual entry read-model so the user can see generation, scoring-prep, and placeholder scoring progress.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run actual dry-run/backtest, start background jobs, migrations, or backfills in loop370.
 
 ## Latest Handoff — SYNC-377 loop368
 

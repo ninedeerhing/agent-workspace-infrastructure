@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T13:59:10+08:00",
+  "updated_at": "2026-07-01T14:03:57+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "factor-pool-screening-prep-loop368",
-  "next_atomic_action": "FACTOR_POOL_MOCKED_READ_ONLY_SCORER_ADAPTER_LOOP369：基于 loop368 screening prep 合同接入 mocked/read-only scorer adapter，为每个 eligible candidate 生成结构化计划评分占位（不读取真实 DB、不计算真实 IC、不跑回测），并输出 scorer report；不得写真实队列、DB enqueue、连接 runner/adapter、执行 actual dry-run/backtest、启动 background/migration/backfill 或授予 PL-H。",
-  "next_after": "After loop369 mocked/read-only scorer adapter, surface screening readiness into factor mining/manual entry flow and prepare a later real-data scorer authorization gate; loop364 queue-write formal human review remains not-granted until explicit formal acceptance.",
+  "current_slice": "factor-mocked-read-only-scorer-loop369",
+  "next_atomic_action": "FACTOR_MINING_FLOW_SCREENING_READINESS_SURFACE_LOOP370：把 loop367-369 的 candidate pool → screening prep → mocked scorer report 接入因子挖掘/手动入口的只读 flow read-model，让用户可看到候选生成、准备评分、占位评分的进度；不得读取真实 DB、写真实队列、DB enqueue、连接 runner/adapter、执行 actual dry-run/backtest、启动 background/migration/backfill 或授予 PL-H。",
+  "next_after": "After loop370 flow surface, add real-data scorer authorization/preflight gate before any actual data read or true IC computation; loop364 queue-write formal human review remains not-granted until explicit formal acceptance.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop368-factor-pool-screening-prep",
+  "last_tick": "loop369-factor-mocked-read-only-scorer",
   "last_sync_sources": [
+    "SYNC-378 loop369 Factor pool mocked read-only scorer adapter",
+    "loop369 implementation: FactorPoolScreeningPrepV1 now derives FactorPoolMockedScorerReportV1 with planned metric placeholders, skipped blocked candidates, and all real values None/requires_real_data true",
+    "loop369 changed: src/qa/quant_mining/factor_pool_mocked_scorer.py; tests/test_factor_pool_mocked_scorer_unit.py; truth sources",
+    "loop369 verification: focused 2 passed; related factor mocked scorer/screening/construction/DSL/dedup/candidate/factory/selector/batch 56 passed; targeted Ruff pass; targeted compileall pass; pure LOC healthy 113/87",
+    "loop369 worker: permanent Planner and Dispatcher were sent read-only loop369 tasks; Orchestrator completed TDD adapter implementation without creating duplicate same-role workers",
+    "next: FACTOR_MINING_FLOW_SCREENING_READINESS_SURFACE_LOOP370",
     "SYNC-377 loop368 Factor pool screening prep contract",
     "loop368 implementation: FactorCandidatePoolV1 now derives read-only FactorPoolScreeningPrepV1 with planned coverage/IC/turnover/cross-correlation/diversity metrics; unsafe source pool fails closed and hard-gate failed candidates are blocked",
     "loop368 changed: src/qa/quant_mining/factor_pool_screening_prep.py; tests/test_factor_pool_screening_prep_unit.py; truth sources",
@@ -249,5 +255,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop368 Factor pool screening prep contract complete. FactorCandidatePoolV1 now derives read-only FactorPoolScreeningPrepV1 with planned coverage/IC/turnover/cross-correlation/diversity metrics, unsafe source pool fail-closed, and hard-gate failed candidate blocking. Verification: focused 3 passed; related factor screening/construction/DSL/dedup/candidate/factory/selector/batch 54 passed; targeted Ruff pass; targeted compileall pass; pure LOC healthy. Next: FACTOR_POOL_MOCKED_READ_ONLY_SCORER_ADAPTER_LOOP369."
+  "last_completed_note": "loop369 Factor pool mocked/read-only scorer adapter complete. FactorPoolScreeningPrepV1 now derives FactorPoolMockedScorerReportV1 with planned metric placeholders, skipped blocked candidates, and all true values left None/requires_real_data true. Verification: focused 2 passed; related factor mocked scorer/screening/construction/DSL/dedup/candidate/factory/selector/batch 56 passed; targeted Ruff pass; targeted compileall pass; pure LOC healthy. Next: FACTOR_MINING_FLOW_SCREENING_READINESS_SURFACE_LOOP370."
 }
