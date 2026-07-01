@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-01T16:49:28+08:00
+updated_at: 2026-07-01T17:06:06+08:00
+
+## Latest Handoff — SYNC-387 loop378
+
+- [DONE] Factor real-data scorer execution design review bridge is implemented.
+- [DONE] Changed quant files: `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] `user_facing_batch_mining_creation_plan_v1` now includes `real_data_scorer_execution_design_review_surface`, so the shared Chat/API/Jobs upstream read-model can show real scoring design review status without execution.
+- [VERIFY] RED expected `KeyError`; focused bridge 1 passed; related batch mining + design review surface + execution-design packet + explicit approval record + formal artifact + factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector 70 passed; targeted Ruff pass; loop-state JSON parse pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop378 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this bridge does not read DB, write queue/DB, connect runner/adapter, execute real scorer/dry-run/backtest, start background/migration/backfill, or grant PL-H.
+- [NEXT] FACTOR_REAL_DATA_SCORER_FORMAL_EXECUTION_AUTHORIZATION_PREFLIGHT_LOOP379：design formal execution authorization preflight; still no execution.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop379.
 
 ## Latest Handoff — SYNC-386 loop377
 
