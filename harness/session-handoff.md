@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-01T18:45:58+08:00
+updated_at: 2026-07-01T19:05:58+08:00
 
-## Latest Handoff — SYNC-391 loop382
+## Latest Handoff — SYNC-392 loop383
+
+- [DONE] Factor pool quality gate + trajectory feedback prep is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_pool_quality_gate.py`, `tests/test_factor_pool_quality_gate_trajectory_unit.py`, plus truth sources.
+- [DONE] `FactorPoolQualityGateReportV1` derives from `FactorCandidatePoolV1` + `FactorPoolScreeningPrepV1` and exposes candidate survival explanations, source-family quota telemetry, family telemetry, pool admission placeholders, and trajectory feedback inputs.
+- [DONE] Real novelty, marginal gain, IC, and pool admission scores remain `None` or `{}` and require future authorized real panel metrics.
+- [VERIFY] RED missing module; focused quality gate 2 passed; related factor construction/screening/batch chain 33 passed; targeted Ruff pass; targeted compileall pass; forbidden DB/queue/runner/backtest/external-model/secret marker scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop383 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. Continue adaptive generator scheduling and trajectory memory/read-model integration.
+- [NEXT] FACTOR_ADAPTIVE_GENERATOR_SCHEDULING_LOOP384：build no-execution adaptive generator scheduling plan from family telemetry and trajectory feedback inputs.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop384.
+
+## Previous Handoff — SYNC-391 loop382
 
 - [DONE] Factor construction universe generator families are implemented.
 - [DONE] Changed quant files: `src/qa/quant_mining/factor_construction_universe_generators.py`, `src/qa/quant_mining/factor_construction_registry.py`, `tests/test_factor_construction_generator_expansion_unit.py`, plus truth sources.
