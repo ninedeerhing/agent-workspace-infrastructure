@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-01T17:06:06+08:00
+updated_at: 2026-07-01T17:27:44+08:00
+
+## Latest Handoff — SYNC-388 loop379
+
+- [DONE] Factor real-data scorer formal execution authorization preflight is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_data_scorer_formal_execution_authorization_preflight.py`, `tests/test_factor_real_data_scorer_formal_execution_authorization_preflight_unit.py`, plus truth sources.
+- [DONE] `FactorRealDataScorerFormalExecutionAuthorizationPreflightV1` derives from the design review surface, checks visible no-execution coherence, and outputs `awaiting_formal_authorization` while keeping `authorization_status=not_granted` and `execution_status=not_allowed`.
+- [VERIFY] RED expected missing module; focused preflight 2 passed; related formal authorization preflight + batch mining + design review surface + execution-design packet + explicit approval record + formal artifact + factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector 72 passed; targeted Ruff pass; targeted compileall pass; loop-state JSON parse pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop379 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this preflight does not read DB, write queue/DB, connect runner/adapter, execute real scorer/dry-run/backtest, start background/migration/backfill, or grant PL-H.
+- [NEXT] FACTOR_REAL_DATA_SCORER_OPERATOR_REVIEWER_AUTHORIZATION_PACKET_LOOP380：design operator/reviewer formal execution authorization review packet; still no execution.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop380.
 
 ## Latest Handoff — SYNC-387 loop378
 
