@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-01T21:28:58+08:00
+updated_at: 2026-07-01T21:48:58+08:00
+
+## Latest Handoff — SYNC-400 loop391
+
+- [DONE] Factor real panel scoring formal authorization readiness is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_panel_scoring_formal_authorization_readiness.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_real_panel_scoring_formal_authorization_readiness_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] `FactorRealPanelScoringFormalAuthorizationReadinessV1` converts loop390 explicit review decision packet into formal authorization readiness with readiness status, formal authorization status, candidate refs, evidence gaps, human authorization status, audit/rollback requirements, formal authorization requirements, next route, and no-execution safety.
+- [DONE] `user_facing_batch_mining_creation_plan_v1` now includes `real_panel_scoring_formal_authorization_readiness`; blocked source remains `not_ready`, and ready source only awaits formal human authorization, not approval or execution.
+- [VERIFY] RED missing module; focused formal readiness + bridge 7 passed; related factor construction/scoring/formal-readiness chain 28 passed; targeted Ruff pass; targeted compileall pass; forbidden marker scan clean except negative False safety assertions.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop391 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. The next core gap is Phase 3 large candidate pool budget expansion, not another authorization shell.
+- [NEXT] FACTOR_LARGE_CANDIDATE_POOL_BUDGET_EXPANSION_LOOP392：expand no-execution generator registry from preview/small pool to budgeted hundreds-scale candidate pool.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop392.
 
 ## Latest Handoff — SYNC-399 loop390
 
