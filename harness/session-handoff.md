@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-01T23:08:58+08:00
+updated_at: 2026-07-01T23:38:58+08:00
+
+## Latest Handoff — SYNC-404 loop395
+
+- [DONE] Factor panel screening evidence plan is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_panel_screening_evidence_plan.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `src/qa/brain/batch_mining_construction_universe.py`, `src/qa/brain/batch_mining_real_data_scorer_surfaces.py`, `src/qa/brain/batch_mining_real_panel_surfaces.py`, `tests/test_factor_panel_screening_evidence_plan_unit.py`, `tests/test_factor_panel_screening_evidence_plan_bridge_unit.py`, plus truth sources.
+- [DONE] `real_panel_screening_evidence_plan` now appears in `user_facing_batch_mining_creation_plan_v1`, derived from ranked shortlist allocated refs.
+- [DONE] Evidence fields are planned-only: coverage/null/inf/outlier, Rank IC/ICIR, turnover, horizon stability, industry/size neutralized IC. All require real panel data and observed values remain `None`.
+- [DONE] Builder split completed: construction universe, real-data scorer surfaces, and real-panel surfaces now live in focused helper modules; `batch_mining_creation_plan_builder.py` is down to 168 pure LOC.
+- [VERIFY] RED missing module + missing creation-plan bridge; focused evidence+bridge 3 passed; creation-plan focused 1 passed; related panel-scoring/factor-construction chain 35 passed; targeted Ruff pass; targeted compileall pass; payload smoke pass; forbidden scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop395 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. The next core gap is pool admission evidence package.
+- [NEXT] FACTOR_POOL_ADMISSION_EVIDENCE_PACKAGE_LOOP396：plan no-execution mutual IC/correlation, novelty/diversity, marginal gain, complexity/crowding/reproducibility/lineage completeness evidence package.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop396.
 
 ## Latest Handoff — SYNC-403 loop394
 
