@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T22:18:58+08:00",
+  "updated_at": "2026-07-01T22:46:58+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "factor-large-candidate-pool-budget-expansion-loop392",
-  "next_atomic_action": "FACTOR_POOL_ADMISSION_RANKED_SHORTLIST_LOOP393：对照 2026-07-01-factor-construction-universe.md Phase 4，在 no-execution large candidate pool 之上生成 pool admission ranked shortlist / panel screening budget allocator read-model：把 survived candidates、family telemetry、rejection telemetry、candidate budget、novelty/marginal-gain placeholders 和 top-candidate refs 汇总为可消费 shortlist；仍不得读取/写入真实 DB、不得写真实队列、DB enqueue、连接 runner/adapter、执行 real scorer/actual dry-run/backtest、启动 background/migration/backfill、调用外部 LLM/RL/MCTS 或授予 PL-H。",
-  "next_after": "After loop393 ranked shortlist and panel screening budget allocator, continue Phase 4 small-sample real panel screening contract and pool admission evidence package until factor construction is complete enough for formal human audit.",
+  "current_slice": "factor-pool-admission-ranked-shortlist-loop393",
+  "next_atomic_action": "FACTOR_REAL_PANEL_SCORING_SHORTLIST_PREFLIGHT_LOOP394：对照 2026-07-01-factor-construction-universe.md Phase 4，把 loop393 pool_admission_ranked_shortlist 的 allocated candidate refs 接入真实 panel scoring authorization preflight / review packet：后续预检必须优先消费 ranked shortlist 与 screening budget allocation，而不是全量 survived candidates；仍不得读取/写入真实 DB、不得写真实队列、DB enqueue、连接 runner/adapter、执行 real scorer/actual dry-run/backtest、启动 background/migration/backfill、调用外部 LLM/RL/MCTS 或授予 PL-H。",
+  "next_after": "After loop394 shortlist-aware real panel scoring preflight, continue small-sample panel screening evidence packet and eventual authorized scoring/backtest handoff only after explicit human authorization gates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop392-factor-large-candidate-pool-budget-expansion",
+  "last_tick": "loop393-factor-pool-admission-ranked-shortlist",
   "last_sync_sources": [
+    "SYNC-402 loop393 Factor pool admission ranked shortlist",
+    "loop393 implementation: added FactorPoolAdmissionRankedShortlistV1 and wired pool_admission_ranked_shortlist into factor_construction_universe plan bridge; it ranks survived candidates with deterministic family round-robin, allocates panel screening budget, and keeps novelty/marginal-gain as placeholders requiring real panel metrics",
+    "loop393 changed: src/qa/quant_mining/factor_pool_admission_ranked_shortlist.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_pool_admission_ranked_shortlist_unit.py; tests/test_batch_mining_flow_unit.py; truth sources",
+    "loop393 verification: RED missing module and missing creation-plan step; focused module 2 passed; creation-plan bridge 1 passed; related factor construction/batch/scoring chain 27 passed; targeted Ruff pass; targeted compileall pass; payload smoke max_candidates=220 produced status ready_for_panel_screening_budget_plan / candidate_count 184 / shortlist_count 30 / allocated 20 / all side effects false including external LLM/RL/MCTS; forbidden scan only matched negative not_granted/granted_pl_h false test assertions",
+    "loop393 worker: permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier reports collected; no duplicate same-role worker created",
+    "next: FACTOR_REAL_PANEL_SCORING_SHORTLIST_PREFLIGHT_LOOP394",
     "SYNC-401 loop392 Factor large candidate pool budget expansion",
     "loop392 implementation: FactorConstructionSpec/registry now separates final batch_size from max_candidates with a 300 no-execution hard cap; chat/manual brief parsing accepts max_candidates; generator families emit a hundreds-scale pool with family quotas and rejection telemetry",
     "loop392 changed: src/qa/quant_mining/factor_construction_models.py; src/qa/quant_mining/factor_construction_registry.py; src/qa/quant_mining/factor_construction_universe_generators.py; src/qa/brain/batch_mining_flow.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_construction_generator_expansion_unit.py; tests/test_factor_construction_registry_unit.py; tests/test_batch_mining_flow_unit.py; truth sources",

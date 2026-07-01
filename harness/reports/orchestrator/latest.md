@@ -1,4 +1,55 @@
-# Orchestrator Latest Report — SYNC-401 loop392
+# Orchestrator Latest Report — SYNC-402 loop393
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop393 factor pool admission ranked shortlist"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_pool_admission_ranked_shortlist.py"
+      summary: "Added no-execution ranked shortlist and panel screening budget allocation from FactorPoolQualityGateReportV1."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Wired pool_admission_ranked_shortlist into factor_construction_universe and added the consumer step."
+    - file: "apps/quant_assistant/tests/test_factor_pool_admission_ranked_shortlist_unit.py"
+      summary: "Covered survived-only shortlist, deterministic ranks, family diversity, budget allocation, placeholders, blocked no-survivor state, and all-false side effects."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Covered creation plan bridge exposure of the ranked shortlist and budget allocator."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_pool_admission_ranked_shortlist_unit.py -q"
+      result: "RED missing module before implementation; GREEN 2 passed after implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_batch_mining_flow_unit.py::test_build_factor_mining_creation_plan_explains_category_generation_screening_and_plan -q"
+      result: "RED missing consumer step before bridge; GREEN 1 passed after bridge."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_pool_admission_ranked_shortlist_unit.py tests/test_batch_mining_flow_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_pool_quality_gate_trajectory_unit.py tests/test_factor_adaptive_generator_scheduler_unit.py tests/test_factor_trajectory_memory_read_model_unit.py tests/test_factor_real_panel_scoring_authorization_preflight_unit.py tests/test_factor_real_panel_scoring_formal_authorization_readiness_unit.py -q"
+      result: "27 passed."
+    - command: "uv run ruff check targeted loop393 source/test files"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q targeted loop393 source files"
+      result: "passed."
+    - command: "PYTHONPATH=src uv run python payload smoke for max_candidates=220"
+      result: "status=ready_for_panel_screening_budget_plan; candidate_count=184; shortlist_count=30; allocated=20; all side_effects false including external LLM/RL/MCTS."
+    - command: "Select-String forbidden marker scan for env/secret/DB write/queue/runner/adapter/backtest/real scorer/external model/RL/MCTS/PL-H markers"
+      result: "clean except negative not_granted / granted_pl_h false assertions in tests."
+  worker_dispatch:
+    - "Permanent Planner thread received loop393 read-only loop_plan request using gpt-5.4-mini and returned success."
+    - "Permanent Dispatcher thread received loop393 boundary/assignment request using gpt-5.4-mini and returned success."
+    - "Permanent Test Engineer thread received loop393 acceptance matrix request using gpt-5.5 and returned success."
+    - "Permanent Code Reviewer thread received loop393 risk review request using gpt-5.5 and returned success."
+    - "Permanent Verifier thread received loop393 checklist request using gpt-5.4-mini and returned partial checklist; final local verification passed."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Ranked shortlist is planning evidence, not a real validity score."
+      - "Panel screening budget allocation should consume top family-diverse refs before any real scorer/review preflight."
+    performance_note: "Loop393 compresses the large factor candidate pool into an auditable shortlist and budget plan without execution side effects."
+  blockers:
+    - "Factor construction is not complete enough for formal human audit; continue shortlist-aware real panel scoring preflight."
+    - "No DB read/write, queue write, runner/adapter, external LLM/RL/MCTS call, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_REAL_PANEL_SCORING_SHORTLIST_PREFLIGHT_LOOP394"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-401 loop392
 
 report:
   role_id: "orchestrator"

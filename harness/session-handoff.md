@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-01T22:18:58+08:00
+updated_at: 2026-07-01T22:46:58+08:00
+
+## Latest Handoff — SYNC-402 loop393
+
+- [DONE] Factor pool admission ranked shortlist is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_pool_admission_ranked_shortlist.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_pool_admission_ranked_shortlist_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] `FactorPoolAdmissionRankedShortlistV1` derives a deterministic family-diverse shortlist from quality-gate survived candidates and allocates bounded panel screening refs.
+- [DONE] `factor_construction_universe` now includes `pool_admission_ranked_shortlist`; consumer steps include “入池排序短名单”. Payload smoke with `max_candidates=220` produced candidate_count=184, shortlist_count=30, allocated=20.
+- [VERIFY] RED missing module and missing creation-plan step; focused module 2 passed; creation-plan bridge 1 passed; related factor construction/batch/scoring chain 27 passed; targeted Ruff pass; targeted compileall pass; payload smoke pass; forbidden marker scan only matched negative not_granted/granted_pl_h false assertions.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop393 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. The next core gap is making real panel scoring preflight consume ranked shortlist allocated refs instead of all survived candidates.
+- [NEXT] FACTOR_REAL_PANEL_SCORING_SHORTLIST_PREFLIGHT_LOOP394：wire pool_admission_ranked_shortlist allocated refs and screening budget allocation into real panel scoring authorization preflight / review packet.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop394.
 
 ## Latest Handoff — SYNC-401 loop392
 
