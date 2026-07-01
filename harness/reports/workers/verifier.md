@@ -1,5 +1,26 @@
 # Worker Report — verifier
 
+## loop390 Report — 2026-07-01T21:28:58+08:00
+
+report:
+  role_id: "verifier"
+  status: "partial"
+  task: "loop390 explicit review decision packet verification checklist"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Verifier supplied focused/related/Ruff/compileall/forbidden/truth/git main-clean checklist; final local execution was required."
+    - command: "local verification"
+      result: "Focused 3 passed; related 47 passed; Ruff/compileall pass; forbidden marker scan clean except negative not_granted/not_allowed/False assertions and existing plan names."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Verification must distinguish decision packet from approval or execution permission."
+    performance_note: "Permanent Verifier thread supplied checklist; orchestrator closed final evidence locally."
+  blockers: []
+  next: "Verify loop391 formal authorization readiness with the same no-execution matrix."
+
 ## loop389 Report — 2026-07-01T21:10:58+08:00
 
 report:

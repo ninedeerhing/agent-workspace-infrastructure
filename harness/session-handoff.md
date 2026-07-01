@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-01T21:10:58+08:00
+updated_at: 2026-07-01T21:28:58+08:00
 
-## Latest Handoff — SYNC-398 loop389
+## Latest Handoff — SYNC-399 loop390
+
+- [DONE] Factor real panel scoring explicit review decision packet is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_panel_scoring_explicit_review_decision_packet.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_real_panel_scoring_explicit_review_decision_packet_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] `FactorRealPanelScoringExplicitReviewDecisionPacketV1` converts loop389 operator/reviewer material into explicit review decision packet with available decisions, selected_decision, candidate refs, evidence gaps, human authorization status, audit/rollback requirements, next route, and no-execution safety.
+- [DONE] `user_facing_batch_mining_creation_plan_v1` now includes `real_panel_scoring_explicit_review_decision_packet`; blocked source exposes only request_more_evidence, and ready source only awaits explicit review decision.
+- [VERIFY] RED missing module; focused decision packet + bridge 3 passed; related factor construction/scoring/decision chain 47 passed; targeted Ruff pass; targeted compileall pass; forbidden marker scan clean except negative not_granted/not_allowed/False assertions and existing plan names.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier loop390 reports were collected. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. Continue formal authorization readiness.
+- [NEXT] FACTOR_REAL_PANEL_SCORING_FORMAL_AUTHORIZATION_READINESS_LOOP391：derive formal authorization readiness from the explicit review decision packet.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop391.
+
+## Previous Handoff — SYNC-398 loop389
 
 - [DONE] Factor real panel scoring operator/reviewer review material is implemented.
 - [DONE] Changed quant files: `src/qa/quant_mining/factor_real_panel_scoring_operator_review_material.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_real_panel_scoring_operator_review_material_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.

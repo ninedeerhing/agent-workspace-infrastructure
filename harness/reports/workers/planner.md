@@ -1,5 +1,24 @@
 # Worker Report — planner
 
+## loop390 Report — 2026-07-01T21:28:58+08:00
+
+report:
+  role_id: "planner"
+  status: "success"
+  task: "loop390 factor real panel scoring explicit review decision packet plan"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Planner selected factor_real_panel_scoring_explicit_review_decision_packet_v1 as the core function and kept it no-execution."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Explicit review decision packet must expose decision options without implying grant or execution."
+    performance_note: "Permanent Planner thread produced usable loop390 plan."
+  blockers: []
+  next: "FACTOR_REAL_PANEL_SCORING_FORMAL_AUTHORIZATION_READINESS_LOOP391"
+
 ## loop389 Report — 2026-07-01T21:10:58+08:00
 
 report:

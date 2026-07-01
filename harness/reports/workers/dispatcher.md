@@ -1,5 +1,24 @@
 # Worker Report — dispatcher
 
+## loop390 Report — 2026-07-01T21:28:58+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "loop390 explicit review decision packet assignment matrix"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Dispatcher assigned canonical implementation scope and read-only Test Engineer/Code Reviewer/Verifier lanes; no duplicate worker was created."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Decision packet work must keep decisions as review workflow choices, not execution controls."
+    performance_note: "Permanent Dispatcher thread produced usable loop390 assignment matrix."
+  blockers: []
+  next: "Keep fixed worker chain for loop391 formal authorization readiness."
+
 ## loop389 Report — 2026-07-01T21:10:58+08:00
 
 report:

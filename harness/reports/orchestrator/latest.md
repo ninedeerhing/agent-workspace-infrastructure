@@ -1,4 +1,51 @@
-# Orchestrator Latest Report — SYNC-398 loop389
+# Orchestrator Latest Report — SYNC-399 loop390
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop390 factor real panel scoring explicit review decision packet"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_real_panel_scoring_explicit_review_decision_packet.py"
+      summary: "Added no-execution explicit review decision packet from loop389 operator/reviewer material."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Wired real_panel_scoring_explicit_review_decision_packet into user_facing_batch_mining_creation_plan_v1."
+    - file: "apps/quant_assistant/tests/test_factor_real_panel_scoring_explicit_review_decision_packet_unit.py"
+      summary: "Covered blocked and awaiting-review material states, decision options, evidence gaps, authorization status, audit rollback requirements, and all-false side effects."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Covered creation plan exposure of the explicit review decision packet."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_real_panel_scoring_explicit_review_decision_packet_unit.py tests/test_batch_mining_flow_unit.py::test_build_factor_mining_creation_plan_explains_category_generation_screening_and_plan -q"
+      result: "RED missing module before implementation; GREEN 3 passed after implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_real_panel_scoring_explicit_review_decision_packet_unit.py tests/test_factor_real_panel_scoring_operator_review_material_unit.py tests/test_factor_real_panel_scoring_review_packet_unit.py tests/test_factor_real_panel_scoring_authorization_preflight_unit.py tests/test_factor_real_data_scorer_authorization_preflight_unit.py tests/test_batch_mining_flow_unit.py tests/test_factor_trajectory_memory_read_model_unit.py tests/test_factor_adaptive_generator_scheduler_unit.py tests/test_factor_pool_quality_gate_trajectory_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_pool_screening_prep_unit.py tests/test_factor_pool_mocked_scorer_unit.py tests/test_factor_mining_screening_readiness_surface_unit.py -q"
+      result: "47 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_real_panel_scoring_explicit_review_decision_packet.py src/qa/brain/batch_mining_creation_plan_builder.py tests/test_factor_real_panel_scoring_explicit_review_decision_packet_unit.py tests/test_batch_mining_flow_unit.py"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q src/qa/quant_mining/factor_real_panel_scoring_explicit_review_decision_packet.py src/qa/brain/batch_mining_creation_plan_builder.py tests/test_factor_real_panel_scoring_explicit_review_decision_packet_unit.py tests/test_batch_mining_flow_unit.py"
+      result: "passed."
+    - command: "Select-String forbidden marker scan for env/secret/DB write/queue/runner/adapter/backtest/real scorer/external model/RL/MCTS/PL-H markers"
+      result: "clean except negative not_granted/not_allowed/False assertions and existing plan names."
+  worker_dispatch:
+    - "Permanent Planner thread received loop390 read-only loop_plan request using gpt-5.4-mini and returned success."
+    - "Permanent Dispatcher thread received loop390 read-only assignment-matrix request using gpt-5.4-mini and returned success."
+    - "Permanent Test Engineer thread received loop390 TDD matrix request using gpt-5.5 and returned success."
+    - "Permanent Code Reviewer thread received loop390 read-only risk review request using gpt-5.5 and returned success."
+    - "Permanent Verifier thread received loop390 verification checklist request using gpt-5.4-mini and returned partial checklist; final local verification passed."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Decision options are review workflow choices, not execution controls."
+      - "selected_decision=none and not_granted/not_allowed must remain visible until a later explicit human step."
+    performance_note: "Loop390 creates visible no-execution explicit review decision packet from operator/reviewer material."
+  blockers:
+    - "Factor construction is not complete enough for formal human audit; continue formal authorization readiness."
+    - "No DB read/write, queue write, runner/adapter, external LLM/RL/MCTS call, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_REAL_PANEL_SCORING_FORMAL_AUTHORIZATION_READINESS_LOOP391"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-398 loop389
 
 report:
   role_id: "orchestrator"

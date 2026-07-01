@@ -1,5 +1,26 @@
 # Worker Report — test-engineer
 
+## loop390 Report — 2026-07-01T21:28:58+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "loop390 explicit review decision packet TDD matrix"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Test Engineer specified blocked/awaiting material, review-only decisions, candidate refs, evidence gaps, human authorization not_granted, audit/rollback, and all-false side-effect assertions."
+    - command: "local pytest evidence"
+      result: "Focused decision packet + bridge 3 passed; related factor construction/scoring/decision chain 47 passed."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Decision options are review workflow choices, not execution controls."
+    performance_note: "Permanent Test Engineer thread supplied usable loop390 TDD checklist."
+  blockers: []
+  next: "Add formal authorization readiness tests in loop391."
+
 ## loop389 Report — 2026-07-01T21:10:58+08:00
 
 report:

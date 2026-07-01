@@ -1,5 +1,26 @@
 # Worker Report — code-reviewer
 
+## loop390 Report — 2026-07-01T21:28:58+08:00
+
+report:
+  role_id: "code-reviewer"
+  status: "success"
+  task: "loop390 explicit review decision packet risk review"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Code Reviewer confirmed decision packet must not be expressed as human approval, execution authorization, queue write, real scoring readiness, runner/adapter connection, or PL-H."
+    - command: "local static checks"
+      result: "Ruff/compileall pass; forbidden marker scan clean except negative not_granted/not_allowed/False assertions and existing plan names."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Decision packet must preserve source material provenance and evidence gaps."
+    performance_note: "Permanent Code Reviewer thread supplied usable loop390 risk review."
+  blockers: []
+  next: "Review formal authorization readiness language in loop391."
+
 ## loop389 Report — 2026-07-01T21:10:58+08:00
 
 report:
