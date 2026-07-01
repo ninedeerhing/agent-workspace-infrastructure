@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-01T17:48:32+08:00
+updated_at: 2026-07-01T18:09:10+08:00
+
+## Latest Handoff — SYNC-390 loop381
+
+- [DONE] Factor real-data scorer authorization review surface is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_data_scorer_authorization_review_surface.py`, `tests/test_factor_real_data_scorer_authorization_review_surface_unit.py`, plus truth sources.
+- [DONE] `FactorRealDataScorerAuthorizationReviewSurfaceV1` derives from the operator/reviewer authorization packet and gives users a clear authorization review surface while preserving `authorization_status=not_granted` and `execution_status=not_allowed`.
+- [VERIFY] RED expected missing module; focused surface 2 passed; related authorization review surface + operator/reviewer packet + formal authorization preflight + batch mining + design review surface + execution-design packet + explicit approval record + formal artifact + factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector 76 passed; targeted Ruff pass; targeted compileall pass; loop-state JSON parse pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop381 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this surface does not read DB, write queue/DB, connect runner/adapter, execute real scorer/dry-run/backtest, start background/migration/backfill, or grant PL-H.
+- [NEXT] FACTOR_REAL_DATA_SCORER_AUTHORIZATION_REVIEW_BRIDGE_LOOP382：bridge authorization review surface into factor mining creation plan / Jobs / Chat read-model; still no execution.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop382.
 
 ## Latest Handoff — SYNC-389 loop380
 
