@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-01T19:05:58+08:00
+updated_at: 2026-07-01T19:25:58+08:00
 
-## Latest Handoff — SYNC-392 loop383
+## Latest Handoff — SYNC-393 loop384
+
+- [DONE] Factor adaptive generator scheduling is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_adaptive_generator_scheduler.py`, `tests/test_factor_adaptive_generator_scheduler_unit.py`, plus truth sources.
+- [DONE] `FactorAdaptiveGeneratorScheduleV1` derives from `FactorPoolQualityGateReportV1` and outputs no-execution next-round family weights, candidate quotas, explore/exploit rationale, family actions, requested budget, and all-false side effects.
+- [DONE] The scheduler does not claim real metric performance, does not train bandit/RL, and does not call external LLM/RL/MCTS.
+- [VERIFY] RED missing module; focused scheduler 2 passed; related factor construction/quality/screening/batch chain 35 passed; targeted Ruff pass; targeted compileall pass; forbidden DB/queue/runner/backtest/external-model/RL/secret marker scan clean.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop384 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] Factor construction is not complete enough for formal human audit. Continue trajectory memory read-model / persistence-intake and user-facing construction universe bridge.
+- [NEXT] FACTOR_TRAJECTORY_MEMORY_READ_MODEL_LOOP385：build no-execution trajectory memory read-model / persistence-intake from adaptive schedule and feedback inputs.
+- [FORBIDDEN] Do not read/write real DB, enqueue jobs, connect runner/adapter, call external LLM/RL/MCTS, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop385.
+
+## Previous Handoff — SYNC-392 loop383
 
 - [DONE] Factor pool quality gate + trajectory feedback prep is implemented.
 - [DONE] Changed quant files: `src/qa/quant_mining/factor_pool_quality_gate.py`, `tests/test_factor_pool_quality_gate_trajectory_unit.py`, plus truth sources.

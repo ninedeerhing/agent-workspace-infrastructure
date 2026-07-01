@@ -1,4 +1,47 @@
-# Orchestrator Latest Report — SYNC-392 loop383
+# Orchestrator Latest Report — SYNC-393 loop384
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop384 factor adaptive generator scheduling"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_adaptive_generator_scheduler.py"
+      summary: "Added no-execution adaptive generator schedule with family weights, candidate quotas, actions, and rationale."
+    - file: "apps/quant_assistant/tests/test_factor_adaptive_generator_scheduler_unit.py"
+      summary: "Covered bounded budget allocation, deterministic weights, no real metrics, and no external/RL execution flags."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_adaptive_generator_scheduler_unit.py -q"
+      result: "RED missing module before implementation; GREEN 2 passed after implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_adaptive_generator_scheduler_unit.py tests/test_factor_pool_quality_gate_trajectory_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_pool_screening_prep_unit.py tests/test_factor_pool_mocked_scorer_unit.py tests/test_factor_mining_screening_readiness_surface_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "35 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_adaptive_generator_scheduler.py tests/test_factor_adaptive_generator_scheduler_unit.py"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q src/qa/quant_mining/factor_adaptive_generator_scheduler.py tests/test_factor_adaptive_generator_scheduler_unit.py"
+      result: "passed."
+    - command: "Select-String forbidden marker scan for env/secret/DB/queue/runner/backtest/external model/RL markers"
+      result: "clean."
+  worker_dispatch:
+    - "Permanent Planner thread received loop384 read-only loop_plan request using gpt-5.4-mini."
+    - "Permanent Dispatcher thread received loop384 read-only assignment-matrix request using gpt-5.4-mini."
+    - "Permanent Test Engineer thread received loop384 acceptance-matrix request using gpt-5.5."
+    - "Permanent Code Reviewer thread received loop384 read-only risk review request using gpt-5.5."
+    - "Permanent Verifier thread received loop384 completion-evidence request using gpt-5.4-mini."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Adaptive scheduling must be explicit about using only no-execution telemetry until real panel metrics exist."
+      - "Accepted-count telemetry can drive a useful deterministic explore/exploit plan without claiming trained bandit/RL behavior."
+    performance_note: "Loop384 gives the construction universe a feedback-driven next-round generator plan while staying no-execution."
+  blockers:
+    - "Factor construction is not complete enough for formal human audit; continue trajectory memory read-model / persistence-intake and user-facing construction universe bridge."
+    - "No DB read/write, queue write, runner/adapter, external LLM/RL/MCTS call, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_TRAJECTORY_MEMORY_READ_MODEL_LOOP385"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-392 loop383
 
 report:
   role_id: "orchestrator"
