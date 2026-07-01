@@ -1,4 +1,43 @@
-# Orchestrator Latest Report — SYNC-381 loop372
+# Orchestrator Latest Report — SYNC-382 loop373
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop373 factor real-data scorer review packet API/UI bridge"
+  changes:
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Added real_data_scorer_review_packet to user_facing_batch_mining_creation_plan_v1 using the no-execution construction -> screening -> mocked scorer -> preflight -> review surface chain."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Asserted the creation plan exposes the consumer checklist and preserves no DB/queue/PL-H side effects."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_batch_mining_flow_unit.py::test_build_factor_mining_creation_plan_explains_category_generation_screening_and_plan -q"
+      result: "RED expected KeyError before implementation; GREEN 1 passed after implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_batch_mining_flow_unit.py tests/test_factor_real_data_scorer_review_packet_surface_unit.py tests/test_factor_real_data_scorer_authorization_preflight_unit.py tests/test_factor_mining_screening_readiness_surface_unit.py tests/test_factor_pool_mocked_scorer_unit.py tests/test_factor_pool_screening_prep_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_dsl_unit.py tests/test_factor_dedup_gate_unit.py tests/test_quant_mining_candidate_generator_unit.py tests/test_quant_mining_factor_factory_unit.py tests/test_quant_mining_factor_factory_selector_unit.py -q"
+      result: "62 passed."
+    - command: "uv run ruff check src/qa/brain/batch_mining_creation_plan_builder.py tests/test_batch_mining_flow_unit.py"
+      result: "All checks passed."
+    - command: "Get-Content -Raw harness/loop-state.json | ConvertFrom-Json"
+      result: "json-ok."
+  worker_dispatch:
+    - "Permanent Planner thread received loop373 read-only loop_plan request."
+    - "Permanent Dispatcher thread received loop373 read-only assignment-matrix request."
+    - "Permanent Test Engineer thread received loop373 acceptance-matrix request."
+    - "Permanent Code Reviewer and Verifier threads received loop373 read-only review requests."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A review packet becomes useful only when wired into a shared user-facing read-model, not left as an isolated backend contract."
+      - "The bridge must default to human_authorized=false at the planning stage."
+    performance_note: "Loop373 makes the real scorer readiness checklist visible in the factor mining creation plan while preserving no-execution safety."
+  blockers:
+    - "No product blocker. Formal queue-write review remains not-granted; no DB read/write, queue write, runner/adapter, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_REAL_DATA_SCORER_FORMAL_REVIEW_ARTIFACT_LOOP374"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-381 loop372
 
 report:
   role_id: "orchestrator"
