@@ -1,8 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-01T14:36:18+08:00
+updated_at: 2026-07-01T15:02:41+08:00
 
-## Latest Handoff — SYNC-380 loop371
+## Latest Handoff — SYNC-381 loop372
+
+- [DONE] Factor real-data scorer review packet surface is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_data_scorer_review_packet_surface.py`, `tests/test_factor_real_data_scorer_review_packet_surface_unit.py`, plus truth sources.
+- [DONE] `FactorRealDataScorerReviewPacketSurfaceV1` converts loop371 preflight into a consumer-facing checklist: real scoring not started / ready for review, candidate materials, data tables, DB isolation, human authorization, audit/rollback, sample window, budget, and next user action.
+- [VERIFY] RED expected missing module; focused surface 2 passed; related factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector/batch 62 passed; targeted Ruff pass; loop-state JSON parse pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop372 read-only tasks. No duplicate same-role worker was created.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this surface does not read DB, write queue/DB, connect runner/adapter, execute real scorer/dry-run/backtest, start background/migration/backfill, or grant PL-H.
+- [NEXT] FACTOR_REAL_DATA_SCORER_REVIEW_PACKET_API_UI_BRIDGE_LOOP373：connect the review packet surface into factor-mining / Jobs / API read-model.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop373.
+
+## Previous Handoff — SYNC-380 loop371
 
 - [DONE] Factor real-data scorer authorization preflight is implemented.
 - [DONE] Changed quant files: `src/qa/quant_mining/factor_real_data_scorer_authorization_preflight.py`, `src/qa/quant_mining/factor_mining_screening_readiness_surface.py`, `tests/test_factor_real_data_scorer_authorization_preflight_unit.py`, plus truth sources.

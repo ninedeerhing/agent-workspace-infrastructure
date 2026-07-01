@@ -1,4 +1,43 @@
-# Orchestrator Latest Report — SYNC-380 loop371
+# Orchestrator Latest Report — SYNC-381 loop372
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop372 factor real-data scorer review packet surface"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_real_data_scorer_review_packet_surface.py"
+      summary: "Added consumer-facing no-execution checklist surface for real-data factor scorer readiness."
+    - file: "apps/quant_assistant/tests/test_factor_real_data_scorer_review_packet_surface_unit.py"
+      summary: "Covered blocked missing authorization and authorized review-only checklist states."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_real_data_scorer_review_packet_surface_unit.py -q"
+      result: "RED expected ModuleNotFoundError before implementation; GREEN 2 passed after implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_real_data_scorer_review_packet_surface_unit.py tests/test_factor_real_data_scorer_authorization_preflight_unit.py tests/test_factor_mining_screening_readiness_surface_unit.py tests/test_factor_pool_mocked_scorer_unit.py tests/test_factor_pool_screening_prep_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_dsl_unit.py tests/test_factor_dedup_gate_unit.py tests/test_quant_mining_candidate_generator_unit.py tests/test_quant_mining_factor_factory_unit.py tests/test_quant_mining_factor_factory_selector_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "62 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_real_data_scorer_review_packet_surface.py tests/test_factor_real_data_scorer_review_packet_surface_unit.py"
+      result: "All checks passed."
+    - command: "Get-Content -Raw harness/loop-state.json | ConvertFrom-Json"
+      result: "json-ok."
+  worker_dispatch:
+    - "Permanent Planner thread received loop372 read-only loop_plan request."
+    - "Permanent Dispatcher thread received loop372 read-only assignment-matrix request."
+    - "Permanent Test Engineer thread received loop372 acceptance-matrix request."
+    - "Permanent Code Reviewer and Verifier threads received loop372 read-only review requests."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Review packet surfaces should translate authorization preflight into user-understandable checklist items without implying execution."
+      - "Human authorized means review-only readiness until a later explicit execution design and approval path exists."
+    performance_note: "Loop372 makes the real-data scoring gap visible to users while preserving no-execution safety."
+  blockers:
+    - "No product blocker. Formal queue-write review remains not-granted; no DB read/write, queue write, runner/adapter, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_REAL_DATA_SCORER_REVIEW_PACKET_API_UI_BRIDGE_LOOP373"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-380 loop371
 
 report:
   role_id: "orchestrator"
