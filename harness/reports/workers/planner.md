@@ -56,3 +56,22 @@ report:
     performance_note: "Permanent Planner thread reachable and produced usable loop_plan."
   blockers: []
   next: "FACTOR_REAL_PANEL_SCORING_AUTHORIZATION_PREFLIGHT_LOOP387"
+
+## loop387 Report — 2026-07-01T20:25:58+08:00
+
+report:
+  role_id: "planner"
+  status: "success"
+  task: "loop387 core-function plan"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Planner selected factor_real_panel_scoring_authorization_preflight_read_model_v1 and defined phases for required evidence, candidate mapping, surface bridge, and verification."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Real panel scoring preflight belongs between construction universe bridge and any real scorer review packet."
+    performance_note: "Permanent Planner thread reachable and produced usable loop_plan."
+  blockers: []
+  next: "FACTOR_REAL_PANEL_SCORING_REVIEW_PACKET_LOOP388"

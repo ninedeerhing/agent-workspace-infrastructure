@@ -59,3 +59,22 @@ report:
     performance_note: "Permanent Code Reviewer thread reachable and provided useful semantic risk review."
   blockers: []
   next: "Review loop387 for authorization/preflight wording drift."
+
+## loop387 Report — 2026-07-01T20:25:58+08:00
+
+report:
+  role_id: "code-reviewer"
+  status: "success"
+  task: "loop387 authorization preflight pre-review"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Code Reviewer warned that preflight must not become authorization, DB read, scoring/backtest execution, or PL-H grant; required evidence must be separate from satisfied evidence."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Authorization preflight must remain fail-closed evidence checklist, not an authorization grant or execution signal."
+    performance_note: "Permanent Code Reviewer thread reachable and provided useful semantic risk review."
+  blockers: []
+  next: "Review loop388 review packet for wording and execution-permission drift."

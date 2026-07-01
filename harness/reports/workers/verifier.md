@@ -63,3 +63,24 @@ report:
     performance_note: "Permanent Verifier thread reachable; final pass came from orchestrator command evidence against verifier checklist."
   blockers: []
   next: "Verify loop387 authorization preflight with focused/related/Ruff/compileall/forbidden/truth/git clean checks."
+
+## loop387 Report — 2026-07-01T20:25:58+08:00
+
+report:
+  role_id: "verifier"
+  status: "partial"
+  task: "loop387 verification checklist"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Verifier supplied focused pytest, related factor construction/scoring chain, Ruff, compileall, forbidden scan, truth sync, diff check, and git clean checklist."
+    - command: "orchestrator final verification"
+      result: "Focused preflight + bridge 3 passed; related chain 41 passed; Ruff passed; compileall passed; forbidden marker scan clean."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Final pass depends on both fresh command evidence and synced truth sources."
+    performance_note: "Permanent Verifier thread reachable; final pass came from orchestrator command evidence against verifier checklist."
+  blockers: []
+  next: "Verify loop388 review packet with focused/related/Ruff/compileall/forbidden/truth/git clean checks."

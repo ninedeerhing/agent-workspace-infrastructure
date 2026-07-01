@@ -56,3 +56,22 @@ report:
     performance_note: "Acceptance matrix was reflected in focused RED/GREEN test."
   blockers: []
   next: "Design loop387 authorization preflight tests before implementation."
+
+## loop387 Report — 2026-07-01T20:25:58+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "loop387 real panel scoring authorization preflight TDD matrix"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Test Engineer required survived-candidate refs, required tables/fields/window/budget/audit blockers, family coverage, all-false side effects, and no DB/queue/scorer/backtest guards."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Survived candidate refs and family coverage are the key bridge between construction quality and scorer authorization."
+    performance_note: "Acceptance matrix was reflected in focused RED/GREEN tests."
+  blockers: []
+  next: "Design loop388 review packet tests before implementation."
