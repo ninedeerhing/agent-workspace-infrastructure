@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-01T12:03:10+08:00
+updated_at: 2026-07-01T13:13:56+08:00
+
+## Latest Handoff — SYNC-374 loop365
+
+- [DONE] `FactorConstructionSpecV1` + generator registry is implemented as the first executable contract layer under the Factor Construction Universe.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_construction_models.py`, `src/qa/quant_mining/factor_construction_registry.py`, `tests/test_factor_construction_registry_unit.py`, plus truth sources.
+- [DONE] Default registry enables `template_parameter_sweep`, which wraps the current recipe factory; unsupported generator families such as `rl_mcts` fail closed as `unsupported` generator reports. Candidate JSON now includes source lineage, budget, generator reports, unsupported family list, and all-false no-execution safety.
+- [VERIFY] RED expected `ModuleNotFoundError`; focused 3 passed; factor factory/selector adjacent 6 passed; candidate/factory/batch related 14 passed; targeted Ruff pass; targeted compileall pass; pure LOC models 133 / registry 165 / tests 113.
+- [WORKERS] Hubble critical sidecar completed read-only implementation advice; report was incorporated and agent closed. No `.env`, secrets, DB, runner, queue, backtest, migration, or backfill used.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this registry does not authorize queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, PL-H, background/migration/backfill, formal approval, manual acceptance, or execution permission.
+- [NEXT] FACTOR_TYPED_GRAMMAR_AND_EARLY_HARD_GATES_LOOP366：implement typed field catalog, dimension rules, PIT availability declaration, AST canonical hash, expression-family dedupe, and complexity cap.
+- [FORBIDDEN] Do not jump to mass generation or real panel/backtest before the typed hard-gate layer exists.
 
 ## Latest Handoff — SYNC-373 loop365
 
