@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-01T00:00:44+08:00
+updated_at: 2026-07-01T12:03:10+08:00
+
+## Latest Handoff — SYNC-373 loop365
+
+- [DONE] Factor Construction Universe blueprint is landed as `apps/quant_assistant/docs/ENGINEERING/2026-07-01-factor-construction-universe.md`.
+- [DONE] The target factor mining architecture is now `ConstructionSpec -> generator ensemble -> candidate pool -> layered gates -> feedback memory`, covering symbolic expressions, GP, RL/MCTS, LLM hypothesis-to-alpha, program synthesis, trajectory mutation/crossover, combination gain, diversity search, AutoML features, and text/event/alternative data.
+- [VERIFY] Read local baseline `factor_factory.py`, `factor_factory_recipes.py`, `factor_dsl/operators.py`, existing `2026-06-24-factor-candidate-factory-reference.md`, and Carson read-only report. No DB, runner, queue, backtest, migration, background process, or secrets were touched.
+- [WORKERS] Carson returned read-only research: current `factor_factory_run_v1` is a safe small no-execution candidate plan layer, not a mass background generator/validator. Orchestrator integrated that report into the design blueprint.
+- [BLOCKED] No design blocker. Loop364 formal queue-write human review remains not-granted; this blueprint does not authorize queue write, DB enqueue, worker handoff execution, runner/adapter connection, actual dry-run/backtest, PL-H, background/migration/backfill, formal approval, manual acceptance, or execution permission.
+- [NEXT] FACTOR_CONSTRUCTION_SPEC_AND_GENERATOR_REGISTRY_LOOP365：implement a no-execution `FactorConstructionSpec` plus generator registry contract; rehost the current recipe generator under `template_parameter_sweep`; preserve lineage/budget/source-family reporting and unsupported-family fail-closed behavior.
+- [FORBIDDEN] Do not turn the blueprint into real queue writes or live backtests. Do not make UI polish or governance-only cleanup the next standalone loop before the core registry contract lands.
 
 ## Latest Handoff — SYNC-371 loop364
 

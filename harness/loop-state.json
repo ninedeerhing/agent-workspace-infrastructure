@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T00:00:44+08:00",
-  "mode": "paused_for_formal_human_review",
-  "stop_reason": "FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364",
+  "updated_at": "2026-07-01T12:03:10+08:00",
+  "mode": "continuous_design_loop",
+  "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "formal-human-review-handoff-loop364",
-  "next_atomic_action": "AWAIT_USER_FORMAL_HUMAN_ACCEPTANCE_LOOP364：formal_human_queue_write_permission_review_handoff_packet_v1 已就绪，等待用户正式人工复核接受/驳回/要求修改；未获显式正式接受前不得继续后继执行链路，不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
-  "next_after": "After explicit user formal acceptance, Planner selects the next core function from formal_human_queue_write_permission_review_handoff_packet_v1; if rejected or changes requested, Planner must produce a fix loop first.",
+  "current_slice": "factor-construction-universe-loop365",
+  "next_atomic_action": "FACTOR_CONSTRUCTION_SPEC_AND_GENERATOR_REGISTRY_LOOP365：在不打开真实执行授权的前提下，实现 no-execution FactorConstructionSpec + generator registry 合同，把当前 recipe 工厂迁入 template_parameter_sweep 引擎，并为 parameter_sweep/symbolic_mutation/library_replay/llm_hypothesis/trajectory_mutation/event_text 预留统一候选合同；不得写真实队列、DB enqueue、连接 runner/adapter、执行 actual dry-run/backtest、启动 background/migration/backfill 或授予 PL-H。",
+  "next_after": "After loop365 registry contract, add typed grammar + early hard gates, then hundreds-scale candidate pool and small-sample panel screening; loop364 queue-write formal human review remains not-granted until explicit formal acceptance.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop364-formal-human-review-handoff",
+  "last_tick": "loop365-factor-construction-universe-design",
   "last_sync_sources": [
+    "SYNC-373 loop365 Factor Construction Universe blueprint",
+    "loop365 design: Raindeer factor mining is now defined as a budgeted multi-generator factor construction universe, not a Qlib-bound recipe list",
+    "loop365 artifact: apps/quant_assistant/docs/ENGINEERING/2026-07-01-factor-construction-universe.md",
+    "loop365 worker: Carson read-only research report confirmed current factor_factory_run_v1 is no-execution small candidate planning layer, not mass background generation/validation engine",
+    "loop365 methodology_ref: 步骤 digest-20260701-factor-construction-universe",
+    "loop365 no-execution boundary: queue-write formal human review remains not-granted; no DB enqueue, runner handoff, actual backtest, PL-H, background/migration/backfill",
+    "next: FACTOR_CONSTRUCTION_SPEC_AND_GENERATOR_REGISTRY_LOOP365",
     "SYNC-371 loop364 Formal human queue-write permission review handoff",
     "loop364 GREEN: formal_human_queue_write_permission_review_handoff_packet_v1 derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review",
     "loop364 verification: focused 50 passed; formal_human/final_human selector 69 passed / 4255 deselected / 1 warning; auto-backtest/queue-write selector 1523 passed / 2801 deselected / 1 warning; Ruff pass; compileall pass; git diff --check pass with LF/CRLF warnings only; refined forbidden active-value scan clean; pure LOC 237/150/96/154/132/178",
