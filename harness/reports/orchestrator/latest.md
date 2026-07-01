@@ -1,4 +1,46 @@
-# Orchestrator Latest Report — SYNC-379 loop370
+# Orchestrator Latest Report — SYNC-380 loop371
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "loop371 factor real-data scorer authorization preflight"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_real_data_scorer_authorization_preflight.py"
+      summary: "Added no-execution authorization preflight before any real-data factor scorer can be considered."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_mining_screening_readiness_surface.py"
+      summary: "Carried sample_window and compute_budget forward from the candidate pool brief for downstream preflight use."
+    - file: "apps/quant_assistant/tests/test_factor_real_data_scorer_authorization_preflight_unit.py"
+      summary: "Covered missing human authorization fail-closed behavior and authorized review-only routing."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_real_data_scorer_authorization_preflight_unit.py -q"
+      result: "RED expected ModuleNotFoundError before implementation; GREEN 2 passed after implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_real_data_scorer_authorization_preflight_unit.py tests/test_factor_mining_screening_readiness_surface_unit.py tests/test_factor_pool_mocked_scorer_unit.py tests/test_factor_pool_screening_prep_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_hard_gates_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_registry_hardening_unit.py tests/test_factor_dsl_unit.py tests/test_factor_dedup_gate_unit.py tests/test_quant_mining_candidate_generator_unit.py tests/test_quant_mining_factor_factory_unit.py tests/test_quant_mining_factor_factory_selector_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "60 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_real_data_scorer_authorization_preflight.py src/qa/quant_mining/factor_mining_screening_readiness_surface.py tests/test_factor_real_data_scorer_authorization_preflight_unit.py"
+      result: "All checks passed."
+    - command: "Get-Content -Raw harness/loop-state.json | ConvertFrom-Json"
+      result: "json-ok."
+  worker_dispatch:
+    - "Permanent Planner thread received loop371 read-only rhythm-correction / planning request after user reminded cross-dialogue workers were idle too long."
+    - "Permanent Dispatcher thread received loop371 read-only assignment-matrix request."
+    - "Permanent Test Engineer thread received loop371 acceptance-matrix request."
+    - "Permanent Code Reviewer and Verifier threads received loop371 read-only authorization-boundary / completion-evidence review requests."
+    - "No duplicate same-role worker was created; implementation proceeded locally under TDD to avoid blocking on cross-dialogue liveness."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes:
+      - "Cross-dialogue worker usage had become too sparse relative to the project hard gate."
+    lessons:
+      - "Every business loop must first reuse fixed cross-dialogue Planner/Dispatcher and at least one relevant quality worker unless genuinely impossible."
+      - "Real-data scoring must pass through an explicit no-execution preflight before any DB-backed scorer or PL-H path can be considered."
+    performance_note: "Loop371 advances the factor construction universe from placeholder scoring toward real scoring readiness without crossing execution boundaries."
+  blockers:
+    - "No product blocker. Formal queue-write review remains not-granted; no DB read/write, queue write, runner/adapter, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
+  next: "FACTOR_REAL_DATA_SCORER_REVIEW_PACKET_SURFACE_LOOP372"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-379 loop370
 
 report:
   role_id: "orchestrator"

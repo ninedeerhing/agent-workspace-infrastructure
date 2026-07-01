@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-01T14:08:36+08:00
+updated_at: 2026-07-01T14:36:18+08:00
 
-## Latest Handoff — SYNC-379 loop370
+## Latest Handoff — SYNC-380 loop371
+
+- [DONE] Factor real-data scorer authorization preflight is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_data_scorer_authorization_preflight.py`, `src/qa/quant_mining/factor_mining_screening_readiness_surface.py`, `tests/test_factor_real_data_scorer_authorization_preflight_unit.py`, plus truth sources.
+- [DONE] `FactorRealDataScorerAuthorizationPreflightV1` now lists required `daily_bar` / `daily_trade_status` fields, DSN isolation guard, sample window, compute budget, audit/rollback requirements, formal human authorization blocker, and no-execution side effects before any real scorer can be considered.
+- [DONE] `FactorMiningScreeningReadinessSurfaceV1` now carries `sample_window` and `compute_budget` so the preflight can inherit upstream boundaries without reading DB.
+- [VERIFY] RED expected missing module; focused preflight 2 passed; related factor preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector/batch 60 passed; targeted Ruff pass; loop-state JSON parse pass.
+- [WORKERS] User reminded cross-dialogue workers were idle too long. Permanent Planner and Dispatcher received loop371 read-only rhythm-correction tasks; permanent Test Engineer received loop371 acceptance-matrix task; permanent Code Reviewer and Verifier received loop371 authorization-boundary / completion-evidence review tasks. No duplicate same-role worker was created.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this preflight does not read DB, write queue/DB, connect runner/adapter, execute real scorer/dry-run/backtest, start background/migration/backfill, or grant PL-H.
+- [NEXT] FACTOR_REAL_DATA_SCORER_REVIEW_PACKET_SURFACE_LOOP372：build a no-execution review packet / consumer checklist from loop371 preflight so users can see what real scoring still needs.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop372.
+
+## Previous Handoff — SYNC-379 loop370
 
 - [DONE] Factor mining screening readiness surface is implemented.
 - [DONE] Changed quant files: `src/qa/quant_mining/factor_mining_screening_readiness_surface.py`, `tests/test_factor_mining_screening_readiness_surface_unit.py`, plus truth sources.
