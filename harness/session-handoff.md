@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-01T16:18:40+08:00
+updated_at: 2026-07-01T16:34:12+08:00
+
+## Latest Handoff — SYNC-385 loop376
+
+- [DONE] Factor real-data scorer execution-design-only packet is implemented.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_real_data_scorer_execution_design_only_packet.py`, `tests/test_factor_real_data_scorer_execution_design_only_packet_unit.py`, plus truth sources.
+- [DONE] `FactorRealDataScorerExecutionDesignOnlyPacketV1` derives from the explicit approval record and lists candidate snapshot, data/isolation, scoring metric, audit/rollback, and operator-review design sections while preserving no-execution controls.
+- [VERIFY] RED expected missing module; focused design packet 2 passed; related execution-design packet + explicit approval record + formal artifact + batch mining + factor review packet/preflight/screening readiness/mocked scorer/screening prep/construction/DSL/dedup/candidate/factory/selector 68 passed; targeted Ruff pass; targeted compileall pass; loop-state JSON parse pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier received loop376 read-only tasks with model budget policy. No duplicate same-role worker was created.
+- [BLOCKED] No product blocker. loop364 formal queue-write review remains not-granted and this design packet does not read DB, write queue/DB, connect runner/adapter, execute real scorer/dry-run/backtest, start background/migration/backfill, or grant PL-H.
+- [NEXT] FACTOR_REAL_DATA_SCORER_EXECUTION_DESIGN_REVIEW_SURFACE_LOOP377：derive a consumer-facing review surface from loop376 design-only packet; still no execution.
+- [FORBIDDEN] Do not read real DB, enqueue jobs, connect runner/adapter, run real scorer/actual dry-run/backtest, start background jobs, migrations, or backfills in loop377.
 
 ## Latest Handoff — SYNC-384 loop375
 
