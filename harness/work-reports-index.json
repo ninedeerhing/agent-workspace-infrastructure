@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-30T00:15:01+08:00",
+  "updated_at": "2026-07-01T12:02:11Z",
   "orchestrator_path": "harness/reports/orchestrator",
   "workers_dir": "harness/reports/workers",
   "worker_count": 21,
@@ -8,13 +8,13 @@
     "orchestrator:orchestrator-latest": {
       "report_id": "orchestrator-latest",
       "worker_id": "orchestrator",
-      "task_id": "loop321-auto-backtest-no-execution-real-queue-write-plan-preflight",
-      "tree": "TREE-6 / PL-G",
-      "action": "auto_backtest_no_execution_real_queue_write_plan_preflight_v1 wired and verified",
+      "task_id": "",
+      "tree": "",
+      "action": "",
       "files": [],
-      "verification": "focused 24 passed; adjacent 354 passed; consumer 123 passed; Ruff/diff/forbidden marker pass",
-      "status": "success",
-      "last_updated_at": "2026-06-30T00:15:01+08:00",
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\orchestrator\\latest.md"
     },
     "architect:loop202-worker-cluster-architecture-review": {
@@ -31,16 +31,16 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\architect.md"
     },
-    "code-reviewer:loop307-human-acceptance-decision-packet": {
-      "report_id": "loop307-human-acceptance-decision-packet",
+    "code-reviewer:code-reviewer-latest": {
+      "report_id": "code-reviewer-latest",
       "worker_id": "code-reviewer",
-      "task_id": "loop203-pl-g-acceptance-consolidation-code-review",
-      "tree": "TREE-6 / PL-G",
-      "action": "待委派",
+      "task_id": "",
+      "tree": "",
+      "action": "",
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-19T05:00:59Z",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\workers\\code-reviewer.md"
     },
     "constitution-guardian:constitution-guardian-idle": {
@@ -78,7 +78,7 @@
       ],
       "verification": "live API 复现 **5.2s**（`tmp/kb_m2_sse_repro_loop22_result.json`）",
       "status": "resolved（executor 已落地修复）",
-      "last_updated_at": "2026-06-29T13:26:46Z",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\workers\\debugger.md"
     },
     "designer:designer-ui-a-2-spec": {
@@ -95,16 +95,16 @@
       "last_updated_at": "2026-06-19T16:45:00Z",
       "source_path": "harness\\reports\\workers\\designer.md"
     },
-    "executor:loop307-human-acceptance-decision-packet": {
-      "report_id": "loop307-human-acceptance-decision-packet",
+    "executor:executor-latest": {
+      "report_id": "executor-latest",
       "worker_id": "executor",
-      "task_id": "loop203-pl-g-acceptance-consolidation-implementation",
-      "tree": "TREE-6 / PL-G",
+      "task_id": "",
+      "tree": "",
       "action": "",
       "files": [],
-      "verification": "orchestrator verification after patch: RED **1 failed** expected, GREEN focused pytest **1 passed**, related regression **23 passed**, smoke/build/eslint/ruff/family scan/enablement scan/runtime cleanup pass。",
-      "status": "success",
-      "last_updated_at": "2026-06-29T13:26:46Z",
+      "verification": "",
+      "status": "pending",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\workers\\executor.md"
     },
     "explore:explore-idle": {
@@ -119,16 +119,16 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\explore.md"
     },
-    "explorer:explorer-idle": {
-      "report_id": "explorer-idle",
+    "explorer:explorer-latest": {
+      "report_id": "explorer-latest",
       "worker_id": "explorer",
       "task_id": "",
       "tree": "",
-      "action": "待委派",
+      "action": "",
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-19T05:00:59Z",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\workers\\explorer.md"
     },
     "git-master:loop25-git-prep": {
@@ -154,7 +154,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-29T13:26:46Z",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\workers\\governance-coordinator.md"
     },
     "growth-engineer:growth-engineer-idle": {
@@ -169,16 +169,16 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\growth-engineer.md"
     },
-    "planner:loop307-human-acceptance-decision-packet": {
-      "report_id": "loop307-human-acceptance-decision-packet",
+    "planner:planner-latest": {
+      "report_id": "planner-latest",
       "worker_id": "planner",
-      "task_id": "loop307-human-acceptance-decision-packet-loop-plan",
-      "tree": "TREE-6 / PL-G",
-      "action": "待委派",
+      "task_id": "",
+      "tree": "",
+      "action": "",
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-19T05:00:59Z",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\workers\\planner.md"
     },
     "qa-tester:qa-tester-latest": {
@@ -190,7 +190,7 @@
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-29T13:26:46Z",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\workers\\qa-tester.md"
     },
     "researcher:loop202-worker-cluster-evidence-scan": {
@@ -231,16 +231,16 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\security-reviewer.md"
     },
-    "test-engineer:loop307-human-acceptance-decision-packet": {
-      "report_id": "loop307-human-acceptance-decision-packet",
+    "test-engineer:test-engineer-latest": {
+      "report_id": "test-engineer-latest",
       "worker_id": "test-engineer",
-      "task_id": "loop203-pl-g-acceptance-consolidation-test-design",
-      "tree": "TREE-6 / PL-G",
-      "action": "待委派",
+      "task_id": "",
+      "tree": "",
+      "action": "",
       "files": [],
       "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-19T05:00:59Z",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\workers\\test-engineer.md"
     },
     "tracer:tracer-idle": {
@@ -255,18 +255,16 @@
       "last_updated_at": "2026-06-19T05:00:59Z",
       "source_path": "harness\\reports\\workers\\tracer.md"
     },
-    "verifier:loop308-auto-backtest-queue-intake-readiness": {
-      "report_id": "loop308-auto-backtest-queue-intake-readiness",
+    "verifier:verifier-latest": {
+      "report_id": "verifier-latest",
       "worker_id": "verifier",
-      "task_id": "verifier",
-      "tree": "TREE-RT",
-      "action": "待委派",
-      "files": [
-        "`docs/PLATFORM-CODEX.md`、`harness/codex-automation-registry.json`、`harness/scripts/codex-self-check.ps1`、`harness/reports/EMPLOYEE_ROSTER.md`"
-      ],
-      "verification": "orchestrator 本地已运行 `.\\harness\\scripts\\codex-self-check.ps1 -Format markdown` → 27 checks / 0 findings；`.\\harness\\compliance-check.ps1 -Mode post-bootstrap -Format markdown` → 36 checks / 0 findings。",
+      "task_id": "",
+      "tree": "",
+      "action": "",
+      "files": [],
+      "verification": "",
       "status": "pending",
-      "last_updated_at": "2026-06-19T05:00:59Z",
+      "last_updated_at": "2026-07-01T12:02:11Z",
       "source_path": "harness\\reports\\workers\\verifier.md"
     },
     "writer:writer-gp03-lifecycle-doc": {
@@ -285,9 +283,10 @@
     }
   },
   "last_lifecycle": {
-    "at": "2026-06-30T00:15:01+08:00",
-    "record_count": 28,
-    "latest_role": "orchestrator",
-    "latest_loop": "loop321"
+    "at": "2026-07-01T12:02:11Z",
+    "apply": true,
+    "dedupe_actions": 0,
+    "record_count": 22,
+    "created": []
   }
 }

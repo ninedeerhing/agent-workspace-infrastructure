@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-06-30T00:15:01+08:00",
+  "updated_at": "2026-07-01T12:02:11Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
   "active_entry_count": 67,
   "archived_round_count": 0,
@@ -15,7 +15,7 @@
       "fingerprint": "92945a692979de9c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-02": {
@@ -28,7 +28,7 @@
       "fingerprint": "19492a48460ef0b8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-03": {
@@ -41,7 +41,7 @@
       "fingerprint": "b753e5142d63cca6",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-04": {
@@ -54,7 +54,7 @@
       "fingerprint": "8252872344a6a1aa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-05": {
@@ -67,7 +67,7 @@
       "fingerprint": "b0a78e119c2a978d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-06": {
@@ -80,7 +80,7 @@
       "fingerprint": "466b92547c39ab98",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-07": {
@@ -93,7 +93,7 @@
       "fingerprint": "514ac18df80f3270",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-08": {
@@ -106,7 +106,7 @@
       "fingerprint": "127f609b9d336749",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-09": {
@@ -119,7 +119,7 @@
       "fingerprint": "699fe149e07dadd7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-10": {
@@ -132,7 +132,7 @@
       "fingerprint": "042b0ee40d795387",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-11": {
@@ -145,7 +145,7 @@
       "fingerprint": "0b8339a1a4ee0815",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-12": {
@@ -158,7 +158,7 @@
       "fingerprint": "0b8532fed9ce4d33",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-15": {
@@ -171,7 +171,7 @@
       "fingerprint": "da847d8aeda5f49a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-16": {
@@ -184,7 +184,7 @@
       "fingerprint": "a124342e3487cc07",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-17": {
@@ -197,7 +197,7 @@
       "fingerprint": "61b08a325d7f74eb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-18": {
@@ -210,7 +210,7 @@
       "fingerprint": "9df0d5bdaaeb1d34",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-19": {
@@ -223,7 +223,7 @@
       "fingerprint": "7052d26bc2685cfa",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-20": {
@@ -236,7 +236,7 @@
       "fingerprint": "d98f2ced613ddc3d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-21": {
@@ -249,7 +249,7 @@
       "fingerprint": "8962d8542b06099d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-22": {
@@ -262,7 +262,7 @@
       "fingerprint": "f8088bb36c67760f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-23": {
@@ -275,7 +275,7 @@
       "fingerprint": "5591738fdcb42c02",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-24": {
@@ -288,7 +288,7 @@
       "fingerprint": "faafb47510b14881",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-25": {
@@ -301,7 +301,7 @@
       "fingerprint": "47b3f516d0a32bbd",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-26": {
@@ -314,7 +314,7 @@
       "fingerprint": "2e8e010276b68173",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-27": {
@@ -327,7 +327,7 @@
       "fingerprint": "d8d82de01b96a7f2",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-28": {
@@ -340,7 +340,7 @@
       "fingerprint": "f45fb585f8e2668f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-29": {
@@ -353,7 +353,7 @@
       "fingerprint": "07f27400a64451a8",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-30": {
@@ -366,7 +366,7 @@
       "fingerprint": "5a5e86bf23db3c6a",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-31": {
@@ -379,7 +379,7 @@
       "fingerprint": "eba7c675aa3600bc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-32": {
@@ -392,7 +392,7 @@
       "fingerprint": "05605bd00cfcb5d9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-33": {
@@ -405,7 +405,7 @@
       "fingerprint": "5cf04c34f8ab2feb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-34": {
@@ -418,7 +418,7 @@
       "fingerprint": "3f7a4263c04fb129",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-35": {
@@ -431,7 +431,7 @@
       "fingerprint": "d94ecc47265385dc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-36": {
@@ -444,7 +444,7 @@
       "fingerprint": "8b448e0975ec52ef",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-37": {
@@ -457,7 +457,7 @@
       "fingerprint": "2b0d45889f1b2d9e",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-38": {
@@ -470,7 +470,7 @@
       "fingerprint": "ae142199142acec7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-39": {
@@ -483,7 +483,7 @@
       "fingerprint": "a274fe9bb7fd25eb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-40": {
@@ -496,7 +496,7 @@
       "fingerprint": "62aa63fe60556d6b",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-41": {
@@ -509,7 +509,7 @@
       "fingerprint": "56e1e79c9e8417b9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-42": {
@@ -522,7 +522,7 @@
       "fingerprint": "39218789ffa07ec0",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-43": {
@@ -535,7 +535,7 @@
       "fingerprint": "b216ee70d23d05ce",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-44": {
@@ -548,7 +548,7 @@
       "fingerprint": "9ee1117976c298a5",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-45": {
@@ -561,7 +561,7 @@
       "fingerprint": "241ed6d61c243fb7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "M-46": {
@@ -574,7 +574,7 @@
       "fingerprint": "4f9c3167a9ea8fbc",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     }
   },
@@ -589,7 +589,7 @@
       "fingerprint": "e2a42f0cbfb4498d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-02": {
@@ -602,7 +602,7 @@
       "fingerprint": "614ede829cca904f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-03": {
@@ -615,7 +615,7 @@
       "fingerprint": "6cf6c017a8fcc86c",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-04": {
@@ -628,7 +628,7 @@
       "fingerprint": "6f112435ad5b561f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-05": {
@@ -641,7 +641,7 @@
       "fingerprint": "f0a08a8433aca1de",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-06": {
@@ -654,7 +654,7 @@
       "fingerprint": "b78507c3423d1f86",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-07": {
@@ -667,7 +667,7 @@
       "fingerprint": "2bc38c718dbbe1a9",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-08": {
@@ -680,7 +680,7 @@
       "fingerprint": "89e6ae3e88559ba4",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-09": {
@@ -693,7 +693,7 @@
       "fingerprint": "02ad18f514a60193",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-10": {
@@ -706,7 +706,7 @@
       "fingerprint": "16aedb6f4157c966",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-11": {
@@ -719,7 +719,7 @@
       "fingerprint": "b30861a88f74195f",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-12": {
@@ -732,7 +732,7 @@
       "fingerprint": "aab692fcadd8aee1",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-13": {
@@ -745,7 +745,7 @@
       "fingerprint": "eb10198a06f8acb5",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-14": {
@@ -758,7 +758,7 @@
       "fingerprint": "f851219a969a7a58",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-15": {
@@ -771,7 +771,7 @@
       "fingerprint": "de7615b74266d7db",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-16": {
@@ -784,7 +784,7 @@
       "fingerprint": "5e6f7a297a0ff36d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-17": {
@@ -797,7 +797,7 @@
       "fingerprint": "644180f375fe8382",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-18": {
@@ -810,7 +810,7 @@
       "fingerprint": "c9641126050e2440",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-19": {
@@ -823,7 +823,7 @@
       "fingerprint": "38dc7bf1c15c7d6d",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-20": {
@@ -836,7 +836,7 @@
       "fingerprint": "8b7ae607cbd2badb",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-21": {
@@ -849,7 +849,7 @@
       "fingerprint": "e8ab2c0f12e45179",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-22": {
@@ -862,7 +862,7 @@
       "fingerprint": "e3f5d012aa4d3f73",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     },
     "GP-23": {
@@ -875,7 +875,7 @@
       "fingerprint": "b94fa6db7ba518e7",
       "status": "active",
       "superseded_by": null,
-      "last_seen_at": "2026-06-29T13:26:35Z",
+      "last_seen_at": "2026-07-01T12:02:11Z",
       "mention_count": 1
     }
   },
@@ -984,6 +984,14 @@
     }
   },
   "step_digests": {
+    "20260701-factor-construction-universe": {
+      "digest_id": "20260701-factor-construction-universe",
+      "title": "因子挖掘必须建成多生成器宇宙而非单模板工厂",
+      "task_ref": "TREE-6 / PL-G · loop365 Factor Construction Universe blueprint",
+      "fingerprint": "factor-mining-as-budgeted-multi-generator-search-v1",
+      "status": "active",
+      "superseded_by": null
+    },
     "20260628-handoff-review-ref-suppression": {
       "digest_id": "20260628-handoff-review-ref-suppression",
       "title": "上游 actions/blockers 未清空时下游 handoff refs 必须抑制",
@@ -1525,15 +1533,17 @@
   "dream_candidates": [],
   "closure_candidates": [],
   "last_lifecycle": {
-    "at": "2026-06-30T00:15:01+08:00",
+    "at": "2026-07-01T12:02:11Z",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
     "closure_candidates": 0,
     "archived_rounds": [],
-    "active_step_digests": 35,
+    "active_step_digests": 36,
     "completed_tasks_hint": [
-      "loop321 Auto-backtest no-execution real queue write plan preflight complete. Added qa.quant_mining.auto_backtest_no_execution_real_queue_write_plan_preflight.build_auto_backtest_no_execution_real_queue_write_plan_preflight_v1 plus fail-closed helper checks and UI notes, wired auto_backtest_no_execution_real_queue_write_plan_preflight_v1 into MiningJob observability, Factor Library rows, and Chat. Verification: RED surface missing packet; focused tests 24 passed; adjacent auto-backtest chain 354 passed; consumer regression 123 passed; targeted Ruff pass; git diff --check pass with CRLF warnings only; refined active marker scan clean; code-reviewer success; verifier PASS. Next_atomic_action is PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_PLAN_PREFLIGHT_LOOP322：由 Planner 基于总规划、当前进度和 loop321 auto_backtest_no_execution_real_queue_write_plan_preflight_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 controlled real queue write planning / no-execution queue persistence authorization design 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。 auto-backtest-no-execution-real-queue-write-plan-preflight-loop321 loop321-auto-backtest-no-execution-real-queue-write-plan-preflight"
+      "loop399 Factor construction completion review surface complete after Code Reviewer P2 semantic safety fix. Added FactorConstructionCompletionReviewSurfaceV1 and FactorConstructionCompletionReviewSafety blockers, wired factor_construction_completion_review_surface into user_facing_batch_mining_creation_plan_v1; surface aggregates Phase 1-5 completion, candidate summary, remaining real evidence gaps, formal human audit decision, and consumer-readable steps while fail-closing drifted execution/admission artifacts. Verification: RED missing module; RED drifted artifact incorrectly ready before semantic safety fix; focused surface+bridge 4 passed; related construction/panel/pool/budget chain 13 passed; targeted Ruff pass; targeted compileall pass; payload smoke completion_status=ready_for_formal_human_audit_no_execution audit_ready=True generated=184 survived=184 pool_review_refs=16 eligible_backtest_refs=0 all phases complete review_status=ready_for_formal_human_audit grants_execution=False grants_queue_write=False grants_runner_handoff=False actual_execution_status=not_allowed all side effects false; precise forbidden scan clean. Stop: FORMAL_FACTOR_CONSTRUCTION_HUMAN_AUDIT_REQUIRED_LOOP399.",
+      "factor-construction-completion-review-surface-loop399",
+      "loop399-factor-construction-completion-review-surface"
     ],
     "ttl_days": 180
   }

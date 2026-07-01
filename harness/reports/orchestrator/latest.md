@@ -1,54 +1,55 @@
-# Orchestrator Latest Report — SYNC-408 loop399
+# Orchestrator Latest Report — SYNC-409 loop400
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "loop399 factor construction completion review surface"
+  task: "loop400 factor batch scoring plan"
   changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_batch_scoring_plan.py"
+      summary: "Added factor_batch_scoring_plan_v1 with source contract checks, review-only survived-ref chunking, real metric plan, execution policy, and all-false side effects."
     - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_completion_review_surface.py"
-      summary: "Added no-execution completion review surface with Phase 1-5 markers, candidate summary, remaining evidence gaps, formal human audit decision, user-visible steps, and fail-closed blockers."
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_completion_review_safety.py"
-      summary: "Added semantic artifact safety checks so present-but-drifted accepted-pool/backtest/side-effect artifacts fail closed before formal audit ready."
+      summary: "Exposed batch_scoring_candidate_refs_for_review from factor_construction_universe.survived_candidate_refs for concrete downstream authorization-review objects."
     - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
-      summary: "Bridged factor_construction_completion_review_surface into the user-facing batch mining creation plan."
-    - file: "apps/quant_assistant/tests/test_factor_construction_completion_review_surface_unit.py"
-      summary: "Covered completion status, phase markers, evidence gaps, human audit decision, no-execution grants, side effects, missing artifact fail-closed behavior, and drifted execution artifact fail-closed behavior."
-    - file: "apps/quant_assistant/tests/test_factor_construction_completion_review_surface_bridge_unit.py"
-      summary: "Covered creation-plan bridge exposure of the factor construction completion review surface."
+      summary: "Bridged factor_batch_scoring_plan into the user-facing batch mining creation plan."
+    - file: "apps/quant_assistant/tests/test_factor_batch_scoring_plan_unit.py"
+      summary: "Covered chunking, budget caps, ref preservation, source contract fail-closed behavior, malformed refs, and no-execution side effects."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Covered creation-plan bridge exposure of the batch scoring plan."
   verification:
-    - command: "PYTHONPATH=src uv run pytest tests/test_factor_construction_completion_review_surface_unit.py tests/test_factor_construction_completion_review_surface_bridge_unit.py -q"
-      result: "RED missing module before implementation; RED drifted artifact incorrectly ready before semantic safety fix; GREEN 4 passed."
-    - command: "PYTHONPATH=src uv run pytest loop399 related construction/panel/pool/budget chain -q"
-      result: "13 passed."
-    - command: "uv run ruff check targeted loop399 source/test files"
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_batch_scoring_plan_unit.py tests/test_batch_mining_flow_unit.py tests/test_factor_construction_completion_review_surface_unit.py tests/test_factor_construction_completion_review_surface_bridge_unit.py -q"
+      result: "RED missing module; RED wrong source contract not blocked; RED missing creation-plan bridge; GREEN 18 passed."
+    - command: "uv run ruff check targeted loop400 source/test files"
       result: "All checks passed."
-    - command: "PYTHONPATH=src uv run python -m compileall -q targeted loop399 source files"
+    - command: "PYTHONPATH=src uv run python -m compileall -q targeted loop400 source files"
       result: "passed."
     - command: "PYTHONPATH=src uv run python payload smoke for max_candidates=220"
-      result: "completion_status=ready_for_formal_human_audit_no_execution; audit_ready=True; generated=184; survived=184; pool_review_refs=16; eligible_backtest_refs=0; phases=5 all complete; review_status=ready_for_formal_human_audit; grants_execution=False; grants_queue_write=False; grants_runner_handoff=False; actual_execution_status=not_allowed; all side_effects false."
-    - command: "Select-String precise forbidden marker scan for active true/granted/execution markers"
+      result: "batch_scoring_status=planned_for_scoring_authorization_review; candidates=184; planned=184; dropped=0; chunks=4; chunk_size=50; first_ref=fg_0b3e276c2be5; candidate_ref_permission=review_only_not_execution_eligible; requires_injected_runner=True; default_runner_allowed=False; runs_backtest=not_allowed; all side_effects false."
+    - command: "Select-String active execution marker scan for DB/queue/runner/backtest calls and allowed true markers"
       result: "clean."
     - command: "pure LOC check"
-      result: "factor_construction_completion_review_surface.py=219; factor_construction_completion_review_safety.py=78; builder=187; tests=98/21."
+      result: "factor_batch_scoring_plan.py=189; factor_construction_completion_review_surface.py=230 warning band; builder=194; batch test=168."
   worker_dispatch:
-    - "Permanent Planner thread received loop399 read-only loop_plan request using gpt-5.4-mini and returned success."
-    - "Permanent Dispatcher thread received loop399 boundary/assignment request using gpt-5.4-mini and returned success."
-    - "Permanent Test Engineer thread received loop399 acceptance matrix request using gpt-5.5 and returned success."
-    - "Permanent Code Reviewer thread received loop399 risk review request using gpt-5.5, found P2 semantic artifact drift gap after implementation, and was sent the fix for recheck."
-    - "Permanent Verifier thread received loop399 checklist request using gpt-5.4-mini, returned partial checklist, and was sent P2-fix evidence for recheck."
-    - "No duplicate same-role worker was created; implementation proceeded locally under TDD."
+    - "Permanent Planner thread received loop400 next-stage read-only planning request using gpt-5.4-mini and returned success."
+    - "Permanent Dispatcher thread received loop400 assignment matrix request using gpt-5.4-mini and returned success."
+    - "Permanent Test Engineer thread received loop400 read-only coverage review using gpt-5.5 and returned partial coverage suggestions; source-kind/ref-preservation/fail-closed tests were added."
+    - "Permanent Verifier thread received loop400 read-only evidence review using gpt-5.4-mini and requested adjacent/Ruff/compileall/forbidden/truth/git evidence."
+    - "Permanent Code Reviewer found P2 semantic wording/ref/route drift and source-safety drift masking risk; both were fixed, and final recheck returned success with no P1/P2 findings."
+    - "No duplicate same-role worker was created."
   roster_update:
     workload_delta: "unchanged"
     mistakes: []
     lessons:
-      - "Formal human audit ready means review/test entry only, not real execution or queue authorization."
-      - "Completion surfaces must validate semantic no-execution state of embedded artifacts, not just artifact presence."
-      - "Completion review must preserve remaining real evidence gaps instead of hiding them behind a green status."
-    performance_note: "Loop399 closes the factor construction no-execution artifact chain and stops at formal human audit/testing."
+      - "Real scoring rollout needs concrete survived refs, not count-only summaries."
+      - "Batch scoring must be chunked and budgeted before any DB-backed scorer is allowed, and chunk refs remain review-only until a later authorization packet."
+      - "Wrong source contract and malformed refs must fail closed before runner design."
+    performance_note: "Loop400 turns factor construction completion into a concrete batch-scoring handoff without enabling execution."
   blockers:
-    - "Formal human audit/testing required before continuing."
     - "No DB read/write, accepted pool write, queue write, runner/adapter, external LLM/RL/MCTS call, real scorer, dry-run, backtest, PL-H, migration, backfill, or background execution was authorized."
-  next: "FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399"
+  next: "FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-408 loop399
 
 ---
 

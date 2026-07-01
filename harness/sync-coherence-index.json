@@ -1,25 +1,46 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-06-30T00:15:01+08:00",
+  "updated_at": "2026-07-01T12:02:11Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_PLAN_PREFLIGHT_LOOP322：由 Planner 基于总规划、当前进度和 loop321 auto_backtest_no_execution_real_queue_write_plan_preflight_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 controlled real queue write planning / no-execution queue persistence authorization design 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
-  "continuation_next_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_PLAN_PREFLIGHT_LOOP322：由 Planner 基于总规划、当前进度和 loop321 auto_backtest_no_execution_real_queue_write_plan_preflight_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 controlled real queue write planning / no-execution queue persistence authorization design 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
-  "task_trees_next_hint": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_REAL_QUEUE_WRITE_PLAN_PREFLIGHT_LOOP322：由 Planner 基于总规划、当前进度和 loop321 auto_backtest_no_execution_real_queue_write_plan_preflight_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 controlled real queue write planning / no-execution queue persistence authorization design 的下一段；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
+  "loop_next_atomic_action": "FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399：因子构造宇宙 no-execution 链路已形成正式人工审核/测试入口；等待用户人工验收 UI/产品体验、review surface 文案、候选生成链路、人工审核材料、以及是否允许进入下一阶段真实数据评分/入池/回测授权设计。用户显式通过/要求修改前，不推进真实执行、DB、队列、runner、backtest 或 PL-H。",
+  "continuation_next_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364：由 Planner 基于总规划、当前进度和 loop363 `human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1` 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进最终人工许可归档确认复核之后的只读后继链路；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
+  "task_trees_next_hint": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_AUTHORIZATION_DECISION_LOOP347：由 Planner 基于总规划、当前进度和 loop346 explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1 / final queue-write authorization packet；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
   "foreground_tree": "TREE-6",
-  "foreground_slice": "auto-backtest-no-execution-real-queue-write-plan-preflight-loop321",
-  "latest_section5_id": "652",
-  "latest_section5_title": "loop321 Auto-backtest no-execution real queue write plan preflight（2026-06-29 · TREE-6/PL-G · M-17-zero-write）",
-  "top_summary_section5_ref": "652",
-  "top_summary_last_tick": "loop321-auto-backtest-no-execution-real-queue-write-plan-preflight",
-  "loop_last_tick": "loop321-auto-backtest-no-execution-real-queue-write-plan-preflight",
-  "findings": [],
+  "foreground_slice": "",
+  "latest_section5_id": "732",
+  "latest_section5_title": "Factor construction completion review surface（2026-07-01 · TREE-6/PL-G · TDD/no-execution · formal human audit gate）",
+  "top_summary_section5_ref": "732",
+  "top_summary_last_tick": "loop399-factor-construction-completion-review-surface",
+  "loop_last_tick": "loop399-factor-construction-completion-review-surface",
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "SYNC-LOOP-CONT",
+      "paths": [
+        "harness\\loop-state.json",
+        "apps\\quant_assistant\\docs\\CONTINUATION_PROMPT.md"
+      ],
+      "detail": "loop-state next_atomic_action='FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399：因子构造宇宙 no-execution 链路已形成正式人工审核/测试入口；等待用户人工验收 UI/产品体验、review surface 文案、候选生成链路、人工审核材料、以及是否允许进入下一阶段真实数据评分/入池/回测授权设计。用户显式通过/要求修改前，不推进真实执行、DB、队列、runner、backtest 或 PL-H。' vs CONTINUATION 下一动作='PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364：由 Planner 基于总规划、当前进度和 loop363 `human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1` 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进最终人工许可归档确认复核之后的只读后继链路；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
+      "recommendation": "对齐 loop-state.json 与 CONTINUATION_PROMPT 下一动作字段。"
+    },
+    {
+      "severity": "info",
+      "code": "SYNC-LOOP-TREES",
+      "paths": [
+        "harness\\loop-state.json",
+        "apps\\quant_assistant\\docs\\TASK_TREES.md"
+      ],
+      "detail": "loop-state='FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399：因子构造宇宙 no-execution 链路已形成正式人工审核/测试入口；等待用户人工验收 UI/产品体验、review surface 文案、候选生成链路、人工审核材料、以及是否允许进入下一阶段真实数据评分/入池/回测授权设计。用户显式通过/要求修改前，不推进真实执行、DB、队列、runner、backtest 或 PL-H。' vs TASK_TREES 下一未勾选项='PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_AUTHORIZATION_DECISION_LOOP347：由 Planner 基于总规划、当前进度和 loop346 explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1 / final queue-write authorization packet；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
+      "recommendation": "确认 TASK_TREES 排序与 loop-state 已同步。"
+    }
+  ],
   "last_lifecycle": {
-    "at": "2026-06-30T00:15:01+08:00",
-    "finding_count": 0,
-    "warning_count": 0,
+    "at": "2026-07-01T12:02:11Z",
+    "finding_count": 2,
+    "warning_count": 1,
     "error_count": 0
   }
 }

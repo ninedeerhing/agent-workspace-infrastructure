@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T18:36:52+08:00",
+  "updated_at": "2026-07-01T22:50:30+08:00",
   "mode": "continuous_implementation_loop",
-  "stop_reason": "FORMAL_FACTOR_CONSTRUCTION_HUMAN_AUDIT_REQUIRED_LOOP399",
+  "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "factor-construction-completion-review-surface-loop399",
-  "next_atomic_action": "FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399：因子构造宇宙 no-execution 链路已形成正式人工审核/测试入口；等待用户人工验收 UI/产品体验、review surface 文案、候选生成链路、人工审核材料、以及是否允许进入下一阶段真实数据评分/入池/回测授权设计。用户显式通过/要求修改前，不推进真实执行、DB、队列、runner、backtest 或 PL-H。",
-  "next_after": "After user formal audit, either fix requested UX/logic issues or, if explicitly authorized, plan the next real-evidence authorization slice without bypassing DB/queue/runner/backtest gates.",
+  "current_slice": "factor-batch-scoring-plan-loop400",
+  "next_atomic_action": "FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401：基于 loop400 factor_batch_scoring_plan_v1，设计并实现显式真实评分授权复核包与注入式 compute runner 前置边界；先收束 run request 所需字段、qa.env.load_env_files/DSN guard、chunk budget、audit/run id、rollback metadata、operator/reviewer decision，不启动默认 runner、不读写真实 DB、不自动入池、不自动队列、不自动回测或 PL-H。",
+  "next_after": "After loop401 scoring authorization review, implement explicit run request intake and controlled sample scorer execution, then real metric persistence, screening funnel, accepted pool admission, and budgeted backtest allocation in separate core-function loops.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "loop399-factor-construction-completion-review-surface",
+  "last_tick": "loop400-factor-batch-scoring-plan",
   "last_sync_sources": [
+    "SYNC-409 loop400 Factor batch scoring plan",
+    "loop400 implementation: added factor_batch_scoring_plan_v1 and bridged factor_batch_scoring_plan into user_facing_batch_mining_creation_plan_v1; completion review surface now exposes scoring_candidate_refs from survived_candidate_refs so later real scoring has concrete refs rather than counts only",
+    "loop400 changed: src/qa/quant_mining/factor_batch_scoring_plan.py; src/qa/quant_mining/factor_construction_completion_review_surface.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_batch_scoring_plan_unit.py; tests/test_batch_mining_flow_unit.py; truth sources",
+    "loop400 verification: RED missing module; RED wrong source contract not blocked; RED missing creation-plan bridge; focused+bridge/adjacent 18 passed; expanded relevant 18 passed; targeted Ruff pass; targeted compileall pass; payload smoke status=planned_for_scoring_authorization_review candidates=184 planned=184 dropped=0 chunks=4 chunk_size=50 first_ref=fg_0b3e276c2be5 candidate_ref_permission=review_only_not_execution_eligible requires_injected_runner=True default_runner_allowed=False runs_backtest=not_allowed all side effects false; forbidden active execution scan clean; LOC factor_batch_scoring_plan=189 completion_surface=230 builder=194 factor_batch_tests=168",
+    "loop400 worker: permanent Planner and Dispatcher returned next-stage plan/assignment; Test Engineer suggested source-kind/ref-preservation/fail-closed coverage and those tests were added; Verifier requested adjacent/Ruff/compileall/forbidden/truth/git evidence; Code Reviewer P2s fixed and final recheck returned success/no P1/P2; no duplicate same-role worker created",
+    "next: FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401",
     "SYNC-408 loop399 Factor construction completion review surface with semantic safety P2 fixed",
     "loop399 implementation: added factor_construction_completion_review_surface_v1 and bridged factor_construction_completion_review_surface into user_facing_batch_mining_creation_plan_v1; added factor_construction_completion_review_safety.py so artifact presence must also satisfy no-execution semantic safety",
     "loop399 changed: src/qa/quant_mining/factor_construction_completion_review_surface.py; src/qa/quant_mining/factor_construction_completion_review_safety.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_construction_completion_review_surface_unit.py; tests/test_factor_construction_completion_review_surface_bridge_unit.py; truth sources",
@@ -191,5 +197,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop399 Factor construction completion review surface complete after Code Reviewer P2 semantic safety fix. Added FactorConstructionCompletionReviewSurfaceV1 and FactorConstructionCompletionReviewSafety blockers, wired factor_construction_completion_review_surface into user_facing_batch_mining_creation_plan_v1; surface aggregates Phase 1-5 completion, candidate summary, remaining real evidence gaps, formal human audit decision, and consumer-readable steps while fail-closing drifted execution/admission artifacts. Verification: RED missing module; RED drifted artifact incorrectly ready before semantic safety fix; focused surface+bridge 4 passed; related construction/panel/pool/budget chain 13 passed; targeted Ruff pass; targeted compileall pass; payload smoke completion_status=ready_for_formal_human_audit_no_execution audit_ready=True generated=184 survived=184 pool_review_refs=16 eligible_backtest_refs=0 all phases complete review_status=ready_for_formal_human_audit grants_execution=False grants_queue_write=False grants_runner_handoff=False actual_execution_status=not_allowed all side effects false; precise forbidden scan clean. Stop: FORMAL_FACTOR_CONSTRUCTION_HUMAN_AUDIT_REQUIRED_LOOP399."
+  "last_completed_note": "loop400 Factor batch scoring plan complete after Code Reviewer P2 semantic wording/source-safety fixes and final recheck success. Added FactorBatchScoringPlanV1 and bridged factor_batch_scoring_plan into user_facing_batch_mining_creation_plan_v1; completion review surface now exposes batch_scoring_candidate_refs_for_review from survived_candidate_refs, and batch scoring plan chunks 184 review-only candidates into 4 planned scoring-authorization-review chunks with budget/default-runner/backtest/pool-write all fail-closed. Verification: RED missing module; RED wrong source contract not blocked; RED missing creation-plan bridge; focused+adjacent creation-plan chain 18 passed; targeted Ruff pass; targeted compileall pass; payload smoke status=planned_for_scoring_authorization_review candidates=184 planned=184 dropped=0 chunks=4 chunk_size=50 first_ref=fg_0b3e276c2be5 candidate_ref_permission=review_only_not_execution_eligible requires_injected_runner=True default_runner_allowed=False runs_backtest=not_allowed all side effects false; forbidden active execution scan clean. Next: FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401."
 }
