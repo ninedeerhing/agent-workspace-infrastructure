@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T10:11:47+08:00
+updated_at: 2026-07-02T10:16:34+08:00
+
+## Latest Handoff — SYNC-414 factor data source confirmation
+
+- [DONE] Implemented `factor_data_source_confirmation_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_data_source_confirmation.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_data_source_confirmation_unit.py`, plus truth sources.
+- [DONE] The data-source confirmation packet is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload exposes A-E required sources and PIT rules, including fundamental PIT sources, market data sources, formula/library seeds, ML training panel requirements, and event/text/sentiment/alternative streams.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **9 passed**; targeted Ruff pass; compileall pass; diff check pass; forbidden DB/external-fetch/scorer/backtest/queue/accepted-pool scan clean; payload smoke pass.
+- [WORKERS] Permanent Planner and Dispatcher returned loop402 plan/assignment. Permanent Verifier returned partial and requested Ruff/compileall/forbidden/truth/git closure gates, now satisfied locally. Permanent Test Engineer and Code Reviewer were dispatched but not used as completion evidence due in-progress/channel state. No duplicate same-role worker was created.
+- [NEXT] `MULTI_FACTOR_COMBINATION_SEARCH_BOUNDARY_LOOP403`: define the no-execution path boundary for multi-factor combination search.
+- [FORBIDDEN] Do not read/write real DB, fetch external data, write `factor_value_daily`, accepted pool, or queue, run scorer/backtest/runner/adapter, or grant PL-H before UI authorization and unresolved confirmations are satisfied.
 
 ## Latest Handoff — SYNC-413 factor batch scoring authorization review
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T10:11:47+08:00",
+  "updated_at": "2026-07-02T10:16:34+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "factor-batch-scoring-authorization-review-sync413",
-  "next_atomic_action": "EVENT_TEXT_SENTIMENT_FACTOR_DATA_SOURCE_CONFIRMATION_LOOP402：基于用户确认的基本面/事件/文本/情绪/另类数据纳入范围，建立 no-execution 数据源确认与 PIT 要求 read-model/creation-plan bridge：列出每类因子所需数据源、缺口、PIT/复权/公告时点要求、可用性状态、UI 确认项与不能进入真实评分的 blocker；仍不读/写真实 DB、不抓取外部数据、不运行 scorer/backtest、不写 factor_value_daily/accepted pool/queue、不授予 PL-H。",
-  "next_after": "After loop402, implement multi-factor combination search boundary as a separate first-class path, then UI run request + injected runner preflight for small_batch_trial. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No default runner, page-load execution, automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
+  "current_slice": "factor-data-source-confirmation-sync414",
+  "next_atomic_action": "MULTI_FACTOR_COMBINATION_SEARCH_BOUNDARY_LOOP403：把用户强调的多因子组合搜索建成独立 no-execution 路径边界：定义组合目标、候选来源、最大组合大小、provisional accepted 参与规则、相关性/共线性/边际增益/换手/风险约束、搜索预算、UI 确认项与不能进入真实组合回测的 blockers；仍不读/写真实 DB、不运行组合优化器/回测、不写 factor_value_daily/accepted pool/queue、不授予 PL-H。",
+  "next_after": "After loop403, implement max_rows_and_chunking / compute budget read-model, then UI run request + injected runner preflight for small_batch_trial. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No default runner, page-load execution, automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-413-factor-batch-scoring-authorization-review",
+  "last_tick": "SYNC-414-factor-data-source-confirmation",
   "last_sync_sources": [
+    "SYNC-414 loop402 Factor data source confirmation read-model",
+    "loop402 implementation: added factor_data_source_confirmation_v1 and bridged factor_data_source_confirmation into user_facing_batch_mining_creation_plan_v1",
+    "loop402 changed: src/qa/quant_mining/factor_data_source_confirmation.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_data_source_confirmation_unit.py; truth sources",
+    "loop402 verification: RED missing module; focused+adjacent 9 passed; targeted Ruff pass; targeted compileall pass; git diff --check pass; forbidden DB/external fetch/scorer/backtest/queue/accepted-pool marker scan clean; payload smoke pass",
+    "loop402 worker: permanent Planner and Dispatcher returned loop plan/assignment; permanent Verifier returned partial and requested static/truth/git gates; Test Engineer/Code Reviewer dispatched but channel state not used as completion evidence; no duplicate same-role worker created",
+    "next: MULTI_FACTOR_COMBINATION_SEARCH_BOUNDARY_LOOP403",
     "SYNC-413 loop401 Factor batch scoring authorization review bridge",
     "loop401 implementation: added factor_batch_scoring_authorization_review_v1 and bridged factor_batch_scoring_authorization_review into user_facing_batch_mining_creation_plan_v1",
     "loop401 changed: src/qa/quant_mining/factor_batch_scoring_authorization_review.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_batch_scoring_authorization_review_unit.py; tests/test_batch_mining_flow_unit.py; truth sources",
