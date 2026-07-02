@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T16:44:17+08:00
+Updated: 2026-07-02T16:49:43+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,13 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-458 | success | gpt-5.5 | 2026-07-02T16:49:43+08:00 | original qa-pg-alt explicit authorization successor complete; next=ORIGINAL_QA_PG_ALT_MANUAL_RUNTIME_REPAIR_EXECUTION_REQUEST_REVIEW_FROM_READINESS_AUTHORIZATION_SUCCESSOR_LOOP447 | loop446 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; explicit authorization successor remains not-grant/not-execution/no-command/no-container/no-DB/no-backtest; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop446 | success | gpt-5.4 | 2026-07-02T16:49:43+08:00 | loop446 planning review | permanent identity preserved; authorization review material does not grant execution |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop446 | success | gpt-5.4 | 2026-07-02T16:49:43+08:00 | loop446 assignment matrix | Orchestrator truth-source owner; Executor intentionally not assigned due waitingOnApproval |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop446 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T16:49:43+08:00 | not re-dispatched due loop436 waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop446 | success | gpt-5.5 | 2026-07-02T16:49:43+08:00 | loop446 risk precheck | avoid wording drift toward authorization granted/command submitted/container started/DB available/runtime repaired |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop446 | success | gpt-5.5 | 2026-07-02T16:49:43+08:00 | loop446 coverage review | source/status/substitute/authorization-material/side-effect matrix matched local tests |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop446 | local-verification | gpt-5.5 | 2026-07-02T16:49:43+08:00 | loop446 local verification fallback | no duplicate verifier thread created; permanent identity preserved |
 | orchestrator | current-thread | SYNC-457 | success | gpt-5.5 | 2026-07-02T16:44:17+08:00 | original qa-pg-alt readiness review successor complete; next=ORIGINAL_QA_PG_ALT_EXPLICIT_RUNTIME_REPAIR_AUTHORIZATION_REVIEW_FROM_READINESS_REVIEW_SUCCESSOR_LOOP446 | loop445 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; readiness review successor remains not-grant/not-execution/no-repair-assumption; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop445 | success | gpt-5.4 | 2026-07-02T16:44:17+08:00 | loop445 planning review | permanent identity preserved; readiness review material does not grant execution |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop445 | success | gpt-5.4 | 2026-07-02T16:44:17+08:00 | loop445 assignment matrix | Orchestrator truth-source owner; Executor intentionally not assigned due waitingOnApproval |
