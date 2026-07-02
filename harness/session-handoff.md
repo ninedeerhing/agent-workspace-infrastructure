@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T14:55:00+08:00
+updated_at: 2026-07-02T16:10:00+08:00
+
+## Latest Handoff — SYNC-433 original qa-pg-alt operator/reviewer repair review
+
+- [DONE] Implemented `original_qa_pg_alt_operator_reviewer_repair_review_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/original_qa_pg_alt_operator_reviewer_repair_review.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_original_qa_pg_alt_operator_reviewer_repair_review_unit.py`, plus truth sources.
+- [DONE] The review is now included in `user_facing_batch_mining_creation_plan_v1`, consuming `original_qa_pg_alt_runtime_repair_plan_v1`.
+- [DONE] Default remains `blocked_runtime_repair_plan_not_ready`; synthetic ready path only reaches `ready_for_original_runtime_repair_confirmation_review`, with `operator_review_grants_execution=False`, `reviewer_review_grants_execution=False`, `may_execute_docker_command=False`, `may_start_container=False`, `may_change_port_binding=False`, `may_read_env=False`, and `may_read_db=False`.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **23 passed**; targeted Ruff pass; compileall pass; payload smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Code Reviewer, and Test Engineer returned success for loop421. Verifier stayed `channel_slow`; no duplicate verifier was created.
+- [NEXT] `ORIGINAL_QA_PG_ALT_FINAL_REPAIR_CONFIRMATION_SURFACE_LOOP422`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not start Docker/container runtime; do not read env/DB, write DB/backtest queue/audit log, run backtest, or grant PL-H.
 
 ## Latest Handoff — SYNC-432 original qa-pg-alt runtime repair plan
 
@@ -1551,11 +1562,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed。TREE-6 / PL-G 为唯一前台主线：loop365–432 已把因子构造宇宙、真实评分/入池/回测 rollout planning、batch scoring authorization review、数据源确认、组合搜索边界、compute budget、受控真实因子值计算、真实指标筛选、accepted pool admission、预算化自动回测、small-batch envelope、DB/runner preflight、queue writer planning/review/authorization/audit/dry-run design/review，以及原 `qa-pg-alt` readiness repair preflight/runtime repair plan 接入 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph。用户策略：数据 closure 后退出 backfill-monitoring；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed。TREE-6 / PL-G 为唯一前台主线：loop365–433 已把因子构造宇宙、真实评分/入池/回测 rollout planning、batch scoring authorization review、数据源确认、组合搜索边界、compute budget、受控真实因子值计算、真实指标筛选、accepted pool admission、预算化自动回测、small-batch envelope、DB/runner preflight、queue writer planning/review/authorization/audit/dry-run design/review，以及原 `qa-pg-alt` readiness repair preflight/runtime repair plan/operator-reviewer repair review 接入 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph。用户策略：数据 closure 后退出 backfill-monitoring；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `ORIGINAL_QA_PG_ALT_OPERATOR_REVIEWER_REPAIR_REVIEW_LOOP421`：基于 loop420 `original_qa_pg_alt_runtime_repair_plan_v1` 设计原 `qa-pg-alt` operator/reviewer repair review packet，明确双人复核只审计划和风险，不启动容器、不读取 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest、不授予 PL-H。继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、automatic promotion、authorization grant 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `ORIGINAL_QA_PG_ALT_FINAL_REPAIR_CONFIRMATION_SURFACE_LOOP422`：基于 loop421 `original_qa_pg_alt_operator_reviewer_repair_review_v1` 设计原 `qa-pg-alt` final repair confirmation surface，明确最终确认仍只审复核材料和人工确认，不启动容器、不读取 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest、不授予 PL-H。继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、automatic promotion、authorization grant 与 secret 输出。
 
 ## Resume Command
 
