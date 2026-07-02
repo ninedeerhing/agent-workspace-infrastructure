@@ -1,4 +1,61 @@
-# Orchestrator Latest Report — SYNC-418 controlled factor value computation design
+# Orchestrator Latest Report — SYNC-419 real metric persistence screening funnel design
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real metric persistence screening funnel design"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_metric_persistence_screening_funnel_design.py"
+      summary: "Added no-execution metric persistence and screening funnel design packet."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Bridged real_metric_persistence_screening_funnel_design into user_facing_batch_mining_creation_plan_v1."
+    - file: "apps/quant_assistant/tests/test_real_metric_persistence_screening_funnel_design_unit.py"
+      summary: "Added computation-not-ready, ready-design-review, bridge, and wrong-source fail-closed tests."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Recorded SYNC-419 top status and §5.743 ledger."
+    - file: "apps/quant_assistant/docs/CONTINUATION_PROMPT.md"
+      summary: "Updated hot-path continuation to loop408."
+    - file: "harness/loop-state.json"
+      summary: "Set next_atomic_action to ACCEPTED_POOL_ADMISSION_DESIGN_LOOP408."
+    - file: "harness/session-handoff.md"
+      summary: "Added SYNC-419 handoff."
+    - file: "harness/reports/orchestrator/latest.md"
+      summary: "Recorded this latest report."
+  verification:
+    - command: "RED: PYTHONPATH=src uv run pytest tests/test_real_metric_persistence_screening_funnel_design_unit.py -q"
+      result: "Expected ModuleNotFoundError before implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_real_metric_persistence_screening_funnel_design_unit.py tests/test_controlled_factor_value_computation_design_unit.py tests/test_factor_scoring_run_request_preflight_unit.py tests/test_factor_scoring_compute_budget_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "24 passed."
+    - command: "PYTHONPATH=src uv run ruff check touched paths"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q touched files"
+      result: "Pass."
+    - command: "git diff --check -- touched files"
+      result: "Pass."
+    - command: "forbidden execution/source marker scan"
+      result: "Only planned-only/False safety markers found."
+    - command: "payload smoke"
+      result: "real_metric_persistence_screening_funnel_design_v1; blocked_computation_design_not_ready; metrics visible; planned_only_not_executed; may_write_metric_table=False; may_write_accepted_pool=False; read_db/ran_backtest false."
+  worker_dispatch:
+    - "Permanent Planner 019f0890-69e6-7270-a742-1178836608ef dispatched loop407 planning review."
+    - "Permanent Dispatcher 019f0890-af82-7ad3-a19a-d319d9aa8bb5 dispatched loop407 assignment matrix."
+    - "Permanent Test Engineer 019eeece-52d7-7b73-868a-7beb496ba303 dispatched loop407 coverage review."
+    - "Permanent Code Reviewer 019eeed1-7e14-7342-9d45-d7948aec94d2 dispatched loop407 code risk review."
+    - "Permanent Verifier 019eeed2-dbc0-7313-8d64-f9c6f199c68b dispatched loop407 verification review."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Metric persistence funnel may define schemas and status transitions, but metric table writes and pool admission remain separate authorized steps."
+    performance_note: "Loop407 completed with permanent worker dispatch and local verification fallback."
+  blockers:
+    - "Accepted pool admission design remains next."
+    - "No DB/scorer/backtest/metric-table/pool/queue/PL-H path is authorized."
+  next: "ACCEPTED_POOL_ADMISSION_DESIGN_LOOP408"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-418 controlled factor value computation design
 
 report:
   role_id: "orchestrator"

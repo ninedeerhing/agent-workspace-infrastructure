@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T11:03:00+08:00
+updated_at: 2026-07-02T11:16:00+08:00
+
+## Latest Handoff — SYNC-419 real metric persistence screening funnel design
+
+- [DONE] Implemented `real_metric_persistence_screening_funnel_design_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/real_metric_persistence_screening_funnel_design.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_real_metric_persistence_screening_funnel_design_unit.py`, plus truth sources.
+- [DONE] The metric persistence / screening funnel design packet is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload exposes primary metric schema, planned-only metric snapshot write plan, screening threshold policy, candidate status transitions, audit refs, and fail-closed blockers.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **24 passed**; targeted Ruff pass; compileall pass; diff check pass; forbidden scan only matched planned-only/False safety strings; payload smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier were dispatched for read-only loop407 review. Local verification closed the loop while worker reports may arrive later; no duplicate same-role worker was created.
+- [NEXT] `ACCEPTED_POOL_ADMISSION_DESIGN_LOOP408`.
+- [FORBIDDEN] Do not read/write real DB, run scorer/backtest, write metric table, accepted pool, queue, or grant PL-H before unresolved confirmations and preflight evidence are satisfied.
 
 ## Latest Handoff — SYNC-418 controlled factor value computation design
 

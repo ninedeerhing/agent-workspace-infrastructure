@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T11:03:00+08:00
+Updated: 2026-07-02T11:16:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-419 | success | gpt-5.5 | 2026-07-02T11:16:00+08:00 | real metric persistence screening funnel design complete; next=ACCEPTED_POOL_ADMISSION_DESIGN_LOOP408 | loop407 dispatched permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier; local verification closed while worker reports may arrive later; no duplicate same-role worker created |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop407 | dispatched | gpt-5.5 | 2026-07-02T11:16:00+08:00 | loop407 planning review for metric funnel design | workload light until report; permanent identity preserved |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop407 | dispatched | gpt-5.5 | 2026-07-02T11:16:00+08:00 | loop407 assignment matrix | workload light until report; permanent identity preserved |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop407 | dispatched | gpt-5.5 | 2026-07-02T11:16:00+08:00 | loop407 test coverage review | workload light until report; verify metric funnel/no-execution matrix |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop407 | dispatched | gpt-5.5 | 2026-07-02T11:16:00+08:00 | loop407 code risk review | workload light until report; watch metric persistence vs write authorization drift |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop407 | dispatched | gpt-5.5 | 2026-07-02T11:16:00+08:00 | loop407 verification review | workload light until report; local verification already gathered |
 | orchestrator | current-thread | SYNC-418 | success | gpt-5.5 | 2026-07-02T11:03:00+08:00 | controlled factor value computation design complete; next=REAL_METRIC_PERSISTENCE_SCREENING_FUNNEL_DESIGN_LOOP407 | loop406 dispatched permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier; local verification closed while worker reports may arrive later; no duplicate same-role worker created |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop406 | dispatched | gpt-5.5 | 2026-07-02T11:03:00+08:00 | loop406 planning review for controlled computation design | workload light until report; permanent identity preserved |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop406 | dispatched | gpt-5.5 | 2026-07-02T11:03:00+08:00 | loop406 assignment matrix | workload light until report; permanent identity preserved |
@@ -116,6 +122,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop364 | success | gpt-5.5 | 2026-07-01T00:00:44+08:00 | found two P2s, rechecked both fixed | workload cleared; use for future high-risk review gates |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop364 | success | gpt-5.4 | 2026-07-01T00:00:44+08:00 | final verification PASS; acceptance_decision says stop at formal human review | workload cleared; next requires user formal acceptance |
 ## Latest Roster Notes
+- **SYNC-419 · loop407**：完成 `Real metric persistence screening funnel design`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：metric funnel 可以定义 schema/status transitions，但 metric-table write 与 accepted-pool admission 必须保持后续授权步骤。
 - **SYNC-418 · loop406**：完成 `Controlled factor value computation design`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：computation design 可以命名 `factor_value_daily` 目标表，但必须保持 `planned_only_not_executed` 与 all-false execution flags。
 - **SYNC-417 · loop405**：完成 `Factor scoring run request preflight`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：UI run request 只能表示 review request，不得被 UI 或后端解释为 page-load execution、runner connection 或 scorer execution。
 - **SYNC-416 · loop404**：完成 `Factor scoring compute budget read-model`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：compute budget UI confirmation 不等于 runner preflight ready，确认预算只能清除预算偏好 blocker，不能授予 execution evidence。
