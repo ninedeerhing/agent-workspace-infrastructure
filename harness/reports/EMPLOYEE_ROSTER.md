@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T04:55:00+08:00
+Updated: 2026-07-03T05:10:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop511 | active | gpt-5.5 | 2026-07-03T04:55:00+08:00 | loop511 complete; next loop512 Planner selection | workload light; final safety successor re-bridged and verified |
+| orchestrator | current-thread | loop512 | active | gpt-5.5 | 2026-07-03T05:10:00+08:00 | loop512 complete; next loop513 Planner selection | workload light; human intervention packet successor re-bridged and verified |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop510 | partial_worker_report | gpt-5.4 | 2026-07-03T04:40:00+08:00 | message delivered; readback no report body | preserve identity; repair report ingestion before treating planner as healthy |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop510 | partial_worker_report | gpt-5.4 | 2026-07-03T04:40:00+08:00 | message delivered; readback no report body | preserve identity; repair report ingestion before treating dispatcher as healthy |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop510 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T04:40:00+08:00 | not re-dispatched due loop436 waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
@@ -58,6 +58,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop510 | partial_worker_report | gpt-5.4 | 2026-07-03T04:40:00+08:00 | message delivered; readback no report body | preserve identity; repair report ingestion before treating test-engineer as healthy |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop510 | idle | gpt-5.5 | 2026-07-03T04:40:00+08:00 | not dispatched because primary worker report ingestion is partial | no duplicate verifier thread created; permanent identity preserved |
 ## Latest Roster Notes
+- 2026-07-03T05:10:00+08:00 · loop512: Human intervention packet successor now consumes latest final safety successor; next loop513 retargets post-intervention evidence handoff successor.
 - 2026-07-03T04:55:00+08:00 · loop511: Permanent worker messages delivered; local verification is authoritative. Final safety review successor now consumes latest request review successor; next loop512 retargets human runtime repair intervention packet successor.
 - 2026-07-03T04:40:00+08:00 · loop510: Planner/Dispatcher/Test Engineer/Code Reviewer messages were delivered to permanent threads, but readback returned no report body; marked partial_worker_report and created no duplicate same-role worker. Manual execution request review successor now consumes latest authorization review successor; next loop511 retargets final execution request safety review successor.
 - 2026-07-03T04:25:00+08:00 · loop509: Worker channels remain channel_stale from loop508; no duplicate same-role worker was created. Authorization review successor now consumes latest readiness review successor; next loop510 retargets manual runtime repair execution request review successor.
