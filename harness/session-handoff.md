@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-02T20:40:00+08:00
+updated_at: 2026-07-02T20:55:00+08:00
+
+## Latest Handoff — SYNC-491 original qa-pg-alt readiness evidence review successor
+
+- [DONE] Re-bridged `original_qa_pg_alt_post_intervention_readiness_evidence_review_from_readiness_handoff_successor_v1` to consume the latest loop478 evidence handoff successor.
+- [DONE] Changed quant files: `src/qa/brain/batch_mining_creation_plan_builder.py`, plus truth sources.
+- [VERIFY] RED stale tail bridge **1 failed / 4 passed**; focused pytest **5 passed**; upstream+focused chain **10 passed**; targeted Ruff pass; compileall pass; forbidden execution marker scan clean. Execution remains not granted.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, and Code Reviewer returned loop479 read-only reports. Executor was not re-dispatched because its loop436 channel remains `waitingOnApproval`; no duplicate same-role worker was created.
+- [NEXT] `ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_REVIEW_FROM_READINESS_EVIDENCE_SUCCESSOR_LOOP480`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not start Docker/container runtime; do not read env/DB, write DB/backtest queue/audit log, run backtest, or grant PL-H.
 
 ## Latest Handoff — SYNC-490 original qa-pg-alt readiness evidence handoff successor
 
