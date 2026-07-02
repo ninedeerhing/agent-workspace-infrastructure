@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-02T22:03:06+08:00
+updated_at: 2026-07-02T22:06:41+08:00
+
+## Latest Handoff — SYNC-533 backtest allocation manifest
+
+- [DONE] `budgeted_auto_backtest_allocation_design_v1` now consumes `accepted_pool_admission_design_v1.provisional_candidate_manifest`.
+- [DONE] Ready Top50 manifests populate `backtest_allocation_candidate_manifest` with `queue_status=not_written`; fake-ready admissions without manifests fail closed as `blocked_candidate_manifest_not_ready`.
+- [VERIFY] RED missing `backtest_allocation_candidate_manifest` and missing-manifest false-ready; focused allocation **6 passed**; adjacent pool/allocation/queue-intake chain **44 passed**; Ruff pass; compileall pass; forbidden side-effect scan clean; default and ready-path payload smokes pass.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer messages delivered for loop521; local verification is authoritative; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `QUEUE_INTAKE_READINESS_CONSUMES_ALLOCATION_MANIFEST_LOOP522`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not start Docker/container runtime; do not read env/DB, write DB/backtest queue/audit log, run backtest, or grant PL-H.
 
 ## Latest Handoff — SYNC-532 accepted pool manifest
 

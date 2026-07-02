@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T22:03:06+08:00",
+  "updated_at": "2026-07-02T22:06:41+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "accepted-pool-manifest-loop520",
-  "next_atomic_action": "BUDGETED_BACKTEST_ALLOCATION_CONSUMES_ACCEPTED_POOL_MANIFEST_LOOP521：基于 accepted_pool_admission_design_v1 的 provisional_candidate_manifest，让 budgeted_auto_backtest_allocation_design 携带 Top50 回测分配候选 manifest 和 queue-write-not-granted 状态；必须保持 no-execution/fail-closed，不启动 Docker/容器，不读 env/DB，不创建替代 DB 容器/服务/端口，不写 DB/队列，不运行 backtest，不授予 PL-H。",
-  "next_after": "After loop521, continue toward queue intake/readiness carrying allocation manifest without queue writes or execution grants.",
+  "current_slice": "backtest-allocation-manifest-loop521",
+  "next_atomic_action": "QUEUE_INTAKE_READINESS_CONSUMES_ALLOCATION_MANIFEST_LOOP522：基于 budgeted_auto_backtest_allocation_design_v1 的 backtest_allocation_candidate_manifest，让 auto-backtest queue intake/readiness 设计携带 Top50 queue intake manifest 和 explicit no-write/no-run 状态；必须保持 no-execution/fail-closed，不启动 Docker/容器，不读 env/DB，不创建替代 DB 容器/服务/端口，不写 DB/队列，不运行 backtest，不授予 PL-H。",
+  "next_after": "After loop522, continue toward queue-write readiness review carrying the manifest without queue writes or execution grants.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-532-accepted-pool-manifest",
+  "last_tick": "SYNC-533-backtest-allocation-manifest",
   "last_sync_sources": [
+    "SYNC-533 loop521 Budgeted backtest allocation consumes accepted-pool manifest",
+    "loop521 implementation: budgeted_auto_backtest_allocation_design_v1 now consumes accepted_pool_admission_design_v1 provisional_candidate_manifest and exposes backtest_allocation_candidate_manifest with queue_status not_written",
+    "loop521 verification: RED missing backtest_allocation_candidate_manifest and missing-manifest false-ready; focused allocation 6 passed; adjacent pool/allocation/queue-intake chain 44 passed; Ruff pass; compileall pass; forbidden side-effect scan clean; default and ready-path payload smokes pass",
+    "loop521 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer messages delivered; local verification used as authoritative evidence; no duplicate same-role worker",
+    "next: QUEUE_INTAKE_READINESS_CONSUMES_ALLOCATION_MANIFEST_LOOP522",
     "SYNC-532 loop520 Accepted pool admission consumes metric funnel manifest",
     "loop520 implementation: accepted_pool_admission_design_v1 now consumes real_metric_persistence_screening_funnel_design_v1 screening_candidate_manifest and exposes provisional_candidate_manifest with pool_status provisional_not_written",
     "loop520 verification: RED missing provisional_candidate_manifest and missing-manifest false-ready; focused accepted pool 5 passed; adjacent metric/pool/backtest chain 36 passed; Ruff pass; compileall pass; forbidden side-effect scan clean; default and ready-path payload smokes pass",
@@ -95,12 +100,7 @@
     "loop506 changed: src/qa/brain/batch_mining_creation_plan_builder.py; truth sources",
     "loop506 verification: RED stale tail bridge 1 failed; focused+upstream chain 10 passed; Ruff pass; compileall pass; forbidden execution marker scan clean; execution remains not granted",
     "loop506 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer reports success; Verifier dispatched final read-only review; Executor not re-dispatched because loop436 channel is waitingOnApproval; no duplicate same-role worker created",
-    "next: ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_REVIEW_FROM_READINESS_HANDOFF_SUCCESSOR_LOOP507",
-    "SYNC-517 loop505 Original qa-pg-alt human runtime repair intervention packet successor from readiness final safety successor",
-    "loop505 implementation: bridged latest original_qa_pg_alt_human_runtime_repair_intervention_packet_from_readiness_final_safety_successor to consume loop504 latest final safety review successor and propagate source final safety/manual request review/authorization review/readiness review/readiness evidence review/evidence handoff/intervention/readiness evidence/request lineage",
-    "loop505 changed: src/qa/brain/batch_mining_creation_plan_builder.py; truth sources",
-    "loop505 verification: RED stale tail bridge 1 failed; focused+upstream chain 10 passed; Ruff pass; compileall pass; forbidden execution marker scan clean; execution remains not granted",
-    "loop505 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer reports success; Executor not re-dispatched because loop436 channel is waitingOnApproval; no duplicate same-role worker created"
+    "next: ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_REVIEW_FROM_READINESS_HANDOFF_SUCCESSOR_LOOP507"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -112,5 +112,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop520 Accepted pool admission manifest complete. accepted_pool_admission_design_v1 now consumes real_metric_persistence_screening_funnel_design_v1.screening_candidate_manifest and carries Top50 small_batch_trial_001 refs through provisional_candidate_manifest with pool_status=provisional_not_written; fake-ready funnels without manifests fail closed as blocked_candidate_manifest_not_ready. Verification: RED missing provisional_candidate_manifest and missing-manifest false-ready; focused accepted pool 5 passed; adjacent metric/pool/backtest chain 36 passed; targeted Ruff pass; compileall pass; forbidden side-effect scan clean; default and ready-path payload smokes pass. No env/DB/Docker/backtest/queue writes/accepted pool writes or PL-H grants."
+  "last_completed_note": "loop521 Budgeted backtest allocation manifest complete. budgeted_auto_backtest_allocation_design_v1 now consumes accepted_pool_admission_design_v1.provisional_candidate_manifest and carries Top50 small_batch_trial_001 refs through backtest_allocation_candidate_manifest with queue_status=not_written; fake-ready admissions without manifests fail closed as blocked_candidate_manifest_not_ready. Verification: RED missing backtest_allocation_candidate_manifest and missing-manifest false-ready; focused allocation 6 passed; adjacent pool/allocation/queue-intake chain 44 passed; targeted Ruff pass; compileall pass; forbidden side-effect scan clean; default and ready-path payload smokes pass. No env/DB/Docker/backtest/queue writes or PL-H grants."
 }

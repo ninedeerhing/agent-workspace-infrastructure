@@ -1,3 +1,34 @@
+# Orchestrator Latest Report — SYNC-533 backtest allocation manifest
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "budgeted auto-backtest allocation consumes accepted-pool manifest"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/budgeted_auto_backtest_allocation_design.py"
+      summary: "Adds backtest_allocation_candidate_manifest from provisional candidate manifest and fail-closed empty-manifest gate."
+    - file: "apps/quant_assistant/tests/test_budgeted_auto_backtest_allocation_design_unit.py"
+      summary: "Covers Top50 allocation manifest propagation and missing-manifest fail-closed behavior."
+  verification:
+    - command: "RED PYTHONPATH=src uv run pytest tests/test_budgeted_auto_backtest_allocation_design_unit.py -q"
+      result: "Failed before implementation with missing backtest_allocation_candidate_manifest and missing-manifest false-ready."
+    - command: "PYTHONPATH=src uv run pytest tests/test_budgeted_auto_backtest_allocation_design_unit.py -q"
+      result: "6 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_accepted_pool_admission_design_unit.py tests/test_budgeted_auto_backtest_allocation_design_unit.py tests/test_auto_backtest_dispatch_planning_readiness_unit.py tests/test_auto_backtest_queue_intake_readiness_unit.py -q"
+      result: "44 passed."
+    - command: "targeted Ruff / compileall / forbidden side-effect scan / default and ready-path payload smokes"
+      result: "All passed; default payload remains blocked and ready path shows small_batch_trial_001 with 50 queue-not-written candidates, no queue write, no backtest."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Backtest allocation manifests are queue-intake evidence only; queue_status=not_written must stay explicit until a later authorized gate."
+    performance_note: "Auto-backtest readiness advanced from accepted-pool admission to budgeted allocation input."
+  blockers:
+    - "partial_worker_report for Planner, Dispatcher, Test Engineer, and Code Reviewer"
+  next: "QUEUE_INTAKE_READINESS_CONSUMES_ALLOCATION_MANIFEST_LOOP522"
+
+---
 # Orchestrator Latest Report — SYNC-532 accepted pool manifest
 
 report:
