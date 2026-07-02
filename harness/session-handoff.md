@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T04:45:00+08:00
+updated_at: 2026-07-03T05:20:00+08:00
+
+## Latest Handoff — SYNC-552 formal runtime authorization gap packet
+
+- [DONE] `formal_runtime_authorization_gap_packet_v1` now aggregates small/medium/full readiness artifacts into source, human, runtime, scope, data, and audit gap sections.
+- [DONE] The creation plan exposes explicit user/operator/reviewer, runner/adapter, DSN isolation, max_rows/chunk scope, data-source, and audit/rollback blockers with `formal_runtime_authorization=not_granted`.
+- [VERIFY] RED missing module **1 error**; focused gap-packet unit+bridge **4 passed**; adjacent small/medium/full readiness chain **9 passed**; Ruff pass; compileall pass; forbidden marker scan clean; smoke `loop540_smoke planned_waiting_formal_runtime_authorization full_chunked_run all_a_shares not_granted False False False False False False False runner_manifest_missing event_text_sentiment_data_sources_unconfirmed`.
+- [WORKERS] Permanent Planner success; Dispatcher success; Test Engineer success and wrong-kind fail-closed recommendation incorporated. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `OPERATOR_REVIEWER_RUNTIME_AUTHORIZATION_REVIEW_SURFACE_LOOP541`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-551 full chunked run readiness contract
 
