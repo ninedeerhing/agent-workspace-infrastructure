@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T19:00:00+08:00
+Updated: 2026-07-02T19:20:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-443 | success | gpt-5.5 | 2026-07-02T19:20:00+08:00 | original qa-pg-alt post-intervention readiness review complete; next=ORIGINAL_QA_PG_ALT_EXPLICIT_RUNTIME_REPAIR_AUTHORIZATION_REVIEW_LOOP432 | loop431 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; readiness review remains not-grant/not-execution; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop431 | dispatched | gpt-5.4 | 2026-07-02T19:20:00+08:00 | loop431 planning review | permanent identity preserved; no duplicate planner created |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop431 | dispatched | gpt-5.4 | 2026-07-02T19:20:00+08:00 | loop431 assignment matrix | Orchestrator sole writer, quality workers read-only |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop431 | dispatched | gpt-5.5 | 2026-07-02T19:20:00+08:00 | loop431 readiness review risk precheck | avoid wording drift toward granted/approved/executable |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop431 | dispatched | gpt-5.5 | 2026-07-02T19:20:00+08:00 | loop431 coverage review | fail-closed no-execution readiness matrix implemented locally |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop431 | local-verification | gpt-5.5 | 2026-07-02T19:20:00+08:00 | loop431 local verification fallback | no duplicate verifier thread created; permanent identity preserved |
 | orchestrator | current-thread | SYNC-442 | success | gpt-5.5 | 2026-07-02T19:00:00+08:00 | original qa-pg-alt post-intervention readiness evidence intake complete; next=ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_REVIEW_LOOP431 | loop430 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer but readback systemError; local verification fallback; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop430 | channel_error | gpt-5.5 | 2026-07-02T19:00:00+08:00 | loop430 planning review | readback systemError/no report; permanent identity preserved, no duplicate worker |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop430 | channel_error | gpt-5.4 | 2026-07-02T19:00:00+08:00 | loop430 assignment matrix | readback systemError/no report; permanent identity preserved, no duplicate worker |
