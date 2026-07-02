@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T04:05:00+08:00
+Updated: 2026-07-03T04:45:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop538 | active | gpt-5.5 | 2026-07-03T04:05:00+08:00 | SYNC-550 loop538 medium-batch validation readiness contract complete; next loop539 full-chunked-run readiness contract | workload light; auto-mining to auto-backtest core chain advanced one function |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop538 | success | gpt-5.4 | 2026-07-03T04:05:00+08:00 | loop538 core function plan returned | workload cleared; preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop538 | success | gpt-5.4 | 2026-07-03T04:05:00+08:00 | loop538 assignment_matrix returned | workload cleared; preserve permanent identity |
+| orchestrator | current-thread | loop539 | active | gpt-5.5 | 2026-07-03T04:45:00+08:00 | SYNC-551 loop539 full-chunked-run readiness contract complete; next loop540 formal runtime authorization gap packet | workload light; auto-mining to auto-backtest core chain advanced one function |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop539 | dispatched_readback_truncated | gpt-5.4 | 2026-07-03T04:45:00+08:00 | loop539 plan requested; readback exceeded available context and was not used as completion evidence | workload cleared; preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop539 | dispatched_readback_truncated | gpt-5.4 | 2026-07-03T04:45:00+08:00 | loop539 assignment requested; readback exceeded available context and was not used as completion evidence | workload cleared; preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop538 | channel_slow | gpt-5.5 | 2026-07-03T04:05:00+08:00 | loop538 no-execution risk review not duplicated due older waitingOnApproval state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop538 | success | gpt-5.4 | 2026-07-03T04:05:00+08:00 | loop538 matrix returned; local TDD covered 200-candidate medium validation readiness and no-execution assertions | workload cleared; preserve permanent identity |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop538 | available | gpt-5.5 | 2026-07-03T04:05:00+08:00 | loop537 final verification success read; loop538 local verification complete pending optional final verifier | no duplicate verifier thread created; permanent identity preserved |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop539 | channel_slow | gpt-5.5 | 2026-07-03T04:45:00+08:00 | loop539 no-execution risk review not duplicated due older waitingOnApproval state | preserve permanent identity; do not duplicate same-role worker |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop539 | dispatched_readback_truncated | gpt-5.4 | 2026-07-03T04:45:00+08:00 | loop539 matrix requested; local TDD covered full-chunked readiness and no-execution assertions | workload cleared; preserve permanent identity |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop539 | available | gpt-5.5 | 2026-07-03T04:45:00+08:00 | loop539 local verification complete pending optional final verifier | no duplicate verifier thread created; permanent identity preserved |
 ## Latest Roster Notes
+- 2026-07-03T04:45:00+08:00 · SYNC-551 · loop539: Full-chunked-run readiness contract now exposes full candidate/all-A-share/full-history chunking, resume/audit/rollback requirements, validation inputs, and blockers; Planner/Dispatcher/Test Engineer dispatched but readback exceeded context; local verification authoritative; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T04:05:00+08:00 · SYNC-550 · loop538: Medium-batch validation readiness contract now exposes 200 target/current/gap, family/metric/budget constraints, and small-to-medium blockers; Planner/Dispatcher/Test Engineer success; Verifier loop537 success read; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T03:45:00+08:00 · SYNC-549 · loop537: Real batch progression readiness manifest now links panel scoring evidence, provisional pool admission evidence, and backtest budget readiness into one small/medium/full no-execution payload; Planner/Dispatcher/Test Engineer success; Verifier loop536 success read; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T03:05:00+08:00 · SYNC-548 · loop536: Final human archive confirmation review now consumes Top50 archive review manifest and keeps formal_human_approval=not_granted / queue_status=not_written; Planner/Dispatcher/Test Engineer dispatched; Code Reviewer channel_slow/waitingOnApproval; Verifier final review requested; no duplicate same-role worker created.

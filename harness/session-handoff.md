@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T04:05:00+08:00
+updated_at: 2026-07-03T04:45:00+08:00
+
+## Latest Handoff — SYNC-551 full chunked run readiness contract
+
+- [DONE] `full_chunked_run_readiness_contract_v1` now derives full-candidate / all-A-share / full-history chunked run readiness from `medium_batch_validation_readiness_contract_v1`.
+- [DONE] The creation plan exposes candidate/security/time chunk plans, resume key fields, audit/rollback requirements, validation inputs, and fail-closed blockers.
+- [VERIFY] focused full-chunked unit+bridge **3 passed**; adjacent medium-batch / real-batch progression chain **6 passed**; Ruff pass; compileall pass; forbidden marker scan clean; smoke `loop539_smoke full_chunked_run medium_batch_validation all_a_shares full_available_history 200 500 1 planned_waiting_medium_batch_metrics False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer were dispatched; report readback exceeded context and was not used as completion evidence. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `FORMAL_RUNTIME_AUTHORIZATION_GAP_PACKET_LOOP540`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-550 medium batch validation readiness contract
 
