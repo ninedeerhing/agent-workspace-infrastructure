@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T12:02:00+08:00
+Updated: 2026-07-02T12:18:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-423 | success | gpt-5.5 | 2026-07-02T12:18:00+08:00 | authorized small-batch trial request envelope complete; next=DB_RUNNER_PREFLIGHT_VALIDATOR_LOOP412 | loop411 dispatched permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier; local verification closed while worker reports may arrive later; no duplicate same-role worker created |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop411 | dispatched | gpt-5.5 | 2026-07-02T12:18:00+08:00 | loop411 planning review for small-batch request envelope | workload light until report; permanent identity preserved |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop411 | dispatched | gpt-5.5 | 2026-07-02T12:18:00+08:00 | loop411 assignment matrix | workload light until report; permanent identity preserved |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop411 | dispatched | gpt-5.5 | 2026-07-02T12:18:00+08:00 | loop411 test coverage review | workload light until report; verify request envelope/no-execution matrix |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop411 | dispatched | gpt-5.5 | 2026-07-02T12:18:00+08:00 | loop411 code risk review | workload light until report; watch authorized/request wording vs execution grant drift |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop411 | dispatched | gpt-5.5 | 2026-07-02T12:18:00+08:00 | loop411 verification review | workload light until report; local verification already gathered |
 | orchestrator | current-thread | SYNC-422 | success | gpt-5.5 | 2026-07-02T12:02:00+08:00 | final user-facing review surface complete; next=AUTHORIZED_SMALL_BATCH_TRIAL_REQUEST_ENVELOPE_LOOP411 | loop410 dispatched permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier; local verification closed while worker reports may arrive later; no duplicate same-role worker created |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop410 | dispatched | gpt-5.5 | 2026-07-02T12:02:00+08:00 | loop410 planning review for final user-facing review surface | workload light until report; permanent identity preserved |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop410 | dispatched | gpt-5.5 | 2026-07-02T12:02:00+08:00 | loop410 assignment matrix | workload light until report; permanent identity preserved |
@@ -140,6 +146,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop364 | success | gpt-5.5 | 2026-07-01T00:00:44+08:00 | found two P2s, rechecked both fixed | workload cleared; use for future high-risk review gates |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop364 | success | gpt-5.4 | 2026-07-01T00:00:44+08:00 | final verification PASS; acceptance_decision says stop at formal human review | workload cleared; next requires user formal acceptance |
 ## Latest Roster Notes
+- **SYNC-423 · loop411**：完成 `Authorized small-batch trial request envelope`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：authorized request envelope 只是 execution-preflight review material，不得解释为 DB/queue/backtest execution grant。
 - **SYNC-422 · loop410**：完成 `Final user-facing review surface`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：消费级 ready/review 文案必须和 execution authorization 分离，按钮启用也不得暗含自动写库/入队/回测。
 - **SYNC-421 · loop409**：完成 `Budgeted auto-backtest allocation design`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：可以显示 auto_backtest_request_queue 作为 planned-only target，但不得暗含 queue-write authorization、backtest execution 或 PL-H。
 - **SYNC-420 · loop408**：完成 `Accepted pool admission design`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：final accepted UI 只能表达人工确认意向，不得暗含 accepted-pool write authorization。

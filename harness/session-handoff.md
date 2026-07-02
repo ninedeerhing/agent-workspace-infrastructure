@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T12:02:00+08:00
+updated_at: 2026-07-02T12:18:00+08:00
+
+## Latest Handoff — SYNC-423 authorized small-batch trial request envelope
+
+- [DONE] Implemented `authorized_small_batch_trial_request_envelope_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/authorized_small_batch_trial_request_envelope.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_authorized_small_batch_trial_request_envelope_unit.py`, plus truth sources.
+- [DONE] The small-batch trial request envelope is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload validates surface readiness, Top50 small-batch scope, max rows, data sources, runner manifest, DSN isolation, audit/rollback, and operator/reviewer artifacts.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **40 passed**; targeted Ruff pass; compileall pass; diff check pass; forbidden scan only matched False safety strings; payload smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier were dispatched for read-only loop411 review. Local verification closed the loop while worker reports may arrive later; no duplicate same-role worker was created.
+- [NEXT] `DB_RUNNER_PREFLIGHT_VALIDATOR_LOOP412`.
+- [FORBIDDEN] Do not read/write real DB, write queue, run backtest, or grant PL-H before explicit authorization and preflight evidence are satisfied.
 
 ## Latest Handoff — SYNC-422 final user-facing review surface
 

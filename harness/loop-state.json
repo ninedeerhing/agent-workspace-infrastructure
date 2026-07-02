@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T12:02:00+08:00",
+  "updated_at": "2026-07-02T12:18:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "final-user-facing-review-surface-sync422",
-  "next_atomic_action": "AUTHORIZED_SMALL_BATCH_TRIAL_REQUEST_ENVELOPE_LOOP411：建立 authorized small-batch trial request envelope，把 loop410 消费级复核面中的“小批试跑确认”转换为仍需显式执行授权的请求信封；校验候选数量、股票池、时间窗、max rows、数据源、runner manifest、DSN isolation、audit/rollback；仍不得真实写 DB/队列、不得运行 backtest、不得授予 PL-H。",
-  "next_after": "After loop411, implement DB/runner preflight validator and then controlled queue request writer only when explicit execution authorization, DB isolation, rollback metadata, and user-facing confirmation artifacts are all satisfied.",
+  "current_slice": "authorized-small-batch-trial-request-envelope-sync423",
+  "next_atomic_action": "DB_RUNNER_PREFLIGHT_VALIDATOR_LOOP412：建立 DB/runner preflight validator，消费 loop411 request envelope，验证 DSN isolation、schema/table readiness、runner manifest、dry-run capability declaration、audit/rollback refs、resource limits 与 no-default-runner policy；仍不得真实写 DB/队列、不得运行 backtest、不得授予 PL-H。",
+  "next_after": "After loop412, implement controlled queue request writer only when explicit execution authorization, DB isolation, rollback metadata, runner manifest, and user-facing confirmation artifacts are all satisfied.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-422-final-user-facing-review-surface",
+  "last_tick": "SYNC-423-authorized-small-batch-trial-request-envelope",
   "last_sync_sources": [
+    "SYNC-423 loop411 Authorized small-batch trial request envelope",
+    "loop411 implementation: added authorized_small_batch_trial_request_envelope_v1 and bridged authorized_small_batch_trial_request_envelope into user_facing_batch_mining_creation_plan_v1",
+    "loop411 changed: src/qa/quant_mining/authorized_small_batch_trial_request_envelope.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_authorized_small_batch_trial_request_envelope_unit.py; truth sources",
+    "loop411 verification: RED missing module; focused+adjacent 40 passed; targeted Ruff pass; targeted compileall pass; git diff --check pass; forbidden scan only False safety markers; payload smoke pass",
+    "loop411 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier dispatched for read-only review; local verification used for closure; no duplicate same-role worker created",
+    "next: DB_RUNNER_PREFLIGHT_VALIDATOR_LOOP412",
     "SYNC-422 loop410 Final user-facing review surface",
     "loop410 implementation: added real_scoring_to_backtest_review_surface_v1 and bridged real_scoring_to_backtest_review_surface into user_facing_batch_mining_creation_plan_v1",
     "loop410 changed: src/qa/quant_mining/real_scoring_to_backtest_review_surface.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_real_scoring_to_backtest_review_surface_unit.py; truth sources",
