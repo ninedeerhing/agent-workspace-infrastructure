@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T18:40:00+08:00
+Updated: 2026-07-02T19:00:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-442 | success | gpt-5.5 | 2026-07-02T19:00:00+08:00 | original qa-pg-alt post-intervention readiness evidence intake complete; next=ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_REVIEW_LOOP431 | loop430 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer but readback systemError; local verification fallback; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop430 | channel_error | gpt-5.5 | 2026-07-02T19:00:00+08:00 | loop430 planning review | readback systemError/no report; permanent identity preserved, no duplicate worker |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop430 | channel_error | gpt-5.4 | 2026-07-02T19:00:00+08:00 | loop430 assignment matrix | readback systemError/no report; permanent identity preserved, no duplicate worker |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop430 | channel_error | gpt-5.5 | 2026-07-02T19:00:00+08:00 | loop430 intake risk precheck | readback systemError/no report; local forbidden scans clean |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop430 | channel_error | gpt-5.4 | 2026-07-02T19:00:00+08:00 | loop430 coverage review | readback systemError/no report; focused/adjacent pytest passed locally |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop430 | local-verification | gpt-5.5 | 2026-07-02T19:00:00+08:00 | loop430 local verification fallback | no duplicate verifier thread created; permanent identity preserved |
 | orchestrator | current-thread | SYNC-441 | success | gpt-5.5 | 2026-07-02T18:40:00+08:00 | original qa-pg-alt final human intervention handoff complete; next=ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_INTAKE_LOOP430 | loop429 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; handoff remains not-grant/not-execution; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop429 | success | gpt-5.5 | 2026-07-02T18:40:00+08:00 | loop429 planning review | workload cleared; final handoff means material handoff only, not runtime repair permission |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop429 | success | gpt-5.4 | 2026-07-02T18:40:00+08:00 | loop429 assignment matrix | workload cleared; permanent worker roles reused, no duplicate same-role worker |
