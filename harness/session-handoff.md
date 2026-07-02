@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T00:04:06+08:00
+updated_at: 2026-07-03T00:08:46+08:00
+
+## Latest Handoff — SYNC-537 formal human handoff manifest
+
+- [DONE] `formal_human_queue_write_permission_review_handoff_packet_v1` now accepts optional `final_queue_write_permission_review` while preserving the old final-human archive confirmation review path.
+- [DONE] Ready formal review manifests populate `formal_human_review_handoff_manifest` with `handoff_status=pending_formal_human_review_handoff`; handoff can be ready for human review but human approval, queue write, and execution remain false/not-granted.
+- [VERIFY] RED unexpected keyword before implementation; focused formal human handoff **11 passed**; adjacent formal-permission/formal-human surface/guard chain **62 passed**; Ruff pass; compileall pass; ready-path payload smoke pass.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer returned success; Verifier final read-only review returned success; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `EXPLICIT_HUMAN_QUEUE_WRITE_PERMISSION_DECISION_CONSUMES_HANDOFF_MANIFEST_LOOP526`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/backtest queue; do not run backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-536 formal permission review manifest
 

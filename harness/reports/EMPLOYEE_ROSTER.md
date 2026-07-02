@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T00:04:06+08:00
+Updated: 2026-07-03T00:08:46+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop524 | active | gpt-5.5 | 2026-07-03T00:04:06+08:00 | loop524 formal permission review manifest complete; next loop525 formal human handoff consumes manifest | workload light; auto-backtest readiness advanced one core function |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop524 | success | gpt-5.5 | 2026-07-03T00:04:06+08:00 | loop524 plan success | workload cleared; preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop524 | success | gpt-5.4 | 2026-07-03T00:04:06+08:00 | loop524 assignment_matrix success | workload cleared; preserve permanent identity |
+| orchestrator | current-thread | loop525 | active | gpt-5.5 | 2026-07-03T00:08:46+08:00 | loop525 formal human handoff manifest complete; next loop526 explicit human decision consumes manifest | workload light; auto-backtest readiness advanced one core function |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop525 | success | gpt-5.5 | 2026-07-03T00:08:46+08:00 | loop525 plan success | workload cleared; preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop525 | success | gpt-5.4 | 2026-07-03T00:08:46+08:00 | loop525 assignment_matrix success | workload cleared; preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop524 | success | gpt-5.4 | 2026-07-03T00:04:06+08:00 | loop524 no-execution risk pre-review success | workload cleared; preserve permanent identity |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop524 | success | gpt-5.4 | 2026-07-03T00:04:06+08:00 | loop524 test design success | workload cleared; preserve permanent identity |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop524 | success | gpt-5.5 | 2026-07-03T00:04:06+08:00 | final read-only verification success | no duplicate verifier thread created; permanent identity preserved |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop525 | success | gpt-5.4 | 2026-07-03T00:08:46+08:00 | loop525 no-execution risk pre-review success | workload cleared; preserve permanent identity |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop525 | success | gpt-5.4 | 2026-07-03T00:08:46+08:00 | loop525 test design success | workload cleared; preserve permanent identity |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop525 | success | gpt-5.5 | 2026-07-03T00:08:46+08:00 | final read-only verification success | no duplicate verifier thread created; permanent identity preserved |
 ## Latest Roster Notes
+- 2026-07-03T00:08:46+08:00 · loop525: Formal human handoff now consumes Top50 formal permission review manifest and keeps formal_human_approval=not_granted; Planner/Dispatcher/Test Engineer/Code Reviewer returned success; no duplicate same-role worker created.
 - 2026-07-03T00:04:06+08:00 · loop524: Formal queue-write permission review now consumes Top50 queue-write review manifest and keeps queue_status=not_written; Planner/Dispatcher/Test Engineer/Code Reviewer returned success; no duplicate same-role worker created.
 - 2026-07-02T22:15:24+08:00 · loop523: Queue-write readiness review now consumes Top50 queue-intake manifest and keeps queue_status=not_written; no duplicate same-role worker created.
 - 2026-07-02T22:10:29+08:00 · loop522: Queue intake readiness now consumes Top50 allocation manifest and keeps queue_status=not_written; no duplicate same-role worker created.
