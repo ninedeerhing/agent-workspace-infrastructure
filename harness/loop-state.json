@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T06:35:00+08:00",
+  "updated_at": "2026-07-03T07:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "formal-runtime-human-authorization-handoff-surface-loop543",
-  "next_atomic_action": "REAL_SCORING_POOL_BACKTEST_PREREQUISITE_MATRIX_LOOP544：基于 small/medium/full readiness、formal authorization handoff surface 和当前 no-execution 状态，生成真实评分→入池→回测执行前置条件矩阵，明确哪些 prerequisite 已满足、哪些因人工授权/数据源/max_rows/runner/DSN/audit 仍阻塞；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop544, choose the next implementation branch from the prerequisite matrix: data-source confirmation, max_rows/chunking policy, runner/DSN repair, or safe no-execution scoring dry-run contract.",
+  "current_slice": "real-scoring-pool-backtest-prerequisite-matrix-loop544",
+  "next_atomic_action": "DATA_SOURCE_CONFIRMATION_PREREQUISITE_BRANCH_LOOP545：基于 real_scoring_pool_backtest_prerequisite_matrix_v1.recommended_next_branch=data_source_confirmation，实现事件/文本/情绪/基本面/另类数据源确认缺口的 no-execution 数据源确认分支，列出已确认/待确认数据源、point-in-time 要求、缺失数据源与用户可确认项；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、运行真实 scorer/backtest 或授予 PL-H。本轮 loop544 已完成，按用户 2026-07-03 深夜指令先停止休息，等待用户继续。",
+  "next_after": "After loop545, continue prerequisite branches by runtime unlock value: max_rows/chunking policy, runner/DSN repair, then safe no-execution scoring dry-run contract.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-555-formal-runtime-human-authorization-handoff-surface",
+  "last_tick": "SYNC-556-real-scoring-pool-backtest-prerequisite-matrix",
   "last_sync_sources": [
+    "SYNC-556 loop544 Real scoring/pool/backtest prerequisite matrix",
+    "loop544 implementation: added real_scoring_pool_backtest_prerequisite_matrix_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_batch_progression_readiness_manifest_v1, medium_batch_validation_readiness_contract_v1, full_chunked_run_readiness_contract_v1, and formal_runtime_human_authorization_handoff_surface_v1 to emit satisfied prerequisites, blocked prerequisites, scoring/pool/backtest stage matrix, next_branch_options, and recommended_next_branch=data_source_confirmation",
+    "loop544 verification: RED missing real_scoring_pool_backtest_prerequisite_matrix module 1 error; focused prerequisite-matrix unit+bridge 3 passed; adjacent explicit-material/operator-reviewer/formal-handoff surface chain 8 passed; Ruff pass; compileall pass; forbidden marker scan clean; payload smoke loop544_smoke blocked_runtime_prerequisites data_source_confirmation blocked blocked blocked False False False False False False formal_human_authorization_missing",
+    "loop544 worker: permanent Planner success loop_plan; Dispatcher success assignment_matrix; Test Engineer success test matrix incorporated; Code Reviewer remains waitingOnApproval/channel_slow and not duplicated; Executor remains waitingOnApproval; Verifier final review requested",
+    "next: DATA_SOURCE_CONFIRMATION_PREREQUISITE_BRANCH_LOOP545; paused after loop544 per user 2026-07-03 rest instruction",
     "SYNC-555 loop543 Formal runtime human authorization handoff surface",
     "loop543 implementation: added formal_runtime_human_authorization_handoff_surface_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes explicit_runtime_authorization_review_material_packet_v1 and emits consumer-facing status, role confirmations, missing materials, go-live conditions, execution boundary, and all-false side effects",
     "loop543 verification: RED missing formal_runtime_human_authorization_handoff_surface module 1 error; focused human-handoff surface unit+bridge 4 passed; adjacent explicit-material/operator-reviewer surface chain 8 passed; Ruff pass; compileall pass; forbidden marker scan clean; payload smoke loop543_smoke awaiting_formal_human_authorization_review False not_granted False False False False False False False user_confirmation_missing",
@@ -172,5 +177,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop543 Formal runtime human authorization handoff surface complete. user_facing_batch_mining_creation_plan_v1 now exposes formal_runtime_human_authorization_handoff_surface_v1, deriving consumer-facing status, role confirmations, missing materials, go-live conditions, and execution boundary from explicit_runtime_authorization_review_material_packet_v1. Verification: RED missing module 1 error; focused human-handoff surface unit+bridge 4 passed; adjacent explicit-material/operator-reviewer surface chain 8 passed; targeted Ruff pass; compileall pass; forbidden marker scan clean; payload smoke loop543_smoke awaiting_formal_human_authorization_review False not_granted False False False False False False False user_confirmation_missing. No env/DB/Docker/scorer/backtest/accepted-pool/queue writes or PL-H grants."
+  "last_completed_note": "loop544 Real scoring/pool/backtest prerequisite matrix complete. user_facing_batch_mining_creation_plan_v1 now exposes real_scoring_pool_backtest_prerequisite_matrix_v1, deriving satisfied prerequisites, blocked prerequisites, real_scoring/pool_admission/auto_backtest_queue stage matrix, next_branch_options, and recommended_next_branch=data_source_confirmation from small/medium/full readiness plus formal human authorization handoff. Verification: RED missing module 1 error; focused prerequisite-matrix unit+bridge 3 passed; adjacent explicit-material/operator-reviewer/formal-handoff surface chain 8 passed; targeted Ruff pass; compileall pass; forbidden marker scan clean; payload smoke loop544_smoke blocked_runtime_prerequisites data_source_confirmation blocked blocked blocked False False False False False False formal_human_authorization_missing. No env/DB/Docker/scorer/backtest/accepted-pool/queue writes or PL-H grants. Paused after loop544 per user rest instruction."
 }
