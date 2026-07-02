@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-02T21:54:19+08:00
+updated_at: 2026-07-02T21:59:41+08:00
+
+## Latest Handoff — SYNC-531 metric funnel batch manifest
+
+- [DONE] `real_metric_persistence_screening_funnel_design_v1` now consumes `controlled_factor_value_computation_design_v1.execution_batch_manifest`.
+- [DONE] Ready Top50 `small_batch_trial_001` manifests populate `metric_input_contract` and `screening_candidate_manifest`; ready computation designs without a manifest fail closed as `blocked_batch_manifest_not_ready`.
+- [VERIFY] RED missing `metric_input_contract` and missing-manifest false-ready; focused metric funnel **6 passed**; adjacent scoring/pool/backtest chain **25 passed**; Ruff pass; compileall pass; forbidden side-effect scan clean; default and ready-path payload smokes pass.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer messages delivered for loop519; readback exposed only delegation turns, so marked `partial_worker_report`; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `ACCEPTED_POOL_ADMISSION_CONSUMES_METRIC_FUNNEL_MANIFEST_LOOP520`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not start Docker/container runtime; do not read env/DB, write DB/backtest queue/audit log, run scorer/backtest, write metric tables, write `factor_value_daily`, admit pool entries, or grant PL-H.
 
 ## Latest Handoff — SYNC-530 controlled computation design batch manifest
 

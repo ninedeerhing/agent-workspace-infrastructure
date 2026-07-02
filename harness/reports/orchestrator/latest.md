@@ -1,3 +1,39 @@
+# Orchestrator Latest Report — SYNC-531 metric funnel batch manifest
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "metric persistence and screening funnel consumes Top50 batch manifest"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_metric_persistence_screening_funnel_design.py"
+      summary: "Adds manifest-aware metric_input_contract and screening_candidate_manifest; ready computation designs without manifests fail closed."
+    - file: "apps/quant_assistant/tests/test_real_metric_persistence_screening_funnel_design_unit.py"
+      summary: "Covers ready Top50 manifest propagation and missing-manifest fail-closed behavior."
+    - file: "apps/quant_assistant/tests/test_accepted_pool_admission_design_unit.py"
+      summary: "Updates ready downstream fixture to use a real manifest-shaped metric funnel."
+    - file: "apps/quant_assistant/tests/test_budgeted_auto_backtest_allocation_design_unit.py"
+      summary: "Updates ready backtest allocation fixtures to use manifest-shaped upstream readiness."
+  verification:
+    - command: "RED PYTHONPATH=src uv run pytest tests/test_real_metric_persistence_screening_funnel_design_unit.py -q"
+      result: "Failed before implementation with missing metric_input_contract and missing manifest false-ready."
+    - command: "PYTHONPATH=src uv run pytest tests/test_real_metric_persistence_screening_funnel_design_unit.py -q"
+      result: "6 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_scoring_execution_batch_package_unit.py tests/test_controlled_factor_value_computation_design_unit.py tests/test_real_metric_persistence_screening_funnel_design_unit.py tests/test_accepted_pool_admission_design_unit.py tests/test_budgeted_auto_backtest_allocation_design_unit.py -q"
+      result: "25 passed."
+    - command: "targeted Ruff / compileall / forbidden side-effect scan / default and ready-path payload smokes"
+      result: "All passed; default payload remains blocked and ready path shows small_batch_trial_001 with 50 candidates, no metric writes, no backtest."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Downstream readiness must require a concrete candidate manifest, not just a shell marked ready."
+      - "Metric funnel input contracts should say not_computed and planned-only until authorized factor values exist."
+    performance_note: "Real scoring readiness advanced from controlled computation design to metric persistence/screening funnel input."
+  blockers:
+    - "partial_worker_report for Planner, Dispatcher, Test Engineer, and Code Reviewer"
+  next: "ACCEPTED_POOL_ADMISSION_CONSUMES_METRIC_FUNNEL_MANIFEST_LOOP520"
+
+---
 # Orchestrator Latest Report — SYNC-530 controlled computation design batch manifest
 
 report:

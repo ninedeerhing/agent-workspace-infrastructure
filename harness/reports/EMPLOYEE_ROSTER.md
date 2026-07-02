@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T21:54:19+08:00
+Updated: 2026-07-02T21:59:41+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop518 | active | gpt-5.5 | 2026-07-02T21:54:19+08:00 | loop518 controlled computation design batch manifest complete; next loop519 metric persistence funnel consumes manifest | workload light; real scoring readiness advanced one core function |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop518 | partial_worker_report | gpt-5.5 | 2026-07-02T21:54:19+08:00 | controlled computation design batch manifest plan request delivered; readback exceeded context/truncated | preserve identity; repair report ingestion before treating planner as healthy |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop518 | partial_worker_report | gpt-5.4 | 2026-07-02T21:54:19+08:00 | assignment_matrix request delivered; readback exceeded context/truncated | preserve identity; repair report ingestion before treating dispatcher as healthy |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop518 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T21:54:19+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop518 | partial_worker_report | gpt-5.4 | 2026-07-02T21:54:19+08:00 | risk review request delivered; readback exceeded context/truncated | preserve identity; repair report ingestion before treating code-reviewer as healthy |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop518 | partial_worker_report | gpt-5.4 | 2026-07-02T21:54:19+08:00 | test matrix request delivered; readback exceeded context/truncated | preserve identity; repair report ingestion before treating test-engineer as healthy |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop518 | idle | gpt-5.5 | 2026-07-02T21:54:19+08:00 | not dispatched because primary worker report ingestion was partial and local verification was sufficient | no duplicate verifier thread created; permanent identity preserved |
+| orchestrator | current-thread | loop519 | active | gpt-5.5 | 2026-07-02T21:59:41+08:00 | loop519 metric funnel batch manifest complete; next loop520 accepted-pool admission consumes manifest | workload light; real scoring readiness advanced one core function |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop519 | partial_worker_report | gpt-5.5 | 2026-07-02T21:59:41+08:00 | metric funnel manifest plan request delivered; readback showed delegation turn only | preserve identity; repair report ingestion before treating planner as healthy |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop519 | partial_worker_report | gpt-5.4 | 2026-07-02T21:59:41+08:00 | assignment_matrix request delivered; readback showed delegation turn only | preserve identity; repair report ingestion before treating dispatcher as healthy |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop519 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T21:59:41+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop519 | partial_worker_report | gpt-5.4 | 2026-07-02T21:59:41+08:00 | risk review request delivered; readback showed delegation turn only | preserve identity; repair report ingestion before treating code-reviewer as healthy |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop519 | partial_worker_report | gpt-5.4 | 2026-07-02T21:59:41+08:00 | test matrix request delivered; readback showed delegation turn only | preserve identity; repair report ingestion before treating test-engineer as healthy |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop519 | idle | gpt-5.5 | 2026-07-02T21:59:41+08:00 | not dispatched because primary worker report ingestion was partial and local verification was sufficient | no duplicate verifier thread created; permanent identity preserved |
 ## Latest Roster Notes
+- 2026-07-02T21:59:41+08:00 · loop519: Metric persistence/screening funnel now consumes Top50 batch manifest; Planner/Dispatcher/Test Engineer/Code Reviewer permanent messages delivered but readback showed delegation turns only; no duplicate same-role worker created.
 - 2026-07-02T21:54:19+08:00 · loop518: Controlled computation design now consumes ready Top50 execution batch manifests; Planner/Dispatcher/Test Engineer/Code Reviewer permanent messages delivered but readback exceeded available context and was marked partial_worker_report; no duplicate same-role worker created.
 - 2026-07-02T21:49:00+08:00 · loop517: Factor scoring execution batch package now bridges Top50 small-batch refs into creation plan and review surface; Planner/Dispatcher/Test Engineer/Code Reviewer permanent messages delivered but report readback was partial; no duplicate same-role worker created.
 - 2026-07-03T06:05:00+08:00 · loop516: Review-only chain audit passed with 7 blocked successors and forbidden_count=0; next loop517 returns to real scoring/intake/backtest readiness core slice selection.

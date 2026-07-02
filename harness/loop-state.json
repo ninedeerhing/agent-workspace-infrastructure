@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T21:54:19+08:00",
+  "updated_at": "2026-07-02T21:59:41+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-computation-design-batch-manifest-loop518",
-  "next_atomic_action": "REAL_METRIC_PERSISTENCE_FUNNEL_CONSUMES_BATCH_MANIFEST_LOOP519：基于 controlled_factor_value_computation_design_v1 的 execution_batch_manifest，把 Top50 batch manifest 传入 real_metric_persistence_screening_funnel_design 的指标筛选输入说明；必须保持 no-execution/fail-closed，不启动 Docker/容器，不读 env/DB，不创建替代 DB 容器/服务/端口，不写 DB/队列，不运行真实 scorer/backtest，不写 factor_value_daily，不入池，不授予 PL-H。",
-  "next_after": "After loop519, continue toward provisional accepted pool and metric persistence readiness without execution grants.",
+  "current_slice": "metric-funnel-batch-manifest-loop519",
+  "next_atomic_action": "ACCEPTED_POOL_ADMISSION_CONSUMES_METRIC_FUNNEL_MANIFEST_LOOP520：基于 real_metric_persistence_screening_funnel_design_v1 的 screening_candidate_manifest，让 accepted_pool_admission_design 携带 Top50 provisional accepted candidate manifest 和 no-write admission evidence；必须保持 no-execution/fail-closed，不启动 Docker/容器，不读 env/DB，不创建替代 DB 容器/服务/端口，不写 DB/队列，不运行真实 scorer/backtest，不写 accepted pool，不授予 PL-H。",
+  "next_after": "After loop520, continue toward budgeted auto-backtest allocation carrying accepted-pool manifest without queue writes or execution grants.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-530-controlled-computation-design-batch-manifest",
+  "last_tick": "SYNC-531-metric-funnel-batch-manifest",
   "last_sync_sources": [
+    "SYNC-531 loop519 Metric persistence funnel consumes batch manifest",
+    "loop519 implementation: real_metric_persistence_screening_funnel_design_v1 now consumes controlled_factor_value_computation_design_v1 execution_batch_manifest and exposes metric_input_contract plus screening_candidate_manifest for Top50 small_batch_trial_001",
+    "loop519 verification: RED missing metric_input_contract and missing-manifest false-ready; focused metric funnel 6 passed; adjacent scoring/pool/backtest chain 25 passed; Ruff pass; compileall pass; forbidden side-effect scan clean; default and ready-path payload smokes pass",
+    "loop519 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer messages delivered but readback showed delegation turns only; marked partial_worker_report and created no duplicate same-role worker",
+    "next: ACCEPTED_POOL_ADMISSION_CONSUMES_METRIC_FUNNEL_MANIFEST_LOOP520",
     "SYNC-530 loop518 Controlled computation design consumes batch manifest",
     "loop518 implementation: controlled_factor_value_computation_design_v1 now accepts ready factor_scoring_execution_batch_package_v1 and exposes Top50 small_batch_trial_001 via scorer_input_contract and execution_batch_manifest",
     "loop518 verification: RED unexpected keyword execution_batch_package; focused controlled computation design 6 passed; expanded scoring chain 22 passed; Ruff pass; compileall pass; forbidden side-effect scan clean; payload smoke remained blocked on default run-request preflight",
@@ -95,12 +100,7 @@
     "SYNC-516 loop504 Original qa-pg-alt final execution request safety review successor from readiness request successor",
     "loop504 implementation: bridged latest original_qa_pg_alt_final_execution_request_safety_review_from_readiness_request_successor to consume loop503 latest manual request review successor and propagate source manual request review/authorization review/readiness review/readiness evidence review/evidence handoff/intervention/final safety/readiness evidence/request lineage",
     "loop504 changed: src/qa/brain/batch_mining_creation_plan_builder.py; truth sources",
-    "loop504 verification: RED stale tail bridge 1 failed; focused+upstream chain 10 passed; Ruff pass; compileall pass; forbidden execution marker scan clean; execution remains not granted",
-    "loop504 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer reports success; Executor not re-dispatched because loop436 channel is waitingOnApproval; no duplicate same-role worker created",
-    "next: ORIGINAL_QA_PG_ALT_HUMAN_RUNTIME_REPAIR_INTERVENTION_PACKET_FROM_READINESS_FINAL_SAFETY_SUCCESSOR_LOOP505",
-    "SYNC-515 loop503 Original qa-pg-alt manual runtime repair execution request review successor from readiness successor",
-    "loop503 implementation: bridged latest original_qa_pg_alt_manual_runtime_repair_execution_request_review_from_readiness_successor to consume loop502 latest authorization review successor and propagate source authorization review/readiness review/readiness evidence review/evidence handoff/intervention/final safety/manual request review/readiness evidence/request lineage",
-    "loop503 changed: src/qa/brain/batch_mining_creation_plan_builder.py; truth sources"
+    "loop504 verification: RED stale tail bridge 1 failed; focused+upstream chain 10 passed; Ruff pass; compileall pass; forbidden execution marker scan clean; execution remains not granted"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -112,5 +112,5 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop518 Controlled computation design batch manifest complete. controlled_factor_value_computation_design_v1 now consumes ready factor_scoring_execution_batch_package_v1 and carries Top50 small_batch_trial_001 candidate refs through scorer_input_contract and execution_batch_manifest; wrong/malformed packages fail closed as blocked_execution_batch_package_not_ready. Verification: RED unexpected keyword execution_batch_package; focused controlled computation design 6 passed; expanded scoring chain 22 passed; targeted Ruff pass; compileall pass; forbidden side-effect scan clean; payload smoke default remains blocked on run_request_preflight with no computed values/backtest. No env/DB/Docker/backtest/queue writes/factor_value_daily writes/pool admission or PL-H grants."
+  "last_completed_note": "loop519 Metric persistence funnel batch manifest complete. real_metric_persistence_screening_funnel_design_v1 now consumes controlled_factor_value_computation_design_v1.execution_batch_manifest and carries Top50 small_batch_trial_001 candidate refs through metric_input_contract and screening_candidate_manifest; ready computation designs without a manifest fail closed as blocked_batch_manifest_not_ready. Verification: RED missing metric_input_contract and missing-manifest false-ready; focused metric funnel 6 passed; adjacent scoring/pool/backtest chain 25 passed; targeted Ruff pass; compileall pass; forbidden side-effect scan clean; default payload smoke remained blocked and ready-path smoke showed 50 candidates, no metric writes/backtest. No env/DB/Docker/backtest/queue writes/factor_value_daily writes/accepted pool writes or PL-H grants."
 }
