@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T01:06:30+08:00
+updated_at: 2026-07-03T01:25:00+08:00
+
+## Latest Handoff — SYNC-543 archive confirmation decision archive manifest
+
+- [DONE] `operator_reviewer_final_queue_write_permission_archive_confirmation_decision_to_final_queue_write_permission_archive_confirmation_decision_archive_v1` now consumes ready `operator_reviewer_final_queue_write_permission_archive_confirmation_decision_manifest` sources while preserving the legacy operator/reviewer decision source path.
+- [DONE] Ready decision manifests populate `final_queue_write_permission_archive_confirmation_decision_archive_manifest` with `archive_status=pending_final_queue_write_permission_archive_confirmation_decision_archive`; archive material can be ready while human approval, queue write, DB enqueue, backtest, Docker, and PL-H remain false/not-granted.
+- [VERIFY] RED exposed missing manifest-aware decision archive behavior; focused archive **14 passed**; adjacent archive/confirmation/review/decision/archive/final-review chain **58 passed**; Ruff pass; compileall pass; payload smoke `loop531_smoke 50 small_batch_trial_001 not_granted not_written True False False False False False False False False False not_granted`.
+- [WORKERS] Permanent Planner/Dispatcher returned success; Test Engineer success confirmed the drift/no-execution matrix; Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `DECISION_ARCHIVE_TO_ARCHIVE_CONFIRMATION_FINAL_REVIEW_CONSUMES_ARCHIVE_MANIFEST_LOOP532`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/backtest queue; do not run backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-542 archive confirmation decision manifest
 
