@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T06:05:00+08:00
+updated_at: 2026-07-02T21:49:00+08:00
+
+## Latest Handoff — SYNC-529 factor scoring execution batch package
+
+- [DONE] Added `factor_scoring_execution_batch_package_v1` and bridged it into `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] `real_scoring_to_backtest_review_surface_v1` now exposes step 4: `Top50 小批评分包`.
+- [VERIFY] RED missing module; focused package+surface **7 passed**; adjacent scoring chain **20 passed**; Ruff pass; compileall pass; payload smoke pass; forbidden side-effect scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer messages delivered; readback exposed only delegation items, so marked `partial_worker_report`; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `REAL_SCORING_BATCH_PACKAGE_TO_CONTROLLED_COMPUTATION_DESIGN_LOOP518`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not start Docker/container runtime; do not read env/DB, write DB/backtest queue/audit log, run scorer/backtest, or grant PL-H.
 
 ## Latest Handoff — SYNC-528 original qa-pg-alt review chain audit
 

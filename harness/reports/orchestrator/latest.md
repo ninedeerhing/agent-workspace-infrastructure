@@ -1,3 +1,41 @@
+# Orchestrator Latest Report — SYNC-529 factor scoring execution batch package
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "factor scoring execution batch package"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_scoring_execution_batch_package.py"
+      summary: "Adds no-execution Top50 small-batch scoring package from batch scoring plan and run-request preflight."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Bridges factor_scoring_execution_batch_package into user_facing_batch_mining_creation_plan_v1."
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_to_backtest_review_surface.py"
+      summary: "Shows step 4 as Top50 small-batch scoring package in the consumer review surface."
+    - file: "apps/quant_assistant/tests/test_factor_scoring_execution_batch_package_unit.py"
+      summary: "Covers blocked default, ready Top50 package, unsafe source fail-closed, and creation-plan bridge."
+    - file: "apps/quant_assistant/tests/test_real_scoring_to_backtest_review_surface_unit.py"
+      summary: "Pins the new consumer-visible Top50 scoring package step."
+  verification:
+    - command: "RED pytest tests/test_factor_scoring_execution_batch_package_unit.py -q"
+      result: "Failed for missing module before implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_scoring_execution_batch_package_unit.py tests/test_real_scoring_to_backtest_review_surface_unit.py -q"
+      result: "7 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_batch_scoring_plan_unit.py tests/test_factor_scoring_compute_budget_unit.py tests/test_factor_scoring_run_request_preflight_unit.py tests/test_controlled_factor_value_computation_design_unit.py -q"
+      result: "20 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden side-effect scan"
+      result: "All passed; payload smoke showed blocked_run_request_preflight_not_ready, limit=50, read_db=False, ran_backtest=False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Top50 small-batch review packages are useful product progress only when they carry concrete candidate refs and still refuse execution by default."
+      - "When permanent worker readback returns only delegation items, preserve identity and record partial_worker_report instead of inventing a duplicate worker."
+    performance_note: "Real scoring readiness advanced from budget/preflight to a concrete no-execution batch package."
+  blockers:
+    - "partial_worker_report for Planner, Dispatcher, Test Engineer, and Code Reviewer"
+  next: "REAL_SCORING_BATCH_PACKAGE_TO_CONTROLLED_COMPUTATION_DESIGN_LOOP518"
+
+---
 # Orchestrator Latest Report — SYNC-528 original qa-pg-alt review chain audit
 
 report:
