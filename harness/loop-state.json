@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T10:49:00+08:00",
+  "updated_at": "2026-07-02T11:03:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "factor-scoring-run-request-preflight-sync417",
-  "next_atomic_action": "CONTROLLED_REAL_FACTOR_VALUE_COMPUTATION_DESIGN_LOOP406：建立 controlled real factor value computation design packet：消费 loop405 run request preflight review packet，定义 scorer 输入 contract、factor_value_daily 写入计划、chunk execution phases、idempotency key、audit before/after、rollback metadata、metric persistence handoff 与 fail-closed blockers；仍不得连接 runner、不得读写真实 DB、不得运行 scorer/backtest、不得写 factor_value_daily/accepted pool/queue、不得授予 PL-H。",
-  "next_after": "After loop406, implement real metric persistence and screening funnel design packet. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No default runner, page-load execution, automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
+  "current_slice": "controlled-factor-value-computation-design-sync418",
+  "next_atomic_action": "REAL_METRIC_PERSISTENCE_SCREENING_FUNNEL_DESIGN_LOOP407：建立 real metric persistence and screening funnel design packet：消费 loop406 controlled computation design，定义真实面板指标持久化计划、coverage/null/inf/outlier/IC/ICIR/turnover/stability/neutralized IC 指标 schema、screening threshold policy、candidate status transitions、audit refs 与 fail-closed blockers；仍不得读写真实 DB、不得运行 scorer/backtest、不得写指标表/accepted pool/queue、不得授予 PL-H。",
+  "next_after": "After loop407, implement accepted pool admission design packet. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-417-factor-scoring-run-request-preflight",
+  "last_tick": "SYNC-418-controlled-factor-value-computation-design",
   "last_sync_sources": [
+    "SYNC-418 loop406 Controlled factor value computation design",
+    "loop406 implementation: added controlled_factor_value_computation_design_v1 and bridged controlled_factor_value_computation_design into user_facing_batch_mining_creation_plan_v1",
+    "loop406 changed: src/qa/quant_mining/controlled_factor_value_computation_design.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_controlled_factor_value_computation_design_unit.py; truth sources",
+    "loop406 verification: RED missing module; focused+adjacent 20 passed; targeted Ruff pass; targeted compileall pass; git diff --check pass; forbidden scan only planned-only/False safety markers; payload smoke pass",
+    "loop406 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier dispatched for read-only review; local verification used for closure; no duplicate same-role worker created",
+    "next: REAL_METRIC_PERSISTENCE_SCREENING_FUNNEL_DESIGN_LOOP407",
     "SYNC-417 loop405 Factor scoring run request preflight",
     "loop405 implementation: added factor_scoring_run_request_preflight_v1 and bridged factor_scoring_run_request_preflight into user_facing_batch_mining_creation_plan_v1",
     "loop405 changed: src/qa/quant_mining/factor_scoring_run_request_preflight.py; src/qa/quant_mining/factor_scoring_compute_budget.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_scoring_run_request_preflight_unit.py; truth sources",

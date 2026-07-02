@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-02T10:49:00+08:00
+updated_at: 2026-07-02T11:03:00+08:00
+
+## Latest Handoff — SYNC-418 controlled factor value computation design
+
+- [DONE] Implemented `controlled_factor_value_computation_design_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/controlled_factor_value_computation_design.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_controlled_factor_value_computation_design_unit.py`, plus truth sources.
+- [DONE] The controlled computation design packet is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload exposes scorer input contract, planned-only `factor_value_daily` write plan, chunk execution phases, idempotency key, audit before/after, rollback metadata, metric persistence handoff, and fail-closed blockers.
+- [DONE] It remains design-only: no runner connection, no scorer/backtest, no DB read/write, no `factor_value_daily`, no pool/queue, no PL-H.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **20 passed**; targeted Ruff pass; compileall pass; diff check pass; forbidden scan only matched planned-only/False safety strings; payload smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier were dispatched for read-only loop406 review. Local verification closed the loop while worker reports may arrive later; no duplicate same-role worker was created.
+- [NEXT] `REAL_METRIC_PERSISTENCE_SCREENING_FUNNEL_DESIGN_LOOP407`: build metric persistence and screening funnel design packet.
+- [FORBIDDEN] Do not connect runner, read/write real DB, run scorer/backtest, write `factor_value_daily`, accepted pool, queue, or grant PL-H before unresolved confirmations and preflight evidence are satisfied.
 
 ## Latest Handoff — SYNC-417 factor scoring run request preflight
 
