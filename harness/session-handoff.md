@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T17:25:00+08:00
+updated_at: 2026-07-02T17:45:00+08:00
+
+## Latest Handoff — SYNC-438 original qa-pg-alt final runtime execution authorization review surface
+
+- [DONE] Implemented `original_qa_pg_alt_final_runtime_execution_authorization_review_surface_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/original_qa_pg_alt_final_runtime_execution_authorization_review_surface.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_original_qa_pg_alt_final_runtime_execution_authorization_review_surface_unit.py`, plus truth sources.
+- [DONE] The surface is now included in `user_facing_batch_mining_creation_plan_v1`, consuming `original_qa_pg_alt_runtime_execution_authorization_packet_v1`.
+- [DONE] Default remains `blocked_authorization_packet_not_ready`; synthetic ready path only reaches `ready_for_explicit_manual_runtime_repair_execution_request_envelope`, with `authorization_status=not_granted`, `grants_execution_authorization=False`, `button_click_starts_container=False`, and `button_click_reads_env_or_db=False`.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **118 passed**; targeted Ruff pass; compileall pass; payload smoke pass; React build/lint/Jobs fixture smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Code Reviewer, and Test Engineer returned success for loop426. No duplicate same-role worker was created.
+- [NEXT] `ORIGINAL_QA_PG_ALT_MANUAL_RUNTIME_REPAIR_EXECUTION_REQUEST_ENVELOPE_LOOP427`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not start Docker/container runtime; do not read env/DB, write DB/backtest queue/audit log, run backtest, or grant PL-H.
 
 ## Latest Handoff — SYNC-437 original qa-pg-alt runtime execution authorization packet
 
@@ -1606,11 +1617,11 @@ Get-Content tmp/daily_trade_status_batch_tail_2026-06-loop143.log -Tail 20
 
 ## Current Objective
 
-TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed。TREE-6 / PL-G 为唯一前台主线：loop365–437 已把因子构造宇宙、真实评分/入池/回测 rollout planning、batch scoring authorization review、数据源确认、组合搜索边界、compute budget、受控真实因子值计算、真实指标筛选、accepted pool admission、预算化自动回测、small-batch envelope、DB/runner preflight、queue writer planning/review/authorization/audit/dry-run design/review，以及原 `qa-pg-alt` readiness repair preflight/runtime repair plan/operator-reviewer repair review/final repair confirmation surface/runtime repair authorization planning/runtime repair execution preflight review/runtime execution authorization packet 接入 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph。用户策略：数据 closure 后退出 backfill-monitoring；closure/收口是阶段验收并继续下一切片，不是终点。
+TREE-2: data gate passed；daily_bar / daily_trade_status / adj_factor complete to 2026-06-18，loop144 adj_factor column path 审计确认 wired/closed。TREE-6 / PL-G 为唯一前台主线：loop365–438 已把因子构造宇宙、真实评分/入池/回测 rollout planning、batch scoring authorization review、数据源确认、组合搜索边界、compute budget、受控真实因子值计算、真实指标筛选、accepted pool admission、预算化自动回测、small-batch envelope、DB/runner preflight、queue writer planning/review/authorization/audit/dry-run design/review，以及原 `qa-pg-alt` readiness repair preflight/runtime repair plan/operator-reviewer repair review/final repair confirmation surface/runtime repair authorization planning/runtime repair execution preflight review/runtime execution authorization packet/final runtime execution authorization review surface 接入 auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph。用户策略：数据 closure 后退出 backfill-monitoring；closure/收口是阶段验收并继续下一切片，不是终点。
 
 ## Next Step
 
-CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `ORIGINAL_QA_PG_ALT_FINAL_RUNTIME_EXECUTION_AUTHORIZATION_REVIEW_SURFACE_LOOP426`：基于 loop425 `original_qa_pg_alt_runtime_execution_authorization_packet_v1` 设计原 `qa-pg-alt` final runtime execution authorization review surface；只展示最终人工复核状态，不启动容器、不读取 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest、不授予 PL-H。继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、automatic promotion、authorization grant 与 secret 输出。
+CodeX orchestrator 先跑 Goal/Plan Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate，并从 roster 解析永久 `codex_thread_id` 验证 worker 线程可达，然后执行 `ORIGINAL_QA_PG_ALT_MANUAL_RUNTIME_REPAIR_EXECUTION_REQUEST_ENVELOPE_LOOP427`：基于 loop426 `original_qa_pg_alt_final_runtime_execution_authorization_review_surface_v1` 设计原 `qa-pg-alt` explicit manual runtime repair execution request envelope；只生成请求信封，不启动容器、不读取 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest、不授予 PL-H。继续禁止 duplicate daily_bar/daily_trade_status/adj_factor、migration execution、backfill、background process、默认真实 DB-backed backtest、默认真实 runner/adapter invocation、actual adapter dry-run、PL-H batch execution、automatic promotion、authorization grant 与 secret 输出。
 
 ## Resume Command
 
