@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-02T22:15:24+08:00
+updated_at: 2026-07-03T00:04:06+08:00
+
+## Latest Handoff — SYNC-536 formal permission review manifest
+
+- [DONE] `pre_queue_write_execution_readiness_review_to_final_queue_write_permission_review_v1` now accepts optional `queue_write_readiness_review` while preserving the old pre-queue execution readiness review path.
+- [DONE] Ready queue-write review manifests populate `formal_queue_write_permission_review_manifest` with `formal_review_status=pending_formal_permission_review`; formal review can be ready but queue write/execution remain false.
+- [VERIFY] RED unexpected keyword before implementation; focused formal permission review **8 passed**; adjacent queue-intake/write/formal surface/guard/chat chain **74 passed**; Ruff pass; compileall pass; ready-path payload smoke pass.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer returned success; Verifier final read-only review returned success; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `FORMAL_HUMAN_QUEUE_WRITE_PERMISSION_HANDOFF_CONSUMES_FORMAL_REVIEW_MANIFEST_LOOP525`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/backtest queue; do not run backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-535 queue-write review manifest
 
