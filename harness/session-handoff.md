@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T02:45:00+08:00
+updated_at: 2026-07-03T03:05:00+08:00
+
+## Latest Handoff — SYNC-548 final human archive confirmation review manifest
+
+- [DONE] `human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1` now consumes ready `human_final_queue_write_permission_archive_confirmation_archive_review_manifest` sources while preserving the legacy archive review source path.
+- [DONE] Ready archive review manifests populate `final_human_queue_write_permission_archive_confirmation_review_manifest` with `final_human_review_status=pending_final_human_queue_write_permission_archive_confirmation_review`; final human review material can be ready while human approval, queue write, DB enqueue, backtest, Docker, and PL-H remain false/not-granted.
+- [VERIFY] RED exposed missing manifest-aware final human review behavior; focused final human review **10 passed**; direct adjacent explicit/archive/final-human-review chain **24 passed**; Ruff pass; compileall pass; payload smoke `loop536_smoke 50 small_batch_trial_001 not_granted not_written True False False False False False False False False False False not_granted`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer dispatched; Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_ARCHIVE_CONFIRMATION_REVIEW_MANIFEST_LOOP537`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/backtest queue; do not run backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-547 human final archive confirmation archive review manifest
 
