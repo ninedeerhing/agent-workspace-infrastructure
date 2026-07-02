@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T14:15:00+08:00
+updated_at: 2026-07-02T14:35:00+08:00
+
+## Latest Handoff — SYNC-429 controlled queue writer dry-run design
+
+- [DONE] Implemented `controlled_queue_writer_dry_run_design_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/controlled_queue_writer_dry_run_design.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_controlled_queue_writer_dry_run_design_unit.py`, plus truth sources.
+- [DONE] The packet is now included in `user_facing_batch_mining_creation_plan_v1`, consuming `queue_write_audit_rollback_packet_v1`.
+- [DONE] Default remains `blocked_audit_rollback_not_ready`; synthetic ready path only reaches `ready_for_dry_run_design_review`, with `may_submit_request=False` and `button_click_executes_queue_write=False`.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **79 passed**; targeted Ruff pass; compileall pass; payload smoke pass; `npm run build` pass; `npm run lint` pass with known Fast Refresh warning; Jobs fixture smoke pass; `git diff --check` pass with CRLF warnings only.
+- [WORKERS] Permanent Planner, Dispatcher, Code Reviewer, Test Engineer, and Verifier returned success for loop417. Existing worker identities were reused; no duplicate same-role worker was created.
+- [NEXT] `CONTROLLED_QUEUE_WRITER_DRY_RUN_REVIEW_PACKET_LOOP418`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not submit real dry-run requests, grant actual queue-write execution, write DB/backtest queue/audit log, run backtest, or grant PL-H.
 
 ## Latest Handoff — SYNC-428 queue-write audit/rollback packet
 
