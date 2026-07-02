@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T03:05:00+08:00
+updated_at: 2026-07-03T03:45:00+08:00
+
+## Latest Handoff — SYNC-549 real batch progression readiness manifest
+
+- [DONE] `real_batch_progression_readiness_manifest_v1` now links real panel scoring evidence, provisional pool admission evidence, and backtest budget readiness into one creation-plan payload.
+- [DONE] `factor_panel_screening_evidence_plan_v1` now exposes `screening_run_plan` with chunking, metric snapshot shape, result contract, downstream outputs, and `small_batch_trial -> medium_batch_validation -> full_chunked_run`.
+- [VERIFY] RED exposed missing `screening_run_plan` (**2 failed**); focused panel evidence **2 passed**; bridge/adjacent **3 passed**; real batch progression focused+bridge **3 passed**; adjacent real panel/pool/backtest chain **9 passed**; Ruff pass; compileall pass; forbidden marker scan clean; smoke `loop537_smoke 16 small_batch_trial planned_waiting_formal_authorization False False False False False False False False False False ['small_batch_trial', 'medium_batch_validation', 'full_chunked_run']`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success; Verifier loop536 final success was read. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `MEDIUM_BATCH_VALIDATION_READINESS_CONTRACT_LOOP538`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-548 final human archive confirmation review manifest
 
