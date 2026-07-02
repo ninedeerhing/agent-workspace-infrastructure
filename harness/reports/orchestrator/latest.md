@@ -1,4 +1,63 @@
-# Orchestrator Latest Report — SYNC-416 factor scoring compute budget
+# Orchestrator Latest Report — SYNC-417 factor scoring run request preflight
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "factor scoring run request preflight"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_scoring_run_request_preflight.py"
+      summary: "Added no-execution UI run request and injected-runner preflight packet for small_batch_trial."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_scoring_compute_budget.py"
+      summary: "Added budget_confirmation_artifacts for audit/rollback status handoff."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Bridged factor_scoring_run_request_preflight into user_facing_batch_mining_creation_plan_v1."
+    - file: "apps/quant_assistant/tests/test_factor_scoring_run_request_preflight_unit.py"
+      summary: "Added budget-not-confirmed, runner-evidence-missing, evidence-present/no-execution, bridge, and wrong-source fail-closed tests."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Recorded SYNC-417 top status and §5.741 ledger."
+    - file: "apps/quant_assistant/docs/CONTINUATION_PROMPT.md"
+      summary: "Updated hot-path continuation to loop406."
+    - file: "harness/loop-state.json"
+      summary: "Set next_atomic_action to CONTROLLED_REAL_FACTOR_VALUE_COMPUTATION_DESIGN_LOOP406."
+    - file: "harness/session-handoff.md"
+      summary: "Added SYNC-417 handoff."
+    - file: "harness/reports/orchestrator/latest.md"
+      summary: "Recorded this latest report."
+  verification:
+    - command: "RED: PYTHONPATH=src uv run pytest tests/test_factor_scoring_run_request_preflight_unit.py -q"
+      result: "Expected ModuleNotFoundError before implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_scoring_run_request_preflight_unit.py tests/test_factor_scoring_compute_budget_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "16 passed."
+    - command: "PYTHONPATH=src uv run ruff check src/qa/quant_mining/factor_scoring_run_request_preflight.py src/qa/quant_mining/factor_scoring_compute_budget.py src/qa/brain/batch_mining_creation_plan_builder.py tests/test_factor_scoring_run_request_preflight_unit.py tests/test_factor_scoring_compute_budget_unit.py"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q touched files"
+      result: "Pass."
+    - command: "git diff --check -- touched files"
+      result: "Pass."
+    - command: "forbidden execution/source marker scan"
+      result: "Only False/planned-only safety markers found."
+    - command: "payload smoke"
+      result: "factor_scoring_run_request_preflight_v1; blocked_compute_budget_not_confirmed; small_batch_trial; enabled=False; may_connect_runner=False; may_execute_scorer=False; read_db/ran_backtest false."
+  worker_dispatch:
+    - "Permanent Planner 019f0890-69e6-7270-a742-1178836608ef dispatched loop405 planning review."
+    - "Permanent Dispatcher 019f0890-af82-7ad3-a19a-d319d9aa8bb5 dispatched loop405 assignment matrix."
+    - "Permanent Test Engineer 019eeece-52d7-7b73-868a-7beb496ba303 dispatched loop405 coverage review."
+    - "Permanent Code Reviewer 019eeed1-7e14-7342-9d45-d7948aec94d2 dispatched loop405 code risk review."
+    - "Permanent Verifier 019eeed2-dbc0-7313-8d64-f9c6f199c68b dispatched loop405 verification review."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A UI run request can be enabled only as a review request; it must not imply page-load execution, runner connection, or scorer execution."
+    performance_note: "Loop405 completed with permanent worker dispatch and local verification fallback."
+  blockers:
+    - "Controlled factor value computation remains design-only next."
+    - "No runner/scorer/DB/factor_value_daily/pool/queue/PL-H path is authorized."
+  next: "CONTROLLED_REAL_FACTOR_VALUE_COMPUTATION_DESIGN_LOOP406"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-416 factor scoring compute budget
 
 report:
   role_id: "orchestrator"
