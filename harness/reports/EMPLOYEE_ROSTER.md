@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T17:05:00+08:00
+Updated: 2026-07-02T17:25:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-437 | success | gpt-5.5 | 2026-07-02T17:25:00+08:00 | original qa-pg-alt runtime execution authorization packet complete; next=ORIGINAL_QA_PG_ALT_FINAL_RUNTIME_EXECUTION_AUTHORIZATION_REVIEW_SURFACE_LOOP426 | loop425 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; authorization packet remains not-grant/not-execution; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop425 | success | gpt-5.4 | 2026-07-02T17:25:00+08:00 | loop425 planning review | workload cleared; review_ready means material-ready only, not runtime repair permission |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop425 | success | gpt-5.4 | 2026-07-02T17:25:00+08:00 | loop425 assignment matrix | workload cleared; Orchestrator sole writer, quality workers read-only |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop425 | success | gpt-5.5 | 2026-07-02T17:25:00+08:00 | loop425 authorization packet risk precheck | workload cleared; keep authorization packet distinct from authorization granted and runtime repair execution |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop425 | success | gpt-5.5 | 2026-07-02T17:25:00+08:00 | loop425 coverage review | workload cleared; fail-closed evidence matrix matched tests |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop425 | channel_slow | gpt-5.5 | 2026-07-02T17:25:00+08:00 | loop425 local verification fallback | no duplicate verifier thread created; permanent identity preserved |
 | orchestrator | current-thread | SYNC-436 | success | gpt-5.5 | 2026-07-02T17:05:00+08:00 | original qa-pg-alt runtime repair execution preflight review complete; next=ORIGINAL_QA_PG_ALT_RUNTIME_EXECUTION_AUTHORIZATION_PACKET_LOOP425 | loop424 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; preflight review remains not-grant/not-execution; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop424 | success | gpt-5.4 | 2026-07-02T17:05:00+08:00 | loop424 planning review | workload cleared; ready state means review-ready only, not runtime repair permission |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop424 | success | gpt-5.4 | 2026-07-02T17:05:00+08:00 | loop424 assignment matrix | workload cleared; Orchestrator sole writer, quality workers read-only |
