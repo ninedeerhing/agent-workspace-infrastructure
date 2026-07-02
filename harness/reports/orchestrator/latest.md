@@ -1,4 +1,62 @@
-# Orchestrator Latest Report — SYNC-415 multi-factor combination search boundary
+# Orchestrator Latest Report — SYNC-416 factor scoring compute budget
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "factor scoring compute budget read-model"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_scoring_compute_budget.py"
+      summary: "Added no-execution compute-budget packet for small/medium/full real-scoring rollout."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Bridged factor_scoring_compute_budget into user_facing_batch_mining_creation_plan_v1."
+    - file: "apps/quant_assistant/tests/test_factor_scoring_compute_budget_unit.py"
+      summary: "Added rollout, bridge, UI-confirmed blocker, wrong-source fail-closed, and no-execution tests."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Recorded SYNC-416 top status and §5.740 ledger."
+    - file: "apps/quant_assistant/docs/CONTINUATION_PROMPT.md"
+      summary: "Updated hot-path continuation to loop405."
+    - file: "harness/loop-state.json"
+      summary: "Set next_atomic_action to UI_RUN_REQUEST_INJECTED_RUNNER_PREFLIGHT_LOOP405."
+    - file: "harness/session-handoff.md"
+      summary: "Added SYNC-416 handoff."
+    - file: "harness/reports/orchestrator/latest.md"
+      summary: "Recorded this latest report."
+  verification:
+    - command: "RED: PYTHONPATH=src uv run pytest tests/test_factor_scoring_compute_budget_unit.py -q"
+      result: "Expected ModuleNotFoundError before implementation."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_scoring_compute_budget_unit.py tests/test_batch_mining_flow_unit.py -q"
+      result: "11 passed."
+    - command: "PYTHONPATH=src uv run ruff check src/qa/quant_mining/factor_scoring_compute_budget.py src/qa/brain/batch_mining_creation_plan_builder.py tests/test_factor_scoring_compute_budget_unit.py"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall -q src/qa/quant_mining/factor_scoring_compute_budget.py src/qa/brain/batch_mining_creation_plan_builder.py tests/test_factor_scoring_compute_budget_unit.py"
+      result: "Pass."
+    - command: "git diff --check -- touched files"
+      result: "Pass."
+    - command: "forbidden execution/source marker scan"
+      result: "Only planned-only/not_allowed/False safety markers found."
+    - command: "payload smoke"
+      result: "factor_scoring_compute_budget_v1; blocked_waiting_for_compute_budget_confirmation; three rollout stages; may_enter_runner_preflight=False; read_db/ran_scorer/ran_backtest false."
+  worker_dispatch:
+    - "Permanent Planner 019f0890-69e6-7270-a742-1178836608ef dispatched loop404 planning review."
+    - "Permanent Dispatcher 019f0890-af82-7ad3-a19a-d319d9aa8bb5 dispatched loop404 assignment matrix."
+    - "Permanent Test Engineer 019eeece-52d7-7b73-868a-7beb496ba303 dispatched loop404 coverage review."
+    - "Permanent Code Reviewer 019eeed1-7e14-7342-9d45-d7948aec94d2 dispatched loop404 code risk review."
+    - "Permanent Verifier 019eeed2-dbc0-7313-8d64-f9c6f199c68b dispatched loop404 verification review."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Compute budget confirmation must not imply runner preflight readiness; UI confirmation only clears budget preferences, not execution evidence."
+    performance_note: "Loop404 completed with permanent worker dispatch and local verification fallback."
+  blockers:
+    - "runner_preflight_missing remains the next execution blocker."
+    - "event_text_sentiment_data_sources remains unconfirmed for non-market factor families."
+    - "multi-factor combination search remains no-execution until real metrics/backtest authorization exist."
+  next: "UI_RUN_REQUEST_INJECTED_RUNNER_PREFLIGHT_LOOP405"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-415 multi-factor combination search boundary
 
 report:
   role_id: "orchestrator"

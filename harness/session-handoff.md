@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T10:21:28+08:00
+updated_at: 2026-07-02T10:35:00+08:00
+
+## Latest Handoff — SYNC-416 factor scoring compute budget
+
+- [DONE] Implemented `factor_scoring_compute_budget_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_scoring_compute_budget.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_scoring_compute_budget_unit.py`, plus truth sources.
+- [DONE] The compute-budget packet is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload exposes `small_batch_trial -> medium_batch_validation -> full_chunked_run`, `max_rows_status=needs_user_confirmation`, `candidate_chunk_size=50`, universe symbol-bucket chunking, calendar-year time-window chunking, 900s per chunk timeout, retry max 2, audit run id and rollback metadata requirements, UI confirmation, and `runner_preflight_missing`.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **11 passed**; targeted Ruff pass; compileall pass; diff check pass; forbidden scan only matched planned-only/not_allowed/False safety strings; payload smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier were dispatched for read-only loop404 review. Local verification closed the loop while worker reports may arrive later; no duplicate same-role worker was created.
+- [NEXT] `UI_RUN_REQUEST_INJECTED_RUNNER_PREFLIGHT_LOOP405`: build no-execution UI run request + injected runner preflight read-model for `small_batch_trial`.
+- [FORBIDDEN] Do not connect default runner, execute on page load, read/write real DB, run scorer/backtest, write `factor_value_daily`, accepted pool, queue, or grant PL-H before the unresolved confirmations and preflight evidence are satisfied.
 
 ## Latest Handoff — SYNC-415 multi-factor combination search boundary
 
