@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-02T21:59:41+08:00
+updated_at: 2026-07-02T22:03:06+08:00
+
+## Latest Handoff — SYNC-532 accepted pool manifest
+
+- [DONE] `accepted_pool_admission_design_v1` now consumes `real_metric_persistence_screening_funnel_design_v1.screening_candidate_manifest`.
+- [DONE] Ready Top50 manifests populate `provisional_candidate_manifest` with `pool_status=provisional_not_written`; fake-ready funnels without manifests fail closed as `blocked_candidate_manifest_not_ready`.
+- [VERIFY] RED missing `provisional_candidate_manifest` and missing-manifest false-ready; focused accepted pool **5 passed**; adjacent metric/pool/backtest chain **36 passed**; Ruff pass; compileall pass; forbidden side-effect scan clean; default and ready-path payload smokes pass.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer messages delivered for loop520; readback exposed only delegation turns, so marked `partial_worker_report`; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `BUDGETED_BACKTEST_ALLOCATION_CONSUMES_ACCEPTED_POOL_MANIFEST_LOOP521`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not start Docker/container runtime; do not read env/DB, write DB/backtest queue/audit log, run scorer/backtest, write accepted pool, or grant PL-H.
 
 ## Latest Handoff — SYNC-531 metric funnel batch manifest
 

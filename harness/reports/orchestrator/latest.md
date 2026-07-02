@@ -1,3 +1,35 @@
+# Orchestrator Latest Report — SYNC-532 accepted pool manifest
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "accepted pool admission consumes Top50 metric funnel manifest"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/accepted_pool_admission_design.py"
+      summary: "Adds provisional_candidate_manifest from metric funnel screening manifest and fail-closed empty-manifest gate."
+    - file: "apps/quant_assistant/tests/test_accepted_pool_admission_design_unit.py"
+      summary: "Covers Top50 provisional manifest propagation and missing-manifest fail-closed behavior."
+  verification:
+    - command: "RED PYTHONPATH=src uv run pytest tests/test_accepted_pool_admission_design_unit.py -q"
+      result: "Failed before implementation with missing provisional_candidate_manifest and missing-manifest false-ready."
+    - command: "PYTHONPATH=src uv run pytest tests/test_accepted_pool_admission_design_unit.py -q"
+      result: "5 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_real_metric_persistence_screening_funnel_design_unit.py tests/test_accepted_pool_admission_design_unit.py tests/test_budgeted_auto_backtest_allocation_design_unit.py tests/test_auto_backtest_dispatch_planning_readiness_unit.py -q"
+      result: "36 passed."
+    - command: "targeted Ruff / compileall / forbidden side-effect scan / default and ready-path payload smokes"
+      result: "All passed; default payload remains blocked and ready path shows small_batch_trial_001 with 50 provisional-not-written candidates, no pool write, no backtest."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Provisional accepted is a candidate review state, not an accepted-pool write or queue grant."
+      - "Accepted-pool readiness must carry concrete candidate manifests forward before any backtest allocation design can be meaningful."
+    performance_note: "Real scoring readiness advanced from metric screening to provisional accepted-pool admission input."
+  blockers:
+    - "partial_worker_report for Planner, Dispatcher, Test Engineer, and Code Reviewer"
+  next: "BUDGETED_BACKTEST_ALLOCATION_CONSUMES_ACCEPTED_POOL_MANIFEST_LOOP521"
+
+---
 # Orchestrator Latest Report — SYNC-531 metric funnel batch manifest
 
 report:
