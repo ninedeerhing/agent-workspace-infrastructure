@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T04:10:00+08:00
+Updated: 2026-07-03T04:25:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop508 | active | gpt-5.5 | 2026-07-03T04:10:00+08:00 | loop508 complete; next loop509 Planner selection | workload light; readiness review successor re-bridged and verified; worker channel_stale noted |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop508 | channel_stale | gpt-5.4 | 2026-07-03T04:10:00+08:00 | loop508 dispatch and retry returned systemError | preserve identity; repair channel before treating planner as healthy |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop508 | channel_stale | gpt-5.4 | 2026-07-03T04:10:00+08:00 | loop508 dispatch and retry returned systemError | preserve identity; repair channel before treating dispatcher as healthy |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop508 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T04:10:00+08:00 | not re-dispatched due loop436 waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop508 | channel_stale | gpt-5.5 | 2026-07-03T04:10:00+08:00 | loop508 dispatch and retry returned systemError | preserve identity; repair channel before treating code-reviewer as healthy |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop508 | channel_stale | gpt-5.4 | 2026-07-03T04:10:00+08:00 | loop508 dispatch and retry returned systemError | preserve identity; repair channel before treating test-engineer as healthy |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop508 | idle | gpt-5.5 | 2026-07-03T04:10:00+08:00 | not dispatched because primary worker channel fault needs repair first | no duplicate verifier thread created; permanent identity preserved |
+| orchestrator | current-thread | loop509 | active | gpt-5.5 | 2026-07-03T04:25:00+08:00 | loop509 complete; next loop510 Planner selection | workload light; authorization review successor re-bridged and verified; worker channel_stale carried forward |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop509 | channel_stale | gpt-5.4 | 2026-07-03T04:25:00+08:00 | channel_stale carried forward from loop508 | preserve identity; repair channel before treating planner as healthy |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop509 | channel_stale | gpt-5.4 | 2026-07-03T04:25:00+08:00 | channel_stale carried forward from loop508 | preserve identity; repair channel before treating dispatcher as healthy |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop509 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T04:25:00+08:00 | not re-dispatched due loop436 waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop509 | channel_stale | gpt-5.5 | 2026-07-03T04:25:00+08:00 | channel_stale carried forward from loop508 | preserve identity; repair channel before treating code-reviewer as healthy |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop509 | channel_stale | gpt-5.4 | 2026-07-03T04:25:00+08:00 | channel_stale carried forward from loop508 | preserve identity; repair channel before treating test-engineer as healthy |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop509 | idle | gpt-5.5 | 2026-07-03T04:25:00+08:00 | not dispatched because primary worker channel fault needs repair first | no duplicate verifier thread created; permanent identity preserved |
 ## Latest Roster Notes
+- 2026-07-03T04:25:00+08:00 · loop509: Worker channels remain channel_stale from loop508; no duplicate same-role worker was created. Authorization review successor now consumes latest readiness review successor; next loop510 retargets manual runtime repair execution request review successor.
 - 2026-07-03T04:10:00+08:00 · loop508: Planner/Dispatcher/Test Engineer/Code Reviewer permanent channels returned systemError on initial dispatch and retry; marked channel_stale and created no duplicate same-role worker. Readiness review successor now consumes latest readiness evidence review successor; next loop509 retargets explicit runtime repair authorization review successor.
 - 2026-07-03T03:55:00+08:00 · loop507: Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier permanent threads returned success; Executor still waitingOnApproval and was not duplicated. Readiness evidence review successor now consumes latest evidence handoff successor; next loop508 retargets post-intervention readiness review successor.
 - 2026-07-03T03:40:00+08:00 · loop506: Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier permanent threads returned success; Executor still waitingOnApproval and was not duplicated. Evidence handoff successor now consumes latest human intervention packet successor; next loop507 retargets post-intervention readiness evidence review successor.
