@@ -1,20 +1,20 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T12:02:11Z",
+  "updated_at": "2026-07-02T12:01:41Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399：因子构造宇宙 no-execution 链路已形成正式人工审核/测试入口；等待用户人工验收 UI/产品体验、review surface 文案、候选生成链路、人工审核材料、以及是否允许进入下一阶段真实数据评分/入池/回测授权设计。用户显式通过/要求修改前，不推进真实执行、DB、队列、runner、backtest 或 PL-H。",
+  "loop_next_atomic_action": "ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_REVIEW_FROM_READINESS_HANDOFF_SUCCESSOR_LOOP486：基于 loop485 latest original_qa_pg_alt_post_intervention_evidence_handoff_from_readiness_intervention_successor_v1，重新接线 post-intervention readiness evidence review successor；只复核介入后证据交接后的 readiness evidence review 材料，不把 evidence handoff 升级为证据已通过、人工介入已完成、runtime 已修复、容器可启动或执行授权已授予，不提交命令、不启动容器、不读 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest、不授予 PL-H。",
   "continuation_next_action": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364：由 Planner 基于总规划、当前进度和 loop363 `human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1` 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进最终人工许可归档确认复核之后的只读后继链路；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
   "task_trees_next_hint": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_AUTHORIZATION_DECISION_LOOP347：由 Planner 基于总规划、当前进度和 loop346 explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1 / final queue-write authorization packet；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
   "foreground_tree": "TREE-6",
   "foreground_slice": "",
-  "latest_section5_id": "732",
-  "latest_section5_title": "Factor construction completion review surface（2026-07-01 · TREE-6/PL-G · TDD/no-execution · formal human audit gate）",
-  "top_summary_section5_ref": "732",
-  "top_summary_last_tick": "loop399-factor-construction-completion-review-surface",
-  "loop_last_tick": "loop399-factor-construction-completion-review-surface",
+  "latest_section5_id": "821",
+  "latest_section5_title": "Original qa-pg-alt evidence handoff successor from readiness intervention successor（2026-07-02 · TREE-6/PL-G · TDD/no-execution runtime repair）",
+  "top_summary_section5_ref": "821",
+  "top_summary_last_tick": "",
+  "loop_last_tick": "SYNC-497-original-qa-pg-alt-evidence-handoff-successor",
   "findings": [
     {
       "severity": "warning",
@@ -23,7 +23,7 @@
         "harness\\loop-state.json",
         "apps\\quant_assistant\\docs\\CONTINUATION_PROMPT.md"
       ],
-      "detail": "loop-state next_atomic_action='FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399：因子构造宇宙 no-execution 链路已形成正式人工审核/测试入口；等待用户人工验收 UI/产品体验、review surface 文案、候选生成链路、人工审核材料、以及是否允许进入下一阶段真实数据评分/入池/回测授权设计。用户显式通过/要求修改前，不推进真实执行、DB、队列、runner、backtest 或 PL-H。' vs CONTINUATION 下一动作='PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364：由 Planner 基于总规划、当前进度和 loop363 `human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1` 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进最终人工许可归档确认复核之后的只读后继链路；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
+      "detail": "loop-state next_atomic_action='ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_REVIEW_FROM_READINESS_HANDOFF_SUCCESSOR_LOOP486：基于 loop485 latest original_qa_pg_alt_post_intervention_evidence_handoff_from_readiness_intervention_successor_v1，重新接线 post-intervention readiness evidence review successor；只复核介入后证据交接后的 readiness evidence review 材料，不把 evidence handoff 升级为证据已通过、人工介入已完成、runtime 已修复、容器可启动或执行授权已授予，不提交命令、不启动容器、不读 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest、不授予 PL-H。' vs CONTINUATION 下一动作='PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_FINAL_HUMAN_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_REVIEW_LOOP364：由 Planner 基于总规划、当前进度和 loop363 `human_final_queue_write_permission_archive_confirmation_archive_review_to_final_human_queue_write_permission_archive_confirmation_review_v1` 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进最终人工许可归档确认复核之后的只读后继链路；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、正式人工批准、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
       "recommendation": "对齐 loop-state.json 与 CONTINUATION_PROMPT 下一动作字段。"
     },
     {
@@ -33,14 +33,24 @@
         "harness\\loop-state.json",
         "apps\\quant_assistant\\docs\\TASK_TREES.md"
       ],
-      "detail": "loop-state='FORMAL_HUMAN_AUDIT_REQUIRED_LOOP399：因子构造宇宙 no-execution 链路已形成正式人工审核/测试入口；等待用户人工验收 UI/产品体验、review surface 文案、候选生成链路、人工审核材料、以及是否允许进入下一阶段真实数据评分/入池/回测授权设计。用户显式通过/要求修改前，不推进真实执行、DB、队列、runner、backtest 或 PL-H。' vs TASK_TREES 下一未勾选项='PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_AUTHORIZATION_DECISION_LOOP347：由 Planner 基于总规划、当前进度和 loop346 explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1 / final queue-write authorization packet；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
+      "detail": "loop-state='ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_REVIEW_FROM_READINESS_HANDOFF_SUCCESSOR_LOOP486：基于 loop485 latest original_qa_pg_alt_post_intervention_evidence_handoff_from_readiness_intervention_successor_v1，重新接线 post-intervention readiness evidence review successor；只复核介入后证据交接后的 readiness evidence review 材料，不把 evidence handoff 升级为证据已通过、人工介入已完成、runtime 已修复、容器可启动或执行授权已授予，不提交命令、不启动容器、不读 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest、不授予 PL-H。' vs TASK_TREES 下一未勾选项='PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_AUTHORIZATION_DECISION_LOOP347：由 Planner 基于总规划、当前进度和 loop346 explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1 / final queue-write authorization packet；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
       "recommendation": "确认 TASK_TREES 排序与 loop-state 已同步。"
+    },
+    {
+      "severity": "warning",
+      "code": "SYNC-TOP-NEXT",
+      "paths": [
+        "apps\\quant_assistant\\docs\\PROJECT_STATUS.md",
+        "harness\\loop-state.json"
+      ],
+      "detail": "顶部摘要未体现 loop-state 下一动作：'ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_REVIEW_FROM_READINESS_HANDOFF_SUCCESSOR_LOOP486：基于 loop485 latest original_qa_pg_alt_post_intervention_evidence_handoff_from_readiness_intervention_successor_v1，重新接线 post-intervention readiness evidence review successor；只复核介入后证据交接后的 readiness evidence review 材料，不把 evidence handoff 升级为证据已通过、人工介入已完成、runtime 已修复、容器可启动或执行授权已授予，不提交命令、不启动容器、不读 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest、不授予 PL-H。'",
+      "recommendation": "更新顶部「下一方向」与 next_atomic_action 一致。"
     }
   ],
   "last_lifecycle": {
-    "at": "2026-07-01T12:02:11Z",
-    "finding_count": 2,
-    "warning_count": 1,
+    "at": "2026-07-02T12:01:41Z",
+    "finding_count": 3,
+    "warning_count": 2,
     "error_count": 0
   }
 }
