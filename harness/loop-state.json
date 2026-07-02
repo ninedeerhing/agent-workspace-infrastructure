@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T10:16:34+08:00",
+  "updated_at": "2026-07-02T10:21:28+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "factor-data-source-confirmation-sync414",
-  "next_atomic_action": "MULTI_FACTOR_COMBINATION_SEARCH_BOUNDARY_LOOP403：把用户强调的多因子组合搜索建成独立 no-execution 路径边界：定义组合目标、候选来源、最大组合大小、provisional accepted 参与规则、相关性/共线性/边际增益/换手/风险约束、搜索预算、UI 确认项与不能进入真实组合回测的 blockers；仍不读/写真实 DB、不运行组合优化器/回测、不写 factor_value_daily/accepted pool/queue、不授予 PL-H。",
-  "next_after": "After loop403, implement max_rows_and_chunking / compute budget read-model, then UI run request + injected runner preflight for small_batch_trial. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No default runner, page-load execution, automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
+  "current_slice": "multi-factor-combination-search-boundary-sync415",
+  "next_atomic_action": "MAX_ROWS_CHUNKING_COMPUTE_BUDGET_LOOP404：建立真实评分 small_batch_trial -> medium_batch_validation -> full_chunked_run 的 no-execution 规模控制 read-model：定义 max rows、候选 chunk、股票池/时间窗分块、timeout/retry、审计 run id、rollback metadata、UI 确认项和不能进入 runner preflight 的 blockers；仍不读/写真实 DB、不运行 scorer/backtest、不写 factor_value_daily/accepted pool/queue、不授予 PL-H。",
+  "next_after": "After loop404, implement UI run request + injected runner preflight for small_batch_trial. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No default runner, page-load execution, automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-414-factor-data-source-confirmation",
+  "last_tick": "SYNC-415-multi-factor-combination-search-boundary",
   "last_sync_sources": [
+    "SYNC-415 loop403 Multi-factor combination search boundary",
+    "loop403 implementation: added multi_factor_combination_search_boundary_v1 and bridged multi_factor_combination_search_boundary into user_facing_batch_mining_creation_plan_v1",
+    "loop403 changed: src/qa/quant_mining/multi_factor_combination_search_boundary.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_multi_factor_combination_search_boundary_unit.py; truth sources",
+    "loop403 verification: RED missing module; RED ui_confirmed over-ready drift; focused+adjacent 11 passed; targeted Ruff pass; targeted compileall pass; git diff --check pass; forbidden scan only negative will_run_optimizer/backtest False fields; payload smoke pass",
+    "loop403 worker: permanent Planner/Dispatcher/Test Engineer/Verifier returned reports; Code Reviewer channel remained older waiting state and was not used as completion evidence; no duplicate same-role worker created",
+    "next: MAX_ROWS_CHUNKING_COMPUTE_BUDGET_LOOP404",
     "SYNC-414 loop402 Factor data source confirmation read-model",
     "loop402 implementation: added factor_data_source_confirmation_v1 and bridged factor_data_source_confirmation into user_facing_batch_mining_creation_plan_v1",
     "loop402 changed: src/qa/quant_mining/factor_data_source_confirmation.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_factor_data_source_confirmation_unit.py; truth sources",

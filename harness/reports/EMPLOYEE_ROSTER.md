@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T10:16:34+08:00
+Updated: 2026-07-02T10:21:28+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,11 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-415 | success | gpt-5.5 | 2026-07-02T10:21:28+08:00 | multi-factor combination search boundary complete; next=MAX_ROWS_CHUNKING_COMPUTE_BUDGET_LOOP404 | loop403 used permanent Planner/Dispatcher/Test Engineer/Verifier; Code Reviewer channel remained older waiting state; no duplicate same-role worker created |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop403 | success | gpt-5.5 | 2026-07-02T10:19:11+08:00 | loop403 plan for multi-factor combination boundary | workload cleared; next recommends max_rows/chunking or continuation to combination review after confirmation |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop403 | success | gpt-5.5 | 2026-07-02T10:20:06+08:00 | loop403 assignment matrix | workload cleared; enforced permanent worker identities and no-optimizer/no-backtest boundaries |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop403 | success | gpt-5.5 | 2026-07-02T10:20:18+08:00 | loop403 test coverage review | prompted explicit source/ref/budget/no-execution coverage; drift test added and fixed |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop403 | partial | gpt-5.5 | 2026-07-02T10:20:22+08:00 | loop403 verification matrix | requested static/payload/truth/git gates; local evidence satisfies closure gates; keep canonical verifier |
 | orchestrator | current-thread | SYNC-414 | success | gpt-5.5 | 2026-07-02T10:16:34+08:00 | factor data source confirmation read-model complete; next=MULTI_FACTOR_COMBINATION_SEARCH_BOUNDARY_LOOP403 | loop402 used permanent Planner/Dispatcher/Verifier; Test Engineer/Code Reviewer dispatched but not used as completion evidence due channel state; no duplicate same-role worker created |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop402 | success | gpt-5.5 | 2026-07-02T10:15:01+08:00 | loop402 plan for data-source/PIT confirmation read-model | workload cleared; next recommends loop403 multi-factor or compute budget blocker |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop402 | success | gpt-5.5 | 2026-07-02T10:15:09+08:00 | loop402 assignment matrix | workload cleared; enforced permanent worker identities and no-fetch/no-execution boundaries |
@@ -93,6 +98,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop364 | success | gpt-5.5 | 2026-07-01T00:00:44+08:00 | found two P2s, rechecked both fixed | workload cleared; use for future high-risk review gates |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop364 | success | gpt-5.4 | 2026-07-01T00:00:44+08:00 | final verification PASS; acceptance_decision says stop at formal human review | workload cleared; next requires user formal acceptance |
 ## Latest Roster Notes
+- **SYNC-415 · loop403**：完成 `Multi-factor combination search boundary`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 返回报告；Test Engineer 的 explicit drift/budget/no-execution 建议已吸收，补了 `ui_confirmed=True` 仍不得解除真实面板指标/回测授权 blockers 的回归。Code Reviewer canonical thread 仍在旧 waiting state，未作为完成证据；身份保留，后续继续尝试复用，不创建同职责重复 worker。
 - **SYNC-414 · loop402**：完成 `Factor data source confirmation read-model`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef` 与 Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5` 已返回 loop plan / assignment；永久 Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 返回 partial 并要求 Ruff/compileall/forbidden/truth/git gates，已由本地验证补齐。永久 Test Engineer 与 Code Reviewer 已派工但 sync 时未返回可用完成证据；canonical 身份保留，后续继续复用，不创建同职责重复 worker。
 - **SYNC-413 · loop401**：完成 `Factor batch scoring authorization review bridge`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef` 和 Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5` 已返回 plan/assignment；永久 Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303` 因 ACL 返回 partial，但测试覆盖矩阵已被本地 TDD 覆盖；永久 Executor `019eeece-c617-71c3-a80a-39a693ad3ac3`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 已派工但在 sync 时仍处于 ACL/approval wait / in-progress，未作为完成证据。关键规则：这些都是 canonical permanent workers，后续继续复用；遇到跨对话通道阻塞只记录 `channel_wait/channel_stale` 并用本地验证兜底，不创建同职责重复 worker。
 - **SYNC-410 · planning-only**：完成 `Real scoring / pool / backtest rollout plan`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef` 已收到只读规划复核任务，因读取 ACL/沙箱不稳定返回 partial，但方向与主线程本地真源复核一致：K-P 必须按业务核心能力分段，并在真实执行前保持显式授权边界。Orchestrator 新增 `apps/quant_assistant/docs/ENGINEERING/2026-07-01-real-scoring-pool-backtest-rollout-plan.md`，未派发实现 worker，未启动真实评分/DB/入池/队列/回测。当前等待用户确认 open questions。

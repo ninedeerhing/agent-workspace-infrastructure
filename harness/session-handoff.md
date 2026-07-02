@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T10:16:34+08:00
+updated_at: 2026-07-02T10:21:28+08:00
+
+## Latest Handoff — SYNC-415 multi-factor combination search boundary
+
+- [DONE] Implemented `multi_factor_combination_search_boundary_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/multi_factor_combination_search_boundary.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_multi_factor_combination_search_boundary_unit.py`, plus truth sources.
+- [DONE] The multi-factor combination boundary packet is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload exposes objectives, candidate sources, `max_combination_size=10`, provisional accepted participation, risk constraints, planned-only search budget, UI confirmation, and no-execution side effects.
+- [VERIFY] RED missing module; RED ui-confirmed over-ready drift; focused+adjacent `pytest` **11 passed**; targeted Ruff pass; compileall pass; diff check pass; forbidden scan only matched negative `will_run_optimizer=False` / `will_run_backtest=False`; payload smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, and Verifier returned reports. Permanent Code Reviewer remained in older waiting state and is not used as completion evidence. No duplicate same-role worker was created.
+- [NEXT] `MAX_ROWS_CHUNKING_COMPUTE_BUDGET_LOOP404`: build no-execution scale/chunk/compute-budget read-model for small/medium/full real-scoring rollout.
+- [FORBIDDEN] Do not read/write real DB, run optimizer/scorer/backtest/runner/adapter, write `factor_value_daily`, accepted pool, or queue, or grant PL-H before UI authorization and unresolved confirmations are satisfied.
 
 ## Latest Handoff — SYNC-414 factor data source confirmation
 
