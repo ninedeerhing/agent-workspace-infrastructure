@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T05:45:00+08:00
+Updated: 2026-07-03T06:10:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop541 | active | gpt-5.5 | 2026-07-03T05:45:00+08:00 | SYNC-553 loop541 operator/reviewer runtime authorization review surface complete; next loop542 explicit runtime authorization review material packet | workload light; auto-mining to auto-backtest core chain advanced one function |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop541 | success | gpt-5.4 | 2026-07-03T05:45:00+08:00 | loop541 loop_plan returned | workload cleared; preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop541 | success | gpt-5.4 | 2026-07-03T05:45:00+08:00 | loop541 assignment_matrix returned; confirmed orchestrator bounded write owner due executor waitingOnApproval | workload cleared; preserve permanent identity |
+| orchestrator | current-thread | loop542 | active | gpt-5.5 | 2026-07-03T06:10:00+08:00 | SYNC-554 loop542 explicit runtime authorization review material packet complete; next loop543 formal runtime human authorization handoff surface | workload light; auto-mining to auto-backtest core chain advanced one function |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop542 | success | gpt-5.4 | 2026-07-03T06:10:00+08:00 | loop542 loop_plan returned | workload cleared; preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop542 | success | gpt-5.4 | 2026-07-03T06:10:00+08:00 | loop542 assignment_matrix returned; confirmed orchestrator bounded write owner due executor waitingOnApproval | workload cleared; preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop541 | channel_slow | gpt-5.5 | 2026-07-03T05:45:00+08:00 | loop541 no-execution risk review not duplicated due older waitingOnApproval state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop541 | success | gpt-5.4 | 2026-07-03T05:45:00+08:00 | loop541 matrix returned; wrong-kind fail-closed recommendation incorporated into tests | workload cleared; preserve permanent identity |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop541 | available | gpt-5.5 | 2026-07-03T05:45:00+08:00 | loop540 final verification requested; loop541 local verification complete pending final verifier | no duplicate verifier thread created; permanent identity preserved |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop542 | channel_slow | gpt-5.5 | 2026-07-03T06:10:00+08:00 | loop542 no-execution risk review not duplicated due older waitingOnApproval state | preserve permanent identity; do not duplicate same-role worker |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop542 | success | gpt-5.4 | 2026-07-03T06:10:00+08:00 | loop542 matrix returned; source gating and blocker propagation recommendation incorporated into tests | workload cleared; preserve permanent identity |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop542 | available | gpt-5.5 | 2026-07-03T06:10:00+08:00 | loop541 final verification requested; loop542 local verification complete pending final verifier | no duplicate verifier thread created; permanent identity preserved |
 ## Latest Roster Notes
+- 2026-07-03T06:10:00+08:00 · SYNC-554 · loop542: Explicit runtime authorization review material packet now packages operator/reviewer materials, confirmation packet, blockers, manual next actions, and no-execution handoff status; Planner/Dispatcher/Test Engineer success; source gating/blocker propagation recommendation incorporated; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T05:45:00+08:00 · SYNC-553 · loop541: Operator/reviewer runtime authorization review surface now turns formal gap packet into role responsibilities, evidence checklist, confirmation checklist, blockers, and manual next actions; Planner/Dispatcher/Test Engineer success; wrong-kind fail-closed recommendation incorporated; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T05:20:00+08:00 · SYNC-552 · loop540: Formal runtime authorization gap packet now aggregates small/medium/full readiness into human/runtime/scope/data/audit gap sections; Planner/Dispatcher/Test Engineer success; wrong-kind fail-closed recommendation incorporated; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T04:45:00+08:00 · SYNC-551 · loop539: Full-chunked-run readiness contract now exposes full candidate/all-A-share/full-history chunking, resume/audit/rollback requirements, validation inputs, and blockers; Planner/Dispatcher/Test Engineer dispatched but readback exceeded context; local verification authoritative; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
