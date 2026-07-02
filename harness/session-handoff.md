@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T11:28:00+08:00
+updated_at: 2026-07-02T11:45:00+08:00
+
+## Latest Handoff — SYNC-421 budgeted auto-backtest allocation design
+
+- [DONE] Implemented `budgeted_auto_backtest_allocation_design_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/budgeted_auto_backtest_allocation_design.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_budgeted_auto_backtest_allocation_design_unit.py`, plus truth sources.
+- [DONE] The budgeted auto-backtest allocation design packet is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload exposes Top50/all-A-shares/full-history request, small-batch -> medium -> full chunked rollout, chunk resume policy, planned-only queue write plan, human confirmation action, risk controls, audit refs, and fail-closed blockers.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **33 passed**; targeted Ruff pass; compileall pass; diff check pass; forbidden scan only matched planned-only/False safety strings; payload smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier were dispatched for read-only loop409 review. Local verification closed the loop while worker reports may arrive later; no duplicate same-role worker was created.
+- [NEXT] `FINAL_USER_FACING_REVIEW_SURFACE_LOOP410`.
+- [FORBIDDEN] Do not read/write real DB, write accepted pool/queue, run backtest, or grant PL-H before unresolved confirmations and authorization evidence are satisfied.
 
 ## Latest Handoff — SYNC-420 accepted pool admission design
 
