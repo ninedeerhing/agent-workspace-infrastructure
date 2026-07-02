@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-02T22:10:29+08:00
+updated_at: 2026-07-02T22:15:24+08:00
+
+## Latest Handoff — SYNC-535 queue-write review manifest
+
+- [DONE] `auto_backtest_queue_write_readiness_review_v1` now accepts optional `queue_intake_readiness` while preserving the old no-execution queue-write readiness path.
+- [DONE] Ready queue-intake manifests populate `queue_write_review_candidate_manifest` with `queue_status=not_written`; queue-write review can be ready but queue write/execution remain false.
+- [VERIFY] RED unexpected keyword before implementation; focused queue-write review **25 passed**; adjacent queue-intake/write/real-review chain **48 passed**; Ruff pass; compileall pass; ready-path payload smoke pass.
+- [NEXT] `FORMAL_QUEUE_WRITE_PERMISSION_REVIEW_CONSUMES_QUEUE_WRITE_REVIEW_MANIFEST_LOOP524`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/backtest queue; do not run backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-534 queue intake allocation manifest
 

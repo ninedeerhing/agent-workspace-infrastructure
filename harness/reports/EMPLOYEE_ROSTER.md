@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T22:10:29+08:00
+Updated: 2026-07-02T22:15:24+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop522 | active | gpt-5.5 | 2026-07-02T22:10:29+08:00 | loop522 queue intake allocation manifest complete; next loop523 queue-write readiness review consumes manifest | workload light; auto-backtest readiness advanced one core function |
+| orchestrator | current-thread | loop523 | active | gpt-5.5 | 2026-07-02T22:15:24+08:00 | loop523 queue-write review manifest complete; next loop524 formal queue-write permission review consumes manifest | workload light; auto-backtest readiness advanced one core function |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop522 | partial_worker_report | gpt-5.5 | 2026-07-02T22:10:29+08:00 | queue intake manifest plan request delivered | preserve identity; repair report ingestion before treating planner as healthy |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop522 | partial_worker_report | gpt-5.4 | 2026-07-02T22:10:29+08:00 | assignment_matrix request delivered | preserve identity; repair report ingestion before treating dispatcher as healthy |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
@@ -58,6 +58,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop522 | partial_worker_report | gpt-5.4 | 2026-07-02T22:10:29+08:00 | test matrix request delivered | preserve identity; repair report ingestion before treating test-engineer as healthy |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop522 | idle | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not dispatched because primary worker report ingestion was partial and local verification was sufficient | no duplicate verifier thread created; permanent identity preserved |
 ## Latest Roster Notes
+- 2026-07-02T22:15:24+08:00 · loop523: Queue-write readiness review now consumes Top50 queue-intake manifest and keeps queue_status=not_written; no duplicate same-role worker created.
 - 2026-07-02T22:10:29+08:00 · loop522: Queue intake readiness now consumes Top50 allocation manifest and keeps queue_status=not_written; no duplicate same-role worker created.
 - 2026-07-02T22:06:41+08:00 · loop521: Budgeted auto-backtest allocation now consumes Top50 accepted-pool provisional manifest and keeps queue_status=not_written; no duplicate same-role worker created.
 - 2026-07-02T22:03:06+08:00 · loop520: Accepted-pool admission now consumes Top50 metric funnel manifest and keeps pool_status=provisional_not_written; Planner/Dispatcher/Test Engineer/Code Reviewer permanent messages delivered but readback showed delegation turns only; no duplicate same-role worker created.
