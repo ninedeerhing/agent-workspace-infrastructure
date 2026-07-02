@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T18:00:00+08:00
+Updated: 2026-07-02T18:20:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-440 | success | gpt-5.5 | 2026-07-02T18:20:00+08:00 | original qa-pg-alt execution request final safety review complete; next=ORIGINAL_QA_PG_ALT_FINAL_HUMAN_INTERVENTION_HANDOFF_LOOP429 | loop428 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; final safety review remains not-grant/not-execution; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop428 | success | gpt-5.5 | 2026-07-02T18:20:00+08:00 | loop428 planning review | workload cleared; final safety review means evidence review only, not runtime repair permission |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop428 | success | gpt-5.4 | 2026-07-02T18:20:00+08:00 | loop428 assignment matrix | workload cleared; permanent worker roles reused, no duplicate same-role worker |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop428 | success | gpt-5.5 | 2026-07-02T18:20:00+08:00 | loop428 final safety review risk precheck | workload cleared; avoid wording drift toward granted/approved/executable |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop428 | success | gpt-5.4 | 2026-07-02T18:20:00+08:00 | loop428 coverage review | workload cleared; fail-closed no-execution matrix matched tests |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop428 | local-verification | gpt-5.5 | 2026-07-02T18:20:00+08:00 | loop428 local verification fallback | no duplicate verifier thread created; permanent identity preserved |
 | orchestrator | current-thread | SYNC-439 | success | gpt-5.5 | 2026-07-02T18:00:00+08:00 | original qa-pg-alt manual runtime repair execution request envelope complete; next=ORIGINAL_QA_PG_ALT_EXECUTION_REQUEST_FINAL_SAFETY_REVIEW_LOOP428 | loop427 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; request envelope remains not-grant/not-execution; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop427 | dispatched | gpt-5.4 | 2026-07-02T18:00:00+08:00 | loop427 planning review | permanent identity preserved |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop427 | dispatched | gpt-5.4 | 2026-07-02T18:00:00+08:00 | loop427 assignment matrix | Orchestrator sole writer, quality workers read-only |
