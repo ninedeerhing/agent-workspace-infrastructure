@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T17:45:00+08:00
+Updated: 2026-07-02T18:00:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-439 | success | gpt-5.5 | 2026-07-02T18:00:00+08:00 | original qa-pg-alt manual runtime repair execution request envelope complete; next=ORIGINAL_QA_PG_ALT_EXECUTION_REQUEST_FINAL_SAFETY_REVIEW_LOOP428 | loop427 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; request envelope remains not-grant/not-execution; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop427 | dispatched | gpt-5.4 | 2026-07-02T18:00:00+08:00 | loop427 planning review | permanent identity preserved |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop427 | dispatched | gpt-5.4 | 2026-07-02T18:00:00+08:00 | loop427 assignment matrix | Orchestrator sole writer, quality workers read-only |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop427 | dispatched | gpt-5.5 | 2026-07-02T18:00:00+08:00 | loop427 request envelope risk precheck | avoid wording drift toward direct execution request |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop427 | dispatched | gpt-5.5 | 2026-07-02T18:00:00+08:00 | loop427 coverage review | fail-closed evidence matrix implemented locally |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop427 | channel_slow | gpt-5.5 | 2026-07-02T18:00:00+08:00 | loop427 local verification fallback | no duplicate verifier thread created; permanent identity preserved |
 | orchestrator | current-thread | SYNC-438 | success | gpt-5.5 | 2026-07-02T17:45:00+08:00 | original qa-pg-alt final runtime execution authorization review surface complete; next=ORIGINAL_QA_PG_ALT_MANUAL_RUNTIME_REPAIR_EXECUTION_REQUEST_ENVELOPE_LOOP427 | loop426 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; final surface remains not-grant/not-execution; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop426 | success | gpt-5.4 | 2026-07-02T17:45:00+08:00 | loop426 planning review | workload cleared; final review surface means review-ready only, not runtime repair permission |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop426 | success | gpt-5.4 | 2026-07-02T17:45:00+08:00 | loop426 assignment matrix | workload cleared; Orchestrator sole writer, quality workers read-only |
