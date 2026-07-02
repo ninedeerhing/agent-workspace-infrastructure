@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T13:15:00+08:00
+Updated: 2026-07-02T13:35:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-426 | success | gpt-5.5 | 2026-07-02T13:35:00+08:00 | queue writer operator/reviewer review surface complete; next=QUEUE_WRITE_AUTHORIZATION_PACKET_LOOP415 | loop414 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer/Verifier; review surface remains review-only/not execution; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop414 | dispatched | gpt-5.5 | 2026-07-02T13:35:00+08:00 | loop414 planning review | workload light until report; permanent identity preserved |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop414 | dispatched | gpt-5.5 | 2026-07-02T13:35:00+08:00 | loop414 assignment matrix | workload light until report; permanent identity preserved |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop414 | dispatched | gpt-5.5 | 2026-07-02T13:35:00+08:00 | loop414 consumer wording risk precheck | workload light until report; watch review button vs queue-write execution drift |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop414 | dispatched | gpt-5.4 | 2026-07-02T13:35:00+08:00 | loop414 coverage review | workload light until report; verify review-only/no-execution matrix |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop414 | dispatched | gpt-5.4 | 2026-07-02T13:35:00+08:00 | loop414 verification review | workload light until report; truth/git/static gates satisfied locally |
 | orchestrator | current-thread | SYNC-425 | success | gpt-5.5 | 2026-07-02T13:15:00+08:00 | controlled queue request writer planning packet complete; next=QUEUE_WRITER_OPERATOR_REVIEW_SURFACE_LOOP414 | loop413 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer/Verifier; queue-write remains planned-only/not-executed; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop413 | dispatched | gpt-5.5 | 2026-07-02T13:15:00+08:00 | loop413 planning review | workload light until report; permanent identity preserved |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop413 | dispatched | gpt-5.5 | 2026-07-02T13:15:00+08:00 | loop413 assignment matrix | workload light until report; permanent identity preserved |
@@ -155,6 +161,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop364 | success | gpt-5.5 | 2026-07-01T00:00:44+08:00 | found two P2s, rechecked both fixed | workload cleared; use for future high-risk review gates |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop364 | success | gpt-5.4 | 2026-07-01T00:00:44+08:00 | final verification PASS; acceptance_decision says stop at formal human review | workload cleared; next requires user formal acceptance |
 ## Latest Roster Notes
+- **SYNC-426 · loop414**：完成 `Queue writer operator/reviewer review surface`。永久 Planner、Dispatcher、Code Reviewer、Test Engineer、Verifier 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：消费级“复核写队列计划”按钮只表示 review，不得暗示写队列、真实回测或 PL-H 执行授权。
 - **SYNC-425 · loop413**：完成 `Controlled queue request writer planning packet`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：queue-write planning 只能是 planned-only review material，不得解释为写队列许可；no-substitute-DB-container policy 必须延续到后续授权包。
 - **SYNC-424 · loop412**：完成 `DB/runner preflight validator` 并纠正 Docker 治理偏差。临时同卷只读验证容器曾被创建用于确认数据卷完整性，随后已删除；后续严禁为 `qa-pg-alt` 运行故障创建替代 DB 容器 / 服务 / 端口，必须把原容器端口异常记录为 fail-closed blocker 并修复原端口策略。永久 Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303` 与 Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。
 - **SYNC-423 · loop411**：完成 `Authorized small-batch trial request envelope`。永久 Planner `019f0890-69e6-7270-a742-1178836608ef`、Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`、Test Engineer `019eeece-52d7-7b73-868a-7beb496ba303`、Code Reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`、Verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b` 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：authorized request envelope 只是 execution-preflight review material，不得解释为 DB/queue/backtest execution grant。

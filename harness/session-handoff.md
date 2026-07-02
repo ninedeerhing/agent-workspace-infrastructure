@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T13:15:00+08:00
+updated_at: 2026-07-02T13:35:00+08:00
+
+## Latest Handoff — SYNC-426 queue writer operator/reviewer review surface
+
+- [DONE] Implemented `queue_writer_operator_review_surface_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/queue_writer_operator_review_surface.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_queue_writer_operator_review_surface_unit.py`, plus truth sources.
+- [DONE] The surface is now included in `user_facing_batch_mining_creation_plan_v1`, consuming `controlled_queue_request_writer_planning_packet_v1`.
+- [DONE] Default shows `写队列还不能开始`; ready path only enables review, with `will_write_queue_on_click=False`.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **51 passed**; targeted Ruff pass; compileall pass; payload smoke pass; `npm run build` pass; `git diff --check` pass with CRLF warnings only.
+- [WORKERS] Permanent Planner, Dispatcher, Code Reviewer, Test Engineer, and Verifier were dispatched for loop414. Existing worker identities were reused; no duplicate same-role worker was created.
+- [NEXT] `QUEUE_WRITE_AUTHORIZATION_PACKET_LOOP415`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not write DB/backtest queue, run backtest, or grant PL-H.
 
 ## Latest Handoff — SYNC-425 controlled queue request writer planning
 
