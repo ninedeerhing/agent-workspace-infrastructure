@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T00:16:55+08:00
+updated_at: 2026-07-03T00:26:45+08:00
+
+## Latest Handoff — SYNC-539 decision archive manifest
+
+- [DONE] `operator_reviewer_final_queue_write_permission_decision_to_final_queue_write_permission_decision_archive_v1` now consumes ready `explicit_human_queue_write_permission_decision_manifest` sources while preserving the legacy final queue-write permission decision source path.
+- [DONE] Ready explicit human decision manifests populate `final_queue_write_permission_decision_archive_manifest` with `archive_status=pending_final_queue_write_permission_decision_archive`; archive material can be ready while human approval, queue write, DB enqueue, backtest, Docker, and PL-H remain false/not-granted.
+- [VERIFY] RED exposed missing manifest-aware archive behavior; focused archive **9 passed**; adjacent decision/archive/confirmation chain **29 passed**; Ruff pass; compileall pass; payload smoke `loop527_smoke 50 not_granted not_written False False False False not_granted`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier returned success; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `FINAL_QUEUE_WRITE_PERMISSION_ARCHIVE_CONFIRMATION_CONSUMES_DECISION_ARCHIVE_MANIFEST_LOOP528`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/backtest queue; do not run backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-538 explicit human decision manifest
 
