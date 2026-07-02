@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T13:55:00+08:00
+Updated: 2026-07-02T14:15:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,12 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-428 | success | gpt-5.5 | 2026-07-02T14:15:00+08:00 | queue-write audit/rollback packet complete; next=CONTROLLED_QUEUE_WRITER_DRY_RUN_DESIGN_LOOP417 | loop416 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; audit/rollback packet remains review-only/not-execution; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop416 | success | gpt-5.5 | 2026-07-02T14:15:00+08:00 | loop416 planning review | workload cleared; permanent identity preserved |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop416 | success | gpt-5.5 | 2026-07-02T14:15:00+08:00 | loop416 assignment matrix | workload cleared; Orchestrator sole writer, quality workers read-only |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop416 | success | gpt-5.5 | 2026-07-02T14:15:00+08:00 | loop416 audit/rollback risk precheck | workload cleared; keep audit/rollback readiness distinct from execution permission |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop416 | success | gpt-5.4 | 2026-07-02T14:15:00+08:00 | loop416 coverage review | workload cleared; fail-closed evidence matrix matched tests |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop416 | local-verification | gpt-5.4 | 2026-07-02T14:15:00+08:00 | loop416 final verification evidence recorded locally | workload unchanged; no duplicate verifier thread created |
 | orchestrator | current-thread | SYNC-427 | success | gpt-5.5 | 2026-07-02T13:55:00+08:00 | queue-write authorization packet complete; next=QUEUE_WRITE_AUDIT_ROLLBACK_PACKET_LOOP416 | loop415 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer/Verifier; authorization packet remains not-granted/not-execution; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop415 | dispatched | gpt-5.5 | 2026-07-02T13:55:00+08:00 | loop415 planning review | workload light until report; permanent identity preserved |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop415 | dispatched | gpt-5.5 | 2026-07-02T13:55:00+08:00 | loop415 assignment matrix | workload light until report; permanent identity preserved |
