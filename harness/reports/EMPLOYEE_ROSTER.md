@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T17:20:08+08:00
+Updated: 2026-07-02T17:26:15+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,13 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | SYNC-462 | success | gpt-5.5 | 2026-07-02T17:20:08+08:00 | original qa-pg-alt readiness evidence handoff successor complete; next=ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_REVIEW_FROM_READINESS_HANDOFF_SUCCESSOR_LOOP451 | loop450 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; evidence handoff successor remains not-grant/not-execution/no-command/no-container/no-DB/no-backtest; no substitute DB containers/services/ports allowed |
+| orchestrator | current-thread | SYNC-463 | success | gpt-5.5 | 2026-07-02T17:26:15+08:00 | original qa-pg-alt readiness evidence review successor complete; next=ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_REVIEW_FROM_READINESS_EVIDENCE_SUCCESSOR_LOOP452 | loop451 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; report collection truncated by context, local verification fallback closed; readiness evidence review successor remains not-grant/not-execution/no-command/no-container/no-DB/no-backtest; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop451 | dispatched-report-truncated | gpt-5.4 | 2026-07-02T17:26:15+08:00 | loop451 planning review | permanent identity preserved; evidence-review-ready means review material only, not runtime repaired |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop451 | dispatched-report-truncated | gpt-5.4 | 2026-07-02T17:26:15+08:00 | loop451 assignment matrix | Orchestrator truth-source owner; Executor intentionally not assigned due waitingOnApproval |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop451 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T17:26:15+08:00 | not re-dispatched due loop436 waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop451 | dispatched-report-truncated | gpt-5.5 | 2026-07-02T17:26:15+08:00 | loop451 risk precheck | avoid wording drift toward intervention completed/runtime repaired/command submitted/container started/DB available |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop451 | dispatched-report-truncated | gpt-5.5 | 2026-07-02T17:26:15+08:00 | loop451 coverage review | source/status/substitute/post-intervention-evidence-review/side-effect matrix matched local tests |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop451 | local-verification | gpt-5.5 | 2026-07-02T17:26:15+08:00 | loop451 local verification fallback | no duplicate verifier thread created; permanent identity preserved || orchestrator | current-thread | SYNC-462 | success | gpt-5.5 | 2026-07-02T17:20:08+08:00 | original qa-pg-alt readiness evidence handoff successor complete; next=ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_REVIEW_FROM_READINESS_HANDOFF_SUCCESSOR_LOOP451 | loop450 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; evidence handoff successor remains not-grant/not-execution/no-command/no-container/no-DB/no-backtest; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop450 | success | gpt-5.4 | 2026-07-02T17:20:08+08:00 | loop450 planning review | permanent identity preserved; evidence-ready means handoff material only, not intervention completed |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop450 | success | gpt-5.4 | 2026-07-02T17:20:08+08:00 | loop450 assignment matrix | Orchestrator truth-source owner; Executor intentionally not assigned due waitingOnApproval |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop450 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T17:20:08+08:00 | not re-dispatched due loop436 waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
