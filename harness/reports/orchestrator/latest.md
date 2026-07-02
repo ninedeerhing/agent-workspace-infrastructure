@@ -1,3 +1,37 @@
+# Orchestrator Latest Report — SYNC-530 controlled computation design batch manifest
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "controlled computation design consumes Top50 execution batch manifest"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_factor_value_computation_design.py"
+      summary: "Adds optional execution_batch_package input; ready Top50 packages populate scorer_input_contract and execution_batch_manifest; malformed packages fail closed."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Passes factor_scoring_execution_batch_package into controlled_factor_value_computation_design."
+    - file: "apps/quant_assistant/tests/test_controlled_factor_value_computation_design_unit.py"
+      summary: "Covers ready package manifest bridge and wrong package fail-closed behavior."
+  verification:
+    - command: "RED PYTHONPATH=src uv run pytest tests/test_controlled_factor_value_computation_design_unit.py -q"
+      result: "Failed before implementation on unexpected keyword execution_batch_package."
+    - command: "PYTHONPATH=src uv run pytest tests/test_controlled_factor_value_computation_design_unit.py -q"
+      result: "6 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_factor_scoring_execution_batch_package_unit.py tests/test_factor_scoring_run_request_preflight_unit.py tests/test_controlled_factor_value_computation_design_unit.py tests/test_real_metric_persistence_screening_funnel_design_unit.py tests/test_real_scoring_to_backtest_review_surface_unit.py -q"
+      result: "22 passed."
+    - command: "targeted Ruff / compileall / forbidden side-effect scan / payload smoke"
+      result: "All passed; default payload remains blocked on run-request preflight with no computed values, no backtest, and no DB/env/Docker access."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Concrete Top50 manifests should flow forward as planned inputs while preserving no-execution gates; manifest readiness is not authorization."
+      - "When permanent worker readback exceeds context, record partial_worker_report and preserve the canonical worker identity."
+    performance_note: "Real scoring readiness advanced from execution batch package to controlled computation design input."
+  blockers:
+    - "partial_worker_report for Planner, Dispatcher, Test Engineer, and Code Reviewer"
+  next: "REAL_METRIC_PERSISTENCE_FUNNEL_CONSUMES_BATCH_MANIFEST_LOOP519"
+
+---
 # Orchestrator Latest Report — SYNC-529 factor scoring execution batch package
 
 report:

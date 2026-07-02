@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-02T21:49:00+08:00
+updated_at: 2026-07-02T21:54:19+08:00
+
+## Latest Handoff — SYNC-530 controlled computation design batch manifest
+
+- [DONE] `controlled_factor_value_computation_design_v1` now accepts ready `factor_scoring_execution_batch_package_v1` as `execution_batch_package`.
+- [DONE] Ready Top50 `small_batch_trial_001` manifests populate `scorer_input_contract` and `execution_batch_manifest`; malformed packages fail closed as `blocked_execution_batch_package_not_ready`.
+- [VERIFY] RED unexpected keyword before implementation; focused controlled computation design **6 passed**; expanded scoring chain **22 passed**; Ruff pass; compileall pass; forbidden side-effect scan clean; payload smoke remained blocked by default run-request preflight.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer messages delivered for loop518; readback exceeded available context and was marked `partial_worker_report`; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `REAL_METRIC_PERSISTENCE_FUNNEL_CONSUMES_BATCH_MANIFEST_LOOP519`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not start Docker/container runtime; do not read env/DB, write DB/backtest queue/audit log, run scorer/backtest, write `factor_value_daily`, admit pool entries, or grant PL-H.
 
 ## Latest Handoff — SYNC-529 factor scoring execution batch package
 
