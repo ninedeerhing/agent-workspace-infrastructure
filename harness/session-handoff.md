@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-02T22:06:41+08:00
+updated_at: 2026-07-02T22:10:29+08:00
+
+## Latest Handoff — SYNC-534 queue intake allocation manifest
+
+- [DONE] `auto_backtest_queue_intake_readiness_v1` now accepts optional `budgeted_backtest_allocation` while preserving the old human-acceptance path.
+- [DONE] Ready allocation manifests populate `queue_intake_candidate_manifest` with `queue_status=not_written`; queue review can be ready but queue write/execution remain false.
+- [VERIFY] RED unexpected keyword before implementation; focused queue intake **15 passed**; adjacent allocation/queue/readiness chain **44 passed**; Ruff pass; compileall pass; forbidden scan only matched intentional drift checks; ready-path payload smoke pass.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer messages delivered for loop522; local verification is authoritative; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `QUEUE_WRITE_READINESS_REVIEW_CONSUMES_QUEUE_INTAKE_MANIFEST_LOOP523`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not start Docker/container runtime; do not read env/DB, write DB/backtest queue/audit log, run backtest, or grant PL-H.
 
 ## Latest Handoff — SYNC-533 backtest allocation manifest
 
