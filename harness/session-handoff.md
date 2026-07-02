@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T11:16:00+08:00
+updated_at: 2026-07-02T11:28:00+08:00
+
+## Latest Handoff — SYNC-420 accepted pool admission design
+
+- [DONE] Implemented `accepted_pool_admission_design_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/accepted_pool_admission_design.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_accepted_pool_admission_design_unit.py`, plus truth sources.
+- [DONE] The accepted-pool admission design packet is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload exposes provisional-to-final evidence package, human confirmation action, planned-only accepted-pool write plan, decorrelation/diversity/marginal-gain/risk constraints, audit refs, and fail-closed blockers.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **28 passed**; targeted Ruff pass; compileall pass; diff check pass; forbidden scan only matched planned-only/False safety strings; payload smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier were dispatched for read-only loop408 review. Local verification closed the loop while worker reports may arrive later; no duplicate same-role worker was created.
+- [NEXT] `BUDGETED_AUTO_BACKTEST_ALLOCATION_DESIGN_LOOP409`.
+- [FORBIDDEN] Do not read/write real DB, write accepted pool/queue, run backtest, or grant PL-H before unresolved confirmations and authorization evidence are satisfied.
 
 ## Latest Handoff — SYNC-419 real metric persistence screening funnel design
 

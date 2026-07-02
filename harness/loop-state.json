@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T11:16:00+08:00",
+  "updated_at": "2026-07-02T11:28:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-metric-persistence-screening-funnel-design-sync419",
-  "next_atomic_action": "ACCEPTED_POOL_ADMISSION_DESIGN_LOOP408：建立 accepted pool admission design packet：消费 loop407 metric funnel design，定义 provisional accepted -> final accepted 的入池证据包、人工确认按钮、accepted pool write plan、去相关/多样性/边际增益/风险约束要求、audit refs 与 fail-closed blockers；仍不得读写真实 DB、不得写 accepted pool/queue、不得运行 backtest、不得授予 PL-H。",
-  "next_after": "After loop408, implement budgeted auto-backtest allocation design packet. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
+  "current_slice": "accepted-pool-admission-design-sync420",
+  "next_atomic_action": "BUDGETED_AUTO_BACKTEST_ALLOCATION_DESIGN_LOOP409：建立 budgeted auto-backtest allocation design packet：消费 loop408 accepted pool admission design，定义回测候选包、预算层级、队列写入前置授权、风险/成本限制、UI 确认项、audit refs 与 fail-closed blockers；仍不得写队列、不得运行 backtest、不得读写真实 DB、不得授予 PL-H。",
+  "next_after": "After loop409, implement final user-facing review surface for real scoring -> pool -> backtest chain. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-419-real-metric-persistence-screening-funnel-design",
+  "last_tick": "SYNC-420-accepted-pool-admission-design",
   "last_sync_sources": [
+    "SYNC-420 loop408 Accepted pool admission design",
+    "loop408 implementation: added accepted_pool_admission_design_v1 and bridged accepted_pool_admission_design into user_facing_batch_mining_creation_plan_v1",
+    "loop408 changed: src/qa/quant_mining/accepted_pool_admission_design.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_accepted_pool_admission_design_unit.py; truth sources",
+    "loop408 verification: RED missing module; focused+adjacent 28 passed; targeted Ruff pass; targeted compileall pass; git diff --check pass; forbidden scan only planned-only/False safety markers; payload smoke pass",
+    "loop408 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier dispatched for read-only review; local verification used for closure; no duplicate same-role worker created",
+    "next: BUDGETED_AUTO_BACKTEST_ALLOCATION_DESIGN_LOOP409",
     "SYNC-419 loop407 Real metric persistence screening funnel design",
     "loop407 implementation: added real_metric_persistence_screening_funnel_design_v1 and bridged real_metric_persistence_screening_funnel_design into user_facing_batch_mining_creation_plan_v1",
     "loop407 changed: src/qa/quant_mining/real_metric_persistence_screening_funnel_design.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_real_metric_persistence_screening_funnel_design_unit.py; truth sources",
