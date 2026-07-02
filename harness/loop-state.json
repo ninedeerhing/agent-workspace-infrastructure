@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T05:55:00+08:00",
+  "updated_at": "2026-07-03T06:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "original-qa-pg-alt-readiness-review-successor-sync527",
-  "next_atomic_action": "ORIGINAL_QA_PG_ALT_REVIEW_ONLY_CHAIN_CLOSURE_AUDIT_LOOP516：审计 loop509-loop515 latest successor 链是否全部从同一最新 lineage 串起，并确认没有 authorization granted、execution request approved、readiness/evidence passed、human intervention executed、runtime repaired、container started、DB/queue writable、backtest runnable、PL-H granted；只读/测试/真源同步，不启动容器、不读 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest。",
-  "next_after": "After loop516, if chain audit is closed, select the next core function slice toward real scoring/intake/backtest readiness without bypassing human/runtime gates.",
+  "current_slice": "original-qa-pg-alt-review-only-chain-closure-audit-sync528",
+  "next_atomic_action": "REAL_SCORING_INTAKE_BACKTEST_READINESS_NEXT_CORE_SLICE_LOOP517：在 original qa-pg-alt review-only 修复链闭合后，回到真实评分/入池/回测 readiness 主线，选择下一项可落地核心功能；必须以已有 human/runtime gates 为前提，不绕过人工授权，不启动容器、不读 env/DB、不创建替代 DB 容器/服务/端口、不写 DB/队列、不运行真实 backtest，先做只读代码/测试/契约定位和 TDD 计划。",
+  "next_after": "After loop517 planning/selection, implement the selected real scoring/intake/backtest readiness function slice with tests.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,11 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-527-original-qa-pg-alt-readiness-review-successor",
+  "last_tick": "SYNC-528-original-qa-pg-alt-review-chain-audit",
   "last_sync_sources": [
+    "SYNC-528 loop516 Original qa-pg-alt review-only successor chain closure audit",
+    "loop516 audit: seven original qa-pg-alt runtime repair review-only successors remain blocked and forbidden_count=0 for granted/executed/passed/repaired/container/db/queue/backtest/PL-H markers",
+    "next: REAL_SCORING_INTAKE_BACKTEST_READINESS_NEXT_CORE_SLICE_LOOP517",
     "SYNC-527 loop515 Original qa-pg-alt post-intervention readiness review successor from readiness evidence successor",
     "loop515 implementation: bridged latest readiness review successor to consume loop514 latest readiness evidence review successor",
     "loop515 verification: RED stale tail bridge 1 failed; focused+upstream chain 10 passed; Ruff pass; compileall pass; forbidden execution marker scan clean; execution remains not granted",
