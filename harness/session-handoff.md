@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-01T23:41:29+08:00
+updated_at: 2026-07-02T10:02:49+08:00
+
+## Latest Handoff — SYNC-412 codebase intelligence references
+
+- [DONE] Recorded real-scoring execution strategy as `small_batch_trial -> medium_batch_validation -> full_chunked_run` in the rollout plan.
+- [DONE] Added `docs/ENGINEERING/2026-07-02-codebase-intelligence-visualization-research.md`.
+- [DONE] Indexed codebase intelligence references in `docs/ENGINEERING/AWI-REFERENCE-CATALOG.md`, `harness/source-index.json`, and `harness/memory-os.json`: GitNexus, CodeGraphContext, Codebase-Memory/codebase-memory-mcp, codegraph, codebase-map, emerge, GitDiagram, CodeCharta, and CodeSee.
+- [POLICY] No third-party code graph tool is installed; no private code is uploaded. Recommended path is AWI-owned `repo-map` first, then sandbox evaluation of local/MCP tools.
+- [NEXT] Quant mainline remains `FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401`.
 
 ## Latest Handoff — SYNC-411 decisions accepted
 

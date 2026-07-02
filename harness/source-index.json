@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-29T13:29:57+08:00",
+  "updated_at": "2026-07-02T00:18:00+08:00",
   "purpose": "Cold-path source index for AWI v2. It lets the loop reference official docs, local truth sources, external research, and video transcripts by id instead of hot-loading full documents.",
   "hot_path_policy": {
     "default_load": [
@@ -329,6 +329,186 @@
         "rag",
         "context_budget"
       ]
+    },
+    {
+      "id": "awi-codebase-intelligence-research-2026-07-02",
+      "title": "Codebase Intelligence and Visualization Research",
+      "category": "codebase_intelligence",
+      "authority": "local_truth_source",
+      "path": "docs/ENGINEERING/2026-07-02-codebase-intelligence-visualization-research.md",
+      "status": "indexed",
+      "hot_path": false,
+      "tags": [
+        "repo_map",
+        "code_graph",
+        "visualization",
+        "mcp",
+        "context_pack"
+      ]
+    },
+    {
+      "id": "gitnexus",
+      "title": "GitNexus",
+      "category": "codebase_intelligence",
+      "authority": "repo",
+      "uri": "https://github.com/abhigyanpatwari/GitNexus",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "knowledge_graph",
+        "graph_rag",
+        "client_side",
+        "repo_visualization"
+      ]
+    },
+    {
+      "id": "codegraphcontext",
+      "title": "CodeGraphContext",
+      "category": "codebase_intelligence",
+      "authority": "repo",
+      "uri": "https://github.com/CodeGraphContext/CodeGraphContext",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "mcp",
+        "cli",
+        "call_graph",
+        "relationship_queries"
+      ]
+    },
+    {
+      "id": "codebase-memory-mcp",
+      "title": "codebase-memory-mcp",
+      "category": "codebase_intelligence",
+      "authority": "repo",
+      "uri": "https://github.com/DeusData/codebase-memory-mcp",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "mcp",
+        "knowledge_graph",
+        "local",
+        "structural_backend"
+      ]
+    },
+    {
+      "id": "codebase-memory-paper",
+      "title": "Codebase-Memory Tree-Sitter MCP paper",
+      "category": "codebase_intelligence",
+      "authority": "paper",
+      "uri": "https://arxiv.org/html/2603.27277v1",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "tree_sitter",
+        "mcp",
+        "persistent_graph",
+        "token_reduction"
+      ]
+    },
+    {
+      "id": "codegraph",
+      "title": "codegraph",
+      "category": "codebase_intelligence",
+      "authority": "repo",
+      "uri": "https://github.com/colbymchenry/codegraph",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "code_graph",
+        "blast_radius",
+        "call_paths",
+        "local"
+      ]
+    },
+    {
+      "id": "codebase-map",
+      "title": "codebase-map",
+      "category": "codebase_intelligence",
+      "authority": "repo",
+      "uri": "https://github.com/carlrannaberg/codebase-map",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "repo_map",
+        "llm_context",
+        "ast",
+        "dependency_graph"
+      ]
+    },
+    {
+      "id": "emerge-viz",
+      "title": "emerge",
+      "category": "codebase_intelligence",
+      "authority": "repo",
+      "uri": "https://github.com/glato/emerge",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "visualization",
+        "dependency_graph",
+        "metrics",
+        "complexity"
+      ]
+    },
+    {
+      "id": "gitdiagram",
+      "title": "GitDiagram",
+      "category": "codebase_intelligence",
+      "authority": "repo_site",
+      "uri": "https://gitdiagram.com/",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "architecture_diagram",
+        "public_repo",
+        "visualization"
+      ]
+    },
+    {
+      "id": "codecharta",
+      "title": "CodeCharta",
+      "category": "codebase_intelligence",
+      "authority": "repo",
+      "uri": "https://github.com/maibornwolff/codecharta",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "metrics",
+        "local_analysis",
+        "3d_map",
+        "hotspots"
+      ]
+    },
+    {
+      "id": "codesee",
+      "title": "CodeSee",
+      "category": "codebase_intelligence",
+      "authority": "commercial_site",
+      "uri": "https://www.codesee.io/",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "hosted",
+        "service_map",
+        "onboarding",
+        "code_visibility"
+      ]
+    },
+    {
+      "id": "sourcegraph",
+      "title": "Sourcegraph Code Search",
+      "category": "codebase_intelligence",
+      "authority": "commercial_site_docs",
+      "uri": "https://sourcegraph.com/docs/code-search",
+      "status": "skimmed",
+      "hot_path": false,
+      "tags": [
+        "code_search",
+        "cross_repo",
+        "reference_graph",
+        "enterprise_benchmark"
+      ]
     }
   ],
   "required_categories": [
@@ -337,7 +517,8 @@
     "memory_rag",
     "dag_runtime",
     "awi_architecture",
-    "raindeer_quant"
+    "raindeer_quant",
+    "codebase_intelligence"
   ],
   "required_source_ids": [
     "openai-harness-engineering",

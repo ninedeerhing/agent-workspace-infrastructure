@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-01T23:41:29+08:00",
+  "updated_at": "2026-07-02T10:02:49+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-rollout-decisions-accepted-loop401",
+  "current_slice": "codebase-intelligence-reference-and-tiered-scoring-plan-sync412",
   "next_atomic_action": "FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401：按用户已确认的 rollout 决策实现 no-execution 授权复核/创建计划桥接：UI 按钮+确认框为授权源，展示 Top50 + 全量股票池/时间窗意图，后续目标直接写正式 factor_value_daily 但当前不得写入；暴露 provisional_accepted 后续状态；将 max_rows_and_chunking、event_text_sentiment_data_sources、multi_factor_combination_search_boundary 作为必须继续确认的 blockers。仍不读取/写入真实 DB、不运行 scorer/backtest、不写 accepted pool/queue、不授予 PL-H。",
-  "next_after": "After loop401, run EVENT_TEXT_SENTIMENT_FACTOR_RESEARCH_AND_DATA_SOURCE_CONFIRMATION_LOOP402 before non-market real scoring; then build UI run request + injected runner preflight and a separate multi-factor combination search path. No default runner, page-load execution, automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
+  "next_after": "After loop401, run EVENT_TEXT_SENTIMENT_FACTOR_RESEARCH_AND_DATA_SOURCE_CONFIRMATION_LOOP402 before non-market real scoring; then build UI run request + injected runner preflight and a separate multi-factor combination search path. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No default runner, page-load execution, automatic DB write, accepted pool write, queue write, backtest, or PL-H before UI authorization and unresolved confirmations are satisfied.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-411-real-scoring-rollout-decisions-accepted",
+  "last_tick": "SYNC-412-codebase-intelligence-reference-and-tiered-scoring-plan",
   "last_sync_sources": [
+    "SYNC-412 codebase intelligence references + tiered scoring plan",
+    "confirmed scoring execution strategy: small_batch_trial -> medium_batch_validation -> full_chunked_run",
+    "added docs/ENGINEERING/2026-07-02-codebase-intelligence-visualization-research.md",
+    "indexed codebase_intelligence references: GitNexus, CodeGraphContext, Codebase-Memory/codebase-memory-mcp, codegraph, codebase-map, emerge, GitDiagram, CodeCharta, CodeSee",
+    "updated AWI-REFERENCE-CATALOG.md, harness/source-index.json, and harness/memory-os.json",
+    "policy: do not install external code graph tools or upload private code; first build AWI-owned repo-map cold-path artifact if needed",
+    "mainline remains FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401",
     "SYNC-411 user-confirmed real scoring rollout decisions accepted",
     "confirmed: first real scoring target is official factor_value_daily, but DB write remains blocked until UI authorization, run request validation, rollback metadata, max rows/chunking, and required data-source confirmations are satisfied",
     "confirmed: data domains include fundamental, event, text, sentiment, and alternative data; event/text/sentiment requires renewed project research and data-source confirmation before real scoring",

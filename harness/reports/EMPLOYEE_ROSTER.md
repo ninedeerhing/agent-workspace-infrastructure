@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-01T23:41:29+08:00
+Updated: 2026-07-02T10:02:49+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,8 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| researcher | 019eeebf-629e-7013-bbf4-1db4d312b925 | SYNC-412 | partial | gpt-5.4 | 2026-07-02T10:06:00+08:00 | read-only codebase intelligence / visualization tool research | partial report returned; emphasized local/private-code safety, Codebase-Memory as high-interest candidate, CodeCharta/Sourcegraph/CodeSee as references, and GitNexus/CodeBace naming caveats |
+| orchestrator | current-thread | SYNC-412 | success | gpt-5.5 | 2026-07-02T10:02:49+08:00 | codebase intelligence references indexed; tiered scoring strategy recorded; next=FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401 | no external tool installed; no private code upload; recommended AWI-owned repo-map before sandboxing external graph/MCP tools |
 | orchestrator | current-thread | SYNC-411 | success | gpt-5.5 | 2026-07-01T23:41:29+08:00 | real scoring rollout decisions accepted; next=FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401 | decision-sync only; no implementation worker dispatched; next implementation loop must use Planner -> Dispatcher and preserve open confirmations for max rows/chunking, event/text/sentiment data sources, and multi-factor search boundary |
 | orchestrator | current-thread | SYNC-410 | success | gpt-5.5 | 2026-07-01T23:28:27+08:00 | real scoring/pool/backtest rollout planning complete; stop=USER_REVIEW_REAL_SCORING_POOL_BACKTEST_ROLLOUT_PLAN | planning-only; permanent Planner returned partial but aligned; no implementation worker dispatched; waiting user confirmation |
 | orchestrator | current-thread | loop400 | success | gpt-5.5 | 2026-07-01T22:50:30+08:00 | factor batch scoring plan complete; next=FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401 | loop400 used permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier; Test Engineer feedback incorporated; Verifier checklist satisfied locally; Code Reviewer P2 wording/ref/route drift and source-safety drift masking risk fixed, final recheck success/no P1/P2; no duplicate same-role worker created |

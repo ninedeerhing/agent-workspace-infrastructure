@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "updated_at": "2026-06-29T13:29:57+08:00",
+  "updated_at": "2026-07-02T00:18:00+08:00",
   "purpose": "Typed Memory/RAG OS for AWI v2. It keeps long-cycle methodology, references, worker state, skill telemetry, and task-step memory retrievable without hot-loading full documents.",
   "load_policy": {
     "default_mode": "hot_path_light",
@@ -133,6 +133,23 @@
       ],
       "hot_path": false,
       "promotion_target": "procedural"
+    },
+    {
+      "id": "codebase-intelligence-map",
+      "slot_type": "semantic",
+      "owner": "orchestrator",
+      "summary": "Cold-path codebase intelligence references and future repo-map / graph-context bridge for structural search, impact analysis, and worker context packs.",
+      "store_path": "docs/ENGINEERING/2026-07-02-codebase-intelligence-visualization-research.md",
+      "latest_ref": "harness/source-index.json codebase_intelligence sources",
+      "source_refs": [
+        "awi-codebase-intelligence-research-2026-07-02",
+        "gitnexus",
+        "codegraphcontext",
+        "codebase-memory-mcp",
+        "codebase-map"
+      ],
+      "hot_path": false,
+      "promotion_target": "reference"
     }
   ],
   "promotion_rules": [

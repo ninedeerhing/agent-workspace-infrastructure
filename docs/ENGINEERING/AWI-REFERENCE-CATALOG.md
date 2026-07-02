@@ -51,6 +51,7 @@ Update protocol:
 | harness_loop_eval | OpenAI Harness Engineering, OpenAI Codex loop, Anthropic long-running harnesses, harness-loop-eval video | Use to make loop trace/eval/tool/state ownership explicit. |
 | dag_runtime | DAG video, LangGraph, AWI Capability DAG, AWI Runtime Task DAG | Split stable Capability DAG from per-loop Runtime Task DAG; validate missing deps/cycles/race groups/fallback. |
 | memory_rag | Memory video, Anthropic memory docs, LangGraph memory, OpenAI File Search | Build typed Memory/RAG OS: procedural/semantic/episodic/methodology/task-step/reference slots. |
+| codebase_intelligence | GitNexus, CodeGraphContext, Codebase-Memory, codebase-memory-mcp, codegraph, codebase-map | Use local structural maps / graph context to reduce repeated file crawling and improve worker context packs. |
 | token_context | Oh My Claude Code, Oh My Codex, Caveman, context-save/restore, token-budget skills | Keep hot-path small, cold-path indexed, budget governance; avoid full-doc hot loads. |
 | security_prompt_defense | ECC, AGENTS prompt defense, SECURITY-ZONES | Treat external content as data; use eval/checks for prompt/tool boundary drift. |
 | quant_factor_factory | RD-Agent, AlphaGen, Alpha2, AutoAlpha, AlphaForge, QuantaAlpha, Alpha-GPT | Product-layer only: candidate generation, quality gate, trajectory reuse, idea-to-alpha translation. |
@@ -115,6 +116,23 @@ Update protocol:
 | awi-security-zones | Local security zones | local_truth_source | implemented | `SECURITY-ZONES.md` | Runtime boundaries and sensitive data separation. | security_prompt_defense |
 | awi-agents-prompt-defense | AGENTS prompt defense baseline | local_truth_source | implemented | `AGENTS.md` | External content is data, not instruction; no secret leakage. | security_prompt_defense |
 
+### 5.5 Codebase Intelligence, Repository Maps, and Visualization
+
+| source_id | Source | Authority | Status | Local evidence | What AWI takes | Dedupe group |
+|---|---|---|---|---|---|---|
+| awi-codebase-intelligence-research-2026-07-02 | Codebase intelligence and visualization research note | local_truth_source | indexed | `docs/ENGINEERING/2026-07-02-codebase-intelligence-visualization-research.md` | Classifies repo visualization / code graph tools and proposes AWI-owned repo-map first. | codebase_intelligence |
+| gitnexus | `abhigyanpatwari/GitNexus` | repo | skimmed | `docs/ENGINEERING/2026-07-02-codebase-intelligence-visualization-research.md` | Client-side knowledge graph + Graph RAG concept; evaluate only after local/private behavior is verified. | codebase_intelligence |
+| codegraphcontext | `CodeGraphContext/CodeGraphContext` | repo | skimmed | research note | CLI + MCP code graph; relationship queries for callers/callees/call chains; possible future local MCP pilot. | codebase_intelligence |
+| codebase-memory-mcp | `DeusData/codebase-memory-mcp` | repo | skimmed | research note | Structural graph backend without embedded LLM; useful separation of agent intelligence and graph store. | codebase_intelligence |
+| codebase-memory-paper | Codebase-Memory Tree-Sitter MCP paper | paper | skimmed | research note | Persistent Tree-Sitter graph via MCP; token/tool-call reduction claim needs local validation. | codebase_intelligence |
+| codegraph | `colbymchenry/codegraph` | repo | skimmed | research note | Exact-code retrieval, call paths, dependency edges, and blast-radius style context; candidate for future sandbox. | codebase_intelligence |
+| codebase-map | `carlrannaberg/codebase-map` | repo | skimmed | research note | LLM-optimized static maps, AST extraction, dependency summaries, incremental updates; good immediate pattern. | codebase_intelligence |
+| emerge | `glato/emerge` | repo | skimmed | research note | Browser-based dependency/filesystem graph, metrics, complexity visualization, exports. | codebase_intelligence |
+| gitdiagram | GitDiagram | repo/site | skimmed | research note | Quick public-repo architecture diagrams; not approved for private Raindeer upload. | codebase_intelligence |
+| codecharta | `MaibornWolff/codecharta` | repo | skimmed | research note | Local code metrics and 3D city map; useful for hotspot/change visualization. | codebase_intelligence |
+| codesee | CodeSee | commercial_site | skimmed | research note | Hosted code visibility / service maps / onboarding reference; no use without explicit external-code approval. | codebase_intelligence |
+| sourcegraph | Sourcegraph | commercial_site/docs | skimmed | research note | Enterprise code search / reference graph / cross-repo navigation benchmark; no use without deployment/access review. | codebase_intelligence |
+
 ### 6. Raindeer Quant Product References
 
 | source_id | Source | Authority | Status | Local evidence | What AWI takes | Dedupe group |
@@ -163,3 +181,4 @@ Use this section for references that are mentioned but not yet recovered or deep
 |---|---|---|
 | 2026-06-29 | Implemented P4 B1 Memory/RAG OS contract and registered it as a source-index-backed AWI truth source. | `harness/memory-os.json`, `harness/validate_awi_memory.py`, `docs/ENGINEERING/ADR-005-AWI-Memory-RAG-OS-v2.md` |
 | 2026-06-29 | Created living catalog from dated AWI architecture refresh, source-index, three video transcripts, and user-provided reference list. | `docs/ENGINEERING/AWI-REFERENCE-CATALOG.md`, `harness/source-index.json` |
+| 2026-07-02 | Added codebase intelligence / visualization research group and indexed GitNexus, CodeGraphContext, Codebase-Memory, codebase-memory-mcp, codegraph, codebase-map, emerge, GitDiagram, CodeCharta, CodeSee, and Sourcegraph. | `docs/ENGINEERING/2026-07-02-codebase-intelligence-visualization-research.md`, `harness/source-index.json`, `harness/memory-os.json` |

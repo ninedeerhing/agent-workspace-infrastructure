@@ -1,4 +1,43 @@
-# Orchestrator Latest Report — SYNC-411 decisions accepted
+# Orchestrator Latest Report — SYNC-412 codebase intelligence references
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "record tiered scoring strategy and codebase intelligence references"
+  changes:
+    - file: "apps/quant_assistant/docs/ENGINEERING/2026-07-01-real-scoring-pool-backtest-rollout-plan.md"
+      summary: "Recorded small_batch_trial -> medium_batch_validation -> full_chunked_run execution strategy."
+    - file: "docs/ENGINEERING/2026-07-02-codebase-intelligence-visualization-research.md"
+      summary: "Added research note covering GitNexus, CodeGraphContext, Codebase-Memory/codebase-memory-mcp, codegraph, codebase-map, emerge, GitDiagram, CodeCharta, CodeSee, Sourcegraph, name ambiguity caveats, and Raindeer integration path."
+    - file: "docs/ENGINEERING/AWI-REFERENCE-CATALOG.md"
+      summary: "Added codebase_intelligence dedupe group and reference rows."
+    - file: "harness/source-index.json"
+      summary: "Indexed codebase_intelligence sources and local research note."
+    - file: "harness/memory-os.json"
+      summary: "Added codebase-intelligence-map semantic slot."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Recorded SYNC-412 top status and §5.736 ledger."
+  verification:
+    - command: "planning/research-only"
+      result: "No third-party tool installed, no external code upload, no DB read/write, no secrets read or printed."
+    - command: "Researcher worker report"
+      result: "Permanent researcher returned partial report; confirmed local/private-code safety as priority, recommended CodeCharta/Sourcegraph/CodeSee as references and Codebase-Memory as high-interest candidate, while keeping GitNexus/CodeBace-style naming caveats."
+  worker_dispatch:
+    - "Permanent researcher thread 019eeebf-629e-7013-bbf4-1db4d312b925 received read-only research assignment using gpt-5.4 and returned partial report."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Large-codebase understanding should be treated as cold-path structural memory; do not hot-load full repository maps into normal product loops."
+      - "Start with an AWI-owned repo-map artifact before adopting external code graph/MCP tools."
+    performance_note: "References are indexed and ready for future AWI_REPO_MAP_R0 support slice."
+  blockers:
+    - "External code graph tools require local/private-code safety validation before use."
+  next: "FACTOR_BATCH_SCORING_AUTHORIZATION_REVIEW_LOOP401"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-411 decisions accepted
 
 report:
   role_id: "orchestrator"
