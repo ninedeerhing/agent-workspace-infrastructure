@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-03T00:08:46+08:00
+updated_at: 2026-07-03T00:16:55+08:00
+
+## Latest Handoff — SYNC-538 explicit human decision manifest
+
+- [DONE] `final_queue_write_permission_confirmation_review_to_operator_reviewer_final_queue_write_permission_decision_v1` now accepts optional `formal_human_queue_write_permission_review_handoff_packet` while preserving the old queue permission confirmation review path.
+- [DONE] Ready formal human handoff manifests populate `explicit_human_queue_write_permission_decision_manifest` with `decision_status=pending_explicit_human_queue_write_permission_decision`; decision materials can be ready while human approval, queue write, DB enqueue, backtest, Docker, and PL-H remain false/not-granted.
+- [DONE] `build_mining_job_observability` now bridges formal review manifest -> formal human handoff -> explicit human decision without overriding the legacy queue confirmation path.
+- [VERIFY] RED unexpected keyword before implementation; focused decision **9 passed**; surface+decision+archive **20 passed**; adjacent handoff/guard/surface/decision/archive/confirmation chain **75 passed**; Ruff pass; compileall pass; payload smoke `loop526_smoke 50 50 not_granted not_written False False False False not_granted`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier returned success; no duplicate same-role worker created. Executor remains `waitingOnApproval`.
+- [NEXT] `FINAL_QUEUE_WRITE_PERMISSION_DECISION_ARCHIVE_CONSUMES_EXPLICIT_HUMAN_DECISION_MANIFEST_LOOP527`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/backtest queue; do not run backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-537 formal human handoff manifest
 
