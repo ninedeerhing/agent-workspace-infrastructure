@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T19:42:00+08:00
+Updated: 2026-07-02T19:55:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,16 +50,16 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop461 | active | gpt-5.5 | 2026-07-02T19:42:00+08:00 | loop461 complete; next loop462 Planner selection | workload light; manual request review successor re-bridged and verified; no duplicate same-role worker created |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop461 | idle | gpt-5.4 | 2026-07-02T19:35:18+08:00 | loop461 loop_plan success: manual request review remains not-granted and routes to final safety review | output loop_plan only; do not choose worker threads, write assignment_matrix, implement, or review code |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop461 | idle | gpt-5.4 | 2026-07-02T19:35:23+08:00 | loop461 assignment_matrix success; Executor waitingOnApproval not dispatched; Test Engineer and Code Reviewer read-only | fixed worker reuse; no duplicate same-role worker; Orchestrator wrote implementation/truth sources |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop461 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T19:42:00+08:00 | not re-dispatched due loop436 waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop461 | idle | gpt-5.5 | 2026-07-02T19:35:14+08:00 | loop461 pre-review success: manual request review must not imply submitted, granted, repaired, or executable state | keep for authorization/execution boundary reviews; reject substitute DB/container/port and runtime execution drift |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop461 | idle | gpt-5.5 | 2026-07-02T19:35:15+08:00 | loop461 TDD matrix success: source lineage, source not ready/default blocked, missing request inputs, ready output review-only, all grants/side effects false | avoid brittle string-only tests; require lineage and no-execution evidence |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop461 | local-verification | gpt-5.5 | 2026-07-02T19:42:00+08:00 | local verification fallback completed | no duplicate verifier thread created; permanent identity preserved |
+| orchestrator | current-thread | loop462 | active | gpt-5.5 | 2026-07-02T19:55:00+08:00 | loop462 complete; next loop463 Planner selection | workload light; final safety successor re-bridged and verified; no duplicate same-role worker created |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop462 | idle | gpt-5.4 | 2026-07-02T19:55:00+08:00 | loop462 loop_plan success: final safety review remains not-granted and routes to human intervention packet | output loop_plan only; do not choose worker threads, write assignment_matrix, implement, or review code |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop462 | idle | gpt-5.4 | 2026-07-02T19:55:00+08:00 | loop462 assignment_matrix success; Executor waitingOnApproval not dispatched; Test Engineer and Code Reviewer read-only | fixed worker reuse; no duplicate same-role worker; Orchestrator wrote implementation/truth sources |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop462 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T19:55:00+08:00 | not re-dispatched due loop436 waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop462 | idle | gpt-5.5 | 2026-07-02T19:55:00+08:00 | loop462 pre-review success: final safety review must not imply approval, grant, repaired runtime, or executable state | keep for authorization/execution boundary reviews; reject substitute DB/container/port and runtime execution drift |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop462 | idle | gpt-5.5 | 2026-07-02T19:55:00+08:00 | loop462 TDD matrix success: latest manual source lineage, default blocked, ready output review-only, all grants/side effects false | avoid brittle string-only tests; require lineage and no-execution evidence |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop462 | local-verification | gpt-5.5 | 2026-07-02T19:55:00+08:00 | local verification fallback completed | no duplicate verifier thread created; permanent identity preserved |
 
 ## Latest Roster Notes
-
+- 2026-07-02T19:55:00+08:00 · loop462: Planner/Dispatcher/Test Engineer/Code Reviewer permanent threads reachable and returned success; Executor still waitingOnApproval and was not duplicated. Final safety successor now consumes latest manual request review successor; next loop463 retargets human intervention packet successor.
 - 2026-07-02T19:42:00+08:00 · loop461: Planner/Dispatcher/Test Engineer/Code Reviewer permanent threads reachable and returned success; Executor still waitingOnApproval and was not duplicated. Roster Current Assignment Overlay was compacted to one current row per role after duplicate loop460 overlay rows accumulated.
 - **SYNC-427 · loop415**：完成 `Queue-write authorization packet`。永久 Planner、Dispatcher、Code Reviewer、Test Engineer、Verifier 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：authorization packet 的 ready 只代表可进入授权复核，不代表 actual queue write execution；`authorization_granted` 和 `actual_queue_write_allowed` 默认必须保持 false。
 - **SYNC-426 · loop414**：完成 `Queue writer operator/reviewer review surface`。永久 Planner、Dispatcher、Code Reviewer、Test Engineer、Verifier 均已派发只读复核；本地验证先闭合，worker 回报晚到不阻塞主线。新增经验：消费级“复核写队列计划”按钮只表示 review，不得暗示写队列、真实回测或 PL-H 执行授权。
