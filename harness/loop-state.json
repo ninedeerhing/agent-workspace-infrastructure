@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T12:45:00+08:00",
+  "updated_at": "2026-07-02T13:15:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "db-runner-preflight-validator-sync424",
-  "next_atomic_action": "CONTROLLED_QUEUE_REQUEST_WRITER_PLANNING_LOOP413：建立 controlled queue request writer planning packet，消费 loop412 preflight validator，只在 explicit authorization、DB isolation、rollback metadata、runner manifest、user-facing confirmation artifacts 全满足时进入 queue-write 规划；当前因原 qa-pg-alt 55432 启动异常、DB isolation/schema evidence 未纳入 payload、request envelope 未 ready，必须 fail-closed，不得新建替代 DB 容器/服务/端口，不得真实写 DB/队列、不得运行 backtest、不得授予 PL-H。",
-  "next_after": "After loop413, fix runtime port strategy or explicit operator confirmation path before any controlled queue writer can become executable.",
+  "current_slice": "controlled-queue-request-writer-planning-sync425",
+  "next_atomic_action": "QUEUE_WRITER_OPERATOR_REVIEW_SURFACE_LOOP414：把 loop413 controlled queue request writer planning packet 转成消费级 operator/reviewer review surface，让用户能看懂写队列仍缺 explicit authorization、DB isolation/schema evidence、runner manifest、confirmation artifacts、rollback metadata 与原 qa-pg-alt 端口修复；仍不新建替代 DB 容器/服务/端口，不真实写 DB/队列、不运行 backtest、不授予 PL-H。",
+  "next_after": "After loop414, continue to explicit queue-write authorization packet and original qa-pg-alt port strategy repair before any queue writer can become executable.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-424-db-runner-preflight-validator",
+  "last_tick": "SYNC-425-controlled-queue-request-writer-planning",
   "last_sync_sources": [
+    "SYNC-425 loop413 Controlled queue request writer planning packet",
+    "loop413 implementation: added controlled_queue_request_writer_planning_packet_v1 and bridged controlled_queue_request_writer_planning_packet into user_facing_batch_mining_creation_plan_v1",
+    "loop413 changed: src/qa/quant_mining/controlled_queue_request_writer_planning_packet.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_controlled_queue_request_writer_planning_packet_unit.py; truth sources",
+    "loop413 verification: RED missing module; focused+adjacent 47 passed; Ruff pass; compileall pass; payload smoke pass",
+    "loop413 worker: permanent Planner/Dispatcher/Code Reviewer dispatched for read-only plan/assignment/risk precheck; Test Engineer/Verifier pending final read-only review; no duplicate same-role worker created",
+    "next: QUEUE_WRITER_OPERATOR_REVIEW_SURFACE_LOOP414",
     "SYNC-424 loop412 DB/runner preflight validator",
     "loop412 implementation: added db_runner_preflight_validator_v1 and bridged db_runner_preflight_validator into user_facing_batch_mining_creation_plan_v1",
     "loop412 real DB evidence: Docker started; qa-pg-alt source container stopped because 55432 is inside Windows excluded range; a temporary same-volume validation container was created for read-only inspection and then deleted after user correction; governance rule updated: never create substitute DB containers/services/ports, treat runtime/port failures as fail-closed blockers; read-only daily_bar/daily_trade_status 3995 days max 2026-06-18; core factor/backtest/mining tables present",

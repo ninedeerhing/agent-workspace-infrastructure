@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T12:55:00+08:00
+updated_at: 2026-07-02T13:15:00+08:00
+
+## Latest Handoff — SYNC-425 controlled queue request writer planning
+
+- [DONE] Implemented `controlled_queue_request_writer_planning_packet_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/controlled_queue_request_writer_planning_packet.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_controlled_queue_request_writer_planning_packet_unit.py`, plus truth sources.
+- [DONE] The packet is now included in `user_facing_batch_mining_creation_plan_v1`, consuming `db_runner_preflight_validator_v1` and exposing a planned-only queue-write plan for `auto_backtest_request_queue`.
+- [DONE] Default remains `blocked_preflight_not_ready`; even synthetic ready only reaches `ready_for_queue_write_operator_review`, with queue write/backtest/PL-H still not granted.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **47 passed**; targeted Ruff pass; compileall pass; payload smoke pass; `npm run build` pass; `npm run lint` pass with known Fast Refresh warning; Jobs fixture smoke pass; `git diff --check` pass with CRLF warnings only.
+- [WORKERS] Permanent Planner, Dispatcher, Code Reviewer, Test Engineer, and Verifier were dispatched for loop413 planning/risk/verification reviews. Existing worker identities were reused; no duplicate same-role worker was created.
+- [NEXT] `QUEUE_WRITER_OPERATOR_REVIEW_SURFACE_LOOP414`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not write DB/backtest queue, run backtest, or grant PL-H.
 
 ## Latest Handoff — SYNC-424 db-runner preflight validator
 
