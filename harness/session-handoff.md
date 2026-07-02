@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T10:02:49+08:00
+updated_at: 2026-07-02T10:11:47+08:00
+
+## Latest Handoff — SYNC-413 factor batch scoring authorization review
+
+- [DONE] Implemented `factor_batch_scoring_authorization_review_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/factor_batch_scoring_authorization_review.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_factor_batch_scoring_authorization_review_unit.py`, `tests/test_batch_mining_flow_unit.py`, plus truth sources.
+- [DONE] The authorization review bridge is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload exposes UI action `confirm_real_factor_scoring_rollout`, Top50 preview when confirmed, `all_a_shares`, `full_available_history`, planned-only `factor_value_daily`, `provisional_accepted_after_real_scoring_review`, and blockers `max_rows_and_chunking`, `event_text_sentiment_data_sources`, `multi_factor_combination_search_boundary`.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **17 passed**; targeted Ruff pass; compileall pass; diff check pass; forbidden DB/runner/scorer/backtest/queue/accepted-pool scan clean.
+- [WORKERS] Permanent Planner and Dispatcher returned loop plan/assignment. Permanent Test Engineer returned partial due ACL but its coverage matrix is satisfied. Permanent Executor/Code Reviewer/Verifier were dispatched; some remained in client ACL/approval wait and are not used as completion evidence. No duplicate same-role worker was created.
+- [NEXT] `EVENT_TEXT_SENTIMENT_FACTOR_DATA_SOURCE_CONFIRMATION_LOOP402`: build a no-execution data-source/PIT confirmation read-model for fundamental/event/text/sentiment/alternative factor scoring before non-market real scoring.
+- [FORBIDDEN] Do not read/write real DB, fetch external data, write `factor_value_daily`, accepted pool, or queue, run scorer/backtest/runner/adapter, or grant PL-H before UI authorization and unresolved confirmations are satisfied.
 
 ## Latest Handoff — SYNC-412 codebase intelligence references
 
