@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T11:45:00+08:00",
+  "updated_at": "2026-07-02T12:02:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "budgeted-auto-backtest-allocation-design-sync421",
-  "next_atomic_action": "FINAL_USER_FACING_REVIEW_SURFACE_LOOP410：建立 final user-facing review surface，把真实评分 -> 指标筛选 -> 入池 -> 预算化回测分配的当前状态聚合成消费级可读总览；展示哪些已准备、哪些仍需用户确认/授权、下一步按钮文案和风险解释；仍不得写 DB、不得写 accepted pool/queue、不得运行 backtest、不得授予 PL-H。",
-  "next_after": "After loop410, implement authorized small-batch trial request envelope and DB/runner preflight validator only if the review surface can clearly separate UI confirmation from execution authorization. Optional support slice: AWI_REPO_MAP_R0 can generate a local repo-map cold-path artifact before evaluating external code graph tools. No automatic DB write, accepted pool write, queue write, backtest, or PL-H before explicit authorization and unresolved confirmations are satisfied.",
+  "current_slice": "final-user-facing-review-surface-sync422",
+  "next_atomic_action": "AUTHORIZED_SMALL_BATCH_TRIAL_REQUEST_ENVELOPE_LOOP411：建立 authorized small-batch trial request envelope，把 loop410 消费级复核面中的“小批试跑确认”转换为仍需显式执行授权的请求信封；校验候选数量、股票池、时间窗、max rows、数据源、runner manifest、DSN isolation、audit/rollback；仍不得真实写 DB/队列、不得运行 backtest、不得授予 PL-H。",
+  "next_after": "After loop411, implement DB/runner preflight validator and then controlled queue request writer only when explicit execution authorization, DB isolation, rollback metadata, and user-facing confirmation artifacts are all satisfied.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-421-budgeted-auto-backtest-allocation-design",
+  "last_tick": "SYNC-422-final-user-facing-review-surface",
   "last_sync_sources": [
+    "SYNC-422 loop410 Final user-facing review surface",
+    "loop410 implementation: added real_scoring_to_backtest_review_surface_v1 and bridged real_scoring_to_backtest_review_surface into user_facing_batch_mining_creation_plan_v1",
+    "loop410 changed: src/qa/quant_mining/real_scoring_to_backtest_review_surface.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_real_scoring_to_backtest_review_surface_unit.py; truth sources",
+    "loop410 verification: RED missing module; focused+adjacent 36 passed; targeted Ruff pass; targeted compileall pass; forbidden scan only False safety markers; payload smoke pass",
+    "loop410 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier dispatched for read-only review; local verification used for closure; no duplicate same-role worker created",
+    "next: AUTHORIZED_SMALL_BATCH_TRIAL_REQUEST_ENVELOPE_LOOP411",
     "SYNC-421 loop409 Budgeted auto-backtest allocation design",
     "loop409 implementation: added budgeted_auto_backtest_allocation_design_v1 and bridged budgeted_auto_backtest_allocation_design into user_facing_batch_mining_creation_plan_v1",
     "loop409 changed: src/qa/quant_mining/budgeted_auto_backtest_allocation_design.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_budgeted_auto_backtest_allocation_design_unit.py; truth sources",

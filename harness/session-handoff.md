@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T11:45:00+08:00
+updated_at: 2026-07-02T12:02:00+08:00
+
+## Latest Handoff — SYNC-422 final user-facing review surface
+
+- [DONE] Implemented `real_scoring_to_backtest_review_surface_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/real_scoring_to_backtest_review_surface.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_real_scoring_to_backtest_review_surface_unit.py`, plus truth sources.
+- [DONE] The consumer-facing full-chain review surface is now included in `user_facing_batch_mining_creation_plan_v1`.
+- [DONE] Payload exposes plain-language summary, six user steps, unresolved confirmations, next user action, risk explanations, and all-false execution side effects.
+- [VERIFY] RED missing module; focused+adjacent `pytest` **36 passed**; targeted Ruff pass; compileall pass; forbidden scan only matched False safety strings; payload smoke pass.
+- [WORKERS] Permanent Planner, Dispatcher, Test Engineer, Code Reviewer, and Verifier were dispatched for read-only loop410 review. Local verification closed the loop while worker reports may arrive later; no duplicate same-role worker was created.
+- [NEXT] `AUTHORIZED_SMALL_BATCH_TRIAL_REQUEST_ENVELOPE_LOOP411`.
+- [FORBIDDEN] Do not read/write real DB, write accepted pool/queue, run backtest, or grant PL-H before explicit authorization and unresolved confirmations are satisfied.
 
 ## Latest Handoff — SYNC-421 budgeted auto-backtest allocation design
 
