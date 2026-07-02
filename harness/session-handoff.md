@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T03:45:00+08:00
+updated_at: 2026-07-03T04:05:00+08:00
+
+## Latest Handoff — SYNC-550 medium batch validation readiness contract
+
+- [DONE] `medium_batch_validation_readiness_contract_v1` now derives a 200-candidate medium-batch validation plan from `real_batch_progression_readiness_manifest_v1`.
+- [DONE] The creation plan exposes target/current/gap counts, family coverage constraints, metric schema, budget constraints, and small-to-medium transition blockers.
+- [VERIFY] focused medium-batch unit+bridge **3 passed**; adjacent real-batch progression / panel evidence / pool admission / backtest budget chain **9 passed**; Ruff pass; compileall pass; forbidden marker scan clean; smoke `loop538_smoke medium_batch_validation 200 16 184 planned_waiting_candidate_expansion False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success; Verifier loop537 final success was read. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `FULL_CHUNKED_RUN_READINESS_CONTRACT_LOOP539`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-549 real batch progression readiness manifest
 
