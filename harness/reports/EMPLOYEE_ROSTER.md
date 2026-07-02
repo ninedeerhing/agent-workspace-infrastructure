@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-02T21:02:00+08:00
+Updated: 2026-07-02T15:53:34+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,6 +50,13 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
+| orchestrator | current-thread | SYNC-449 | success | gpt-5.5 | 2026-07-02T15:53:34+08:00 | original qa-pg-alt post-intervention readiness evidence review complete; next=ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_REVIEW_FROM_EVIDENCE_REVIEW_LOOP438 | loop437 dispatched permanent Planner/Dispatcher/Code Reviewer/Test Engineer; readiness evidence review remains not-grant/not-execution/no-repair-assumption; no substitute DB containers/services/ports allowed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop437 | dispatched | gpt-5.4 | 2026-07-02T15:53:34+08:00 | loop437 planning review | permanent identity preserved; readiness evidence reviewed means next-review material only, not repaired |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop437 | dispatched | gpt-5.4 | 2026-07-02T15:53:34+08:00 | loop437 assignment matrix | Orchestrator truth-source owner; evidence review is not auto repair or DB verification |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop437 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T15:53:34+08:00 | not re-dispatched due loop436 waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop437 | dispatched | gpt-5.5 | 2026-07-02T15:53:34+08:00 | loop437 risk precheck | avoid wording drift toward repaired/container started/DB available/execution authorization |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop437 | dispatched | gpt-5.5 | 2026-07-02T15:53:34+08:00 | loop437 coverage review | source/status/substitute/review-material/side-effect matrix implemented locally |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop437 | local-verification | gpt-5.5 | 2026-07-02T15:53:34+08:00 | loop437 local verification fallback | no duplicate verifier thread created; permanent identity preserved |
 | orchestrator | current-thread | SYNC-448 | success | gpt-5.5 | 2026-07-02T21:02:00+08:00 | original qa-pg-alt post-intervention evidence handoff complete; next=ORIGINAL_QA_PG_ALT_POST_INTERVENTION_READINESS_EVIDENCE_REVIEW_LOOP437 | loop436 dispatched permanent Planner/Dispatcher/Executor/Code Reviewer/Test Engineer; evidence handoff remains not-grant/not-execution/no-repair-assumption; no substitute DB containers/services/ports allowed |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop436 | success | gpt-5.4 | 2026-07-02T21:02:00+08:00 | loop436 planning review | permanent identity preserved; evidence_ready means review material only, not repaired |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop436 | success | gpt-5.4 | 2026-07-02T21:02:00+08:00 | loop436 assignment matrix | Orchestrator truth-source owner; evidence handoff is not auto repair or DB verification |
