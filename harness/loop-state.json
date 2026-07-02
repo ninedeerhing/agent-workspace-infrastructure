@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-02T12:18:00+08:00",
+  "updated_at": "2026-07-02T12:45:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "authorized-small-batch-trial-request-envelope-sync423",
-  "next_atomic_action": "DB_RUNNER_PREFLIGHT_VALIDATOR_LOOP412：建立 DB/runner preflight validator，消费 loop411 request envelope，验证 DSN isolation、schema/table readiness、runner manifest、dry-run capability declaration、audit/rollback refs、resource limits 与 no-default-runner policy；仍不得真实写 DB/队列、不得运行 backtest、不得授予 PL-H。",
-  "next_after": "After loop412, implement controlled queue request writer only when explicit execution authorization, DB isolation, rollback metadata, runner manifest, and user-facing confirmation artifacts are all satisfied.",
+  "current_slice": "db-runner-preflight-validator-sync424",
+  "next_atomic_action": "CONTROLLED_QUEUE_REQUEST_WRITER_PLANNING_LOOP413：建立 controlled queue request writer planning packet，消费 loop412 preflight validator，只在 explicit authorization、DB isolation、rollback metadata、runner manifest、user-facing confirmation artifacts 全满足时进入 queue-write 规划；当前因原 qa-pg-alt 55432 启动异常、DB isolation/schema evidence 未纳入 payload、request envelope 未 ready，必须 fail-closed，不得新建替代 DB 容器/服务/端口，不得真实写 DB/队列、不得运行 backtest、不得授予 PL-H。",
+  "next_after": "After loop413, fix runtime port strategy or explicit operator confirmation path before any controlled queue writer can become executable.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-423-authorized-small-batch-trial-request-envelope",
+  "last_tick": "SYNC-424-db-runner-preflight-validator",
   "last_sync_sources": [
+    "SYNC-424 loop412 DB/runner preflight validator",
+    "loop412 implementation: added db_runner_preflight_validator_v1 and bridged db_runner_preflight_validator into user_facing_batch_mining_creation_plan_v1",
+    "loop412 real DB evidence: Docker started; qa-pg-alt source container stopped because 55432 is inside Windows excluded range; a temporary same-volume validation container was created for read-only inspection and then deleted after user correction; governance rule updated: never create substitute DB containers/services/ports, treat runtime/port failures as fail-closed blockers; read-only daily_bar/daily_trade_status 3995 days max 2026-06-18; core factor/backtest/mining tables present",
+    "loop412 changed: src/qa/quant_mining/db_runner_preflight_validator.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_db_runner_preflight_validator_unit.py; web/scripts/smoke-jobs-page-fixture.mjs; truth sources",
+    "loop412 verification: focused+adjacent 43 passed; Ruff pass; compileall pass; git diff --check pass; payload smoke pass; React build pass; lint pass with known warning; Jobs fixture smoke pass",
+    "loop412 worker: permanent Planner/Dispatcher/Test Engineer/Code Reviewer/Verifier dispatched for read-only review; local verification used for closure; no duplicate same-role worker created",
+    "next: CONTROLLED_QUEUE_REQUEST_WRITER_PLANNING_LOOP413",
     "SYNC-423 loop411 Authorized small-batch trial request envelope",
     "loop411 implementation: added authorized_small_batch_trial_request_envelope_v1 and bridged authorized_small_batch_trial_request_envelope into user_facing_batch_mining_creation_plan_v1",
     "loop411 changed: src/qa/quant_mining/authorized_small_batch_trial_request_envelope.py; src/qa/brain/batch_mining_creation_plan_builder.py; tests/test_authorized_small_batch_trial_request_envelope_unit.py; truth sources",

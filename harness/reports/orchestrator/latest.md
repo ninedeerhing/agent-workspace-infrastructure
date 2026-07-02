@@ -1,4 +1,61 @@
-# Orchestrator Latest Report — SYNC-423 authorized small-batch trial request envelope
+# Orchestrator Latest Report — SYNC-424 db-runner preflight validator
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "db-runner preflight validator and Docker governance correction"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/db_runner_preflight_validator.py"
+      summary: "Added no-execution DB/runner preflight validator."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Bridged db_runner_preflight_validator into user_facing_batch_mining_creation_plan_v1 using original qa-pg-alt/55432 facts and fail-closed missing evidence."
+    - file: "apps/quant_assistant/tests/test_db_runner_preflight_validator_unit.py"
+      summary: "Covered default blocked, synthetic ready-for-review without execution, and creation-plan bridge; default path no longer normalizes substitute DB containers."
+    - file: "apps/quant_assistant/web/scripts/smoke-jobs-page-fixture.mjs"
+      summary: "Updated Jobs smoke text checks for the new UI wording."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Recorded SYNC-424 §5.748 and Docker governance correction."
+    - file: "apps/quant_assistant/docs/CONTINUATION_PROMPT.md"
+      summary: "Updated hot-path continuation to loop413."
+    - file: "harness/loop-state.json"
+      summary: "Set next_atomic_action to CONTROLLED_QUEUE_REQUEST_WRITER_PLANNING_LOOP413 with no substitute DB container policy."
+    - file: "harness/session-handoff.md"
+      summary: "Added SYNC-424 handoff."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updated current assignment overlay and roster notes."
+  verification:
+    - command: "PYTHONPATH=src uv run pytest db-runner related tests -q"
+      result: "43 passed."
+    - command: "uv run ruff check touched Python paths"
+      result: "All checks passed."
+    - command: "PYTHONPATH=src uv run python -m compileall touched Python paths"
+      result: "Pass."
+    - command: "npm run build; npm run lint; npm run smoke:jobs-page"
+      result: "Build pass; lint pass with one known Fast Refresh warning; Jobs smoke ok with pageLoadTriggerRequests=[] and no duplicate trigger URLs."
+    - command: "docker ps -a filtered for qa-pg-alt"
+      result: "qa-pg-alt and existing qa-pg-alt-unmapped-backup present; qa-pg-alt-runtime absent."
+    - command: "git diff --check"
+      result: "Pass with CRLF warnings only."
+  worker_dispatch:
+    - "Permanent Test Engineer 019eeece-52d7-7b73-868a-7beb496ba303 dispatched loop412 Docker/preflight correction review."
+    - "Permanent Verifier 019eeed2-dbc0-7313-8d64-f9c6f199c68b dispatched loop412 verification review."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes:
+      - "Temporary substitute DB container was created to bypass a host-port issue; user rejected this pattern."
+    lessons:
+      - "Do not create substitute DB containers/services/ports for qa-pg-alt runtime failures; record the failure as fail-closed and repair the original container/port strategy."
+      - "Read-only validation evidence may explain data volume integrity, but it must not become an accepted execution path."
+    performance_note: "Loop412 completed with Docker governance correction, permanent worker dispatch, and local verification."
+  blockers:
+    - "Original qa-pg-alt cannot currently bind 127.0.0.1:55432 because the Windows excluded TCP range covers that port."
+    - "Request envelope, DSN isolation evidence, schema-ready evidence, runner manifest, audit/rollback, and explicit queue-write authorization remain not ready."
+    - "No DB/queue/backtest/PL-H path is authorized."
+  next: "CONTROLLED_QUEUE_REQUEST_WRITER_PLANNING_LOOP413"
+
+---
+
+# Previous Orchestrator Latest Report — SYNC-423 authorized small-batch trial request envelope
 
 report:
   role_id: "orchestrator"

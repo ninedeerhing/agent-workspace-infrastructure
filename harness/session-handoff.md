@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-02T12:18:00+08:00
+updated_at: 2026-07-02T12:55:00+08:00
+
+## Latest Handoff — SYNC-424 db-runner preflight validator
+
+- [DONE] Implemented `db_runner_preflight_validator_v1`.
+- [DONE] Changed quant files: `src/qa/quant_mining/db_runner_preflight_validator.py`, `src/qa/brain/batch_mining_creation_plan_builder.py`, `tests/test_db_runner_preflight_validator_unit.py`, `web/scripts/smoke-jobs-page-fixture.mjs`, plus truth sources.
+- [DONE] The validator is now included in `user_facing_batch_mining_creation_plan_v1`, consuming the small-batch request envelope and checking DB runtime, runner manifest, dry-run capability, audit/rollback, resource limits, and no-default-runner policy.
+- [DONE] Docker correction: a temporary same-volume validation container was created for read-only inspection and then deleted. This is now recorded as a governance deviation; future DB/port failures must remain fail-closed blockers instead of creating replacement DB containers/services/ports.
+- [VERIFY] Focused+adjacent `pytest` **43 passed**; targeted Ruff pass; compileall pass; `npm run build` pass; `npm run lint` pass with known Fast Refresh warning; Jobs fixture smoke pass; `git diff --check` pass with CRLF warnings only; Docker list shows no `qa-pg-alt-runtime`.
+- [WORKERS] Permanent Test Engineer and Verifier were dispatched for read-only loop412 Docker/preflight correction review. Existing permanent worker identities were reused; no duplicate same-role worker was created.
+- [NEXT] `CONTROLLED_QUEUE_REQUEST_WRITER_PLANNING_LOOP413`.
+- [FORBIDDEN] Do not create substitute DB containers/services/ports; do not read/write real DB, write queue, run backtest, or grant PL-H before explicit authorization and preflight evidence are satisfied.
 
 ## Latest Handoff — SYNC-423 authorized small-batch trial request envelope
 
