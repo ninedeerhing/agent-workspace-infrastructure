@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T02:35:00+08:00
+updated_at: 2026-07-04T02:50:00+08:00
+
+## Latest Handoff — SYNC-642 safe no-execution scoring blocked-until explicit human authorization reentry refresh
+
+- [DONE] `safe_no_execution_scoring_blocked_until_explicit_human_authorization_reentry_refresh` now consumes the latest final human authorization review refresh from loop629.
+- [DONE] Anti-small-loop repair: `safe_no_execution_scoring_explicit_human_authorization_request_intake_reentry_refresh` is recomputed from the latest blocked refresh, and direct downstream `safe_no_execution_scoring_operator_reviewer_authorization_evidence_review_reentry_refresh` is recomputed from the latest request intake refresh.
+- [VERIFY] Blocked→request-intake RED chain showed stale explicit human authorization request intake refresh lineage; focused blocked→request→evidence chain **21 passed**; Ruff pass; compileall pass; smoke `loop630_smoke blocked_until_explicit_human_authorization_reentry_open safe_no_execution_scoring_explicit_human_authorization_request_intake True True not_granted False False False False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer dispatched for read-only loop630 review. Loop629 Planner/Dispatcher/Test Engineer reports returned success and matched local implementation. Canonical Executor remains waitingOnApproval; Verifier remains `channel_waitingOnApproval`; Code Reviewer remains channel slow/waitingOnApproval; no duplicate same-role worker created.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_OPERATOR_REVIEWER_AUTHORIZATION_EVIDENCE_REVIEW_REENTRY_REFRESH_LOOP631`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-641 safe no-execution scoring explicit authorization handoff packet reentry refresh
 
