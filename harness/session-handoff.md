@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T03:50:00+08:00
+updated_at: 2026-07-04T04:05:00+08:00
+
+## Latest Handoff — SYNC-647 safe no-execution reentry refresh chain convergence
+
+- [DONE] `SAFE_NO_EXECUTION_REENTRY_REFRESH_CHAIN_CONVERGENCE_LOOP635` closed the invalid adjacent stale-source loop.
+- [DONE] `final_no_execution_authorization_readiness_summary` is treated as the stable cycle boundary from closure review back into runner/DSN runtime evidence.
+- [VERIFY] All safe no-execution reentry bridge tests plus runner/DSN bridge **30 passed**; targeted Ruff pass; diff check pass. The bridge now asserts stable closure lineage/status fields instead of recursive full source_summary equality.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer dispatched for loop635 read-only review. Canonical Executor remains waitingOnApproval; Verifier remains `channel_waitingOnApproval`; Code Reviewer remains channel slow/waitingOnApproval; no duplicate same-role worker created.
+- [NEXT] `REAL_SCORING_RUNTIME_EVIDENCE_AND_PREVIEW_AUTHORIZATION_SURFACE_LOOP636`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-646 safe no-execution scoring final human authorization review reentry refresh
 
