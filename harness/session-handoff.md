@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T08:21:00+08:00
+updated_at: 2026-07-03T08:28:36+08:00
+
+## Latest Handoff — SYNC-561 safe no-execution scoring dry-run review packet
+
+- [DONE] `safe_no_execution_scoring_dry_run_review_packet_v1` now turns the safe dry-run contract recommendation `safe_no_execution_scoring_dry_run_review_packet` into a consumer/operator/reviewer readable no-execution review packet.
+- [DONE] The creation plan exposes input manifest summary, runner boundary review, result-shape expectations, blocked reasons, manual confirmation checklist, no-execution handoff, and `recommended_next_branch=safe_no_execution_scoring_result_shape_review`.
+- [VERIFY] RED missing module **1 collection error**; focused review packet unit+bridge **4 passed**; adjacent safe dry-run contract + review packet **8 passed**; Ruff pass; compileall pass; forbidden marker scan clean; smoke `loop549_smoke awaiting_safe_dry_run_review safe_no_execution_scoring_result_shape_review 真实评分前安全预演 0 not_granted False False False False False`.
+- [WORKERS] Permanent Planner returned success. Dispatcher/Test Engineer were dispatched in permanent channels; local verification is authoritative for this loop. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_RESULT_SHAPE_REVIEW_LOOP550`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-560 safe no-execution scoring dry-run contract
 
