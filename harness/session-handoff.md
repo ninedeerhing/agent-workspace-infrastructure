@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-03T22:35:00+08:00
+updated_at: 2026-07-03T23:05:00+08:00
+
+## Latest Handoff — SYNC-625 safe no-execution scoring explicit authorization evidence gap packet reentry refresh
+
+- [DONE] `safe_no_execution_scoring_explicit_authorization_evidence_gap_packet_reentry_refresh` now reconnects final operator/reviewer evidence review refresh to explicit authorization evidence gap packet reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_operator_reviewer_authorization_evidence_review_reentry_refresh.source_summary` as gap-packet `evidence_review_source_summary`, preserving required_evidence, missing_or_unreviewed_evidence, confirmation_slot_gaps, manual_closure_actions, not_granted_guardrails, request_entry, blocked_reasons, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_explicit_authorization_closure_review`.
+- [DONE] Anti-small-loop repair: direct downstream `safe_no_execution_scoring_explicit_authorization_closure_review_reentry_refresh` and `safe_no_execution_scoring_final_no_execution_authorization_readiness_summary_reentry_refresh` are recomputed from the latest gap/closure refreshes, so evidence-gap→readiness summary stays on one lineage.
+- [VERIFY] RED bridge showed stale evidence-gap refresh lineage; focused unit+bridge **7 passed**; evidence-gap→readiness chain **21 passed**; Ruff pass; compileall pass; smoke `loop613_smoke explicit_authorization_evidence_gap_packet_reentry_open safe_no_execution_scoring_explicit_authorization_closure_review True True True not_granted False False False False False False False False`; diff check clean except CRLF warnings.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `RUNNER_DSN_REPAIR_PREREQUISITE_BRANCH_REENTRY_REFRESH_LOOP614`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-624 safe no-execution scoring explicit authorization handoff packet reentry refresh
 
