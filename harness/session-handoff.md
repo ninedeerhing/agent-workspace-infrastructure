@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T23:11:58+08:00
+updated_at: 2026-07-03T23:19:28+08:00
+
+## Latest Handoff — SYNC-697 real scoring formal controls review surface
+
+- [DONE] Added `real_scoring_formal_controls_review_surface_v1` and exposed it from creation plan.
+- [DONE] Surface consumes loop684 formal controls review packet and shows formal_controls_review_surface_ready, consumer_title=正式控制仍未授权, three required_acknowledgements, controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_capture/will_execute=false, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_formal_controls_review_surface`; focused + batch flow tests **11 passed**; all `test_real_scoring_*_unit.py` **191 passed**; Ruff pass; compileall pass; payload smoke `loop685_smoke formal_controls_review_surface_ready 正式控制仍未授权 3 operator_ack|reviewer_ack|controls_owner_ack False not_granted formal_controls_acknowledgement_capture False not_granted False False False False False False False False False False False False False False False False False False False False False`; forbidden scan matched only all-false accepted_pool policy field names.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_CAPTURE_CONTRACT_LOOP686`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-696 real scoring formal controls not-granted review packet
 

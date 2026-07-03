@@ -1,3 +1,35 @@
+# Orchestrator Latest Report — SYNC-697 real scoring formal controls review surface
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring formal controls review surface"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_formal_controls_review_surface.py"
+      summary: "Adds no-execution consumer-safe formal controls review surface."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_formal_controls_review_surface from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_formal_controls_review_surface_unit.py"
+      summary: "Covers consumer-safe surface readiness, missing source, not-ready source, and creation-plan bridge behavior."
+  verification:
+    - command: "focused formal controls review surface plus batch flow pytest"
+      result: "11 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "191 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed formal_controls_review_surface_ready, three acknowledgements, controls_enabled false, not_granted authorization, next route will_execute false, and all execution flags false; forbidden scan matched only all-false accepted_pool policy field names."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Consumer review surfaces must make the not-granted state obvious while still preparing the next non-executing confirmation contract."
+    performance_note: "Formal controls review surface is ready for non-executing acknowledgement capture contract."
+  blockers:
+    - "Formal controls remain not_granted; no execution is authorized."
+  next: "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_CAPTURE_CONTRACT_LOOP686"
+
+---
+
 # Orchestrator Latest Report — SYNC-696 real scoring formal controls not-granted review packet
 
 report:

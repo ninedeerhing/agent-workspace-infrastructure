@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T23:11:58+08:00",
+  "updated_at": "2026-07-03T23:19:28+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-formal-controls-not-granted-review-packet-loop684",
-  "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_REVIEW_SURFACE_LOOP685：基于 loop684 real_scoring_formal_controls_not_granted_review_packet，构建只读 formal controls review surface payload：展示 formal_controls_review_packet_ready、review_required_items、controls_enabled=false、authorization state not_granted、next_route formal_controls_review_surface/will_execute=false，并把 UI/consumer 层可见字段收束为消费级复核信息；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop685, prepare non-executing operator/reviewer/controls-owner acknowledgement capture contract.",
+  "current_slice": "real-scoring-formal-controls-review-surface-loop685",
+  "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_CAPTURE_CONTRACT_LOOP686：基于 loop685 real_scoring_formal_controls_review_surface，构建只读/non-executing acknowledgement capture contract；当 review_surface_status=formal_controls_review_surface_ready 时，输出 acknowledgement_capture_status=acknowledgement_capture_contract_ready、acknowledgement_items 三项、all_completed=false、controls_enabled=false、authorization state not_granted、next_route=formal_controls_acknowledgement_review/will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop686, add acknowledgement review packet while preserving no-execution and not-granted controls.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-696-real-scoring-formal-controls-not-granted-review-packet",
+  "last_tick": "SYNC-697-real-scoring-formal-controls-review-surface",
   "last_sync_sources": [
+    "SYNC-697 loop685 Real scoring formal controls review surface",
+    "loop685 implementation: added real_scoring_formal_controls_review_surface_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_formal_controls_not_granted_review_packet_v1 to show formal_controls_review_surface_ready, consumer_title 正式控制仍未授权, three required_acknowledgements, controls_enabled false, formal_controls_status not_granted, next_route formal_controls_acknowledgement_capture will_execute false, authorization not_granted, and all-false execution policy",
+    "loop685 verification: initial RED ModuleNotFoundError for real_scoring_formal_controls_review_surface; focused plus batch mining flow tests 11 passed; all test_real_scoring_*_unit.py 191 passed; targeted Ruff pass; compileall pass; payload smoke loop685_smoke formal_controls_review_surface_ready 正式控制仍未授权 3 operator_ack|reviewer_ack|controls_owner_ack False not_granted formal_controls_acknowledgement_capture False not_granted False False False False False False False False False False False False False False False False False False False False False; forbidden scan matched only all-false accepted_pool policy field names",
+    "loop685 worker: permanent Planner, Dispatcher, and Test Engineer returned success; no duplicate Executor/Code Reviewer/Verifier was created",
+    "next: REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_CAPTURE_CONTRACT_LOOP686",
     "SYNC-696 loop684 Real scoring formal controls not-granted review packet",
     "loop684 implementation: added real_scoring_formal_controls_not_granted_review_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_formal_controls_status_summary_v1 to show formal_controls_review_packet_ready, controls_enabled false, formal_controls_status not_granted, review_required_items operator_ack/reviewer_ack/controls_owner_ack, next_route formal_controls_review_surface will_execute false, authorization not_granted, and all-false execution policy",
     "loop684 verification: initial RED ModuleNotFoundError for real_scoring_formal_controls_not_granted_review_packet; focused plus batch mining flow tests 11 passed; all test_real_scoring_*_unit.py 187 passed; targeted Ruff pass; compileall pass; payload smoke loop684_smoke formal_controls_review_packet_ready False not_granted operator_ack|reviewer_ack|controls_owner_ack formal_controls_review_surface False not_granted False True True True False False False False False False False False False False False False False False False False False False False False; forbidden scan matched only all-false accepted_pool policy field names",
