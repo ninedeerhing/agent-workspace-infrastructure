@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T02:20:00+08:00
+updated_at: 2026-07-04T02:35:00+08:00
+
+## Latest Handoff — SYNC-641 safe no-execution scoring explicit authorization handoff packet reentry refresh
+
+- [DONE] `safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_refresh` now consumes the latest review surface refresh from loop628.
+- [DONE] Anti-small-loop repair: `safe_no_execution_scoring_final_human_authorization_review_reentry_refresh` is recomputed from the latest handoff refresh, and direct downstream `safe_no_execution_scoring_blocked_until_explicit_human_authorization_reentry_refresh` is recomputed from the latest final review refresh.
+- [VERIFY] Handoff→final-review RED chain showed stale final human authorization review refresh lineage; focused handoff→final→blocked chain **21 passed**; Ruff pass; compileall pass; smoke `loop629_smoke explicit_authorization_handoff_packet_reentry_open safe_no_execution_scoring_final_human_authorization_review True True not_granted False False False False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer dispatched for read-only loop629 review. Canonical Executor remains waitingOnApproval; Verifier remains `channel_waitingOnApproval`; Code Reviewer remains channel slow/waitingOnApproval; no duplicate same-role worker created.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_BLOCKED_UNTIL_EXPLICIT_HUMAN_AUTHORIZATION_REENTRY_REFRESH_LOOP630`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-640 safe no-execution scoring formal authorization review surface reentry refresh
 
