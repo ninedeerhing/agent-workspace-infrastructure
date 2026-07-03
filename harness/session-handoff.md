@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T20:30:56+08:00
+updated_at: 2026-07-03T20:36:03+08:00
+
+## Latest Handoff — SYNC-671 real scoring reviewer safety gap closure guidance
+
+- [DONE] Added `real_scoring_reviewer_safety_gap_closure_guidance_v1` and exposed it from creation plan.
+- [DONE] Guidance consumes loop658 routing and shows reviewer_safety_closure_guidance_ready, next_remaining_gap_group=reviewer_safety, reviewer_safety_required_materials=3, input_slots=3, acceptance_hints=3, reviewer_safety_recheck_request enabled but will_execute=false, and not_granted authorization.
+- [VERIFY] Focused related tests **90 passed**; Ruff pass; compileall pass; payload smoke `loop659_smoke reviewer_safety_closure_guidance_ready reviewer_safety 3 3 3 True False not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_REVIEWER_SAFETY_RECHECK_REQUEST_PACKET_LOOP660`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-670 real scoring next remaining gap group routing
 
