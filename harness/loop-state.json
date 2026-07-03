@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T18:05:00+08:00",
+  "updated_at": "2026-07-03T18:20:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "safe-no-execution-scoring-formal-authorization-review-surface-reentry-refresh-loop598",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_HANDOFF_PACKET_REENTRY_REFRESH_LOOP599：基于 safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_explicit_authorization_handoff_packet，刷新/延展既有 safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_v1，使 explicit authorization handoff packet reentry 消费 reentry-aware formal review surface refresh，并继续串联 review_surface refresh lineage、consumer/operator/reviewer actions、button semantics、non_executable_notice、runtime_policy_review、handoff_summary、required_human_decisions、not_granted_state、handoff_boundaries、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop599, continue into final human authorization review reentry refresh without bypassing human/runtime authorization.",
+  "current_slice": "safe-no-execution-scoring-explicit-authorization-handoff-packet-reentry-refresh-loop599",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_FINAL_HUMAN_AUTHORIZATION_REVIEW_REENTRY_REFRESH_LOOP600：基于 safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_final_human_authorization_review，刷新/延展既有 safe_no_execution_scoring_final_human_authorization_review_reentry_v1，使 final human authorization review reentry 消费 reentry-aware explicit authorization handoff refresh，并继续串联 handoff refresh lineage、consumer_summary、operator/reviewer actions、button semantics、non_executable_notice、handoff_summary、required_human_decisions、not_granted_state、handoff_boundaries、final_review_actions、manual_confirmation_state、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop600, continue into blocked-until-explicit-human-authorization reentry refresh without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-610-safe-no-execution-scoring-formal-authorization-review-surface-reentry-refresh",
+  "last_tick": "SYNC-611-safe-no-execution-scoring-explicit-authorization-handoff-packet-reentry-refresh",
   "last_sync_sources": [
+    "SYNC-611 loop599 Safe no-execution scoring explicit authorization handoff packet reentry refresh",
+    "loop599 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_refresh after the final safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh so explicit authorization handoff packet reentry consumes the final reentry-aware review surface refresh instead of stale pre-refresh lineage; bridge test asserts source_summary.review_surface_source_summary equals the current plan review_surface_reentry_refresh.source_summary while preserving consumer_summary, operator/reviewer actions, button_semantics, non_executable_notice, runtime_policy_review, handoff_summary, required_human_decisions, not_granted_state, handoff_boundaries, authorization_decision not_granted/can_execute_now false, and recommended_next_branch=safe_no_execution_scoring_final_human_authorization_review",
+    "loop599 verification: RED bridge showed stale explicit handoff refresh lineage; focused unit+bridge 7 passed; focused related chain 24 passed; Ruff pass; compileall pass; payload smoke loop599_smoke explicit_authorization_handoff_packet_reentry_open safe_no_execution_scoring_final_human_authorization_review True 正式执行授权尚未完成 review_only_no_execution not_granted not_granted not_granted False True True; forbidden scan clean",
+    "loop599 worker: permanent Planner/Dispatcher/Test Engineer success; Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval; Verifier channel_waitingOnApproval not duplicated and local verification fallback used; Code Reviewer channel_slow/waitingOnApproval and not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_FINAL_HUMAN_AUTHORIZATION_REVIEW_REENTRY_REFRESH_LOOP600",
     "SYNC-610 loop598 Safe no-execution scoring formal authorization review surface reentry refresh",
     "loop598 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh after the final safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh so review surface reentry consumes the final reentry-aware formal gap refresh instead of stale pre-refresh lineage; bridge test asserts source_summary.formal_gap_source_summary equals the current plan formal_gap_review_reentry_refresh.source_summary while preserving consumer_summary, operator/reviewer actions, button_semantics, non_executable_notice, placeholder_result_schema, metric_preview_shape, runtime_policy_review, authorization_decision not_granted/can_execute_now false, and recommended_next_branch=safe_no_execution_scoring_explicit_authorization_handoff_packet",
     "loop598 verification: RED bridge showed stale review surface refresh lineage; focused unit+bridge 6 passed; focused related chain 23 passed; Ruff pass; compileall pass; payload smoke loop598_smoke formal_authorization_review_surface_reentry_open safe_no_execution_scoring_explicit_authorization_handoff_packet True 正式执行授权尚未完成 review_only_no_execution factor_value_daily not_computed qa-pg-alt True not_granted False True True; forbidden scan clean",

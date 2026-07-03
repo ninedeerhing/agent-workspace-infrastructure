@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T18:05:00+08:00
+updated_at: 2026-07-03T18:20:00+08:00
+
+## Latest Handoff — SYNC-611 safe no-execution scoring explicit authorization handoff packet reentry refresh
+
+- [DONE] `safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_refresh` now reconnects final formal review surface refresh to explicit authorization handoff packet reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh.source_summary` as handoff packet `review_surface_source_summary`, preserving consumer_summary, operator/reviewer actions, button_semantics, non_executable_notice, runtime_policy_review, handoff_summary, required_human_decisions, not_granted_state, handoff_boundaries, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_final_human_authorization_review`.
+- [VERIFY] RED bridge showed stale explicit handoff refresh lineage; focused unit+bridge **7 passed**; focused chain **24 passed**; Ruff pass; compileall pass; smoke `loop599_smoke explicit_authorization_handoff_packet_reentry_open safe_no_execution_scoring_final_human_authorization_review True 正式执行授权尚未完成 review_only_no_execution not_granted not_granted not_granted False True True`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FINAL_HUMAN_AUTHORIZATION_REVIEW_REENTRY_REFRESH_LOOP600`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-610 safe no-execution scoring formal authorization review surface reentry refresh
 
