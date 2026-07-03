@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T09:52:12+08:00
+updated_at: 2026-07-03T09:58:15+08:00
+
+## Latest Handoff — SYNC-576 safe no-execution scoring dry-run review packet reentry
+
+- [DONE] `safe_no_execution_scoring_dry_run_review_packet_reentry_v1` now reconnects dry-run contract reentry to the existing dry-run review packet.
+- [DONE] The creation plan exposes source summary, consumer review packet, runtime policy review, forbidden runtime paths, result-shape expectations, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_result_shape_review`.
+- [VERIFY] RED missing module **1 collection error**; focused reentry unit+bridge plus adjacent contract reentry and review packet chain **12 passed**; Ruff pass; compileall pass; smoke `loop564_smoke dry_run_review_packet_reentry_open safe_no_execution_scoring_result_shape_review safe_no_execution_scoring_dry_run_review_packet safe_no_execution_scoring_result_shape_review qa-pg-alt missing factor_value_daily False not_granted False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_RESULT_SHAPE_REVIEW_REENTRY_LOOP565`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-575 safe no-execution scoring dry-run contract reentry
 
