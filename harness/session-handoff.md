@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T23:00:22+08:00
+updated_at: 2026-07-03T23:05:22+08:00
+
+## Latest Handoff — SYNC-695 real scoring formal controls status summary
+
+- [DONE] Added `real_scoring_formal_controls_status_summary_v1` and exposed it from creation plan.
+- [DONE] Summary consumes loop682 all-gap candidate summary and shows formal_controls_not_granted_summary_ready, all_gap_groups_closed_candidate=true, controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_not_granted_review/will_execute=false, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_formal_controls_status_summary`; focused + batch flow tests **11 passed**; all `test_real_scoring_*_unit.py` **183 passed**; Ruff pass; compileall pass; payload smoke `loop683_smoke formal_controls_not_granted_summary_ready True False not_granted formal_controls_not_granted_review False not_granted False False False False False False False False False False False False False False False`; forbidden scan matched only all-false policy field names.
+- [WORKERS] Permanent Dispatcher/Test Engineer returned success. Planner returned stale/mismatched loop679 content and was not used as completion evidence. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_NOT_GRANTED_REVIEW_PACKET_LOOP684`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-694 real scoring all-gap candidate summary
 
