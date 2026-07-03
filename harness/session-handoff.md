@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T21:49:57+08:00
+updated_at: 2026-07-03T21:56:15+08:00
+
+## Latest Handoff — SYNC-684 real scoring human decision read-model regeneration
+
+- [DONE] Added `real_scoring_human_decision_read_model_regeneration_v1` and exposed it from creation plan.
+- [DONE] Regeneration consumes loop671 human_decision input packet review and shows human_decision_read_model_regenerated, return_to_enablement_check_candidate=true, remaining_missing_materials=0, reviewed_material_count=3, read_model_summary.will_execute=false, controls_enabled=false, and not_granted authorization.
+- [VERIFY] Initial bridge RED `KeyError: real_scoring_human_decision_read_model_regeneration`; focused test **4 passed**; all `test_real_scoring_*_unit.py` **135 passed**; Ruff pass; compileall pass; payload smoke `loop672_smoke human_decision_read_model_regenerated True 0 3 False False not_granted False False False False False False False False`.
+- [WORKERS] Permanent Test Engineer was dispatched for read-only matrix review. Planner/Dispatcher loop672 handoff context was preserved. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_HUMAN_DECISION_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP673`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-683 real scoring human decision input packet review
 

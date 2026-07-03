@@ -1,3 +1,37 @@
+# Orchestrator Latest Report — SYNC-684 real scoring human decision read-model regeneration
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring human decision read-model regeneration"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_human_decision_read_model_regeneration.py"
+      summary: "Adds no-execution human_decision read-model regeneration from packet review."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_human_decision_read_model_regeneration from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_human_decision_read_model_regeneration_unit.py"
+      summary: "Covers ready, missing review, not-ready review, and creation-plan bridge behavior."
+  verification:
+    - command: "focused human decision read-model regeneration pytest"
+      result: "4 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "135 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed human_decision_read_model_regenerated, return_to_enablement_check_candidate true, remaining_missing_materials 0, reviewed_material_count 3, will_execute false, controls_enabled false, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Test Engineer confirmed the compact matrix covers ready regeneration, missing review, not-ready review, bridge exposure, and no-execution flags; optional wrong-kind hardening is parked as non-blocking because empty-source already covers the same fail-closed path."
+    performance_note: "Human decision read-model is regenerated as no-execution evidence ready for enablement recheck."
+  blockers:
+    - "Enablement recheck from regenerated human_decision read-model has not yet been assembled."
+    - "System blocker gap group remains open."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_HUMAN_DECISION_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP673"
+
+---
+
 # Orchestrator Latest Report — SYNC-683 real scoring human decision input packet review
 
 report:

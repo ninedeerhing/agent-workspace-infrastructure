@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T21:49:57+08:00",
+  "updated_at": "2026-07-03T21:56:15+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-human-decision-input-packet-review-loop671",
-  "next_atomic_action": "REAL_SCORING_HUMAN_DECISION_READ_MODEL_REGENERATION_LOOP672：基于 loop671 real_scoring_human_decision_input_packet_review，构建只读 human_decision read model regeneration：当 review_status=ready_to_regenerate_human_decision_read_model 时，输出 regenerated_human_decision_status human_decision_read_model_regenerated、return_to_enablement_check_candidate=true、remaining_missing_materials=0、reviewed_material_count=3、read_model_summary.will_execute=false、controls_enabled=false、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop672, feed human_decision regenerated model back into enablement recheck without granting execution.",
+  "current_slice": "real-scoring-human-decision-read-model-regeneration-loop672",
+  "next_atomic_action": "REAL_SCORING_HUMAN_DECISION_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP673：基于 loop672 real_scoring_human_decision_read_model_regeneration，构建只读 human_decision enablement recheck from regenerated model：当 regenerated_human_decision_status=human_decision_read_model_regenerated 且 remaining_missing_materials=0 时，输出 human_decision_gap_closed_candidate_controls_still_not_granted、human_decision_gap_closed_candidate=true、closed_gap_groups=[operator_runtime,reviewer_safety,human_decision]、remaining_gap_groups=[system_blocker]、controls_enabled=false、controls_still_not_granted=true、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop673, route the remaining system_blocker gap group without granting execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-683-real-scoring-human-decision-input-packet-review",
+  "last_tick": "SYNC-684-real-scoring-human-decision-read-model-regeneration",
   "last_sync_sources": [
+    "SYNC-684 loop672 Real scoring human decision read-model regeneration",
+    "loop672 implementation: added real_scoring_human_decision_read_model_regeneration_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_human_decision_input_packet_review_v1 to show human_decision_read_model_regenerated, return_to_enablement_check_candidate true, remaining_missing_materials 0, reviewed_material_count 3, read_model_summary.will_execute false, controls_enabled false, authorization not_granted, and all-false execution policy",
+    "loop672 verification: initial bridge RED KeyError for real_scoring_human_decision_read_model_regeneration; focused tests 4 passed; all test_real_scoring_*_unit.py 135 passed; targeted Ruff pass; compileall pass; payload smoke loop672_smoke human_decision_read_model_regenerated True 0 3 False False not_granted False False False False False False False False",
+    "loop672 worker: permanent Test Engineer was dispatched for read-only matrix review; Planner/Dispatcher context was preserved from loop672 handoff; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_HUMAN_DECISION_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP673",
     "SYNC-683 loop671 Real scoring human decision input packet review",
     "loop671 implementation: added real_scoring_human_decision_input_packet_review_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_human_decision_input_packet_v1 to show ready_to_regenerate_human_decision_read_model, can_regenerate_human_decision_read_model true, packet_item_count 3, blocked_reasons empty, read_model_regeneration_request enabled but will_execute false, controls_enabled false, authorization not_granted, and all-false execution policy",
     "loop671 verification: human decision input packet review focused tests 4 passed; all test_real_scoring_*_unit.py 131 passed; targeted Ruff pass; compileall pass; payload smoke loop671_smoke ready_to_regenerate_human_decision_read_model True 3 0 True False False not_granted False False False False False False False False",
