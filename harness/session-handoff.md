@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T07:10:00+08:00
+updated_at: 2026-07-04T07:30:00+08:00
+
+## Latest Handoff — SYNC-657 real scoring formal decision surface
+
+- [DONE] Added `real_scoring_formal_decision_surface_v1` and exposed it from creation plan.
+- [DONE] Surface consumes gap closure action plan and shows accept/reject/request_changes controls disabled, 20 closure prerequisites, dependency order, not_granted guardrails, and all-false execution policy.
+- [VERIFY] Focused related tests **37 passed**; Ruff pass; compileall pass; payload smoke `loop645_smoke blocked_controls_disabled_until_gaps_close 正式复核按钮暂不可用 False 20 not_granted False False False False`; forbidden scan only matched false/not_allowed policy fields.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_DECISION_ENABLEMENT_CHECK_LOOP646`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-656 real scoring evidence gap closure action plan
 

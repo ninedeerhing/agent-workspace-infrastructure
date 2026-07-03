@@ -1,3 +1,34 @@
+# Orchestrator Latest Report — SYNC-657 real scoring formal decision surface
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring formal decision surface"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_formal_decision_surface.py"
+      summary: "Adds a no-execution formal decision surface consuming gap closure action plan."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_formal_decision_surface from the creation plan."
+  verification:
+    - command: "decision surface + adjacent action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "37 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed controls disabled, 20 closure prerequisites, not_granted, and all execution flags false; forbidden scan matched only false/not_allowed policy fields."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Formal decision surfaces must show disabled controls and their prerequisites together."
+    performance_note: "Real scoring path now has a formal decision surface, but it is correctly disabled because gaps remain open."
+  blockers:
+    - "20 evidence gaps remain open; formal controls are disabled."
+    - "Authorization remains not_granted and no-execution."
+    - "Executor remains waitingOnApproval; Dispatcher boundary keeps orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier and Code Reviewer canonical channels were not duplicated; local verification is authoritative fallback."
+  next: "REAL_SCORING_FORMAL_DECISION_ENABLEMENT_CHECK_LOOP646"
+
+---
+
 # Orchestrator Latest Report — SYNC-656 real scoring evidence gap closure action plan
 
 report:
