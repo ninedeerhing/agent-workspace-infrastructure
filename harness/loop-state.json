@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T04:30:00+08:00",
+  "updated_at": "2026-07-04T04:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-runtime-evidence-preview-authorization-surface-loop636",
-  "next_atomic_action": "CONTROLLED_REAL_SCORING_EXECUTION_PREFLIGHT_LOOP637：基于 loop636 用户可见 runtime evidence + preview authorization surface，继续构建 controlled real scoring execution preflight read-model：把 Top50 小批试跑、qa-pg-alt runtime、injected runner、schema/audit/rollback/budget、operator/reviewer evidence 串成正式执行前置包；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop637, continue toward explicit real scoring authorization packet only if controlled preflight remains user-facing, fail-closed, and no-execution.",
+  "current_slice": "controlled-real-scoring-execution-preflight-loop637",
+  "next_atomic_action": "EXPLICIT_REAL_SCORING_AUTHORIZATION_PACKET_LOOP638：基于 loop637 controlled real scoring execution preflight，继续构建显式真实评分授权包 read-model：把 preflight blockers、Top50 package、operator/reviewer required evidence、qa-pg-alt runtime boundary、not_granted authorization 汇总为正式授权材料；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop638, continue toward real scoring operator/reviewer authorization review surface only if authorization packet remains review-only and not_granted.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-648-real-scoring-runtime-evidence-preview-authorization-surface",
+  "last_tick": "SYNC-649-controlled-real-scoring-execution-preflight",
   "last_sync_sources": [
+    "SYNC-649 loop637 Controlled real scoring execution preflight",
+    "loop637 implementation: added controlled_real_scoring_execution_preflight_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes the loop636 runtime evidence preview surface plus Top50 execution batch package, run request preflight, and DB runner preflight to emit a controlled small-batch execution preflight packet",
+    "loop637 verification: controlled preflight plus runtime surface, execution package, run-request preflight, DB runner preflight, and batch flow tests 25 passed; Ruff pass; compileall pass; payload smoke loop637_smoke blocked_waiting_for_runtime_evidence 真实评分前置材料未齐 small_batch_trial 50 9 8 not_granted False False False False False False False False; forbidden scan clean",
+    "loop637 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: EXPLICIT_REAL_SCORING_AUTHORIZATION_PACKET_LOOP638",
     "SYNC-648 loop636 Real scoring runtime evidence preview authorization surface",
     "loop636 implementation: added real_scoring_runtime_evidence_preview_authorization_surface_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; the surface aggregates qa-pg-alt runtime, DSN isolation, schema table readiness, injected runner manifest, dry-run capability, audit refs, rollback refs, resource limits, and Top50 batch manifest into user-visible evidence cards",
     "loop636 verification: focused runtime evidence surface tests plus runner/DSN, run-request preflight, execution batch package, dry-run contract, and compute budget 22 passed; batch mining flow plus surface 10 passed; Ruff pass; compileall pass; payload smoke loop636_smoke blocked_waiting_for_runtime_evidence 真实评分还不能开始 9 8 open_real_scoring_runtime_evidence_preview not_granted False False False False False False False; forbidden scan clean",

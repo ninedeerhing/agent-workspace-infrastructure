@@ -1,3 +1,33 @@
+# Orchestrator Latest Report — SYNC-649 controlled real scoring execution preflight
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "controlled real scoring execution preflight"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_real_scoring_execution_preflight.py"
+      summary: "Adds a no-execution controlled real-scoring execution preflight read-model consuming runtime evidence surface, Top50 package, run request preflight, and DB runner preflight."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes controlled_real_scoring_execution_preflight from the creation plan."
+  verification:
+    - command: "controlled preflight + adjacent runtime/scoring pytest"
+      result: "25 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed blocked_waiting_for_runtime_evidence with Top50 small_batch_trial, not_granted, and all execution flags false; forbidden scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Controlled real-scoring preflight should organize execution prerequisites without creating a runnable request."
+    performance_note: "Real scoring path now has a stable preflight packet after the user-facing runtime evidence surface."
+  blockers:
+    - "Runtime evidence remains incomplete; this preflight is blocked and not_granted."
+    - "Executor remains waitingOnApproval; Dispatcher boundary keeps orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier and Code Reviewer canonical channels were not duplicated; local verification is authoritative fallback."
+  next: "EXPLICIT_REAL_SCORING_AUTHORIZATION_PACKET_LOOP638"
+
+---
+
 # Orchestrator Latest Report — SYNC-648 real scoring runtime evidence preview authorization surface
 
 report:

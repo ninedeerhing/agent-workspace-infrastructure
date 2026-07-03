@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T04:30:00+08:00
+updated_at: 2026-07-04T04:50:00+08:00
+
+## Latest Handoff — SYNC-649 controlled real scoring execution preflight
+
+- [DONE] Added `controlled_real_scoring_execution_preflight_v1` and exposed it from creation plan.
+- [DONE] Preflight consumes loop636 runtime evidence preview surface, Top50 execution batch package, run request preflight, and DB runner preflight.
+- [VERIFY] Focused related tests **25 passed**; Ruff pass; compileall pass; payload smoke `loop637_smoke blocked_waiting_for_runtime_evidence 真实评分前置材料未齐 small_batch_trial 50 9 8 not_granted False False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `EXPLICIT_REAL_SCORING_AUTHORIZATION_PACKET_LOOP638`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-648 real scoring runtime evidence preview authorization surface
 
