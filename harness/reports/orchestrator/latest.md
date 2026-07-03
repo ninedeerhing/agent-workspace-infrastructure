@@ -1,3 +1,33 @@
+# Orchestrator Latest Report — SYNC-648 real scoring runtime evidence preview authorization surface
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring runtime evidence preview authorization surface"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_runtime_evidence_preview_authorization_surface.py"
+      summary: "Adds a no-execution user-facing runtime evidence surface with qa-pg-alt, DSN, schema, runner, dry-run, audit, rollback, resource-limit, and Top50 batch evidence cards."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_runtime_evidence_preview_authorization_surface from the creation plan."
+  verification:
+    - command: "focused runtime evidence surface + adjacent scoring/runner pytest"
+      result: "22 passed."
+    - command: "batch mining flow + surface pytest / targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "10 passed; Ruff pass; compileall pass; smoke showed blocked_waiting_for_runtime_evidence with not_granted and all execution flags false; forbidden scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Real execution preparation should first be exposed as a consumer-readable evidence matrix before any controlled preflight packet."
+    performance_note: "Mainline returned from proof-chain convergence to real scoring/pool/backtest readiness."
+  blockers:
+    - "Runtime evidence remains incomplete; this is a preview surface only."
+    - "Executor remains waitingOnApproval; Dispatcher boundary keeps orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier and Code Reviewer canonical channels were not duplicated; local verification is authoritative fallback."
+  next: "CONTROLLED_REAL_SCORING_EXECUTION_PREFLIGHT_LOOP637"
+
+---
+
 # Orchestrator Latest Report — SYNC-647 safe no-execution reentry refresh chain convergence
 
 report:

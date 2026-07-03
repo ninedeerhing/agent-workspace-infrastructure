@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T04:05:00+08:00
+updated_at: 2026-07-04T04:30:00+08:00
+
+## Latest Handoff — SYNC-648 real scoring runtime evidence preview authorization surface
+
+- [DONE] Added `real_scoring_runtime_evidence_preview_authorization_surface_v1` and exposed it from creation plan.
+- [DONE] Surface shows 9 user-visible evidence cards for qa-pg-alt runtime, DSN isolation, schema tables, injected runner, dry-run capability, audit, rollback, resource limits, and Top50 batch manifest.
+- [VERIFY] Focused related tests **22 passed**; batch flow + surface **10 passed**; Ruff pass; compileall pass; payload smoke `loop636_smoke blocked_waiting_for_runtime_evidence 真实评分还不能开始 9 8 open_real_scoring_runtime_evidence_preview not_granted False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `CONTROLLED_REAL_SCORING_EXECUTION_PREFLIGHT_LOOP637`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-647 safe no-execution reentry refresh chain convergence
 
