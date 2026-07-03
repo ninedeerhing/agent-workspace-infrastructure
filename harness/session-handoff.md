@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T05:10:00+08:00
+updated_at: 2026-07-04T05:30:00+08:00
+
+## Latest Handoff — SYNC-651 operator/reviewer real scoring authorization review surface
+
+- [DONE] Added `operator_reviewer_real_scoring_authorization_review_surface_v1` and exposed it from creation plan.
+- [DONE] Surface consumes explicit authorization packet and shows operator/reviewer lanes, required decisions, blockers, Top50 package, runtime boundary, review-only button semantics, and not_granted authorization.
+- [VERIFY] Focused related tests **19 passed**; Ruff pass; compileall pass; payload smoke `loop639_smoke blocked_waiting_for_authorization_materials 操作员/复核员复核材料未齐 pending pending 17 small_batch_trial not_granted False False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `FORMAL_REAL_SCORING_HUMAN_AUTHORIZATION_HANDOFF_LOOP640`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-650 explicit real scoring authorization packet
 

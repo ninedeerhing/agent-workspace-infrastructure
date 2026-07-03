@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T05:10:00+08:00",
+  "updated_at": "2026-07-04T05:30:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "explicit-real-scoring-authorization-packet-loop638",
-  "next_atomic_action": "OPERATOR_REVIEWER_REAL_SCORING_AUTHORIZATION_REVIEW_SURFACE_LOOP639：基于 loop638 explicit real scoring authorization packet，构建 operator/reviewer authorization review surface：展示操作员/复核员各自需要确认的材料、Top50 package、preflight blockers、runtime boundary、not_granted 决策和后续人工动作；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop639, continue toward final human real-scoring authorization request intake only if review surface remains no-execution and not_granted.",
+  "current_slice": "operator-reviewer-real-scoring-authorization-review-surface-loop639",
+  "next_atomic_action": "FORMAL_REAL_SCORING_HUMAN_AUTHORIZATION_HANDOFF_LOOP640：基于 loop639 operator/reviewer authorization review surface，汇总正式人工授权交接材料：双人复核 lanes、required decisions、Top50 package、blocked reasons、runtime boundary、not_granted guardrails、下一步人工动作；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop640, stop only if it becomes formal human acceptance/rejection/change-request stage; otherwise continue to request intake no-execution branch.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-650-explicit-real-scoring-authorization-packet",
+  "last_tick": "SYNC-651-operator-reviewer-real-scoring-authorization-review-surface",
   "last_sync_sources": [
+    "SYNC-651 loop639 Operator/reviewer real scoring authorization review surface",
+    "loop639 implementation: added operator_reviewer_real_scoring_authorization_review_surface_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes explicit_real_scoring_authorization_packet_v1 to show operator and reviewer lanes, required decisions, blocked reasons, Top50 package summary, runtime boundary, not_granted authorization, and non-executing button semantics",
+    "loop639 verification: operator/reviewer review surface plus explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 19 passed; Ruff pass; compileall pass; payload smoke loop639_smoke blocked_waiting_for_authorization_materials 操作员/复核员复核材料未齐 pending pending 17 small_batch_trial not_granted False False False False False False False False; forbidden scan clean",
+    "loop639 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: FORMAL_REAL_SCORING_HUMAN_AUTHORIZATION_HANDOFF_LOOP640",
     "SYNC-650 loop638 Explicit real scoring authorization packet",
     "loop638 implementation: added explicit_real_scoring_authorization_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes controlled_real_scoring_execution_preflight_v1 to summarize preflight blockers, Top50 package, operator/reviewer evidence, qa-pg-alt runtime boundary, pending authorization decisions, and not_granted authorization state",
     "loop638 verification: explicit authorization packet plus controlled preflight, runtime evidence surface, and batch flow tests 16 passed; Ruff pass; compileall pass; payload smoke loop638_smoke blocked_waiting_for_preflight_closure 真实评分授权材料未齐 small_batch_trial 50 17 not_granted not_granted False False False False False False False False; forbidden scan clean",

@@ -1,3 +1,33 @@
+# Orchestrator Latest Report — SYNC-651 operator/reviewer real scoring authorization review surface
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "operator/reviewer real scoring authorization review surface"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/operator_reviewer_real_scoring_authorization_review_surface.py"
+      summary: "Adds a no-execution operator/reviewer review surface consuming explicit real-scoring authorization packet."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes operator_reviewer_real_scoring_authorization_review_surface from the creation plan."
+  verification:
+    - command: "operator/reviewer surface + adjacent authorization/preflight/runtime pytest"
+      result: "19 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed blocked_waiting_for_authorization_materials with operator/reviewer pending, not_granted, and all execution flags false; forbidden scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Review-surface button semantics must remain visibly non-executing."
+    performance_note: "Real scoring path now has an operator/reviewer review surface after explicit authorization packet."
+  blockers:
+    - "Authorization materials remain blocked; surface is not_granted and no-execution."
+    - "Executor remains waitingOnApproval; Dispatcher boundary keeps orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier and Code Reviewer canonical channels were not duplicated; local verification is authoritative fallback."
+  next: "FORMAL_REAL_SCORING_HUMAN_AUTHORIZATION_HANDOFF_LOOP640"
+
+---
+
 # Orchestrator Latest Report — SYNC-650 explicit real scoring authorization packet
 
 report:
