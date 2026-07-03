@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T10:18:43+08:00
+updated_at: 2026-07-03T10:32:16+08:00
+
+## Latest Handoff — SYNC-579 safe no-execution scoring formal authorization gap review reentry
+
+- [DONE] `safe_no_execution_scoring_formal_authorization_gap_review_reentry_v1` now reconnects authorization materials reentry to the existing no-execution formal authorization gap review.
+- [DONE] The creation plan exposes source summary, placeholder result schema, metric preview shape, runtime policy review, operator/reviewer materials, manual confirmation packet, blocked execution boundary, confirmation/runtime/audit gaps, non-executable reasons, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_formal_authorization_review_surface`.
+- [VERIFY] RED missing module **1 collection error**; focused reentry unit+bridge plus adjacent authorization materials reentry and formal gap review chain **12 passed**; Ruff pass; compileall pass; smoke `loop567_smoke formal_authorization_gap_review_reentry_open safe_no_execution_scoring_formal_authorization_review_surface safe_no_execution_scoring_formal_authorization_gap_review safe_no_execution_scoring_formal_authorization_review_surface factor_value_daily 0 not_computed qa-pg-alt not_granted False 4 4 3 False False False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_REVIEW_SURFACE_REENTRY_LOOP568`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-578 safe no-execution scoring dry-run authorization materials reentry
 
