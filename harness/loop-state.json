@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T02:05:00+08:00",
+  "updated_at": "2026-07-04T02:20:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "safe-no-execution-scoring-formal-authorization-gap-review-reentry-refresh-loop627",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_REVIEW_SURFACE_REENTRY_REFRESH_LOOP628：基于 safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_formal_authorization_review_surface，刷新/延展既有 safe_no_execution_scoring_formal_authorization_review_surface_reentry_v1，使 formal authorization review surface reentry 消费 reentry-aware formal authorization gap review refresh，并继续串联 formal_gap source summary、consumer/operator/reviewer actions、button_semantics、non_executable_notice、placeholder_result_schema、metric_preview_shape、runtime_policy_review、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop628, continue into explicit authorization handoff packet reentry refresh without bypassing human/runtime authorization.",
+  "current_slice": "safe-no-execution-scoring-formal-authorization-review-surface-reentry-refresh-loop628",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_HANDOFF_PACKET_REENTRY_REFRESH_LOOP629：基于 safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_explicit_authorization_handoff_packet，刷新/延展既有 safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_v1，使 explicit authorization handoff packet reentry 消费 reentry-aware formal authorization review surface refresh，并继续串联 review_surface source summary、consumer/operator/reviewer actions、button_semantics、non_executable_notice、runtime_policy_review、handoff_summary、required_human_decisions、not_granted_state、handoff_boundaries、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop629, continue into final human authorization review reentry refresh without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-639-safe-no-execution-scoring-formal-authorization-gap-review-reentry-refresh",
+  "last_tick": "SYNC-640-safe-no-execution-scoring-formal-authorization-review-surface-reentry-refresh",
   "last_sync_sources": [
+    "SYNC-640 loop628 Safe no-execution scoring formal authorization review surface reentry refresh",
+    "loop628 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_refresh after the final safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh so explicit authorization handoff packet reentry consumes final reentry-aware review surface refresh instead of stale pre-refresh review-surface lineage; safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh itself consumes the latest formal authorization gap review refresh from loop627",
+    "loop628 verification: RED review-surface-to-handoff chain showed stale explicit authorization handoff packet refresh lineage; focused review-surface-to-handoff chain 13 passed after direct downstream recompute; Ruff pass; compileall pass; payload smoke loop628_smoke formal_authorization_review_surface_reentry_open safe_no_execution_scoring_explicit_authorization_handoff_packet True True not_granted False False False False False False False False False",
+    "loop628 worker: permanent Planner/Dispatcher/Test Engineer success; Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval; Verifier channel_waitingOnApproval not duplicated and local verification fallback used; Code Reviewer channel_slow/waitingOnApproval not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_HANDOFF_PACKET_REENTRY_REFRESH_LOOP629",
     "SYNC-639 loop627 Safe no-execution scoring formal authorization gap review reentry refresh",
     "loop627 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh after the final safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh so formal authorization review surface reentry consumes final reentry-aware formal gap review refresh instead of stale pre-refresh formal-gap lineage; safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh itself consumes the latest dry-run authorization materials refresh from loop626",
     "loop627 verification: RED formal-gap-to-review-surface chain showed stale formal authorization review surface refresh lineage; focused formal-gap-to-surface chain 12 passed after direct downstream recompute; Ruff pass; compileall pass; payload smoke loop627_smoke formal_authorization_gap_review_reentry_open safe_no_execution_scoring_formal_authorization_review_surface True True not_granted False False False False False False False False False",
