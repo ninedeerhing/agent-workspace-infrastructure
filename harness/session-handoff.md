@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T17:20:00+08:00
+updated_at: 2026-07-03T17:35:00+08:00
+
+## Latest Handoff — SYNC-608 safe no-execution scoring dry-run authorization materials reentry refresh
+
+- [DONE] `safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh` now reconnects final result-shape review refresh to dry-run authorization materials reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_result_shape_review_reentry_refresh.source_summary` as authorization materials `result_shape_source_summary`, preserving placeholder_result_schema, metric_preview_shape, runtime_policy_review, operator/reviewer materials, manual_confirmation_packet, blocked_execution_boundary, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_formal_authorization_gap_review`.
+- [VERIFY] RED bridge showed stale authorization materials refresh lineage; focused unit+bridge **6 passed**; focused chain **22 passed**; Ruff pass; compileall pass; smoke `loop596_smoke authorization_materials_reentry_open safe_no_execution_scoring_formal_authorization_gap_review True factor_value_daily 0 not_computed qa-pg-alt not_granted False True True`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_GAP_REVIEW_REENTRY_REFRESH_LOOP597`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-607 safe no-execution scoring result-shape review reentry refresh
 
