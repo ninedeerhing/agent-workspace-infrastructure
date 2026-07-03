@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T22:49:16+08:00
+updated_at: 2026-07-03T22:54:42+08:00
+
+## Latest Handoff — SYNC-693 real scoring system_blocker enablement recheck
+
+- [DONE] Added `real_scoring_system_blocker_enablement_recheck_from_regenerated_model_v1` and exposed it from creation plan.
+- [DONE] Recheck consumes loop680 system_blocker regenerated read-model and shows system_blocker_gap_closed_candidate_controls_still_not_granted, system_blocker_gap_closed_candidate=true, closed_gap_groups=[operator_runtime,reviewer_safety,human_decision,system_blocker], remaining_gap_groups=[], remaining_missing_materials=0, controls_enabled=false, controls_still_not_granted=true, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_system_blocker_enablement_recheck_from_regenerated_model`; focused + batch flow tests **11 passed**; all `test_real_scoring_*_unit.py` **175 passed**; Ruff pass; compileall pass; payload smoke `loop681_smoke system_blocker_gap_closed_candidate_controls_still_not_granted True operator_runtime|reviewer_safety|human_decision|system_blocker  0 False True not_granted False False False False False False False False False False False False False False False`; forbidden scan matched only all-false policy field names.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_ALL_GAP_GROUPS_CLOSED_CANDIDATE_SUMMARY_LOOP682`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-692 real scoring system_blocker read-model regeneration
 
