@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T20:20:00+08:00
+updated_at: 2026-07-03T20:45:00+08:00
+
+## Latest Handoff — SYNC-620 safe no-execution scoring dry-run contract reentry refresh
+
+- [DONE] `safe_no_execution_scoring_dry_run_contract_reentry_refresh` now reconnects final runner/DSN prerequisite branch refresh to safe dry-run contract reentry.
+- [DONE] The creation plan final refresh embeds the current `runner_dsn_repair_prerequisite_branch_reentry_refresh.source_summary` as dry-run contract `runtime_evidence_source_summary`, preserving runtime_policy_review, operator/reviewer confirmations, dry_run_contract_summary, result_shape_expectations, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_dry_run_review_packet`.
+- [VERIFY] RED bridge showed stale dry-run contract refresh lineage; focused unit+bridge **6 passed**; focused chain **19 passed**; Ruff pass; compileall pass; smoke `loop608_smoke dry_run_contract_reentry_open safe_no_execution_scoring_dry_run_review_packet True not_granted False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_REFRESH_LOOP609`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-619 runner/DSN repair prerequisite branch reentry refresh
 
