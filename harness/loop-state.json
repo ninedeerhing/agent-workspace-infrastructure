@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T21:38:07+08:00",
+  "updated_at": "2026-07-03T21:43:13+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-human-decision-input-readiness-loop669",
-  "next_atomic_action": "REAL_SCORING_HUMAN_DECISION_INPUT_PACKET_LOOP670：基于 loop669 real_scoring_human_decision_input_readiness，构建只读 human_decision input packet：当 readiness_status=ready_for_human_decision_input 时，输出 input_packet_status ready_human_decision_input_packet、ready_for_human_decision_packet_review=true、packet_item_count 3、input_packet_assembly_request enabled but will_execute=false、controls_enabled=false、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop670, add human_decision input packet review without granting execution.",
+  "current_slice": "real-scoring-human-decision-input-packet-loop670",
+  "next_atomic_action": "REAL_SCORING_HUMAN_DECISION_INPUT_PACKET_REVIEW_LOOP671：基于 loop670 real_scoring_human_decision_input_packet，构建只读 human_decision input packet review：当 input_packet_status=ready_human_decision_input_packet 且 packet_item_count=3 时，输出 review_status ready_to_regenerate_human_decision_read_model、can_regenerate_human_decision_read_model=true、blocked_reasons []、read_model_regeneration_request enabled but will_execute=false、controls_enabled=false、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop671, regenerate human_decision read model without granting execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-681-real-scoring-human-decision-input-readiness",
+  "last_tick": "SYNC-682-real-scoring-human-decision-input-packet",
   "last_sync_sources": [
+    "SYNC-682 loop670 Real scoring human decision input packet",
+    "loop670 implementation: added real_scoring_human_decision_input_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_human_decision_input_readiness_v1 to show ready_human_decision_input_packet, ready_for_human_decision_packet_review true, required_material_count 3, packet_item_count 3, input_packet_assembly_request enabled but will_execute false, controls_enabled false, authorization not_granted, and all-false execution policy",
+    "loop670 verification: human decision input packet focused tests 4 passed; all test_real_scoring_*_unit.py 127 passed; targeted Ruff pass; compileall pass; payload smoke loop670_smoke ready_human_decision_input_packet True 3 3 True False False not_granted False False False False False False False False",
+    "loop670 worker: permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_HUMAN_DECISION_INPUT_PACKET_REVIEW_LOOP671",
     "SYNC-681 loop669 Real scoring human decision input readiness",
     "loop669 implementation: added real_scoring_human_decision_input_readiness_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_human_decision_request_packet_v1 to show ready_for_human_decision_input, required_material_count 3, input_slot_ref_count 3, acceptance_hint_ref_count 3, missing_refs empty, human_decision_input_request enabled but will_execute false, controls_enabled false, authorization not_granted, and all-false execution policy",
     "loop669 verification: human decision input readiness focused tests 5 passed; all test_real_scoring_*_unit.py 123 passed; targeted Ruff pass; compileall pass; payload smoke loop669_smoke ready_for_human_decision_input True 3 3 3 0 True False False not_granted False False False False False False False False",

@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T21:38:07+08:00
+updated_at: 2026-07-03T21:43:13+08:00
+
+## Latest Handoff — SYNC-682 real scoring human decision input packet
+
+- [DONE] Added `real_scoring_human_decision_input_packet_v1` and exposed it from creation plan.
+- [DONE] Input packet consumes loop669 human_decision input readiness and shows ready_human_decision_input_packet, ready_for_human_decision_packet_review=true, required_material_count=3, packet_item_count=3, input_packet_assembly_request enabled but will_execute=false, controls_enabled=false, and not_granted authorization.
+- [VERIFY] Focused test **4 passed**; all `test_real_scoring_*_unit.py` **127 passed**; Ruff pass; compileall pass; payload smoke `loop670_smoke ready_human_decision_input_packet True 3 3 True False False not_granted False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer were dispatched. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_HUMAN_DECISION_INPUT_PACKET_REVIEW_LOOP671`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-681 real scoring human decision input readiness
 
