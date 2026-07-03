@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-670 real scoring next remaining gap group routing
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring next remaining gap group routing"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_next_remaining_gap_group_routing.py"
+      summary: "Adds a no-execution routing layer that selects reviewer_safety as the next remaining gap group."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_next_remaining_gap_group_routing from the creation plan."
+  verification:
+    - command: "next remaining gap group routing + adjacent regenerated enablement/read-model regeneration/packet review/input packet/readiness/recheck regeneration/remediation/enablement/operator/guidance/milestone/decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "85 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed next_gap_group_selected_no_execution, reviewer_safety, closed group operator_runtime, remaining groups reviewer_safety/human_decision/system_blocker, three material stubs, closure guidance request enabled but will_execute false, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Remaining gap routing should pick a concrete next closure target while keeping the route itself non-executable."
+    performance_note: "The formal enablement path now moves from operator_runtime closure to reviewer_safety closure guidance."
+  blockers:
+    - "Reviewer safety materials are not yet closed."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_REVIEWER_SAFETY_GAP_CLOSURE_GUIDANCE_LOOP659"
+
+---
+
 # Orchestrator Latest Report — SYNC-669 real scoring operator runtime enablement recheck from regenerated model
 
 report:

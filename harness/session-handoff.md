@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T20:25:53+08:00
+updated_at: 2026-07-03T20:30:56+08:00
+
+## Latest Handoff — SYNC-670 real scoring next remaining gap group routing
+
+- [DONE] Added `real_scoring_next_remaining_gap_group_routing_v1` and exposed it from creation plan.
+- [DONE] Routing consumes loop657 enablement recheck and shows next_gap_group_selected_no_execution, next_remaining_gap_group=reviewer_safety, closed_gap_groups=[operator_runtime], remaining_gap_groups=[reviewer_safety,human_decision,system_blocker], required_materials_stub=3, closure_guidance_request enabled but will_execute=false, and not_granted authorization.
+- [VERIFY] Focused related tests **85 passed**; Ruff pass; compileall pass; payload smoke `loop658_smoke next_gap_group_selected_no_execution reviewer_safety operator_runtime reviewer_safety|human_decision|system_blocker 3 True False not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_REVIEWER_SAFETY_GAP_CLOSURE_GUIDANCE_LOOP659`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-669 real scoring operator runtime enablement recheck from regenerated model
 
