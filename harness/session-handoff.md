@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T17:50:00+08:00
+updated_at: 2026-07-03T18:05:00+08:00
+
+## Latest Handoff — SYNC-610 safe no-execution scoring formal authorization review surface reentry refresh
+
+- [DONE] `safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh` now reconnects final formal gap refresh to formal authorization review surface reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh.source_summary` as review surface `formal_gap_source_summary`, preserving consumer_summary, operator/reviewer actions, button_semantics, non_executable_notice, placeholder_result_schema, metric_preview_shape, runtime_policy_review, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_explicit_authorization_handoff_packet`.
+- [VERIFY] RED bridge showed stale review surface refresh lineage; focused unit+bridge **6 passed**; focused chain **23 passed**; Ruff pass; compileall pass; smoke `loop598_smoke formal_authorization_review_surface_reentry_open safe_no_execution_scoring_explicit_authorization_handoff_packet True 正式执行授权尚未完成 review_only_no_execution factor_value_daily not_computed qa-pg-alt True not_granted False True True`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_HANDOFF_PACKET_REENTRY_REFRESH_LOOP599`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-609 safe no-execution scoring formal authorization gap review reentry refresh
 
