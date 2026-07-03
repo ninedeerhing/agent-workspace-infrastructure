@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T03:20:00+08:00
+updated_at: 2026-07-04T03:35:00+08:00
+
+## Latest Handoff — SYNC-645 safe no-execution scoring result-shape review reentry refresh
+
+- [DONE] `safe_no_execution_scoring_result_shape_review_reentry_refresh` now consumes the latest dry-run review packet refresh from loop632.
+- [DONE] Anti-small-loop repair: authorization materials, formal gap, review surface, and explicit handoff packet refreshes are recomputed from the latest upstream refreshes.
+- [VERIFY] Result-shape RED chain exposed stale result-shape and adjacent downstream sources; focused result→handoff chain **31 passed**; Ruff pass; compileall pass; smoke `loop633_smoke result_shape_review_reentry_open safe_no_execution_scoring_dry_run_authorization_materials True True True True not_granted False False False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer dispatched for read-only loop633 review. Canonical Executor remains waitingOnApproval; Verifier remains `channel_waitingOnApproval`; Code Reviewer remains channel slow/waitingOnApproval; no duplicate same-role worker created.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FINAL_HUMAN_AUTHORIZATION_REVIEW_REENTRY_REFRESH_LOOP634`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-644 safe no-execution scoring final no-execution authorization readiness summary reentry refresh
 
