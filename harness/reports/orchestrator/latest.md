@@ -1,3 +1,40 @@
+# Orchestrator Latest Report — SYNC-590 safe no-execution scoring dry-run contract reentry refresh
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "safe no-execution scoring dry-run contract reentry refresh"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/safe_no_execution_scoring_dry_run_contract_reentry.py"
+      summary: "Extends source_summary with runtime_evidence_source_summary so dry-run contract reentry can expose refreshed runner/DSN and final readiness lineage."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes safe_no_execution_scoring_dry_run_contract_reentry_refresh from user_facing_batch_mining_creation_plan_v1 after runner/DSN prerequisite refresh."
+    - file: "apps/quant_assistant/tests/test_safe_no_execution_scoring_dry_run_contract_reentry_unit.py"
+      summary: "Covers refresh lineage, mock/injected runner boundary, no default runner, no adapter/scorer/backtest, result-shape expectations, audit/rollback confirmation lineage, next branch, not_granted decision, and all-false side effects."
+    - file: "apps/quant_assistant/tests/test_safe_no_execution_scoring_dry_run_contract_reentry_bridge_unit.py"
+      summary: "Covers creation-plan exposure of safe_no_execution_scoring_dry_run_contract_reentry_refresh."
+  verification:
+    - command: "RED PYTHONPATH=src uv run python -m pytest tests/test_safe_no_execution_scoring_dry_run_contract_reentry_unit.py tests/test_safe_no_execution_scoring_dry_run_contract_reentry_bridge_unit.py -q"
+      result: "2 failures before implementation: missing runtime_evidence_source_summary and missing safe_no_execution_scoring_dry_run_contract_reentry_refresh key."
+    - command: "PYTHONPATH=src uv run python -m pytest tests/test_safe_no_execution_scoring_dry_run_contract_reentry_unit.py tests/test_safe_no_execution_scoring_dry_run_contract_reentry_bridge_unit.py tests/test_runner_dsn_repair_prerequisite_branch_reentry_unit.py tests/test_runner_dsn_repair_prerequisite_branch_reentry_bridge_unit.py tests/test_safe_no_execution_scoring_dry_run_contract_unit.py tests/test_safe_no_execution_scoring_dry_run_contract_bridge_unit.py tests/test_safe_no_execution_scoring_dry_run_review_packet_reentry_unit.py tests/test_safe_no_execution_scoring_dry_run_review_packet_reentry_bridge_unit.py -q"
+      result: "20 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "All passed; smoke showed loop578_smoke dry_run_contract_reentry_open safe_no_execution_scoring_dry_run_review_packet final_no_execution_authorization_readiness_summary_reentry_open mock_or_injected_review_only False False not_granted False False False False False False False False False False False False False False False False False False False False False False; forbidden scan matched only policy field names and false/not_granted assertions."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Dry-run contract refresh must consume the refreshed runner/DSN prerequisite packet instead of silently falling back to the older reentry packet."
+      - "Audit/rollback proof remains a review confirmation lineage at this stage, not runtime permission."
+    performance_note: "Auto-mining to auto-backtest core chain now has a reentry-aware safe dry-run contract refresh that routes into dry-run review packet refresh without granting execution."
+  blockers:
+    - "Executor remains waitingOnApproval; Dispatcher kept orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier channel_waitingOnApproval; canonical identity preserved and no duplicate same-role worker created."
+    - "Code Reviewer channel_slow/waitingOnApproval; canonical identity preserved and no duplicate same-role worker created."
+  next: "SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_REFRESH_LOOP579"
+
+---
+
 # Orchestrator Latest Report — SYNC-589 runner dsn repair prerequisite branch reentry refresh
 
 report:

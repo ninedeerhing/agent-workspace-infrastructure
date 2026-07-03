@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T12:40:00+08:00",
+  "updated_at": "2026-07-03T13:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "runner-dsn-repair-prerequisite-branch-reentry-refresh-loop577",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_DRY_RUN_CONTRACT_REENTRY_REFRESH_LOOP578：基于 runner_dsn_repair_prerequisite_branch_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_dry_run_contract，刷新/延展既有 safe_no_execution_scoring_dry_run_contract_reentry_v1，使 safe dry-run contract reentry 消费 reentry-aware runner/DSN prerequisite refresh，并继续串联 injected runner only、result shape expectations、audit/rollback requirements、no-default-runner policy 与 blocked-state lineage；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop578, continue into dry-run review packet reentry refresh without bypassing human/runtime authorization.",
+  "current_slice": "safe-no-execution-scoring-dry-run-contract-reentry-refresh-loop578",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_REFRESH_LOOP579：基于 safe_no_execution_scoring_dry_run_contract_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_dry_run_review_packet，刷新/延展既有 safe_no_execution_scoring_dry_run_review_packet_reentry_v1，使 dry-run review packet reentry 消费 reentry-aware safe dry-run contract refresh，并继续串联 consumer review packet、runtime policy review、forbidden runtime paths、result-shape expectations、blocked-state lineage 与 no-execution review checklist；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop579, continue into result-shape review reentry refresh without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-589-runner-dsn-repair-prerequisite-branch-reentry-refresh",
+  "last_tick": "SYNC-590-safe-no-execution-scoring-dry-run-contract-reentry-refresh",
   "last_sync_sources": [
+    "SYNC-590 loop578 Safe no-execution scoring dry-run contract reentry refresh",
+    "loop578 implementation: safe_no_execution_scoring_dry_run_contract_reentry_v1 source_summary now carries runtime_evidence_source_summary, and user_facing_batch_mining_creation_plan_v1 exposes safe_no_execution_scoring_dry_run_contract_reentry_refresh consuming runner_dsn_repair_prerequisite_branch_reentry_refresh; refresh preserves final readiness reentry lineage, mock_or_injected_review_only runner boundary, default_runner_allowed false, real_adapter_execution_allowed false, result shape expectations, audit/rollback confirmation lineage, authorization_decision not_granted/can_execute_now false, and all-false execution policy",
+    "loop578 verification: RED showed missing runtime_evidence_source_summary and missing safe_no_execution_scoring_dry_run_contract_reentry_refresh key; focused related chain 20 passed; Ruff pass; compileall pass; payload smoke loop578_smoke dry_run_contract_reentry_open safe_no_execution_scoring_dry_run_review_packet final_no_execution_authorization_readiness_summary_reentry_open mock_or_injected_review_only False False not_granted False False False False False False False False False False False False False False False False False False False False False False; forbidden scan matched only policy field names and false/not_granted assertions, no new execution imports/calls",
+    "loop578 worker: permanent Planner/Dispatcher/Test Engineer success; Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval; Verifier channel_waitingOnApproval not duplicated and local verification fallback used; Code Reviewer channel_slow/waitingOnApproval and not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_REFRESH_LOOP579",
     "SYNC-589 loop577 Runner/DSN repair prerequisite branch reentry refresh",
     "loop577 implementation: refreshed runner_dsn_repair_prerequisite_branch_reentry_v1 to accept safe_no_execution_scoring_final_no_execution_authorization_readiness_summary_reentry_v1 without circular imports, preserve legacy summary compatibility, and expose runner_dsn_repair_prerequisite_branch_reentry_refresh from user_facing_batch_mining_creation_plan_v1; refresh source_summary now carries final_no_execution_authorization_readiness_summary_reentry_open lineage while preserving original qa-pg-alt policy, DSN isolation requirements, no-substitute-DB policy, operator/reviewer confirmations, not_granted/can_execute_now false, and all-false execution policy",
     "loop577 verification: initial focused run exposed circular import after adding readiness summary reentry constant import; fixed by local string constant; second focused run 15 passed; Ruff pass; compileall pass; payload smoke loop577_smoke runtime_evidence_reentry_open safe_no_execution_scoring_dry_run_contract final_no_execution_authorization_readiness_summary_reentry_open not_granted False qa-pg-alt False False False False False False False False False False False False False False False False False False False False False False False False; forbidden scan matched only not_granted/false policy field names and existing builder historical fields, no new execution imports/calls",
