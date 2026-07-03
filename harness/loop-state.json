@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T06:10:00+08:00",
+  "updated_at": "2026-07-04T06:30:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-evidence-request-intake-loop641",
-  "next_atomic_action": "REAL_SCORING_OPERATOR_REVIEWER_EVIDENCE_REVIEW_AND_GAP_PACKET_LOOP642：基于 loop641 real_scoring_evidence_request_intake，构建无执行的 evidence review/gap packet：复核 operator/reviewer/human request slots、missing evidence、Top50 scope、blocked reasons、form/button semantics、not_granted guardrails，并产出是否可进入 formal acceptance/rejection/change-request 的 gap 判断；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop642, continue until formal human acceptance/rejection/change-request stage is genuinely ready; stop only at that formal human review gate.",
+  "current_slice": "real-scoring-evidence-review-gap-packet-loop642",
+  "next_atomic_action": "REAL_SCORING_FORMAL_ACCEPTANCE_REJECTION_CHANGE_REQUEST_READINESS_LOOP643：基于 loop642 real_scoring_evidence_review_gap_packet，构建无执行的 formal acceptance/rejection/change-request readiness summary：把 reviewed slots、evidence gaps、Top50 scope、blocked reasons、formal_readiness=false、not_granted guardrails 与下一步人工动作收束为用户可理解的正式复核前置状态；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop643, stop only if readiness can genuinely enter formal human acceptance/rejection/change-request; otherwise continue gap-closure no-execution branch.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-653-real-scoring-evidence-request-intake",
+  "last_tick": "SYNC-654-real-scoring-evidence-review-gap-packet",
   "last_sync_sources": [
+    "SYNC-654 loop642 Real scoring evidence review/gap packet",
+    "loop642 implementation: added real_scoring_evidence_review_gap_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_evidence_request_intake_v1 to show reviewed request slots, evidence gaps, Top50 scope review, blocked reason review, formal readiness false, not_granted guardrails, recommended next actions, and all-false execution policy",
+    "loop642 verification: gap packet plus evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 28 passed; Ruff pass; compileall pass; payload smoke loop642_smoke blocked_evidence_gaps_open 授权材料仍有缺口 3 20 False not_granted small_batch_trial False False False False; forbidden scan matched only false/not_allowed policy fields",
+    "loop642 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_FORMAL_ACCEPTANCE_REJECTION_CHANGE_REQUEST_READINESS_LOOP643",
     "SYNC-653 loop641 Real scoring evidence request intake",
     "loop641 implementation: added real_scoring_evidence_request_intake_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes formal_real_scoring_human_authorization_handoff_v1 to show operator/reviewer/human request slots, missing evidence, Top50 handoff scope, blocked reasons, form schema, non-executing button semantics, not_granted authorization, and all-false execution policy",
     "loop641 verification: evidence intake plus formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 25 passed; Ruff pass; compileall pass; payload smoke loop641_smoke open_collecting_authorization_evidence 补齐真实评分授权材料 3 3 small_batch_trial store_request_only_no_execution not_granted False False False False False False False False; forbidden scan matched only false/not_allowed policy fields",

@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T06:10:00+08:00
+updated_at: 2026-07-04T06:30:00+08:00
+
+## Latest Handoff — SYNC-654 real scoring evidence review/gap packet
+
+- [DONE] Added `real_scoring_evidence_review_gap_packet_v1` and exposed it from creation plan.
+- [DONE] Gap packet consumes evidence request intake and shows reviewed request slots, evidence gaps, Top50 scope review, blocked reason review, formal readiness false, not_granted guardrails, and recommended next actions.
+- [VERIFY] Focused related tests **28 passed**; Ruff pass; compileall pass; payload smoke `loop642_smoke blocked_evidence_gaps_open 授权材料仍有缺口 3 20 False not_granted small_batch_trial False False False False`; forbidden scan only matched false/not_allowed policy fields.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_ACCEPTANCE_REJECTION_CHANGE_REQUEST_READINESS_LOOP643`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-653 real scoring evidence request intake
 
