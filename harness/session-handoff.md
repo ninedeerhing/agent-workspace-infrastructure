@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T13:40:00+08:00
+updated_at: 2026-07-03T08:16:10+08:00
+
+## Latest Handoff — SYNC-559 runner/DSN repair prerequisite branch
+
+- [DONE] `runner_dsn_repair_prerequisite_branch_v1` now turns the max_rows branch recommendation `runner_dsn_repair` into a no-execution runner/DSN repair prerequisite branch before any real factor scoring path.
+- [DONE] The creation plan exposes injected runner manifest requirements, DSN isolation requirements, original `qa-pg-alt` container + host port 55432 policy, no-substitute-DB policy, operator/reviewer confirmable items, and `recommended_next_branch=safe_no_execution_scoring_dry_run_contract`.
+- [VERIFY] RED missing module **1 collection error**; focused runner/DSN branch unit+bridge **4 passed**; adjacent max_rows branch + run request preflight + DB runner preflight + runner/DSN branch **16 passed**; Ruff pass; compileall pass; forbidden marker scan clean; smoke `loop547_smoke blocked_waiting_for_runner_dsn_repair safe_no_execution_scoring_dry_run_contract qa-pg-alt 55432 False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success and recommendations were incorporated. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_CONTRACT_LOOP548`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-558 max rows/chunking policy branch
 
