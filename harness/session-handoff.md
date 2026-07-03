@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T06:50:00+08:00
+updated_at: 2026-07-04T07:10:00+08:00
+
+## Latest Handoff — SYNC-656 real scoring evidence gap closure action plan
+
+- [DONE] Added `real_scoring_evidence_gap_closure_action_plan_v1` and exposed it from creation plan.
+- [DONE] Action plan consumes readiness summary and groups 20 gaps into operator_runtime, reviewer_safety, human_decision, and system_blocker, with ordered actions and dependency order.
+- [VERIFY] Focused related tests **34 passed**; Ruff pass; compileall pass; payload smoke `loop644_smoke open_gap_closure_required 请按顺序补齐授权缺口 20 operator_runtime False not_granted False False False False`; forbidden scan only matched false/not_allowed policy fields.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_ACCEPTANCE_REJECTION_CHANGE_REQUEST_SURFACE_LOOP645`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-655 real scoring formal review readiness summary
 
