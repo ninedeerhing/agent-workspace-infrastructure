@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T23:05:22+08:00
+updated_at: 2026-07-03T23:11:58+08:00
+
+## Latest Handoff — SYNC-696 real scoring formal controls not-granted review packet
+
+- [DONE] Added `real_scoring_formal_controls_not_granted_review_packet_v1` and exposed it from creation plan.
+- [DONE] Packet consumes loop683 formal controls status summary and shows formal_controls_review_packet_ready, controls_enabled=false, formal_controls_status=not_granted, review_required_items=[operator_ack,reviewer_ack,controls_owner_ack], next_route=formal_controls_review_surface/will_execute=false, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_formal_controls_not_granted_review_packet`; focused + batch flow tests **11 passed**; all `test_real_scoring_*_unit.py` **187 passed**; Ruff pass; compileall pass; payload smoke `loop684_smoke formal_controls_review_packet_ready False not_granted operator_ack|reviewer_ack|controls_owner_ack formal_controls_review_surface False not_granted False True True True False False False False False False False False False False False False False False False False False False False False`; forbidden scan matched only all-false accepted_pool policy field names.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_REVIEW_SURFACE_LOOP685`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-695 real scoring formal controls status summary
 

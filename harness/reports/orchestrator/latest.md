@@ -1,3 +1,35 @@
+# Orchestrator Latest Report — SYNC-696 real scoring formal controls not-granted review packet
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring formal controls not-granted review packet"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_formal_controls_not_granted_review_packet.py"
+      summary: "Adds no-execution formal controls not-granted review packet."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_formal_controls_not_granted_review_packet from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_formal_controls_not_granted_review_packet_unit.py"
+      summary: "Covers review packet readiness, missing source, not-ready source, and creation-plan bridge behavior."
+  verification:
+    - command: "focused formal controls review packet plus batch flow pytest"
+      result: "11 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "187 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed formal_controls_review_packet_ready, controls_enabled false, not_granted authorization, three review-required items, next route will_execute false, and all execution flags false; forbidden scan matched only all-false accepted_pool policy field names."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Formal controls review packet must expose required acknowledgements while still refusing to imply authorization or execution readiness."
+    performance_note: "Formal controls review packet is ready for consumer review surface payload."
+  blockers:
+    - "Formal controls remain not_granted; no execution is authorized."
+  next: "REAL_SCORING_FORMAL_CONTROLS_REVIEW_SURFACE_LOOP685"
+
+---
+
 # Orchestrator Latest Report — SYNC-695 real scoring formal controls status summary
 
 report:
