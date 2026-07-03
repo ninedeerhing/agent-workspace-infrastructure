@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T08:43:31+08:00
+Updated: 2026-07-03T08:48:28+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop552 | active | gpt-5.5 | 2026-07-03T08:43:31+08:00 | SYNC-564 loop552 safe no-execution scoring formal authorization gap review complete; next loop553 formal authorization review surface planned | workload light; auto-mining to auto-backtest core chain advanced one function |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop552 | success | gpt-5.4 | 2026-07-03T08:43:31+08:00 | loop552 loop_plan returned; gap review should split confirmation/runtime/audit gaps and non-executable reasons | workload cleared; preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop552 | success | gpt-5.4 | 2026-07-03T08:43:31+08:00 | loop552 assignment_matrix returned; orchestrator bounded write owner confirmed, executor not duplicated | workload cleared; preserve permanent identity |
+| orchestrator | current-thread | loop553 | active | gpt-5.5 | 2026-07-03T08:48:28+08:00 | SYNC-565 loop553 safe no-execution scoring formal authorization review surface complete; next loop554 explicit authorization handoff packet planned | workload light; auto-mining to auto-backtest core chain advanced one function |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop553 | success | gpt-5.4 | 2026-07-03T08:48:28+08:00 | loop553 loop_plan returned; surface should show gaps, non-executable reasons, and review-only button semantics | workload cleared; preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop553 | success | gpt-5.4 | 2026-07-03T08:48:28+08:00 | loop553 assignment_matrix returned; orchestrator bounded write owner confirmed, executor not duplicated | workload cleared; preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop552 | success | gpt-5.4 | 2026-07-03T08:43:31+08:00 | loop552 test matrix returned; source gating, confirmation/runtime/audit gaps, non-executable reasons, next branch, and all-false side effects incorporated | workload cleared; preserve permanent identity |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop553 | success | gpt-5.4 | 2026-07-03T08:48:28+08:00 | loop553 test matrix returned; source gating, consumer summary, operator/reviewer actions, button semantics, non-executable notice, and all-false side effects incorporated | workload cleared; preserve permanent identity |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop544 | final_review_requested | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 final verification requested after local verification and truth-source sync | no duplicate verifier thread created; permanent identity preserved |
 ## Latest Roster Notes
+- 2026-07-03T08:48:28+08:00 · SYNC-565 · loop553: Safe no-execution scoring formal authorization review surface now exposes consumer summary, operator/reviewer actions, button semantics, non-executable notice, and recommended_next_branch=safe_no_execution_scoring_explicit_authorization_handoff_packet; Planner/Dispatcher/Test Engineer success; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T08:43:31+08:00 · SYNC-564 · loop552: Safe no-execution scoring formal authorization gap review now exposes confirmation gaps, runtime gaps, audit/rollback gaps, non-executable reasons, and recommended_next_branch=safe_no_execution_scoring_formal_authorization_review_surface; Planner/Dispatcher/Test Engineer success; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T08:38:56+08:00 · SYNC-563 · loop551: Safe no-execution scoring dry-run authorization materials now exposes operator materials, reviewer materials, manual confirmation packet, blocked execution boundary, and recommended_next_branch=safe_no_execution_scoring_formal_authorization_gap_review; Planner/Dispatcher/Test Engineer success; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T08:34:20+08:00 · SYNC-562 · loop550: Safe no-execution scoring result-shape review now exposes placeholder result schema, metric preview shape, blocked execution gap, manual confirmations, and recommended_next_branch=safe_no_execution_scoring_dry_run_authorization_materials; Planner/Dispatcher/Test Engineer success; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
