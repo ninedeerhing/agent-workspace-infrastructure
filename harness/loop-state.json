@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T01:35:00+08:00",
+  "updated_at": "2026-07-04T01:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "safe-no-execution-scoring-result-shape-review-reentry-refresh-loop625",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_DRY_RUN_AUTHORIZATION_MATERIALS_REENTRY_REFRESH_LOOP626：基于 safe_no_execution_scoring_result_shape_review_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_dry_run_authorization_materials，刷新/延展既有 safe_no_execution_scoring_dry_run_authorization_materials_reentry_v1，使 dry-run authorization materials reentry 消费 reentry-aware result-shape review refresh，并继续串联 result_shape source summary、placeholder_result_schema、metric_preview_shape、runtime_policy_review、operator/reviewer materials、manual_confirmation_packet、blocked_execution_boundary、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop626, continue into formal authorization gap review reentry refresh without bypassing human/runtime authorization.",
+  "current_slice": "safe-no-execution-scoring-dry-run-authorization-materials-reentry-refresh-loop626",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_GAP_REVIEW_REENTRY_REFRESH_LOOP627：基于 safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_formal_authorization_gap_review，刷新/延展既有 safe_no_execution_scoring_formal_authorization_gap_review_reentry_v1，使 formal authorization gap review reentry 消费 reentry-aware dry-run authorization materials refresh，并继续串联 authorization_materials source summary、placeholder_result_schema、metric_preview_shape、runtime_policy_review、operator/reviewer materials、manual_confirmation_packet、blocked_execution_boundary、confirmation/runtime/audit gaps、non_executable_reasons、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop627, continue into formal authorization review surface reentry refresh without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-637-safe-no-execution-scoring-result-shape-review-reentry-refresh",
+  "last_tick": "SYNC-638-safe-no-execution-scoring-dry-run-authorization-materials-reentry-refresh",
   "last_sync_sources": [
+    "SYNC-638 loop626 Safe no-execution scoring dry-run authorization materials reentry refresh",
+    "loop626 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh after the final safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh so formal authorization gap review reentry consumes final reentry-aware dry-run authorization materials refresh instead of stale pre-refresh authorization-materials lineage; safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh itself consumes the latest result-shape review refresh from loop625",
+    "loop626 verification: RED authorization-materials-to-formal-gap chain showed stale formal authorization gap refresh lineage; focused authorization-to-formal-gap chain 12 passed after direct downstream recompute; Ruff pass; compileall pass; payload smoke loop626_smoke authorization_materials_reentry_open safe_no_execution_scoring_formal_authorization_gap_review True True not_granted False False False False False False False False False",
+    "loop626 worker: permanent Planner/Dispatcher/Test Engineer success; Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval; Verifier channel_waitingOnApproval not duplicated and local verification fallback used; Code Reviewer channel_slow/waitingOnApproval not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_GAP_REVIEW_REENTRY_REFRESH_LOOP627",
     "SYNC-637 loop625 Safe no-execution scoring result-shape review reentry refresh",
     "loop625 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh after the final safe_no_execution_scoring_result_shape_review_reentry_refresh so dry-run authorization materials reentry consumes final reentry-aware result-shape review refresh instead of stale pre-refresh lineage; safe_no_execution_scoring_result_shape_review_reentry_refresh itself already consumed the latest dry-run review packet refresh from loop624",
     "loop625 verification: RED result-shape-to-authorization-materials chain showed stale authorization materials refresh lineage; focused result-shape-to-authorization chain 12 passed after direct downstream recompute; Ruff pass; compileall pass; payload smoke loop625_smoke result_shape_review_reentry_open safe_no_execution_scoring_dry_run_authorization_materials True True not_granted False False False False False False False False False",
