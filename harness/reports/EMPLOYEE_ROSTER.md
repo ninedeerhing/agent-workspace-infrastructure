@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T20:49:50+08:00
+Updated: 2026-07-03T20:55:14+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop661 | active | gpt-5.5 | 2026-07-03T20:49:50+08:00 | SYNC-673 loop661 reviewer_safety input readiness complete; next loop662 reviewer_safety input packet | workload light; readiness added |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop661 | reported | gpt-5.4 | 2026-07-03T20:49:50+08:00 | loop661 plan success: reviewer_safety recheck input readiness | workload cleared |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop661 | reported | gpt-5.4-mini | 2026-07-03T20:49:50+08:00 | loop661 boundary success: orchestrator bounded writer; no duplicate blocked workers | workload cleared |
+| orchestrator | current-thread | loop662 | active | gpt-5.5 | 2026-07-03T20:55:14+08:00 | SYNC-674 loop662 reviewer_safety input packet complete; next loop663 reviewer_safety packet review | workload light; input packet added |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop662 | reported | gpt-5.4 | 2026-07-03T20:55:14+08:00 | loop662 plan success: reviewer_safety recheck input packet | workload cleared |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop662 | reported | gpt-5.4-mini | 2026-07-03T20:55:14+08:00 | loop662 boundary success: orchestrator bounded writer; no duplicate blocked workers | workload cleared |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop661 | reported | gpt-5.4 | 2026-07-03T20:49:50+08:00 | loop661 test matrix success: readiness, missing_refs, 3/3/3 guard, no-execution | workload cleared |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop662 | reported | gpt-5.4 | 2026-07-03T20:55:14+08:00 | loop662 test matrix success: input packet, 3 item guard, no-execution | workload cleared |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-03T20:55:14+08:00 · SYNC-674 · loop662: Reviewer safety recheck input packet added. Planner/Dispatcher/Test Engineer success reports incorporated; packet exposes ready_reviewer_safety_recheck_input_packet, ready_for_reviewer_safety_packet_review=true, packet_item_count=3, packet_assembly_request enabled but will_execute=false, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-03T20:49:50+08:00 · SYNC-673 · loop661: Reviewer safety recheck input readiness added. Planner/Dispatcher/Test Engineer success reports incorporated; readiness exposes ready_for_reviewer_safety_recheck_input, required_material_count=3, input_slot_ref_count=3, acceptance_hint_ref_count=3, missing_refs=[], input_readiness_request enabled but will_execute=false, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-03T20:41:56+08:00 · SYNC-672 · loop660: Reviewer safety recheck request packet added. Planner/Dispatcher/Test Engineer success reports incorporated; packet exposes reviewer_safety_recheck_packet_ready, required_material_ids=3, input_slot_refs=3, acceptance_hint_refs=3, recheck_request enabled but will_execute=false, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-03T20:36:03+08:00 · SYNC-671 · loop659: Reviewer safety gap closure guidance added. Planner/Dispatcher/Test Engineer success reports incorporated; guidance exposes reviewer_safety_closure_guidance_ready, next_remaining_gap_group=reviewer_safety, reviewer_safety_required_materials=3, input_slots=3, acceptance_hints=3, reviewer_safety_recheck_request enabled but will_execute=false, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
