@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T21:08:37+08:00
+updated_at: 2026-07-03T21:14:22+08:00
+
+## Latest Handoff — SYNC-677 real scoring reviewer safety enablement recheck from regenerated model
+
+- [DONE] Added `real_scoring_reviewer_safety_enablement_recheck_from_regenerated_model_v1` and exposed it from creation plan.
+- [DONE] Recheck consumes loop664 reviewer_safety regenerated model and shows reviewer_safety_gap_closed_candidate_controls_still_not_granted, reviewer_safety_gap_closed_candidate=true, closed_gap_groups=[operator_runtime,reviewer_safety], remaining_gap_groups=[human_decision,system_blocker], controls_enabled=false, controls_still_not_granted=true, and not_granted authorization.
+- [VERIFY] Focused test **4 passed**; related chain **116 passed**; Ruff pass; compileall pass; payload smoke `loop665_smoke reviewer_safety_gap_closed_candidate_controls_still_not_granted True operator_runtime|reviewer_safety human_decision|system_blocker False True not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_HUMAN_DECISION_GAP_GROUP_ROUTING_LOOP666`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-676 real scoring reviewer safety recheck read-model regeneration
 
