@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T20:08:00+08:00",
+  "updated_at": "2026-07-03T20:13:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-operator-runtime-recheck-input-packet-loop654",
-  "next_atomic_action": "REAL_SCORING_OPERATOR_RUNTIME_RECHECK_INPUT_PACKET_REVIEW_LOOP655：基于 loop654 real_scoring_operator_runtime_recheck_input_packet，构建只读 packet review 层：确认 assembly_status=ready_operator_runtime_recheck_input_packet、packet_item_count=3、blocked_reasons=[]、ready_for_recheck_packet_regeneration=true，并输出 packet_review_status / can_regenerate_recheck_read_model；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop655, continue the no-execution operator-runtime recheck path and regenerate the recheck state only as a read-model.",
+  "current_slice": "real-scoring-operator-runtime-recheck-input-packet-review-loop655",
+  "next_atomic_action": "REAL_SCORING_OPERATOR_RUNTIME_RECHECK_READ_MODEL_REGENERATION_LOOP656：基于 loop655 real_scoring_operator_runtime_recheck_input_packet_review，构建只读 operator_runtime recheck read-model regeneration：当 packet_review_status=ready_to_regenerate_recheck_read_model 且 can_regenerate_recheck_read_model=true 时重新生成 operator_runtime recheck read-model，并明确 return_to_enablement_check 的只读候选状态；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop656, feed regenerated operator-runtime recheck read-model back into the formal decision enablement recheck path without granting execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-666-real-scoring-operator-runtime-recheck-input-packet",
+  "last_tick": "SYNC-667-real-scoring-operator-runtime-recheck-input-packet-review",
   "last_sync_sources": [
+    "SYNC-667 loop655 Real scoring operator runtime recheck input packet review",
+    "loop655 implementation: added real_scoring_operator_runtime_recheck_input_packet_review_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_operator_runtime_recheck_input_packet_v1 to show ready_to_regenerate_recheck_read_model, can_regenerate_recheck_read_model true, packet_item_count 3, blocked_reasons empty, read_model_regeneration_request enabled but will_execute false, not_granted authorization, and all-false execution policy",
+    "loop655 verification: packet review plus input packet, input readiness, recheck regeneration packet, remediation guidance, formal enablement recheck, operator runtime recheck, frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 72 passed; Ruff pass; compileall pass; payload smoke loop655_smoke ready_to_regenerate_recheck_read_model True 3 0 True False not_granted False False False",
+    "loop655 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_OPERATOR_RUNTIME_RECHECK_READ_MODEL_REGENERATION_LOOP656",
     "SYNC-666 loop654 Real scoring operator runtime recheck input packet",
     "loop654 implementation: added real_scoring_operator_runtime_recheck_input_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_operator_runtime_recheck_input_readiness_v1 to show ready_operator_runtime_recheck_input_packet, ready_for_recheck_packet_regeneration true, packet_item_count 3, recheck_packet_assembly_request enabled but will_execute false, not_granted authorization, and all-false execution policy",
     "loop654 verification: input packet plus input readiness, recheck regeneration packet, remediation guidance, formal enablement recheck, operator runtime recheck, frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 68 passed; Ruff pass; compileall pass; payload smoke loop654_smoke ready_operator_runtime_recheck_input_packet True 3 3 3 3 True False not_granted False False False",

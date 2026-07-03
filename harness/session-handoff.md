@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T20:08:00+08:00
+updated_at: 2026-07-03T20:13:00+08:00
+
+## Latest Handoff — SYNC-667 real scoring operator runtime recheck input packet review
+
+- [DONE] Added `real_scoring_operator_runtime_recheck_input_packet_review_v1` and exposed it from creation plan.
+- [DONE] Review consumes loop654 input packet and shows ready_to_regenerate_recheck_read_model, can_regenerate_recheck_read_model=true, packet_item_count=3, blocked_reasons=[], `read_model_regeneration_request.enabled=true`, `will_execute=false`, and not_granted authorization.
+- [VERIFY] Focused related tests **72 passed**; Ruff pass; compileall pass; payload smoke `loop655_smoke ready_to_regenerate_recheck_read_model True 3 0 True False not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_OPERATOR_RUNTIME_RECHECK_READ_MODEL_REGENERATION_LOOP656`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-666 real scoring operator runtime recheck input packet
 
