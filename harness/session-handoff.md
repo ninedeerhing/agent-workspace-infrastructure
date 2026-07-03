@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-04T00:00:00+08:00
+updated_at: 2026-07-04T00:10:00+08:00
+
+## Latest Handoff — SYNC-631 safe no-execution scoring explicit human authorization request intake reentry refresh
+
+- [DONE] `safe_no_execution_scoring_explicit_human_authorization_request_intake_reentry_refresh` now reconnects final blocked-until explicit human authorization refresh to explicit human authorization request intake reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_blocked_until_explicit_human_authorization_reentry_refresh.source_summary` as request-intake `blocked_reentry_source_summary`, preserving blocked lineage, blocked_state_summary, requestable_decisions, required_evidence, operator/reviewer confirmation slots, not_granted_guardrails, request_entry, blocked_reasons, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_operator_reviewer_authorization_evidence_review`.
+- [DONE] Anti-small-loop repair: direct downstream `safe_no_execution_scoring_operator_reviewer_authorization_evidence_review_reentry_refresh` is recomputed from the latest request intake refresh, so request→evidence stays on one lineage.
+- [VERIFY] RED bridge showed stale request intake refresh lineage; focused unit+bridge **7 passed**; request→evidence chain **14 passed**; Ruff pass; compileall pass; smoke `loop619_smoke explicit_human_authorization_request_intake_reentry_open safe_no_execution_scoring_operator_reviewer_authorization_evidence_review True True not_granted False False False False False False False False`; diff check clean except CRLF warnings.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_EVIDENCE_GAP_PACKET_REENTRY_REFRESH_LOOP620`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-630 safe no-execution scoring final human authorization review reentry refresh
 
