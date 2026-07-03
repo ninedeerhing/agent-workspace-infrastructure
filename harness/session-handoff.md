@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T15:35:00+08:00
+updated_at: 2026-07-03T15:50:00+08:00
+
+## Latest Handoff — SYNC-601 safe no-execution scoring explicit authorization evidence gap packet reentry refresh
+
+- [DONE] `safe_no_execution_scoring_explicit_authorization_evidence_gap_packet_reentry_refresh` now reconnects operator/reviewer authorization evidence review refresh to explicit authorization evidence gap packet reentry.
+- [DONE] The creation plan exposes evidence-review refresh lineage, evidence_review_reentry_summary, required_evidence, missing_or_unreviewed_evidence, confirmation_slot_gaps, not_granted_guardrails, request_entry, blocked_reasons, manual_closure_actions, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_explicit_authorization_closure_review`.
+- [VERIFY] RED showed missing `source_summary` and missing `safe_no_execution_scoring_explicit_authorization_evidence_gap_packet_reentry_refresh`; focused chain **23 passed**; Ruff pass; compileall pass; smoke `loop589_smoke explicit_authorization_evidence_gap_packet_reentry_open safe_no_execution_scoring_explicit_authorization_closure_review final_no_execution_authorization_readiness_summary_reentry_open not_granted not_granted review_only_request_intake not_granted False False False False False False False False False False False False False False False False False False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_CLOSURE_REVIEW_REENTRY_REFRESH_LOOP590`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-600 safe no-execution scoring operator/reviewer authorization evidence review reentry refresh
 
