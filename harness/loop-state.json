@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T09:44:51+08:00",
+  "updated_at": "2026-07-03T09:52:12+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "runner-dsn-repair-prerequisite-branch-reentry-loop562",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_DRY_RUN_CONTRACT_REENTRY_LOOP563：基于 runner_dsn_repair_prerequisite_branch_reentry_v1.recommended_next_branch=safe_no_execution_scoring_dry_run_contract，复用/延展既有 safe_no_execution_scoring_dry_run_contract_v1，生成 no-execution dry-run contract reentry packet，把 runtime evidence reentry、injected runner requirements、original qa-pg-alt/no-substitute-DB policy、result-shape expectations、manual confirmations 和 blocked runtime paths 串回安全 dry-run 合同；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop563, continue through no-execution dry-run review/result-shape/authorization material closure unless explicit human/runtime authorization becomes available.",
+  "current_slice": "safe-no-execution-scoring-dry-run-contract-reentry-loop563",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_LOOP564：基于 safe_no_execution_scoring_dry_run_contract_reentry_v1.recommended_next_branch=safe_no_execution_scoring_dry_run_review_packet，复用/延展既有 safe_no_execution_scoring_dry_run_review_packet_v1，生成 reentry-aware no-execution dry-run review packet，把 dry-run contract reentry、runtime policy review、operator/reviewer confirmations、result-shape expectations、forbidden runtime paths 和 not_granted authorization 串入下一层 review packet；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop564, continue through result-shape/authorization material closure reentry without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-574-runner-dsn-repair-prerequisite-branch-reentry",
+  "last_tick": "SYNC-575-safe-no-execution-scoring-dry-run-contract-reentry",
   "last_sync_sources": [
+    "SYNC-575 loop563 Safe no-execution scoring dry-run contract reentry",
+    "loop563 implementation: added safe_no_execution_scoring_dry_run_contract_reentry_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes runner_dsn_repair_prerequisite_branch_reentry_v1 and existing safe_no_execution_scoring_dry_run_contract_v1 to emit dry_run_contract_reentry_open, source_summary, runtime_policy_review, operator/reviewer confirmations, dry_run_contract_summary, authorization_decision not_granted/can_execute_now false, all-false execution policy, and recommended_next_branch=safe_no_execution_scoring_dry_run_review_packet",
+    "loop563 verification: RED missing safe_no_execution_scoring_dry_run_contract_reentry module 1 collection error; focused unit+bridge plus adjacent dry-run contract and runner/DSN reentry chain 12 passed; Ruff pass; compileall pass; payload smoke loop563_smoke dry_run_contract_reentry_open safe_no_execution_scoring_dry_run_review_packet safe_no_execution_scoring_dry_run_contract safe_no_execution_scoring_dry_run_review_packet qa-pg-alt 55432 missing not_granted False False False False False False False False False False; forbidden scan matched only policy field names may_start_docker/started_docker and existing builder dry-run preflight field, no imports/calls",
+    "loop563 worker: permanent Planner/Dispatcher/Test Engineer success; Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval; Verifier channel_waitingOnApproval not duplicated and local verification fallback used; Code Reviewer channel_slow/waitingOnApproval and not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_LOOP564",
     "SYNC-574 loop562 Runner/DSN repair prerequisite branch reentry",
     "loop562 implementation: added runner_dsn_repair_prerequisite_branch_reentry_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes safe_no_execution_scoring_final_no_execution_authorization_readiness_summary_v1 and existing runner_dsn_repair_prerequisite_branch_v1 to emit runtime_evidence_reentry_open, source_summary, runtime evidence requirements, original qa-pg-alt policy, no-substitute-DB policy, operator/reviewer confirmations, authorization_decision not_granted/can_execute_now false, all-false execution policy, and recommended_next_branch=safe_no_execution_scoring_dry_run_contract",
     "loop562 verification: RED missing runner_dsn_repair_prerequisite_branch_reentry module 1 collection error; focused unit+bridge plus adjacent runner/DSN/readiness chain 12 passed; Ruff pass; compileall pass; smoke loop562_smoke runtime_evidence_reentry_open safe_no_execution_scoring_dry_run_contract runner_dsn_repair_prerequisite_branch qa-pg-alt missing not_granted False False False False False False False False False",

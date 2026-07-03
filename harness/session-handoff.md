@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T09:44:51+08:00
+updated_at: 2026-07-03T09:52:12+08:00
+
+## Latest Handoff — SYNC-575 safe no-execution scoring dry-run contract reentry
+
+- [DONE] `safe_no_execution_scoring_dry_run_contract_reentry_v1` now reconnects runner/DSN runtime evidence reentry to the existing safe dry-run contract.
+- [DONE] The creation plan exposes source summary, runtime policy review, operator/reviewer confirmations, dry-run contract summary, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_dry_run_review_packet`.
+- [VERIFY] RED missing module **1 collection error**; focused reentry unit+bridge plus adjacent dry-run contract and runner/DSN reentry chain **12 passed**; Ruff pass; compileall pass; smoke `loop563_smoke dry_run_contract_reentry_open safe_no_execution_scoring_dry_run_review_packet safe_no_execution_scoring_dry_run_contract safe_no_execution_scoring_dry_run_review_packet qa-pg-alt 55432 missing not_granted False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_LOOP564`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-574 runner dsn repair prerequisite branch reentry
 
