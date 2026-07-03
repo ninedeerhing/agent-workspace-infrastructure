@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T12:25:00+08:00
+updated_at: 2026-07-03T12:40:00+08:00
+
+## Latest Handoff — SYNC-589 runner dsn repair prerequisite branch reentry refresh
+
+- [DONE] `runner_dsn_repair_prerequisite_branch_reentry_refresh` now reconnects final no-execution authorization readiness summary reentry to runner/DSN runtime evidence reentry.
+- [DONE] The creation plan exposes final readiness reentry lineage, original qa-pg-alt policy, DSN isolation requirements, no-substitute-DB policy, operator/reviewer confirmations, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_dry_run_contract`.
+- [VERIFY] Initial focused run exposed a circular import after adding the readiness summary reentry constant import; fixed with a local string constant. Focused chain **15 passed**; Ruff pass; compileall pass; smoke `loop577_smoke runtime_evidence_reentry_open safe_no_execution_scoring_dry_run_contract final_no_execution_authorization_readiness_summary_reentry_open not_granted False qa-pg-alt False False False False False False False False False False False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_CONTRACT_REENTRY_REFRESH_LOOP578`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-588 safe no-execution scoring final no-execution authorization readiness summary reentry
 
