@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T14:05:00+08:00
+updated_at: 2026-07-03T14:20:00+08:00
+
+## Latest Handoff — SYNC-595 safe no-execution scoring formal authorization review surface reentry refresh
+
+- [DONE] `safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh` now reconnects formal gap review refresh to formal authorization review surface reentry.
+- [DONE] The creation plan exposes formal gap refresh lineage, consumer summary, operator/reviewer actions, button semantics, non-executable notice, placeholder result schema, metric preview shape, runtime policy review, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_explicit_authorization_handoff_packet`.
+- [VERIFY] RED showed missing `source_summary` and missing `safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh`; focused chain **21 passed**; Ruff pass; compileall pass; smoke `loop583_smoke formal_authorization_review_surface_reentry_open safe_no_execution_scoring_explicit_authorization_handoff_packet final_no_execution_authorization_readiness_summary_reentry_open factor_value_daily not_computed 正式执行授权尚未完成 review_only_no_execution not_granted False False False False False False False False False False False False False False False False False False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_HANDOFF_PACKET_REENTRY_REFRESH_LOOP584`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-594 safe no-execution scoring formal authorization gap review reentry refresh
 

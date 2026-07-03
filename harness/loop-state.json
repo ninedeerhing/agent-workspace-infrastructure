@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T14:05:00+08:00",
+  "updated_at": "2026-07-03T14:20:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "safe-no-execution-scoring-formal-authorization-gap-review-reentry-refresh-loop582",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_REVIEW_SURFACE_REENTRY_REFRESH_LOOP583：基于 safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_formal_authorization_review_surface，刷新/延展既有 safe_no_execution_scoring_formal_authorization_review_surface_reentry_v1，使 formal authorization review surface reentry 消费 reentry-aware formal gap review refresh，并继续串联 consumer summary、operator/reviewer actions、button semantics、non-executable notice、placeholder result schema、metric preview shape、runtime policy review 与 authorization_decision；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop583, continue into explicit authorization handoff packet reentry refresh without bypassing human/runtime authorization.",
+  "current_slice": "safe-no-execution-scoring-formal-authorization-review-surface-reentry-refresh-loop583",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_HANDOFF_PACKET_REENTRY_REFRESH_LOOP584：基于 safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_explicit_authorization_handoff_packet，刷新/延展既有 safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_v1，使 explicit authorization handoff packet reentry 消费 reentry-aware formal review surface refresh，并继续串联 consumer summary、operator/reviewer actions、button semantics、non-executable notice、runtime policy review、handoff summary、required human decisions 与 not_granted state；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop584, continue into final human authorization review reentry refresh without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-594-safe-no-execution-scoring-formal-authorization-gap-review-reentry-refresh",
+  "last_tick": "SYNC-595-safe-no-execution-scoring-formal-authorization-review-surface-reentry-refresh",
   "last_sync_sources": [
+    "SYNC-595 loop583 Safe no-execution scoring formal authorization review surface reentry refresh",
+    "loop583 implementation: safe_no_execution_scoring_formal_authorization_review_surface_reentry_v1 now carries source_summary and user_facing_batch_mining_creation_plan_v1 exposes safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh consuming safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh; refresh preserves consumer summary, operator/reviewer actions, button semantics, non-executable notice, placeholder result schema, metric preview shape, runtime policy review, authorization_decision not_granted/can_execute_now false, and all-false execution policy",
+    "loop583 verification: RED showed missing source_summary and missing safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh key; focused related chain 21 passed; Ruff pass; compileall pass; payload smoke loop583_smoke formal_authorization_review_surface_reentry_open safe_no_execution_scoring_explicit_authorization_handoff_packet final_no_execution_authorization_readiness_summary_reentry_open factor_value_daily not_computed 正式执行授权尚未完成 review_only_no_execution not_granted False False False False False False False False False False False False False False False False False False False False False False False False; forbidden scan clean",
+    "loop583 worker: permanent Planner/Dispatcher/Test Engineer success; Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval; Verifier channel_waitingOnApproval not duplicated and local verification fallback used; Code Reviewer channel_slow/waitingOnApproval and not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_HANDOFF_PACKET_REENTRY_REFRESH_LOOP584",
     "SYNC-594 loop582 Safe no-execution scoring formal authorization gap review reentry refresh",
     "loop582 implementation: safe_no_execution_scoring_formal_authorization_gap_review_reentry_v1 source_summary now carries authorization_materials_source_summary, and user_facing_batch_mining_creation_plan_v1 exposes safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh consuming safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh; refresh preserves placeholder result schema, metric preview shape, runtime policy review, operator/reviewer materials, manual confirmation packet, blocked execution boundary, confirmation/runtime/audit gaps, non-executable reasons, authorization_decision not_granted/can_execute_now false, and all-false execution policy",
     "loop582 verification: RED showed missing authorization_materials_source_summary and missing safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh key; focused related chain 20 passed; Ruff pass; compileall pass; payload smoke loop582_smoke formal_authorization_gap_review_reentry_open safe_no_execution_scoring_formal_authorization_review_surface final_no_execution_authorization_readiness_summary_reentry_open factor_value_daily not_computed not_granted 4 4 3 not_granted False False False False False False False False False False False False False False False False False False False False False False False False; forbidden scan clean",
