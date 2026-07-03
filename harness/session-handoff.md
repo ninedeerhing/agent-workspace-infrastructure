@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T09:37:49+08:00
+updated_at: 2026-07-03T09:44:51+08:00
+
+## Latest Handoff — SYNC-574 runner dsn repair prerequisite branch reentry
+
+- [DONE] `runner_dsn_repair_prerequisite_branch_reentry_v1` now reconnects the final no-execution readiness summary to the existing runner/DSN runtime evidence branch.
+- [DONE] The creation plan exposes runtime evidence reentry, source summary, injected runner requirements, original `qa-pg-alt` policy, DSN isolation gap, no-substitute-DB policy, operator/reviewer confirmations, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_dry_run_contract`.
+- [VERIFY] RED missing module **1 collection error**; focused reentry unit+bridge plus adjacent runner/DSN/readiness chain **12 passed**; Ruff pass; compileall pass; smoke `loop562_smoke runtime_evidence_reentry_open safe_no_execution_scoring_dry_run_contract runner_dsn_repair_prerequisite_branch qa-pg-alt missing not_granted False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_CONTRACT_REENTRY_LOOP563`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-573 safe no-execution scoring final no-execution authorization readiness summary
 
