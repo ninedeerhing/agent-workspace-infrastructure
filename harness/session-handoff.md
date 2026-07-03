@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T05:50:00+08:00
+updated_at: 2026-07-04T06:10:00+08:00
+
+## Latest Handoff — SYNC-653 real scoring evidence request intake
+
+- [DONE] Added `real_scoring_evidence_request_intake_v1` and exposed it from creation plan.
+- [DONE] Intake consumes formal handoff and shows operator/reviewer/human request slots, missing evidence, Top50 handoff scope, blocked reasons, form schema, store-request-only semantics, and not_granted authorization.
+- [VERIFY] Focused related tests **25 passed**; Ruff pass; compileall pass; payload smoke `loop641_smoke open_collecting_authorization_evidence 补齐真实评分授权材料 3 3 small_batch_trial store_request_only_no_execution not_granted False False False False False False False False`; forbidden scan only matched false/not_allowed policy fields.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_OPERATOR_REVIEWER_EVIDENCE_REVIEW_AND_GAP_PACKET_LOOP642`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-652 formal real scoring human authorization handoff
 

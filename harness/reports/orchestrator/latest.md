@@ -1,3 +1,34 @@
+# Orchestrator Latest Report — SYNC-653 real scoring evidence request intake
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring evidence request intake"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_evidence_request_intake.py"
+      summary: "Adds a no-execution evidence request intake consuming formal real-scoring handoff."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_evidence_request_intake from the creation plan."
+  verification:
+    - command: "evidence intake + adjacent handoff/review/authorization/preflight/runtime pytest"
+      result: "25 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed open_collecting_authorization_evidence, 3 request slots, 3 missing evidence items, store_request_only_no_execution, not_granted, and all execution flags false; forbidden scan matched only false/not_allowed policy fields."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Evidence request intake can be open for materials while execution remains explicitly forbidden."
+    performance_note: "Real scoring path now has a user-visible operator/reviewer/human evidence request intake before evidence review/gap assessment."
+  blockers:
+    - "Submitted material handling and evidence gap review are not implemented yet; next loop handles review/gap packet."
+    - "Authorization remains not_granted and no-execution."
+    - "Executor remains waitingOnApproval; Dispatcher boundary keeps orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier and Code Reviewer canonical channels were not duplicated; local verification is authoritative fallback."
+  next: "REAL_SCORING_OPERATOR_REVIEWER_EVIDENCE_REVIEW_AND_GAP_PACKET_LOOP642"
+
+---
+
 # Orchestrator Latest Report — SYNC-652 formal real scoring human authorization handoff
 
 report:
