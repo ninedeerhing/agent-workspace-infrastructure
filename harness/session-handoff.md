@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T11:05:00+08:00
+updated_at: 2026-07-03T11:15:00+08:00
+
+## Latest Handoff — SYNC-583 safe no-execution scoring blocked until explicit human authorization reentry
+
+- [DONE] `safe_no_execution_scoring_blocked_until_explicit_human_authorization_reentry_v1` now reconnects final human authorization review reentry to the existing no-execution blocked-until-explicit-human-authorization packet.
+- [DONE] The creation plan exposes consumer summary, final review summary, required human decisions, not_granted_state, manual_confirmation_state, handoff_boundaries, blocked_reasons, explicit_authorization_entry, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_explicit_human_authorization_request_intake`.
+- [VERIFY] RED missing module **1 collection error**; focused reentry unit+bridge plus adjacent final human authorization review reentry and blocked-state chain **14 passed**; Ruff pass; compileall pass; smoke `loop571_smoke blocked_until_explicit_human_authorization_reentry_open safe_no_execution_scoring_explicit_human_authorization_request_intake 正式执行授权尚未完成 not_granted not_granted review_only_request_intake not_granted False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_EXPLICIT_HUMAN_AUTHORIZATION_REQUEST_INTAKE_REENTRY_LOOP572`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-582 safe no-execution scoring final human authorization review reentry
 
