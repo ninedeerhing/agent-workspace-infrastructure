@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T22:54:42+08:00",
+  "updated_at": "2026-07-03T23:00:22+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-system-blocker-enablement-recheck-loop681",
-  "next_atomic_action": "REAL_SCORING_ALL_GAP_GROUPS_CLOSED_CANDIDATE_SUMMARY_LOOP682：基于 loop681 real_scoring_system_blocker_enablement_recheck_from_regenerated_model，构建只读 all-gap candidate closure summary：当 closed_gap_groups 覆盖 operator_runtime/reviewer_safety/human_decision/system_blocker 且 remaining_gap_groups=[] 时，输出 all_gap_groups_closed_candidate=true、controls_still_not_granted=true、formal_controls_status=not_granted、next_route=formal_controls_not_granted_review、manual_action_required=false、will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop682, derive formal-controls-not-granted review without executing scorer/backtest.",
+  "current_slice": "real-scoring-all-gap-groups-closed-candidate-summary-loop682",
+  "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_STATUS_SUMMARY_LOOP683：基于 loop682 real_scoring_all_gap_groups_closed_candidate_summary，构建只读 formal controls status summary：当 all_gap_groups_closed_candidate=true 且 formal_controls_status=not_granted 时，输出 formal_controls_not_granted_summary_ready、all_gap_groups_closed_candidate=true、controls_enabled=false、authorization state not_granted、next_route=formal_controls_not_granted_review、will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop683, derive formal-controls-not-granted review packet without executing scorer/backtest.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-693-real-scoring-system-blocker-enablement-recheck",
+  "last_tick": "SYNC-694-real-scoring-all-gap-candidate-summary",
   "last_sync_sources": [
+    "SYNC-694 loop682 Real scoring all gap groups closed candidate summary",
+    "loop682 implementation: added real_scoring_all_gap_groups_closed_candidate_summary_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_system_blocker_enablement_recheck_from_regenerated_model_v1 to show all_gap_groups_closed_candidate_controls_not_granted, all_gap_groups_closed_candidate true, closed_gap_groups operator_runtime/reviewer_safety/human_decision/system_blocker, remaining_gap_groups empty, formal_controls_status not_granted, controls_still_not_granted true, manual_action_required false, next_route formal_controls_not_granted_review will_execute false, authorization not_granted, and all-false execution policy",
+    "loop682 verification: initial RED ModuleNotFoundError for real_scoring_all_gap_groups_closed_candidate_summary; focused plus batch mining flow tests 11 passed; all test_real_scoring_*_unit.py 179 passed; targeted Ruff pass; compileall pass; payload smoke loop682_smoke all_gap_groups_closed_candidate_controls_not_granted True operator_runtime|reviewer_safety|human_decision|system_blocker  not_granted True False formal_controls_not_granted_review False not_granted False False False False False False False False False False False False False False False; forbidden scan matched only all-false policy field names",
+    "loop682 worker: permanent Planner, Dispatcher, and Test Engineer returned success; Dispatcher assigned orchestrator as bounded writer and forbade duplicate Executor/Code Reviewer/Verifier",
+    "next: REAL_SCORING_FORMAL_CONTROLS_STATUS_SUMMARY_LOOP683",
     "SYNC-693 loop681 Real scoring system_blocker enablement recheck from regenerated model",
     "loop681 implementation: added real_scoring_system_blocker_enablement_recheck_from_regenerated_model_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_system_blocker_read_model_regeneration_v1 to show system_blocker_gap_closed_candidate_controls_still_not_granted, system_blocker_gap_closed_candidate true, closed_gap_groups operator_runtime/reviewer_safety/human_decision/system_blocker, remaining_gap_groups empty, remaining_missing_materials 0, controls_enabled false, controls_still_not_granted true, authorization not_granted, and all-false execution policy",
     "loop681 verification: initial RED ModuleNotFoundError for real_scoring_system_blocker_enablement_recheck_from_regenerated_model; focused plus batch mining flow tests 11 passed; all test_real_scoring_*_unit.py 175 passed; targeted Ruff pass; compileall pass; payload smoke loop681_smoke system_blocker_gap_closed_candidate_controls_still_not_granted True operator_runtime|reviewer_safety|human_decision|system_blocker  0 False True not_granted False False False False False False False False False False False False False False False; forbidden scan matched only all-false policy field names",

@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T22:54:42+08:00
+updated_at: 2026-07-03T23:00:22+08:00
+
+## Latest Handoff — SYNC-694 real scoring all-gap candidate summary
+
+- [DONE] Added `real_scoring_all_gap_groups_closed_candidate_summary_v1` and exposed it from creation plan.
+- [DONE] Summary consumes loop681 system_blocker enablement recheck and shows all_gap_groups_closed_candidate=true, four closed gap groups, remaining_gap_groups=[], formal_controls_status=not_granted, controls_still_not_granted=true, manual_action_required=false, next_route=formal_controls_not_granted_review/will_execute=false, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_all_gap_groups_closed_candidate_summary`; focused + batch flow tests **11 passed**; all `test_real_scoring_*_unit.py` **179 passed**; Ruff pass; compileall pass; payload smoke `loop682_smoke all_gap_groups_closed_candidate_controls_not_granted True operator_runtime|reviewer_safety|human_decision|system_blocker  not_granted True False formal_controls_not_granted_review False not_granted False False False False False False False False False False False False False False False`; forbidden scan matched only all-false policy field names.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_STATUS_SUMMARY_LOOP683`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-693 real scoring system_blocker enablement recheck
 
