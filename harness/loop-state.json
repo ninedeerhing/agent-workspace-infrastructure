@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T09:30:00+08:00",
+  "updated_at": "2026-07-04T09:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-operator-runtime-missing-materials-remediation-guidance-loop651",
-  "next_atomic_action": "REAL_SCORING_OPERATOR_RUNTIME_RECHECK_REGENERATION_PACKET_LOOP652：基于 loop651 real_scoring_operator_runtime_missing_materials_remediation_guidance，构建补齐后重新生成 operator_runtime recheck packet 的无执行收口层：汇总 input_slots、acceptance_hints、regenerate_recheck_packet_action 和 required_material_ids，形成 recheck_regeneration_request；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop652, continue no-execution regeneration path and then re-evaluate operator_runtime material readiness without granting runtime execution.",
+  "current_slice": "real-scoring-operator-runtime-recheck-regeneration-packet-loop652",
+  "next_atomic_action": "REAL_SCORING_OPERATOR_RUNTIME_RECHECK_INPUT_READINESS_LOOP653：基于 loop652 real_scoring_operator_runtime_recheck_regeneration_packet，构建只读 recheck input readiness 检查层：确认 required_material_ids=3、input_slot_refs=3、acceptance_hint_refs=3 是否齐备，并输出 ready_for_operator_runtime_recheck_input / missing_refs；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop653, continue no-execution input-readiness path and only then regenerate operator-runtime recheck state as a read-model.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-663-real-scoring-operator-runtime-missing-materials-remediation-guidance",
+  "last_tick": "SYNC-664-real-scoring-operator-runtime-recheck-regeneration-packet",
   "last_sync_sources": [
+    "SYNC-664 loop652 Real scoring operator runtime recheck regeneration packet",
+    "loop652 implementation: added real_scoring_operator_runtime_recheck_regeneration_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_operator_runtime_missing_materials_remediation_guidance_v1 to show required_material_ids 3, input_slot_refs 3, acceptance_hint_refs 3, recheck_regeneration_request enabled but will_execute false, not_granted authorization, and all-false execution policy",
+    "loop652 verification: recheck regeneration packet plus remediation guidance, formal enablement recheck, operator runtime recheck, frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 60 passed; Ruff pass; compileall pass; payload smoke loop652_smoke ready_to_collect_materials_for_recheck_regeneration 3 3 3 True False not_granted False False False",
+    "loop652 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_OPERATOR_RUNTIME_RECHECK_INPUT_READINESS_LOOP653",
     "SYNC-663 loop651 Real scoring operator runtime missing materials remediation guidance",
     "loop651 implementation: added real_scoring_operator_runtime_missing_materials_remediation_guidance_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_formal_decision_enablement_recheck_v1 to show missing_material_count 3, three material instructions, three input slots, three acceptance hints, regenerate_operator_runtime_recheck_packet action, not_granted authorization, and all-false execution policy",
     "loop651 verification: remediation guidance plus formal enablement recheck, operator runtime recheck, frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 57 passed; Ruff pass; compileall pass; payload smoke loop651_smoke operator_runtime_materials_remediation_required 3 3 3 True not_granted False False False",

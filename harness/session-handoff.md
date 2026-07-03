@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T09:30:00+08:00
+updated_at: 2026-07-04T09:50:00+08:00
+
+## Latest Handoff — SYNC-664 real scoring operator runtime recheck regeneration packet
+
+- [DONE] Added `real_scoring_operator_runtime_recheck_regeneration_packet_v1` and exposed it from creation plan.
+- [DONE] Packet consumes loop651 remediation guidance and shows required_material_ids=3, input_slot_refs=3, acceptance_hint_refs=3, `recheck_regeneration_request.enabled=true`, `will_execute=false`, and not_granted authorization.
+- [VERIFY] Focused related tests **60 passed**; Ruff pass; compileall pass; payload smoke `loop652_smoke ready_to_collect_materials_for_recheck_regeneration 3 3 3 True False not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_OPERATOR_RUNTIME_RECHECK_INPUT_READINESS_LOOP653`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-663 real scoring operator runtime missing materials remediation guidance
 

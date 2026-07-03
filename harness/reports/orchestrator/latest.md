@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-664 real scoring operator runtime recheck regeneration packet
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring operator runtime recheck regeneration packet"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_operator_runtime_recheck_regeneration_packet.py"
+      summary: "Adds a no-execution packet for collecting materials needed to regenerate the operator runtime recheck packet."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_operator_runtime_recheck_regeneration_packet from the creation plan."
+  verification:
+    - command: "recheck regeneration + adjacent remediation/enablement/operator/guidance/milestone/decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "60 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed ready_to_collect_materials_for_recheck_regeneration, 3 required material ids, 3 input slot refs, 3 acceptance hint refs, recheck request enabled but will_execute false, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Regeneration packets should make material collection explicit while keeping recheck regeneration non-executable."
+    performance_note: "Operator runtime recheck can now be regenerated only after collecting the referenced materials; no execution permission is implied."
+  blockers:
+    - "Input readiness for the referenced materials has not yet been evaluated."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_OPERATOR_RUNTIME_RECHECK_INPUT_READINESS_LOOP653"
+
+---
+
 # Orchestrator Latest Report — SYNC-663 real scoring operator runtime missing materials remediation guidance
 
 report:
