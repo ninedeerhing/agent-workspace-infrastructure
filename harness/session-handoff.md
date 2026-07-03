@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-03T23:59:00+08:00
+updated_at: 2026-07-04T00:00:00+08:00
+
+## Latest Handoff — SYNC-630 safe no-execution scoring final human authorization review reentry refresh
+
+- [DONE] `safe_no_execution_scoring_final_human_authorization_review_reentry_refresh` now reconnects final explicit authorization handoff packet refresh to final human authorization review reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_refresh.source_summary` as final-review `handoff_source_summary`, preserving handoff lineage, consumer/operator/reviewer actions, button semantics, non_executable_notice, handoff_summary, required_human_decisions, not_granted_state, handoff_boundaries, final_review_actions, manual_confirmation_state, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_blocked_until_explicit_human_authorization`.
+- [DONE] Anti-small-loop repair: direct downstream `safe_no_execution_scoring_blocked_until_explicit_human_authorization_reentry_refresh` is recomputed from the latest final review refresh, so final-review→blocked stays on one lineage.
+- [VERIFY] RED bridge showed stale final human authorization review refresh lineage; first implementation pass failed fast on wrong keyword arguments, then corrected to `handoff_packet_reentry` / `blocked_packet`; focused unit+bridge **7 passed**; final→blocked chain **14 passed**; Ruff pass; compileall pass; smoke `loop618_smoke final_human_authorization_review_reentry_open safe_no_execution_scoring_blocked_until_explicit_human_authorization True True not_granted False False False False False False False False`; diff check clean except CRLF warnings.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_EXPLICIT_HUMAN_AUTHORIZATION_REQUEST_INTAKE_REENTRY_REFRESH_LOOP619`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-629 safe no-execution scoring formal authorization review surface reentry refresh
 
