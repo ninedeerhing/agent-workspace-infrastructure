@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T07:05:00+08:00
+updated_at: 2026-07-03T13:25:00+08:00
+
+## Latest Handoff — SYNC-557 data source confirmation prerequisite branch
+
+- [DONE] `data_source_confirmation_prerequisite_branch_v1` now turns the prerequisite matrix recommendation `data_source_confirmation` into a no-execution branch for source/PIT confirmation before real factor scoring.
+- [DONE] The creation plan exposes confirmed source groups (market price/volume, adj factor, trade status/calendar, index membership/weight) and pending groups (fundamental PIT, event stream PIT, text/sentiment PIT, alternative snapshot, entity linking history).
+- [VERIFY] RED missing module **1 collection error**; focused data-source branch unit+bridge **4 passed**; adjacent prerequisite matrix + factor data source + loop545 branch **9 passed**; Ruff pass; compileall pass; forbidden marker scan clean; smoke `loop545_smoke blocked_waiting_for_data_source_confirmation max_rows_chunking_policy 4 5 False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success and recommendations were incorporated. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `MAX_ROWS_CHUNKING_POLICY_BRANCH_LOOP546`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not fetch external data; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-556 real scoring/pool/backtest prerequisite matrix
 
