@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T02:50:00+08:00
+updated_at: 2026-07-04T03:05:00+08:00
+
+## Latest Handoff — SYNC-643 safe no-execution scoring operator/reviewer authorization evidence review reentry refresh
+
+- [DONE] `safe_no_execution_scoring_operator_reviewer_authorization_evidence_review_reentry_refresh` now consumes the latest explicit human authorization request intake refresh from loop630.
+- [DONE] Anti-small-loop repair: `safe_no_execution_scoring_explicit_authorization_evidence_gap_packet_reentry_refresh` is recomputed from the latest evidence review refresh, and direct downstream `safe_no_execution_scoring_explicit_authorization_closure_review_reentry_refresh` is recomputed from the latest evidence gap refresh.
+- [VERIFY] Evidence-review→evidence-gap RED chain showed stale explicit authorization evidence gap packet refresh lineage; focused evidence→gap→closure chain **21 passed**; Ruff pass; compileall pass; smoke `loop631_smoke operator_reviewer_authorization_evidence_review_reentry_open safe_no_execution_scoring_explicit_authorization_evidence_gap_packet True True not_granted False False False False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer dispatched for read-only loop631 review. Canonical Executor remains waitingOnApproval; Verifier remains `channel_waitingOnApproval`; Code Reviewer remains channel slow/waitingOnApproval; no duplicate same-role worker created.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FINAL_NO_EXECUTION_AUTHORIZATION_READINESS_SUMMARY_REENTRY_REFRESH_LOOP632`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-642 safe no-execution scoring blocked-until explicit human authorization reentry refresh
 
