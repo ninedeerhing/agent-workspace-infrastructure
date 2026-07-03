@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T21:14:22+08:00
+updated_at: 2026-07-03T21:21:23+08:00
+
+## Latest Handoff — SYNC-678 real scoring human decision gap group routing
+
+- [DONE] Added `real_scoring_human_decision_gap_group_routing_v1` and exposed it from creation plan.
+- [DONE] Routing consumes loop665 reviewer_safety enablement recheck and shows human_decision_gap_group_selected, next_remaining_gap_group=human_decision, closed_gap_groups=[operator_runtime,reviewer_safety], remaining_gap_groups=[human_decision,system_blocker], human_decision_required_materials=3, closure_guidance_request enabled but will_execute=false, controls_enabled=false, and not_granted authorization.
+- [VERIFY] Focused test **5 passed**; related chain **121 passed**; Ruff pass; compileall pass; payload smoke `loop666_smoke human_decision_gap_group_selected human_decision operator_runtime|reviewer_safety human_decision|system_blocker 3 True False False not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer were dispatched. Report collection via `read_thread` produced excessive output and was not used as authoritative evidence; local verification is authoritative. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_HUMAN_DECISION_CLOSURE_GUIDANCE_LOOP667`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-677 real scoring reviewer safety enablement recheck from regenerated model
 

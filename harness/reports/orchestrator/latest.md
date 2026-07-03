@@ -1,3 +1,37 @@
+# Orchestrator Latest Report — SYNC-678 real scoring human decision gap group routing
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring human decision gap group routing"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_human_decision_gap_group_routing.py"
+      summary: "Adds no-execution human_decision gap group routing after operator_runtime and reviewer_safety close as candidates."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_human_decision_gap_group_routing from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_human_decision_gap_group_routing_unit.py"
+      summary: "Covers ready, missing source, not-ready source, missing human_decision group, and creation-plan bridge behavior."
+  verification:
+    - command: "focused human decision gap routing pytest"
+      result: "5 passed."
+    - command: "human decision routing + adjacent real scoring chain pytest"
+      result: "121 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed human_decision selected, closed groups operator_runtime/reviewer_safety, remaining groups human_decision/system_blocker, required materials 3, controls_enabled false, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Report collection from long worker threads can exceed context; preserve permanent worker identities but use local verification as authoritative when thread output is truncated."
+    performance_note: "The core chain now has an explicit human_decision gap route without enabling execution."
+  blockers:
+    - "Human decision closure guidance has not yet been assembled."
+    - "System blocker gap group remains open."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_HUMAN_DECISION_CLOSURE_GUIDANCE_LOOP667"
+
+---
+
 # Orchestrator Latest Report — SYNC-677 real scoring reviewer safety enablement recheck from regenerated model
 
 report:
