@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-659 real scoring next gap closure milestone surface
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring next gap closure milestone surface"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_next_gap_closure_milestone_surface.py"
+      summary: "Adds a no-execution next milestone surface consuming formal decision enablement check."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_next_gap_closure_milestone_surface from the creation plan."
+  verification:
+    - command: "next gap milestone + adjacent enablement/decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "43 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed next_gap_closure_required, controls_enabled false, open_gap_count 20, next milestone close_blocking_gap_groups, first actionable group operator_runtime, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Milestone surfaces should name the first actionable gap group and the non-executing user action, not only repeat aggregate blockers."
+    performance_note: "Real scoring path now has a consumer-readable next gap closure milestone before formal review controls can open."
+  blockers:
+    - "First actionable gap group remains operator_runtime; at least one operator runtime closure action is still open."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_FRONTIER_GAP_GROUP_CLOSURE_GUIDANCE_LOOP648"
+
+---
+
 # Orchestrator Latest Report — SYNC-658 real scoring formal decision enablement check
 
 report:

@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T07:50:00+08:00
+updated_at: 2026-07-04T08:10:00+08:00
+
+## Latest Handoff — SYNC-659 real scoring next gap closure milestone surface
+
+- [DONE] Added `real_scoring_next_gap_closure_milestone_surface_v1` and exposed it from creation plan.
+- [DONE] Surface consumes formal decision enablement check and shows next_gap_closure_required, controls_enabled=false, open_gap_count=20, next_milestone=close_blocking_gap_groups, first_actionable_gap_group=operator_runtime, user action close_operator_runtime_gaps, and not_granted authorization.
+- [VERIFY] Focused related tests **43 passed**; Ruff pass; compileall pass; payload smoke `loop647_smoke next_gap_closure_required False 20 close_blocking_gap_groups operator_runtime not_granted False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FRONTIER_GAP_GROUP_CLOSURE_GUIDANCE_LOOP648`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-658 real scoring formal decision enablement check
 
