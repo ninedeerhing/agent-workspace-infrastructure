@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-04T00:35:00+08:00
+updated_at: 2026-07-04T00:50:00+08:00
+
+## Latest Handoff — SYNC-634 runner/DSN repair prerequisite branch reentry refresh
+
+- [DONE] `runner_dsn_repair_prerequisite_branch_reentry_refresh` now consumes the latest final no-execution readiness summary refresh from loop621.
+- [DONE] Anti-small-loop repair: direct downstream `safe_no_execution_scoring_dry_run_contract_reentry_refresh` is recomputed from the latest runner/DSN refresh, so runner/DSN→dry-run contract stays on one lineage.
+- [DONE] The creation plan final runner/DSN refresh preserves readiness summary refresh lineage, closure_review refresh lineage, runtime evidence requirements, original qa-pg-alt policy, DSN isolation requirements, no-substitute-DB policy, operator/reviewer confirmations, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_dry_run_contract`.
+- [VERIFY] Runner/DSN focused tests were already green from loop621 downstream refresh; runner→dry-run RED chain showed stale dry-run contract refresh lineage; focused runner→contract chain **13 passed**; Ruff pass; compileall pass; smoke `loop622_smoke runtime_evidence_reentry_open safe_no_execution_scoring_dry_run_contract True True not_granted False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_CONTRACT_REENTRY_REFRESH_LOOP623`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-633 safe no-execution scoring final no-execution authorization readiness summary reentry refresh
 
