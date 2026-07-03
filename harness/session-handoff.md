@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T19:35:00+08:00
+updated_at: 2026-07-03T19:50:00+08:00
+
+## Latest Handoff — SYNC-617 safe no-execution scoring explicit authorization closure review reentry refresh
+
+- [DONE] `safe_no_execution_scoring_explicit_authorization_closure_review_reentry_refresh` now reconnects evidence-gap refresh to explicit authorization closure review reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_explicit_authorization_evidence_gap_packet_reentry_refresh.source_summary` as closure-review `evidence_gap_source_summary`, preserving evidence_gap_reentry_summary, manual_closure_review, remaining_gaps, manual_closure_actions, not_granted_guardrails, request_entry, blocked_reasons, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_final_no_execution_authorization_readiness_summary`.
+- [VERIFY] RED bridge showed stale closure-review refresh lineage; focused unit+bridge **7 passed**; focused chain **21 passed**; Ruff pass; compileall pass; smoke `loop605_smoke explicit_authorization_closure_review_reentry_open safe_no_execution_scoring_final_no_execution_authorization_readiness_summary True not_granted review_only_request_intake not_granted False False False True`; forbidden scan matched only existing design names/False policy assertions, no runtime execution path.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FINAL_NO_EXECUTION_AUTHORIZATION_READINESS_SUMMARY_REENTRY_REFRESH_LOOP606`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-616 safe no-execution scoring explicit authorization evidence gap packet reentry refresh
 
