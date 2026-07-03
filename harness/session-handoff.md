@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T08:16:10+08:00
+updated_at: 2026-07-03T08:21:00+08:00
+
+## Latest Handoff — SYNC-560 safe no-execution scoring dry-run contract
+
+- [DONE] `safe_no_execution_scoring_dry_run_contract_v1` now turns the runner/DSN branch recommendation `safe_no_execution_scoring_dry_run_contract` into a no-execution contract-shape artifact before any real scorer use.
+- [DONE] The creation plan exposes dry-run input manifest, mock/injected runner boundary, forbidden runtime paths, result shape expectations, manual confirmable items, and `recommended_next_branch=safe_no_execution_scoring_dry_run_review_packet`.
+- [VERIFY] RED missing module **1 collection error**; focused safe dry-run contract unit+bridge **4 passed**; adjacent runner/DSN branch + scoring batch package + controlled computation design + safe dry-run contract **18 passed**; Ruff pass; compileall pass; forbidden marker scan clean; smoke `loop548_smoke blocked_waiting_for_safe_dry_run_review safe_no_execution_scoring_dry_run_review_packet small_batch_trial_001 0 False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success and recommendations were incorporated. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_LOOP549`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-559 runner/DSN repair prerequisite branch
 

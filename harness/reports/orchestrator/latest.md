@@ -1,3 +1,41 @@
+# Orchestrator Latest Report — SYNC-560 safe no-execution scoring dry-run contract
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "safe no-execution scoring dry-run contract"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/safe_no_execution_scoring_dry_run_contract.py"
+      summary: "Adds a no-execution contract-shape artifact derived from runner/DSN branch, scoring execution batch package, and controlled computation design."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes safe_no_execution_scoring_dry_run_contract from user_facing_batch_mining_creation_plan_v1 after runner_dsn_repair_prerequisite_branch and before queue writer planning."
+    - file: "apps/quant_assistant/tests/test_safe_no_execution_scoring_dry_run_contract_unit.py"
+      summary: "Covers dry-run input manifest, mock/injected runner boundary, forbidden runtime paths, result shape expectations, branch mismatch fail-closed behavior, missing-source fail-closed behavior, and all-false execution policy."
+    - file: "apps/quant_assistant/tests/test_safe_no_execution_scoring_dry_run_contract_bridge_unit.py"
+      summary: "Covers creation-plan exposure of the safe no-execution scoring dry-run contract."
+  verification:
+    - command: "RED PYTHONPATH=src uv run pytest tests/test_safe_no_execution_scoring_dry_run_contract_unit.py tests/test_safe_no_execution_scoring_dry_run_contract_bridge_unit.py -q"
+      result: "1 collection error before implementation because qa.quant_mining.safe_no_execution_scoring_dry_run_contract was missing."
+    - command: "PYTHONPATH=src uv run pytest tests/test_safe_no_execution_scoring_dry_run_contract_unit.py tests/test_safe_no_execution_scoring_dry_run_contract_bridge_unit.py -q"
+      result: "4 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_runner_dsn_repair_prerequisite_branch_unit.py tests/test_runner_dsn_repair_prerequisite_branch_bridge_unit.py tests/test_factor_scoring_execution_batch_package_unit.py tests/test_controlled_factor_value_computation_design_unit.py tests/test_safe_no_execution_scoring_dry_run_contract_unit.py tests/test_safe_no_execution_scoring_dry_run_contract_bridge_unit.py -q"
+      result: "18 passed."
+    - command: "targeted Ruff / compileall / forbidden marker scan / payload smoke"
+      result: "All passed; smoke showed loop548_smoke blocked_waiting_for_safe_dry_run_review safe_no_execution_scoring_dry_run_review_packet small_batch_trial_001 0 False False False False False False False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Safe dry-run should prove contract shape and lineage without connecting runner or producing real scoring output."
+      - "Keeping forbidden runtime paths explicit avoids accidental drift into DB, queue, adapter, scorer, or backtest execution."
+    performance_note: "Auto-mining to auto-backtest core chain now has a safe no-execution dry-run contract and can move to dry-run review packet."
+  blockers:
+    - "Code Reviewer channel_slow/waitingOnApproval; canonical identity preserved and no duplicate same-role worker created."
+    - "Executor remains waitingOnApproval and was not dispatched."
+  next: "SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_LOOP549"
+
+---
+
 # Orchestrator Latest Report — SYNC-559 runner/DSN repair prerequisite branch
 
 report:
