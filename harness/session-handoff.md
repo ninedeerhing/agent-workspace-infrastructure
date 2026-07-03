@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-03T22:00:00+08:00
+updated_at: 2026-07-03T22:35:00+08:00
+
+## Latest Handoff — SYNC-624 safe no-execution scoring explicit authorization handoff packet reentry refresh
+
+- [DONE] `safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_refresh` now reconnects final formal review surface refresh to explicit authorization handoff packet reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_formal_authorization_review_surface_reentry_refresh.source_summary` as handoff `review_surface_source_summary`, preserving consumer/operator/reviewer actions, button semantics, non_executable_notice, runtime_policy_review, handoff_summary, required_human_decisions, not_granted_state, handoff_boundaries, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_final_human_authorization_review`.
+- [DONE] Anti-small-loop repair: direct downstream `safe_no_execution_scoring_final_human_authorization_review_reentry_refresh`, `safe_no_execution_scoring_blocked_until_explicit_human_authorization_reentry_refresh`, `safe_no_execution_scoring_explicit_human_authorization_request_intake_reentry_refresh`, and `safe_no_execution_scoring_operator_reviewer_authorization_evidence_review_reentry_refresh` are recomputed from the latest upstream refreshes, so handoff→evidence review stays on one lineage.
+- [VERIFY] RED bridge showed stale explicit handoff refresh lineage; focused unit+bridge **7 passed**; handoff→evidence chain **35 passed**; Ruff pass; compileall pass; smoke `loop612_smoke explicit_authorization_handoff_packet_reentry_open safe_no_execution_scoring_final_human_authorization_review True True True True True not_granted False False False False False False False False`; forbidden scan matched only existing design/no-execution false policy fields, no runtime execution path.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_EVIDENCE_GAP_PACKET_REENTRY_REFRESH_LOOP613`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-623 safe no-execution scoring formal authorization gap review reentry refresh
 
