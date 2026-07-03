@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-662 real scoring formal decision enablement recheck
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring formal decision enablement recheck"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_formal_decision_enablement_recheck.py"
+      summary: "Adds a no-execution formal decision enablement recheck consuming operator runtime recheck packet."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_formal_decision_enablement_recheck from the creation plan."
+  verification:
+    - command: "formal decision enablement recheck + adjacent operator/guidance/milestone/enablement/decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "54 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed controls_disabled_operator_runtime_materials_missing, controls_enabled false, operator runtime materials still missing, return_to_enablement_check false, three disabled reasons, operator_runtime_materials_closure route, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Enablement rechecks must keep controls disabled when upstream material recheck is incomplete."
+    performance_note: "Real scoring path now clearly explains why formal decision controls remain disabled after operator-runtime recheck."
+  blockers:
+    - "Operator runtime still has three missing materials by default."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_OPERATOR_RUNTIME_MISSING_MATERIALS_REMEDIATION_GUIDANCE_LOOP651"
+
+---
+
 # Orchestrator Latest Report — SYNC-661 real scoring operator runtime recheck packet
 
 report:

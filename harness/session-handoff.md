@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T08:50:00+08:00
+updated_at: 2026-07-04T09:10:00+08:00
+
+## Latest Handoff — SYNC-662 real scoring formal decision enablement recheck
+
+- [DONE] Added `real_scoring_formal_decision_enablement_recheck_v1` and exposed it from creation plan.
+- [DONE] Recheck consumes operator runtime recheck packet and shows controls_disabled_operator_runtime_materials_missing, controls_enabled=false, return_to_enablement_check=false, three disabled reasons, next_route=operator_runtime_materials_closure, and not_granted authorization.
+- [VERIFY] Focused related tests **54 passed**; Ruff pass; compileall pass; payload smoke `loop650_smoke controls_disabled_operator_runtime_materials_missing False operator_runtime_materials_still_missing False 3 operator_runtime_materials_closure not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_OPERATOR_RUNTIME_MISSING_MATERIALS_REMEDIATION_GUIDANCE_LOOP651`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-661 real scoring operator runtime recheck packet
 

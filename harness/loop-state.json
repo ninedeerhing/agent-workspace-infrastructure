@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T08:50:00+08:00",
+  "updated_at": "2026-07-04T09:10:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-operator-runtime-recheck-packet-loop649",
-  "next_atomic_action": "REAL_SCORING_FORMAL_DECISION_ENABLEMENT_RECHECK_LOOP650：基于 loop649 real_scoring_operator_runtime_recheck_packet，构建无执行 formal decision enablement recheck：确认 operator_runtime 材料是否仍缺、return_to_enablement_check 是否仍 false，并继续说明 controls 因 open gaps 保持 disabled；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop650, continue no-execution recheck path across remaining gap groups; do not proceed to formal decision controls until all prerequisite groups are review-ready.",
+  "current_slice": "real-scoring-formal-decision-enablement-recheck-loop650",
+  "next_atomic_action": "REAL_SCORING_OPERATOR_RUNTIME_MISSING_MATERIALS_REMEDIATION_GUIDANCE_LOOP651：基于 loop650 real_scoring_formal_decision_enablement_recheck，构建 operator_runtime 缺失材料 remediation guidance：把 disabled_reasons 中 3 项 missing materials 转成逐项补齐说明、输入槽、验收提示和重新生成 recheck packet 的入口；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop651, continue no-execution material remediation until operator_runtime materials can be submitted for recheck without granting runtime execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-661-real-scoring-operator-runtime-recheck-packet",
+  "last_tick": "SYNC-662-real-scoring-formal-decision-enablement-recheck",
   "last_sync_sources": [
+    "SYNC-662 loop650 Real scoring formal decision enablement recheck",
+    "loop650 implementation: added real_scoring_formal_decision_enablement_recheck_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_operator_runtime_recheck_packet_v1 to show controls_disabled_operator_runtime_materials_missing, controls_enabled false, operator_runtime_materials_still_missing, return_to_enablement_check false, three disabled reasons, next route operator_runtime_materials_closure, not_granted authorization, and all-false execution policy",
+    "loop650 verification: formal decision enablement recheck plus operator runtime recheck, frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 54 passed; Ruff pass; compileall pass; payload smoke loop650_smoke controls_disabled_operator_runtime_materials_missing False operator_runtime_materials_still_missing False 3 operator_runtime_materials_closure not_granted False False False",
+    "loop650 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_OPERATOR_RUNTIME_MISSING_MATERIALS_REMEDIATION_GUIDANCE_LOOP651",
     "SYNC-661 loop649 Real scoring operator runtime recheck packet",
     "loop649 implementation: added real_scoring_operator_runtime_recheck_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_frontier_gap_group_closure_guidance_v1 to show required_materials_count 3, completion_signals_count 2, still_missing 3, return_to_enablement_check false by default, recheck_action disabled until materials are submitted, not_granted authorization, and all-false execution policy",
     "loop649 verification: operator runtime recheck packet plus frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 50 passed; Ruff pass; compileall pass; payload smoke loop649_smoke operator_runtime_materials_still_missing operator_runtime 3 2 3 False not_granted False False False",
