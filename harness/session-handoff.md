@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T10:45:02+08:00
+updated_at: 2026-07-03T10:55:00+08:00
+
+## Latest Handoff — SYNC-581 safe no-execution scoring explicit authorization handoff packet reentry
+
+- [DONE] `safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_v1` now reconnects formal authorization review surface reentry to the existing no-execution explicit authorization handoff packet.
+- [DONE] The creation plan exposes consumer summary, operator/reviewer actions, button semantics, non-executable notice, runtime policy review, handoff summary, required human decisions, not_granted_state, handoff boundaries, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_final_human_authorization_review`.
+- [VERIFY] RED missing module **1 collection error**; focused reentry unit+bridge plus adjacent formal review surface reentry and explicit handoff packet chain **13 passed**; Ruff pass; compileall pass; smoke `loop569_smoke explicit_authorization_handoff_packet_reentry_open safe_no_execution_scoring_final_human_authorization_review 正式执行授权尚未完成 review_only_no_execution not_granted formal_authorization_review_surface_reentry_open not_granted qa-pg-alt not_granted False False False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FINAL_HUMAN_AUTHORIZATION_REVIEW_REENTRY_LOOP570`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-580 safe no-execution scoring formal authorization review surface reentry
 
