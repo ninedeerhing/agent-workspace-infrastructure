@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T21:56:15+08:00
+updated_at: 2026-07-03T22:02:27+08:00
+
+## Latest Handoff — SYNC-685 real scoring human decision enablement recheck from regenerated model
+
+- [DONE] Added `real_scoring_human_decision_enablement_recheck_from_regenerated_model_v1` and exposed it from creation plan.
+- [DONE] Recheck consumes loop672 human_decision regenerated read-model and shows human_decision_gap_closed_candidate_controls_still_not_granted, human_decision_gap_closed_candidate=true, closed_gap_groups=[operator_runtime,reviewer_safety,human_decision], remaining_gap_groups=[system_blocker], controls_enabled=false, controls_still_not_granted=true, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_human_decision_enablement_recheck_from_regenerated_model`; focused test **4 passed**; all `test_real_scoring_*_unit.py` **139 passed**; Ruff pass; compileall pass; payload smoke `loop673_smoke human_decision_gap_closed_candidate_controls_still_not_granted True operator_runtime|reviewer_safety|human_decision system_blocker 0 False True not_granted False False False False False False False False`; forbidden scan matched only `not_granted` assertions.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_SYSTEM_BLOCKER_GAP_GROUP_ROUTING_LOOP674`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-684 real scoring human decision read-model regeneration
 

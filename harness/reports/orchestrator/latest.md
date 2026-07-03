@@ -1,3 +1,37 @@
+# Orchestrator Latest Report — SYNC-685 real scoring human decision enablement recheck from regenerated model
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring human decision enablement recheck from regenerated model"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_human_decision_enablement_recheck_from_regenerated_model.py"
+      summary: "Adds no-execution enablement recheck that marks human_decision as a closed candidate while keeping controls disabled."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_human_decision_enablement_recheck_from_regenerated_model from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_human_decision_enablement_recheck_from_regenerated_model_unit.py"
+      summary: "Covers ready, missing model, not-ready model, and creation-plan bridge behavior."
+  verification:
+    - command: "focused human decision enablement recheck pytest"
+      result: "4 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "139 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed human_decision gap closed candidate, closed groups operator_runtime/reviewer_safety/human_decision, remaining system_blocker, controls disabled, not_granted, and all execution flags false; forbidden scan matched only not_granted assertions."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Planner and Test Engineer both called out that closed candidate status must be asserted together with controls_still_not_granted=true."
+      - "Dispatcher kept the blocked canonical Executor/Code Reviewer/Verifier identities intact and assigned the current thread as bounded writer only."
+    performance_note: "Human decision gap is closed as a candidate while formal controls remain disabled."
+  blockers:
+    - "System blocker gap group remains open."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_SYSTEM_BLOCKER_GAP_GROUP_ROUTING_LOOP674"
+
+---
+
 # Orchestrator Latest Report — SYNC-684 real scoring human decision read-model regeneration
 
 report:
