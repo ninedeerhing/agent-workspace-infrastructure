@@ -1,7 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T20:36:03+08:00
+updated_at: 2026-07-03T20:41:56+08:00
 
+## Latest Handoff — SYNC-672 real scoring reviewer safety recheck request packet
+
+- [DONE] Added `real_scoring_reviewer_safety_recheck_request_packet_v1` and exposed it from creation plan.
+- [DONE] Packet consumes loop659 reviewer_safety guidance and shows reviewer_safety_recheck_packet_ready, required_material_ids=3, input_slot_refs=3, acceptance_hint_refs=3, recheck_request enabled but will_execute=false, and not_granted authorization.
+- [VERIFY] Focused related tests **95 passed**; Ruff pass; compileall pass; payload smoke `loop660_smoke reviewer_safety_recheck_packet_ready 3 3 3 True False not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_REVIEWER_SAFETY_RECHECK_INPUT_READINESS_LOOP661`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 ## Latest Handoff — SYNC-671 real scoring reviewer safety gap closure guidance
 
 - [DONE] Added `real_scoring_reviewer_safety_gap_closure_guidance_v1` and exposed it from creation plan.
