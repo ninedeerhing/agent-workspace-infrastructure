@@ -1,3 +1,41 @@
+# Orchestrator Latest Report — SYNC-558 max rows/chunking policy branch
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "max rows / chunking policy branch"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/max_rows_chunking_policy_branch.py"
+      summary: "Adds a no-execution max_rows/chunking policy branch derived from the data-source branch, full chunked readiness, and factor scoring compute budget."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes max_rows_chunking_policy_branch from user_facing_batch_mining_creation_plan_v1."
+    - file: "apps/quant_assistant/tests/test_max_rows_chunking_policy_branch_unit.py"
+      summary: "Covers rollout policy, chunk policy, max_rows confirmation blockers, audit/rollback prerequisites, branch mismatch fail-closed behavior, missing-source fail-closed behavior, and all-false execution policy."
+    - file: "apps/quant_assistant/tests/test_max_rows_chunking_policy_branch_bridge_unit.py"
+      summary: "Covers creation-plan exposure of the max_rows/chunking policy branch."
+  verification:
+    - command: "RED PYTHONPATH=src uv run pytest tests/test_max_rows_chunking_policy_branch_unit.py tests/test_max_rows_chunking_policy_branch_bridge_unit.py -q"
+      result: "1 collection error before implementation because qa.quant_mining.max_rows_chunking_policy_branch was missing."
+    - command: "PYTHONPATH=src uv run pytest tests/test_max_rows_chunking_policy_branch_unit.py tests/test_max_rows_chunking_policy_branch_bridge_unit.py -q"
+      result: "4 passed."
+    - command: "PYTHONPATH=src uv run pytest tests/test_data_source_confirmation_prerequisite_branch_unit.py tests/test_data_source_confirmation_prerequisite_branch_bridge_unit.py tests/test_full_chunked_run_readiness_contract_unit.py tests/test_factor_scoring_compute_budget_unit.py tests/test_max_rows_chunking_policy_branch_unit.py tests/test_max_rows_chunking_policy_branch_bridge_unit.py -q"
+      result: "14 passed."
+    - command: "targeted Ruff / compileall / forbidden marker scan / payload smoke"
+      result: "All passed; smoke showed loop546_smoke blocked_waiting_for_max_rows_chunking_policy runner_dsn_repair 3 200 500 not_confirmed False False False False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Scale-control policy should be explicit before runner/DSN work; chunk geometry cannot remain implicit."
+      - "Audit and rollback prerequisites must remain planning-only until runtime authorization is explicitly granted."
+    performance_note: "Auto-mining to auto-backtest core chain now has a concrete max_rows/chunking policy branch and can move to runner/DSN repair."
+  blockers:
+    - "Code Reviewer channel_slow/waitingOnApproval; canonical identity preserved and no duplicate same-role worker created."
+    - "Executor remains waitingOnApproval and was not dispatched."
+  next: "RUNNER_DSN_REPAIR_PREREQUISITE_BRANCH_LOOP547"
+
+---
+
 # Orchestrator Latest Report — SYNC-557 data source confirmation prerequisite branch
 
 report:

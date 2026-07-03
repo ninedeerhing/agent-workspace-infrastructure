@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T13:25:00+08:00
+Updated: 2026-07-03T13:40:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop545 | active | gpt-5.5 | 2026-07-03T13:25:00+08:00 | SYNC-557 loop545 data source confirmation prerequisite branch complete; next loop546 max_rows/chunking policy branch planned | workload light; auto-mining to auto-backtest core chain advanced one function |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop545 | success | gpt-5.4 | 2026-07-03T13:25:00+08:00 | loop545 loop_plan returned; branch-specific data-source confirmation contract recommended | workload cleared; preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop545 | success | gpt-5.4 | 2026-07-03T13:25:00+08:00 | loop545 assignment_matrix returned; confirmed orchestrator bounded write owner due executor waitingOnApproval and no duplicate worker creation | workload cleared; preserve permanent identity |
+| orchestrator | current-thread | loop546 | active | gpt-5.5 | 2026-07-03T13:40:00+08:00 | SYNC-558 loop546 max_rows/chunking policy branch complete; next loop547 runner/DSN repair prerequisite branch planned | workload light; auto-mining to auto-backtest core chain advanced one function |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop546 | success | gpt-5.4 | 2026-07-03T13:40:00+08:00 | loop546 loop_plan returned; max_rows/chunking branch recommended before runner/DSN work | workload cleared; preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop546 | success | gpt-5.4 | 2026-07-03T13:40:00+08:00 | loop546 assignment_matrix returned; confirmed orchestrator bounded write owner due executor waitingOnApproval and no duplicate worker creation | workload cleared; preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop545 | success | gpt-5.4 | 2026-07-03T13:25:00+08:00 | loop545 test matrix returned; branch gating, PIT/data-gap completeness, and all-false capability recommendations incorporated into tests | workload cleared; preserve permanent identity |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop546 | success | gpt-5.4 | 2026-07-03T13:40:00+08:00 | loop546 test matrix returned; branch gating, three-stage chunking, max_rows blockers, audit/rollback and all-false capability recommendations incorporated into tests | workload cleared; preserve permanent identity |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop544 | final_review_requested | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 final verification requested after local verification and truth-source sync | no duplicate verifier thread created; permanent identity preserved |
 ## Latest Roster Notes
+- 2026-07-03T13:40:00+08:00 · SYNC-558 · loop546: Max rows/chunking policy branch now exposes three-stage rollout policy, chunk policy, max_rows_status=not_confirmed, user-confirmable items, audit/rollback prerequisites, and recommended_next_branch=runner_dsn_repair; Planner/Dispatcher/Test Engineer success; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T13:25:00+08:00 · SYNC-557 · loop545: Data source confirmation prerequisite branch now exposes confirmed/pending source groups, missing data sources, PIT requirements, user-confirmable items, and recommended_next_branch=max_rows_chunking_policy; Planner/Dispatcher/Test Engineer success; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.
 - 2026-07-03T07:05:00+08:00 · SYNC-556 · loop544: Real scoring/pool/backtest prerequisite matrix now exposes satisfied prerequisites, blocked prerequisites, scoring/pool/backtest stage matrix, and recommended_next_branch=data_source_confirmation; Planner/Dispatcher/Test Engineer success; missing-source fail-closed and all-false capability recommendations incorporated; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created; paused after loop per user rest instruction.
 - 2026-07-03T06:35:00+08:00 · SYNC-555 · loop543: Formal runtime human authorization handoff surface now exposes consumer-facing status, role confirmations, missing materials, go-live conditions, and execution boundary; Planner/Dispatcher/Test Engineer success; consumer-facing/go-live/execution-boundary recommendation incorporated; Code Reviewer channel_slow/waitingOnApproval; no duplicate same-role worker created.

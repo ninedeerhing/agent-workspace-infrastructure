@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T13:25:00+08:00
+updated_at: 2026-07-03T13:40:00+08:00
+
+## Latest Handoff — SYNC-558 max rows/chunking policy branch
+
+- [DONE] `max_rows_chunking_policy_branch_v1` now turns the data-source branch recommendation `max_rows_chunking_policy` into a no-execution scale-control branch before real factor scoring.
+- [DONE] The creation plan exposes three-stage rollout policy, candidate/security/time chunk policy, `max_rows_status=not_confirmed`, user-confirmable items, audit/rollback prerequisites, and `recommended_next_branch=runner_dsn_repair`.
+- [VERIFY] RED missing module **1 collection error**; focused max_rows branch unit+bridge **4 passed**; adjacent data-source branch + full chunked readiness + compute budget + max_rows branch **14 passed**; Ruff pass; compileall pass; forbidden marker scan clean; smoke `loop546_smoke blocked_waiting_for_max_rows_chunking_policy runner_dsn_repair 3 200 500 not_confirmed False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success and recommendations were incorporated. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated. Executor remains `waitingOnApproval`.
+- [NEXT] `RUNNER_DSN_REPAIR_PREREQUISITE_BRANCH_LOOP547`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-557 data source confirmation prerequisite branch
 
