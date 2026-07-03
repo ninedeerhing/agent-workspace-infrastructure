@@ -1,3 +1,36 @@
+# Orchestrator Latest Report — SYNC-687 real scoring system_blocker closure guidance
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring system_blocker closure guidance"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_system_blocker_closure_guidance.py"
+      summary: "Adds no-execution closure guidance for the final system_blocker gap group."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_system_blocker_closure_guidance from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_system_blocker_closure_guidance_unit.py"
+      summary: "Covers ready, missing source, wrong group, disabled request, and creation-plan bridge behavior."
+  verification:
+    - command: "focused system_blocker closure guidance pytest"
+      result: "5 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "149 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed guidance ready, three materials/input slots/acceptance hints, recheck request enabled but will_execute false, controls disabled, not_granted, and all execution flags false; forbidden scan matched only not_granted assertions."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Closure guidance can make the final blocker user-actionable without making it closed or executable."
+    performance_note: "System blocker now has no-execution guidance ready for request packet assembly."
+  blockers:
+    - "System blocker request packet and input readiness are still pending."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_SYSTEM_BLOCKER_RECHECK_REQUEST_PACKET_LOOP676"
+
+---
+
 # Orchestrator Latest Report — SYNC-686 real scoring system_blocker gap group routing
 
 report:

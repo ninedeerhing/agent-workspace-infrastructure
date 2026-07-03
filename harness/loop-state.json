@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T22:07:36+08:00",
+  "updated_at": "2026-07-03T22:12:29+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-system-blocker-gap-group-routing-loop674",
-  "next_atomic_action": "REAL_SCORING_SYSTEM_BLOCKER_CLOSURE_GUIDANCE_LOOP675：基于 loop674 real_scoring_system_blocker_gap_group_routing，构建只读 system_blocker closure guidance：当 routing_status=system_blocker_gap_group_selected 时，输出 system_blocker_closure_guidance_ready、next_remaining_gap_group=system_blocker、system_blocker_required_materials=3、input_slots=3、acceptance_hints=3、closure_recheck_request enabled but will_execute=false、controls_enabled=false、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop675, assemble no-execution system_blocker request packet.",
+  "current_slice": "real-scoring-system-blocker-closure-guidance-loop675",
+  "next_atomic_action": "REAL_SCORING_SYSTEM_BLOCKER_RECHECK_REQUEST_PACKET_LOOP676：基于 loop675 real_scoring_system_blocker_closure_guidance，构建只读 system_blocker recheck request packet：当 guidance_status=system_blocker_closure_guidance_ready 时，收束 required_material_ids=3、input_slot_refs=3、acceptance_hint_refs=3、system_blocker_recheck_request enabled but will_execute=false、controls_enabled=false、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop676, evaluate no-execution system_blocker input readiness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-686-real-scoring-system-blocker-gap-group-routing",
+  "last_tick": "SYNC-687-real-scoring-system-blocker-closure-guidance",
   "last_sync_sources": [
+    "SYNC-687 loop675 Real scoring system_blocker closure guidance",
+    "loop675 implementation: added real_scoring_system_blocker_closure_guidance_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_system_blocker_gap_group_routing_v1 to show system_blocker_closure_guidance_ready, next_remaining_gap_group system_blocker, three system_blocker_required_materials, three input_slots, three acceptance_hints, system_blocker_recheck_request enabled but will_execute false, controls_enabled false, authorization not_granted, and all-false execution policy",
+    "loop675 verification: initial RED ModuleNotFoundError for real_scoring_system_blocker_closure_guidance; focused tests 5 passed; all test_real_scoring_*_unit.py 149 passed; targeted Ruff pass; compileall pass; payload smoke loop675_smoke system_blocker_closure_guidance_ready system_blocker 3 3 3 True False False not_granted False False False False False False False False; forbidden scan matched only not_granted assertions",
+    "loop675 worker: permanent Planner, Dispatcher, and Test Engineer returned success; Dispatcher assigned orchestrator as bounded writer and forbade duplicate Executor/Code Reviewer/Verifier",
+    "next: REAL_SCORING_SYSTEM_BLOCKER_RECHECK_REQUEST_PACKET_LOOP676",
     "SYNC-686 loop674 Real scoring system_blocker gap group routing",
     "loop674 implementation: added real_scoring_system_blocker_gap_group_routing_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_human_decision_enablement_recheck_from_regenerated_model_v1 to show system_blocker_gap_group_selected, next_remaining_gap_group system_blocker, closed_gap_groups operator_runtime/reviewer_safety/human_decision, remaining_gap_groups system_blocker, three system_blocker_required_materials, closure_guidance_request enabled but will_execute false, controls_enabled false, authorization not_granted, and all-false execution policy",
     "loop674 verification: initial RED ModuleNotFoundError for real_scoring_system_blocker_gap_group_routing; focused tests 5 passed; all test_real_scoring_*_unit.py 144 passed; targeted Ruff pass; compileall pass; payload smoke loop674_smoke system_blocker_gap_group_selected system_blocker operator_runtime|reviewer_safety|human_decision system_blocker 3 True False False not_granted False False False False False False False False; forbidden scan matched only not_granted assertions",

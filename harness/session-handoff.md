@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T22:07:36+08:00
+updated_at: 2026-07-03T22:12:29+08:00
+
+## Latest Handoff — SYNC-687 real scoring system_blocker closure guidance
+
+- [DONE] Added `real_scoring_system_blocker_closure_guidance_v1` and exposed it from creation plan.
+- [DONE] Guidance consumes loop674 system_blocker routing and shows system_blocker_closure_guidance_ready, next_remaining_gap_group=system_blocker, 3 materials, 3 input slots, 3 acceptance hints, system_blocker_recheck_request enabled but will_execute=false, controls_enabled=false, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_system_blocker_closure_guidance`; focused test **5 passed**; all `test_real_scoring_*_unit.py` **149 passed**; Ruff pass; compileall pass; payload smoke `loop675_smoke system_blocker_closure_guidance_ready system_blocker 3 3 3 True False False not_granted False False False False False False False False`; forbidden scan matched only `not_granted` assertions.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_SYSTEM_BLOCKER_RECHECK_REQUEST_PACKET_LOOP676`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-686 real scoring system_blocker gap group routing
 
