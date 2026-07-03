@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T21:02:43+08:00
+updated_at: 2026-07-03T21:08:37+08:00
+
+## Latest Handoff — SYNC-676 real scoring reviewer safety recheck read-model regeneration
+
+- [DONE] Added `real_scoring_reviewer_safety_recheck_read_model_regeneration_v1` and exposed it from creation plan.
+- [DONE] Regeneration consumes loop663 reviewer_safety packet review and shows reviewer_safety_recheck_read_model_regenerated, return_to_enablement_check_candidate=true, remaining_missing_materials=0, reviewed_material_count=3, read_model_summary will_execute=false, and not_granted authorization.
+- [VERIFY] Focused test **4 passed**; related chain **112 passed**; Ruff pass; compileall pass; payload smoke `loop664_smoke reviewer_safety_recheck_read_model_regenerated True 0 3 False not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_REVIEWER_SAFETY_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP665`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-675 real scoring reviewer safety recheck input packet review
 

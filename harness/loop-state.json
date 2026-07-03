@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T21:02:43+08:00",
+  "updated_at": "2026-07-03T21:08:37+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-reviewer-safety-recheck-input-packet-review-loop663",
-  "next_atomic_action": "REAL_SCORING_REVIEWER_SAFETY_RECHECK_READ_MODEL_REGENERATION_LOOP664：基于 loop663 real_scoring_reviewer_safety_recheck_input_packet_review，构建只读 reviewer_safety recheck read-model regeneration：当 review_status=ready_to_regenerate_reviewer_safety_read_model 且 can_regenerate_reviewer_safety_read_model=true 时，输出 regenerated_reviewer_safety_recheck_status、return_to_enablement_check_candidate、reviewed_material_count、read_model_summary.will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop664, feed regenerated reviewer_safety read-model into formal enablement recheck without granting execution.",
+  "current_slice": "real-scoring-reviewer-safety-recheck-read-model-regeneration-loop664",
+  "next_atomic_action": "REAL_SCORING_REVIEWER_SAFETY_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP665：基于 loop664 real_scoring_reviewer_safety_recheck_read_model_regeneration，构建只读 reviewer_safety enablement recheck from regenerated model：当 regenerated_reviewer_safety_recheck_status=reviewer_safety_recheck_read_model_regenerated 且 return_to_enablement_check_candidate=true 时，输出 reviewer_safety_gap_closed_candidate、closed_gap_groups 包含 reviewer_safety、remaining_gap_groups 继续包含 human_decision/system_blocker、controls_enabled=false、controls_still_not_granted=true；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop665, route the next remaining gap group after reviewer_safety without granting execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-675-real-scoring-reviewer-safety-recheck-input-packet-review",
+  "last_tick": "SYNC-676-real-scoring-reviewer-safety-recheck-read-model-regeneration",
   "last_sync_sources": [
+    "SYNC-676 loop664 Real scoring reviewer safety recheck read-model regeneration",
+    "loop664 implementation: added real_scoring_reviewer_safety_recheck_read_model_regeneration_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_reviewer_safety_recheck_input_packet_review_v1 to show reviewer_safety_recheck_read_model_regenerated, return_to_enablement_check_candidate true, remaining_missing_materials 0, reviewed_material_count 3, read_model_summary will_execute false, not_granted authorization, and all-false execution policy",
+    "loop664 verification: reviewer safety read-model regeneration plus input packet review, input packet, input readiness, request packet, reviewer safety guidance, next remaining gap group routing, regenerated-model enablement recheck, read-model regeneration, input packet review, input packet, input readiness, recheck regeneration packet, remediation guidance, formal enablement recheck, operator runtime recheck, frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 112 passed; Ruff pass; compileall pass; payload smoke loop664_smoke reviewer_safety_recheck_read_model_regenerated True 0 3 False not_granted False False False",
+    "loop664 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; Dispatcher kept orchestrator as bounded writer; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_REVIEWER_SAFETY_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP665",
     "SYNC-675 loop663 Real scoring reviewer safety recheck input packet review",
     "loop663 implementation: added real_scoring_reviewer_safety_recheck_input_packet_review_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_reviewer_safety_recheck_input_packet_v1 to show ready_to_regenerate_reviewer_safety_read_model, can_regenerate_reviewer_safety_read_model true, packet_item_count 3, blocked_reasons empty, read_model_regeneration_request enabled but will_execute false, not_granted authorization, and all-false execution policy",
     "loop663 verification: reviewer safety input packet review plus input packet, input readiness, request packet, reviewer safety guidance, next remaining gap group routing, regenerated-model enablement recheck, read-model regeneration, input packet review, input packet, input readiness, recheck regeneration packet, remediation guidance, formal enablement recheck, operator runtime recheck, frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 108 passed; Ruff pass; compileall pass; payload smoke loop663_smoke ready_to_regenerate_reviewer_safety_read_model True 3 0 True False not_granted False False False",
