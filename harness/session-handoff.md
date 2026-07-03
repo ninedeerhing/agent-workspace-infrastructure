@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T22:12:29+08:00
+updated_at: 2026-07-03T22:24:30+08:00
+
+## Latest Handoff — SYNC-688 real scoring system_blocker recheck request packet
+
+- [DONE] Added `real_scoring_system_blocker_recheck_request_packet_v1` and exposed it from creation plan.
+- [DONE] Request packet consumes loop675 system_blocker closure guidance and shows ready_system_blocker_recheck_request_packet, next_remaining_gap_group=system_blocker, 3 required material ids, 3 input slot refs, 3 acceptance hint refs, system_blocker_recheck_request enabled but will_execute=false, controls_enabled=false, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_system_blocker_recheck_request_packet`; focused test **5 passed**; all `test_real_scoring_*_unit.py` **154 passed**; `test_batch_mining_flow_unit.py` **7 passed**; Ruff pass; compileall pass; payload smoke `loop676_smoke ready_system_blocker_recheck_request_packet system_blocker 3 3 3 True False False not_granted False False False False False False False False False False False False False False False False False False`; forbidden scan matched only all-false policy/assertion field names.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_SYSTEM_BLOCKER_INPUT_READINESS_LOOP677`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-687 real scoring system_blocker closure guidance
 
