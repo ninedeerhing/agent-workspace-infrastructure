@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T13:35:00+08:00
+updated_at: 2026-07-03T13:50:00+08:00
+
+## Latest Handoff — SYNC-593 safe no-execution scoring dry-run authorization materials reentry refresh
+
+- [DONE] `safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh` now reconnects result-shape review refresh to authorization materials reentry.
+- [DONE] The creation plan exposes result-shape refresh lineage, placeholder result schema, metric preview shape, runtime policy review, operator/reviewer materials, manual confirmation packet, blocked execution boundary, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_formal_authorization_gap_review`.
+- [VERIFY] RED showed missing `result_shape_source_summary` and missing `safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh`; focused chain **20 passed**; Ruff pass; compileall pass; smoke `loop581_smoke authorization_materials_reentry_open safe_no_execution_scoring_formal_authorization_gap_review final_no_execution_authorization_readiness_summary_reentry_open factor_value_daily not_computed not_granted not_granted False False False False False False False False False False False False False False False False False False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_GAP_REVIEW_REENTRY_REFRESH_LOOP582`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-592 safe no-execution scoring result-shape review reentry refresh
 
