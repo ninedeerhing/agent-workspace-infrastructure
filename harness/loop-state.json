@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T22:02:27+08:00",
+  "updated_at": "2026-07-03T22:07:36+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-human-decision-enable-recheck-from-regenerated-model-loop673",
-  "next_atomic_action": "REAL_SCORING_SYSTEM_BLOCKER_GAP_GROUP_ROUTING_LOOP674：基于 loop673 real_scoring_human_decision_enablement_recheck_from_regenerated_model，构建只读 system_blocker gap group routing：当 human_decision_gap_closed_candidate=true 且 remaining_gap_groups=[system_blocker] 时，输出 system_blocker_gap_group_selected、next_remaining_gap_group=system_blocker、closed_gap_groups=[operator_runtime,reviewer_safety,human_decision]、remaining_gap_groups=[system_blocker]、system_blocker_required_materials/closure_guidance_request enabled but will_execute=false、controls_enabled=false、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop674, build no-execution system_blocker closure guidance and keep final execution controls disabled.",
+  "current_slice": "real-scoring-system-blocker-gap-group-routing-loop674",
+  "next_atomic_action": "REAL_SCORING_SYSTEM_BLOCKER_CLOSURE_GUIDANCE_LOOP675：基于 loop674 real_scoring_system_blocker_gap_group_routing，构建只读 system_blocker closure guidance：当 routing_status=system_blocker_gap_group_selected 时，输出 system_blocker_closure_guidance_ready、next_remaining_gap_group=system_blocker、system_blocker_required_materials=3、input_slots=3、acceptance_hints=3、closure_recheck_request enabled but will_execute=false、controls_enabled=false、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop675, assemble no-execution system_blocker request packet.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-685-real-scoring-human-decision-enable-recheck-from-regenerated-model",
+  "last_tick": "SYNC-686-real-scoring-system-blocker-gap-group-routing",
   "last_sync_sources": [
+    "SYNC-686 loop674 Real scoring system_blocker gap group routing",
+    "loop674 implementation: added real_scoring_system_blocker_gap_group_routing_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_human_decision_enablement_recheck_from_regenerated_model_v1 to show system_blocker_gap_group_selected, next_remaining_gap_group system_blocker, closed_gap_groups operator_runtime/reviewer_safety/human_decision, remaining_gap_groups system_blocker, three system_blocker_required_materials, closure_guidance_request enabled but will_execute false, controls_enabled false, authorization not_granted, and all-false execution policy",
+    "loop674 verification: initial RED ModuleNotFoundError for real_scoring_system_blocker_gap_group_routing; focused tests 5 passed; all test_real_scoring_*_unit.py 144 passed; targeted Ruff pass; compileall pass; payload smoke loop674_smoke system_blocker_gap_group_selected system_blocker operator_runtime|reviewer_safety|human_decision system_blocker 3 True False False not_granted False False False False False False False False; forbidden scan matched only not_granted assertions",
+    "loop674 worker: permanent Planner, Dispatcher, and Test Engineer returned success; Dispatcher assigned orchestrator as bounded writer and forbade duplicate Executor/Code Reviewer/Verifier",
+    "next: REAL_SCORING_SYSTEM_BLOCKER_CLOSURE_GUIDANCE_LOOP675",
     "SYNC-685 loop673 Real scoring human decision enablement recheck from regenerated model",
     "loop673 implementation: added real_scoring_human_decision_enablement_recheck_from_regenerated_model_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_human_decision_read_model_regeneration_v1 to show human_decision_gap_closed_candidate_controls_still_not_granted, human_decision_gap_closed_candidate true, closed_gap_groups operator_runtime/reviewer_safety/human_decision, remaining_gap_groups system_blocker, remaining_missing_materials 0, controls_enabled false, controls_still_not_granted true, authorization not_granted, and all-false execution policy",
     "loop673 verification: initial RED ModuleNotFoundError for real_scoring_human_decision_enablement_recheck_from_regenerated_model; focused tests 4 passed; all test_real_scoring_*_unit.py 139 passed; targeted Ruff pass; compileall pass; payload smoke loop673_smoke human_decision_gap_closed_candidate_controls_still_not_granted True operator_runtime|reviewer_safety|human_decision system_blocker 0 False True not_granted False False False False False False False False; forbidden scan matched only not_granted assertions",

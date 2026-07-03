@@ -1,3 +1,37 @@
+# Orchestrator Latest Report — SYNC-686 real scoring system_blocker gap group routing
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring system_blocker gap group routing"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_system_blocker_gap_group_routing.py"
+      summary: "Adds no-execution routing for the final system_blocker gap group."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_system_blocker_gap_group_routing from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_system_blocker_gap_group_routing_unit.py"
+      summary: "Covers ready, missing source, human_decision not closed, missing system_blocker, and creation-plan bridge behavior."
+  verification:
+    - command: "focused system_blocker routing pytest"
+      result: "5 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "144 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed system_blocker selected, three closed groups, remaining system_blocker, closure guidance request enabled but will_execute false, controls disabled, not_granted, and all execution flags false; forbidden scan matched only not_granted assertions."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Test Engineer confirmed system_blocker routing must fail closed if human_decision is not already closed."
+      - "Planner kept system_blocker as routing-only, not a real system fix or controls unlock."
+    performance_note: "The final gap group is now explicit and ready for no-execution closure guidance."
+  blockers:
+    - "System blocker closure guidance and request packet are still pending."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_SYSTEM_BLOCKER_CLOSURE_GUIDANCE_LOOP675"
+
+---
+
 # Orchestrator Latest Report — SYNC-685 real scoring human decision enablement recheck from regenerated model
 
 report:
