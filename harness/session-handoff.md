@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T08:30:00+08:00
+updated_at: 2026-07-04T08:50:00+08:00
+
+## Latest Handoff — SYNC-661 real scoring operator runtime recheck packet
+
+- [DONE] Added `real_scoring_operator_runtime_recheck_packet_v1` and exposed it from creation plan.
+- [DONE] Packet consumes frontier gap closure guidance and shows required_materials_count=3, completion_signals_count=2, still_missing=3, return_to_enablement_check=false by default, and not_granted authorization.
+- [VERIFY] Focused related tests **50 passed**; Ruff pass; compileall pass; payload smoke `loop649_smoke operator_runtime_materials_still_missing operator_runtime 3 2 3 False not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_DECISION_ENABLEMENT_RECHECK_LOOP650`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-660 real scoring frontier gap group closure guidance
 

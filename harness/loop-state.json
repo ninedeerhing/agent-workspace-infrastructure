@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T08:30:00+08:00",
+  "updated_at": "2026-07-04T08:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-frontier-gap-group-closure-guidance-loop648",
-  "next_atomic_action": "REAL_SCORING_OPERATOR_RUNTIME_RECHECK_PACKET_LOOP649：基于 loop648 real_scoring_frontier_gap_group_closure_guidance，构建 operator_runtime 缺口组的无执行 recheck packet：汇总 required_materials、completion_signals、recheck_action 和 still_missing 状态，用于重新检查是否可返回 formal decision enablement；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop649, continue no-execution operator-runtime recheck path until this gap group can be marked review-ready without granting runtime execution.",
+  "current_slice": "real-scoring-operator-runtime-recheck-packet-loop649",
+  "next_atomic_action": "REAL_SCORING_FORMAL_DECISION_ENABLEMENT_RECHECK_LOOP650：基于 loop649 real_scoring_operator_runtime_recheck_packet，构建无执行 formal decision enablement recheck：确认 operator_runtime 材料是否仍缺、return_to_enablement_check 是否仍 false，并继续说明 controls 因 open gaps 保持 disabled；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop650, continue no-execution recheck path across remaining gap groups; do not proceed to formal decision controls until all prerequisite groups are review-ready.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-660-real-scoring-frontier-gap-group-closure-guidance",
+  "last_tick": "SYNC-661-real-scoring-operator-runtime-recheck-packet",
   "last_sync_sources": [
+    "SYNC-661 loop649 Real scoring operator runtime recheck packet",
+    "loop649 implementation: added real_scoring_operator_runtime_recheck_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_frontier_gap_group_closure_guidance_v1 to show required_materials_count 3, completion_signals_count 2, still_missing 3, return_to_enablement_check false by default, recheck_action disabled until materials are submitted, not_granted authorization, and all-false execution policy",
+    "loop649 verification: operator runtime recheck packet plus frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 50 passed; Ruff pass; compileall pass; payload smoke loop649_smoke operator_runtime_materials_still_missing operator_runtime 3 2 3 False not_granted False False False",
+    "loop649 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_FORMAL_DECISION_ENABLEMENT_RECHECK_LOOP650",
     "SYNC-660 loop648 Real scoring frontier gap group closure guidance",
     "loop648 implementation: added real_scoring_frontier_gap_group_closure_guidance_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_next_gap_closure_milestone_surface_v1 to show operator_runtime frontier gap group, gap_count 1, three required operator materials, completion signals, recheck action rerun_formal_decision_enablement_check, not_granted authorization, and all-false execution policy",
     "loop648 verification: frontier guidance plus next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 46 passed; Ruff pass; compileall pass; payload smoke loop648_smoke frontier_gap_group_guidance_ready operator_runtime 1 3 rerun_formal_decision_enablement_check not_granted False False False False",

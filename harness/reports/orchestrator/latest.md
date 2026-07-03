@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-661 real scoring operator runtime recheck packet
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring operator runtime recheck packet"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_operator_runtime_recheck_packet.py"
+      summary: "Adds a no-execution recheck packet for operator runtime materials."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_operator_runtime_recheck_packet from the creation plan."
+  verification:
+    - command: "operator runtime recheck + adjacent guidance/milestone/enablement/decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "50 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed operator_runtime_materials_still_missing, operator_runtime, 3 required materials, 2 completion signals, 3 missing materials, return_to_enablement_check false, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Recheck packets should model partial material readiness without converting it into execution or formal decision permission."
+    performance_note: "Real scoring path now has an operator_runtime recheck packet before returning to enablement evaluation."
+  blockers:
+    - "Operator runtime still has three missing material slots by default."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_FORMAL_DECISION_ENABLEMENT_RECHECK_LOOP650"
+
+---
+
 # Orchestrator Latest Report — SYNC-660 real scoring frontier gap group closure guidance
 
 report:
