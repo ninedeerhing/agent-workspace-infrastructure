@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T06:30:00+08:00
+updated_at: 2026-07-04T06:50:00+08:00
+
+## Latest Handoff — SYNC-655 real scoring formal review readiness summary
+
+- [DONE] Added `real_scoring_formal_review_readiness_summary_v1` and exposed it from creation plan.
+- [DONE] Readiness summary consumes gap packet and shows blocked_remaining_gaps, gap_count=20, remaining gap summary, Top50 scope summary, disabled accept/reject/change-request controls, not_granted guardrails, and human next actions.
+- [VERIFY] Focused related tests **31 passed**; Ruff pass; compileall pass; payload smoke `loop643_smoke blocked_remaining_gaps 还不能进入正式人工复核 20 False not_granted False False False False`; forbidden scan only matched false/not_allowed policy fields.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_EVIDENCE_GAP_CLOSURE_ACTION_PLAN_LOOP644`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-654 real scoring evidence review/gap packet
 

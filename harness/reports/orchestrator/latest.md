@@ -1,3 +1,34 @@
+# Orchestrator Latest Report — SYNC-655 real scoring formal review readiness summary
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring formal review readiness summary"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_formal_review_readiness_summary.py"
+      summary: "Adds a no-execution formal review readiness summary consuming evidence review/gap packet."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_formal_review_readiness_summary from the creation plan."
+  verification:
+    - command: "readiness summary + adjacent gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "31 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed blocked_remaining_gaps, gap_count 20, disabled accept control, not_granted, and all execution flags false; forbidden scan matched only false/not_allowed policy fields."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Formal accept/reject/change-request controls must remain disabled while evidence gaps remain open."
+    performance_note: "Real scoring path now has a user-readable formal review readiness summary, but formal review is not ready."
+  blockers:
+    - "20 evidence gaps remain open; formal controls are disabled."
+    - "Authorization remains not_granted and no-execution."
+    - "Executor remains waitingOnApproval; Dispatcher boundary keeps orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier and Code Reviewer canonical channels were not duplicated; local verification is authoritative fallback."
+  next: "REAL_SCORING_EVIDENCE_GAP_CLOSURE_ACTION_PLAN_LOOP644"
+
+---
+
 # Orchestrator Latest Report — SYNC-654 real scoring evidence review/gap packet
 
 report:

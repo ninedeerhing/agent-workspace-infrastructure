@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-04T06:30:00+08:00
+Updated: 2026-07-04T06:50:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop642 | active | gpt-5.5 | 2026-07-04T06:30:00+08:00 | SYNC-654 loop642 evidence review/gap packet complete; next loop643 formal readiness summary | workload light; mainline gap packet added |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop642 | reported | gpt-5.4 | 2026-07-04T06:30:00+08:00 | loop642 plan success: evidence review/gap packet | workload cleared |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop642 | reported | gpt-5.4 | 2026-07-04T06:30:00+08:00 | loop642 boundary success: orchestrator bounded writer; no duplicate blocked workers | workload cleared |
+| orchestrator | current-thread | loop643 | active | gpt-5.5 | 2026-07-04T06:50:00+08:00 | SYNC-655 loop643 formal review readiness summary complete; next loop644 gap closure action plan | workload light; mainline readiness summary added |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop643 | reported | gpt-5.4 | 2026-07-04T06:50:00+08:00 | loop643 plan success: formal review readiness summary | workload cleared |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop643 | reported | gpt-5.4 | 2026-07-04T06:50:00+08:00 | loop643 boundary success: orchestrator bounded writer; no duplicate blocked workers | workload cleared |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop642 | reported | gpt-5.4 | 2026-07-04T06:30:00+08:00 | loop642 test matrix success: reviewed slots + evidence gaps + formal readiness false | workload cleared |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop643 | reported | gpt-5.4 | 2026-07-04T06:50:00+08:00 | loop643 test matrix success: readiness false + disabled formal controls | workload cleared |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-04T06:50:00+08:00 · SYNC-655 · loop643: Formal review readiness summary added. Planner/Dispatcher/Test Engineer success reports incorporated; summary exposes blocked_remaining_gaps, gap_count=20, disabled accept/reject/change-request controls, remaining actions, not_granted guardrails, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-04T06:30:00+08:00 · SYNC-654 · loop642: Real scoring evidence review/gap packet added. Planner/Dispatcher/Test Engineer success reports incorporated; gap packet exposes reviewed request slots, evidence gaps, Top50 scope review, blocked reason review, formal readiness false, not_granted guardrails, recommended next actions, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-04T06:10:00+08:00 · SYNC-653 · loop641: Real scoring evidence request intake added. Planner/Dispatcher/Test Engineer success reports incorporated; intake exposes operator/reviewer/human request slots, missing evidence, Top50 handoff scope, blocked reasons, form schema, store_request_only_no_execution, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-04T05:50:00+08:00 · SYNC-652 · loop640: Formal real scoring human authorization handoff added. Planner/Dispatcher/Test Engineer success reports incorporated; handoff exposes formal review packet, operator/reviewer decision lanes, required human decisions, blocked reasons, Top50 handoff scope, runtime boundary, not_granted guardrails, next human actions, and all-false execution policy. No duplicate same-role worker created.
