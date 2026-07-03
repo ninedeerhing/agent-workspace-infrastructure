@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T17:35:00+08:00
+updated_at: 2026-07-03T17:50:00+08:00
+
+## Latest Handoff — SYNC-609 safe no-execution scoring formal authorization gap review reentry refresh
+
+- [DONE] `safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh` now reconnects final authorization materials refresh to formal authorization gap review reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh.source_summary` as formal gap `authorization_materials_source_summary`, preserving placeholder_result_schema, metric_preview_shape, runtime_policy_review, operator/reviewer materials, manual_confirmation_packet, blocked_execution_boundary, confirmation/runtime/audit gaps, non_executable_reasons, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_formal_authorization_review_surface`.
+- [VERIFY] RED bridge showed stale formal gap refresh lineage; focused unit+bridge **6 passed**; focused chain **22 passed**; Ruff pass; compileall pass; smoke `loop597_smoke formal_authorization_gap_review_reentry_open safe_no_execution_scoring_formal_authorization_review_surface True factor_value_daily not_computed qa-pg-alt 4 4 3 True not_granted False True True`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_REVIEW_SURFACE_REENTRY_REFRESH_LOOP598`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-608 safe no-execution scoring dry-run authorization materials reentry refresh
 
