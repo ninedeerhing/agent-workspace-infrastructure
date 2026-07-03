@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T22:43:42+08:00
+updated_at: 2026-07-03T22:49:16+08:00
+
+## Latest Handoff — SYNC-692 real scoring system_blocker read-model regeneration
+
+- [DONE] Added `real_scoring_system_blocker_read_model_regeneration_v1` and exposed it from creation plan.
+- [DONE] Regeneration consumes loop679 system_blocker packet review and shows system_blocker_read_model_regenerated, return_to_enablement_check_candidate=true, remaining_missing_materials=0, reviewed_material_count=3, read_model_summary.will_execute=false, controls_enabled=false, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_system_blocker_read_model_regeneration`; focused test **4 passed**; batch mining flow **7 passed**; all `test_real_scoring_*_unit.py` **171 passed**; Ruff pass; compileall pass; payload smoke `loop680_smoke system_blocker_read_model_regenerated True 0 3 False False not_granted False False False False False False False False False False False False False False False False False False False False False False False False`; forbidden scan matched only all-false policy field names.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_SYSTEM_BLOCKER_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP681`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-691 real scoring system_blocker input packet review
 

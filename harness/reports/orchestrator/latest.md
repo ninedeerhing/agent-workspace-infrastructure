@@ -1,3 +1,38 @@
+# Orchestrator Latest Report — SYNC-692 real scoring system_blocker read-model regeneration
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring system_blocker read-model regeneration"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_system_blocker_read_model_regeneration.py"
+      summary: "Adds no-execution system_blocker read-model regeneration."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_system_blocker_read_model_regeneration from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_system_blocker_read_model_regeneration_unit.py"
+      summary: "Covers ready, missing review, not-ready review, and creation-plan bridge behavior."
+  verification:
+    - command: "focused system_blocker read-model regeneration pytest"
+      result: "4 passed."
+    - command: "batch mining flow pytest"
+      result: "7 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "171 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed regenerated status, return_to_enablement_check_candidate true, remaining missing 0, reviewed material count 3, read_model_summary.will_execute false, controls disabled, not_granted, and all execution flags false; forbidden scan matched only all-false policy field names."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "System blocker read-model regeneration must stay a no-execution read-model rebuild, not an authorization grant."
+    performance_note: "System blocker read-model regeneration is ready for no-execution enablement recheck."
+  blockers:
+    - "System blocker regenerated-model enablement recheck is still pending."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_SYSTEM_BLOCKER_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP681"
+
+---
+
 # Orchestrator Latest Report — SYNC-691 real scoring system_blocker input packet review
 
 report:
