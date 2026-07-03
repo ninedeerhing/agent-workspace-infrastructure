@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T21:21:23+08:00
+Updated: 2026-07-03T21:28:29+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop666 | active | gpt-5.5 | 2026-07-03T21:21:23+08:00 | SYNC-678 loop666 human_decision gap group routing complete; next loop667 human_decision closure guidance | workload light; human_decision route selected |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop666 | dispatched | gpt-5.4 | 2026-07-03T21:21:23+08:00 | loop666 plan dispatched; report recovery output exceeded context, local verification authoritative | workload cleared |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop666 | dispatched | gpt-5.4-mini | 2026-07-03T21:21:23+08:00 | loop666 boundary dispatched; orchestrator bounded writer; no duplicate blocked workers | workload cleared |
+| orchestrator | current-thread | loop667 | active | gpt-5.5 | 2026-07-03T21:28:29+08:00 | SYNC-679 loop667 human_decision closure guidance complete; next loop668 human_decision request packet | workload light; human_decision guidance ready |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop667 | dispatched | gpt-5.4 | 2026-07-03T21:28:29+08:00 | loop667 plan dispatched: human_decision closure guidance | workload cleared |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop667 | dispatched | gpt-5.4-mini | 2026-07-03T21:28:29+08:00 | loop667 boundary dispatched; orchestrator bounded writer; no duplicate blocked workers | workload cleared |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop666 | dispatched | gpt-5.4 | 2026-07-03T21:21:23+08:00 | loop666 test matrix dispatched; local focused/related verification passed | workload cleared |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop667 | dispatched | gpt-5.4 | 2026-07-03T21:28:29+08:00 | loop667 test matrix dispatched; local focused/related verification passed | workload cleared |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-03T21:28:29+08:00 · SYNC-679 · loop667: Human decision closure guidance added. Permanent Planner/Dispatcher/Test Engineer were dispatched; guidance exposes human_decision_closure_guidance_ready, required materials/input slots/acceptance hints all 3, human_decision_recheck_request enabled but will_execute=false, controls_enabled=false, not_granted authorization, and all-false execution policy. Expanded real_scoring tests 113 passed after fixing an incomplete ready-path fixture. No duplicate same-role worker created.
 - 2026-07-03T21:21:23+08:00 · SYNC-678 · loop666: Human decision gap group routing added. Permanent Planner/Dispatcher/Test Engineer were dispatched; report collection exceeded context and local verification is authoritative. Routing exposes next_remaining_gap_group=human_decision, closed_gap_groups=[operator_runtime,reviewer_safety], remaining_gap_groups=[human_decision,system_blocker], human_decision_required_materials=3, closure_guidance_request enabled but will_execute=false, controls_enabled=false, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-03T21:14:22+08:00 · SYNC-677 · loop665: Reviewer safety enablement recheck from regenerated model added. Planner/Dispatcher/Test Engineer success reports incorporated; recheck exposes reviewer_safety_gap_closed_candidate=true, closed_gap_groups=[operator_runtime,reviewer_safety], remaining_gap_groups=[human_decision,system_blocker], controls_enabled=false, controls_still_not_granted=true, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-03T21:08:37+08:00 · SYNC-676 · loop664: Reviewer safety recheck read-model regeneration added. Planner/Dispatcher/Test Engineer success reports incorporated; regeneration exposes reviewer_safety_recheck_read_model_regenerated, return_to_enablement_check_candidate=true, remaining_missing_materials=0, reviewed_material_count=3, read_model_summary.will_execute=false, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.

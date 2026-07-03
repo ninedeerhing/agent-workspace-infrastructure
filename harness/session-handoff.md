@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T21:21:23+08:00
+updated_at: 2026-07-03T21:28:29+08:00
+
+## Latest Handoff — SYNC-679 real scoring human decision closure guidance
+
+- [DONE] Added `real_scoring_human_decision_closure_guidance_v1` and exposed it from creation plan.
+- [DONE] Guidance consumes loop666 human_decision routing and shows human_decision_closure_guidance_ready, next_remaining_gap_group=human_decision, human_decision_required_materials=3, input_slots=3, acceptance_hints=3, human_decision_recheck_request enabled but will_execute=false, controls_enabled=false, and not_granted authorization.
+- [VERIFY] Focused test **5 passed**; all `test_real_scoring_*_unit.py` **113 passed**; Ruff pass; compileall pass; payload smoke `loop667_smoke human_decision_closure_guidance_ready human_decision 3 3 3 True False False not_granted False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer were dispatched. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_HUMAN_DECISION_REQUEST_PACKET_LOOP668`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-678 real scoring human decision gap group routing
 

@@ -1,3 +1,39 @@
+# Orchestrator Latest Report — SYNC-679 real scoring human decision closure guidance
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring human decision closure guidance"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_human_decision_closure_guidance.py"
+      summary: "Adds no-execution human_decision closure guidance with materials, input slots, acceptance hints, and recheck request."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_human_decision_closure_guidance from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_human_decision_closure_guidance_unit.py"
+      summary: "Covers ready, missing source, wrong next group, disabled request, and creation-plan bridge behavior."
+    - file: "apps/quant_assistant/tests/test_real_scoring_to_backtest_review_surface_unit.py"
+      summary: "Fixes ready-path fixture with execution_batch_manifest so hard blockers remain meaningful."
+  verification:
+    - command: "focused human decision closure guidance pytest"
+      result: "5 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "113 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed human_decision closure guidance ready, materials/input slots/acceptance hints all 3, recheck request enabled but will_execute false, controls_enabled false, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Expanded related tests should preserve hard blocker semantics by fixing incomplete fixtures, not by weakening production readiness logic."
+    performance_note: "Human decision now has a concrete no-execution closure guidance surface."
+  blockers:
+    - "Human decision request packet has not yet been assembled."
+    - "System blocker gap group remains open."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_HUMAN_DECISION_REQUEST_PACKET_LOOP668"
+
+---
+
 # Orchestrator Latest Report — SYNC-678 real scoring human decision gap group routing
 
 report:
