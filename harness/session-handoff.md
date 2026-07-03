@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T08:10:00+08:00
+updated_at: 2026-07-04T08:30:00+08:00
+
+## Latest Handoff — SYNC-660 real scoring frontier gap group closure guidance
+
+- [DONE] Added `real_scoring_frontier_gap_group_closure_guidance_v1` and exposed it from creation plan.
+- [DONE] Guidance consumes next gap closure milestone surface and shows frontier group operator_runtime, gap_count=1, three required operator materials, completion signals, recheck action rerun_formal_decision_enablement_check, and not_granted authorization.
+- [VERIFY] Focused related tests **46 passed**; Ruff pass; compileall pass; payload smoke `loop648_smoke frontier_gap_group_guidance_ready operator_runtime 1 3 rerun_formal_decision_enablement_check not_granted False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_OPERATOR_RUNTIME_RECHECK_PACKET_LOOP649`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-659 real scoring next gap closure milestone surface
 

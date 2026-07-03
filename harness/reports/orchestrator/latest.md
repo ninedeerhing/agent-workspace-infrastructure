@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-660 real scoring frontier gap group closure guidance
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring frontier gap group closure guidance"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_frontier_gap_group_closure_guidance.py"
+      summary: "Adds no-execution guidance for the first real-scoring gap group."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_frontier_gap_group_closure_guidance from the creation plan."
+  verification:
+    - command: "frontier guidance + adjacent milestone/enablement/decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "46 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed frontier_gap_group_guidance_ready, operator_runtime, gap_count 1, three required materials, recheck action rerun_formal_decision_enablement_check, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Closure guidance should express required materials and completion signals while keeping recheck actions non-executing."
+    performance_note: "Real scoring path now has a concrete operator_runtime closure guide before recheck."
+  blockers:
+    - "Operator runtime materials are described but not yet rechecked or closed."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_OPERATOR_RUNTIME_RECHECK_PACKET_LOOP649"
+
+---
+
 # Orchestrator Latest Report — SYNC-659 real scoring next gap closure milestone surface
 
 report:
