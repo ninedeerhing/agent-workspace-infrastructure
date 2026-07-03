@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T03:35:00+08:00",
+  "updated_at": "2026-07-04T03:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "safe-no-execution-scoring-result-shape-review-reentry-refresh-loop633",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_FINAL_HUMAN_AUTHORIZATION_REVIEW_REENTRY_REFRESH_LOOP634：基于 safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_final_human_authorization_review，刷新/延展既有 safe_no_execution_scoring_final_human_authorization_review_reentry_v1，使 final human authorization review reentry 消费最新 explicit authorization handoff packet refresh，并继续串联 handoff source summary、required_human_decisions、not_granted_state、handoff_boundaries、final_review_actions、manual_confirmation_state、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop634, continue into blocked-until explicit human authorization reentry refresh without bypassing human/runtime authorization.",
+  "current_slice": "safe-no-execution-scoring-final-human-authorization-review-reentry-refresh-loop634",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_FINAL_NO_EXECUTION_AUTHORIZATION_READINESS_SUMMARY_REENTRY_REFRESH_LOOP635：基于 safe_no_execution_scoring_explicit_authorization_closure_review_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_final_no_execution_authorization_readiness_summary，刷新/延展既有 safe_no_execution_scoring_final_no_execution_authorization_readiness_summary_reentry_v1，使 final no-execution authorization readiness summary reentry 消费最新 explicit authorization closure review refresh，并继续串联 closure_review source summary、manual_closure_status、remaining_gaps、manual_closure_actions、not_granted_guardrails、request_entry、blocked_reasons、authorization_decision、execution_prohibition 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop635, continue into runner/DSN and dry-run refresh without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-645-safe-no-execution-scoring-result-shape-review-reentry-refresh",
+  "last_tick": "SYNC-646-safe-no-execution-scoring-final-human-authorization-review-reentry-refresh",
   "last_sync_sources": [
+    "SYNC-646 loop634 Safe no-execution scoring final human authorization review reentry refresh",
+    "loop634 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_final_human_authorization_review_reentry_refresh after the final safe_no_execution_scoring_explicit_authorization_handoff_packet_reentry_refresh so final review consumes final reentry-aware handoff refresh; direct downstream blocked, request intake, evidence review, evidence gap, and closure review refreshes were also recomputed from latest sources",
+    "loop634 verification: RED final-review chain showed stale final human authorization review refresh lineage; focused final-to-closure chain 42 passed after direct downstream recompute; Ruff pass; compileall pass; payload smoke loop634_smoke final_human_authorization_review_reentry_open safe_no_execution_scoring_blocked_until_explicit_human_authorization True True True True True not_granted False False False False False False False False False False False False False False False False",
+    "loop634 worker: permanent Planner/Dispatcher/Test Engineer dispatched; canonical Executor/Verifier/Code Reviewer not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_FINAL_NO_EXECUTION_AUTHORIZATION_READINESS_SUMMARY_REENTRY_REFRESH_LOOP635",
     "SYNC-645 loop633 Safe no-execution scoring result-shape review reentry refresh",
     "loop633 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_result_shape_review_reentry_refresh after the final safe_no_execution_scoring_dry_run_review_packet_reentry_refresh so result shape review consumes final reentry-aware dry-run review refresh; direct downstream authorization materials, formal gap, review surface, and handoff packet refreshes were also recomputed from latest sources",
     "loop633 verification: RED result-shape chain showed stale result shape refresh lineage and adjacent downstream stale sources; focused result-to-handoff chain 31 passed after direct downstream recompute; Ruff pass; compileall pass; payload smoke loop633_smoke result_shape_review_reentry_open safe_no_execution_scoring_dry_run_authorization_materials True True True True not_granted False False False False False False False False False False False False False False False False",
