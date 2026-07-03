@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T01:05:00+08:00",
+  "updated_at": "2026-07-04T01:20:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "safe-no-execution-scoring-dry-run-contract-reentry-refresh-loop623",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_REFRESH_LOOP624：基于 safe_no_execution_scoring_dry_run_contract_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_dry_run_review_packet，刷新/延展既有 safe_no_execution_scoring_dry_run_review_packet_reentry_v1，使 dry-run review packet reentry 消费 reentry-aware safe dry-run contract refresh，并继续串联 dry_run_contract source summary、runtime_policy_review、forbidden_runtime_paths、result_shape_expectations、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop624, continue into result-shape review reentry refresh without bypassing human/runtime authorization.",
+  "current_slice": "safe-no-execution-scoring-dry-run-review-packet-reentry-refresh-loop624",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_RESULT_SHAPE_REVIEW_REENTRY_REFRESH_LOOP625：基于 safe_no_execution_scoring_dry_run_review_packet_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_result_shape_review，刷新/延展既有 safe_no_execution_scoring_result_shape_review_reentry_v1，使 result-shape review reentry 消费 reentry-aware dry-run review packet refresh，并继续串联 dry_run_review source summary、placeholder_result_schema、metric_preview_shape、runtime_policy_review、forbidden_runtime_paths、blocked_execution_gap、manual_confirmation_items、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop625, continue into dry-run authorization materials reentry refresh without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-635-safe-no-execution-scoring-dry-run-contract-reentry-refresh",
+  "last_tick": "SYNC-636-safe-no-execution-scoring-dry-run-review-packet-reentry-refresh",
   "last_sync_sources": [
+    "SYNC-636 loop624 Safe no-execution scoring dry-run review packet reentry refresh",
+    "loop624 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_result_shape_review_reentry_refresh after the final safe_no_execution_scoring_dry_run_review_packet_reentry_refresh so result-shape review reentry consumes final reentry-aware dry-run review packet refresh instead of stale pre-refresh lineage; safe_no_execution_scoring_dry_run_review_packet_reentry_refresh itself already consumed the latest dry-run contract refresh from loop623",
+    "loop624 verification: RED review-to-result-shape chain showed stale result-shape review refresh lineage; focused review-to-result chain 12 passed after direct downstream recompute; Ruff pass; compileall pass; payload smoke loop624_smoke dry_run_review_packet_reentry_open safe_no_execution_scoring_result_shape_review True True not_granted False False False False False False False False False",
+    "loop624 worker: permanent Planner/Dispatcher/Test Engineer success; Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval; Verifier channel_waitingOnApproval not duplicated and local verification fallback used; Code Reviewer channel_slow/waitingOnApproval not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_RESULT_SHAPE_REVIEW_REENTRY_REFRESH_LOOP625",
     "SYNC-635 loop623 Safe no-execution scoring dry-run contract reentry refresh",
     "loop623 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_dry_run_review_packet_reentry_refresh after the final safe_no_execution_scoring_dry_run_contract_reentry_refresh so dry-run review packet reentry consumes final reentry-aware dry-run contract refresh instead of stale pre-refresh lineage; safe_no_execution_scoring_dry_run_contract_reentry_refresh itself already consumed the latest runner/DSN refresh from loop622",
     "loop623 verification: RED dry-run-to-review-packet chain showed stale review packet refresh lineage; focused dry-run-to-review chain 12 passed after direct downstream recompute; Ruff pass; compileall pass; payload smoke loop623_smoke dry_run_contract_reentry_open safe_no_execution_scoring_dry_run_review_packet True True not_granted False False False False False False False False False",
