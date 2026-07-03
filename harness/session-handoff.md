@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T04:50:00+08:00
+updated_at: 2026-07-04T05:10:00+08:00
+
+## Latest Handoff — SYNC-650 explicit real scoring authorization packet
+
+- [DONE] Added `explicit_real_scoring_authorization_packet_v1` and exposed it from creation plan.
+- [DONE] Packet consumes controlled preflight and summarizes preflight blockers, Top50 package, operator/reviewer materials, runtime boundary, pending decisions, and not_granted authorization.
+- [VERIFY] Focused related tests **16 passed**; Ruff pass; compileall pass; payload smoke `loop638_smoke blocked_waiting_for_preflight_closure 真实评分授权材料未齐 small_batch_trial 50 17 not_granted not_granted False False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `OPERATOR_REVIEWER_REAL_SCORING_AUTHORIZATION_REVIEW_SURFACE_LOOP639`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-649 controlled real scoring execution preflight
 

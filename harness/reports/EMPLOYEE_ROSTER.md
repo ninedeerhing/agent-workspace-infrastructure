@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-04T04:50:00+08:00
+Updated: 2026-07-04T05:10:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop637 | active | gpt-5.5 | 2026-07-04T04:50:00+08:00 | SYNC-649 loop637 controlled real scoring execution preflight complete; next loop638 explicit real scoring authorization packet | workload light; mainline real scoring preflight packet added |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop637 | reported | gpt-5.4 | 2026-07-04T04:50:00+08:00 | loop637 plan success: controlled real scoring execution preflight | workload cleared |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop637 | reported | gpt-5.4 | 2026-07-04T04:50:00+08:00 | loop637 boundary success: orchestrator bounded writer; no duplicate blocked workers | workload cleared |
+| orchestrator | current-thread | loop638 | active | gpt-5.5 | 2026-07-04T05:10:00+08:00 | SYNC-650 loop638 explicit real scoring authorization packet complete; next loop639 operator/reviewer authorization review surface | workload light; mainline real scoring authorization packet added |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop638 | reported | gpt-5.4 | 2026-07-04T05:10:00+08:00 | loop638 plan success: explicit real scoring authorization packet | workload cleared |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop638 | reported | gpt-5.4 | 2026-07-04T05:10:00+08:00 | loop638 boundary success: orchestrator bounded writer; no duplicate blocked workers | workload cleared |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop637 | reported | gpt-5.4 | 2026-07-04T04:50:00+08:00 | loop637 test matrix success: preflight consumes runtime evidence surface with hard no-execution guards | workload cleared |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop638 | reported | gpt-5.4 | 2026-07-04T05:10:00+08:00 | loop638 test matrix success: authorization packet semantics + not-granted guards | workload cleared |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-04T05:10:00+08:00 · SYNC-650 · loop638: Explicit real scoring authorization packet added. Planner/Dispatcher/Test Engineer success reports incorporated; packet exposes preflight blockers, Top50 package summary, operator/reviewer materials, qa-pg-alt runtime boundary, pending authorization decisions, not_granted authorization, and all-false side effects. No duplicate same-role worker created.
 - 2026-07-04T04:50:00+08:00 · SYNC-649 · loop637: Controlled real scoring execution preflight added. Planner/Dispatcher/Test Engineer success reports incorporated; preflight exposes Top50 small_batch_trial, runtime evidence gate, operator/reviewer evidence slots, qa-pg-alt runtime boundary, not_granted authorization, and all-false side effects. No duplicate same-role worker created.
 - 2026-07-04T04:30:00+08:00 · SYNC-648 · loop636: Real scoring runtime evidence preview authorization surface added. Planner/Dispatcher/Test Engineer success reports incorporated; surface exposes qa-pg-alt runtime, DSN isolation, schema tables, injected runner, dry-run capability, audit, rollback, resource limits, and Top50 batch manifest evidence cards; all execution/write/runner/backtest/PL-H paths remain false/not_granted. No duplicate same-role worker created.
 - 2026-07-04T04:05:00+08:00 · SYNC-647 · loop635: Safe no-execution reentry refresh chain convergence closed an invalid cyclic proof loop. `final_no_execution_authorization_readiness_summary` is now tested as the closure-to-runner/DSN cycle boundary using stable closure lineage/status assertions; full recursive source_summary equality is explicitly avoided. Permanent Planner/Dispatcher/Test Engineer dispatched; Executor/Verifier/Code Reviewer canonical waiting/slow channels preserved without duplicate same-role workers.

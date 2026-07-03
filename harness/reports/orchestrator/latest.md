@@ -1,3 +1,33 @@
+# Orchestrator Latest Report — SYNC-650 explicit real scoring authorization packet
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "explicit real scoring authorization packet"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/explicit_real_scoring_authorization_packet.py"
+      summary: "Adds a no-execution explicit real-scoring authorization packet consuming controlled preflight."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes explicit_real_scoring_authorization_packet from the creation plan."
+  verification:
+    - command: "explicit authorization packet + adjacent controlled/runtime pytest"
+      result: "16 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed blocked_waiting_for_preflight_closure with Top50 small_batch_trial, not_granted, and all execution flags false; forbidden scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Authorization packets must organize review materials without implying approval."
+    performance_note: "Real scoring path now has an explicit authorization packet after controlled preflight."
+  blockers:
+    - "Preflight remains blocked; packet is not_granted and no-execution."
+    - "Executor remains waitingOnApproval; Dispatcher boundary keeps orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier and Code Reviewer canonical channels were not duplicated; local verification is authoritative fallback."
+  next: "OPERATOR_REVIEWER_REAL_SCORING_AUTHORIZATION_REVIEW_SURFACE_LOOP639"
+
+---
+
 # Orchestrator Latest Report — SYNC-649 controlled real scoring execution preflight
 
 report:
