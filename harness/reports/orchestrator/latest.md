@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-663 real scoring operator runtime missing materials remediation guidance
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring operator runtime missing materials remediation guidance"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_operator_runtime_missing_materials_remediation_guidance.py"
+      summary: "Adds no-execution remediation guidance for the three missing operator runtime materials."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_operator_runtime_missing_materials_remediation_guidance from the creation plan."
+  verification:
+    - command: "remediation guidance + adjacent enablement/operator/guidance/milestone/decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "57 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed operator_runtime_materials_remediation_required, missing count 3, 3 input slots, 3 acceptance hints, regenerate action enabled, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Remediation guidance should make each missing material fillable without turning submission into execution."
+    performance_note: "Operator runtime missing materials are now user-actionable as no-execution input slots."
+  blockers:
+    - "Materials are fillable but not yet submitted or regenerated into a recheck packet."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_OPERATOR_RUNTIME_RECHECK_REGENERATION_PACKET_LOOP652"
+
+---
+
 # Orchestrator Latest Report — SYNC-662 real scoring formal decision enablement recheck
 
 report:

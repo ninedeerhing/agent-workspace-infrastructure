@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T09:10:00+08:00
+updated_at: 2026-07-04T09:30:00+08:00
+
+## Latest Handoff — SYNC-663 real scoring operator runtime missing materials remediation guidance
+
+- [DONE] Added `real_scoring_operator_runtime_missing_materials_remediation_guidance_v1` and exposed it from creation plan.
+- [DONE] Guidance consumes formal decision enablement recheck and shows missing_material_count=3, three material instructions, three input slots, three acceptance hints, regenerate_operator_runtime_recheck_packet action, and not_granted authorization.
+- [VERIFY] Focused related tests **57 passed**; Ruff pass; compileall pass; payload smoke `loop651_smoke operator_runtime_materials_remediation_required 3 3 3 True not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_OPERATOR_RUNTIME_RECHECK_REGENERATION_PACKET_LOOP652`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-662 real scoring formal decision enablement recheck
 

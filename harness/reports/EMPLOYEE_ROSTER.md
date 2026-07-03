@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-04T09:10:00+08:00
+Updated: 2026-07-04T09:30:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop650 | active | gpt-5.5 | 2026-07-04T09:10:00+08:00 | SYNC-662 loop650 formal decision enablement recheck complete; next loop651 operator runtime remediation guidance | workload light; mainline enablement recheck added |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop650 | reported | gpt-5.4 | 2026-07-04T09:10:00+08:00 | loop650 plan success: formal decision enablement recheck | workload cleared |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop650 | reported | gpt-5.4-mini | 2026-07-04T09:10:00+08:00 | loop650 boundary success: orchestrator bounded writer; no duplicate blocked workers | workload cleared |
+| orchestrator | current-thread | loop651 | active | gpt-5.5 | 2026-07-04T09:30:00+08:00 | SYNC-663 loop651 operator runtime missing materials remediation guidance complete; next loop652 recheck regeneration packet | workload light; mainline remediation guidance added |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop651 | reported | gpt-5.4 | 2026-07-04T09:30:00+08:00 | loop651 plan success: operator runtime remediation guidance | workload cleared |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop651 | reported | gpt-5.4-mini | 2026-07-04T09:30:00+08:00 | loop651 boundary success: orchestrator bounded writer; no duplicate blocked workers | workload cleared |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop650 | reported | gpt-5.4 | 2026-07-04T09:10:00+08:00 | loop650 test matrix success: formal decision enablement recheck + no-execution guardrails | workload cleared |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop651 | reported | gpt-5.4 | 2026-07-04T09:30:00+08:00 | loop651 test matrix success: remediation guidance + no-execution guardrails | workload cleared |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-04T09:30:00+08:00 · SYNC-663 · loop651: Operator runtime missing materials remediation guidance added. Planner/Dispatcher/Test Engineer success reports incorporated; guidance exposes missing_material_count=3, material_instructions=3, input_slots=3, acceptance_hints=3, regenerate_operator_runtime_recheck_packet action, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-04T09:10:00+08:00 · SYNC-662 · loop650: Formal decision enablement recheck added. Planner/Dispatcher/Test Engineer success reports incorporated; recheck exposes controls_disabled_operator_runtime_materials_missing, controls_enabled=false, return_to_enablement_check=false, disabled_reasons=3, next_route=operator_runtime_materials_closure, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-04T08:50:00+08:00 · SYNC-661 · loop649: Operator runtime recheck packet added. Planner/Dispatcher/Test Engineer success reports incorporated; packet exposes required_materials_count=3, completion_signals_count=2, still_missing=3, return_to_enablement_check=false, recheck_action disabled until materials are submitted, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
 - 2026-07-04T08:30:00+08:00 · SYNC-660 · loop648: Frontier gap group closure guidance added. Planner/Dispatcher/Test Engineer success reports incorporated; guidance exposes operator_runtime, gap_count=1, required_materials=3, completion signals, recheck_action=rerun_formal_decision_enablement_check, not_granted authorization, and all-false execution policy. No duplicate same-role worker created.
