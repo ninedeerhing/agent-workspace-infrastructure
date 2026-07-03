@@ -1,3 +1,36 @@
+# Orchestrator Latest Report — SYNC-683 real scoring human decision input packet review
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring human decision input packet review"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_human_decision_input_packet_review.py"
+      summary: "Adds no-execution human_decision input packet review for read-model regeneration readiness."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_human_decision_input_packet_review from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_human_decision_input_packet_review_unit.py"
+      summary: "Covers ready, missing packet, item drift, and creation-plan bridge behavior."
+  verification:
+    - command: "focused human decision input packet review pytest"
+      result: "4 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "131 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed input packet review ready, can regenerate read model true, packet item count 3, blocked reasons 0, request enabled but will_execute false, controls_enabled false, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Human decision input packet review is ready for no-execution read-model regeneration."
+  blockers:
+    - "Human decision read-model regeneration has not yet been assembled."
+    - "System blocker gap group remains open."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_HUMAN_DECISION_READ_MODEL_REGENERATION_LOOP672"
+
+---
+
 # Orchestrator Latest Report — SYNC-682 real scoring human decision input packet
 
 report:

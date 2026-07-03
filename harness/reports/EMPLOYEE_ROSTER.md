@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-03T21:43:13+08:00
+Updated: 2026-07-03T21:49:57+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop670 | active | gpt-5.5 | 2026-07-03T21:43:13+08:00 | SYNC-682 loop670 human_decision input packet complete; next loop671 human_decision input packet review | workload light; human_decision input packet ready |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop670 | dispatched | gpt-5.4 | 2026-07-03T21:43:13+08:00 | loop670 plan dispatched: human_decision input packet | workload cleared |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop670 | dispatched | gpt-5.4-mini | 2026-07-03T21:43:13+08:00 | loop670 boundary dispatched; orchestrator bounded writer; no duplicate blocked workers | workload cleared |
+| orchestrator | current-thread | loop671 | active | gpt-5.5 | 2026-07-03T21:49:57+08:00 | SYNC-683 loop671 human_decision input packet review complete; next loop672 human_decision read-model regeneration | workload light; human_decision input packet reviewed |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop671 | dispatched | gpt-5.4 | 2026-07-03T21:49:57+08:00 | loop671 plan dispatched: human_decision input packet review | workload cleared |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop671 | dispatched | gpt-5.4-mini | 2026-07-03T21:49:57+08:00 | loop671 boundary dispatched; orchestrator bounded writer; no duplicate blocked workers | workload cleared |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop522 | channel_waitingOnApproval | gpt-5.5 | 2026-07-02T22:10:29+08:00 | not re-dispatched due waitingOnApproval | preserve identity; do not create duplicate executor; future executor prompts must forbid escalation unless user explicitly authorizes |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop670 | dispatched | gpt-5.4 | 2026-07-03T21:43:13+08:00 | loop670 test matrix dispatched; local focused/related verification passed | workload cleared |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop671 | dispatched | gpt-5.4 | 2026-07-03T21:49:57+08:00 | loop671 test matrix dispatched; local focused/related verification passed | workload cleared |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-03T21:49:57+08:00 · SYNC-683 · loop671: Human decision input packet review added. Permanent Planner/Dispatcher/Test Engineer were dispatched; review exposes ready_to_regenerate_human_decision_read_model, can_regenerate=true, packet_item_count=3, blocked_reasons=[], read_model_regeneration_request enabled but will_execute=false, controls_enabled=false, not_granted authorization, and all-false execution policy. Expanded real_scoring tests 131 passed. No duplicate same-role worker created.
 - 2026-07-03T21:43:13+08:00 · SYNC-682 · loop670: Human decision input packet added. Permanent Planner/Dispatcher/Test Engineer were dispatched; packet exposes ready_human_decision_input_packet, ready_for_human_decision_packet_review=true, packet_item_count=3, input_packet_assembly_request enabled but will_execute=false, controls_enabled=false, not_granted authorization, and all-false execution policy. Expanded real_scoring tests 127 passed. No duplicate same-role worker created.
 - 2026-07-03T21:38:07+08:00 · SYNC-681 · loop669: Human decision input readiness added. Permanent Planner/Dispatcher/Test Engineer were dispatched; readiness exposes ready_for_human_decision_input, counts 3/3/3, missing_refs=[], human_decision_input_request enabled but will_execute=false, controls_enabled=false, not_granted authorization, and all-false execution policy. Expanded real_scoring tests 123 passed. No duplicate same-role worker created.
 - 2026-07-03T21:33:12+08:00 · SYNC-680 · loop668: Human decision request packet added. Permanent Planner/Dispatcher/Test Engineer were dispatched; request packet exposes ready_human_decision_request_packet, material/slot/hint refs all 3, human_decision_review_request enabled but will_execute=false, controls_enabled=false, not_granted authorization, and all-false execution policy. Expanded real_scoring tests 118 passed. No duplicate same-role worker created.
