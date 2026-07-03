@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-03T23:25:00+08:00
+updated_at: 2026-07-03T23:45:00+08:00
+
+## Latest Handoff — SYNC-627 safe no-execution scoring dry-run review packet reentry refresh
+
+- [DONE] `safe_no_execution_scoring_dry_run_review_packet_reentry_refresh` now reconnects final safe dry-run contract refresh to dry-run review packet reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_dry_run_contract_reentry_refresh.source_summary` as review-packet `dry_run_contract_source_summary`, preserving dry_run_contract lineage, consumer_review_packet, runtime_policy_review, forbidden_runtime_paths, result_shape_expectations, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_result_shape_review`.
+- [DONE] Anti-small-loop repair: direct downstream `safe_no_execution_scoring_result_shape_review_reentry_refresh` is recomputed from the latest dry-run review packet refresh, so review→result-shape stays on one lineage.
+- [VERIFY] RED bridge showed stale dry-run review packet refresh lineage; focused unit+bridge **6 passed**; review→result-shape chain **12 passed**; Ruff pass; compileall pass; smoke `loop615_smoke dry_run_review_packet_reentry_open safe_no_execution_scoring_result_shape_review True True not_granted False False False False False False False False`; diff check clean except CRLF warnings.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_AUTHORIZATION_MATERIALS_REENTRY_REFRESH_LOOP616`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-626 runner/DSN repair prerequisite branch reentry refresh
 

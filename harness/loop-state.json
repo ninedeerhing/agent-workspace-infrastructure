@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T23:25:00+08:00",
+  "updated_at": "2026-07-03T23:45:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "runner-dsn-repair-prerequisite-branch-reentry-refresh-loop614",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_REFRESH_LOOP615：基于 safe_no_execution_scoring_dry_run_contract_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_dry_run_review_packet，刷新/延展既有 safe_no_execution_scoring_dry_run_review_packet_reentry_v1，使 dry-run review packet reentry 消费 reentry-aware safe dry-run contract refresh，并继续串联 dry_run_contract refresh lineage、consumer_review_packet、runtime_policy_review、forbidden_runtime_paths、result_shape_expectations、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop615, continue into result-shape review reentry refresh without bypassing human/runtime authorization.",
+  "current_slice": "safe-no-execution-scoring-dry-run-review-packet-reentry-refresh-loop615",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_DRY_RUN_AUTHORIZATION_MATERIALS_REENTRY_REFRESH_LOOP616：基于 safe_no_execution_scoring_result_shape_review_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_dry_run_authorization_materials，刷新/延展既有 safe_no_execution_scoring_dry_run_authorization_materials_reentry_v1，使 authorization materials reentry 消费 reentry-aware result-shape review refresh，并继续串联 result_shape refresh lineage、placeholder_result_schema、metric_preview_shape、runtime_policy_review、operator/reviewer materials、manual_confirmation_packet、blocked_execution_boundary、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop616, continue into formal authorization gap review reentry refresh without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-626-runner-dsn-repair-prerequisite-branch-reentry-refresh",
+  "last_tick": "SYNC-627-safe-no-execution-scoring-dry-run-review-packet-reentry-refresh",
   "last_sync_sources": [
+    "SYNC-627 loop615 Safe no-execution scoring dry-run review packet reentry refresh",
+    "loop615 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_dry_run_review_packet_reentry_refresh after the final safe_no_execution_scoring_dry_run_contract_reentry_refresh so dry-run review packet reentry consumes final reentry-aware safe dry-run contract refresh instead of stale pre-refresh lineage; direct downstream safe_no_execution_scoring_result_shape_review_reentry_refresh was also recomputed from the latest review packet refresh to avoid small-loop stale-source churn",
+    "loop615 verification: RED bridge showed stale dry-run review packet refresh lineage; focused unit+bridge 6 passed; focused review-to-result-shape chain 12 passed; Ruff pass; compileall pass; payload smoke loop615_smoke dry_run_review_packet_reentry_open safe_no_execution_scoring_result_shape_review True True not_granted False False False False False False False False; diff check clean except CRLF warnings",
+    "loop615 worker: permanent Planner/Dispatcher/Test Engineer success; Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval; Verifier channel_waitingOnApproval not duplicated and local verification fallback used; Code Reviewer channel_slow/waitingOnApproval not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_DRY_RUN_AUTHORIZATION_MATERIALS_REENTRY_REFRESH_LOOP616",
     "SYNC-626 loop614 Runner/DSN repair prerequisite branch reentry refresh",
     "loop614 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns runner_dsn_repair_prerequisite_branch_reentry_refresh after the final safe_no_execution_scoring_final_no_execution_authorization_readiness_summary_reentry_refresh so runner/DSN runtime evidence reentry consumes final reentry-aware readiness summary refresh instead of stale pre-refresh lineage; direct downstream safe_no_execution_scoring_dry_run_contract_reentry_refresh was also recomputed from the latest runner/DSN source to avoid small-loop stale-source churn",
     "loop614 verification: RED bridge showed stale runner/DSN refresh lineage; focused unit+bridge 7 passed; focused runner-to-contract chain 13 passed; Ruff pass; compileall pass; payload smoke loop614_smoke runtime_evidence_reentry_open safe_no_execution_scoring_dry_run_contract True True not_granted False False False False False False False; diff check clean except CRLF warnings",
