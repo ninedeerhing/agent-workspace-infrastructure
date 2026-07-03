@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-03T23:45:00+08:00
+updated_at: 2026-07-03T23:55:00+08:00
+
+## Latest Handoff — SYNC-628 safe no-execution scoring dry-run authorization materials reentry refresh
+
+- [DONE] `safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh` now reconnects final result-shape review refresh to dry-run authorization materials reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_result_shape_review_reentry_refresh.source_summary` as authorization-materials `result_shape_source_summary`, preserving result_shape lineage, placeholder_result_schema, metric_preview_shape, runtime_policy_review, operator/reviewer materials, manual_confirmation_packet, blocked_execution_boundary, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_formal_authorization_gap_review`.
+- [DONE] Anti-small-loop repair: direct downstream `safe_no_execution_scoring_formal_authorization_gap_review_reentry_refresh` is recomputed from the latest authorization materials refresh, so authorization→formal-gap stays on one lineage.
+- [VERIFY] RED bridge showed stale authorization materials refresh lineage; focused unit+bridge **6 passed**; authorization→formal-gap chain **12 passed**; Ruff pass; compileall pass; smoke `loop616_smoke authorization_materials_reentry_open safe_no_execution_scoring_formal_authorization_gap_review True True not_granted False False False False False False False False`; diff check clean except CRLF warnings.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_REVIEW_SURFACE_REENTRY_REFRESH_LOOP617`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-627 safe no-execution scoring dry-run review packet reentry refresh
 
