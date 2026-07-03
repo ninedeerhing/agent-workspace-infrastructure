@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-668 real scoring operator runtime recheck read-model regeneration
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring operator runtime recheck read-model regeneration"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_operator_runtime_recheck_read_model_regeneration.py"
+      summary: "Adds a no-execution read-model regeneration for operator runtime recheck."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_operator_runtime_recheck_read_model_regeneration from the creation plan."
+  verification:
+    - command: "read-model regeneration + adjacent packet review/input packet/readiness/recheck regeneration/remediation/enablement/operator/guidance/milestone/decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "76 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed regenerated_recheck_status operator_runtime_recheck_read_model_regenerated, return_to_enablement_check_candidate true, remaining_missing_materials 0, 3 reviewed materials, read_model_summary will_execute false, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Regenerated read-models can return to enablement recheck as candidates while preserving not-granted/no-execution controls."
+    performance_note: "Operator runtime recheck now has a regenerated read-model ready for formal enablement recheck."
+  blockers:
+    - "The regenerated read-model has not yet been fed back into formal decision enablement recheck."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_OPERATOR_RUNTIME_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP657"
+
+---
+
 # Orchestrator Latest Report — SYNC-667 real scoring operator runtime recheck input packet review
 
 report:
