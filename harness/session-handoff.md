@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T10:32:16+08:00
+updated_at: 2026-07-03T10:45:02+08:00
+
+## Latest Handoff — SYNC-580 safe no-execution scoring formal authorization review surface reentry
+
+- [DONE] `safe_no_execution_scoring_formal_authorization_review_surface_reentry_v1` now reconnects formal authorization gap review reentry to the existing no-execution formal authorization review surface.
+- [DONE] The creation plan exposes consumer summary, operator/reviewer actions, button semantics, non-executable notice, placeholder result schema, metric preview shape, runtime policy review, gap sections, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_explicit_authorization_handoff_packet`.
+- [VERIFY] RED missing module **1 collection error**; focused reentry unit+bridge plus adjacent formal gap reentry and formal review surface chain **12 passed**; Ruff pass; compileall pass; smoke `loop568_smoke formal_authorization_review_surface_reentry_open safe_no_execution_scoring_explicit_authorization_handoff_packet 正式执行授权尚未完成 review_only_no_execution factor_value_daily not_computed qa-pg-alt not_granted False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_EXPLICIT_AUTHORIZATION_HANDOFF_PACKET_REENTRY_LOOP569`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-579 safe no-execution scoring formal authorization gap review reentry
 
