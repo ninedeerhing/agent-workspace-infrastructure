@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-658 real scoring formal decision enablement check
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring formal decision enablement check"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_formal_decision_enablement_check.py"
+      summary: "Adds a no-execution enablement check consuming formal decision surface."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_formal_decision_enablement_check from the creation plan."
+  verification:
+    - command: "enablement check + adjacent decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "40 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed controls_disabled_by_open_gaps, controls_enabled false, open_gap_count 20, next milestone close_blocking_gap_groups, not_granted, and all execution flags false; forbidden scan matched only false/not_allowed policy fields."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Enablement checks must keep boolean enabled state, disabled reasons, and next milestone together."
+    performance_note: "Real scoring path now has an explicit formal decision enablement check explaining why controls remain disabled."
+  blockers:
+    - "20 evidence gaps remain open; controls_enabled=false."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_NEXT_GAP_CLOSURE_MILESTONE_SURFACE_LOOP647"
+
+---
+
 # Orchestrator Latest Report — SYNC-657 real scoring formal decision surface
 
 report:

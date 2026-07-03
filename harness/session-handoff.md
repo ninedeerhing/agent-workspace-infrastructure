@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T07:30:00+08:00
+updated_at: 2026-07-04T07:50:00+08:00
+
+## Latest Handoff — SYNC-658 real scoring formal decision enablement check
+
+- [DONE] Added `real_scoring_formal_decision_enablement_check_v1` and exposed it from creation plan.
+- [DONE] Enablement check consumes formal decision surface and shows controls_enabled=false, disabled reasons, closure_prerequisites_count=4, open_gap_count=20, next_milestone=close_blocking_gap_groups, and not_granted authorization.
+- [VERIFY] Focused related tests **40 passed**; Ruff pass; compileall pass; payload smoke `loop646_smoke controls_disabled_by_open_gaps False 20 close_blocking_gap_groups not_granted False False False False`; forbidden scan only matched false/not_allowed policy fields.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_NEXT_GAP_CLOSURE_MILESTONE_SURFACE_LOOP647`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-657 real scoring formal decision surface
 
