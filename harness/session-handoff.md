@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-03T21:10:00+08:00
+updated_at: 2026-07-03T21:35:00+08:00
+
+## Latest Handoff — SYNC-622 safe no-execution scoring result-shape review reentry refresh
+
+- [DONE] `safe_no_execution_scoring_result_shape_review_reentry_refresh` now reconnects final dry-run review packet refresh to result-shape review reentry.
+- [DONE] The creation plan final refresh embeds the current `safe_no_execution_scoring_dry_run_review_packet_reentry_refresh.source_summary` as result-shape `dry_run_review_source_summary`, preserving placeholder_result_schema, metric_preview_shape, runtime_policy_review, forbidden_runtime_paths, blocked_execution_gap, manual_confirmation_items, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_dry_run_authorization_materials`.
+- [DONE] Adjacent chain repair: `safe_no_execution_scoring_dry_run_authorization_materials_reentry_refresh` is recomputed from the final result-shape refresh after related tests exposed stale source drift.
+- [VERIFY] RED bridge showed stale result-shape review refresh lineage; focused unit+bridge **6 passed**; focused chain **18 passed** after dependent auth-material refresh recompute; Ruff pass; compileall pass; smoke `loop610_smoke result_shape_review_reentry_open safe_no_execution_scoring_dry_run_authorization_materials True True not_granted False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FORMAL_AUTHORIZATION_GAP_REVIEW_REENTRY_REFRESH_LOOP611`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-621 safe no-execution scoring dry-run review packet reentry refresh
 
