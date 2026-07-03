@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T17:05:00+08:00",
+  "updated_at": "2026-07-03T17:20:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "safe-no-execution-scoring-dry-run-review-packet-reentry-refresh-loop594",
-  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_RESULT_SHAPE_REVIEW_REENTRY_REFRESH_LOOP595：基于 safe_no_execution_scoring_dry_run_review_packet_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_result_shape_review，刷新/延展既有 safe_no_execution_scoring_result_shape_review_reentry_v1，使 result-shape review reentry 消费 reentry-aware dry-run review packet refresh，并继续串联 dry_run_review refresh lineage、placeholder_result_schema、metric_preview_shape、runtime_policy_review、forbidden_runtime_paths、blocked_execution_gap、manual_confirmation_items、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
-  "next_after": "After loop595, continue into dry-run authorization materials reentry refresh without bypassing human/runtime authorization.",
+  "current_slice": "safe-no-execution-scoring-result-shape-review-reentry-refresh-loop595",
+  "next_atomic_action": "SAFE_NO_EXECUTION_SCORING_DRY_RUN_AUTHORIZATION_MATERIALS_REENTRY_REFRESH_LOOP596：基于 safe_no_execution_scoring_result_shape_review_reentry_refresh.recommended_next_branch=safe_no_execution_scoring_dry_run_authorization_materials，刷新/延展既有 safe_no_execution_scoring_dry_run_authorization_materials_reentry_v1，使 authorization materials reentry 消费 reentry-aware result-shape review refresh，并继续串联 result_shape refresh lineage、placeholder_result_schema、metric_preview_shape、runtime_policy_review、operator/reviewer materials、manual_confirmation_packet、blocked_execution_boundary、authorization_decision 与 recommended_next_branch；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest 或授予 PL-H。",
+  "next_after": "After loop596, continue into formal authorization gap review reentry refresh without bypassing human/runtime authorization.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-606-safe-no-execution-scoring-dry-run-review-packet-reentry-refresh",
+  "last_tick": "SYNC-607-safe-no-execution-scoring-result-shape-review-reentry-refresh",
   "last_sync_sources": [
+    "SYNC-607 loop595 Safe no-execution scoring result-shape review reentry refresh",
+    "loop595 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_result_shape_review_reentry_refresh after safe_no_execution_scoring_dry_run_review_packet_reentry_refresh so result-shape review reentry consumes refreshed dry-run review packet lineage; tests assert deep dry_run_review_source_summary lineage, placeholder_result_schema table=factor_value_daily/sample_rows_materialized=0, metric_preview_shape observed_values=not_computed, runtime_policy_review qa-pg-alt, forbidden_runtime_paths, blocked_execution_gap, manual_confirmation_items, authorization_decision not_granted/can_execute_now false, and recommended_next_branch=safe_no_execution_scoring_dry_run_authorization_materials",
+    "loop595 verification: RED bridge showed stale result-shape review refresh lineage; focused related chain 22 passed; Ruff pass; compileall pass; payload smoke loop595_smoke result_shape_review_reentry_open safe_no_execution_scoring_dry_run_authorization_materials final_no_execution_authorization_readiness_summary_reentry_open final_no_execution_authorization_readiness_summary_reentry_open factor_value_daily 0 not_computed qa-pg-alt not_granted False False False False False False False False False False False False False False False False False False False False False False False False; forbidden scan clean",
+    "loop595 worker: permanent Planner/Dispatcher/Test Engineer success; Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval; Verifier channel_waitingOnApproval not duplicated and local verification fallback used; Code Reviewer channel_slow/waitingOnApproval and not duplicated",
+    "next: SAFE_NO_EXECUTION_SCORING_DRY_RUN_AUTHORIZATION_MATERIALS_REENTRY_REFRESH_LOOP596",
     "SYNC-606 loop594 Safe no-execution scoring dry-run review packet reentry refresh",
     "loop594 implementation: user_facing_batch_mining_creation_plan_v1 now reassigns safe_no_execution_scoring_dry_run_review_packet_reentry_refresh after safe_no_execution_scoring_dry_run_contract_reentry_refresh so dry-run review packet reentry consumes the refreshed safe dry-run contract lineage; tests assert deep dry_run_contract_source_summary runtime_evidence lineage, consumer_review_packet planned_only_not_executed, runtime_policy_review qa-pg-alt, forbidden_runtime_paths, result_shape_expectations writes_expected false, authorization_decision not_granted/can_execute_now false, and recommended_next_branch=safe_no_execution_scoring_result_shape_review",
     "loop594 verification: RED bridge showed stale dry-run review packet refresh lineage; focused related chain 22 passed; Ruff pass; compileall pass; payload smoke loop594_smoke dry_run_review_packet_reentry_open safe_no_execution_scoring_result_shape_review final_no_execution_authorization_readiness_summary_reentry_open final_no_execution_authorization_readiness_summary_reentry_open planned_only_not_executed qa-pg-alt False not_granted False False False False False False False False False False False False False False False False False False False False False False False False; forbidden scan clean",
