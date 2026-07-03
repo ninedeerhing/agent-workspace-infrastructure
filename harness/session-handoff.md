@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T03:05:00+08:00
+updated_at: 2026-07-04T03:20:00+08:00
+
+## Latest Handoff — SYNC-644 safe no-execution scoring final no-execution authorization readiness summary reentry refresh
+
+- [DONE] `safe_no_execution_scoring_final_no_execution_authorization_readiness_summary_reentry_refresh` now consumes the latest explicit authorization closure review refresh from loop631.
+- [DONE] Anti-small-loop repair: `runner_dsn_repair_prerequisite_branch_reentry_refresh`, `safe_no_execution_scoring_dry_run_contract_reentry_refresh`, and `safe_no_execution_scoring_dry_run_review_packet_reentry_refresh` are recomputed from the latest upstream refreshes.
+- [VERIFY] Closure→readiness RED chain showed stale final no-execution readiness summary refresh lineage; focused closure→readiness→runner→dry-run chain **26 passed**; Ruff pass; compileall pass; smoke `loop632_smoke final_no_execution_authorization_readiness_summary_reentry_open runner_dsn_repair_prerequisite_branch True True True not_granted False False False False False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer dispatched for read-only loop632 review. Canonical Executor remains waitingOnApproval; Verifier remains `channel_waitingOnApproval`; Code Reviewer remains channel slow/waitingOnApproval; no duplicate same-role worker created.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_RESULT_SHAPE_REVIEW_REENTRY_REFRESH_LOOP633`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-643 safe no-execution scoring operator/reviewer authorization evidence review reentry refresh
 
