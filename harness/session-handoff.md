@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T00:50:00+08:00
+updated_at: 2026-07-04T01:05:00+08:00
+
+## Latest Handoff — SYNC-635 safe no-execution scoring dry-run contract reentry refresh
+
+- [DONE] `safe_no_execution_scoring_dry_run_contract_reentry_refresh` now consumes the latest runner/DSN refresh from loop622.
+- [DONE] Anti-small-loop repair: direct downstream `safe_no_execution_scoring_dry_run_review_packet_reentry_refresh` is recomputed from the latest dry-run contract refresh, so dry-run contract→review packet stays on one lineage.
+- [VERIFY] Dry-run→review packet RED chain showed stale review packet refresh lineage; focused dry-run→review chain **12 passed**; Ruff pass; compileall pass; smoke `loop623_smoke dry_run_contract_reentry_open safe_no_execution_scoring_dry_run_review_packet True True not_granted False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_REFRESH_LOOP624`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-634 runner/DSN repair prerequisite branch reentry refresh
 
