@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T22:30:58+08:00",
+  "updated_at": "2026-07-03T22:36:43+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-system-blocker-input-readiness-loop677",
-  "next_atomic_action": "REAL_SCORING_SYSTEM_BLOCKER_INPUT_PACKET_LOOP678：基于 loop677 real_scoring_system_blocker_input_readiness，构建只读 system_blocker input packet：当 readiness_status=ready_for_system_blocker_input 时，组装 packet_item_count=3、ready_for_system_blocker_packet_review=true、input_packet_assembly_request enabled but will_execute=false、controls_enabled=false、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop678, review no-execution system_blocker input packet.",
+  "current_slice": "real-scoring-system-blocker-input-packet-loop678",
+  "next_atomic_action": "REAL_SCORING_SYSTEM_BLOCKER_INPUT_PACKET_REVIEW_LOOP679：基于 loop678 real_scoring_system_blocker_input_packet，构建只读 system_blocker input packet review：当 input_packet_status=ready_system_blocker_input_packet 时，输出 ready_to_regenerate_system_blocker_read_model、can_regenerate_system_blocker_read_model=true、packet_item_count=3、blocked_reasons=[]、read_model_regeneration_request enabled but will_execute=false、controls_enabled=false、authorization not_granted；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop679, regenerate no-execution system_blocker read model.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-689-real-scoring-system-blocker-input-readiness",
+  "last_tick": "SYNC-690-real-scoring-system-blocker-input-packet",
   "last_sync_sources": [
+    "SYNC-690 loop678 Real scoring system_blocker input packet",
+    "loop678 implementation: added real_scoring_system_blocker_input_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_system_blocker_input_readiness_v1 to show ready_system_blocker_input_packet, ready_for_system_blocker_packet_review true, required_material_count 3, packet_item_count 3, input_packet_assembly_request enabled but will_execute false, controls_enabled false, authorization not_granted, and all-false execution policy",
+    "loop678 verification: initial RED ModuleNotFoundError for real_scoring_system_blocker_input_packet; focused tests 4 passed; all test_real_scoring_*_unit.py 163 passed; test_batch_mining_flow_unit.py 7 passed; targeted Ruff pass; compileall pass; payload smoke loop678_smoke ready_system_blocker_input_packet True 3 3 True False False not_granted False False False False False False False False False False False False False False False False False False; forbidden scan clean",
+    "loop678 worker: permanent Planner, Dispatcher, and Test Engineer returned success; Dispatcher assigned orchestrator as bounded writer and forbade duplicate Executor/Code Reviewer/Verifier",
+    "next: REAL_SCORING_SYSTEM_BLOCKER_INPUT_PACKET_REVIEW_LOOP679",
     "SYNC-689 loop677 Real scoring system_blocker input readiness",
     "loop677 implementation: added real_scoring_system_blocker_input_readiness_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_system_blocker_recheck_request_packet_v1 to show ready_for_system_blocker_input, required_material_count 3, input_slot_ref_count 3, acceptance_hint_ref_count 3, missing_refs empty, system_blocker_input_request enabled but will_execute false, controls_enabled false, authorization not_granted, and all-false execution policy",
     "loop677 verification: initial RED ModuleNotFoundError for real_scoring_system_blocker_input_readiness; focused tests 5 passed; all test_real_scoring_*_unit.py 159 passed; test_batch_mining_flow_unit.py 7 passed; targeted Ruff pass; compileall pass; payload smoke loop677_smoke ready_for_system_blocker_input True 3 3 3 0 True False False not_granted False False False False False False False False False False False False False False False False False False; forbidden scan clean",
