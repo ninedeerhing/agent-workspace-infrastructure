@@ -1,3 +1,36 @@
+# Orchestrator Latest Report — SYNC-680 real scoring human decision request packet
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring human decision request packet"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_human_decision_request_packet.py"
+      summary: "Adds no-execution human_decision request packet with material, slot, and hint refs."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_human_decision_request_packet from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_human_decision_request_packet_unit.py"
+      summary: "Covers ready, missing source, not-ready guidance, count mismatch, and creation-plan bridge behavior."
+  verification:
+    - command: "focused human decision request packet pytest"
+      result: "5 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "118 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed request packet ready, material/slot/hint refs all 3, review request enabled but will_execute false, controls_enabled false, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: []
+    performance_note: "Human decision now has a concrete no-execution request packet ready for input readiness checks."
+  blockers:
+    - "Human decision input readiness has not yet been checked."
+    - "System blocker gap group remains open."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_HUMAN_DECISION_INPUT_READINESS_LOOP669"
+
+---
+
 # Orchestrator Latest Report — SYNC-679 real scoring human decision closure guidance
 
 report:
