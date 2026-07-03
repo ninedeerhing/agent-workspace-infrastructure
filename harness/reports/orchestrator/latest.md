@@ -1,3 +1,34 @@
+# Orchestrator Latest Report — SYNC-652 formal real scoring human authorization handoff
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "formal real scoring human authorization handoff"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/formal_real_scoring_human_authorization_handoff.py"
+      summary: "Adds a no-execution formal handoff packet consuming operator/reviewer real-scoring review surface."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes formal_real_scoring_human_authorization_handoff from the creation plan."
+  verification:
+    - command: "formal handoff + adjacent review/authorization/preflight/runtime pytest"
+      result: "22 passed."
+    - command: "targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "Ruff pass; compileall pass; smoke showed blocked_waiting_for_authorization_materials, Top50 handoff scope, not_granted, and all execution flags false; forbidden scan matched only false/not_allowed policy fields."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Formal handoff packets must say handoff_scope_only=true and execution_allowed=false to prevent implied approval drift."
+    performance_note: "Real scoring path now has a formal human handoff packet, but has not reached formal acceptance/rejection/change-request because upstream authorization materials remain blocked."
+  blockers:
+    - "Authorization materials remain blocked; handoff is not_granted and no-execution."
+    - "This loop did not trigger formal human acceptance/rejection/change-request stop gate."
+    - "Executor remains waitingOnApproval; Dispatcher boundary keeps orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier and Code Reviewer canonical channels were not duplicated; local verification is authoritative fallback."
+  next: "REAL_SCORING_OPERATOR_REVIEWER_EVIDENCE_REQUEST_INTAKE_LOOP641"
+
+---
+
 # Orchestrator Latest Report — SYNC-651 operator/reviewer real scoring authorization review surface
 
 report:

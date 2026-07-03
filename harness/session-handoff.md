@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T05:30:00+08:00
+updated_at: 2026-07-04T05:50:00+08:00
+
+## Latest Handoff — SYNC-652 formal real scoring human authorization handoff
+
+- [DONE] Added `formal_real_scoring_human_authorization_handoff_v1` and exposed it from creation plan.
+- [DONE] Handoff consumes operator/reviewer review surface and shows formal review packet, dual review lanes, required human decisions, blockers, Top50 handoff scope, runtime boundary, not_granted guardrails, and next human actions.
+- [VERIFY] Focused related tests **22 passed**; Ruff pass; compileall pass; payload smoke `loop640_smoke blocked_waiting_for_authorization_materials 正式授权交接材料未齐 top50_small_batch_trial_only 4 not_granted False False False False False False False False`; forbidden scan only matched false/not_allowed policy fields.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer; Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_OPERATOR_REVIEWER_EVIDENCE_REQUEST_INTAKE_LOOP641`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-651 operator/reviewer real scoring authorization review surface
 

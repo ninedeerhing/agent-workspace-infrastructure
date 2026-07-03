@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T05:30:00+08:00",
+  "updated_at": "2026-07-04T05:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "operator-reviewer-real-scoring-authorization-review-surface-loop639",
-  "next_atomic_action": "FORMAL_REAL_SCORING_HUMAN_AUTHORIZATION_HANDOFF_LOOP640：基于 loop639 operator/reviewer authorization review surface，汇总正式人工授权交接材料：双人复核 lanes、required decisions、Top50 package、blocked reasons、runtime boundary、not_granted guardrails、下一步人工动作；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop640, stop only if it becomes formal human acceptance/rejection/change-request stage; otherwise continue to request intake no-execution branch.",
+  "current_slice": "formal-real-scoring-human-authorization-handoff-loop640",
+  "next_atomic_action": "REAL_SCORING_OPERATOR_REVIEWER_EVIDENCE_REQUEST_INTAKE_LOOP641：基于 loop640 formal real scoring human authorization handoff，构建无执行的 operator/reviewer/human evidence request intake：让用户通过按钮/表单提交或查看仍缺的运行证据、双人复核决定、Top50 handoff scope、blocked reasons 与下一步人工动作；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop641, continue until the intake path can reach formal human acceptance/rejection/change-request stage; stop only when that formal stage is genuinely ready for user review.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-651-operator-reviewer-real-scoring-authorization-review-surface",
+  "last_tick": "SYNC-652-formal-real-scoring-human-authorization-handoff",
   "last_sync_sources": [
+    "SYNC-652 loop640 Formal real scoring human authorization handoff",
+    "loop640 implementation: added formal_real_scoring_human_authorization_handoff_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes operator_reviewer_real_scoring_authorization_review_surface_v1 to show formal review packet, operator/reviewer decision lanes, required human decisions, blocked reasons, Top50 handoff scope, runtime boundary, not_granted guardrails, next human actions, and all-false execution policy",
+    "loop640 verification: formal handoff plus operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 22 passed; Ruff pass; compileall pass; payload smoke loop640_smoke blocked_waiting_for_authorization_materials 正式授权交接材料未齐 top50_small_batch_trial_only 4 not_granted False False False False False False False False; forbidden scan matched only false/not_allowed policy fields",
+    "loop640 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_OPERATOR_REVIEWER_EVIDENCE_REQUEST_INTAKE_LOOP641",
     "SYNC-651 loop639 Operator/reviewer real scoring authorization review surface",
     "loop639 implementation: added operator_reviewer_real_scoring_authorization_review_surface_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes explicit_real_scoring_authorization_packet_v1 to show operator and reviewer lanes, required decisions, blocked reasons, Top50 package summary, runtime boundary, not_granted authorization, and non-executing button semantics",
     "loop639 verification: operator/reviewer review surface plus explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 19 passed; Ruff pass; compileall pass; payload smoke loop639_smoke blocked_waiting_for_authorization_materials 操作员/复核员复核材料未齐 pending pending 17 small_batch_trial not_granted False False False False False False False False; forbidden scan clean",
