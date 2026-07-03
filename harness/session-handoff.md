@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T11:55:00+08:00
+updated_at: 2026-07-03T12:10:00+08:00
+
+## Latest Handoff — SYNC-587 safe no-execution scoring explicit authorization closure review reentry
+
+- [DONE] `safe_no_execution_scoring_explicit_authorization_closure_review_reentry_v1` now reconnects explicit authorization evidence-gap packet reentry to the existing no-execution explicit authorization closure review.
+- [DONE] The creation plan exposes evidence_gap_reentry_summary, manual_closure_review, remaining_gaps, manual_closure_actions, not_granted_guardrails, request_entry, blocked_reasons, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_final_no_execution_authorization_readiness_summary`.
+- [VERIFY] RED missing module **1 collection error**; focused reentry unit+bridge plus adjacent evidence gap packet reentry and closure review chain **14 passed**; Ruff pass; compileall pass; smoke `loop575_smoke explicit_authorization_closure_review_reentry_open safe_no_execution_scoring_final_no_execution_authorization_readiness_summary not_granted not_granted review_only_request_intake not_granted False False False False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_FINAL_NO_EXECUTION_AUTHORIZATION_READINESS_SUMMARY_REENTRY_LOOP576`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-586 safe no-execution scoring explicit authorization evidence gap packet reentry
 
