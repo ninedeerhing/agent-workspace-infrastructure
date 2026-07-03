@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T20:19:04+08:00
+updated_at: 2026-07-03T20:25:53+08:00
+
+## Latest Handoff — SYNC-669 real scoring operator runtime enablement recheck from regenerated model
+
+- [DONE] Added `real_scoring_operator_runtime_enablement_recheck_from_regenerated_model_v1` and exposed it from creation plan.
+- [DONE] Recheck consumes loop656 regenerated model and shows operator_runtime_gap_closed_candidate_controls_still_not_granted, operator_runtime_gap_closed_candidate=true, remaining_missing_materials=0, closed_gap_groups=[operator_runtime], remaining_gap_groups=[reviewer_safety,human_decision,system_blocker], controls_enabled=false, controls_still_not_granted=true, and not_granted authorization.
+- [VERIFY] Focused related tests **80 passed**; Ruff pass; compileall pass; payload smoke `loop657_smoke operator_runtime_gap_closed_candidate_controls_still_not_granted True 0 operator_runtime reviewer_safety|human_decision|system_blocker False True not_granted False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer success reports incorporated. Dispatcher kept orchestrator as bounded writer. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_NEXT_REMAINING_GAP_GROUP_ROUTING_LOOP658`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-668 real scoring operator runtime recheck read-model regeneration
 

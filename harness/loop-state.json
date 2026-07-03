@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-03T20:19:04+08:00",
+  "updated_at": "2026-07-03T20:25:53+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-operator-runtime-recheck-read-model-regeneration-loop656",
-  "next_atomic_action": "REAL_SCORING_OPERATOR_RUNTIME_ENABLEMENT_RECHECK_FROM_REGENERATED_MODEL_LOOP657：基于 loop656 real_scoring_operator_runtime_recheck_read_model_regeneration，构建只读 formal decision enablement recheck from regenerated model：当 return_to_enablement_check_candidate=true 且 remaining_missing_materials=0 时重新评估 operator_runtime gap closed candidate / controls still not granted，输出 regenerated_enablement_recheck_status / remaining_gap_groups；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop657, refresh the formal decision enablement check from the regenerated read-model while preserving not-granted/no-execution controls.",
+  "current_slice": "real-scoring-operator-runtime-enablement-recheck-from-regenerated-model-loop657",
+  "next_atomic_action": "REAL_SCORING_NEXT_REMAINING_GAP_GROUP_ROUTING_LOOP658：基于 loop657 real_scoring_operator_runtime_enablement_recheck_from_regenerated_model，构建只读 remaining gap group routing：当 operator_runtime 已成为 closed candidate 且 controls_still_not_granted=true 时，选择下一可行动阻塞组（reviewer_safety / human_decision / system_blocker），输出 next_remaining_gap_group、route_reason、required_materials_stub、closure_guidance_request；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop658, close the next remaining formal enablement gap group without granting execution.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-668-real-scoring-operator-runtime-recheck-read-model-regeneration",
+  "last_tick": "SYNC-669-real-scoring-operator-runtime-enablement-recheck-from-regenerated-model",
   "last_sync_sources": [
+    "SYNC-669 loop657 Real scoring operator runtime enablement recheck from regenerated model",
+    "loop657 implementation: added real_scoring_operator_runtime_enablement_recheck_from_regenerated_model_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_operator_runtime_recheck_read_model_regeneration_v1 to show operator_runtime_gap_closed_candidate_controls_still_not_granted, operator_runtime_gap_closed_candidate true, remaining_missing_materials 0, closed_gap_groups operator_runtime, remaining_gap_groups reviewer_safety/human_decision/system_blocker, controls_enabled false, controls_still_not_granted true, not_granted authorization, and all-false execution policy",
+    "loop657 verification: enablement recheck from regenerated model plus read-model regeneration, input packet review, input packet, input readiness, recheck regeneration packet, remediation guidance, formal enablement recheck, operator runtime recheck, frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 80 passed; Ruff pass; compileall pass; payload smoke loop657_smoke operator_runtime_gap_closed_candidate_controls_still_not_granted True 0 operator_runtime reviewer_safety|human_decision|system_blocker False True not_granted False False False",
+    "loop657 worker: permanent Planner/Dispatcher/Test Engineer success reports incorporated; Dispatcher kept orchestrator as bounded writer; no duplicate Executor/Verifier/Code Reviewer was created",
+    "next: REAL_SCORING_NEXT_REMAINING_GAP_GROUP_ROUTING_LOOP658",
     "SYNC-668 loop656 Real scoring operator runtime recheck read-model regeneration",
     "loop656 implementation: added real_scoring_operator_runtime_recheck_read_model_regeneration_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_operator_runtime_recheck_input_packet_review_v1 to show operator_runtime_recheck_read_model_regenerated, return_to_enablement_check_candidate true, remaining_missing_materials 0, packet_item_count 3, read_model_regeneration_request will_execute false, not_granted authorization, and all-false execution policy",
     "loop656 verification: read-model regeneration plus input packet review, input packet, input readiness, recheck regeneration packet, remediation guidance, formal enablement recheck, operator runtime recheck, frontier guidance, next milestone, enablement check, decision surface, action plan, readiness summary, gap packet, evidence intake, formal handoff, operator/reviewer surface, explicit packet, controlled preflight, runtime evidence surface, and batch flow tests 76 passed; Ruff pass; compileall pass; payload smoke loop656_smoke operator_runtime_recheck_read_model_regenerated True 0 3 False not_granted False False False",

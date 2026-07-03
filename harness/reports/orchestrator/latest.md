@@ -1,3 +1,32 @@
+# Orchestrator Latest Report — SYNC-669 real scoring operator runtime enablement recheck from regenerated model
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring operator runtime enablement recheck from regenerated model"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_operator_runtime_enablement_recheck_from_regenerated_model.py"
+      summary: "Adds a no-execution enablement recheck that marks operator_runtime as closed candidate while controls remain not granted."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_operator_runtime_enablement_recheck_from_regenerated_model from the creation plan."
+  verification:
+    - command: "enablement recheck from regenerated model + adjacent read-model regeneration/packet review/input packet/readiness/recheck regeneration/remediation/enablement/operator/guidance/milestone/decision/action/readiness/gap/intake/handoff/review/authorization/preflight/runtime pytest"
+      result: "80 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed operator_runtime_gap_closed_candidate_controls_still_not_granted, operator_runtime gap closed candidate true, remaining missing materials 0, closed group operator_runtime, remaining groups reviewer_safety/human_decision/system_blocker, controls_enabled false, controls_still_not_granted true, not_granted, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Closing one gap group as a candidate must not unlock formal controls; route the remaining gap groups explicitly."
+    performance_note: "Operator runtime material closure now feeds the next remaining gap routing stage without execution permission."
+  blockers:
+    - "Reviewer safety, human decision, and system blocker gap groups remain open."
+    - "Authorization remains not_granted and no-execution."
+  next: "REAL_SCORING_NEXT_REMAINING_GAP_GROUP_ROUTING_LOOP658"
+
+---
+
 # Orchestrator Latest Report — SYNC-668 real scoring operator runtime recheck read-model regeneration
 
 report:
