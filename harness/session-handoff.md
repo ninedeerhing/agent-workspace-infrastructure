@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T16:20:00+08:00
+updated_at: 2026-07-03T16:35:00+08:00
+
+## Latest Handoff — SYNC-604 runner/DSN repair prerequisite branch reentry refresh
+
+- [DONE] `runner_dsn_repair_prerequisite_branch_reentry_refresh` now reconnects final no-execution authorization readiness summary refresh to runner/DSN runtime evidence reentry.
+- [DONE] The creation plan final refresh exposes reentry-aware final readiness lineage, `readiness_summary_source_summary`, readiness_summary_reentry_summary, original qa-pg-alt policy, DSN isolation requirements, no-substitute-DB policy, operator/reviewer confirmations, runtime evidence requirements, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_dry_run_contract`.
+- [VERIFY] RED showed missing `readiness_summary_source_summary`; focused chain **24 passed**; Ruff pass; compileall pass; smoke `loop592_smoke runtime_evidence_reentry_open safe_no_execution_scoring_dry_run_contract final_no_execution_authorization_readiness_summary_reentry_open final_no_execution_authorization_readiness_summary_reentry_open 9 qa-pg-alt not_granted False False False False False False False False False False False False False False False False False False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_CONTRACT_REENTRY_REFRESH_LOOP593`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-603 safe no-execution scoring final no-execution authorization readiness summary reentry refresh
 

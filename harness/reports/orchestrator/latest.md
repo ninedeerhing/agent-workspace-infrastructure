@@ -1,3 +1,37 @@
+# Orchestrator Latest Report — SYNC-604 runner/DSN repair prerequisite branch reentry refresh
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "runner/DSN repair prerequisite branch reentry refresh"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/runner_dsn_repair_prerequisite_branch_reentry.py"
+      summary: "Adds readiness_summary_source_summary to source_summary when the runner/DSN reentry consumes a refreshed final no-execution authorization readiness summary."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Reassigns runner_dsn_repair_prerequisite_branch_reentry_refresh after final readiness summary reentry refresh so the creation plan exposes the refreshed runtime-evidence lineage."
+    - file: "apps/quant_assistant/tests/test_runner_dsn_repair_prerequisite_branch_reentry_unit.py"
+      summary: "Covers refreshed readiness-summary lineage, original qa-pg-alt policy, DSN isolation, no-substitute-DB, authorization not_granted, next branch, and all-false side effects."
+    - file: "apps/quant_assistant/tests/test_runner_dsn_repair_prerequisite_branch_reentry_bridge_unit.py"
+      summary: "Covers creation-plan exposure of runner_dsn_repair_prerequisite_branch_reentry_refresh consuming the refreshed final readiness summary reentry."
+  verification:
+    - command: "RED focused unit+bridge"
+      result: "2 failures before implementation: missing readiness_summary_source_summary in refreshed runner/DSN lineage."
+    - command: "focused related pytest / targeted Ruff / compileall / payload smoke / forbidden scan"
+      result: "24 passed; Ruff pass; compileall pass; smoke showed loop592_smoke runtime_evidence_reentry_open safe_no_execution_scoring_dry_run_contract final_no_execution_authorization_readiness_summary_reentry_open final_no_execution_authorization_readiness_summary_reentry_open 9 qa-pg-alt not_granted False and all runtime/write/side-effect/PL-H flags false; forbidden scan clean."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Runner/DSN prerequisite refresh must consume refreshed final readiness lineage so safe dry-run contract cannot inherit stale runtime-evidence prerequisites."
+    performance_note: "Auto-mining to auto-backtest core chain now has a reentry-aware runner/DSN prerequisite refresh that routes into safe dry-run contract review without granting execution."
+  blockers:
+    - "Executor remains waitingOnApproval; Dispatcher kept orchestrator as bounded writer and no duplicate executor was created."
+    - "Verifier channel_waitingOnApproval; canonical identity preserved and no duplicate same-role worker created."
+    - "Code Reviewer channel_slow/waitingOnApproval; canonical identity preserved and no duplicate same-role worker created."
+  next: "SAFE_NO_EXECUTION_SCORING_DRY_RUN_CONTRACT_REENTRY_REFRESH_LOOP593"
+
+---
+
 # Orchestrator Latest Report — SYNC-603 safe no-execution scoring final no-execution authorization readiness summary reentry refresh
 
 report:
