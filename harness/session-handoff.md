@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T22:36:43+08:00
+updated_at: 2026-07-03T22:43:42+08:00
+
+## Latest Handoff — SYNC-691 real scoring system_blocker input packet review
+
+- [DONE] Added `real_scoring_system_blocker_input_packet_review_v1` and exposed it from creation plan.
+- [DONE] Review consumes loop678 system_blocker input packet and shows ready_to_regenerate_system_blocker_read_model, can_regenerate_system_blocker_read_model=true, packet_item_count=3, blocked_reasons=[], read_model_regeneration_request enabled but will_execute=false, controls_enabled=false, and not_granted authorization.
+- [VERIFY] Focused review + batch mining flow tests **11 passed**; all `test_real_scoring_*_unit.py` **167 passed** before sync; Ruff pass; compileall pass; payload smoke `loop679_smoke ready_to_regenerate_system_blocker_read_model True 3 0 True False False not_granted False False False False False False False False False False False False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer were dispatched; report collection was truncated by context, local verification is authoritative. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_SYSTEM_BLOCKER_READ_MODEL_REGENERATION_LOOP680`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-690 real scoring system_blocker input packet
 
