@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T11:15:00+08:00
+updated_at: 2026-07-03T11:25:00+08:00
+
+## Latest Handoff — SYNC-584 safe no-execution scoring explicit human authorization request intake reentry
+
+- [DONE] `safe_no_execution_scoring_explicit_human_authorization_request_intake_reentry_v1` now reconnects blocked-state reentry to the existing no-execution explicit human authorization request intake.
+- [DONE] The creation plan exposes blocked_state_summary, requestable_decisions, required_evidence, operator/reviewer confirmation slots, not_granted_guardrails, request_entry, blocked_reasons, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_operator_reviewer_authorization_evidence_review`.
+- [VERIFY] RED missing module **1 collection error**; focused reentry unit+bridge plus adjacent blocked-state reentry and explicit human authorization request intake chain **14 passed**; Ruff pass; compileall pass; smoke `loop572_smoke explicit_human_authorization_request_intake_reentry_open safe_no_execution_scoring_operator_reviewer_authorization_evidence_review not_granted not_granted review_only_request_intake not_granted False False False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_OPERATOR_REVIEWER_AUTHORIZATION_EVIDENCE_REVIEW_REENTRY_LOOP573`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-583 safe no-execution scoring blocked until explicit human authorization reentry
 
