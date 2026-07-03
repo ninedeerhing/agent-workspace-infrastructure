@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-03T16:35:00+08:00
+updated_at: 2026-07-03T16:50:00+08:00
+
+## Latest Handoff — SYNC-605 safe no-execution scoring dry-run contract reentry refresh
+
+- [DONE] `safe_no_execution_scoring_dry_run_contract_reentry_refresh` now reconnects refreshed runner/DSN prerequisite branch to safe dry-run contract reentry.
+- [DONE] The creation plan final refresh exposes runner/DSN refresh lineage, runtime_policy_review, operator/reviewer confirmations, dry_run_contract_summary, result_shape_expectations, authorization_decision not_granted, and `recommended_next_branch=safe_no_execution_scoring_dry_run_review_packet`.
+- [VERIFY] RED bridge showed stale dry-run contract refresh lineage; focused chain **23 passed**; Ruff pass; compileall pass; smoke `loop593_smoke dry_run_contract_reentry_open safe_no_execution_scoring_dry_run_review_packet final_no_execution_authorization_readiness_summary_reentry_open final_no_execution_authorization_readiness_summary_reentry_open qa-pg-alt mock_or_injected_review_only False False False not_granted False False False False False False False False False False False False False False False False False False False False False False False False`; forbidden scan clean.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Dispatcher kept orchestrator as bounded writer because canonical Executor remains waitingOnApproval. Verifier remains `channel_waitingOnApproval` and was not duplicated; local verification fallback used. Code Reviewer remains channel slow/waitingOnApproval and was not duplicated.
+- [NEXT] `SAFE_NO_EXECUTION_SCORING_DRY_RUN_REVIEW_PACKET_REENTRY_REFRESH_LOOP594`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-604 runner/DSN repair prerequisite branch reentry refresh
 
