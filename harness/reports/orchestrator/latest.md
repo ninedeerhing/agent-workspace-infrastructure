@@ -1,3 +1,35 @@
+# Orchestrator Latest Report — SYNC-714 real scoring formal controls acknowledgement reentry blocked summary
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring formal controls acknowledgement reentry blocked summary"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_formal_controls_acknowledgement_reentry_blocked_summary.py"
+      summary: "Adds no-execution formal controls acknowledgement reentry blocked summary."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_formal_controls_acknowledgement_reentry_blocked_summary from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_formal_controls_acknowledgement_reentry_blocked_summary_unit.py"
+      summary: "Covers ready blocked summary, missing source, source drift, and creation-plan bridge behavior."
+  verification:
+    - command: "focused acknowledgement reentry blocked summary plus batch flow pytest"
+      result: "11 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "255 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed blocked summary ready, three blocking acknowledgements, completed acknowledgements empty, controls disabled, not_granted authorization, manual capture surface next route, will_execute false, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Reentry blocked summary should route toward a user-visible manual capture surface instead of re-entering the same internal acknowledgement loop."
+    performance_note: "Acknowledgement reentry blocked summary is ready for manual capture surface."
+  blockers:
+    - "Formal controls remain not_granted; no execution is authorized."
+  next: "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_SURFACE_LOOP702"
+
+---
+
 # Orchestrator Latest Report — SYNC-713 real scoring formal controls acknowledgement reentry completion review
 
 report:

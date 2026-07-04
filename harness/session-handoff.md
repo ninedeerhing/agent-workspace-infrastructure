@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T13:35:00+08:00
+updated_at: 2026-07-04T13:55:00+08:00
+
+## Latest Handoff — SYNC-714 real scoring formal controls acknowledgement reentry blocked summary
+
+- [DONE] Added `real_scoring_formal_controls_acknowledgement_reentry_blocked_summary_v1` and exposed it from creation plan.
+- [DONE] Summary consumes loop700 completion review and shows formal_controls_acknowledgement_reentry_blocked_summary_ready, blocking_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack], completed_acknowledgements=[], controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_manual_capture_surface/will_execute=false, and not_granted authorization.
+- [VERIFY] RED `ModuleNotFoundError`; focused + batch flow tests **11 passed**; all `test_real_scoring_*_unit.py` **255 passed**; Ruff pass; compileall pass; payload smoke `loop701_smoke formal_controls_acknowledgement_reentry_blocked_summary_ready operator_ack|reviewer_ack|controls_owner_ack 0 False not_granted formal_controls_acknowledgement_manual_capture_surface False not_granted False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_SURFACE_LOOP702`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-713 real scoring formal controls acknowledgement reentry completion review
 
