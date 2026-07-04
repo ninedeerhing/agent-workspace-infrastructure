@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T06:10:30+08:00
+updated_at: 2026-07-05T06:31:00+08:00
 
-## Latest Handoff — SYNC-779 Consumer one-click flow shell loop763
+## Latest Handoff — SYNC-780 One-click UI/API surface loop764
+
+- [DONE] Added `FactorConstructionOneClickUiApiSurfaceV1` and `build_factor_construction_one_click_ui_api_surface_v1`.
+- [DONE] Adapter consumes `FactorConstructionOneClickFlowShellV1` and emits stable frontend payload with screen title, user message, primary action, confirmation, progress, sections, result, factor cards, collapsed diagnostics, blockers, and all-false side effects.
+- [VERIFY] RED missing One-Click UI/API Surface module; focused tests **2 passed**; targeted Ruff pass; factor construction + registry regression **123 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop764; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `SEEDED_E2E_DEMO_FLOW_SHELL_LOOP765`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not read DB for this adapter; do not create substitute DB/container/service/port; do not use default runner; do not write queue; do not run backtest unless a later controlled writer/executor gate is explicitly satisfied.
+
+## Previous Handoff — SYNC-779 Consumer one-click flow shell loop763
 
 - [DONE] Added `FactorConstructionOneClickFlowShellV1` and `build_factor_construction_one_click_flow_shell_v1`.
 - [DONE] Shell consumes `FactorConstructionUserEntryV1` and `FactorLibraryReportSurfaceV1`, emitting blocked/awaiting-confirmation/result-ready states, start button semantics, sections, progress, result surface, and all-false side effects.
