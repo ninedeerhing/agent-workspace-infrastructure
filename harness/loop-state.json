@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T05:08:40+08:00",
+  "updated_at": "2026-07-05T05:29:10+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "backtest-result-report-integration-loop761",
-  "next_atomic_action": "BACKTEST_RESULT_REPORT_INTEGRATION_LOOP761：实现 backtest result report read-model；消费 progress read-model 与未来结果 payload，占位输出收益、回撤、IC、RankIC、换手、稳定性、分层表现、多因子边际增益和消费级结论；默认不读取 DB、不写队列、不执行回测。",
-  "next_after": "After loop761, integrate factor library/report surface for consumer one-click flow.",
+  "current_slice": "factor-library-report-surface-integration-loop762",
+  "next_atomic_action": "FACTOR_LIBRARY_REPORT_SURFACE_INTEGRATION_LOOP762：实现 factor library/report surface integration read-model；把 accepted factors、backtest progress、result report 汇总为 UI 可展示的因子库/报告区块，支持 A-E 分类、状态、评分/回测状态、消费级摘要；默认不读 DB、不写队列、不执行回测。",
+  "next_after": "After loop762, implement consumer one-click factor universe flow shell.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-776-backtest-progress-read-model-loop760",
+  "last_tick": "SYNC-777-backtest-result-report-integration-loop761",
   "last_sync_sources": [
+    "SYNC-777 Backtest result report integration loop761",
+    "loop761 implementation: added BacktestResultReportV1 and build_backtest_result_report_v1; report consumes BacktestProgressReadModelV1 and optional result payload, deriving unavailable/awaiting_result_payload/report_ready/failed states, consumer verdict, summary cards, metrics, multi-factor marginal gain, failure reason, ready refs, and all-false side effects",
+    "loop761 verification: RED missing factor_construction_backtest_result_report module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 115 passed; compileall passed",
+    "loop761 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: FACTOR_LIBRARY_REPORT_SURFACE_INTEGRATION_LOOP762",
     "SYNC-776 Backtest progress read-model loop760",
     "loop760 implementation: added BacktestProgressReadModelV1 and build_backtest_progress_read_model_v1; read-model consumes ControlledAutoBacktestExecutionGateV1 and optional runtime status, mapping blocked, ready_waiting_to_queue, queued, running, completed, failed to consumer_state, consumer_message, progress_percent, ready refs, and all-false side effects",
     "loop760 verification: RED missing factor_construction_backtest_progress_read_model module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 111 passed; compileall passed",
@@ -115,12 +120,7 @@
     "loop742 implementation: added LibraryPaperFactorReplayGeneratorV1 as canonical library_paper_replay family and registered it in the default registry; generator converts cited paper/library formula seeds into DSL candidates with citation, source_ref, formula_summary, replication_assumptions, license/provenance placeholder, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects; missing citation and unsupported formulas fail-closed",
     "loop742 verification: RED missing factor_construction_library_paper_replay module; focused library/paper replay tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 43 passed; compileall passed",
     "loop742 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
-    "next: FUNDAMENTAL_STYLE_FACTOR_GENERATOR_LOOP743",
-    "SYNC-757 Trajectory Mutation generator loop741",
-    "loop741 implementation: added TrajectoryMutationGeneratorV1 as canonical trajectory_mutation family and registered it in the default registry; generator reuses success path placeholders, avoids failure path expressions, emits trajectory_ref, parent_path, mutation_strategy, success/failure memory placeholder, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects",
-    "loop741 verification: RED missing factor_construction_trajectory_mutation module; focused trajectory mutation tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 40 passed; compileall passed",
-    "loop741 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
-    "next: LIBRARY_PAPER_FACTOR_REPLICATION_GENERATOR_LOOP742"
+    "next: FUNDAMENTAL_STYLE_FACTOR_GENERATOR_LOOP743"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -132,7 +132,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-776 loop760 complete: BacktestProgressReadModelV1 implemented with blocked/ready/queued/running/completed/failed progress mapping, consumer state/message, progress percent, ready refs, and no queue/backtest side effects; next loop761 backtest result report integration.",
+  "last_completed_note": "SYNC-777 loop761 complete: BacktestResultReportV1 implemented with unavailable/awaiting/report_ready/failed states, summary cards, metrics, multi-factor marginal gain, consumer verdict, failure reason, and no DB/queue/backtest side effects; next loop762 factor library/report surface integration.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
