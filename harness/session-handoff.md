@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T23:00:00+08:00
+updated_at: 2026-07-04T23:25:00+08:00
+
+## Latest Handoff — SYNC-737 real scoring formal controls acknowledgement manual capture confirmation reentry input review refresh
+
+- [DONE] Added `real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_reentry_input_review_refresh_v1` and exposed it from creation plan.
+- [DONE] Reentry input review refresh consumes loop723 confirmation reentry input packet refresh and shows formal_controls_acknowledgement_manual_capture_confirmation_reentry_input_review_refresh_ready, review_items=[operator_ack,reviewer_ack,controls_owner_ack], blocking_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack], completed_acknowledgements=[], controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_manual_capture_confirmation_reentry_completion_candidate_refresh/will_execute=false, and not_granted authorization.
+- [VERIFY] RED `ModuleNotFoundError`; focused confirmation reentry input review refresh pair tests **8 passed**; all `test_real_scoring_*_unit.py` **348 passed**; Ruff pass; compileall pass; payload smoke `loop724_smoke formal_controls_acknowledgement_manual_capture_confirmation_reentry_input_review_refresh_ready operator_ack|reviewer_ack|controls_owner_ack operator_ack|reviewer_ack|controls_owner_ack 0 False not_granted formal_controls_acknowledgement_manual_capture_confirmation_reentry_completion_candidate_refresh False not_granted False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer were dispatched for loop724. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_REENTRY_COMPLETION_CANDIDATE_REFRESH_LOOP725`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-736 real scoring formal controls acknowledgement manual capture confirmation reentry input packet refresh
 
