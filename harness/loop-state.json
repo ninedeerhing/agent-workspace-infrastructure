@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T14:40:00+08:00",
+  "updated_at": "2026-07-04T15:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-formal-controls-acknowledgement-manual-capture-input-packet-loop703",
-  "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_INPUT_REVIEW_LOOP704：基于 loop703 real_scoring_formal_controls_acknowledgement_manual_capture_input_packet，构建只读 manual acknowledgement capture input review；复核三项 input_items、blocking_acknowledgements、completed_acknowledgements=[]、capture_slots_count=3、submit_action_enabled=false、submit_action_will_execute=false、controls_enabled=false、formal_controls_status=not_granted、authorization state not_granted、next_route=formal_controls_acknowledgement_manual_capture_completion_candidate/will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop704, build the manual capture completion candidate while preserving no-execution and not-granted controls.",
+  "current_slice": "real-scoring-formal-controls-acknowledgement-manual-capture-input-review-loop704",
+  "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_COMPLETION_CANDIDATE_LOOP705：基于 loop704 real_scoring_formal_controls_acknowledgement_manual_capture_input_review，构建只读 manual acknowledgement capture completion candidate；携带 review_items=3、completed_acknowledgements=[]、missing_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack]、all_completed=false、controls_enabled=false、formal_controls_status=not_granted、authorization state not_granted、next_route=formal_controls_acknowledgement_manual_capture_completion_review/will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop705, build the manual capture completion review and keep formal controls not_granted until explicit UI confirmations exist.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-716-real-scoring-formal-controls-acknowledgement-manual-capture-input-packet",
+  "last_tick": "SYNC-717-real-scoring-formal-controls-acknowledgement-manual-capture-input-review",
   "last_sync_sources": [
+    "SYNC-717 loop704 Real scoring formal controls acknowledgement manual capture input review",
+    "loop704 implementation: added real_scoring_formal_controls_acknowledgement_manual_capture_input_review_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes manual capture input packet and shows manual_capture_input_review_ready, three review_items, three blocking_acknowledgements, completed_acknowledgements empty, all_completed false, controls_enabled false, formal_controls_status not_granted, submit_action_enabled false, submit_action_will_execute false, next_route formal_controls_acknowledgement_manual_capture_completion_candidate will_execute false, authorization not_granted, and all-false execution policy",
+    "loop704 verification: RED ModuleNotFoundError; focused manual capture pair tests 8 passed; all test_real_scoring_*_unit.py 267 passed; targeted Ruff pass; compileall pass; payload smoke pass",
+    "loop704 worker: permanent Planner, Dispatcher, and Test Engineer dispatched; no duplicate Executor/Code Reviewer/Verifier was created",
+    "next: REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_COMPLETION_CANDIDATE_LOOP705",
     "SYNC-716 loop703 Real scoring formal controls acknowledgement manual capture input packet",
     "loop703 implementation: added real_scoring_formal_controls_acknowledgement_manual_capture_input_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes manual capture surface and shows manual_capture_input_packet_ready, three input_items, three blocking_acknowledgements, completed_acknowledgements empty, capture_slots_count 3, controls_enabled false, formal_controls_status not_granted, submit_action_enabled false, submit_action_will_execute false, next_route formal_controls_acknowledgement_manual_capture_input_review will_execute false, authorization not_granted, and all-false execution policy",
     "loop703 verification: RED ModuleNotFoundError; focused manual capture pair tests 8 passed; all test_real_scoring_*_unit.py 263 passed; targeted Ruff pass; compileall pass; payload smoke pass",
@@ -698,7 +703,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop703 manual acknowledgement capture input packet complete: real_scoring_formal_controls_acknowledgement_manual_capture_input_packet_v1 consumes loop702 manual capture surface and outputs manual capture input packet ready, input_items=3, blocking_acknowledgements=operator_ack/reviewer_ack/controls_owner_ack, completed_acknowledgements=[], capture_slots_count=3, controls_enabled=false, formal_controls_status=not_granted, submit_action_enabled=false, submit_action_will_execute=false, next_route=formal_controls_acknowledgement_manual_capture_input_review/will_execute=false, authorization not_granted, and all-false execution policy. Verification: RED ModuleNotFoundError, focused manual capture pair 8 passed, all real_scoring 263 passed, Ruff/compileall/smoke pass.",
+  "last_completed_note": "loop704 manual acknowledgement capture input review complete: real_scoring_formal_controls_acknowledgement_manual_capture_input_review_v1 consumes loop703 manual capture input packet and outputs manual capture input review ready, review_items=3, blocking_acknowledgements=operator_ack/reviewer_ack/controls_owner_ack, completed_acknowledgements=[], all_completed=false, controls_enabled=false, formal_controls_status=not_granted, submit_action_enabled=false, submit_action_will_execute=false, next_route=formal_controls_acknowledgement_manual_capture_completion_candidate/will_execute=false, authorization not_granted, and all-false execution policy. Verification: RED ModuleNotFoundError, focused manual capture pair 8 passed, all real_scoring 267 passed, Ruff/compileall/smoke pass.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
