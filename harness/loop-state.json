@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T06:52:00+08:00",
-  "mode": "continuous_implementation_loop",
-  "stop_reason": "",
+  "updated_at": "2026-07-05T07:12:00+08:00",
+  "mode": "formal_human_review",
+  "stop_reason": "formal_human_review_entry",
   "current_tree": "TREE-6",
-  "current_slice": "consumer-flow-formal-verification-gate-loop766",
-  "next_atomic_action": "CONSUMER_FLOW_FORMAL_VERIFICATION_GATE_LOOP766：实现 consumer flow formal verification gate；验证 seeded demo、UI/API payload、no side effects、no substitute runtime、测试矩阵和真源一致性，判断是否进入正式人工验收；默认不读 DB、不写队列、不执行回测。",
-  "next_after": "After loop766, enter formal human review only if the verification gate passes; otherwise fix the reported blocker.",
+  "current_slice": "formal-human-review-entry-loop766",
+  "next_atomic_action": "FORMAL_HUMAN_REVIEW_ENTRY_LOOP766：用户人工验收 seeded one-click 因子构造宇宙 demo flow；检查 UI/流程/因子卡片/报告/诊断是否符合消费级预期；连续实现 loop 暂停，等待人工反馈。",
+  "next_after": "After human review, resume with requested fixes or next production hardening loop.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-781-seeded-e2e-demo-flow-shell-loop765",
+  "last_tick": "SYNC-782-consumer-flow-formal-verification-gate-loop766",
   "last_sync_sources": [
+    "SYNC-782 Consumer flow formal verification gate loop766",
+    "loop766 implementation: added ConsumerFlowFormalVerificationGateV1 and build_consumer_flow_formal_verification_gate_v1; gate consumes seeded demo payload plus truth-source snapshot and verifies seeded demo ready, UI/API result_ready, factor cards, progress/report, no execution side effects, and truth-source alignment",
+    "loop766 verification: RED missing factor_construction_consumer_flow_formal_verification_gate module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 130 passed; compileall passed; gate smoke formal_review_status=ready_for_human_review can_enter_formal_human_review=true blockers=[] factor_card_count=2",
+    "loop766 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "stop: formal_human_review_entry",
     "SYNC-781 Seeded E2E demo flow shell loop765",
     "loop765 implementation: added SeededFactorConstructionE2EDemoFlowV1 and build_seeded_factor_construction_e2e_demo_flow_v1; deterministic seed demo-momentum now returns a stable one-click consumer demo payload spanning user entry, accepted factor cards, controlled gate, progress, report, and factor library surface",
     "loop765 verification: RED missing factor_construction_seeded_e2e_demo_flow module; focused tests 3 passed; targeted Ruff pass; factor construction + registry regression 126 passed; compileall passed",

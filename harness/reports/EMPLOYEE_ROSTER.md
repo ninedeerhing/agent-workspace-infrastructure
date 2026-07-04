@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-05T06:52:00+08:00
+Updated: 2026-07-05T07:12:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop765 | truth_sync_complete | gpt-5.5 | 2026-07-05T06:52:00+08:00 | SYNC-781 loop765 complete; next loop766 Consumer Flow Formal Verification Gate | workload light; local TDD/regression verification authoritative |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop765 | dispatched | gpt-5.4 | 2026-07-05T06:52:00+08:00 | loop765 read-only planning review dispatched; local verification authoritative | preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop765 | dispatched | gpt-5.4 | 2026-07-05T06:52:00+08:00 | loop765 assignment matrix dispatched; local verification authoritative | preserve permanent identity |
+| orchestrator | current-thread | loop766 | formal_human_review_entry | gpt-5.5 | 2026-07-05T07:12:00+08:00 | SYNC-782 loop766 complete; formal human review entry reached | workload cleared; local TDD/regression verification authoritative |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop766 | dispatched | gpt-5.4 | 2026-07-05T07:12:00+08:00 | loop766 read-only planning review dispatched; local verification authoritative | preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop766 | dispatched | gpt-5.4 | 2026-07-05T07:12:00+08:00 | loop766 assignment matrix dispatched; local verification authoritative | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop765 | dispatched | gpt-5.4 | 2026-07-05T06:52:00+08:00 | loop765 coverage matrix dispatched; local TDD/regression verification authoritative | local TDD/regression verification authoritative |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop766 | dispatched | gpt-5.4 | 2026-07-05T07:12:00+08:00 | loop766 coverage matrix dispatched; local TDD/regression verification authoritative | local TDD/regression verification authoritative |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-05T07:12:00+08:00 · SYNC-782 · loop766: ConsumerFlowFormalVerificationGateV1 added with seeded demo readiness, UI/API result_ready, factor cards, progress/report, no execution side effects, and truth-source alignment checks. Focused tests 4 passed, factor construction + registry regression 130 passed, compileall pass, gate smoke ready_for_human_review. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Formal human review entry reached; continuous loop paused.
 - 2026-07-05T06:52:00+08:00 · SYNC-781 · loop765: SeededFactorConstructionE2EDemoFlowV1 added with deterministic seed demo-momentum spanning user entry, one-click UI/API payload, accepted factor cards, controlled gate, progress, report, and factor library surface. Focused tests 3 passed, factor construction + registry regression 126 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: CONSUMER_FLOW_FORMAL_VERIFICATION_GATE_LOOP766.
 - 2026-07-05T06:31:00+08:00 · SYNC-780 · loop764: FactorConstructionOneClickUiApiSurfaceV1 added with stable frontend payload for screen title, action, confirmation, progress, sections, result, factor cards, diagnostics, and all-false side effects. Focused tests 2 passed, factor construction + registry regression 123 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: SEEDED_E2E_DEMO_FLOW_SHELL_LOOP765.
 - 2026-07-05T06:10:30+08:00 · SYNC-779 · loop763: FactorConstructionOneClickFlowShellV1 added with user entry blockers, start button semantics, confirmation state, sections, progress, result surface, and all-false side effects. Focused tests 3 passed, factor construction + registry regression 121 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: ONE_CLICK_FACTOR_UNIVERSE_UI_API_SURFACE_LOOP764.

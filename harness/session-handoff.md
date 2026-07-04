@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T06:52:00+08:00
+updated_at: 2026-07-05T07:12:00+08:00
 
-## Latest Handoff — SYNC-781 Seeded E2E demo flow shell loop765
+## Latest Handoff — SYNC-782 Consumer flow formal verification gate loop766
+
+- [DONE] Added `ConsumerFlowFormalVerificationGateV1` and `build_consumer_flow_formal_verification_gate_v1`.
+- [DONE] Gate consumes seeded demo payload plus truth-source snapshot and verifies seeded demo ready, UI/API `result_ready`, factor cards, progress/report, no execution side effects, and truth-source alignment.
+- [VERIFY] RED missing Consumer Flow Formal Verification Gate module; focused tests **4 passed**; targeted Ruff pass; factor construction + registry regression **130 passed**; compileall pass; gate smoke `formal_review_status=ready_for_human_review`, `can_enter_formal_human_review=true`, `blockers=[]`, `factor_card_count=2`.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop766; local TDD/regression verification is authoritative. No duplicate worker created.
+- [STOP] `formal_human_review_entry` — user-defined formal human review stop point reached; do not continue implementation loop until user review/feedback resumes it.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not write queue; do not run backtest unless a later controlled writer/executor gate is explicitly satisfied.
+
+## Previous Handoff — SYNC-781 Seeded E2E demo flow shell loop765
 
 - [DONE] Added `SeededFactorConstructionE2EDemoFlowV1` and `build_seeded_factor_construction_e2e_demo_flow_v1`.
 - [DONE] Deterministic seed `demo-momentum` returns a stable one-click consumer demo payload spanning user entry, one-click UI/API payload, accepted factor cards, controlled gate, progress, backtest result report, and factor library surface.
