@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-05T02:17:40+08:00
+updated_at: 2026-07-05T02:32:18+08:00
+
+## Latest Handoff — SYNC-766 Diversity Gate loop750
+
+- [DONE] Added `DiversityGateResultV1` and `build_diversity_gate_result_v1`.
+- [DONE] Gate consumes `ComplexityInterpretabilityGateResultV1.passed_refs` and `OfficialCandidateRegistryV1` entries, evaluates duplicate expression, similar expression, family crowding, and multi-factor source overlap, then emits pass/hold/reject reasons plus `survived_refs`, `passed_refs`, `held_refs`, `rejected_refs`, correlation proxy buckets, and all-false side effects.
+- [VERIFY] RED missing Diversity Gate module; focused tests **4 passed** after separating exact duplicate from `+0` similar expression; targeted Ruff pass; factor construction + registry regression **73 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop750; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `DATA_AVAILABILITY_GATE_LOOP751`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-765 Complexity / Interpretability Gate loop749
 
