@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T05:29:10+08:00
+updated_at: 2026-07-05T05:51:00+08:00
 
-## Latest Handoff — SYNC-777 Backtest result report integration loop761
+## Latest Handoff — SYNC-778 Factor library/report surface loop762
+
+- [DONE] Added `FactorLibraryReportSurfaceV1` and `build_factor_library_report_surface_v1`.
+- [DONE] Surface consumes final accepted refs, `BacktestResultReportV1`, and optional A-E classification metadata, producing UI factor cards, report summary, backtest status, consumer verdict, multi-factor insight, and all-false side effects.
+- [VERIFY] RED missing Factor Library Report Surface module; focused tests **3 passed**; targeted Ruff pass; factor construction + registry regression **118 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop762; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `CONSUMER_ONE_CLICK_FACTOR_UNIVERSE_FLOW_SHELL_LOOP763`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not read DB for this read-model; do not create substitute DB/container/service/port; do not use default runner; do not write queue; do not run backtest unless a later controlled writer/executor gate is explicitly satisfied.
+
+## Previous Handoff — SYNC-777 Backtest result report integration loop761
 
 - [DONE] Added `BacktestResultReportV1` and `build_backtest_result_report_v1`.
 - [DONE] Report consumes `BacktestProgressReadModelV1` and optional result payload, deriving unavailable/awaiting/report-ready/failed states, consumer verdict, summary cards, metrics, multi-factor marginal gain, failure reason, ready refs, and all-false side effects.

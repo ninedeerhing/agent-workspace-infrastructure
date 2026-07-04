@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T05:29:10+08:00",
+  "updated_at": "2026-07-05T05:51:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "factor-library-report-surface-integration-loop762",
-  "next_atomic_action": "FACTOR_LIBRARY_REPORT_SURFACE_INTEGRATION_LOOP762：实现 factor library/report surface integration read-model；把 accepted factors、backtest progress、result report 汇总为 UI 可展示的因子库/报告区块，支持 A-E 分类、状态、评分/回测状态、消费级摘要；默认不读 DB、不写队列、不执行回测。",
-  "next_after": "After loop762, implement consumer one-click factor universe flow shell.",
+  "current_slice": "consumer-one-click-factor-universe-flow-shell-loop763",
+  "next_atomic_action": "CONSUMER_ONE_CLICK_FACTOR_UNIVERSE_FLOW_SHELL_LOOP763：实现 consumer one-click factor universe flow shell；把 user entry、ConstructionSpec、候选生成、质量闸、评分请求、accepted、backtest progress/report surface 串成单一 UI flow read-model，显示按钮、确认、进度、结果区块；默认不读 DB、不写队列、不执行回测。",
+  "next_after": "After loop763, wire UI/API surface for the one-click factor universe flow.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-777-backtest-result-report-integration-loop761",
+  "last_tick": "SYNC-778-factor-library-report-surface-loop762",
   "last_sync_sources": [
+    "SYNC-778 Factor library/report surface integration loop762",
+    "loop762 implementation: added FactorLibraryReportSurfaceV1 and build_factor_library_report_surface_v1; surface consumes final accepted refs, BacktestResultReportV1, and optional A-E classification metadata, producing UI factor cards, report summary, backtest status, consumer verdict, multi-factor insight, and all-false side effects",
+    "loop762 verification: RED missing factor_construction_factor_library_report_surface module; focused tests 3 passed; targeted Ruff pass; factor construction + registry regression 118 passed; compileall passed",
+    "loop762 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: CONSUMER_ONE_CLICK_FACTOR_UNIVERSE_FLOW_SHELL_LOOP763",
     "SYNC-777 Backtest result report integration loop761",
     "loop761 implementation: added BacktestResultReportV1 and build_backtest_result_report_v1; report consumes BacktestProgressReadModelV1 and optional result payload, deriving unavailable/awaiting_result_payload/report_ready/failed states, consumer verdict, summary cards, metrics, multi-factor marginal gain, failure reason, ready refs, and all-false side effects",
     "loop761 verification: RED missing factor_construction_backtest_result_report module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 115 passed; compileall passed",
@@ -115,12 +120,7 @@
     "loop743 implementation: added FundamentalStyleGeneratorV1 as canonical fundamental_style family and registered it in the default registry; generator emits class A PIT-declared quality/value/style candidates when sources are ready, returns a data source confirmation gap payload when not ready, and preserves declared_available_fields through pool filter rechecks",
     "loop743 verification: RED missing factor_construction_fundamental_style module; focused fundamental/style tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 46 passed; compileall passed",
     "loop743 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
-    "next: EVENT_TEXT_SENTIMENT_FACTOR_GENERATOR_LOOP744",
-    "SYNC-758 Library/Paper Factor Replication generator loop742",
-    "loop742 implementation: added LibraryPaperFactorReplayGeneratorV1 as canonical library_paper_replay family and registered it in the default registry; generator converts cited paper/library formula seeds into DSL candidates with citation, source_ref, formula_summary, replication_assumptions, license/provenance placeholder, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects; missing citation and unsupported formulas fail-closed",
-    "loop742 verification: RED missing factor_construction_library_paper_replay module; focused library/paper replay tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 43 passed; compileall passed",
-    "loop742 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
-    "next: FUNDAMENTAL_STYLE_FACTOR_GENERATOR_LOOP743"
+    "next: EVENT_TEXT_SENTIMENT_FACTOR_GENERATOR_LOOP744"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -132,7 +132,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-777 loop761 complete: BacktestResultReportV1 implemented with unavailable/awaiting/report_ready/failed states, summary cards, metrics, multi-factor marginal gain, consumer verdict, failure reason, and no DB/queue/backtest side effects; next loop762 factor library/report surface integration.",
+  "last_completed_note": "SYNC-778 loop762 complete: FactorLibraryReportSurfaceV1 implemented with factor cards, A-E classification fallback, pool/scoring/backtest status, report summary, consumer verdict, multi-factor insight, and no DB/queue/backtest side effects; next loop763 consumer one-click factor universe flow shell.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
