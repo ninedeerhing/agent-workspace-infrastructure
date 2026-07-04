@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T03:24:56+08:00",
+  "updated_at": "2026-07-05T03:39:18+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "provisional-accepted-pool-admission-loop755",
-  "next_atomic_action": "PROVISIONAL_ACCEPTED_POOL_ADMISSION_LOOP755：实现 provisional accepted pool admission read-model；消费 ScoringResultReadModelV1，只有 scored/passing candidates 可进入 provisional_ready，blocked/pending/failed candidates 明确 hold/reject 原因；默认不写 accepted pool，不授予正式 accepted。",
-  "next_after": "After loop755, implement final accepted pool UI confirmation gate before any final accepted state or downstream backtest planning.",
+  "current_slice": "final-accepted-pool-ui-confirmation-loop756",
+  "next_atomic_action": "FINAL_ACCEPTED_POOL_UI_CONFIRMATION_LOOP756：实现 final accepted pool UI confirmation gate；消费 ProvisionalAcceptedPoolAdmissionV1，只有用户按钮确认且 candidate 已 provisional_ready 才输出 final accepted candidate refs；默认不写 DB，不触发回测计划。",
+  "next_after": "After loop756, implement backtest plan allocator from final accepted candidates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-770-scoring-result-read-model-loop754",
+  "last_tick": "SYNC-771-provisional-accepted-pool-loop755",
   "last_sync_sources": [
+    "SYNC-771 Provisional accepted pool loop755",
+    "loop755 implementation: added ProvisionalAcceptedPoolAdmissionV1 and build_provisional_accepted_pool_admission_v1; scoring result read-model now supports scored metrics; admission model outputs provisional_ready/held/rejected refs, final_accepted_refs empty, admission reasons, blocked/awaiting/partial states, and all-false side effects without writing accepted pool",
+    "loop755 verification: RED missing factor_construction_provisional_accepted_pool module; focused tests 4 passed after pending-only status correction; targeted Ruff pass; factor construction + registry regression 93 passed; compileall passed",
+    "loop755 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: FINAL_ACCEPTED_POOL_UI_CONFIRMATION_LOOP756",
     "SYNC-770 Scoring result read-model loop754",
     "loop754 implementation: added ScoringResultReadModelV1 and build_scoring_result_read_model_v1; read-model consumes SmallBatchRealScoringRequestV1, represents blocked_before_execution, awaiting_controlled_scoring_result, partial_failure, candidate pending placeholders, retryable/permanent failure taxonomy, user-readable messages, metrics placeholders, and all-false side effects",
     "loop754 verification: RED missing factor_construction_scoring_result_read_model module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 89 passed; compileall passed",
@@ -177,7 +182,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-770 loop754 complete: ScoringResultReadModelV1 implemented with blocked/pending/failure states, retryable/permanent taxonomy, candidate placeholders, user-readable messages and all-false side effects; next loop755 provisional accepted pool admission.",
+  "last_completed_note": "SYNC-771 loop755 complete: ProvisionalAcceptedPoolAdmissionV1 implemented with provisional_ready/held/rejected refs, admission reasons, blocked/awaiting/partial states and no final accepted write; next loop756 final accepted UI confirmation gate.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",

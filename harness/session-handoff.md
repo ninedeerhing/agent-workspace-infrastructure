@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-05T03:24:56+08:00
+updated_at: 2026-07-05T03:39:18+08:00
+
+## Latest Handoff — SYNC-771 Provisional accepted pool loop755
+
+- [DONE] Added `ProvisionalAcceptedPoolAdmissionV1` and `build_provisional_accepted_pool_admission_v1`.
+- [DONE] `ScoringResultReadModelV1` now supports scored metrics; provisional admission outputs `provisional_ready_refs`, `held_refs`, `rejected_refs`, `final_accepted_refs=[]`, admission reasons, blocked/awaiting/partial states, and all-false side effects.
+- [VERIFY] RED missing Provisional Accepted Pool module; focused tests **4 passed** after correcting pending-only status to `awaiting_scores`; targeted Ruff pass; factor construction + registry regression **93 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop755; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `FINAL_ACCEPTED_POOL_UI_CONFIRMATION_LOOP756`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not run scorer/backtest by default; do not write DB/queue/accepted pool unless later controlled gate is explicitly satisfied.
 
 ## Latest Handoff — SYNC-770 Scoring result read-model loop754
 

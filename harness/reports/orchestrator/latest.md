@@ -1,4 +1,40 @@
-# Orchestrator Latest Report — SYNC-770 Scoring result read-model loop754
+# Orchestrator Latest Report — SYNC-771 Provisional accepted pool loop755
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "PROVISIONAL_ACCEPTED_POOL_ADMISSION_LOOP755"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_provisional_accepted_pool.py"
+      summary: "Adds ProvisionalAcceptedPoolAdmissionV1 with provisional_ready/held/rejected refs, admission reasons, blocked/awaiting/partial states, final_accepted_refs empty, and no-execution metadata."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_scoring_result_read_model.py"
+      summary: "Extends scoring result read-model with scored metrics and scored_results_available status."
+    - file: "apps/quant_assistant/tests/test_factor_construction_provisional_accepted_pool_unit.py"
+      summary: "Adds focused tests for pending held, scored passing provisional-ready without pool write, retryable held, permanent rejected, and blocked scoring request."
+    - file: "harness/loop-state.json"
+      summary: "Advances current_slice to final-accepted-pool-ui-confirmation-loop756 and next_atomic_action to FINAL_ACCEPTED_POOL_UI_CONFIRMATION_LOOP756."
+  verification:
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_provisional_accepted_pool_unit.py -q"
+      result: "RED first failed on missing factor_construction_provisional_accepted_pool module; GREEN 4 passed after pending-only status correction."
+    - command: "$env:PYTHONPATH='src'; uv run ruff check src/qa/quant_mining/factor_construction_provisional_accepted_pool.py src/qa/quant_mining/factor_construction_scoring_result_read_model.py tests/test_factor_construction_provisional_accepted_pool_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py"
+      result: "All checks passed."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_provisional_accepted_pool_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_compute_budget_gate_unit.py tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_construction_diversity_gate_unit.py tests/test_factor_construction_complexity_interpretability_gate_unit.py tests/test_factor_construction_static_quality_gate_unit.py tests/test_factor_construction_candidate_registry_unit.py tests/test_factor_construction_multi_factor_combination_spec_unit.py tests/test_multi_factor_combination_search_boundary_unit.py tests/test_factor_construction_causal_regime_macro_generator_unit.py tests/test_factor_construction_event_text_sentiment_generator_unit.py tests/test_factor_construction_fundamental_style_generator_unit.py tests/test_factor_construction_library_paper_replay_generator_unit.py tests/test_factor_construction_trajectory_mutation_generator_unit.py tests/test_factor_construction_program_synthesis_generator_unit.py tests/test_factor_construction_llm_hypothesis_generator_unit.py tests/test_factor_construction_rl_mcts_interface_unit.py tests/test_factor_construction_genetic_programming_generator_unit.py tests/test_factor_construction_operator_mutation_generator_unit.py tests/test_factor_construction_template_parameter_sweep_generator_unit.py tests/test_factor_construction_symbolic_expression_generator_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_hard_gates_unit.py -q"
+      result: "93 passed."
+    - command: "$env:PYTHONPATH='src'; uv run python -m compileall src/qa/quant_mining/factor_construction_provisional_accepted_pool.py src/qa/quant_mining/factor_construction_scoring_result_read_model.py"
+      result: "pass."
+  roster_update:
+    workload_delta: "increased"
+    mistakes: []
+    lessons:
+      - "Provisional admission must separate provisional-ready from final accepted; final accepted remains a later UI confirmation."
+      - "Pending-only scoring results are awaiting scores, not partial review."
+    performance_note: "Loop755 Provisional Accepted Pool Admission is implemented and verified; next loop is Final Accepted Pool UI Confirmation."
+  blockers: []
+  next: "FINAL_ACCEPTED_POOL_UI_CONFIRMATION_LOOP756"
+
+---
+
+# Orchestrator Previous Report — SYNC-770 Scoring result read-model loop754
 
 report:
   role_id: "orchestrator"
