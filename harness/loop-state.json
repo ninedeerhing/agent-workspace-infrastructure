@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T23:50:00+08:00",
+  "updated_at": "2026-07-04T23:59:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-formal-controls-acknowledgement-manual-capture-confirmation-reentry-completion-candidate-refresh-loop725",
-  "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_REENTRY_COMPLETION_REVIEW_REFRESH_LOOP726：基于 loop725 confirmation reentry completion candidate refresh，构建只读 confirmation reentry completion review refresh；展示 reentry_completion_review_refresh_status=acknowledgement_manual_capture_confirmation_reentry_completion_refresh_blocked、completed_acknowledgements=[]、missing_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack]、all_completed=false、controls_enabled=false、formal_controls_status=not_granted、authorization state not_granted、next_route=formal_controls_acknowledgement_manual_capture_confirmation_reentry_blocked_summary_refresh/will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop726, build the refreshed confirmation reentry blocked summary while preserving no-execution until real UI submissions exist.",
+  "current_slice": "real-scoring-formal-controls-acknowledgement-manual-capture-confirmation-reentry-completion-review-refresh-loop726",
+  "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_REENTRY_BLOCKED_SUMMARY_REFRESH_LOOP727：基于 loop726 confirmation reentry completion review refresh，构建只读 confirmation reentry blocked summary refresh；展示 reentry_blocked_summary_refresh_status=formal_controls_acknowledgement_manual_capture_confirmation_reentry_blocked_summary_refresh_ready、blocking_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack]、completed_acknowledgements=[]、controls_enabled=false、formal_controls_status=not_granted、authorization state not_granted、next_route=formal_controls_acknowledgement_manual_capture_confirmation_reentry_closure_review_refresh/will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop727, build the refreshed confirmation reentry closure review while preserving no-execution until real UI submissions exist.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-738-real-scoring-formal-controls-acknowledgement-manual-capture-confirmation-reentry-completion-candidate-refresh",
+  "last_tick": "SYNC-739-real-scoring-formal-controls-acknowledgement-manual-capture-confirmation-reentry-completion-review-refresh",
   "last_sync_sources": [
+    "SYNC-739 loop726 Real scoring formal controls acknowledgement manual capture confirmation reentry completion review refresh",
+    "loop726 implementation: added real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_reentry_completion_review_refresh_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes confirmation reentry completion candidate refresh and shows reentry_completion_review_refresh_status acknowledgement_manual_capture_confirmation_reentry_completion_refresh_blocked, completed_acknowledgements empty, missing_acknowledgements operator_ack/reviewer_ack/controls_owner_ack, all_completed false, controls_enabled false, formal_controls_status not_granted, next_route formal_controls_acknowledgement_manual_capture_confirmation_reentry_blocked_summary_refresh will_execute false, authorization not_granted, and all-false execution policy",
+    "loop726 verification: RED ModuleNotFoundError; focused confirmation reentry completion review refresh pair tests 8 passed; all test_real_scoring_*_unit.py 356 passed; targeted Ruff pass; compileall pass; payload smoke pass",
+    "loop726 dispatch correction: stop_reason remains empty and next_atomic_action remains nonempty, so ordinary completion report is not a stop condition; proceed directly to loop727 unless a real stop whitelist condition appears",
+    "next: REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_REENTRY_BLOCKED_SUMMARY_REFRESH_LOOP727",
     "SYNC-738 loop725 Real scoring formal controls acknowledgement manual capture confirmation reentry completion candidate refresh",
     "loop725 implementation: added real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_reentry_completion_candidate_refresh_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes confirmation reentry input review refresh and shows reentry_completion_candidate_refresh_status acknowledgement_manual_capture_confirmation_reentry_completion_refresh_not_ready, completed_acknowledgements empty, missing_acknowledgements operator_ack/reviewer_ack/controls_owner_ack, all_completed false, controls_enabled false, formal_controls_status not_granted, next_route formal_controls_acknowledgement_manual_capture_confirmation_reentry_completion_review_refresh will_execute false, authorization not_granted, and all-false execution policy",
     "loop725 verification: RED ModuleNotFoundError; focused confirmation reentry completion candidate refresh pair tests 8 passed; all test_real_scoring_*_unit.py 352 passed; targeted Ruff pass; compileall pass; payload smoke pass",
