@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T12:15:00+08:00
+updated_at: 2026-07-04T12:30:00+08:00
+
+## Latest Handoff — SYNC-710 real scoring formal controls acknowledgement reentry input review
+
+- [DONE] Added `real_scoring_formal_controls_acknowledgement_reentry_input_review_v1` and exposed it from creation plan.
+- [DONE] Review consumes loop697 reentry input packet and shows formal_controls_acknowledgement_reentry_input_review_ready, review_items=[operator_ack_reentry_input_review,reviewer_ack_reentry_input_review,controls_owner_ack_reentry_input_review], required_reentry_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack], completed_acknowledgements=[], all_completed=false, controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_reentry_completion_candidate/will_execute=false, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_formal_controls_acknowledgement_reentry_input_review`; focused + batch flow tests **11 passed**; all `test_real_scoring_*_unit.py` **243 passed**; Ruff pass; compileall pass; payload smoke `loop698_smoke formal_controls_acknowledgement_reentry_input_review_ready operator_ack|reviewer_ack|controls_owner_ack 0 3 False False not_granted formal_controls_acknowledgement_reentry_completion_candidate False not_granted False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer dispatched and returned success. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_REENTRY_COMPLETION_CANDIDATE_LOOP699`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-709 real scoring formal controls acknowledgement reentry input packet
 
