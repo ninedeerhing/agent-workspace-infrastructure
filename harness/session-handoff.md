@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T01:00:09+08:00
+updated_at: 2026-07-05T01:06:38+08:00
 
-## Latest Handoff — SYNC-754 RL/MCTS search interface model loop738
+## Latest Handoff — SYNC-755 LLM Hypothesis generator loop739
+
+- [DONE] Added canonical `LlmHypothesisGeneratorV1` and registered `llm_hypothesis` in the default factor construction registry.
+- [DONE] User idea / no-idea / paper seed text is treated as untrusted data and translated into explainable computable candidates with source_prompt_summary, hypothesis_text, rationale, explanation, prompt_injection_risk, trust_policy, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects.
+- [VERIFY] RED missing LLM hypothesis module; focused tests **3 passed**; targeted Ruff pass; factor construction generator/registry/hard-gate regression **34 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop739. Local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `PROGRAM_SYNTHESIS_CANDIDATE_GENERATOR_LOOP740`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-754 RL/MCTS search interface model loop738
 
 - [DONE] Added `RlMctsSearchInterfaceV1` planner-only/no-execution RL/MCTS search interface model.
 - [DONE] The interface consumes template/symbolic/operator_mutation/genetic_programming candidate pools and exposes search_state, policy_hint, action_space, candidate_proposal_interface, budget_boundary, feedback_signal_placeholder, manual_review_boundary, and stable all-false side effects.
