@@ -1,6 +1,79 @@
 # Session Handoff
 
-updated_at: 2026-07-04T23:59:00+08:00
+updated_at: 2026-07-05T00:52:14+08:00
+
+## Latest Handoff — SYNC-752 operator mutation generator loop736
+
+- [DONE] Added `OperatorMutationGeneratorV1` as distinct `operator_mutation` generator family and registered it in the default factor construction registry.
+- [DONE] Generator now emits operator replacement, window perturbation, normalization, neutralization proxy, and combination variants with parents, mutation_ops, complexity metadata, PIT/no-future-data flags, and stable no-execution ids.
+- [VERIFY] RED missing operator mutation module; focused tests **3 passed**; targeted Ruff pass; factor construction generator/registry/hard-gate regression **26 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer returned success for loop736. Executor remains waitingOnApproval; bounded Orchestrator fallback used without creating a duplicate worker.
+- [NEXT] `HIERARCHICAL_GP_GENERATOR_LOOP737`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-751 template parameter sweep generator loop735
+
+- [DONE] Enhanced `TemplateParameterSweepGeneratorV1` so template sweep candidates expose `template_parameter_grid` lineage metadata.
+- [DONE] Candidate lineage now includes `template_family`, `template_family_catalog`, `parameter_grid`, PIT/no-future-data flags, and remains budget-bounded/no-execution.
+- [VERIFY] RED missing template metadata; focused tests **2 passed**; targeted Ruff pass; factor construction generator/registry/hard-gate regression **23 passed**.
+- [WORKERS] Planner, Dispatcher, and Test Engineer returned success for loop735. Executor remains waitingOnApproval; bounded Orchestrator fallback used without creating a duplicate worker.
+- [NEXT] `OPERATOR_MUTATION_GENERATOR_LOOP736`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-750 symbolic expression generator loop734
+
+- [DONE] Added `SymbolicExpressionGeneratorV1` and registered default generator family `symbolic_expression`.
+- [DONE] Candidate lineage now supports metadata; symbolic expression candidates carry AST/RPN/operator-tree metadata, PIT/no-future-data flags, stable factor ids, and no-execution lineage.
+- [VERIFY] RED missing symbolic expression module; focused tests **3 passed**; targeted Ruff pass; factor construction generator/registry/hard-gate regression **23 passed**.
+- [NEXT] `TEMPLATE_PARAMETER_SWEEP_GENERATOR_LOOP735`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-749 user entry parameter model loop733
+
+- [DONE] Added `FactorConstructionUserEntryV1` and `build_factor_construction_user_entry_v1()` with category selection, no-idea auto explore, idea expansion, and formula/paper/library seed modes.
+- [DONE] User entry payloads now expose Top50/small_batch defaults, manual start requirement, consumer-readable blockers, no-execution side effects, and a `to_spec_kwargs()` adapter into `ConstructionSpec v1`.
+- [VERIFY] RED missing user-entry builder; focused user-entry tests **3 passed**; targeted Ruff pass; universe/spec/user-entry/registry/generator regression **19 passed**.
+- [WORKERS] Planner, Dispatcher, and Test Engineer returned success. No duplicate worker created.
+- [NEXT] `SYMBOLIC_EXPRESSION_GENERATOR_LOOP734`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-748 construction spec v1 loop732
+
+- [DONE] Extended `FactorConstructionSpecV1` with user-entry, target Top50 preview, rollout ladder, stock universe, time window, compute budget policy, and A-E data-source confirmation defaults.
+- [DONE] Extended `build_factor_construction_spec_v1(...)` with user-entry / rollout / max_rows / chunk parameters and fail-closed validation for empty generator families and invalid TopN / rollout tier.
+- [VERIFY] RED unexpected `user_entry_mode` / `target_preview_count` builder args; focused construction spec tests **2 passed**; targeted Ruff pass; universe/registry/generator/hardening regression **16 passed**.
+- [WORKERS] Planner, Dispatcher, and Test Engineer returned success; Dispatcher allowed bounded Orchestrator fallback because canonical Executor remains waitingOnApproval. No duplicate worker created.
+- [NEXT] `USER_ENTRY_PARAMETER_MODEL_LOOP733`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-747 factor construction universe model loop731
+
+- [DONE] Implemented `FactorConstructionUniverseV1` and `build_factor_construction_universe_v1()` in `apps/quant_assistant/src/qa/quant_mining/factor_construction_models.py`.
+- [DONE] Added focused tests in `apps/quant_assistant/tests/test_factor_construction_universe_model_unit.py` covering Universe != old Factory, A-E domains, 13 generator families, candidate/job lifecycles, pipeline stages, all-false side effects, and `next_loop=CONSTRUCTION_SPEC_V1_LOOP732`.
+- [VERIFY] RED missing `build_factor_construction_universe_v1`; focused universe tests **6 passed**; targeted Ruff pass; adjacent factor-construction registry/generator/hard-gate regression **18 passed**.
+- [WORKERS] Planner and Test Engineer returned success; Dispatcher warned Executor should own source/test implementation. Executor thread was active/waitingOnApproval after writing a conflicting proof-only test shape, so Orchestrator performed bounded conflict correction and recorded this as an exception, not a normal coding path.
+- [NEXT] `CONSTRUCTION_SPEC_V1_LOOP732`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-746 factor construction universe authoritative plan canonicalized
+
+- [DONE] Consolidated the user's three planning blocks into the single canonical file `apps/quant_assistant/docs/ENGINEERING/2026-07-04-factor-construction-universe-authoritative-plan.md`.
+- [DONE] The canonical file defines loop731-loop770 with each loop's core function, detailed deliverable, required gates/rules/backfill, anti-break chain, crash/restart recovery, and formal stop condition.
+- [DONE] Earlier loop731-loop765 draft and proof-only real-scoring acknowledgement chains are historical evidence only, not execution authority.
+- [DONE] Removed the unauthorized implementation test file and removed the extra runtime-data audit draft so the plan surface has one canonical file.
+- [VERIFY] `loop-state.stop_reason=USER_REVIEW_REQUIRED_FOR_FACTOR_CONSTRUCTION_UNIVERSE_AUTHORITATIVE_PLAN`; `next_atomic_action=AWAIT_USER_REVIEW_FACTOR_CONSTRUCTION_UNIVERSE_AUTHORITATIVE_PLAN`.
+- [NEXT] Wait for user review. Do not enter loop731 until explicitly approved.
+- [FORBIDDEN] Before approval: no business code implementation, no Docker/DB startup, no scorer/backtest, no `.env`/secret read or print.
+
+## Latest Handoff — SYNC-744 factor construction universe realignment and closure plan
+
+- [DONE] User confirmed the final pre-review plan direction: Raindeer must deliver a truly usable factor construction universe, not only a proof-only factor factory.
+- [DONE] Added `apps/quant_assistant/docs/ENGINEERING/2026-07-04-factor-construction-universe-closure-plan.md`.
+- [DONE] Foreground slice is now `factor-construction-universe-realignment-and-closure-plan-loop731`; old real-scoring formal-controls acknowledgement chain remains historical no-execution evidence, not the active foreground track.
+- [VERIFY] Read-only audit covered `loop-state`, `PROJECT_STATUS`, `TASK_TREES`, factor universe blueprint, real scoring rollout plan, `METHODOLOGY_MEMORY`, and git status. No `.env`/secret printing, no Docker/container start, no DB write, no scorer/backtest run.
+- [WORKERS] Permanent Planner `019f0890-69e6-7270-a742-1178836608ef` and Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5` received read-only plan/matrix assignments. Orchestrator is bounded truth-source writer only for this realignment.
+- [NEXT] `FACTOR_UNIVERSE_RUNTIME_AND_DATA_READINESS_AUDIT_LOOP732`.
+- [FORBIDDEN] Do not create substitute Docker containers, DBs, services, or ports; use only the approved `qa-pg-alt` runtime path when a later explicit execution loop reaches runtime verification.
 
 ## Latest Handoff — SYNC-743 real scoring formal controls acknowledgement manual capture confirmation reentry next gap selection refresh
 
