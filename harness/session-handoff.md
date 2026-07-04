@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T00:52:14+08:00
+updated_at: 2026-07-05T00:56:30+08:00
 
-## Latest Handoff — SYNC-752 operator mutation generator loop736
+## Latest Handoff — SYNC-753 hierarchical GP generator loop737
+
+- [DONE] Added `HierarchicalGeneticProgrammingGeneratorV1` as canonical `genetic_programming` generator family and registered it in the default factor construction registry.
+- [DONE] Generator emits bounded crossover/mutation candidates with gp_tree, parents, generation_depth, expression_size, complexity_penalty, limits, PIT/no-future-data flags, and stable no-execution ids.
+- [VERIFY] RED missing genetic programming module; focused tests **3 passed**; targeted Ruff pass; factor construction generator/registry/hard-gate regression **29 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer returned success for loop737. Executor remains waitingOnApproval; bounded Orchestrator fallback used without creating a duplicate worker.
+- [NEXT] `RL_MCTS_SEARCH_INTERFACE_MODEL_LOOP738`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-752 operator mutation generator loop736
 
 - [DONE] Added `OperatorMutationGeneratorV1` as distinct `operator_mutation` generator family and registered it in the default factor construction registry.
 - [DONE] Generator now emits operator replacement, window perturbation, normalization, neutralization proxy, and combination variants with parents, mutation_ops, complexity metadata, PIT/no-future-data flags, and stable no-execution ids.

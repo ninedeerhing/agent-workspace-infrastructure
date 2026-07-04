@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T00:52:14+08:00",
+  "updated_at": "2026-07-05T00:56:30+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "hierarchical-gp-generator-loop737",
-  "next_atomic_action": "HIERARCHICAL_GP_GENERATOR_LOOP737：实现 bounded Hierarchical Genetic Programming 生成器；基于可计算字段/算子树生成 crossover、mutation、depth limit、expression size limit、complexity penalty 的候选，输出 gp_tree、parents、generation_depth、complexity_penalty、lineage metadata、AST/hash/no-execution metadata；TDD 覆盖 crossover/mutation/depth-size cap/complexity penalty、invalid tree fail-closed、预算/去重/硬闸不回归；完成后进入 RL_MCTS_SEARCH_INTERFACE_MODEL_LOOP738。",
-  "next_after": "After loop737, implement RL_MCTS_SEARCH_INTERFACE_MODEL_LOOP738 from the canonical loop731-loop770 plan.",
+  "current_slice": "rl-mcts-search-interface-model-loop738",
+  "next_atomic_action": "RL_MCTS_SEARCH_INTERFACE_MODEL_LOOP738：实现 no-execution RL/MCTS search interface model；定义 search_state、policy_hint、action_space、candidate_proposal_interface、budget_boundary、feedback_signal_placeholder、manual_review_boundary，并消费已稳定的 template/symbolic/operator_mutation/genetic_programming 候选契约；TDD 覆盖 planner-only/no-runtime、budget cap、state serialization、candidate proposal contract、no actual RL/MCTS runtime/scorer/backtest side effects；完成后进入 LLM_HYPOTHESIS_GENERATOR_LOOP739。",
+  "next_after": "After loop738, implement LLM_HYPOTHESIS_GENERATOR_LOOP739 from the canonical loop731-loop770 plan.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-752-operator-mutation-generator-loop736",
+  "last_tick": "SYNC-753-hierarchical-gp-generator-loop737",
   "last_sync_sources": [
+    "SYNC-753 hierarchical GP generator loop737",
+    "loop737 implementation: added HierarchicalGeneticProgrammingGeneratorV1 as genetic_programming family and registered it in default registry; generator emits bounded crossover/mutation candidates with gp_tree, parents, generation_depth, expression_size, complexity_penalty, limits, PIT/no-future-data lineage, and no-execution ids",
+    "loop737 verification: RED missing factor_construction_genetic_programming module; focused GP tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 29 passed; compileall passed",
+    "loop737 workers: permanent Planner, Dispatcher, and Test Engineer returned success; Executor remains waitingOnApproval so bounded Orchestrator fallback was used without creating duplicate workers",
+    "next: RL_MCTS_SEARCH_INTERFACE_MODEL_LOOP738",
     "SYNC-752 operator mutation generator loop736",
     "loop736 implementation: added OperatorMutationGeneratorV1 as distinct operator_mutation family and registered it in default registry; generator emits operator replacement, window perturbation, normalization, neutralization, and combination variants with parents, mutation_ops, complexity metadata, stable ids, PIT/no-future-data lineage, and no-execution candidates",
     "loop736 verification: RED missing factor_construction_operator_mutation module; focused operator mutation tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 26 passed; compileall passed",
@@ -75,12 +80,7 @@
     "loop728 implementation: added real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_reentry_closure_review_refresh_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes confirmation reentry blocked summary refresh and shows reentry_closure_review_refresh_status formal_controls_acknowledgement_manual_capture_confirmation_reentry_closure_review_refresh_blocked, blocking_acknowledgements operator_ack/reviewer_ack/controls_owner_ack, completed_acknowledgements empty, controls_enabled false, formal_controls_status not_granted, next_route formal_controls_acknowledgement_manual_capture_confirmation_reentry_final_summary_refresh will_execute false, authorization not_granted, and all-false execution policy",
     "loop728 verification: RED ModuleNotFoundError; focused confirmation reentry closure review refresh pair tests 8 passed; all test_real_scoring_*_unit.py 364 passed; targeted Ruff pass; compileall pass; payload smoke pass",
     "next: REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_REENTRY_FINAL_SUMMARY_REFRESH_LOOP729",
-    "SYNC-740 loop727 Real scoring formal controls acknowledgement manual capture confirmation reentry blocked summary refresh",
-    "loop727 implementation: added real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_reentry_blocked_summary_refresh_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes confirmation reentry completion review refresh and shows reentry_blocked_summary_refresh_status formal_controls_acknowledgement_manual_capture_confirmation_reentry_blocked_summary_refresh_ready, blocking_acknowledgements operator_ack/reviewer_ack/controls_owner_ack, completed_acknowledgements empty, controls_enabled false, formal_controls_status not_granted, next_route formal_controls_acknowledgement_manual_capture_confirmation_reentry_closure_review_refresh will_execute false, authorization not_granted, and all-false execution policy",
-    "loop727 verification: RED ModuleNotFoundError; focused confirmation reentry blocked summary refresh pair tests 8 passed; all test_real_scoring_*_unit.py 360 passed; targeted Ruff pass; compileall pass; payload smoke pass",
-    "next: REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_REENTRY_CLOSURE_REVIEW_REFRESH_LOOP728",
-    "SYNC-739 loop726 Real scoring formal controls acknowledgement manual capture confirmation reentry completion review refresh",
-    "loop726 implementation: added real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_reentry_completion_review_refresh_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes confirmation reentry completion candidate refresh and shows reentry_completion_review_refresh_status acknowledgement_manual_capture_confirmation_reentry_completion_refresh_blocked, completed_acknowledgements empty, missing_acknowledgements operator_ack/reviewer_ack/controls_owner_ack, all_completed false, controls_enabled false, formal_controls_status not_granted, next_route formal_controls_acknowledgement_manual_capture_confirmation_reentry_blocked_summary_refresh will_execute false, authorization not_granted, and all-false execution policy"
+    "SYNC-740 loop727 Real scoring formal controls acknowledgement manual capture confirmation reentry blocked summary refresh"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -92,7 +92,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-752 loop736 complete: OperatorMutationGeneratorV1 implemented as distinct no-execution generator family; next loop737 hierarchical GP generator.",
+  "last_completed_note": "SYNC-753 loop737 complete: HierarchicalGeneticProgrammingGeneratorV1 implemented as bounded no-execution genetic_programming generator; next loop738 RL/MCTS search interface model.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
