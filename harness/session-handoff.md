@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-05T03:11:42+08:00
+updated_at: 2026-07-05T03:24:56+08:00
+
+## Latest Handoff — SYNC-770 Scoring result read-model loop754
+
+- [DONE] Added `ScoringResultReadModelV1`, `ScoringCandidateResultV1`, and `build_scoring_result_read_model_v1`.
+- [DONE] Read-model consumes `SmallBatchRealScoringRequestV1`, represents blocked-before-execution, awaiting-controlled-result, partial-failure, candidate pending placeholders, retryable/permanent failure taxonomy, user-readable messages, metrics placeholders, and all-false side effects.
+- [VERIFY] RED missing Scoring Result Read Model module; focused tests **4 passed**; targeted Ruff pass; factor construction + registry regression **89 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop754; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `PROVISIONAL_ACCEPTED_POOL_ADMISSION_LOOP755`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not run scorer/backtest by default; do not write DB/queue/accepted pool unless later controlled gate is explicitly satisfied.
 
 ## Latest Handoff — SYNC-769 Small Batch Real Scoring controlled request loop753
 
