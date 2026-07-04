@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T01:17:45+08:00
+updated_at: 2026-07-05T01:22:58+08:00
 
-## Latest Handoff — SYNC-757 Trajectory Mutation generator loop741
+## Latest Handoff — SYNC-758 Library/Paper Factor Replication generator loop742
+
+- [DONE] Added canonical `LibraryPaperFactorReplayGeneratorV1` and registered `library_paper_replay` in the default factor construction registry.
+- [DONE] Cited paper/library formula seeds are replayed as local DSL candidates with citation, source_ref, formula_summary, replication_assumptions, license/provenance placeholder, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects; missing citation and unsupported formulas fail-closed.
+- [VERIFY] RED missing Library/Paper replay module; focused tests **3 passed**; targeted Ruff pass; factor construction generator/registry/hard-gate regression **43 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop742. Local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `FUNDAMENTAL_STYLE_FACTOR_GENERATOR_LOOP743`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-757 Trajectory Mutation generator loop741
 
 - [DONE] Added canonical `TrajectoryMutationGeneratorV1` and registered `trajectory_mutation` in the default factor construction registry.
 - [DONE] Generator reuses success path placeholders, avoids failure path expressions, and emits window_shift / decay_overlay / participation_overlay variants with trajectory_ref, parent_path, mutation_strategy, memory_placeholder, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects.

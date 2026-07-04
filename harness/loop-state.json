@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T01:17:45+08:00",
+  "updated_at": "2026-07-05T01:22:58+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "library-paper-factor-replication-generator-loop742",
-  "next_atomic_action": "LIBRARY_PAPER_FACTOR_REPLICATION_GENERATOR_LOOP742：实现 Library/Paper Factor 复刻生成器；把论文/库因子种子转成可计算 DSL 候选，保留 citation/source_ref、formula_summary、replication_assumptions、license/provenance placeholder、static validation、AST/hash/no-execution metadata；TDD 覆盖 paper seed、library seed、missing citation fail-closed、unsupported formula fail-closed、registry integration、无 env/DB/Docker/scorer/backtest side effects；完成后进入 FUNDAMENTAL_STYLE_FACTOR_GENERATOR_LOOP743。",
-  "next_after": "After loop742, implement FUNDAMENTAL_STYLE_FACTOR_GENERATOR_LOOP743 from the canonical loop731-loop770 plan.",
+  "current_slice": "fundamental-style-factor-generator-loop743",
+  "next_atomic_action": "FUNDAMENTAL_STYLE_FACTOR_GENERATOR_LOOP743：实现 Fundamental/Style 因子生成器；基于 PIT fundamental/style 数据源声明生成 quality/value/growth/style 候选或数据缺口说明，输出 required_sources、pit_required、data_status ready/needs_confirmation、factor_class=A、static validation、AST/hash/no-execution metadata；TDD 覆盖 ready source candidate generation、missing source gap payload、PIT requirement、registry integration、无 env/DB/Docker/scorer/backtest side effects；完成后进入 EVENT_TEXT_SENTIMENT_FACTOR_GENERATOR_LOOP744。",
+  "next_after": "After loop743, implement EVENT_TEXT_SENTIMENT_FACTOR_GENERATOR_LOOP744 from the canonical loop731-loop770 plan.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-757-trajectory-mutation-generator-loop741",
+  "last_tick": "SYNC-758-library-paper-factor-replication-generator-loop742",
   "last_sync_sources": [
+    "SYNC-758 Library/Paper Factor Replication generator loop742",
+    "loop742 implementation: added LibraryPaperFactorReplayGeneratorV1 as canonical library_paper_replay family and registered it in the default registry; generator converts cited paper/library formula seeds into DSL candidates with citation, source_ref, formula_summary, replication_assumptions, license/provenance placeholder, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects; missing citation and unsupported formulas fail-closed",
+    "loop742 verification: RED missing factor_construction_library_paper_replay module; focused library/paper replay tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 43 passed; compileall passed",
+    "loop742 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: FUNDAMENTAL_STYLE_FACTOR_GENERATOR_LOOP743",
     "SYNC-757 Trajectory Mutation generator loop741",
     "loop741 implementation: added TrajectoryMutationGeneratorV1 as canonical trajectory_mutation family and registered it in the default registry; generator reuses success path placeholders, avoids failure path expressions, emits trajectory_ref, parent_path, mutation_strategy, success/failure memory placeholder, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects",
     "loop741 verification: RED missing factor_construction_trajectory_mutation module; focused trajectory mutation tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 40 passed; compileall passed",
@@ -112,7 +117,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-757 loop741 complete: TrajectoryMutationGeneratorV1 implemented as no-execution trajectory_mutation generator; next loop742 Library/Paper Factor Replication generator.",
+  "last_completed_note": "SYNC-758 loop742 complete: LibraryPaperFactorReplayGeneratorV1 implemented as no-execution library_paper_replay generator; next loop743 Fundamental/Style generator.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
