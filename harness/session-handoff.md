@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T01:06:38+08:00
+updated_at: 2026-07-05T01:12:04+08:00
 
-## Latest Handoff — SYNC-755 LLM Hypothesis generator loop739
+## Latest Handoff — SYNC-756 Program Synthesis candidate generator loop740
+
+- [DONE] Added canonical `ProgramSynthesisGeneratorV1` and registered `program_synthesis` in the default factor construction registry.
+- [DONE] Safe DSL/program fragments are statically translated into candidates with sandbox_contract, allowed_imports_empty, forbidden import/exec/eval/subprocess checks, no arbitrary Python execution, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects.
+- [VERIFY] RED missing Program Synthesis module; focused tests **3 passed**; targeted Ruff pass; factor construction generator/registry/hard-gate regression **37 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop740. Local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `TRAJECTORY_MUTATION_GENERATOR_LOOP741`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-755 LLM Hypothesis generator loop739
 
 - [DONE] Added canonical `LlmHypothesisGeneratorV1` and registered `llm_hypothesis` in the default factor construction registry.
 - [DONE] User idea / no-idea / paper seed text is treated as untrusted data and translated into explainable computable candidates with source_prompt_summary, hypothesis_text, rationale, explanation, prompt_injection_risk, trust_policy, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects.

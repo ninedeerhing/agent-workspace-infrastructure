@@ -1,4 +1,42 @@
-# Orchestrator Latest Report — SYNC-755 LLM Hypothesis generator loop739
+# Orchestrator Latest Report — SYNC-756 Program Synthesis candidate generator loop740
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "PROGRAM_SYNTHESIS_CANDIDATE_GENERATOR_LOOP740"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_program_synthesis.py"
+      summary: "Adds ProgramSynthesisGeneratorV1 with static-only fragment parsing, sandbox contract metadata, unsafe import/exec/eval/subprocess fail-closed rejection, and static-checked no-execution candidates."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_registry.py"
+      summary: "Registers canonical program_synthesis in the default factor construction registry."
+    - file: "apps/quant_assistant/tests/test_factor_construction_program_synthesis_generator_unit.py"
+      summary: "Adds focused tests for safe fragments, unsafe fragment rejection, sandbox contract metadata, registry integration, and no side effects."
+    - file: "harness/loop-state.json"
+      summary: "Advances current_slice to trajectory-mutation-generator-loop741 and next_atomic_action to TRAJECTORY_MUTATION_GENERATOR_LOOP741."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records §5.1080 loop740 completion and verification evidence."
+  verification:
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_program_synthesis_generator_unit.py -q"
+      result: "RED first failed on missing factor_construction_program_synthesis module; GREEN 3 passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run ruff check src/qa/quant_mining/factor_construction_program_synthesis.py src/qa/quant_mining/factor_construction_registry.py tests/test_factor_construction_program_synthesis_generator_unit.py"
+      result: "All checks passed."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_program_synthesis_generator_unit.py tests/test_factor_construction_llm_hypothesis_generator_unit.py tests/test_factor_construction_rl_mcts_interface_unit.py tests/test_factor_construction_genetic_programming_generator_unit.py tests/test_factor_construction_operator_mutation_generator_unit.py tests/test_factor_construction_template_parameter_sweep_generator_unit.py tests/test_factor_construction_symbolic_expression_generator_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_hard_gates_unit.py -q"
+      result: "37 passed."
+    - command: "$env:PYTHONPATH='src'; uv run python -m compileall src/qa/quant_mining/factor_construction_program_synthesis.py src/qa/quant_mining/factor_construction_registry.py"
+      result: "pass."
+  roster_update:
+    workload_delta: "increased"
+    mistakes: []
+    lessons:
+      - "Program synthesis must be static translation into the Factor DSL; no arbitrary Python execution, imports, exec, eval, subprocess, or runtime side effects."
+      - "Unsafe fragments should reduce candidate output and increase rejected_count instead of weakening DSL/static gates."
+    performance_note: "Loop740 generator is implemented and verified; next loop is Trajectory Mutation generator."
+  blockers: []
+  next: "TRAJECTORY_MUTATION_GENERATOR_LOOP741"
+
+---
+
+# Orchestrator Previous Report — SYNC-755 LLM Hypothesis generator loop739
 
 report:
   role_id: "orchestrator"
