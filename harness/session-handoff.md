@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T01:28:41+08:00
+updated_at: 2026-07-05T01:35:12+08:00
 
-## Latest Handoff — SYNC-759 Fundamental/Style factor generator loop743
+## Latest Handoff — SYNC-760 Event/Text/Sentiment factor generator loop744
+
+- [DONE] Added canonical `EventTextSentimentGeneratorV1` and registered `event_text_sentiment` in the default factor construction registry.
+- [DONE] Generator emits E-class source-gated no-execution proxy candidates when event/text/sentiment/alternative sources are ready, returns a required-sources data gap payload when sources need confirmation, and exposes entity-linking, sentiment-stream, data-status, proxy-policy, static validation, AST/hash, PIT/no-future-data lineage, and all-false side effects.
+- [VERIFY] RED missing Event/Text/Sentiment module; focused tests **3 passed**; targeted Ruff pass; factor construction generator/registry/hard-gate regression **49 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop744. Local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `CAUSAL_REGIME_MACRO_FACTOR_PATH_LOOP745`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-759 Fundamental/Style factor generator loop743
 
 - [DONE] Added canonical `FundamentalStyleGeneratorV1` and registered `fundamental_style` in the default factor construction registry.
 - [DONE] Generator emits A-class PIT-declared quality/value/style candidates when fundamental/style sources are ready, returns a data-source confirmation gap payload when sources need confirmation, and pool filter now preserves `declared_available_fields` during hard-gate rechecks.
