@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T01:49:31+08:00",
+  "updated_at": "2026-07-05T01:56:22+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "candidate-registry-official-pool-loop747",
-  "next_atomic_action": "CANDIDATE_REGISTRY_OFFICIAL_POOL_LOOP747：实现 official candidate registry/pool 结构；统一暴露单因子与多因子候选，记录分类、生成器、lineage、source refs、状态、去重键、no-execution metadata；TDD 覆盖单因子候选入 registry、多因子 spec 入 registry、duplicate key fail-closed、status lifecycle draft/screening_ready/provisional_ready、all-false side effects；不写 DB/queue/accepted pool；完成后进入 STATIC_QUALITY_GATE_LOOP748。",
-  "next_after": "After loop747, implement STATIC_QUALITY_GATE_LOOP748 from the canonical loop731-loop770 plan.",
+  "current_slice": "static-quality-gate-loop748",
+  "next_atomic_action": "STATIC_QUALITY_GATE_LOOP748：实现 Static Quality Gate；从 official candidate registry 读取候选，拒绝非法表达式、缺字段、未来函数、不可计算、重复候选和不支持依赖，输出 candidate-level gate status、reject reasons、survived refs 与 no-execution metadata；TDD 覆盖 pass/reject、duplicate registry key handling、missing expression/lineage/source dependency、multi-factor source ref validation、all-false side effects；完成后进入 COMPLEXITY_INTERPRETABILITY_GATE_LOOP749。",
+  "next_after": "After loop748, implement COMPLEXITY_INTERPRETABILITY_GATE_LOOP749 from the canonical loop731-loop770 plan.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-762-multi-factor-combination-search-spec-loop746",
+  "last_tick": "SYNC-763-candidate-registry-official-pool-loop747",
   "last_sync_sources": [
+    "SYNC-763 Candidate Registry official pool loop747",
+    "loop747 implementation: added OfficialCandidateRegistryV1, OfficialCandidateRegistryEntryV1, and build_official_candidate_registry_v1; registry unifies single_factor and multi_factor entries, preserves classification, generator, lineage, source refs, lifecycle status, dedupe key, no-execution metadata, duplicate key blockers, stable to_json, and all-false side effects",
+    "loop747 verification: RED missing factor_construction_candidate_registry module; focused official registry tests 3 passed; targeted Ruff pass; factor construction + multi-factor regression 62 passed; compileall passed",
+    "loop747 workers: permanent Planner, Dispatcher, and Test Engineer returned read-only reports; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: STATIC_QUALITY_GATE_LOOP748",
     "SYNC-762 Multi-Factor Combination Search spec loop746",
     "loop746 implementation: added MultiFactorCombinationSearchSpecV1 and build_multi_factor_combination_search_spec_v1; spec consumes candidate pools, separates single-factor and multi-factor paths, validates source refs and duplicate refs, emits combination size/weight/risk/metric placeholders, search methods, static validation, blockers, and all-false side effects without running optimizer/scorer/backtest",
     "loop746 verification: RED missing factor_construction_multi_factor_combination module; focused multi-factor combination spec tests 3 passed; targeted Ruff pass; factor construction + multi-factor boundary regression 59 passed; compileall passed",
@@ -137,7 +142,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-762 loop746 complete: MultiFactorCombinationSearchSpecV1 implemented as no-execution combination spec with source-ref validation and single/multi separation; next loop747 Candidate Registry official pool.",
+  "last_completed_note": "SYNC-763 loop747 complete: OfficialCandidateRegistryV1 implemented as no-execution candidate registry read-model with single/multi entries and duplicate-key fail-closed behavior; next loop748 Static Quality Gate.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",

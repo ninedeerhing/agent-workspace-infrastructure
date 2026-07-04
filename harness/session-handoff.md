@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T01:49:31+08:00
+updated_at: 2026-07-05T01:56:22+08:00
 
-## Latest Handoff — SYNC-762 Multi-Factor Combination Search spec loop746
+## Latest Handoff — SYNC-763 Candidate Registry official pool loop747
+
+- [DONE] Added `OfficialCandidateRegistryV1`, `OfficialCandidateRegistryEntryV1`, and `build_official_candidate_registry_v1`.
+- [DONE] Registry unifies single-factor and multi-factor entries while preserving classification, generator, lineage, source refs, lifecycle status, dedupe key, no-execution metadata, duplicate key blockers, stable `to_json`, and all-false side effects.
+- [VERIFY] RED missing Candidate Registry module; focused tests **3 passed**; targeted Ruff pass; factor construction + multi-factor regression **62 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer returned read-only reports for loop747. Local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `STATIC_QUALITY_GATE_LOOP748`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-762 Multi-Factor Combination Search spec loop746
 
 - [DONE] Added `MultiFactorCombinationSearchSpecV1` and `build_multi_factor_combination_search_spec_v1`.
 - [DONE] Spec consumes candidate pools, separates single-factor and multi-factor paths, validates source refs and duplicate refs, and emits combination limits, weight constraints, risk budget, decorrelation/marginal-gain/turnover/stability/ICIR placeholders, search methods, static validation, blockers, and all-false side effects.
