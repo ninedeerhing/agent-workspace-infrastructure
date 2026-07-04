@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-05T04:06:55+08:00
+Updated: 2026-07-05T04:25:20+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop757 | truth_sync_complete | gpt-5.5 | 2026-07-05T04:06:55+08:00 | SYNC-773 loop757 complete; next loop758 Multi-Factor Backtest Request Builder | workload light; local TDD/regression verification authoritative |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop757 | dispatched | gpt-5.4 | 2026-07-05T04:06:55+08:00 | loop757 read-only planning review dispatched; local verification authoritative | preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop757 | dispatched | gpt-5.4 | 2026-07-05T04:06:55+08:00 | loop757 assignment matrix dispatched; local verification authoritative | preserve permanent identity |
+| orchestrator | current-thread | loop758 | truth_sync_complete | gpt-5.5 | 2026-07-05T04:25:20+08:00 | SYNC-774 loop758 complete; next loop759 Controlled Auto-Backtest Execution Gate | workload light; local TDD/regression verification authoritative |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop758 | dispatched | gpt-5.4 | 2026-07-05T04:25:20+08:00 | loop758 read-only planning review dispatched; local verification authoritative | preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop758 | dispatched | gpt-5.4 | 2026-07-05T04:25:20+08:00 | loop758 assignment matrix dispatched; local verification authoritative | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop757 | dispatched | gpt-5.4 | 2026-07-05T04:06:55+08:00 | loop757 coverage matrix dispatched; local TDD/regression verification authoritative | local TDD/regression verification authoritative |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop758 | dispatched | gpt-5.4 | 2026-07-05T04:25:20+08:00 | loop758 coverage matrix dispatched; local TDD/regression verification authoritative | local TDD/regression verification authoritative |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-05T04:25:20+08:00 · SYNC-774 · loop758: MultiFactorBacktestRequestBuilderV1 added with single-factor plan refs, multi-factor request drafts, equal weights, constraints, metrics, budget truncation, blocked/planned status, and all-false side effects. Focused tests 4 passed, factor construction + registry regression 103 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: CONTROLLED_AUTO_BACKTEST_EXECUTION_GATE_LOOP759.
 - 2026-07-05T04:06:55+08:00 · SYNC-773 · loop757: BacktestPlanAllocatorV1 added with single-factor backtest plan drafts, metrics, full-history/all-A-share defaults, budget placeholders, blocked/planned status, and all-false side effects. Focused tests 3 passed, factor construction + registry regression 99 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: MULTI_FACTOR_BACKTEST_REQUEST_BUILDER_LOOP758.
 - 2026-07-05T03:52:44+08:00 · SYNC-772 · loop756: FinalAcceptedPoolConfirmationV1 added with user confirmation gate, candidate refs for confirmation, final accepted refs, blocked/awaiting/accepted states, and no DB/backtest side effects. Focused tests 3 passed, factor construction + registry regression 96 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: BACKTEST_PLAN_ALLOCATOR_LOOP757.
 - 2026-07-05T03:39:18+08:00 · SYNC-771 · loop755: ProvisionalAcceptedPoolAdmissionV1 added with provisional_ready/held/rejected refs, final_accepted_refs empty, admission reasons, blocked/awaiting/partial states, and all-false side effects; ScoringResultReadModelV1 now supports scored metrics. Focused tests 4 passed, factor construction + registry regression 93 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: FINAL_ACCEPTED_POOL_UI_CONFIRMATION_LOOP756.

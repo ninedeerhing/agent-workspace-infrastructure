@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T04:06:55+08:00
+updated_at: 2026-07-05T04:25:20+08:00
 
-## Latest Handoff — SYNC-773 Backtest plan allocator loop757
+## Latest Handoff — SYNC-774 Multi-factor backtest request builder loop758
+
+- [DONE] Added `MultiFactorBacktestRequestBuilderV1`, `MultiFactorBacktestRequestDraftV1`, and `build_multi_factor_backtest_request_builder_v1`.
+- [DONE] Builder consumes `BacktestPlanAllocatorV1` and optional candidate factor refs, preserves single-factor plan refs, emits multi-factor request drafts with equal weights, constraints, metrics, budget truncation, blocked/planned status, and all-false side effects.
+- [VERIFY] RED missing Multi-Factor Backtest Request Builder module; focused tests **4 passed**; targeted Ruff pass; factor construction + registry regression **103 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop758; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `CONTROLLED_AUTO_BACKTEST_EXECUTION_GATE_LOOP759`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not write queue; do not run backtest unless later controlled gate is explicitly satisfied.
+
+## Previous Handoff — SYNC-773 Backtest plan allocator loop757
 
 - [DONE] Added `BacktestPlanAllocatorV1`, `BacktestPlanDraftV1`, and `build_backtest_plan_allocator_v1`.
 - [DONE] Allocator consumes `FinalAcceptedPoolConfirmationV1.final_accepted_refs` and emits single-factor backtest plan drafts with metrics, full-history/all-A-share defaults, budget placeholders, blocked/planned status, and all-false side effects.
