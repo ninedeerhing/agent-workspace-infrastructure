@@ -1,4 +1,38 @@
-# Orchestrator Latest Report — SYNC-761 Causal/Regime/Macro factor path loop745
+# Orchestrator Latest Report — SYNC-762 Multi-Factor Combination Search spec loop746
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "MULTI_FACTOR_COMBINATION_SEARCH_SPEC_LOOP746"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_multi_factor_combination.py"
+      summary: "Adds MultiFactorCombinationSearchSpecV1 and builder with single/multi separation, source-ref validation, combination limits, weight/risk constraints, metric placeholders, static validation, and no-execution metadata."
+    - file: "apps/quant_assistant/tests/test_factor_construction_multi_factor_combination_spec_unit.py"
+      summary: "Adds focused tests for combination spec shape, source ref validation, duplicate refs fail-closed, size/weight/risk placeholders, and all-false side effects."
+    - file: "harness/loop-state.json"
+      summary: "Advances current_slice to candidate-registry-official-pool-loop747 and next_atomic_action to CANDIDATE_REGISTRY_OFFICIAL_POOL_LOOP747."
+  verification:
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_multi_factor_combination_spec_unit.py -q"
+      result: "RED first failed on missing factor_construction_multi_factor_combination module; GREEN 3 passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run ruff check src/qa/quant_mining/factor_construction_multi_factor_combination.py tests/test_factor_construction_multi_factor_combination_spec_unit.py"
+      result: "All checks passed."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_multi_factor_combination_spec_unit.py tests/test_multi_factor_combination_search_boundary_unit.py tests/test_factor_construction_causal_regime_macro_generator_unit.py tests/test_factor_construction_event_text_sentiment_generator_unit.py tests/test_factor_construction_fundamental_style_generator_unit.py tests/test_factor_construction_library_paper_replay_generator_unit.py tests/test_factor_construction_trajectory_mutation_generator_unit.py tests/test_factor_construction_program_synthesis_generator_unit.py tests/test_factor_construction_llm_hypothesis_generator_unit.py tests/test_factor_construction_rl_mcts_interface_unit.py tests/test_factor_construction_genetic_programming_generator_unit.py tests/test_factor_construction_operator_mutation_generator_unit.py tests/test_factor_construction_template_parameter_sweep_generator_unit.py tests/test_factor_construction_symbolic_expression_generator_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_hard_gates_unit.py -q"
+      result: "59 passed."
+    - command: "$env:PYTHONPATH='src'; uv run python -m compileall src/qa/quant_mining/factor_construction_multi_factor_combination.py"
+      result: "pass."
+  roster_update:
+    workload_delta: "increased"
+    mistakes: []
+    lessons:
+      - "Multi-factor combination search must stay separate from single-factor candidate generation."
+      - "Combination metric fields remain explicit placeholders until real panel metrics and optimizer execution are authorized."
+    performance_note: "Loop746 combination spec is implemented and verified; next loop is Candidate Registry official pool."
+  blockers: []
+  next: "CANDIDATE_REGISTRY_OFFICIAL_POOL_LOOP747"
+
+---
+
+# Orchestrator Previous Report — SYNC-761 Causal/Regime/Macro factor path loop745
 
 report:
   role_id: "orchestrator"

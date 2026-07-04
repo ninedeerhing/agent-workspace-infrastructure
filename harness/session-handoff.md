@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T01:42:18+08:00
+updated_at: 2026-07-05T01:49:31+08:00
 
-## Latest Handoff — SYNC-761 Causal/Regime/Macro factor path loop745
+## Latest Handoff — SYNC-762 Multi-Factor Combination Search spec loop746
+
+- [DONE] Added `MultiFactorCombinationSearchSpecV1` and `build_multi_factor_combination_search_spec_v1`.
+- [DONE] Spec consumes candidate pools, separates single-factor and multi-factor paths, validates source refs and duplicate refs, and emits combination limits, weight constraints, risk budget, decorrelation/marginal-gain/turnover/stability/ICIR placeholders, search methods, static validation, blockers, and all-false side effects.
+- [VERIFY] RED missing Multi-Factor Combination module; focused tests **3 passed**; targeted Ruff pass; factor construction + multi-factor boundary regression **59 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer returned read-only reports for loop746. Local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `CANDIDATE_REGISTRY_OFFICIAL_POOL_LOOP747`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-761 Causal/Regime/Macro factor path loop745
 
 - [DONE] Added canonical `CausalRegimeMacroGeneratorV1` and registered `causal_regime_macro` in the default factor construction registry.
 - [DONE] Generator emits D-class source-gated no-execution hypothesis/proxy candidates when causal/regime/macro sources are ready, returns a required-sources data gap payload when sources need confirmation, and exposes `causal_claim_policy=no_causal_claim_without_evidence`, regime placeholder, macro required sources, claim type, causal evidence status, static validation, AST/hash, PIT/no-future-data lineage, and all-false side effects.
