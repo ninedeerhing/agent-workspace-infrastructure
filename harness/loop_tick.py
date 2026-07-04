@@ -75,8 +75,9 @@ def should_stop(state: dict[str, Any]) -> tuple[bool, str]:
     stop_reason = str(state.get("stop_reason") or "").strip()
     if stop_reason:
         return True, f"stop_reason={stop_reason}"
+    next_action = str(state.get("next_atomic_action") or "").strip()
     gate = state.get("closure_gate") or {}
-    if str(gate.get("status") or "").lower() == "closed":
+    if str(gate.get("status") or "").lower() == "closed" and not next_action:
         return True, "closure_gate=closed"
     return False, ""
 

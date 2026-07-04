@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-04T13:05:00+08:00
+updated_at: 2026-07-04T13:35:00+08:00
+
+## Latest Handoff — SYNC-713 real scoring formal controls acknowledgement reentry completion review
+
+- [DONE] Added `real_scoring_formal_controls_acknowledgement_reentry_completion_review_v1` and exposed it from creation plan.
+- [DONE] Review consumes loop699 completion candidate and shows acknowledgement_reentry_completion_blocked, completed_acknowledgements=[], missing_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack], all_completed=false, controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_reentry_blocked_summary/will_execute=false, and not_granted authorization.
+- [DONE] Fixed root no-stop regression: `harness/loop_tick.py::should_stop` no longer treats `closure_gate=closed` as a stop when `next_atomic_action` exists.
+- [VERIFY] RED `ModuleNotFoundError`; focused + batch flow tests **11 passed**; candidate+review+batch **15 passed**; all `test_real_scoring_*_unit.py` **251 passed**; Ruff pass; compileall pass; payload smoke `loop700_smoke acknowledgement_reentry_completion_blocked 0 operator_ack|reviewer_ack|controls_owner_ack False False not_granted formal_controls_acknowledgement_reentry_blocked_summary False not_granted False False False False False False False False False False False`; root `harness/tests/test_loop_tick_unit.py` **3 passed**; `loop_tick.py status` `stopped=false`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_REENTRY_BLOCKED_SUMMARY_LOOP701`, then move toward user-visible manual acknowledgement capture surface.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-712 orchestrator no-stop final guard
 
