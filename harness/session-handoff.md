@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T04:25:20+08:00
+updated_at: 2026-07-05T04:47:30+08:00
 
-## Latest Handoff — SYNC-774 Multi-factor backtest request builder loop758
+## Latest Handoff — SYNC-775 Controlled auto-backtest execution gate loop759
+
+- [DONE] Added `ControlledAutoBacktestExecutionGateV1` and `build_controlled_auto_backtest_execution_gate_v1`.
+- [DONE] Gate consumes single-factor backtest plan allocator and multi-factor request builder outputs, checks UI authorization, `qa-pg-alt` runtime, injected non-default runner, queue boundary, idempotency key, rollback/audit ref, and emits ready/blocked state with all-false side effects.
+- [VERIFY] RED missing Controlled Auto-Backtest Execution Gate module; focused tests **4 passed**; targeted Ruff pass; factor construction + registry regression **107 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop759; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `BACKTEST_PROGRESS_READ_MODEL_LOOP760`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not write queue; do not run backtest unless a later controlled writer/executor gate is explicitly satisfied.
+
+## Previous Handoff — SYNC-774 Multi-factor backtest request builder loop758
 
 - [DONE] Added `MultiFactorBacktestRequestBuilderV1`, `MultiFactorBacktestRequestDraftV1`, and `build_multi_factor_backtest_request_builder_v1`.
 - [DONE] Builder consumes `BacktestPlanAllocatorV1` and optional candidate factor refs, preserves single-factor plan refs, emits multi-factor request drafts with equal weights, constraints, metrics, budget truncation, blocked/planned status, and all-false side effects.

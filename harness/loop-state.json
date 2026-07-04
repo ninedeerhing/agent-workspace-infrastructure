@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T04:25:20+08:00",
+  "updated_at": "2026-07-05T04:47:30+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-auto-backtest-execution-gate-loop759",
-  "next_atomic_action": "CONTROLLED_AUTO_BACKTEST_EXECUTION_GATE_LOOP759：实现 controlled auto-backtest execution gate；消费单因子计划与多因子请求草案，检查 UI 授权、正确 DB/runner/runtime、队列写入边界、幂等与 rollback/audit 预条件，输出受控执行就绪/阻塞状态；默认不写队列、不执行回测。",
-  "next_after": "After loop759, implement backtest progress/read-model integration.",
+  "current_slice": "backtest-progress-read-model-loop760",
+  "next_atomic_action": "BACKTEST_PROGRESS_READ_MODEL_LOOP760：实现 backtest progress read-model；消费 controlled auto-backtest execution gate 的 ready/blocked 输出，展示等待授权、阻塞、准备就绪、未来运行中/完成/失败占位状态，给 UI 提供消费级进度文案；默认不写队列、不执行回测。",
+  "next_after": "After loop760, implement backtest result report integration.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-774-multi-factor-backtest-request-builder-loop758",
+  "last_tick": "SYNC-775-controlled-auto-backtest-execution-gate-loop759",
   "last_sync_sources": [
+    "SYNC-775 Controlled auto-backtest execution gate loop759",
+    "loop759 implementation: added ControlledAutoBacktestExecutionGateV1 and build_controlled_auto_backtest_execution_gate_v1; gate consumes BacktestPlanAllocatorV1 and MultiFactorBacktestRequestBuilderV1, checks UI authorization, qa-pg-alt runtime, injected non-default runner, queue write boundary, idempotency key, rollback/audit ref, and emits ready/blocked state with all-false side effects",
+    "loop759 verification: RED missing factor_construction_controlled_auto_backtest_execution_gate module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 107 passed; compileall passed",
+    "loop759 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: BACKTEST_PROGRESS_READ_MODEL_LOOP760",
     "SYNC-774 Multi-factor backtest request builder loop758",
     "loop758 implementation: added MultiFactorBacktestRequestBuilderV1 and build_multi_factor_backtest_request_builder_v1; builder consumes BacktestPlanAllocatorV1 and optional candidate factor refs, preserves single_factor_plan_refs, emits multi-factor request draft with equal weights, constraints, metrics, excluded refs, blocked/planned states, and all-false side effects",
     "loop758 verification: RED missing factor_construction_multi_factor_backtest_request_builder module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 103 passed; compileall passed",
@@ -115,12 +120,7 @@
     "loop740 implementation: added ProgramSynthesisGeneratorV1 as canonical program_synthesis family and registered it in the default registry; generator statically parses safe DSL/program fragments into candidates with sandbox_contract, allowed_imports_empty, forbidden exec/eval/import/subprocess checks, no arbitrary Python execution, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects",
     "loop740 verification: RED missing factor_construction_program_synthesis module; focused program synthesis tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 37 passed; compileall passed",
     "loop740 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
-    "next: TRAJECTORY_MUTATION_GENERATOR_LOOP741",
-    "SYNC-755 LLM Hypothesis generator loop739",
-    "loop739 implementation: added LlmHypothesisGeneratorV1 as canonical llm_hypothesis family and registered it in the default registry; generator deterministically translates user idea/no-idea/paper seed text into explainable computable candidates with source_prompt_summary, hypothesis_text, rationale, explanation, prompt-injection-as-data flag, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects",
-    "loop739 verification: RED missing factor_construction_llm_hypothesis module; focused LLM hypothesis tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 34 passed; compileall passed",
-    "loop739 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
-    "next: PROGRAM_SYNTHESIS_CANDIDATE_GENERATOR_LOOP740"
+    "next: TRAJECTORY_MUTATION_GENERATOR_LOOP741"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -132,7 +132,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-774 loop758 complete: MultiFactorBacktestRequestBuilderV1 implemented with single-factor plan refs, multi-factor request drafts, equal weights, constraints, metrics, budget truncation, blocked/planned states, and no queue/backtest side effects; next loop759 controlled auto-backtest execution gate.",
+  "last_completed_note": "SYNC-775 loop759 complete: ControlledAutoBacktestExecutionGateV1 implemented with UI authorization, correct qa-pg-alt runtime, injected non-default runner, queue boundary, idempotency key, rollback/audit checks, ready/blocked states, and no queue/backtest side effects; next loop760 backtest progress read-model.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
