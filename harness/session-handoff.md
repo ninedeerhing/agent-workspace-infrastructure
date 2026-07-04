@@ -1,8 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-05T06:31:00+08:00
+updated_at: 2026-07-05T06:52:00+08:00
 
-## Latest Handoff — SYNC-780 One-click UI/API surface loop764
+## Latest Handoff — SYNC-781 Seeded E2E demo flow shell loop765
+
+- [DONE] Added `SeededFactorConstructionE2EDemoFlowV1` and `build_seeded_factor_construction_e2e_demo_flow_v1`.
+- [DONE] Deterministic seed `demo-momentum` returns a stable one-click consumer demo payload spanning user entry, one-click UI/API payload, accepted factor cards, controlled gate, progress, backtest result report, and factor library surface.
+- [DONE] Unknown seeds fail closed with `unsupported_demo_seed`; all top-level and nested execution flags remain no-execution.
+- [VERIFY] RED missing Seeded E2E Demo Flow module; focused tests **3 passed**; targeted Ruff pass; factor construction + registry regression **126 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop765; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `CONSUMER_FLOW_FORMAL_VERIFICATION_GATE_LOOP766`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not read DB for this verification gate; do not create substitute DB/container/service/port; do not use default runner; do not write queue; do not run backtest unless a later controlled writer/executor gate is explicitly satisfied.
+
+## Previous Handoff — SYNC-780 One-click UI/API surface loop764
 
 - [DONE] Added `FactorConstructionOneClickUiApiSurfaceV1` and `build_factor_construction_one_click_ui_api_surface_v1`.
 - [DONE] Adapter consumes `FactorConstructionOneClickFlowShellV1` and emits stable frontend payload with screen title, user message, primary action, confirmation, progress, sections, result, factor cards, collapsed diagnostics, blockers, and all-false side effects.

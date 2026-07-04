@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T06:31:00+08:00",
+  "updated_at": "2026-07-05T06:52:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "seeded-e2e-demo-flow-shell-loop765",
-  "next_atomic_action": "SEEDED_E2E_DEMO_FLOW_SHELL_LOOP765：实现 seeded E2E demo flow shell；用确定性 seed 串起用户入口、候选生成/质量闸占位、评分/accepted/backtest/report surface，产出可稳定展示的一键 demo payload；默认不读 DB、不写队列、不执行回测。",
-  "next_after": "After loop765, implement formal verification gate for consumer flow.",
+  "current_slice": "consumer-flow-formal-verification-gate-loop766",
+  "next_atomic_action": "CONSUMER_FLOW_FORMAL_VERIFICATION_GATE_LOOP766：实现 consumer flow formal verification gate；验证 seeded demo、UI/API payload、no side effects、no substitute runtime、测试矩阵和真源一致性，判断是否进入正式人工验收；默认不读 DB、不写队列、不执行回测。",
+  "next_after": "After loop766, enter formal human review only if the verification gate passes; otherwise fix the reported blocker.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-780-one-click-ui-api-surface-loop764",
+  "last_tick": "SYNC-781-seeded-e2e-demo-flow-shell-loop765",
   "last_sync_sources": [
+    "SYNC-781 Seeded E2E demo flow shell loop765",
+    "loop765 implementation: added SeededFactorConstructionE2EDemoFlowV1 and build_seeded_factor_construction_e2e_demo_flow_v1; deterministic seed demo-momentum now returns a stable one-click consumer demo payload spanning user entry, accepted factor cards, controlled gate, progress, report, and factor library surface",
+    "loop765 verification: RED missing factor_construction_seeded_e2e_demo_flow module; focused tests 3 passed; targeted Ruff pass; factor construction + registry regression 126 passed; compileall passed",
+    "loop765 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: CONSUMER_FLOW_FORMAL_VERIFICATION_GATE_LOOP766",
     "SYNC-780 One-click factor universe UI/API surface loop764",
     "loop764 implementation: added FactorConstructionOneClickUiApiSurfaceV1 and build_factor_construction_one_click_ui_api_surface_v1; adapter consumes FactorConstructionOneClickFlowShellV1 and emits stable frontend payload with screen title, user message, primary action, confirmation, progress, sections, result, factor cards, collapsed diagnostics, blockers, and all-false side effects",
     "loop764 verification: RED missing factor_construction_one_click_ui_api_surface module; focused tests 2 passed; targeted Ruff pass; factor construction + registry regression 123 passed; compileall passed",
