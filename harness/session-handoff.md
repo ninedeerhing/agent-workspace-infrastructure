@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-05T03:39:18+08:00
+updated_at: 2026-07-05T03:52:44+08:00
+
+## Latest Handoff — SYNC-772 Final accepted UI confirmation loop756
+
+- [DONE] Added `FinalAcceptedPoolConfirmationV1` and `build_final_accepted_pool_confirmation_v1`.
+- [DONE] Gate consumes `ProvisionalAcceptedPoolAdmissionV1`, outputs candidate refs for confirmation and `final_accepted_refs` only when `user_confirmed=True` and candidates are provisional-ready; no DB/accepted-pool/backtest side effects.
+- [VERIFY] RED missing Final Accepted Pool module; focused tests **3 passed** after JSON list assertion correction; targeted Ruff pass; factor construction + registry regression **96 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop756; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `BACKTEST_PLAN_ALLOCATOR_LOOP757`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not run scorer/backtest by default; do not write DB/queue/accepted pool unless later controlled gate is explicitly satisfied.
 
 ## Latest Handoff — SYNC-771 Provisional accepted pool loop755
 

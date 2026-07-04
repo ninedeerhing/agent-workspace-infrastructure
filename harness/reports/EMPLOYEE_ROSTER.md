@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-05T03:39:18+08:00
+Updated: 2026-07-05T03:52:44+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop755 | truth_sync_complete | gpt-5.5 | 2026-07-05T03:39:18+08:00 | SYNC-771 loop755 complete; next loop756 Final Accepted Pool UI Confirmation | workload light; local TDD/regression verification authoritative |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop755 | dispatched | gpt-5.4 | 2026-07-05T03:39:18+08:00 | loop755 read-only planning review dispatched; local verification authoritative | preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop755 | dispatched | gpt-5.4 | 2026-07-05T03:39:18+08:00 | loop755 assignment matrix dispatched; local verification authoritative | preserve permanent identity |
+| orchestrator | current-thread | loop756 | truth_sync_complete | gpt-5.5 | 2026-07-05T03:52:44+08:00 | SYNC-772 loop756 complete; next loop757 Backtest Plan Allocator | workload light; local TDD/regression verification authoritative |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop756 | dispatched | gpt-5.4 | 2026-07-05T03:52:44+08:00 | loop756 read-only planning review dispatched; local verification authoritative | preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop756 | dispatched | gpt-5.4 | 2026-07-05T03:52:44+08:00 | loop756 assignment matrix dispatched; local verification authoritative | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop755 | dispatched | gpt-5.4 | 2026-07-05T03:39:18+08:00 | loop755 coverage matrix dispatched; local TDD/regression verification authoritative | local TDD/regression verification authoritative |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop756 | dispatched | gpt-5.4 | 2026-07-05T03:52:44+08:00 | loop756 coverage matrix dispatched; local TDD/regression verification authoritative | local TDD/regression verification authoritative |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-05T03:52:44+08:00 · SYNC-772 · loop756: FinalAcceptedPoolConfirmationV1 added with user confirmation gate, candidate refs for confirmation, final accepted refs, blocked/awaiting/accepted states, and no DB/backtest side effects. Focused tests 3 passed, factor construction + registry regression 96 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: BACKTEST_PLAN_ALLOCATOR_LOOP757.
 - 2026-07-05T03:39:18+08:00 · SYNC-771 · loop755: ProvisionalAcceptedPoolAdmissionV1 added with provisional_ready/held/rejected refs, final_accepted_refs empty, admission reasons, blocked/awaiting/partial states, and all-false side effects; ScoringResultReadModelV1 now supports scored metrics. Focused tests 4 passed, factor construction + registry regression 93 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: FINAL_ACCEPTED_POOL_UI_CONFIRMATION_LOOP756.
 - 2026-07-05T03:24:56+08:00 · SYNC-770 · loop754: ScoringResultReadModelV1 added with blocked/pending/failure states, candidate placeholders, retryable/permanent failure taxonomy, user-readable messages, metrics placeholders, and all-false side effects. Focused tests 4 passed, factor construction + registry regression 89 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: PROVISIONAL_ACCEPTED_POOL_ADMISSION_LOOP755.
 - 2026-07-05T03:11:42+08:00 · SYNC-769 · loop753: SmallBatchRealScoringRequestV1 added with correct DB runtime, injected runner, UI authorization, budget blockers, no default runner, no substitute runtime, write boundary, and all-false side effects. Focused tests 4 passed, factor construction + registry regression 85 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: SCORING_FAILURE_RECOVERY_AND_RESULT_READ_MODEL_LOOP754.

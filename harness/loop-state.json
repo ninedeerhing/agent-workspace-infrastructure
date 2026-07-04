@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T03:39:18+08:00",
+  "updated_at": "2026-07-05T03:52:44+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "final-accepted-pool-ui-confirmation-loop756",
-  "next_atomic_action": "FINAL_ACCEPTED_POOL_UI_CONFIRMATION_LOOP756：实现 final accepted pool UI confirmation gate；消费 ProvisionalAcceptedPoolAdmissionV1，只有用户按钮确认且 candidate 已 provisional_ready 才输出 final accepted candidate refs；默认不写 DB，不触发回测计划。",
-  "next_after": "After loop756, implement backtest plan allocator from final accepted candidates.",
+  "current_slice": "backtest-plan-allocator-loop757",
+  "next_atomic_action": "BACKTEST_PLAN_ALLOCATOR_LOOP757：实现 backtest plan allocator；消费 FinalAcceptedPoolConfirmationV1 的 final accepted refs，按因子类型、分数/指标、预算、多样性生成单因子回测计划草案；默认不写队列、不执行回测。",
+  "next_after": "After loop757, implement multi-factor backtest request builder and controlled auto-backtest execution gates.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-771-provisional-accepted-pool-loop755",
+  "last_tick": "SYNC-772-final-accepted-ui-confirmation-loop756",
   "last_sync_sources": [
+    "SYNC-772 Final accepted UI confirmation loop756",
+    "loop756 implementation: added FinalAcceptedPoolConfirmationV1 and build_final_accepted_pool_confirmation_v1; gate consumes ProvisionalAcceptedPoolAdmissionV1, outputs candidate refs for confirmation and final accepted refs only when user_confirmed true and candidates are provisional_ready, with no DB/accepted-pool/backtest side effects",
+    "loop756 verification: RED missing factor_construction_final_accepted_pool module; focused tests 3 passed after JSON list assertion correction; targeted Ruff pass; factor construction + registry regression 96 passed; compileall passed",
+    "loop756 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: BACKTEST_PLAN_ALLOCATOR_LOOP757",
     "SYNC-771 Provisional accepted pool loop755",
     "loop755 implementation: added ProvisionalAcceptedPoolAdmissionV1 and build_provisional_accepted_pool_admission_v1; scoring result read-model now supports scored metrics; admission model outputs provisional_ready/held/rejected refs, final_accepted_refs empty, admission reasons, blocked/awaiting/partial states, and all-false side effects without writing accepted pool",
     "loop755 verification: RED missing factor_construction_provisional_accepted_pool module; focused tests 4 passed after pending-only status correction; targeted Ruff pass; factor construction + registry regression 93 passed; compileall passed",
@@ -182,7 +187,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-771 loop755 complete: ProvisionalAcceptedPoolAdmissionV1 implemented with provisional_ready/held/rejected refs, admission reasons, blocked/awaiting/partial states and no final accepted write; next loop756 final accepted UI confirmation gate.",
+  "last_completed_note": "SYNC-772 loop756 complete: FinalAcceptedPoolConfirmationV1 implemented with user confirmation gate, candidate refs for confirmation, final accepted refs, blocked/awaiting/accepted states and no DB/backtest side effects; next loop757 backtest plan allocator.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
