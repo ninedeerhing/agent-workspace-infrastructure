@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T14:15:00+08:00
+updated_at: 2026-07-04T17:10:00+08:00
+
+## Latest Handoff — SYNC-722 real scoring formal controls acknowledgement manual capture confirmation input packet
+
+- [DONE] Added `real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_input_packet_v1` and exposed it from creation plan.
+- [DONE] Packet consumes loop708 explicit confirmation surface and shows confirmation input packet ready, confirmation_items=3, completed_acknowledgements=[], submit_action_enabled=false, submit_action_will_execute=false, controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_manual_capture_confirmation_input_review/will_execute=false, and not_granted authorization.
+- [VERIFY] RED `ModuleNotFoundError`; focused confirmation input pair tests **8 passed**; all `test_real_scoring_*_unit.py` **287 passed**; Ruff pass; compileall pass; payload smoke `loop709_smoke formal_controls_acknowledgement_manual_capture_confirmation_input_packet_ready 确认输入包已准备 3 0 False False False not_granted formal_controls_acknowledgement_manual_capture_confirmation_input_review False not_granted ... all false`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer were dispatched for loop709. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_INPUT_REVIEW_LOOP710`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-715 real scoring formal controls acknowledgement manual capture surface
 

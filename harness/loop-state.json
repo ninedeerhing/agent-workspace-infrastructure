@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T16:45:00+08:00",
+  "updated_at": "2026-07-04T17:10:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-formal-controls-acknowledgement-manual-capture-explicit-confirmation-surface-loop708",
-  "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_INPUT_PACKET_LOOP709：基于 loop708 explicit confirmation surface，构建只读 confirmation input packet；携带三项 confirmation_slots、completed_acknowledgements=[]、submit_action_enabled=false、submit_action_will_execute=false、controls_enabled=false、formal_controls_status=not_granted、authorization state not_granted、next_route=formal_controls_acknowledgement_manual_capture_confirmation_input_review/will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
-  "next_after": "After loop709, review the explicit confirmation input packet while preserving no-execution until real UI submissions exist.",
+  "current_slice": "real-scoring-formal-controls-acknowledgement-manual-capture-confirmation-input-packet-loop709",
+  "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_INPUT_REVIEW_LOOP710：基于 loop709 confirmation input packet，构建只读 confirmation input review；复核三项 confirmation_items、completed_acknowledgements=[]、submit_action_enabled=false、submit_action_will_execute=false、controls_enabled=false、formal_controls_status=not_granted、authorization state not_granted、next_route=formal_controls_acknowledgement_manual_capture_confirmation_completion_candidate/will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
+  "next_after": "After loop710, build the confirmation completion candidate while preserving no-execution until real UI submissions exist.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-721-real-scoring-formal-controls-acknowledgement-manual-capture-explicit-confirmation-surface",
+  "last_tick": "SYNC-722-real-scoring-formal-controls-acknowledgement-manual-capture-confirmation-input-packet",
   "last_sync_sources": [
+    "SYNC-722 loop709 Real scoring formal controls acknowledgement manual capture confirmation input packet",
+    "loop709 implementation: added real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_input_packet_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes explicit confirmation surface and shows confirmation input packet ready, three confirmation_items, completed_acknowledgements empty, submit_action_enabled false, submit_action_will_execute false, controls_enabled false, formal_controls_status not_granted, next_route formal_controls_acknowledgement_manual_capture_confirmation_input_review will_execute false, authorization not_granted, and all-false execution policy",
+    "loop709 verification: RED ModuleNotFoundError; focused confirmation input pair tests 8 passed; all test_real_scoring_*_unit.py 287 passed; targeted Ruff pass; compileall pass; payload smoke pass",
+    "loop709 worker: permanent Planner, Dispatcher, and Test Engineer dispatched; no duplicate Executor/Code Reviewer/Verifier was created",
+    "next: REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_INPUT_REVIEW_LOOP710",
     "SYNC-721 loop708 Real scoring formal controls acknowledgement manual capture explicit confirmation surface",
     "loop708 implementation: added real_scoring_formal_controls_acknowledgement_manual_capture_explicit_confirmation_surface_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes manual capture blocked summary and shows explicit confirmation surface ready, three confirmation slots/buttons, completed_acknowledgements empty, submit_action_enabled false, submit_action_will_execute false, controls_enabled false, formal_controls_status not_granted, next_route formal_controls_acknowledgement_manual_capture_confirmation_input_packet will_execute false, authorization not_granted, and all-false execution policy",
     "loop708 verification: RED ModuleNotFoundError; focused manual capture pair tests 8 passed; all test_real_scoring_*_unit.py 283 passed; targeted Ruff pass; compileall pass; payload smoke pass",
@@ -723,7 +728,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop708 manual acknowledgement capture explicit confirmation surface complete: real_scoring_formal_controls_acknowledgement_manual_capture_explicit_confirmation_surface_v1 consumes loop707 blocked summary and outputs explicit confirmation surface ready, confirmation_slots=3, completed_acknowledgements=[], submit_action_enabled=false, submit_action_will_execute=false, controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_manual_capture_confirmation_input_packet/will_execute=false, authorization not_granted, and all-false execution policy. Verification: RED ModuleNotFoundError, focused manual capture pair 8 passed, all real_scoring 283 passed, Ruff/compileall/smoke pass.",
+  "last_completed_note": "loop709 manual acknowledgement capture confirmation input packet complete: real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_input_packet_v1 consumes loop708 explicit confirmation surface and outputs confirmation input packet ready, confirmation_items=3, completed_acknowledgements=[], submit_action_enabled=false, submit_action_will_execute=false, controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_manual_capture_confirmation_input_review/will_execute=false, authorization not_granted, and all-false execution policy. Verification: RED ModuleNotFoundError, focused confirmation input pair 8 passed, all real_scoring 287 passed, Ruff/compileall/smoke pass.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
