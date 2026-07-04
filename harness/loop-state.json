@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T02:03:44+08:00",
+  "updated_at": "2026-07-05T02:17:40+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "complexity-interpretability-gate-loop749",
-  "next_atomic_action": "COMPLEXITY_INTERPRETABILITY_GATE_LOOP749：实现 Complexity / Interpretability Gate；对 static gate survived candidates 评估表达式深度、算子数量、嵌套、组合大小、解释摘要完整性和可解释性状态，输出 hold/reject/pass、reasons、survived refs 与 no-execution metadata；TDD 覆盖 simple pass、too complex hold/reject、missing explanation hold、multi-factor combination size rule、all-false side effects；完成后进入 DIVERSITY_GATE_LOOP750。",
-  "next_after": "After loop749, implement DIVERSITY_GATE_LOOP750 from the canonical loop731-loop770 plan.",
+  "current_slice": "diversity-gate-loop750",
+  "next_atomic_action": "DIVERSITY_GATE_LOOP750：实现 Diversity Gate；对 complexity/interpretable survived/pass candidates 做相似表达式去重、相关性预估占位、family/source diversity/crowding 约束，输出 pass/hold/reject、diversity reasons、survived refs 与 no-execution metadata；TDD 覆盖 duplicate/similar expression hold/reject、family crowding hold、multi-factor source overlap hold、survived refs、all-false side effects；完成后进入 DATA_AVAILABILITY_GATE_LOOP751。",
+  "next_after": "After loop750, implement DATA_AVAILABILITY_GATE_LOOP751 from the canonical loop731-loop770 plan.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-764-static-quality-gate-loop748",
+  "last_tick": "SYNC-765-complexity-interpretability-gate-loop749",
   "last_sync_sources": [
+    "SYNC-765 Complexity/Interpretability Gate loop749",
+    "loop749 implementation: added ComplexityInterpretabilityGateResultV1 and build_complexity_interpretability_gate_result_v1; gate consumes StaticQualityGateResultV1 survivors and OfficialCandidateRegistryV1 entries, evaluates expression depth, operator count, missing explanation, multi-factor combination size, emits pass/hold/reject reasons and passed/held/rejected refs with all-false side effects; registry entries now preserve explanation metadata",
+    "loop749 verification: RED missing factor_construction_complexity_interpretability_gate module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 69 passed; compileall passed",
+    "loop749 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: DIVERSITY_GATE_LOOP750",
     "SYNC-764 Static Quality Gate loop748",
     "loop748 implementation: added StaticQualityGateResultV1 and build_static_quality_gate_result_v1; static gate consumes OfficialCandidateRegistryV1 entries, emits candidate-level pass/reject results, reject reasons, survived_refs, rejected_refs, registry blockers, and all-false side effects; registry entries now preserve single-factor expression for static checks",
     "loop748 verification: RED missing factor_construction_static_quality_gate module; focused static gate tests 3 passed; targeted Ruff pass; factor construction + registry regression 65 passed; compileall passed",
@@ -147,7 +152,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-764 loop748 complete: StaticQualityGateResultV1 implemented as no-execution static quality gate with pass/reject reasons and survived/rejected refs; next loop749 Complexity/Interpretability Gate.",
+  "last_completed_note": "SYNC-765 loop749 complete: ComplexityInterpretabilityGateResultV1 implemented as no-execution complexity/interpretability gate with pass/hold/reject reasons and passed/held/rejected refs; next loop750 Diversity Gate.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",

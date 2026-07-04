@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-05T02:03:44+08:00
+updated_at: 2026-07-05T02:17:40+08:00
+
+## Latest Handoff — SYNC-765 Complexity / Interpretability Gate loop749
+
+- [DONE] Added `ComplexityInterpretabilityGateResultV1` and `build_complexity_interpretability_gate_result_v1`.
+- [DONE] Gate consumes `StaticQualityGateResultV1.survived_refs` and `OfficialCandidateRegistryV1` entries, evaluates expression depth, operator count, missing explanation, multi-factor combination size, and emits pass/hold/reject reasons plus `passed_refs`, `held_refs`, `rejected_refs`, and all-false side effects.
+- [DONE] `OfficialCandidateRegistryEntryV1` now preserves explanation metadata for interpretability checks and later consumer reporting.
+- [VERIFY] RED missing Complexity/Interpretability Gate module; focused tests **4 passed**; targeted Ruff pass; factor construction + registry regression **69 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop749; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `DIVERSITY_GATE_LOOP750`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-764 Static Quality Gate loop748
 

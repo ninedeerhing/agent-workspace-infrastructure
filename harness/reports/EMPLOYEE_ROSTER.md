@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-05T02:03:44+08:00
+Updated: 2026-07-05T02:17:40+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop748 | truth_sync_complete | gpt-5.5 | 2026-07-05T02:03:44+08:00 | SYNC-764 loop748 complete; next loop749 Complexity/Interpretability Gate | workload light; local TDD/regression verification authoritative |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop748 | reported | gpt-5.4 | 2026-07-05T02:03:44+08:00 | loop748 read-only planning review returned success | preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop748 | reported | gpt-5.4 | 2026-07-05T02:03:44+08:00 | loop748 assignment matrix returned success | preserve permanent identity |
+| orchestrator | current-thread | loop749 | truth_sync_complete | gpt-5.5 | 2026-07-05T02:17:40+08:00 | SYNC-765 loop749 complete; next loop750 Diversity Gate | workload light; local TDD/regression verification authoritative |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop749 | dispatched | gpt-5.4 | 2026-07-05T02:17:40+08:00 | loop749 read-only planning review dispatched; local verification authoritative | preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop749 | dispatched | gpt-5.4 | 2026-07-05T02:17:40+08:00 | loop749 assignment matrix dispatched; local verification authoritative | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop748 | reported | gpt-5.4 | 2026-07-05T02:03:44+08:00 | loop748 coverage matrix returned success | local TDD/regression verification authoritative |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop749 | dispatched | gpt-5.4 | 2026-07-05T02:17:40+08:00 | loop749 coverage matrix dispatched; local TDD/regression verification authoritative | local TDD/regression verification authoritative |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-05T02:17:40+08:00 · SYNC-765 · loop749: ComplexityInterpretabilityGateResultV1 added with candidate-level pass/hold/reject results, explicit complexity/interpretability reasons, passed/held/rejected refs, and all-false side effects; OfficialCandidateRegistry entries now preserve explanation metadata. Focused tests 4 passed, factor construction + registry regression 69 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: DIVERSITY_GATE_LOOP750.
 - 2026-07-05T02:03:44+08:00 · SYNC-764 · loop748: StaticQualityGateResultV1 added with candidate-level pass/reject results, explicit reject reasons, survived/rejected refs, registry blockers, and all-false side effects; OfficialCandidateRegistry entries now preserve single-factor expression for static checks. Focused tests 3 passed, factor construction + registry regression 65 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer returned read-only reports; no duplicate worker created. Next: COMPLEXITY_INTERPRETABILITY_GATE_LOOP749.
 - 2026-07-05T01:56:22+08:00 · SYNC-763 · loop747: OfficialCandidateRegistryV1 added with unified single_factor and multi_factor entries, lifecycle status, dedupe keys, provenance, source refs, duplicate key blockers, stable to_json, and all-false side effects. Focused tests 3 passed, factor construction + multi-factor regression 62 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer returned read-only reports; no duplicate worker created. Next: STATIC_QUALITY_GATE_LOOP748.
 - 2026-07-05T01:49:31+08:00 · SYNC-762 · loop746: MultiFactorCombinationSearchSpecV1 added with source-ref validation, single/multi separation, combination size/weight/risk constraints, metric placeholders, search methods, static validation, blockers, and all-false side effects. Focused tests 3 passed, factor construction + multi-factor boundary regression 59 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer returned read-only reports; no duplicate worker created. Next: CANDIDATE_REGISTRY_OFFICIAL_POOL_LOOP747.
