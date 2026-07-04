@@ -1,4 +1,38 @@
-# Orchestrator Latest Report — SYNC-766 Diversity Gate loop750
+# Orchestrator Latest Report — SYNC-767 Data Availability Gate loop751
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "DATA_AVAILABILITY_GATE_LOOP751"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_data_availability_gate.py"
+      summary: "Adds DataAvailabilityGateResultV1 with calculable/partial/missing confirmation statuses, A-E source gaps, dependent missing refs, and no-execution metadata."
+    - file: "apps/quant_assistant/tests/test_factor_construction_data_availability_gate_unit.py"
+      summary: "Adds focused tests for market/technical calculable path, fundamental PIT gap, event/text/sentiment gap, multi-factor source gap aggregation, and all-false side effects."
+    - file: "harness/loop-state.json"
+      summary: "Advances current_slice to compute-budget-gate-loop752 and next_atomic_action to COMPUTE_BUDGET_GATE_LOOP752."
+  verification:
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_data_availability_gate_unit.py -q"
+      result: "RED first failed on missing factor_construction_data_availability_gate module; GREEN 4 passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run ruff check src/qa/quant_mining/factor_construction_data_availability_gate.py tests/test_factor_construction_data_availability_gate_unit.py"
+      result: "All checks passed."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_construction_diversity_gate_unit.py tests/test_factor_construction_complexity_interpretability_gate_unit.py tests/test_factor_construction_static_quality_gate_unit.py tests/test_factor_construction_candidate_registry_unit.py tests/test_factor_construction_multi_factor_combination_spec_unit.py tests/test_multi_factor_combination_search_boundary_unit.py tests/test_factor_construction_causal_regime_macro_generator_unit.py tests/test_factor_construction_event_text_sentiment_generator_unit.py tests/test_factor_construction_fundamental_style_generator_unit.py tests/test_factor_construction_library_paper_replay_generator_unit.py tests/test_factor_construction_trajectory_mutation_generator_unit.py tests/test_factor_construction_program_synthesis_generator_unit.py tests/test_factor_construction_llm_hypothesis_generator_unit.py tests/test_factor_construction_rl_mcts_interface_unit.py tests/test_factor_construction_genetic_programming_generator_unit.py tests/test_factor_construction_operator_mutation_generator_unit.py tests/test_factor_construction_template_parameter_sweep_generator_unit.py tests/test_factor_construction_symbolic_expression_generator_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_hard_gates_unit.py -q"
+      result: "77 passed."
+    - command: "$env:PYTHONPATH='src'; uv run python -m compileall src/qa/quant_mining/factor_construction_data_availability_gate.py"
+      result: "pass."
+  roster_update:
+    workload_delta: "increased"
+    mistakes: []
+    lessons:
+      - "Data availability must expose missing source confirmations explicitly instead of treating missing fundamental/event/text/macro feeds as runtime failures."
+      - "Multi-factor readiness depends on source candidate readiness and must aggregate dependent missing refs before scoring budget planning."
+    performance_note: "Loop751 Data Availability Gate is implemented and verified; next loop is Compute Budget Gate."
+  blockers: []
+  next: "COMPUTE_BUDGET_GATE_LOOP752"
+
+---
+
+# Orchestrator Previous Report — SYNC-766 Diversity Gate loop750
 
 report:
   role_id: "orchestrator"

@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-05T02:32:18+08:00
+updated_at: 2026-07-05T02:45:28+08:00
+
+## Latest Handoff — SYNC-767 Data Availability Gate loop751
+
+- [DONE] Added `DataAvailabilityGateResultV1` and `build_data_availability_gate_result_v1`.
+- [DONE] Gate consumes `DiversityGateResultV1.survived_refs` and `OfficialCandidateRegistryV1` entries, evaluates A-E data-source readiness, treats market/technical candidates as calculable by declared local market OHLCV sources, exposes fundamental PIT, event/text/sentiment, alternative, macro/regime/causal confirmation gaps, and aggregates multi-factor source candidate gaps.
+- [VERIFY] RED missing Data Availability Gate module; focused tests **4 passed**; targeted Ruff pass; factor construction + registry regression **77 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop751; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `COMPUTE_BUDGET_GATE_LOOP752`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-766 Diversity Gate loop750
 
