@@ -2,6 +2,15 @@
 
 updated_at: 2026-07-04T23:59:00+08:00
 
+## Latest Handoff — SYNC-743 real scoring formal controls acknowledgement manual capture confirmation reentry next gap selection refresh
+
+- [DONE] Added `real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_reentry_next_gap_selection_refresh_v1` and exposed it from creation plan.
+- [DONE] Reentry next gap selection refresh consumes loop729 confirmation reentry final summary refresh and shows formal_controls_acknowledgement_manual_capture_confirmation_reentry_next_gap_selection_refresh_ready, selected_gap=operator_reviewer_controls_owner_acknowledgement_missing, blocking_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack], controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_manual_capture_confirmation_reentry_operator_action_refresh/will_execute=false, and not_granted authorization.
+- [VERIFY] RED `ModuleNotFoundError`; focused confirmation reentry next gap selection refresh pair tests **8 passed**; all `test_real_scoring_*_unit.py` **372 passed**; Ruff pass; compileall pass; payload smoke `loop730_smoke formal_controls_acknowledgement_manual_capture_confirmation_reentry_next_gap_selection_refresh_ready operator_reviewer_controls_owner_acknowledgement_missing operator_ack|reviewer_ack|controls_owner_ack False not_granted formal_controls_acknowledgement_manual_capture_confirmation_reentry_operator_action_refresh False not_granted False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer were dispatched for loop730. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_REENTRY_OPERATOR_ACTION_REFRESH_LOOP731`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
+
 ## Latest Handoff — SYNC-742 real scoring formal controls acknowledgement manual capture confirmation reentry final summary refresh
 
 - [DONE] Added `real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_reentry_final_summary_refresh_v1` and exposed it from creation plan.
