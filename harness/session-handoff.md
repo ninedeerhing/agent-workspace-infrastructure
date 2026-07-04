@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T01:56:22+08:00
+updated_at: 2026-07-05T02:03:44+08:00
 
-## Latest Handoff — SYNC-763 Candidate Registry official pool loop747
+## Latest Handoff — SYNC-764 Static Quality Gate loop748
+
+- [DONE] Added `StaticQualityGateResultV1` and `build_static_quality_gate_result_v1`.
+- [DONE] Static gate consumes `OfficialCandidateRegistryV1` entries and emits candidate-level pass/reject results, reject reasons, `survived_refs`, `rejected_refs`, registry blockers, and all-false side effects; official registry entries now preserve single-factor expression for static checks.
+- [VERIFY] RED missing Static Quality Gate module; focused tests **3 passed**; targeted Ruff pass; factor construction + registry regression **65 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer returned read-only reports for loop748. Local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `COMPLEXITY_INTERPRETABILITY_GATE_LOOP749`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-763 Candidate Registry official pool loop747
 
 - [DONE] Added `OfficialCandidateRegistryV1`, `OfficialCandidateRegistryEntryV1`, and `build_official_candidate_registry_v1`.
 - [DONE] Registry unifies single-factor and multi-factor entries while preserving classification, generator, lineage, source refs, lifecycle status, dedupe key, no-execution metadata, duplicate key blockers, stable `to_json`, and all-false side effects.
