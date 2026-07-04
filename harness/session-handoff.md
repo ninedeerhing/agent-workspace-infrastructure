@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T10:33:54+08:00
+updated_at: 2026-07-04T10:45:00+08:00
+
+## Latest Handoff — SYNC-702 real scoring formal controls missing acknowledgement input packet
+
+- [DONE] Added `real_scoring_formal_controls_missing_acknowledgement_input_packet_v1` and exposed it from creation plan.
+- [DONE] Packet consumes loop689 input readiness and shows missing_acknowledgement_input_packet_ready, input_items=[operator_ack_input,reviewer_ack_input,controls_owner_ack_input], missing_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack], all_completed=false, controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_missing_acknowledgement_input_review/will_execute=false, and not_granted authorization.
+- [VERIFY] Initial RED `ModuleNotFoundError: real_scoring_formal_controls_missing_acknowledgement_input_packet`; focused + batch flow tests **11 passed**; all `test_real_scoring_*_unit.py` **211 passed**; Ruff pass; compileall pass; payload smoke `loop690_smoke missing_acknowledgement_input_packet_ready 3 operator_ack|reviewer_ack|controls_owner_ack False False not_granted formal_controls_missing_acknowledgement_input_review False not_granted False False False False False False False False False False False`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer dispatched. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_MISSING_ACKNOWLEDGEMENT_INPUT_REVIEW_LOOP691`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-701 real scoring formal controls missing acknowledgement input readiness
 
