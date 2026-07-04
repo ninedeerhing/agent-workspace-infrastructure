@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T00:56:30+08:00
+updated_at: 2026-07-05T01:00:09+08:00
 
-## Latest Handoff — SYNC-753 hierarchical GP generator loop737
+## Latest Handoff — SYNC-754 RL/MCTS search interface model loop738
+
+- [DONE] Added `RlMctsSearchInterfaceV1` planner-only/no-execution RL/MCTS search interface model.
+- [DONE] The interface consumes template/symbolic/operator_mutation/genetic_programming candidate pools and exposes search_state, policy_hint, action_space, candidate_proposal_interface, budget_boundary, feedback_signal_placeholder, manual_review_boundary, and stable all-false side effects.
+- [VERIFY] RED missing RL/MCTS interface module; focused tests **2 passed**; targeted Ruff pass; factor construction generator/registry/hard-gate regression **31 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop738. Report collection was truncated by context, so local verification is authoritative. No duplicate worker created.
+- [NEXT] `LLM_HYPOTHESIS_GENERATOR_LOOP739`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not start Docker; do not create substitute DB/container/service/port; do not connect DB/runner/adapter; do not write DB/queue/accepted pool; do not run scorer/backtest; do not grant PL-H.
+
+## Previous Handoff — SYNC-753 hierarchical GP generator loop737
 
 - [DONE] Added `HierarchicalGeneticProgrammingGeneratorV1` as canonical `genetic_programming` generator family and registered it in the default factor construction registry.
 - [DONE] Generator emits bounded crossover/mutation candidates with gp_tree, parents, generation_depth, expression_size, complexity_penalty, limits, PIT/no-future-data flags, and stable no-execution ids.

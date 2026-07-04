@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-05T00:56:30+08:00
+Updated: 2026-07-05T01:00:09+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop737 | truth_sync_complete | gpt-5.5 | 2026-07-05T00:56:30+08:00 | SYNC-753 loop737 complete; next loop738 RL/MCTS search interface model | workload light; narrow fallback used because Executor remains waitingOnApproval |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop737 | reported_success | gpt-5.4 | 2026-07-05T00:55:26+08:00 | loop737 read-only plan review complete | workload cleared |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop737 | reported_success | gpt-5.4 | 2026-07-05T00:55:26+08:00 | loop737 assignment matrix complete; narrow fallback allowed if Executor blocked | workload cleared |
+| orchestrator | current-thread | loop738 | truth_sync_complete | gpt-5.5 | 2026-07-05T01:00:09+08:00 | SYNC-754 loop738 complete; next loop739 LLM Hypothesis generator | workload light; report collection truncated, local verification authoritative |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop738 | dispatched_report_collection_truncated | gpt-5.4 | 2026-07-05T01:00:09+08:00 | loop738 read-only planning review dispatched | preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop738 | dispatched_report_collection_truncated | gpt-5.4 | 2026-07-05T01:00:09+08:00 | loop738 assignment matrix dispatched | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop737 | reported_success | gpt-5.4 | 2026-07-05T00:55:21+08:00 | loop737 coverage matrix review complete | workload cleared |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop738 | dispatched_report_collection_truncated | gpt-5.4 | 2026-07-05T01:00:09+08:00 | loop738 coverage matrix dispatched | local TDD/regression verification authoritative |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-05T01:00:09+08:00 · SYNC-754 · loop738: RlMctsSearchInterfaceV1 added as planner-only/no-execution RL/MCTS search interface model with search_state, policy_hint, action_space, candidate proposal interface, budget boundary, feedback placeholder, manual review boundary, and all-false side effects. Focused tests 2 passed, factor construction regression 31 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; report collection truncated by context, so local verification is authoritative. No duplicate worker created. Next: LLM_HYPOTHESIS_GENERATOR_LOOP739.
 - 2026-07-05T00:56:30+08:00 · SYNC-753 · loop737: HierarchicalGeneticProgrammingGeneratorV1 added as canonical genetic_programming family with bounded crossover/mutation GP tree candidates, gp_tree metadata, parents, depth/size limits, complexity penalty, and no-execution ids. Focused tests 3 passed, factor construction regression 29 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer returned success; no duplicate worker created. Next: RL_MCTS_SEARCH_INTERFACE_MODEL_LOOP738.
 - 2026-07-05T00:52:14+08:00 · SYNC-752 · loop736: OperatorMutationGeneratorV1 added as distinct operator_mutation family with operator replacement, window perturbation, normalization, neutralization proxy, and combination variants. Focused tests 3 passed, factor construction regression 26 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer returned success; no duplicate worker created. Next: HIERARCHICAL_GP_GENERATOR_LOOP737.
 - 2026-07-05T00:47:48+08:00 · SYNC-751 · loop735: TemplateParameterSweepGeneratorV1 now emits template_parameter_grid lineage metadata with template_family, template_family_catalog, parameter_grid, PIT/no-future-data markers, and budget-bounded no-execution candidates. Focused tests 2 passed, factor construction regression 23 passed. Permanent Planner/Dispatcher/Test Engineer returned success; no duplicate worker created. Next: OPERATOR_MUTATION_GENERATOR_LOOP736.

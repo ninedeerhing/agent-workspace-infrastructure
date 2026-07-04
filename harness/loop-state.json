@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T00:56:30+08:00",
+  "updated_at": "2026-07-05T01:00:09+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "rl-mcts-search-interface-model-loop738",
-  "next_atomic_action": "RL_MCTS_SEARCH_INTERFACE_MODEL_LOOP738：实现 no-execution RL/MCTS search interface model；定义 search_state、policy_hint、action_space、candidate_proposal_interface、budget_boundary、feedback_signal_placeholder、manual_review_boundary，并消费已稳定的 template/symbolic/operator_mutation/genetic_programming 候选契约；TDD 覆盖 planner-only/no-runtime、budget cap、state serialization、candidate proposal contract、no actual RL/MCTS runtime/scorer/backtest side effects；完成后进入 LLM_HYPOTHESIS_GENERATOR_LOOP739。",
-  "next_after": "After loop738, implement LLM_HYPOTHESIS_GENERATOR_LOOP739 from the canonical loop731-loop770 plan.",
+  "current_slice": "llm-hypothesis-generator-loop739",
+  "next_atomic_action": "LLM_HYPOTHESIS_GENERATOR_LOOP739：实现 LLM Hypothesis 生成器；将用户想法/无想法/论文公式种子转成 hypothesis、rationale、computable expression candidate、explanation，LLM 输出仅作为不可信数据进入静态校验，输出 source_prompt_summary、hypothesis_text、expression、explanation、lineage metadata、AST/hash/no-execution metadata；TDD 覆盖 idea/no-idea/paper seed、解释字段必填、静态校验、prompt-injection-as-data、无 env/DB/Docker/scorer/backtest side effects；完成后进入 PROGRAM_SYNTHESIS_CANDIDATE_GENERATOR_LOOP740。",
+  "next_after": "After loop739, implement PROGRAM_SYNTHESIS_CANDIDATE_GENERATOR_LOOP740 from the canonical loop731-loop770 plan.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-753-hierarchical-gp-generator-loop737",
+  "last_tick": "SYNC-754-rl-mcts-search-interface-model-loop738",
   "last_sync_sources": [
+    "SYNC-754 RL/MCTS search interface model loop738",
+    "loop738 implementation: added RlMctsSearchInterfaceV1 as a planner-only/no-execution RL/MCTS search interface model consuming template/symbolic/operator_mutation/genetic_programming candidate pools; contract exposes search_state, policy_hint, action_space, candidate_proposal_interface, budget_boundary, feedback_signal_placeholder, manual_review_boundary, and all-false side effects",
+    "loop738 verification: RED missing factor_construction_rl_mcts_interface module; focused RL/MCTS interface tests 2 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 31 passed; compileall passed",
+    "loop738 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; report collection was truncated by context, so fresh local verification remains authoritative; no duplicate worker created",
+    "next: LLM_HYPOTHESIS_GENERATOR_LOOP739",
     "SYNC-753 hierarchical GP generator loop737",
     "loop737 implementation: added HierarchicalGeneticProgrammingGeneratorV1 as genetic_programming family and registered it in default registry; generator emits bounded crossover/mutation candidates with gp_tree, parents, generation_depth, expression_size, complexity_penalty, limits, PIT/no-future-data lineage, and no-execution ids",
     "loop737 verification: RED missing factor_construction_genetic_programming module; focused GP tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 29 passed; compileall passed",
@@ -92,7 +97,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-753 loop737 complete: HierarchicalGeneticProgrammingGeneratorV1 implemented as bounded no-execution genetic_programming generator; next loop738 RL/MCTS search interface model.",
+  "last_completed_note": "SYNC-754 loop738 complete: RlMctsSearchInterfaceV1 implemented as planner-only/no-execution RL/MCTS search interface model; next loop739 LLM Hypothesis generator.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
