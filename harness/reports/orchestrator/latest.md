@@ -1,3 +1,35 @@
+# Orchestrator Latest Report — SYNC-706 real scoring formal controls acknowledgement blocked summary
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring formal controls acknowledgement blocked summary"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_formal_controls_acknowledgement_blocked_summary.py"
+      summary: "Adds no-execution formal controls acknowledgement blocked summary."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_formal_controls_acknowledgement_blocked_summary from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_formal_controls_acknowledgement_blocked_summary_unit.py"
+      summary: "Covers blocked summary, missing source, not-ready source, and creation-plan bridge behavior."
+  verification:
+    - command: "focused acknowledgement blocked summary plus batch flow pytest"
+      result: "11 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "227 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed blocked summary ready, three blocking acknowledgements, no completed acknowledgements, controls_enabled false, not_granted authorization, next route will_execute false, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Blocked summary should name the blocking acknowledgements and route to reentry guidance without granting control execution."
+    performance_note: "Acknowledgement blocked summary is ready for reentry guidance."
+  blockers:
+    - "Formal controls remain not_granted; no execution is authorized."
+  next: "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_REENTRY_GUIDANCE_LOOP695"
+
+---
+
 # Orchestrator Latest Report — SYNC-705 real scoring formal controls missing acknowledgement completion review
 
 report:
