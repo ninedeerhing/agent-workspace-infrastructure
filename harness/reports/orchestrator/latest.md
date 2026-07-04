@@ -1,4 +1,38 @@
-# Orchestrator Latest Report — SYNC-772 Final accepted UI confirmation loop756
+# Orchestrator Latest Report — SYNC-773 Backtest plan allocator loop757
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "BACKTEST_PLAN_ALLOCATOR_LOOP757"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_backtest_plan_allocator.py"
+      summary: "Adds BacktestPlanAllocatorV1 with single-factor backtest plan drafts, metrics, full-history/all-A-share defaults, budget placeholders, blocked/planned states, and no queue/backtest side effects."
+    - file: "apps/quant_assistant/tests/test_factor_construction_backtest_plan_allocator_unit.py"
+      summary: "Adds focused tests for no final accepted blocked, accepted refs allocated to single-factor plans, budget exhausted blocked, and no queue/no execution side effects."
+    - file: "harness/loop-state.json"
+      summary: "Advances current_slice to multi-factor-backtest-request-builder-loop758 and next_atomic_action to MULTI_FACTOR_BACKTEST_REQUEST_BUILDER_LOOP758."
+  verification:
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_backtest_plan_allocator_unit.py -q"
+      result: "RED first failed on missing factor_construction_backtest_plan_allocator module; GREEN 3 passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run ruff check src/qa/quant_mining/factor_construction_backtest_plan_allocator.py tests/test_factor_construction_backtest_plan_allocator_unit.py"
+      result: "All checks passed."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_backtest_plan_allocator_unit.py tests/test_factor_construction_final_accepted_pool_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_compute_budget_gate_unit.py tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_construction_diversity_gate_unit.py tests/test_factor_construction_complexity_interpretability_gate_unit.py tests/test_factor_construction_static_quality_gate_unit.py tests/test_factor_construction_candidate_registry_unit.py tests/test_factor_construction_multi_factor_combination_spec_unit.py tests/test_multi_factor_combination_search_boundary_unit.py tests/test_factor_construction_causal_regime_macro_generator_unit.py tests/test_factor_construction_event_text_sentiment_generator_unit.py tests/test_factor_construction_fundamental_style_generator_unit.py tests/test_factor_construction_library_paper_replay_generator_unit.py tests/test_factor_construction_trajectory_mutation_generator_unit.py tests/test_factor_construction_program_synthesis_generator_unit.py tests/test_factor_construction_llm_hypothesis_generator_unit.py tests/test_factor_construction_rl_mcts_interface_unit.py tests/test_factor_construction_genetic_programming_generator_unit.py tests/test_factor_construction_operator_mutation_generator_unit.py tests/test_factor_construction_template_parameter_sweep_generator_unit.py tests/test_factor_construction_symbolic_expression_generator_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_hard_gates_unit.py -q"
+      result: "99 passed."
+    - command: "$env:PYTHONPATH='src'; uv run python -m compileall src/qa/quant_mining/factor_construction_backtest_plan_allocator.py"
+      result: "pass."
+  roster_update:
+    workload_delta: "increased"
+    mistakes: []
+    lessons:
+      - "Backtest planning should be a draft allocator before any queue write or execution gate."
+      - "Single-factor and multi-factor backtest requests stay separate so multi-factor constraints do not leak into simple plans."
+    performance_note: "Loop757 Backtest Plan Allocator is implemented and verified; next loop is Multi-Factor Backtest Request Builder."
+  blockers: []
+  next: "MULTI_FACTOR_BACKTEST_REQUEST_BUILDER_LOOP758"
+
+---
+
+# Orchestrator Previous Report — SYNC-772 Final accepted UI confirmation loop756
 
 report:
   role_id: "orchestrator"

@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-05T03:52:44+08:00
+updated_at: 2026-07-05T04:06:55+08:00
+
+## Latest Handoff — SYNC-773 Backtest plan allocator loop757
+
+- [DONE] Added `BacktestPlanAllocatorV1`, `BacktestPlanDraftV1`, and `build_backtest_plan_allocator_v1`.
+- [DONE] Allocator consumes `FinalAcceptedPoolConfirmationV1.final_accepted_refs` and emits single-factor backtest plan drafts with metrics, full-history/all-A-share defaults, budget placeholders, blocked/planned status, and all-false side effects.
+- [VERIFY] RED missing Backtest Plan Allocator module; focused tests **3 passed**; targeted Ruff pass; factor construction + registry regression **99 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop757; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `MULTI_FACTOR_BACKTEST_REQUEST_BUILDER_LOOP758`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not run scorer/backtest by default; do not write DB/queue/accepted pool unless later controlled gate is explicitly satisfied.
 
 ## Latest Handoff — SYNC-772 Final accepted UI confirmation loop756
 
