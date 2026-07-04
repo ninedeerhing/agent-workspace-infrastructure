@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T20:30:00+08:00
+updated_at: 2026-07-04T20:55:00+08:00
+
+## Latest Handoff — SYNC-731 real scoring formal controls acknowledgement manual capture confirmation completion review refresh
+
+- [DONE] Added `real_scoring_formal_controls_acknowledgement_manual_capture_confirmation_completion_review_refresh_v1` and exposed it from creation plan.
+- [DONE] Review refresh consumes loop717 confirmation completion candidate refresh and shows acknowledgement_manual_capture_confirmation_completion_refresh_blocked, completed_acknowledgements=[], missing_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack], all_completed=false, controls_enabled=false, formal_controls_status=not_granted, next_route=formal_controls_acknowledgement_manual_capture_confirmation_blocked_summary_refresh/will_execute=false, and not_granted authorization.
+- [VERIFY] RED `ModuleNotFoundError`; focused confirmation completion review refresh pair tests **8 passed**; all `test_real_scoring_*_unit.py` **323 passed**; Ruff pass; compileall pass; payload smoke `loop718_smoke acknowledgement_manual_capture_confirmation_completion_refresh_blocked 0 operator_ack|reviewer_ack|controls_owner_ack False False not_granted formal_controls_acknowledgement_manual_capture_confirmation_blocked_summary_refresh False not_granted ... all false`.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer returned success for loop718. Executor/Verifier/Code Reviewer were not duplicated.
+- [NEXT] `REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_CONFIRMATION_BLOCKED_SUMMARY_REFRESH_LOOP719`.
+- [FORBIDDEN] Do not start Docker/container runtime; do not read env/DB; do not create substitute DB/container/service/port; do not connect runner/adapter; do not write DB/accepted pool/backtest queue; do not run scorer/backtest; do not grant PL-H.
 
 ## Latest Handoff — SYNC-730 real scoring formal controls acknowledgement manual capture confirmation completion candidate refresh
 
