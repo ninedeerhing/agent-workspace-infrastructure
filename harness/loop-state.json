@@ -1,10 +1,10 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-04T12:45:00+08:00",
+  "updated_at": "2026-07-04T13:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-formal-controls-acknowledgement-reentry-completion-candidate-loop699",
+  "current_slice": "orchestrator-no-stop-final-guard-then-real-scoring-formal-controls-acknowledgement-reentry-completion-review-loop700",
   "next_atomic_action": "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_REENTRY_COMPLETION_REVIEW_LOOP700：基于 loop699 real_scoring_formal_controls_acknowledgement_reentry_completion_candidate，构建只读 acknowledgement reentry completion review payload；当 reentry_completion_candidate_status=acknowledgement_reentry_completion_not_ready 时，输出 reentry_completion_review_status=acknowledgement_reentry_completion_blocked、completed_acknowledgements=[]、missing_acknowledgements 三项、all_completed=false、controls_enabled=false、authorization state not_granted、next_route=formal_controls_acknowledgement_reentry_blocked_summary/will_execute=false；仍不读 env/DB、不启动 Docker/容器、不创建替代 DB、不连接 runner/adapter、不写 DB/队列、不运行 scorer/backtest、不授予 PL-H。",
   "next_after": "After loop700, add acknowledgement reentry blocked summary while preserving no-execution and not-granted controls.",
   "blockers": [
@@ -19,7 +19,7 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-711-real-scoring-formal-controls-acknowledgement-reentry-completion-candidate",
+  "last_tick": "SYNC-712-orchestrator-no-stop-final-guard",
   "last_sync_sources": [
     "SYNC-700 loop688 Real scoring formal controls missing acknowledgement guidance",
     "loop688 implementation: added real_scoring_formal_controls_missing_acknowledgement_guidance_v1 and exposed it from user_facing_batch_mining_creation_plan_v1; it consumes real_scoring_formal_controls_acknowledgement_review_packet_v1 to show missing_acknowledgement_guidance_ready, missing_acknowledgements operator_ack/reviewer_ack/controls_owner_ack, three guidance_steps, controls_enabled false, formal_controls_status not_granted, next_route formal_controls_missing_acknowledgement_input_readiness will_execute false, authorization not_granted, and all-false execution policy",
@@ -677,5 +677,22 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "loop546 Max rows/chunking policy branch complete. user_facing_batch_mining_creation_plan_v1 now exposes max_rows_chunking_policy_branch_v1, deriving three-stage rollout policy, candidate/security/time chunk policy, max_rows_status=not_confirmed, user_confirmable_items, audit/rollback prerequisites, and recommended_next_branch=runner_dsn_repair from data_source_confirmation_prerequisite_branch_v1, full_chunked_run_readiness_contract_v1, and factor_scoring_compute_budget_v1. Verification: RED missing module 1 collection error; focused unit+bridge 4 passed; adjacent data-source/full-chunked/compute-budget/branch chain 14 passed; targeted Ruff pass; compileall pass; forbidden marker scan clean; payload smoke loop546_smoke blocked_waiting_for_max_rows_chunking_policy runner_dsn_repair 3 200 500 not_confirmed False False False False False. No env/DB/Docker/scorer/backtest/accepted-pool/queue writes or PL-H grants."
+  "last_completed_note": "loop546 Max rows/chunking policy branch complete. user_facing_batch_mining_creation_plan_v1 now exposes max_rows_chunking_policy_branch_v1, deriving three-stage rollout policy, candidate/security/time chunk policy, max_rows_status=not_confirmed, user_confirmable_items, audit/rollback prerequisites, and recommended_next_branch=runner_dsn_repair from data_source_confirmation_prerequisite_branch_v1, full_chunked_run_readiness_contract_v1, and factor_scoring_compute_budget_v1. Verification: RED missing module 1 collection error; focused unit+bridge 4 passed; adjacent data-source/full-chunked/compute-budget/branch chain 14 passed; targeted Ruff pass; compileall pass; forbidden marker scan clean; payload smoke loop546_smoke blocked_waiting_for_max_rows_chunking_policy runner_dsn_repair 3 200 500 not_confirmed False False False False False. No env/DB/Docker/scorer/backtest/accepted-pool/queue writes or PL-H grants.",
+  "orchestrator_final_guard": {
+    "policy": "final_response_allowed_only_when_stop_whitelist_hit",
+    "status": "active",
+    "last_violation_at": "2026-07-04T13:05:00+08:00",
+    "last_violation": "Orchestrator produced a terminal progress reply after SYNC-711 while stop_reason was empty and next_atomic_action still pointed to loop700.",
+    "root_cause": "Final response boundary was not machine-bound to loop-state.stop_reason and next_atomic_action, so ordinary loop sync could be mistaken for a stopping point.",
+    "required_pre_final_check": "Before any final response, read loop-state: if stop_reason is empty and next_atomic_action is non-empty, dispatch or execute the next loop instead of stopping.",
+    "allowed_final_reasons": [
+      "formal_human_acceptance_required",
+      "user_explicit_stop",
+      "true_blocker",
+      "destructive_operation_needs_authorization",
+      "critical_truth_conflict",
+      "required_manual_acceptance_stage"
+    ],
+    "remediation": "Truth sources record the guard; orchestrator must treat this as a hard gate for all future loop turns."
+  }
 }

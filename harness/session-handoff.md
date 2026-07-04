@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-04T12:45:00+08:00
+updated_at: 2026-07-04T13:05:00+08:00
+
+## Latest Handoff — SYNC-712 orchestrator no-stop final guard
+
+- [DONE] Root-caused repeated orchestration stop defect: final response boundary was not machine-bound to `loop-state.stop_reason` and `next_atomic_action`, so ordinary loop sync could be mistaken for a stopping point.
+- [DONE] Added `orchestrator_final_guard` to `harness/loop-state.json`.
+- [VERIFY] Guard is active and requires: if `stop_reason=""` and `next_atomic_action` is non-empty, do not final-stop; continue dispatching/executing the next loop.
+- [WORKERS] Permanent Planner/Dispatcher/Test Engineer were dispatched for read-only review; no duplicate same-role worker was created.
+- [NEXT] Continue `REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_REENTRY_COMPLETION_REVIEW_LOOP700`.
+- [FORBIDDEN] Do not treat a normal loop completion or progress report as a stop condition.
 
 ## Latest Handoff — SYNC-711 real scoring formal controls acknowledgement reentry completion candidate
 
