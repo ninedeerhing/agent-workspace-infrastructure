@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T04:47:30+08:00
+updated_at: 2026-07-05T05:08:40+08:00
 
-## Latest Handoff — SYNC-775 Controlled auto-backtest execution gate loop759
+## Latest Handoff — SYNC-776 Backtest progress read-model loop760
+
+- [DONE] Added `BacktestProgressReadModelV1` and `build_backtest_progress_read_model_v1`.
+- [DONE] Read-model consumes `ControlledAutoBacktestExecutionGateV1` and optional runtime status, mapping blocked/ready/queued/running/completed/failed into consumer state, message, progress percent, ready refs, and all-false side effects.
+- [VERIFY] RED missing Backtest Progress Read Model module; focused tests **4 passed**; targeted Ruff pass; factor construction + registry regression **111 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop760; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `BACKTEST_RESULT_REPORT_INTEGRATION_LOOP761`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not write queue; do not run backtest unless a later controlled writer/executor gate is explicitly satisfied.
+
+## Previous Handoff — SYNC-775 Controlled auto-backtest execution gate loop759
 
 - [DONE] Added `ControlledAutoBacktestExecutionGateV1` and `build_controlled_auto_backtest_execution_gate_v1`.
 - [DONE] Gate consumes single-factor backtest plan allocator and multi-factor request builder outputs, checks UI authorization, `qa-pg-alt` runtime, injected non-default runner, queue boundary, idempotency key, rollback/audit ref, and emits ready/blocked state with all-false side effects.

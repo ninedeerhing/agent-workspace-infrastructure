@@ -1,4 +1,38 @@
-# Orchestrator Latest Report — SYNC-775 Controlled auto-backtest execution gate loop759
+# Orchestrator Latest Report — SYNC-776 Backtest progress read-model loop760
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "BACKTEST_PROGRESS_READ_MODEL_LOOP760"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_backtest_progress_read_model.py"
+      summary: "Adds BacktestProgressReadModelV1 with blocked/ready/queued/running/completed/failed progress mapping, consumer state/message, progress percent, ready refs, and no queue/backtest side effects."
+    - file: "apps/quant_assistant/tests/test_factor_construction_backtest_progress_read_model_unit.py"
+      summary: "Adds focused tests for blocked gate copy, ready waiting-to-queue state, runtime placeholder status mapping, unknown runtime fail-closed, and all-false side effects."
+    - file: "harness/loop-state.json"
+      summary: "Advances current_slice to backtest-result-report-integration-loop761 and next_atomic_action to BACKTEST_RESULT_REPORT_INTEGRATION_LOOP761."
+  verification:
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_backtest_progress_read_model_unit.py -q"
+      result: "RED first failed on missing factor_construction_backtest_progress_read_model module; GREEN 4 passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_backtest_progress_read_model_unit.py tests/test_factor_construction_controlled_auto_backtest_execution_gate_unit.py tests/test_factor_construction_multi_factor_backtest_request_builder_unit.py tests/test_factor_construction_backtest_plan_allocator_unit.py tests/test_factor_construction_final_accepted_pool_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_compute_budget_gate_unit.py tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_construction_diversity_gate_unit.py tests/test_factor_construction_complexity_interpretability_gate_unit.py tests/test_factor_construction_static_quality_gate_unit.py tests/test_factor_construction_candidate_registry_unit.py tests/test_factor_construction_multi_factor_combination_spec_unit.py tests/test_multi_factor_combination_search_boundary_unit.py tests/test_factor_construction_causal_regime_macro_generator_unit.py tests/test_factor_construction_event_text_sentiment_generator_unit.py tests/test_factor_construction_fundamental_style_generator_unit.py tests/test_factor_construction_library_paper_replay_generator_unit.py tests/test_factor_construction_trajectory_mutation_generator_unit.py tests/test_factor_construction_program_synthesis_generator_unit.py tests/test_factor_construction_llm_hypothesis_generator_unit.py tests/test_factor_construction_rl_mcts_interface_unit.py tests/test_factor_construction_genetic_programming_generator_unit.py tests/test_factor_construction_operator_mutation_generator_unit.py tests/test_factor_construction_template_parameter_sweep_generator_unit.py tests/test_factor_construction_symbolic_expression_generator_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_hard_gates_unit.py -q"
+      result: "111 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_construction_backtest_progress_read_model.py tests/test_factor_construction_backtest_progress_read_model_unit.py"
+      result: "All checks passed."
+    - command: "$env:PYTHONPATH='src'; uv run python -m compileall -q src/qa/quant_mining/factor_construction_backtest_progress_read_model.py"
+      result: "pass."
+  roster_update:
+    workload_delta: "increased"
+    mistakes: []
+    lessons:
+      - "Progress read-models should translate controlled gates into consumer states without implying queue writes or execution."
+      - "Runtime status placeholders can be modeled before live execution so UI integration has a stable contract."
+    performance_note: "Loop760 Backtest Progress Read Model is implemented and verified; next loop is Backtest Result Report Integration."
+  blockers: []
+  next: "BACKTEST_RESULT_REPORT_INTEGRATION_LOOP761"
+
+---
+
+# Orchestrator Previous Report — SYNC-775 Controlled auto-backtest execution gate loop759
 
 report:
   role_id: "orchestrator"
