@@ -1,4 +1,38 @@
-# Orchestrator Latest Report — SYNC-768 Compute Budget Gate loop752
+# Orchestrator Latest Report — SYNC-769 Small Batch Real Scoring controlled request loop753
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "SMALL_BATCH_REAL_SCORING_LOOP753"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_small_batch_real_scoring.py"
+      summary: "Adds SmallBatchRealScoringRequestV1 with correct DB runtime, injected runner, UI authorization, budget blocker, no-default-runner, no-substitute-runtime, and no-execution request boundary."
+    - file: "apps/quant_assistant/tests/test_factor_construction_small_batch_real_scoring_unit.py"
+      summary: "Adds focused tests for DB missing blocked, runner missing blocked, UI authorization missing blocked, ready request without execution, and all-false side effects."
+    - file: "harness/loop-state.json"
+      summary: "Advances current_slice to scoring-failure-recovery-result-read-model-loop754 and next_atomic_action to SCORING_FAILURE_RECOVERY_AND_RESULT_READ_MODEL_LOOP754."
+  verification:
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_small_batch_real_scoring_unit.py -q"
+      result: "RED first failed on missing factor_construction_small_batch_real_scoring module; GREEN 4 passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run ruff check src/qa/quant_mining/factor_construction_small_batch_real_scoring.py tests/test_factor_construction_small_batch_real_scoring_unit.py"
+      result: "All checks passed."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_compute_budget_gate_unit.py tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_construction_diversity_gate_unit.py tests/test_factor_construction_complexity_interpretability_gate_unit.py tests/test_factor_construction_static_quality_gate_unit.py tests/test_factor_construction_candidate_registry_unit.py tests/test_factor_construction_multi_factor_combination_spec_unit.py tests/test_multi_factor_combination_search_boundary_unit.py tests/test_factor_construction_causal_regime_macro_generator_unit.py tests/test_factor_construction_event_text_sentiment_generator_unit.py tests/test_factor_construction_fundamental_style_generator_unit.py tests/test_factor_construction_library_paper_replay_generator_unit.py tests/test_factor_construction_trajectory_mutation_generator_unit.py tests/test_factor_construction_program_synthesis_generator_unit.py tests/test_factor_construction_llm_hypothesis_generator_unit.py tests/test_factor_construction_rl_mcts_interface_unit.py tests/test_factor_construction_genetic_programming_generator_unit.py tests/test_factor_construction_operator_mutation_generator_unit.py tests/test_factor_construction_template_parameter_sweep_generator_unit.py tests/test_factor_construction_symbolic_expression_generator_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_hard_gates_unit.py -q"
+      result: "85 passed."
+    - command: "$env:PYTHONPATH='src'; uv run python -m compileall src/qa/quant_mining/factor_construction_small_batch_real_scoring.py"
+      result: "pass."
+  roster_update:
+    workload_delta: "increased"
+    mistakes: []
+    lessons:
+      - "Entering the real-scoring phase must start with a request boundary; ready request is not execution."
+      - "Correct DB, injected runner, and UI authorization must all be explicit before any scorer side effect."
+    performance_note: "Loop753 Small Batch Real Scoring controlled request is implemented and verified; next loop is Scoring Failure Recovery and Result Read Model."
+  blockers: []
+  next: "SCORING_FAILURE_RECOVERY_AND_RESULT_READ_MODEL_LOOP754"
+
+---
+
+# Orchestrator Previous Report — SYNC-768 Compute Budget Gate loop752
 
 report:
   role_id: "orchestrator"

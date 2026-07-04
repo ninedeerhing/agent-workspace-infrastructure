@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-05T02:58:36+08:00
+updated_at: 2026-07-05T03:11:42+08:00
+
+## Latest Handoff — SYNC-769 Small Batch Real Scoring controlled request loop753
+
+- [DONE] Added `SmallBatchRealScoringRequestV1` and `build_small_batch_real_scoring_request_v1`.
+- [DONE] Request consumes `ComputeBudgetGateResultV1`, checks correct DB runtime status (`qa_pg_alt_ready`), injected scorer runner ref, UI authorization, budget blockers, no default runner, no substitute runtime, write boundary, and all-false side effects.
+- [VERIFY] RED missing Small Batch Real Scoring module; focused tests **4 passed**; targeted Ruff pass; factor construction + registry regression **85 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop753; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `SCORING_FAILURE_RECOVERY_AND_RESULT_READ_MODEL_LOOP754`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not run scorer/backtest by default; do not write DB/queue/accepted pool unless later controlled gate is explicitly satisfied.
 
 ## Latest Handoff — SYNC-768 Compute Budget Gate loop752
 

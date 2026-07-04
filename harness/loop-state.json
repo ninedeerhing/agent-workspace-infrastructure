@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T02:58:36+08:00",
+  "updated_at": "2026-07-05T03:11:42+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "small-batch-real-scoring-loop753",
-  "next_atomic_action": "SMALL_BATCH_REAL_SCORING_LOOP753：实现 small-batch real scoring 的受控 preflight + injected scorer runner contract + formal run request read/write boundary；只有正确 DB、注入 runner、UI/授权门禁齐备时才允许后续真实执行路径，否则 fail-closed 为可读阻塞；禁止创建替代 Docker/DB/端口，禁止默认 runner，禁止未授权 scorer/backtest/queue 写入。",
-  "next_after": "After loop753, continue to scoring failure recovery / scoring result read model only after the controlled small-batch scoring gate is satisfied or explicitly blocked with evidence.",
+  "current_slice": "scoring-failure-recovery-result-read-model-loop754",
+  "next_atomic_action": "SCORING_FAILURE_RECOVERY_AND_RESULT_READ_MODEL_LOOP754：实现评分失败恢复与评分结果 read-model；消费 SmallBatchRealScoringRequestV1 的 blocked/ready 状态，输出 retryable/permanent failure taxonomy、candidate-level result placeholders、用户可读失败原因与 no-execution metadata；仍不默认执行 scorer/backtest，不写 DB/queue/accepted pool。",
+  "next_after": "After loop754, continue toward provisional accepted pool admission only after result read-model can represent real scoring outputs and blocked states safely.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-768-compute-budget-gate-loop752",
+  "last_tick": "SYNC-769-small-batch-real-scoring-contract-loop753",
   "last_sync_sources": [
+    "SYNC-769 Small Batch Real Scoring controlled request loop753",
+    "loop753 implementation: added SmallBatchRealScoringRequestV1 and build_small_batch_real_scoring_request_v1; request consumes ComputeBudgetGateResultV1, checks correct_db_runtime_status qa_pg_alt_ready, injected runner ref, UI authorization, budget blockers, no default runner, no substitute runtime, will_execute false, and all-false side effects",
+    "loop753 verification: RED missing factor_construction_small_batch_real_scoring module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 85 passed; compileall passed",
+    "loop753 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: SCORING_FAILURE_RECOVERY_AND_RESULT_READ_MODEL_LOOP754",
     "SYNC-768 Compute Budget Gate loop752",
     "loop752 implementation: added ComputeBudgetGateResultV1 and build_compute_budget_gate_result_v1; gate consumes DataAvailabilityGateResultV1, plans Top50 small_batch, medium_validation, full_chunked rollout ladder, safe max_rows default, candidate/row chunk policy, held refs, hold reasons, no-calculable blocker, and all-false side effects",
     "loop752 verification: RED missing factor_construction_compute_budget_gate module; focused tests 4 passed; targeted Ruff pass; factor construction + registry regression 81 passed; compileall passed",
@@ -167,7 +172,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-768 loop752 complete: ComputeBudgetGateResultV1 implemented as no-execution budget gate with Top50 small batch, medium validation, full chunked ladder, safe max rows policy, held refs and blockers; next loop753 Small Batch Real Scoring controlled preflight.",
+  "last_completed_note": "SYNC-769 loop753 complete: SmallBatchRealScoringRequestV1 implemented as controlled preflight/request boundary with correct DB, injected runner, UI authorization and no default execution; next loop754 scoring failure recovery/result read-model.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
