@@ -1,3 +1,35 @@
+# Orchestrator Latest Report — SYNC-715 real scoring formal controls acknowledgement manual capture surface
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "real scoring formal controls acknowledgement manual capture surface"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/real_scoring_formal_controls_acknowledgement_manual_capture_surface.py"
+      summary: "Adds consumer-safe no-execution manual acknowledgement capture surface."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes real_scoring_formal_controls_acknowledgement_manual_capture_surface from the creation plan."
+    - file: "apps/quant_assistant/tests/test_real_scoring_formal_controls_acknowledgement_manual_capture_surface_unit.py"
+      summary: "Covers ready surface, missing source, source drift, disabled submit action, and creation-plan bridge behavior."
+  verification:
+    - command: "focused manual capture surface plus batch flow pytest"
+      result: "11 passed."
+    - command: "all test_real_scoring_*_unit.py"
+      result: "259 passed."
+    - command: "targeted Ruff / compileall / payload smoke"
+      result: "Ruff pass; compileall pass; smoke showed ready manual capture surface, three capture slots, completed acknowledgements empty, controls disabled, submit disabled, not_granted authorization, input-packet next route, will_execute false, and all execution flags false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "A user-visible manual capture surface must assert both submit_action_enabled=false and submit_action_will_execute=false until real UI confirmation is implemented."
+    performance_note: "Manual acknowledgement capture surface is ready for input packet."
+  blockers:
+    - "Formal controls remain not_granted; no execution is authorized."
+  next: "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_INPUT_PACKET_LOOP703"
+
+---
+
 # Orchestrator Latest Report — SYNC-714 real scoring formal controls acknowledgement reentry blocked summary
 
 report:
