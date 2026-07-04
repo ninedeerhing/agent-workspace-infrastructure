@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-05T02:45:28+08:00
+updated_at: 2026-07-05T02:58:36+08:00
+
+## Latest Handoff — SYNC-768 Compute Budget Gate loop752
+
+- [DONE] Added `ComputeBudgetGateResultV1` and `build_compute_budget_gate_result_v1`.
+- [DONE] Gate consumes `DataAvailabilityGateResultV1`, plans Top50 `small_batch`, `medium_validation`, `full_chunked` rollout ladder, safe max rows default, candidate/row chunk policy, held refs, hold reasons, no-calculable blocker, and all-false side effects.
+- [VERIFY] RED missing Compute Budget Gate module; focused tests **4 passed**; targeted Ruff pass; factor construction + registry regression **81 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop752; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `SMALL_BATCH_REAL_SCORING_LOOP753` as controlled preflight / injected runner contract / correct DB gate only; no substitute Docker/DB/port and no default runner.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not create substitute DB/container/service/port; do not use default runner; do not write DB/queue/accepted pool; do not run scorer/backtest unless later controlled gate is explicitly satisfied.
 
 ## Latest Handoff — SYNC-767 Data Availability Gate loop751
 

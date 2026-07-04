@@ -1,4 +1,38 @@
-# Orchestrator Latest Report — SYNC-767 Data Availability Gate loop751
+# Orchestrator Latest Report — SYNC-768 Compute Budget Gate loop752
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "COMPUTE_BUDGET_GATE_LOOP752"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_compute_budget_gate.py"
+      summary: "Adds ComputeBudgetGateResultV1 with Top50 small batch, medium validation, full chunked ladder, safe max rows policy, chunk policy, held refs, hold reasons, blockers, and no-execution metadata."
+    - file: "apps/quant_assistant/tests/test_factor_construction_compute_budget_gate_unit.py"
+      summary: "Adds focused tests for budget ladder, partial/missing candidate holds, max rows safe default, no-calculable blocker, and all-false side effects."
+    - file: "harness/loop-state.json"
+      summary: "Advances current_slice to small-batch-real-scoring-loop753 and next_atomic_action to SMALL_BATCH_REAL_SCORING_LOOP753 controlled preflight."
+  verification:
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_compute_budget_gate_unit.py -q"
+      result: "RED first failed on missing factor_construction_compute_budget_gate module; GREEN 4 passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run ruff check src/qa/quant_mining/factor_construction_compute_budget_gate.py tests/test_factor_construction_compute_budget_gate_unit.py"
+      result: "All checks passed."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_compute_budget_gate_unit.py tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_construction_diversity_gate_unit.py tests/test_factor_construction_complexity_interpretability_gate_unit.py tests/test_factor_construction_static_quality_gate_unit.py tests/test_factor_construction_candidate_registry_unit.py tests/test_factor_construction_multi_factor_combination_spec_unit.py tests/test_multi_factor_combination_search_boundary_unit.py tests/test_factor_construction_causal_regime_macro_generator_unit.py tests/test_factor_construction_event_text_sentiment_generator_unit.py tests/test_factor_construction_fundamental_style_generator_unit.py tests/test_factor_construction_library_paper_replay_generator_unit.py tests/test_factor_construction_trajectory_mutation_generator_unit.py tests/test_factor_construction_program_synthesis_generator_unit.py tests/test_factor_construction_llm_hypothesis_generator_unit.py tests/test_factor_construction_rl_mcts_interface_unit.py tests/test_factor_construction_genetic_programming_generator_unit.py tests/test_factor_construction_operator_mutation_generator_unit.py tests/test_factor_construction_template_parameter_sweep_generator_unit.py tests/test_factor_construction_symbolic_expression_generator_unit.py tests/test_factor_construction_generator_expansion_unit.py tests/test_factor_construction_registry_unit.py tests/test_factor_construction_hard_gates_unit.py -q"
+      result: "81 passed."
+    - command: "$env:PYTHONPATH='src'; uv run python -m compileall src/qa/quant_mining/factor_construction_compute_budget_gate.py"
+      result: "pass."
+  roster_update:
+    workload_delta: "increased"
+    mistakes: []
+    lessons:
+      - "Budget planning is the last no-execution gate before controlled scoring and must not imply scorer/backtest execution."
+      - "Max rows remains safe-default until confirmed; chunk policy must be explicit before real scoring."
+    performance_note: "Loop752 Compute Budget Gate is implemented and verified; next loop is Small Batch Real Scoring controlled preflight."
+  blockers: []
+  next: "SMALL_BATCH_REAL_SCORING_LOOP753"
+
+---
+
+# Orchestrator Previous Report — SYNC-767 Data Availability Gate loop751
 
 report:
   role_id: "orchestrator"
