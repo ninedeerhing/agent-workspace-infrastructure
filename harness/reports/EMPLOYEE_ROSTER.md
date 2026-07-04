@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-05T05:51:00+08:00
+Updated: 2026-07-05T06:10:30+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,14 +50,15 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop762 | truth_sync_complete | gpt-5.5 | 2026-07-05T05:51:00+08:00 | SYNC-778 loop762 complete; next loop763 Consumer One-Click Factor Universe Flow Shell | workload light; local TDD/regression verification authoritative |
-| planner | 019f0890-69e6-7270-a742-1178836608ef | loop762 | dispatched | gpt-5.4 | 2026-07-05T05:51:00+08:00 | loop762 read-only planning review dispatched; local verification authoritative | preserve permanent identity |
-| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop762 | dispatched | gpt-5.4 | 2026-07-05T05:51:00+08:00 | loop762 assignment matrix dispatched; local verification authoritative | preserve permanent identity |
+| orchestrator | current-thread | loop763 | truth_sync_complete | gpt-5.5 | 2026-07-05T06:10:30+08:00 | SYNC-779 loop763 complete; next loop764 One-Click Factor Universe UI/API Surface | workload light; local TDD/regression verification authoritative |
+| planner | 019f0890-69e6-7270-a742-1178836608ef | loop763 | dispatched | gpt-5.4 | 2026-07-05T06:10:30+08:00 | loop763 read-only planning review dispatched; local verification authoritative | preserve permanent identity |
+| dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop763 | dispatched | gpt-5.4 | 2026-07-05T06:10:30+08:00 | loop763 assignment matrix dispatched; local verification authoritative | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop544 | channel_slow | gpt-5.5 | 2026-07-03T07:05:00+08:00 | loop544 no-execution risk review not duplicated due older waitingOnApproval/channel_slow state | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop762 | dispatched | gpt-5.4 | 2026-07-05T05:51:00+08:00 | loop762 coverage matrix dispatched; local TDD/regression verification authoritative | local TDD/regression verification authoritative |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop763 | dispatched | gpt-5.4 | 2026-07-05T06:10:30+08:00 | loop763 coverage matrix dispatched; local TDD/regression verification authoritative | local TDD/regression verification authoritative |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
+- 2026-07-05T06:10:30+08:00 · SYNC-779 · loop763: FactorConstructionOneClickFlowShellV1 added with user entry blockers, start button semantics, confirmation state, sections, progress, result surface, and all-false side effects. Focused tests 3 passed, factor construction + registry regression 121 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: ONE_CLICK_FACTOR_UNIVERSE_UI_API_SURFACE_LOOP764.
 - 2026-07-05T05:51:00+08:00 · SYNC-778 · loop762: FactorLibraryReportSurfaceV1 added with factor cards, A-E classification fallback, pool/scoring/backtest status, report summary, consumer verdict, multi-factor insight, and all-false side effects. Focused tests 3 passed, factor construction + registry regression 118 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: CONSUMER_ONE_CLICK_FACTOR_UNIVERSE_FLOW_SHELL_LOOP763.
 - 2026-07-05T05:29:10+08:00 · SYNC-777 · loop761: BacktestResultReportV1 added with unavailable/awaiting/report-ready/failed states, summary cards, metrics, multi-factor marginal gain, consumer verdict, failure reason, and all-false side effects. Focused tests 4 passed, factor construction + registry regression 115 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: FACTOR_LIBRARY_REPORT_SURFACE_INTEGRATION_LOOP762.
 - 2026-07-05T05:08:40+08:00 · SYNC-776 · loop760: BacktestProgressReadModelV1 added with blocked/ready/queued/running/completed/failed progress mapping, consumer state/message, progress percent, ready refs, and all-false side effects. Focused tests 4 passed, factor construction + registry regression 111 passed, compileall pass. Permanent Planner/Dispatcher/Test Engineer were dispatched; no duplicate worker created. Next: BACKTEST_RESULT_REPORT_INTEGRATION_LOOP761.

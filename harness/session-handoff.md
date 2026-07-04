@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T05:51:00+08:00
+updated_at: 2026-07-05T06:10:30+08:00
 
-## Latest Handoff — SYNC-778 Factor library/report surface loop762
+## Latest Handoff — SYNC-779 Consumer one-click flow shell loop763
+
+- [DONE] Added `FactorConstructionOneClickFlowShellV1` and `build_factor_construction_one_click_flow_shell_v1`.
+- [DONE] Shell consumes `FactorConstructionUserEntryV1` and `FactorLibraryReportSurfaceV1`, emitting blocked/awaiting-confirmation/result-ready states, start button semantics, sections, progress, result surface, and all-false side effects.
+- [VERIFY] RED missing One-Click Flow Shell module; focused tests **3 passed**; targeted Ruff pass; factor construction + registry regression **121 passed**; compileall pass.
+- [WORKERS] Planner, Dispatcher, and Test Engineer were dispatched for loop763; local TDD/regression verification is authoritative. No duplicate worker created.
+- [NEXT] `ONE_CLICK_FACTOR_UNIVERSE_UI_API_SURFACE_LOOP764`.
+- [FORBIDDEN] Do not read/print `.env` or secrets; do not read DB for this read-model; do not create substitute DB/container/service/port; do not use default runner; do not write queue; do not run backtest unless a later controlled writer/executor gate is explicitly satisfied.
+
+## Previous Handoff — SYNC-778 Factor library/report surface loop762
 
 - [DONE] Added `FactorLibraryReportSurfaceV1` and `build_factor_library_report_surface_v1`.
 - [DONE] Surface consumes final accepted refs, `BacktestResultReportV1`, and optional A-E classification metadata, producing UI factor cards, report summary, backtest status, consumer verdict, multi-factor insight, and all-false side effects.

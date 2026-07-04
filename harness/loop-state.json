@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-05T05:51:00+08:00",
+  "updated_at": "2026-07-05T06:10:30+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "consumer-one-click-factor-universe-flow-shell-loop763",
-  "next_atomic_action": "CONSUMER_ONE_CLICK_FACTOR_UNIVERSE_FLOW_SHELL_LOOP763：实现 consumer one-click factor universe flow shell；把 user entry、ConstructionSpec、候选生成、质量闸、评分请求、accepted、backtest progress/report surface 串成单一 UI flow read-model，显示按钮、确认、进度、结果区块；默认不读 DB、不写队列、不执行回测。",
-  "next_after": "After loop763, wire UI/API surface for the one-click factor universe flow.",
+  "current_slice": "one-click-factor-universe-ui-api-surface-loop764",
+  "next_atomic_action": "ONE_CLICK_FACTOR_UNIVERSE_UI_API_SURFACE_LOOP764：实现 one-click factor universe UI/API surface adapter；把 FactorConstructionOneClickFlowShellV1 暴露给现有前端/页面消费路径，提供按钮、确认、进度、结果区块的稳定 payload；默认不读 DB、不写队列、不执行回测。",
+  "next_after": "After loop764, implement seeded E2E demo flow shell.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-778-factor-library-report-surface-loop762",
+  "last_tick": "SYNC-779-consumer-one-click-flow-shell-loop763",
   "last_sync_sources": [
+    "SYNC-779 Consumer one-click factor universe flow shell loop763",
+    "loop763 implementation: added FactorConstructionOneClickFlowShellV1 and build_factor_construction_one_click_flow_shell_v1; shell consumes FactorConstructionUserEntryV1 and FactorLibraryReportSurfaceV1, emitting blocked/awaiting_confirmation/result_ready states, start button semantics, sections, progress, result surface, and all-false side effects",
+    "loop763 verification: RED missing factor_construction_one_click_flow_shell module; focused tests 3 passed; targeted Ruff pass; factor construction + registry regression 121 passed; compileall passed",
+    "loop763 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
+    "next: ONE_CLICK_FACTOR_UNIVERSE_UI_API_SURFACE_LOOP764",
     "SYNC-778 Factor library/report surface integration loop762",
     "loop762 implementation: added FactorLibraryReportSurfaceV1 and build_factor_library_report_surface_v1; surface consumes final accepted refs, BacktestResultReportV1, and optional A-E classification metadata, producing UI factor cards, report summary, backtest status, consumer verdict, multi-factor insight, and all-false side effects",
     "loop762 verification: RED missing factor_construction_factor_library_report_surface module; focused tests 3 passed; targeted Ruff pass; factor construction + registry regression 118 passed; compileall passed",
@@ -115,12 +120,7 @@
     "loop744 implementation: added EventTextSentimentGeneratorV1 as canonical event_text_sentiment family and registered it in the default registry; generator emits E-class source-gated no-execution proxy candidates when event/text/sentiment/alternative sources are ready, returns a required_sources data gap payload when not ready, and carries entity_linking_required, sentiment_stream_required, data_status, proxy_policy, static validation, AST/family hashes, PIT/no-future-data lineage, and all-false side effects",
     "loop744 verification: RED missing factor_construction_event_text_sentiment module; focused event/text/sentiment tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 49 passed; compileall passed",
     "loop744 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
-    "next: CAUSAL_REGIME_MACRO_FACTOR_PATH_LOOP745",
-    "SYNC-759 Fundamental/Style factor generator loop743",
-    "loop743 implementation: added FundamentalStyleGeneratorV1 as canonical fundamental_style family and registered it in the default registry; generator emits class A PIT-declared quality/value/style candidates when sources are ready, returns a data source confirmation gap payload when not ready, and preserves declared_available_fields through pool filter rechecks",
-    "loop743 verification: RED missing factor_construction_fundamental_style module; focused fundamental/style tests 3 passed; targeted Ruff pass; factor construction generator/registry/hard-gate regression 46 passed; compileall passed",
-    "loop743 workers: permanent Planner, Dispatcher, and Test Engineer were dispatched; local TDD/regression verification is authoritative; no duplicate worker created",
-    "next: EVENT_TEXT_SENTIMENT_FACTOR_GENERATOR_LOOP744"
+    "next: CAUSAL_REGIME_MACRO_FACTOR_PATH_LOOP745"
   ],
   "closure_gate": {
     "judge_agent": "critic|constitution-guardian",
@@ -132,7 +132,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-778 loop762 complete: FactorLibraryReportSurfaceV1 implemented with factor cards, A-E classification fallback, pool/scoring/backtest status, report summary, consumer verdict, multi-factor insight, and no DB/queue/backtest side effects; next loop763 consumer one-click factor universe flow shell.",
+  "last_completed_note": "SYNC-779 loop763 complete: FactorConstructionOneClickFlowShellV1 implemented with user entry blockers, start button semantics, confirmation state, sections, progress, result surface, and no DB/queue/backtest side effects; next loop764 one-click factor universe UI/API surface adapter.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
