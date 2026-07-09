@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-09T23:51:30+08:00",
+  "updated_at": "2026-07-09T23:52:30+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-metrics-db-read-model-loop773",
-  "next_atomic_action": "REAL_SCORING_METRICS_DB_READ_MODEL_LOOP773：从 approved qa-pg-alt 的 factor_value_daily 与行情收益序列读取真实观测，构造 RealScoringQualityMetricsV1 输入并接入 run/read-model；禁止 seeded/demo metrics，禁止替代 DB/Docker/端口；缺少收益窗口或样本不足必须 hold 并给用户可读原因。",
-  "next_after": "After DB-backed real quality metrics read-model, continue to persisted provisional accepted admission, real backtest execution bridge, and trajectory feedback persistence before final human acceptance.",
+  "current_slice": "persisted-provisional-accepted-admission-loop774",
+  "next_atomic_action": "PERSISTED_PROVISIONAL_ACCEPTED_ADMISSION_LOOP774：把 DB-derived RealScoringQualityMetricsV1 score events 附着到真实 run candidates，生成可持久化 provisional admission 决策；无真实 metrics 或 hold 状态不得 provisional_ready/accepted，且不得写 final accepted 或回测队列。",
+  "next_after": "After persisted provisional admission, continue to real backtest execution bridge and trajectory feedback persistence before final human acceptance.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-788-real-scoring-quality-metrics-derivation-loop772",
+  "last_tick": "SYNC-789-real-scoring-metrics-db-read-model-loop773",
   "last_sync_sources": [
+    "SYNC-789 Real scoring metrics DB read-model loop773",
+    "loop773 implementation: added DbBackedRealQualityMetricsReadModelV1, EngineQualityMetricsDbOps, InMemoryQualityMetricsDbOps, and DB-backed observation conversion for factor_value_daily plus daily_bar forward returns",
+    "loop773 safety: unapproved runtime blocks without DB reads; missing injected DB ops/explicit DSN blocks; no seeded/demo metrics; no substitute runtime; no writes/queue/backtest",
+    "loop773 result: approved DB read-model can output metrics_ready/hold/blocked, source_summary, quality_result, and quality_score_events feeding RealScoringQualityMetricsV1",
+    "loop773 verification: RED missing DB read-model module; focused/regression 21 passed; targeted Ruff pass; compileall passed; pure LOC read-model 175/db-ops 141/test 107",
+    "loop773 workers: permanent Planner, Dispatcher, and Test Engineer returned read-only reports; no duplicate worker created",
+    "next: PERSISTED_PROVISIONAL_ACCEPTED_ADMISSION_LOOP774",
     "SYNC-788 Real scoring quality metrics derivation loop772",
     "loop772 implementation: added RealScoringQualityMetricsV1, FactorValueObservationV1, ForwardReturnObservationV1, derive_real_scoring_quality_metrics_v1, and build_real_quality_score_events_v1",
     "loop772 metrics: factor values plus forward returns produce IC/RankIC/coverage/rows_written/matched_pairs/scored_dates/quality_source; hold results do not emit score events",
@@ -179,7 +186,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-788 loop772 complete: real quality metrics now derive IC/RankIC/coverage from factor observations and forward returns; next loop773 connects this to approved qa-pg-alt DB/run read-model.",
+  "last_completed_note": "SYNC-789 loop773 complete: DB-backed read-model now converts approved factor_value_daily and daily_bar forward returns into RealScoringQualityMetricsV1 inputs; next loop774 persists provisional admission decisions from DB-derived metrics.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",

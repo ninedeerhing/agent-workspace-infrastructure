@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-09T23:51:30+08:00
+updated_at: 2026-07-09T23:52:30+08:00
+
+## Latest Handoff — SYNC-789 Real scoring metrics DB read-model loop773
+
+- [DONE] Added `DbBackedRealQualityMetricsReadModelV1` plus split `factor_construction_real_quality_metrics_db_ops.py`.
+- [DONE] `EngineQualityMetricsDbOps` reads `factor_value_daily` and `daily_bar` forward returns through explicit/injected DB ops; no implicit env read.
+- [DONE] Runtime not approved blocks before DB read; missing injected DB ops/explicit DSN blocks; hold states do not emit fake metrics.
+- [VERIFY] RED missing DB read-model module; related regression **21 passed**; targeted Ruff pass; compileall pass; LOC split read-model 175 / db-ops 141.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned read-only loop773 reports; no duplicate worker created.
+- [NEXT] `PERSISTED_PROVISIONAL_ACCEPTED_ADMISSION_LOOP774`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not write final accepted/backtest queue; do not use seeded/demo metrics; do not create substitute DB/container/service/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-788 Real scoring quality metrics derivation loop772
 

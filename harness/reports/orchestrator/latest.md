@@ -1,47 +1,45 @@
-# Orchestrator Latest Report — SYNC-788 Real scoring quality metrics derivation loop772
+# Orchestrator Latest Report — SYNC-789 Real scoring metrics DB read-model loop773
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "REAL_SCORING_QUALITY_METRICS_DERIVATION_LOOP772"
+  task: "REAL_SCORING_METRICS_DB_READ_MODEL_LOOP773"
   changes:
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_real_quality_metrics.py"
-      summary: "Adds pure IC/RankIC/coverage derivation from factor values and forward returns."
-    - file: "apps/quant_assistant/tests/test_factor_construction_real_quality_metrics_unit.py"
-      summary: "Adds scored, hold, provisional integration, and no-fake-score-event tests."
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py"
-      summary: "Accepts JsonValue quality metrics so source/matched-pair metadata can flow through."
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_scoring_result_read_model.py"
-      summary: "Preserves additional quality-source metrics in candidate read-model output."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_real_quality_metrics_db_read_model.py"
+      summary: "Adds DB-backed real quality metrics read-model with blocked/hold/metrics_ready states."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_real_quality_metrics_db_ops.py"
+      summary: "Adds EngineQualityMetricsDbOps and InMemoryQualityMetricsDbOps for factor_value_daily and daily_bar forward-return reads."
+    - file: "apps/quant_assistant/tests/test_factor_construction_real_quality_metrics_db_read_model_unit.py"
+      summary: "Adds approved runtime, missing returns hold, unapproved runtime block, and missing DB seam block tests."
     - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
-      summary: "Updates closure audit evidence and next recommended loop to DB-backed real metrics read-model."
+      summary: "Updates closure audit evidence and next recommended loop to persisted provisional admission."
     - file: "harness/loop-state.json"
-      summary: "Advances next_atomic_action to REAL_SCORING_METRICS_DB_READ_MODEL_LOOP773."
+      summary: "Advances next_atomic_action to PERSISTED_PROVISIONAL_ACCEPTED_ADMISSION_LOOP774."
   verification:
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_real_quality_metrics_unit.py -q"
-      result: "RED first failed on missing factor_construction_real_quality_metrics module; GREEN 4 passed after implementation."
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_real_quality_metrics_unit.py tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py tests/test_factor_construction_real_qapgalt_scoring_smoke_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py -q"
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_real_quality_metrics_db_read_model_unit.py -q"
+      result: "RED first failed on missing factor_construction_real_quality_metrics_db_read_model module; GREEN 4 passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_real_quality_metrics_db_read_model_unit.py tests/test_factor_construction_real_quality_metrics_unit.py tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py -q"
       result: "21 passed."
-    - command: "uv run ruff check src/qa/quant_mining/factor_construction_real_quality_metrics.py src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py src/qa/quant_mining/factor_construction_scoring_result_read_model.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py tests/test_factor_construction_real_quality_metrics_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py"
+    - command: "uv run ruff check src/qa/quant_mining/factor_construction_real_quality_metrics_db_read_model.py src/qa/quant_mining/factor_construction_real_quality_metrics_db_ops.py src/qa/quant_mining/factor_construction_real_quality_metrics.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py tests/test_factor_construction_real_quality_metrics_db_read_model_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py"
       result: "All checks passed."
-    - command: "uv run python -m compileall src/qa/quant_mining/factor_construction_real_quality_metrics.py src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py src/qa/quant_mining/factor_construction_scoring_result_read_model.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
+    - command: "uv run python -m compileall src/qa/quant_mining/factor_construction_real_quality_metrics_db_read_model.py src/qa/quant_mining/factor_construction_real_quality_metrics_db_ops.py src/qa/quant_mining/factor_construction_real_quality_metrics.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
       result: "pass."
   roster_update:
     workload_delta: "cleared"
     mistakes: []
     lessons:
-      - "Hold quality results must not be converted into score events."
-      - "Real quality metadata must preserve source/matched-pair fields through the scoring read-model."
-    performance_note: "Loop772 dispatched permanent Planner, Dispatcher, and Test Engineer; local TDD/regression verification is authoritative."
+      - "DB-backed metrics read-model must block before reads when approved runtime is not confirmed."
+      - "Read-model DB access must stay injected/explicit and never silently fall back to env/default/substitute runtime."
+    performance_note: "Loop773 used permanent Planner, Dispatcher, and Test Engineer read-only reports; local TDD/regression verification is authoritative."
   blockers:
-    - "db_backed_real_quality_metrics_read_model_not_implemented"
+    - "persisted_provisional_admission_not_implemented"
     - "real_backtest_execution"
     - "trajectory_feedback_memory"
-  next: "REAL_SCORING_METRICS_DB_READ_MODEL_LOOP773"
+  next: "PERSISTED_PROVISIONAL_ACCEPTED_ADMISSION_LOOP774"
 
 ---
 
-# Orchestrator Previous Report — SYNC-787 Real qa-pg-alt small-batch scoring smoke loop771
+# Orchestrator Previous Report — SYNC-788 Real scoring quality metrics derivation loop772
 
 ---
 
