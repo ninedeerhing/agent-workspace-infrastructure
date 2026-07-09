@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-10T00:31:00+08:00
+updated_at: 2026-07-10T01:05:00+08:00
 
-## Latest Handoff — SYNC-793 Final accepted artifact confirmation loop777
+## Latest Handoff — SYNC-794 Controlled backtest execution bridge loop778
+
+- [DONE] Added `ControlledBacktestExecutionBridgeV1`.
+- [DONE] UI-confirmed artifact-backed final refs can now enter a controlled injected-runner backtest bridge.
+- [DONE] Ready path calls only the injected `qa.backtest.engine.run_backtest` seam for single-factor refs plus one multi-factor request.
+- [DONE] Blocked paths do not call runner; default runner, wrong runtime, missing UI authorization, missing DSN/user/idempotency/rollback-audit refs fail closed.
+- [DONE] Payload records `dsn_present` and `dsn_value_redacted=true`; DSN values are not serialized.
+- [VERIFY] RED missing bridge module; focused/regression **17 passed**; closure/report regression **15 passed**; targeted Ruff pass; compileall pass.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned loop778 reports; Dispatcher report was partial due Windows ACL scan limits but usable; no duplicate worker created.
+- [NEXT] `TRAJECTORY_FEEDBACK_MEMORY_PERSISTENCE_LOOP779`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets.
+
+## Previous Handoff — SYNC-793 Final accepted artifact confirmation loop777
 
 - [DONE] Added `FinalAcceptedFromArtifactProvisionalEvidenceV1` and `ArtifactBackedProvisionalEvidenceV1`.
 - [DONE] Artifact-backed provisional evidence can become UI-confirmed final refs only when source is `artifact_registry.factor_evaluation_snapshot`, decision is `provisional_ready`, lifecycle is `shortlisted`, and `confirmation_ref` is present.

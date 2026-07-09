@@ -1,5 +1,26 @@
 # Worker Report — test-engineer
 
+## loop778 Report — 2026-07-10T01:03:22+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "loop778 controlled real backtest execution bridge TDD matrix"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Test Engineer specified confirmed final refs, accepted_ready, confirmation_ref, UI auth, injected runner, approved runtime, no substitute Docker/DB/port, no background/migration/backfill, and secret redaction coverage."
+    - command: "local pytest evidence"
+      result: "Focused bridge + final/gate/progress regression 17 passed; closure/report regression 15 passed."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "The only allowed execution face is the explicit injected runner seam; all surrounding runtime drift must fail closed."
+    performance_note: "Permanent Test Engineer thread supplied loop778 TDD matrix."
+  blockers: []
+  next: "TRAJECTORY_FEEDBACK_MEMORY_PERSISTENCE_LOOP779"
+
 ## loop777 Report — 2026-07-10T00:09:49+08:00
 
 report:

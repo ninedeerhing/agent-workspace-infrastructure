@@ -1,5 +1,26 @@
 # Worker Report — dispatcher
 
+## loop778 Report — 2026-07-10T01:03:39+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "partial"
+  task: "loop778 real backtest execution bridge boundary review"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Dispatcher returned file-boundary and safety guidance; Windows ACL limited a full fresh scan, but no duplicate worker was created."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Bridge logic should remain isolated from loop777 final accepted evidence semantics."
+      - "qa-pg-alt and explicit authorization requirements should be blockers, not assumptions."
+    performance_note: "Partial report was usable for scope/risk boundaries."
+  blockers:
+    - "Windows ACL limited worker-side full module inventory."
+  next: "TRAJECTORY_FEEDBACK_MEMORY_PERSISTENCE_LOOP779"
+
 ## loop777 Report — 2026-07-10T00:09:48+08:00
 
 report:
