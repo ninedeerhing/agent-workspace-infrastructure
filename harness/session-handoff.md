@@ -1,8 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-09T23:08:35+08:00
+updated_at: 2026-07-09T23:41:20+08:00
 
-## Latest Handoff — SYNC-783 Factor universe closure gap audit loop767
+## Latest Handoff — SYNC-784 Real scoring execution bridge loop768
+
+- [DONE] Added `RealScoringExecutionBridgeV1` and `build_real_scoring_execution_bridge_v1`.
+- [DONE] Ready small-batch requests now bridge to the official `qa.factors.compute.compute_factor_values` / `factor_value_daily` writer contract with candidate refs, `qa-pg-alt` runtime, injected runner, idempotency key, rollback/audit ref, no-substitute runtime, default-runner fail-closed, and single-candidate failure isolation.
+- [DONE] Bridge-ready is not execution: payload exposes `controlled_execution_readiness.can_request_executor=true`, while `execution_policy.may_write_factor_value_daily=false` and all side effects remain false.
+- [DONE] Updated `factor_construction_authoritative_plan_closure_audit_v1`: real scoring gap now recognizes the bridge and recommends `SMALL_BATCH_REAL_SCORING_EXECUTOR_LOOP769`.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned read-only loop768 reports; no duplicate worker created.
+- [VERIFY] RED missing bridge module; focused/regression **13 passed**; targeted Ruff pass; compileall pass.
+- [NEXT] `SMALL_BATCH_REAL_SCORING_EXECUTOR_LOOP769`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not create substitute DB/container/service/port; do not use default runner; do not read/print `.env` or secrets.
+
+## Previous Handoff — SYNC-783 Factor universe closure gap audit loop767
 
 - [DONE] Added `FactorConstructionAuthoritativePlanClosureAuditV1` and `build_factor_construction_authoritative_plan_closure_audit_v1`.
 - [DONE] Audit verdict is `partial_not_ready_for_final_acceptance`, `can_request_human_acceptance=false`; blocking gaps are `real_scoring_execution`, `real_backtest_execution`, and `trajectory_feedback_memory`.

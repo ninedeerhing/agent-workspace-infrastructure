@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-09T23:08:35+08:00",
+  "updated_at": "2026-07-09T23:41:20+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-scoring-execution-bridge-loop768",
-  "next_atomic_action": "REAL_SCORING_EXECUTION_BRIDGE_LOOP768：实现真实评分执行桥接；把候选/预算/授权材料连接到官方 factor_value_daily 写入路径的受控 runner 合同，先证明小批 scoring 可通过正确 qa-pg-alt runtime、idempotency、rollback/audit 与 no-substitute-runtime 门禁；不得创建替代 Docker/DB/端口。",
-  "next_after": "After real scoring bridge, continue to real backtest execution bridge and trajectory feedback persistence before final human acceptance.",
+  "current_slice": "small-batch-real-scoring-executor-loop769",
+  "next_atomic_action": "SMALL_BATCH_REAL_SCORING_EXECUTOR_LOOP769：在 RealScoringExecutionBridgeV1 ready 后实现真实小批评分执行器；只允许使用官方 qa.factors.compute.compute_factor_values 写入 factor_value_daily，必须先做 injected runner/qa-pg-alt/DSN isolation/idempotency/rollback-audit preflight，执行过程按候选隔离失败，禁止替代 Docker/DB/端口。",
+  "next_after": "After small-batch real scoring executor proof, continue to scoring result persistence/provisional accepted, then real backtest execution bridge and trajectory feedback persistence before final human acceptance.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-783-factor-universe-closure-gap-audit-loop767",
+  "last_tick": "SYNC-784-real-scoring-execution-bridge-loop768",
   "last_sync_sources": [
+    "SYNC-784 Real scoring execution bridge loop768",
+    "loop768 implementation: added RealScoringExecutionBridgeV1; ready small-batch requests now bridge to the official qa.factors.compute.compute_factor_values / factor_value_daily writer contract with candidate refs, qa-pg-alt runtime, injected runner, idempotency, rollback/audit, no-substitute runtime, default-runner fail-closed, and single-candidate failure isolation checks",
+    "loop768 safety: bridge-ready only means controlled_execution_readiness.can_request_executor=true; it does not connect runner, run scorer, write DB, or write factor_value_daily",
+    "loop768 verification: RED missing bridge module; focused/regression 13 passed; targeted Ruff pass; compileall passed; pure LOC bridge 140/audit 223/test 143",
+    "loop768 workers: permanent Planner, Dispatcher, and Test Engineer returned read-only reports; no duplicate worker created",
+    "next: SMALL_BATCH_REAL_SCORING_EXECUTOR_LOOP769",
     "SYNC-783 Factor universe closure gap audit loop767",
     "loop767 audit: added FactorConstructionAuthoritativePlanClosureAuditV1; audit verdict partial_not_ready_for_final_acceptance, can_request_human_acceptance=false, blocking gaps real_scoring_execution, real_backtest_execution, trajectory_feedback_memory",
     "loop767 UI gap fix: Quant_Factor_Mining page now exposes a seeded one-click demo section with button, parameter confirmation, progress, factor cards, report summary, conclusion, and no-execution safety note",
@@ -147,7 +153,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-783 loop767 complete: authoritative plan closure audit found project partial_not_ready_for_final_acceptance; seeded UI demo section added; next loop768 real scoring execution bridge.",
+  "last_completed_note": "SYNC-784 loop768 complete: RealScoringExecutionBridgeV1 bridges ready small-batch requests to official factor_value_daily writer contract without execution; next loop769 small-batch real scoring executor.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",
