@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-09T23:52:30+08:00
+updated_at: 2026-07-09T23:53:30+08:00
+
+## Latest Handoff — SYNC-790 Persisted provisional admission loop774
+
+- [DONE] Added `PersistedProvisionalAdmissionV1` and `PersistableProvisionalAdmissionRecordV1`.
+- [DONE] DB-derived scored metrics passing thresholds become `provisional_ready`; hold/blocked/no metrics become `held`; low metrics become `rejected`.
+- [DONE] Records are persistable payloads only; side effects do not write DB, final accepted, or backtest queue.
+- [VERIFY] RED missing persisted provisional admission module; related regression **25 passed**; targeted Ruff pass; compileall pass.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned read-only loop774 reports; no duplicate worker created.
+- [NEXT] `PROVISIONAL_ADMISSION_STORE_WRITE_LOOP775`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not write final accepted/backtest queue; do not use seeded/demo metrics; do not create substitute DB/container/service/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-789 Real scoring metrics DB read-model loop773
 

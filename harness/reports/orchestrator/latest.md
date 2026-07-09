@@ -1,45 +1,43 @@
-# Orchestrator Latest Report — SYNC-789 Real scoring metrics DB read-model loop773
+# Orchestrator Latest Report — SYNC-790 Persisted provisional admission loop774
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "REAL_SCORING_METRICS_DB_READ_MODEL_LOOP773"
+  task: "PERSISTED_PROVISIONAL_ACCEPTED_ADMISSION_LOOP774"
   changes:
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_real_quality_metrics_db_read_model.py"
-      summary: "Adds DB-backed real quality metrics read-model with blocked/hold/metrics_ready states."
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_real_quality_metrics_db_ops.py"
-      summary: "Adds EngineQualityMetricsDbOps and InMemoryQualityMetricsDbOps for factor_value_daily and daily_bar forward-return reads."
-    - file: "apps/quant_assistant/tests/test_factor_construction_real_quality_metrics_db_read_model_unit.py"
-      summary: "Adds approved runtime, missing returns hold, unapproved runtime block, and missing DB seam block tests."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_persisted_provisional_admission.py"
+      summary: "Adds persistable provisional admission record classification from DB-derived metrics."
+    - file: "apps/quant_assistant/tests/test_factor_construction_persisted_provisional_admission_unit.py"
+      summary: "Adds ready/held/rejected/blocked admission record tests with no side effects."
     - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
-      summary: "Updates closure audit evidence and next recommended loop to persisted provisional admission."
+      summary: "Updates closure audit evidence and next recommended loop to provisional admission store write."
     - file: "harness/loop-state.json"
-      summary: "Advances next_atomic_action to PERSISTED_PROVISIONAL_ACCEPTED_ADMISSION_LOOP774."
+      summary: "Advances next_atomic_action to PROVISIONAL_ADMISSION_STORE_WRITE_LOOP775."
   verification:
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_real_quality_metrics_db_read_model_unit.py -q"
-      result: "RED first failed on missing factor_construction_real_quality_metrics_db_read_model module; GREEN 4 passed after implementation."
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_real_quality_metrics_db_read_model_unit.py tests/test_factor_construction_real_quality_metrics_unit.py tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py -q"
-      result: "21 passed."
-    - command: "uv run ruff check src/qa/quant_mining/factor_construction_real_quality_metrics_db_read_model.py src/qa/quant_mining/factor_construction_real_quality_metrics_db_ops.py src/qa/quant_mining/factor_construction_real_quality_metrics.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py tests/test_factor_construction_real_quality_metrics_db_read_model_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py"
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_persisted_provisional_admission_unit.py -q"
+      result: "RED first failed on missing factor_construction_persisted_provisional_admission module; GREEN 4 passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_persisted_provisional_admission_unit.py tests/test_factor_construction_real_quality_metrics_db_read_model_unit.py tests/test_factor_construction_real_quality_metrics_unit.py tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py -q"
+      result: "25 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_construction_persisted_provisional_admission.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py tests/test_factor_construction_persisted_provisional_admission_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py"
       result: "All checks passed."
-    - command: "uv run python -m compileall src/qa/quant_mining/factor_construction_real_quality_metrics_db_read_model.py src/qa/quant_mining/factor_construction_real_quality_metrics_db_ops.py src/qa/quant_mining/factor_construction_real_quality_metrics.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
+    - command: "uv run python -m compileall src/qa/quant_mining/factor_construction_persisted_provisional_admission.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
       result: "pass."
   roster_update:
     workload_delta: "cleared"
     mistakes: []
     lessons:
-      - "DB-backed metrics read-model must block before reads when approved runtime is not confirmed."
-      - "Read-model DB access must stay injected/explicit and never silently fall back to env/default/substitute runtime."
-    performance_note: "Loop773 used permanent Planner, Dispatcher, and Test Engineer read-only reports; local TDD/regression verification is authoritative."
+      - "Persistable record payload must not be mistaken for actual DB persistence."
+      - "Only DB-derived scored metrics passing thresholds can become provisional_ready."
+    performance_note: "Loop774 used permanent Planner, Dispatcher, and Test Engineer read-only reports; local TDD/regression verification is authoritative."
   blockers:
-    - "persisted_provisional_admission_not_implemented"
+    - "provisional_admission_store_write_not_implemented"
     - "real_backtest_execution"
     - "trajectory_feedback_memory"
-  next: "PERSISTED_PROVISIONAL_ACCEPTED_ADMISSION_LOOP774"
+  next: "PROVISIONAL_ADMISSION_STORE_WRITE_LOOP775"
 
 ---
 
-# Orchestrator Previous Report — SYNC-788 Real scoring quality metrics derivation loop772
+# Orchestrator Previous Report — SYNC-789 Real scoring metrics DB read-model loop773
 
 ---
 
