@@ -1,40 +1,47 @@
-# Orchestrator Latest Report — SYNC-785 Small batch real scoring executor loop769
+# Orchestrator Latest Report — SYNC-786 Scoring execution result to provisional pool loop770
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "SMALL_BATCH_REAL_SCORING_EXECUTOR_LOOP769"
+  task: "SCORING_EXECUTION_RESULT_TO_PROVISIONAL_POOL_LOOP770"
   changes:
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_small_batch_real_scoring_executor.py"
-      summary: "Adds SmallBatchRealScoringExecutorV1, FactorScoringExecutionItemV1, and run_small_batch_real_scoring_executor_v1 for explicit injected-writer small-batch execution."
-    - file: "apps/quant_assistant/tests/test_factor_construction_small_batch_real_scoring_executor_unit.py"
-      summary: "Adds tests for official writer calls, bridge/DSN blockers, default runner fail-closed, and single-candidate failure isolation."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py"
+      summary: "Adds adapter from SmallBatchRealScoringExecutionResultV1 to ScoringResultReadModelV1."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_scoring_result_read_model.py"
+      summary: "Adds factor_values_written_awaiting_quality_metrics status and ready_for_provisional_pool derived from explicit scored metrics."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_provisional_accepted_pool.py"
+      summary: "Holds rows-written-only candidates until quality metrics exist."
+    - file: "apps/quant_assistant/tests/test_factor_construction_scoring_execution_result_adapter_unit.py"
+      summary: "Adds no-fake-metrics, failure-reason, and explicit-quality-metrics admission tests."
     - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
-      summary: "Updates closure audit evidence: executor exists; next gap is mapping execution rows/failures to scoring read-model and provisional pool."
+      summary: "Updates closure audit evidence and next recommended loop to real qa-pg-alt smoke proof."
     - file: "harness/loop-state.json"
-      summary: "Advances next_atomic_action to SCORING_EXECUTION_RESULT_TO_PROVISIONAL_POOL_LOOP770."
+      summary: "Advances next_atomic_action to REAL_QA_PG_ALT_SMALL_BATCH_SCORING_SMOKE_LOOP771."
   verification:
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_small_batch_real_scoring_executor_unit.py -q"
-      result: "RED first failed on missing factor_construction_small_batch_real_scoring_executor module; GREEN 4 passed after implementation."
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_small_batch_real_scoring_executor_unit.py tests/test_factor_construction_real_scoring_execution_bridge_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py -q"
-      result: "21 passed."
-    - command: "uv run ruff check src/qa/quant_mining/factor_construction_small_batch_real_scoring_executor.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py tests/test_factor_construction_small_batch_real_scoring_executor_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py"
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_scoring_execution_result_adapter_unit.py -q"
+      result: "RED first failed on missing factor_construction_scoring_execution_result_adapter module; GREEN passed after implementation."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_small_batch_real_scoring_executor_unit.py tests/test_factor_construction_real_scoring_execution_bridge_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py -q"
+      result: "24 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py src/qa/quant_mining/factor_construction_scoring_result_read_model.py src/qa/quant_mining/factor_construction_provisional_accepted_pool.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py"
       result: "All checks passed."
-    - command: "$env:PYTHONPATH='src'; uv run python -m compileall -q src/qa/quant_mining/factor_construction_small_batch_real_scoring_executor.py src/qa/quant_mining/factor_construction_real_scoring_execution_bridge.py"
+    - command: "uv run python -m compileall src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py src/qa/quant_mining/factor_construction_scoring_result_read_model.py src/qa/quant_mining/factor_construction_provisional_accepted_pool.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
       result: "pass."
   roster_update:
     workload_delta: "cleared"
     mistakes: []
     lessons:
-      - "Executor can call the official writer only when DSN, writer, bridge, and candidate items are explicit; no default discovery path is allowed."
-      - "Rows written are not IC/RankIC; loop770 must not fake quality metrics when mapping executor results into provisional pool."
-    performance_note: "Loop769 used permanent Planner, Dispatcher, and Test Engineer read-only reports; local TDD/regression verification is authoritative."
+      - "Rows written are not IC/RankIC and must stay awaiting quality metrics until explicit metrics exist."
+      - "Executor failure reasons must survive read-model and provisional-pool mapping."
+    performance_note: "Loop770 used permanent Planner, Dispatcher, and Test Engineer read-only reports; local TDD/regression verification is authoritative."
   blockers:
-    - "executor_result_not_consumed_by_scoring_read_model"
     - "real_qa_pg_alt_smoke_not_yet_recorded"
     - "real_backtest_execution"
     - "trajectory_feedback_memory"
-  next: "SCORING_EXECUTION_RESULT_TO_PROVISIONAL_POOL_LOOP770"
+  next: "REAL_QA_PG_ALT_SMALL_BATCH_SCORING_SMOKE_LOOP771"
+
+---
+
+# Orchestrator Previous Report — SYNC-785 Small batch real scoring executor loop769
 
 ---
 

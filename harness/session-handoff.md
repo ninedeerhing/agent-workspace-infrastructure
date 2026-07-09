@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-09T23:20:30+08:00
+updated_at: 2026-07-09T23:49:30+08:00
+
+## Latest Handoff — SYNC-786 Scoring execution result to provisional pool loop770
+
+- [DONE] Added `ScoringExecutionResultAdapterV1` via `build_scoring_result_read_model_from_execution_result_v1`.
+- [DONE] Executor `rows_written` now maps to `factor_values_written_awaiting_quality_metrics`; IC/RankIC stay `None` unless explicit score metrics are supplied.
+- [DONE] Failed executor refs preserve user-readable permanent failure reasons and feed provisional rejection without hiding the reason.
+- [DONE] `ProvisionalAcceptedPoolAdmissionV1` holds rows-written-only candidates and only enters `provisional_ready` when explicit quality metrics pass thresholds.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned read-only loop770 reports; no duplicate worker created.
+- [VERIFY] RED missing adapter module; focused/regression **24 passed**; targeted Ruff pass; compileall pass.
+- [NEXT] `REAL_QA_PG_ALT_SMALL_BATCH_SCORING_SMOKE_LOOP771`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not fabricate IC/RankIC from rows_written; do not create substitute DB/container/service/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-785 Small batch real scoring executor loop769
 
