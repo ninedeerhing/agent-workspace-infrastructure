@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-09T23:56:49+08:00",
+  "updated_at": "2026-07-10T00:18:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "provisional-admission-artifact-store-adapter-loop776",
-  "next_atomic_action": "PROVISIONAL_ADMISSION_ARTIFACT_STORE_ADAPTER_LOOP776：把 approved provisional store abstraction 绑定到 qa-pg-alt 现有 artifact/promoted-asset/provisional persistence 路径；不得创建新表/替代 DB，不得写 final accepted 或 backtest queue。",
-  "next_after": "After provisional admission artifact store adapter, continue to final accepted UI confirmation, real backtest execution bridge, and trajectory feedback persistence before final human acceptance.",
+  "current_slice": "final-accepted-from-artifact-provisional-evidence-loop777",
+  "next_atomic_action": "FINAL_ACCEPTED_FROM_ARTIFACT_PROVISIONAL_EVIDENCE_LOOP777：把 artifact-backed provisional admission evidence 接到用户按钮确认 accepted 的受控路径；不得自动 final accepted、不得写 backtest queue，继续保持 UI confirmation required。",
+  "next_after": "After final accepted confirmation binds artifact-backed provisional evidence, continue to real backtest execution bridge and trajectory feedback persistence before final human acceptance.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-791-provisional-admission-store-write-loop775",
+  "last_tick": "SYNC-792-provisional-admission-artifact-store-adapter-loop776",
   "last_sync_sources": [
+    "SYNC-792 Provisional admission artifact store adapter loop776",
+    "loop776 implementation: added QaPgAltArtifactProvisionalAdmissionStore to bind approved provisional admission records to the existing artifact_registry.factor_evaluation_snapshot path",
+    "loop776 safety: adapter requires explicit qa-pg-alt artifact store runtime binding and writes only artifact snapshots/status; it does not promote assets, write final accepted, or queue backtests; DSN values are not copied into payload/result summaries",
+    "loop776 audit: closure audit now marks real_scoring_execution and provisional_accepted_pool done; next blocking gap is accepted_pool_confirmation from artifact-backed provisional evidence",
+    "loop776 verification: RED missing artifact store adapter module; focused/regression 12 passed; targeted Ruff pass; compileall passed",
+    "loop776 workers: permanent Planner, Dispatcher, and Test Engineer returned read-only reports; no duplicate worker created",
+    "next: FINAL_ACCEPTED_FROM_ARTIFACT_PROVISIONAL_EVIDENCE_LOOP777",
     "SYNC-791 Provisional admission store write loop775",
     "loop775 implementation: added ProvisionalAdmissionStoreWriteResultV1 and InMemoryProvisionalAdmissionStore to write persistable provisional admission records through an approved store abstraction",
     "loop775 safety: approved store ref, idempotency_ref, audit_ref, and rollback_ref are required; per-record failures are preserved; final accepted and backtest queue writes remain false",
@@ -199,7 +206,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-791 loop775 complete: persistable provisional admission records can now be written through an approved store abstraction with idempotency/audit/rollback and per-record failure isolation; next loop776 binds that abstraction to concrete qa-pg-alt artifact/provisional persistence without final accepted/backtest writes.",
+  "last_completed_note": "SYNC-792 loop776 complete: provisional admission records now bind to the existing qa-pg-alt artifact_registry.factor_evaluation_snapshot path via approved artifact store adapter; next loop777 connects artifact-backed provisional evidence to user-confirmed final accepted without automatic backtest queue writes.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",

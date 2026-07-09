@@ -1,5 +1,24 @@
 # Worker Report — dispatcher
 
+## loop776 Report — 2026-07-10T00:00:58+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "loop776 provisional admission artifact store adapter assignment matrix"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Dispatcher assigned current-thread bounded TDD, Test Engineer read-only review, narrow quant_mining/tests write scope, and no duplicate workers."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Adapter loop must not drift into final accepted confirmation or backtest execution."
+    performance_note: "Permanent Dispatcher thread produced usable loop776 assignment matrix."
+  blockers: []
+  next: "Keep fixed worker chain for loop777 final accepted confirmation from artifact-backed provisional evidence."
+
 ## loop390 Report — 2026-07-01T21:28:58+08:00
 
 report:

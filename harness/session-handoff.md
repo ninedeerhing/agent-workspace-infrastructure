@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-09T23:56:49+08:00
+updated_at: 2026-07-10T00:18:00+08:00
 
-## Latest Handoff — SYNC-791 Provisional admission store write loop775
+## Latest Handoff — SYNC-792 Provisional admission artifact store adapter loop776
+
+- [DONE] Added `QaPgAltArtifactProvisionalAdmissionStore`.
+- [DONE] Approved provisional admission records now bind to existing `artifact_registry.factor_evaluation_snapshot`.
+- [DONE] `provisional_ready` records become `shortlisted` factor-evaluation snapshots; held/rejected records become `archived` snapshots.
+- [DONE] Adapter does not promote assets, write final accepted, queue backtests, create tables, or create substitute DB/container/ports.
+- [DONE] DSN values are not copied into artifact payloads or result summaries.
+- [VERIFY] RED missing artifact-store adapter module; focused/regression **12 passed**; targeted Ruff pass; compileall pass.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned read-only loop776 reports; no duplicate worker created.
+- [NEXT] `FINAL_ACCEPTED_FROM_ARTIFACT_PROVISIONAL_EVIDENCE_LOOP777`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not auto-final-accept; do not write backtest queue; do not create a new DB/table/container/port; do not read/print `.env` or secrets.
+
+## Previous Handoff — SYNC-791 Provisional admission store write loop775
 
 - [DONE] Added `ProvisionalAdmissionStoreWriteResultV1`, `ProvisionalAdmissionRecordWriteResultV1`, and `InMemoryProvisionalAdmissionStore`.
 - [DONE] Persistable provisional admission records can be written through an approved store abstraction only when approved store ref, idempotency ref, audit ref, and rollback ref are present.
