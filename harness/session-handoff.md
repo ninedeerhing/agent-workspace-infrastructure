@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-09T23:50:30+08:00
+updated_at: 2026-07-09T23:51:30+08:00
+
+## Latest Handoff — SYNC-788 Real scoring quality metrics derivation loop772
+
+- [DONE] Added `RealScoringQualityMetricsV1` plus `FactorValueObservationV1` / `ForwardReturnObservationV1`.
+- [DONE] `derive_real_scoring_quality_metrics_v1` computes IC, RankIC, coverage, matched_pairs, scored_dates, and `quality_source=factor_value_daily_forward_return` from supplied real observations.
+- [DONE] Hold results do not emit score events; insufficient forward returns produce user-readable hold reason.
+- [DONE] `ScoringExecutionResultAdapterV1` accepts `JsonValue` metrics and `ScoringResultReadModelV1` preserves extra real-metric source fields.
+- [VERIFY] RED missing quality metrics module; related regression **21 passed**; targeted Ruff pass; compileall pass.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer dispatched for loop772; no duplicate worker created.
+- [NEXT] `REAL_SCORING_METRICS_DB_READ_MODEL_LOOP773`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not use seeded/demo metrics; do not create substitute DB/container/service/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-787 Real qa-pg-alt small-batch scoring smoke loop771
 
