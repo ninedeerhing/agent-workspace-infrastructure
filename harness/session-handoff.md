@@ -1,8 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-05T07:12:00+08:00
+updated_at: 2026-07-09T23:08:35+08:00
 
-## Latest Handoff — SYNC-782 Consumer flow formal verification gate loop766
+## Latest Handoff — SYNC-783 Factor universe closure gap audit loop767
+
+- [DONE] Added `FactorConstructionAuthoritativePlanClosureAuditV1` and `build_factor_construction_authoritative_plan_closure_audit_v1`.
+- [DONE] Audit verdict is `partial_not_ready_for_final_acceptance`, `can_request_human_acceptance=false`; blocking gaps are `real_scoring_execution`, `real_backtest_execution`, and `trajectory_feedback_memory`.
+- [DONE] `Quant_Factor_Mining` page now exposes a seeded one-click demo section with button, parameter confirmation, progress, factor cards, report summary, conclusion, and no-execution safety note.
+- [VERIFY] RED missing closure audit module; related tests **12 passed**; targeted Ruff pass; compileall pass.
+- [NEXT] `REAL_SCORING_EXECUTION_BRIDGE_LOOP768`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not create substitute DB/container/service/port; do not use default runner; do not read/print `.env` or secrets.
+
+## Previous Handoff — SYNC-782 Consumer flow formal verification gate loop766
 
 - [DONE] Added `ConsumerFlowFormalVerificationGateV1` and `build_consumer_flow_formal_verification_gate_v1`.
 - [DONE] Gate consumes seeded demo payload plus truth-source snapshot and verifies seeded demo ready, UI/API `result_ready`, factor cards, progress/report, no execution side effects, and truth-source alignment.
