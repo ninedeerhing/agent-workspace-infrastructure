@@ -1,43 +1,47 @@
-# Orchestrator Latest Report — SYNC-786 Scoring execution result to provisional pool loop770
+# Orchestrator Latest Report — SYNC-787 Real qa-pg-alt small-batch scoring smoke loop771
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "SCORING_EXECUTION_RESULT_TO_PROVISIONAL_POOL_LOOP770"
+  task: "REAL_QA_PG_ALT_SMALL_BATCH_SCORING_SMOKE_LOOP771"
   changes:
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py"
-      summary: "Adds adapter from SmallBatchRealScoringExecutionResultV1 to ScoringResultReadModelV1."
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_scoring_result_read_model.py"
-      summary: "Adds factor_values_written_awaiting_quality_metrics status and ready_for_provisional_pool derived from explicit scored metrics."
-    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_provisional_accepted_pool.py"
-      summary: "Holds rows-written-only candidates until quality metrics exist."
-    - file: "apps/quant_assistant/tests/test_factor_construction_scoring_execution_result_adapter_unit.py"
-      summary: "Adds no-fake-metrics, failure-reason, and explicit-quality-metrics admission tests."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_real_qapgalt_scoring_smoke.py"
+      summary: "Adds controlled qa-pg-alt small-batch scoring smoke orchestration."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_real_qapgalt_scoring_smoke_db.py"
+      summary: "Adds smoke DB ops, schema probe, smoke factor insert, factor-value count, and cleanup helpers."
+    - file: "apps/quant_assistant/tests/test_factor_construction_real_qapgalt_scoring_smoke_unit.py"
+      summary: "Adds official-writer smoke, default-writer block, cleanup-on-failure, and protocol-shape tests."
     - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
-      summary: "Updates closure audit evidence and next recommended loop to real qa-pg-alt smoke proof."
+      summary: "Updates closure audit evidence and next recommended loop to real quality metrics derivation."
     - file: "harness/loop-state.json"
-      summary: "Advances next_atomic_action to REAL_QA_PG_ALT_SMALL_BATCH_SCORING_SMOKE_LOOP771."
+      summary: "Advances next_atomic_action to REAL_SCORING_QUALITY_METRICS_DERIVATION_LOOP772."
   verification:
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_scoring_execution_result_adapter_unit.py -q"
-      result: "RED first failed on missing factor_construction_scoring_execution_result_adapter module; GREEN passed after implementation."
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_small_batch_real_scoring_executor_unit.py tests/test_factor_construction_real_scoring_execution_bridge_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py -q"
-      result: "24 passed."
-    - command: "uv run ruff check src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py src/qa/quant_mining/factor_construction_scoring_result_read_model.py src/qa/quant_mining/factor_construction_provisional_accepted_pool.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py"
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_real_qapgalt_scoring_smoke_unit.py -q"
+      result: "RED first failed on missing factor_construction_real_qapgalt_scoring_smoke module; GREEN 4 passed after implementation and LOC split."
+    - command: "real qa-pg-alt smoke via official writer"
+      result: "existing qa-pg-alt container 7b7346a0cdfc; rows_written=3; factor_value_rows_after_writer=3; cleanup factor_value/version/def=3/1/1; post_cleanup=0; no substitute Docker/DB/port."
+    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_real_qapgalt_scoring_smoke_unit.py tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_small_batch_real_scoring_executor_unit.py tests/test_factor_construction_real_scoring_execution_bridge_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py -q"
+      result: "28 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_construction_real_qapgalt_scoring_smoke.py src/qa/quant_mining/factor_construction_real_qapgalt_scoring_smoke_db.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py tests/test_factor_construction_real_qapgalt_scoring_smoke_unit.py tests/test_factor_construction_authoritative_plan_closure_audit_unit.py"
       result: "All checks passed."
-    - command: "uv run python -m compileall src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py src/qa/quant_mining/factor_construction_scoring_result_read_model.py src/qa/quant_mining/factor_construction_provisional_accepted_pool.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
+    - command: "uv run python -m compileall src/qa/quant_mining/factor_construction_real_qapgalt_scoring_smoke.py src/qa/quant_mining/factor_construction_real_qapgalt_scoring_smoke_db.py src/qa/quant_mining/factor_construction_authoritative_plan_closure_audit.py"
       result: "pass."
   roster_update:
     workload_delta: "cleared"
     mistakes: []
     lessons:
-      - "Rows written are not IC/RankIC and must stay awaiting quality metrics until explicit metrics exist."
-      - "Executor failure reasons must survive read-model and provisional-pool mapping."
-    performance_note: "Loop770 used permanent Planner, Dispatcher, and Test Engineer read-only reports; local TDD/regression verification is authoritative."
+      - "Runtime smoke must prove the existing approved runtime, not create a substitute."
+      - "A factor_value_daily write proof still does not produce IC/RankIC; loop772 must derive real quality metrics."
+    performance_note: "Loop771 used permanent Planner, Dispatcher, and Test Engineer read-only reports; local TDD/regression/runtime verification is authoritative."
   blockers:
-    - "real_qa_pg_alt_smoke_not_yet_recorded"
+    - "real_quality_metrics_derivation_not_implemented"
     - "real_backtest_execution"
     - "trajectory_feedback_memory"
-  next: "REAL_QA_PG_ALT_SMALL_BATCH_SCORING_SMOKE_LOOP771"
+  next: "REAL_SCORING_QUALITY_METRICS_DERIVATION_LOOP772"
+
+---
+
+# Orchestrator Previous Report — SYNC-786 Scoring execution result to provisional pool loop770
 
 ---
 

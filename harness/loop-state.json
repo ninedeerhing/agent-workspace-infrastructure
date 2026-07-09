@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-09T23:49:30+08:00",
+  "updated_at": "2026-07-09T23:50:30+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-qa-pg-alt-small-batch-scoring-smoke-loop771",
-  "next_atomic_action": "REAL_QA_PG_ALT_SMALL_BATCH_SCORING_SMOKE_LOOP771：在不创建替代 Docker/DB/端口、不读取/打印 secret 的前提下，验证 approved qa-pg-alt runtime 是否可用于受控小批评分 smoke；只允许通过显式 DSN/runtime 检查与注入 writer 路径证明 factor_value_daily 写入可达，若 runtime 不可用则记录真实阻塞并保持 no substitute runtime。",
-  "next_after": "After real qa-pg-alt small-batch scoring smoke proof, continue to real backtest execution bridge and trajectory feedback persistence before final human acceptance.",
+  "current_slice": "real-scoring-quality-metrics-derivation-loop772",
+  "next_atomic_action": "REAL_SCORING_QUALITY_METRICS_DERIVATION_LOOP772：从真实 factor_value_daily 与行情收益序列派生 IC/RankIC/coverage 等质量指标，接入 ScoringResultReadModelV1 / ProvisionalAcceptedPoolAdmissionV1；不得使用 seeded/demo score events 冒充真实评分，缺少可比收益窗口时必须 hold/解释。",
+  "next_after": "After real scoring quality metrics derivation, continue to provisional accepted real metrics admission, then real backtest execution bridge and trajectory feedback persistence before final human acceptance.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-786-scoring-execution-result-to-provisional-pool-loop770",
+  "last_tick": "SYNC-787-real-qa-pg-alt-small-batch-scoring-smoke-loop771",
   "last_sync_sources": [
+    "SYNC-787 Real qa-pg-alt small-batch scoring smoke loop771",
+    "loop771 implementation: added RealQaPgAltSmallBatchScoringSmokeV1 and EngineSmokeDbOps split helper; smoke inserts a dedicated smoke factor/version, calls official qa.factors.compute.compute_factor_values writer, counts factor_value_daily rows, and cleans smoke rows",
+    "loop771 runtime proof: started existing Docker Desktop and existing qa-pg-alt container 7b7346a0cdfc only; no docker run/create; qa-pg-alt published 127.0.0.1:55432; configured host.docker.internal path failed but same-container published host succeeded",
+    "loop771 smoke result: prod/test DSN present booleans true; dsn collision guard true; schema reachable; sample_day_count 3; rows_written 3; rows_after_writer 3; cleanup factor_value/version/def 3/1/1; post_cleanup all zero",
+    "loop771 verification: RED missing smoke module; focused/regression 28 passed; targeted Ruff pass; compileall passed; pure LOC smoke 178/db helper 126/test 132",
+    "loop771 workers: permanent Planner, Dispatcher, and Test Engineer returned read-only reports; no duplicate worker created",
+    "next: REAL_SCORING_QUALITY_METRICS_DERIVATION_LOOP772",
     "SYNC-786 Scoring execution result to provisional pool loop770",
     "loop770 implementation: added ScoringExecutionResultAdapterV1; executor rows_written maps to factor_values_written_awaiting_quality_metrics unless explicit quality_score_events provide IC/RankIC/coverage",
     "loop770 provisional pool: rows_written-only candidates are held awaiting quality metrics; explicit passing metrics can enter provisional_ready; executor failed refs preserve user-readable permanent failure reasons",
@@ -165,7 +172,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-786 loop770 complete: executor rows/failures now map to scoring read-model/provisional pool without fake metrics; next loop771 proves real qa-pg-alt small-batch scoring smoke or records true runtime blocker.",
+  "last_completed_note": "SYNC-787 loop771 complete: existing qa-pg-alt official writer smoke wrote and cleaned 3 factor_value_daily rows; next loop772 derives real IC/RankIC/coverage metrics from factor_value_daily.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",

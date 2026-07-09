@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-09T23:49:30+08:00
+updated_at: 2026-07-09T23:50:30+08:00
+
+## Latest Handoff — SYNC-787 Real qa-pg-alt small-batch scoring smoke loop771
+
+- [DONE] Added `RealQaPgAltSmallBatchScoringSmokeV1` plus `factor_construction_real_qapgalt_scoring_smoke_db.py` helper split.
+- [DONE] Started existing Docker Desktop and existing `qa-pg-alt` container only; no substitute container/DB/port was created.
+- [VERIFY] Existing `qa-pg-alt` container `7b7346a0cdfc` published `127.0.0.1:55432->5432`; configured `host.docker.internal:55432` path failed, same-container published host succeeded.
+- [VERIFY] Real smoke used official `qa.factors.compute.compute_factor_values`; rows_written=3, factor_value_rows_after_writer=3, cleanup factor_value/version/def=3/1/1, post_cleanup=0.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned read-only loop771 reports; no duplicate worker created.
+- [VERIFY] RED missing smoke module; focused/regression **28 passed**; targeted Ruff pass; compileall pass.
+- [NEXT] `REAL_SCORING_QUALITY_METRICS_DERIVATION_LOOP772`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not use seeded/demo score events as real IC/RankIC; do not create substitute DB/container/service/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-786 Scoring execution result to provisional pool loop770
 
