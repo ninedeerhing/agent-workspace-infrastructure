@@ -138,3 +138,23 @@ report:
     performance_note: "Acceptance matrix was reflected in focused RED/GREEN tests."
   blockers: []
   next: "Design loop388 review packet tests before implementation."
+
+## loop775 Report — 2026-07-09T23:54:27+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "PROVISIONAL_ADMISSION_STORE_WRITE_LOOP775 TDD/verification matrix"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Test Engineer required approved-store-only, refs-required, per-record failure preservation, no final accepted write, no backtest queue write, and side effects limited to provisional admission store write."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "The largest regression risk is accidentally expanding provisional store write into downstream final accepted or backtest queue write."
+      - "Per-record failure preservation is required for retry and audit integrity."
+    performance_note: "Acceptance matrix was reflected in focused RED/GREEN and regression tests."
+  blockers: []
+  next: "Concrete qa-pg-alt adapter tests should preserve approved-store-only and no-final/backtest boundaries."

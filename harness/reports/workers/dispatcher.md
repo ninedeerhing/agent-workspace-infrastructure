@@ -797,3 +797,24 @@ report:
     performance_note: "No duplicate same-role worker created."
   blockers: []
   next: "Dispatcher loop388 after Planner produces loop_plan."
+
+## loop775 Report — 2026-07-09T23:54:20+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "PROVISIONAL_ADMISSION_STORE_WRITE_LOOP775 assignment matrix"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Dispatcher approved current-thread bounded TDD for the narrow store-write slice, kept Test Engineer read-only, and explicitly blocked duplicate worker creation."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Loop775 must remain bounded to provisional admission store-write semantics and not drift into final acceptance or broader execution behavior."
+      - "Shared source, test, and truth-source files require single-writer discipline."
+    performance_note: "Permanent Dispatcher thread reachable and produced usable loop775 assignment matrix."
+  blockers:
+    - "Do not create duplicate Executor, Test Engineer, Code Reviewer, or Verifier workers for this slice."
+  next: "Current thread implements bounded TDD; next loop binds concrete qa-pg-alt adapter."

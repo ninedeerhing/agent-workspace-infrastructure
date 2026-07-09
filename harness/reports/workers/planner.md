@@ -132,3 +132,24 @@ report:
     performance_note: "Permanent Planner thread reachable and produced usable loop_plan."
   blockers: []
   next: "FACTOR_REAL_PANEL_SCORING_REVIEW_PACKET_LOOP388"
+
+## loop775 Report — 2026-07-09T23:54:28+08:00
+
+report:
+  role_id: "planner"
+  status: "success"
+  task: "PROVISIONAL_ADMISSION_STORE_WRITE_LOOP775 loop_plan"
+  changes: []
+  verification:
+    - command: "codex_app.read_thread"
+      result: "Planner required approved provisional store, idempotency/audit/rollback refs, per-record results, no final accepted write, and no backtest queue write."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Provisional store write must stay separate from final accepted and backtest queue behavior."
+      - "Per-record failure reason preservation is part of the core contract, not optional diagnostics."
+    performance_note: "Permanent Planner thread reachable and produced usable loop775 plan."
+  blockers:
+    - "Concrete approved store identity and record schema must stay stable before binding a DB adapter."
+  next: "PROVISIONAL_ADMISSION_ARTIFACT_STORE_ADAPTER_LOOP776"

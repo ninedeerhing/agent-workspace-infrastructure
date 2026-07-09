@@ -1,8 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-09T23:53:30+08:00
+updated_at: 2026-07-09T23:56:49+08:00
 
-## Latest Handoff — SYNC-790 Persisted provisional admission loop774
+## Latest Handoff — SYNC-791 Provisional admission store write loop775
+
+- [DONE] Added `ProvisionalAdmissionStoreWriteResultV1`, `ProvisionalAdmissionRecordWriteResultV1`, and `InMemoryProvisionalAdmissionStore`.
+- [DONE] Persistable provisional admission records can be written through an approved store abstraction only when approved store ref, idempotency ref, audit ref, and rollback ref are present.
+- [DONE] Per-record failures are preserved; successful records still write, failed records report a user-readable reason.
+- [DONE] Final accepted and backtest queue writes remain false/not granted; concrete qa-pg-alt persistence is still the next loop.
+- [VERIFY] RED missing provisional admission store write module; focused/regression **28 passed**; targeted Ruff pass; compileall pass.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned read-only loop775 reports; no duplicate worker created.
+- [NEXT] `PROVISIONAL_ADMISSION_ARTIFACT_STORE_ADAPTER_LOOP776`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not create a new DB/table/container/port; do not write final accepted/backtest queue; do not read/print `.env` or secrets.
+
+## Previous Handoff — SYNC-790 Persisted provisional admission loop774
 
 - [DONE] Added `PersistedProvisionalAdmissionV1` and `PersistableProvisionalAdmissionRecordV1`.
 - [DONE] DB-derived scored metrics passing thresholds become `provisional_ready`; hold/blocked/no metrics become `held`; low metrics become `rejected`.
