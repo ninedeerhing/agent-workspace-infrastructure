@@ -1,8 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-09T23:41:20+08:00
+updated_at: 2026-07-09T23:20:30+08:00
 
-## Latest Handoff — SYNC-784 Real scoring execution bridge loop768
+## Latest Handoff — SYNC-785 Small batch real scoring executor loop769
+
+- [DONE] Added `SmallBatchRealScoringExecutorV1`, `FactorScoringExecutionItemV1`, and `run_small_batch_real_scoring_executor_v1`.
+- [DONE] Executor explicitly receives ready bridge, DSN, official writer ref, injected writer, and candidate execution items; it calls the `qa.factors.compute.compute_factor_values` compatible writer per candidate.
+- [DONE] Single-candidate `ValueError` failure is isolated as permanent failure; remaining candidates continue and result payload reports rows_written, successful refs, failed refs, and failure reasons.
+- [DONE] No substitute Docker/DB/port path was added; no env read; no accepted-pool write; no backtest queue/write.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned read-only loop769 reports; no duplicate worker created.
+- [VERIFY] RED missing executor module; focused/regression **21 passed**; targeted Ruff pass; compileall pass.
+- [NEXT] `SCORING_EXECUTION_RESULT_TO_PROVISIONAL_POOL_LOOP770`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not fabricate IC/RankIC from rows_written; do not create substitute DB/container/service/port; do not use default runner; do not read/print `.env` or secrets.
+
+## Previous Handoff — SYNC-784 Real scoring execution bridge loop768
 
 - [DONE] Added `RealScoringExecutionBridgeV1` and `build_real_scoring_execution_bridge_v1`.
 - [DONE] Ready small-batch requests now bridge to the official `qa.factors.compute.compute_factor_values` / `factor_value_daily` writer contract with candidate refs, `qa-pg-alt` runtime, injected runner, idempotency key, rollback/audit ref, no-substitute runtime, default-runner fail-closed, and single-candidate failure isolation.
