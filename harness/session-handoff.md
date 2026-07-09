@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-10T01:05:00+08:00
+updated_at: 2026-07-10T01:35:00+08:00
+
+## Latest Handoff — SYNC-795 Trajectory feedback memory persistence loop779
+
+- [DONE] Added `TrajectoryFeedbackMemoryPersistenceV1`.
+- [DONE] Quality-gate, scoring, final-accepted, and backtest report outcomes can now become structured trajectory memory records.
+- [DONE] Persistence is controlled by UI authorization, official store ref, injected writer, idempotency ref, audit ref, and rollback ref.
+- [DONE] Blocked paths do not call the writer; writer failures are isolated per record.
+- [DONE] `CandidateTrajectoryMemoryRowV1` now carries expression text, and `build_trajectory_mutation_generator_from_feedback_memory_v1` feeds persisted success/failure paths into the next trajectory mutation round.
+- [VERIFY] RED missing feedback-memory generator bridge; focused regression **10 passed**; targeted Ruff pass; compileall pass; closure smoke `complete_ready_for_final_acceptance / can_request_human_acceptance=true / blocking_gap_ids=[]`.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned loop779 read-only reports; no duplicate worker created.
+- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_LOOP780`.
+- [STOP] Formal human review is now required; wait for the user to accept, reject, or request changes.
+- [FORBIDDEN] Do not continue business implementation before review result; do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-794 Controlled backtest execution bridge loop778
 

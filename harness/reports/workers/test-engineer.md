@@ -1,5 +1,24 @@
 # Worker Report — test-engineer
 
+## loop779 Report — 2026-07-10T01:04:59+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "success"
+  task: "loop779 trajectory feedback memory persistence TDD matrix"
+  changes: []
+  verification:
+    - command: "read-only test matrix"
+      result: "Covered event-to-memory persistence, next-round scheduler/generator consumption, missing data, unauthorized state, runner failure taxonomy, secret/DSN redaction, and no DB/Docker/runner side effects."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Memory tests must distinguish missing data, unauthorized state, runner failure, and quality rejection so the next scheduler learns the right signal."
+    performance_note: "Test matrix matched implemented unit coverage and closure audit."
+  blockers: []
+  next: "FORMAL_HUMAN_REVIEW_ENTRY_LOOP780"
+
 ## loop778 Report — 2026-07-10T01:03:22+08:00
 
 report:

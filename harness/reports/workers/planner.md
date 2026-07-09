@@ -1,5 +1,24 @@
 # Worker Report — planner
 
+## loop779 Report — 2026-07-10T01:05:37+08:00
+
+report:
+  role_id: "planner"
+  status: "success"
+  task: "loop779 trajectory feedback memory persistence plan"
+  changes: []
+  verification:
+    - command: "read-only planning"
+      result: "Required structured memory records from candidate lineage, quality gates, real scoring, provisional/final accepted evidence, and backtest reports; no fake seeded/demo success feedback."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Trajectory feedback memory must be queryable by generator family, source mode, success/failure taxonomy, and hold reason."
+    performance_note: "Planner report aligned with final implementation direction."
+  blockers: []
+  next: "FORMAL_HUMAN_REVIEW_ENTRY_LOOP780"
+
 ## loop778 Report — 2026-07-10T01:03:36+08:00
 
 report:

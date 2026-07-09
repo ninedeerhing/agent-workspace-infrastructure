@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-10T01:05:00+08:00",
+  "updated_at": "2026-07-10T01:35:00+08:00",
   "mode": "continuous_implementation_loop",
-  "stop_reason": "",
+  "stop_reason": "formal_human_acceptance_required",
   "current_tree": "TREE-6",
-  "current_slice": "trajectory-feedback-memory-persistence-loop779",
-  "next_atomic_action": "TRAJECTORY_FEEDBACK_MEMORY_PERSISTENCE_LOOP779：把因子生成、质量闸、真实评分、provisional/final accepted 与受控回测执行结果写入可复用 trajectory feedback memory；下一轮生成必须可读取成功/失败路径。",
-  "next_after": "After trajectory feedback persistence, rerun closure audit and enter formal human review only if can_request_human_acceptance=true.",
+  "current_slice": "formal-human-review-entry-loop780",
+  "next_atomic_action": "FORMAL_HUMAN_REVIEW_ENTRY_LOOP780：正式人工审核 Raindeer 因子构造宇宙真实可用链路；用户从平台 UI 验证分类/想法入口、ConstructionSpec、因子构造宇宙、质量闸、真实评分/accepted、受控回测、报告与反馈记忆。",
+  "next_after": "Wait for formal human review result: accept, reject, or request changes.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-794-controlled-backtest-execution-bridge-loop778",
+  "last_tick": "SYNC-795-trajectory-feedback-memory-persistence-loop779",
   "last_sync_sources": [
+    "SYNC-795 Trajectory feedback memory persistence loop779",
+    "loop779 implementation: added TrajectoryFeedbackMemoryPersistenceV1 to persist quality/scoring/final-accepted/backtest outcomes through an injected official memory writer",
+    "loop779 next-round learning: trajectory read-model rows now include expression, and build_trajectory_mutation_generator_from_feedback_memory_v1 feeds persisted success/failure paths back into TrajectoryMutationGeneratorV1",
+    "loop779 safety: UI authorization, official store ref, writer, idempotency/audit/rollback refs are required; blocked paths do not call writer; no DB/Docker/scorer/backtest/secret output",
+    "loop779 audit: closure audit now returns complete_ready_for_final_acceptance, can_request_human_acceptance=true, blocking_gap_ids=[]",
+    "loop779 verification: RED missing feedback-memory generator bridge; focused regression 10 passed, targeted Ruff pass, compileall passed, closure smoke complete_ready_for_final_acceptance",
+    "loop779 workers: permanent Planner, Dispatcher, and Test Engineer returned read-only reports; no duplicate worker created",
+    "next: FORMAL_HUMAN_REVIEW_ENTRY_LOOP780",
     "SYNC-794 Controlled backtest execution bridge loop778",
     "loop778 implementation: added ControlledBacktestExecutionBridgeV1 to turn UI-confirmed artifact-backed final refs into injected qa.backtest.engine.run_backtest requests",
     "loop778 safety: explicit UI authorization, qa_pg_alt_ready runtime, official injected non-default runner, DSN/user presence, idempotency, and rollback audit refs are required; no substitute Docker/DB/port/default runner",
@@ -221,7 +229,7 @@
     "master_plan_ref": "apps/quant_assistant/docs/ENGINEERING/2026-06-19-ai-quant-platform-implementation-master-plan.md",
     "note": "loop364 completed Formal human queue-write permission review handoff. formal_human_queue_write_permission_review_handoff_packet_v1 now derives a passive/read-only/not-granted formal human review handoff packet from loop363 final human permission archive confirmation review, carrying ready_for_formal_human_review, candidate refs, provenance, no-execution safety flags, and explicit not-granted approval/authorization/execution fields across MiningJob observability, Factor Library, and Chat. Verifier confirmed this reaches the formal human review stage only; stop_reason is FORMAL_HUMAN_REVIEW_REQUIRED_LOOP364 until the user explicitly accepts, rejects, or requests changes."
   },
-  "last_completed_note": "SYNC-794 loop778 complete: UI-confirmed artifact-backed final refs now feed a controlled injected-runner backtest execution bridge; next loop779 persists trajectory feedback memory.",
+  "last_completed_note": "SYNC-795 loop779 complete: trajectory feedback memory persistence is implemented and closure audit is ready for formal human review.",
   "orchestrator_final_guard": {
     "policy": "final_response_allowed_only_when_stop_whitelist_hit",
     "status": "active",

@@ -1,5 +1,24 @@
 # Worker Report — dispatcher
 
+## loop779 Report — 2026-07-10T01:04:53+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "loop779 trajectory feedback memory persistence boundary review"
+  changes: []
+  verification:
+    - command: "read-only dispatch boundary"
+      result: "Recommended single-writer implementation in existing trajectory/construction model layer; Test Engineer/read-only reviewers only; no duplicate memory subsystem."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Trajectory feedback persistence should extend existing trajectory mutation/read-model concepts, not create a second memory representation."
+    performance_note: "Dispatcher boundary was usable and avoided duplicate worker ownership."
+  blockers: []
+  next: "FORMAL_HUMAN_REVIEW_ENTRY_LOOP780"
+
 ## loop778 Report — 2026-07-10T01:03:39+08:00
 
 report:
