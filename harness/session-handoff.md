@@ -1,8 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-10T00:18:00+08:00
+updated_at: 2026-07-10T00:31:00+08:00
 
-## Latest Handoff — SYNC-792 Provisional admission artifact store adapter loop776
+## Latest Handoff — SYNC-793 Final accepted artifact confirmation loop777
+
+- [DONE] Added `FinalAcceptedFromArtifactProvisionalEvidenceV1` and `ArtifactBackedProvisionalEvidenceV1`.
+- [DONE] Artifact-backed provisional evidence can become UI-confirmed final refs only when source is `artifact_registry.factor_evaluation_snapshot`, decision is `provisional_ready`, lifecycle is `shortlisted`, and `confirmation_ref` is present.
+- [DONE] Default state is awaiting user confirmation; mixed per-record results are preserved.
+- [DONE] Confirmed refs are read-model outputs only: no DB write, no promote, no final accepted store write, no backtest queue.
+- [VERIFY] RED missing artifact confirmation module; focused/regression **12 passed**; targeted Ruff pass; compileall pass.
+- [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned read-only loop777 reports; no duplicate worker created.
+- [NEXT] `REAL_BACKTEST_EXECUTION_BRIDGE_LOOP778`.
+- [FORBIDDEN] Do not request final human acceptance yet; do not write accepted pool/backtest queue; do not create substitute DB/container/port; do not read/print `.env` or secrets.
+
+## Previous Handoff — SYNC-792 Provisional admission artifact store adapter loop776
 
 - [DONE] Added `QaPgAltArtifactProvisionalAdmissionStore`.
 - [DONE] Approved provisional admission records now bind to existing `artifact_registry.factor_evaluation_snapshot`.

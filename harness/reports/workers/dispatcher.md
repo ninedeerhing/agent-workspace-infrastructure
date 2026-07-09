@@ -1,5 +1,24 @@
 # Worker Report — dispatcher
 
+## loop777 Report — 2026-07-10T00:09:48+08:00
+
+report:
+  role_id: "dispatcher"
+  status: "success"
+  task: "loop777 final accepted from artifact provisional evidence assignment matrix"
+  changes: []
+  verification:
+    - command: "codex_app.send_message_to_thread/read_thread"
+      result: "Dispatcher assigned current-thread bounded TDD, Test Engineer read-only review, narrow quant_mining/tests write scope, and no duplicate workers."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Final-accepted evidence loop must not drift into persistence or execution."
+    performance_note: "Permanent Dispatcher thread produced usable loop777 assignment matrix."
+  blockers: []
+  next: "Keep fixed worker chain for loop778 real backtest execution bridge."
+
 ## loop776 Report — 2026-07-10T00:00:58+08:00
 
 report:
