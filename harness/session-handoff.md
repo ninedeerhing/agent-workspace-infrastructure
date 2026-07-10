@@ -1,6 +1,21 @@
 # Session Handoff
 
-updated_at: 2026-07-10T22:35:00+08:00
+updated_at: 2026-07-10T23:18:00+08:00
+
+## Latest Handoff — SYNC-812 Factor-universe consumer flow single-active repair
+
+- [DONE] Addressed user human-review feedback that the factor universe flow felt scattered, had too many task cards, and did not clearly tell the user where to click next.
+- [DONE] `/quant/factor-mining` no longer auto-redirects after creating a small-batch scoring confirmation task.
+- [DONE] The same page now shows “当前唯一任务”, the job id, links to open the current task and factor-library recap, and disables duplicate task creation.
+- [DONE] `confirm_mining_job` now reuses the newest active `queued/running/awaiting_review/partial` mining job with `single_active_job_guard` instead of creating duplicate active jobs.
+- [DONE] `/quant/jobs` dedupes mining jobs by `job_id`, chooses one primary job from query `job_id` or newest job, and folds other history jobs into a compact details block.
+- [VERIFY] Focused tests: `test_factor_universe_consumer_flow_source_unit.py` + two confirm API tests -> 4 passed.
+- [VERIFY] Frontend: `npm.cmd run build` -> pass.
+- [VERIFY] Runtime smoke: API restarted on original 8350 only; two real confirm calls reused `mj_53a0cdd38ad9`, `reused_active_job=true`, `same_job=true`.
+- [VERIFY] Services: frontend 5173 and API 8350 healthy; no substitute Docker/DB/port created.
+- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_LOOP798`: user re-checks `/quant/factor-mining` single-page flow, `/quant/jobs` one-primary-task view, and `/quant/factor-library` report/feedback/memory separation.
+- [STOP] `formal_human_acceptance_required` remains active; do not start a new implementation loop until user accepts, rejects, or requests changes.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
 
 ## Latest Handoff — SYNC-811 Factor-universe product self-validation final gate
 

@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-10T22:35:00+08:00
+Updated: 2026-07-10T23:18:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop796 | formal_human_review_required | gpt-5.5 | 2026-07-10T22:35:00+08:00 | SYNC-811 product self-validation final gate passed; next FORMAL_HUMAN_REVIEW_ENTRY_LOOP797 | stop until user accepts/rejects/requests changes |
+| orchestrator | current-thread | loop797 | formal_human_review_required | gpt-5.5 | 2026-07-10T23:18:00+08:00 | SYNC-812 consumer flow single-active repair completed; next FORMAL_HUMAN_REVIEW_ENTRY_LOOP798 | stop until user accepts/rejects/requests changes |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-10T23:18:00+08:00 · loop797/SYNC-812: User human-review feedback repair completed. FactorMining no longer auto-redirects after task creation and shows 当前唯一任务; confirm_mining_job reuses existing active jobs; Jobs page dedupes and shows one primary mining task with history folded. Verification: focused tests 4 passed, web build pass, live API smoke reused `mj_53a0cdd38ad9` twice. Cross-dialogue worker send tool was unavailable in this turn, so no worker report was fabricated; local verification is authoritative. Next: FORMAL_HUMAN_REVIEW_ENTRY_LOOP798.
 - 2026-07-10T22:35:00+08:00 · loop796/SYNC-811: Product self-validation final gate passed and `formal_human_acceptance_required` is active. Fixed misleading `ready_for_backtest` state when controlled real backtest is blocked; added product gate hard blocker; Factor Library report surface and Jobs copy updated. Live API/browser gate passed with no secret/substitute runtime evidence. Maxwell/code-reviewer report absorbed. Next: FORMAL_HUMAN_REVIEW_ENTRY_LOOP797.
 - 2026-07-10T22:15:00+08:00 · loop795/SYNC-810: Real-backtest feedback product/report consolidation completed. Factor Library API/UI now expose `real_backtest_feedback_trajectory_summary_v1`; report surface can pass it through read-only. Product proof: feedback_count=4/watchlist_count=4/failure_path_count=0/success_path_count=0/write_status=write_not_allowed/payload_contains_dsn=False; Playwright showed 真实回测复盘记忆. Halley/test-engineer report absorbed. Next: FACTOR_UNIVERSE_PRODUCT_SELF_VALIDATION_FINAL_GATE_LOOP796.
 - 2026-07-10T21:55:00+08:00 · loop794/SYNC-809: Trajectory real-backtest feedback memory adapter added. Controlled real-backtest feedback now maps into trajectory semantics as watchlist/failure_path/success_path only with proper metrics, report readiness, factor-library readiness, and promising verdict evidence; safe-simulation-shaped feedback is ignored. Halley/test-engineer report absorbed. Next: REAL_BACKTEST_FEEDBACK_PRODUCT_REPORT_CONSOLIDATION_LOOP795.
