@@ -1,8 +1,229 @@
 # Session Handoff
 
-updated_at: 2026-07-10T01:35:00+08:00
+updated_at: 2026-07-10T22:35:00+08:00
 
-## Latest Handoff — SYNC-795 Trajectory feedback memory persistence loop779
+## Latest Handoff — SYNC-811 Factor-universe product self-validation final gate
+
+- [DONE] Product-level final self-validation passed for the Factor Construction Universe.
+- [DONE] Fixed misleading status semantics: when `controlled_backtest_progress_report.status=blocked`, API now reports `acceptance_status=real_backtest_blocked` instead of legacy `ready_for_backtest` / `screening_ready`.
+- [DONE] Hardened `product_self_validation_gate_v1` with `misleading_ready_for_backtest_with_blocked_real_backtest`.
+- [DONE] Factor Library now shows “模拟结果与真实回测反馈分开展示”, “真实回测报告面”, and “真实回测复盘记忆”.
+- [DONE] Jobs copy now says “安全模拟结果已生成（非真实回测）”.
+- [VERIFY] RED blocked-real-backtest status test and misleading-ready product-gate test failed before implementation; both passed after fix.
+- [VERIFY] Focused regression 11 passed; expanded related 81 passed; Ruff pass; `npm.cmd run build` pass.
+- [VERIFY] Product API: existing `qa-pg-alt 7b7346a0cdfc` remained at `127.0.0.1:55432`; API restarted on same 8350 with `qa.api.app:app`; mining-jobs returned `acceptance_status=real_backtest_blocked / progress_report_status=blocked / has_secret=false`.
+- [VERIFY] Browser: `/quant/factor-mining` click “开始生成” showed candidate preview, construction visualization, Top50, recap; `/quant/factor-library` showed real feedback, trajectory memory, report surface, watchlist, safe simulation separation; `/quant/jobs` showed real-backtest blocked state.
+- [VERIFY] Product gate live evidence returned `status=pass`, `blocking_gap_ids=[]`, `can_request_human_acceptance=true`, side effects all false.
+- [WORKER] Maxwell/code-reviewer read-only review identified the blocked/ready status bug and UI copy risks; all findings addressed.
+- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_LOOP797`: wait for user formal human review accept/reject/request-changes.
+- [STOP] `formal_human_acceptance_required` is active; do not start a new implementation loop until the user gives review result.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
+
+## Latest Handoff — SYNC-810 Real-backtest feedback product/report consolidation
+
+- [DONE] Added `real_backtest_feedback_trajectory_summary_v1` product summary.
+- [DONE] `/api/v1/quant/factor-library` returns `real_backtest_feedback_trajectory_summary` alongside `real_backtest_feedbacks` and `simulation_reviews`.
+- [DONE] `/quant/factor-library` renders “真实回测复盘记忆” with feedback/watchlist/failure/success counts and `write_not_allowed`.
+- [DONE] `factor_library_report_surface_v1` can carry the summary as a read-only passthrough field.
+- [VERIFY] RED: missing summary/API/UI/report-surface fields failed before implementation.
+- [VERIFY] Focused: adapter 6 passed; factor-library API 3 passed; page source real-backtest tests 2 passed.
+- [VERIFY] Regression: combined backend/page/report set 97 passed; Ruff pass; `npm.cmd run build` pass.
+- [VERIFY] Product API: existing `qa-pg-alt 7b7346a0cdfc` remained at `127.0.0.1:55432`; API restarted on same 8350 port with `PYTHONPATH=src`; factor-library returned feedback_count=4/watchlist_count=4/failure_path_count=0/success_path_count=0/write_status=write_not_allowed/payload_contains_dsn=False.
+- [VERIFY] Browser: Playwright `/quant/factor-library` showed “真实回测复盘记忆”, “反馈 4”, “观察 4”, “失败路径 0”, “成功路径 0”; console only favicon 404 and React Router future warnings.
+- [WORKER] Halley/test-engineer read-only review recommended pure summary read-model and report surface passthrough; both applied.
+- [NEXT] `FACTOR_UNIVERSE_PRODUCT_SELF_VALIDATION_FINAL_GATE_LOOP796`: run product-level total self-validation before any formal human review.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
+
+## Latest Handoff — SYNC-809 Trajectory real-backtest feedback memory adapter
+
+- [DONE] Added `trajectory_real_backtest_feedback_memory_adapter_v1`.
+- [DONE] Real feedback status mapping is fail-closed: blocked -> watchlist, failed -> failure_path, completed without metrics -> watchlist, completed with metrics/report-ready/feedback-ready/promising verdict -> success_path.
+- [DONE] Adapter consumes only `feedback_kind=real_backtest_feedback_v1` and `feedback_source=controlled_real_backtest`; simulation-shaped feedback is ignored.
+- [VERIFY] RED: focused test initially failed with missing `qa.quant_mining.factor_trajectory_real_backtest_feedback_adapter`.
+- [VERIFY] Focused: `uv run pytest tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py -q` -> 6 passed.
+- [VERIFY] Trajectory regression: `uv run pytest tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py tests/test_factor_trajectory_feedback_memory_persistence_unit.py tests/test_factor_trajectory_memory_read_model_unit.py tests/test_factor_construction_trajectory_mutation_generator_unit.py -q` -> 13 passed.
+- [VERIFY] Boundary regression: `uv run pytest tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py tests/test_factor_library_insights_unit.py tests/test_mining_job_api_unit.py tests/test_controlled_backtest_progress_report_surface_unit.py tests/test_factor_trajectory_feedback_memory_persistence_unit.py -q` -> 83 passed.
+- [WORKER] Halley/test-engineer read-only review confirmed independent adapter, wrong-source rejection, and no success path without metrics/verdict evidence.
+- [NEXT] `REAL_BACKTEST_FEEDBACK_PRODUCT_REPORT_CONSOLIDATION_LOOP795`: surface the trajectory adapter summary in Factor Library/report review so users can see how feedback informs the next construction cycle.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
+
+## Previous Handoff — SYNC-808 Factor Library real-backtest feedback surface
+
+- [DONE] Added `real_backtest_feedback_v1` read-model through `qa.ui.factor_library_insights.list_real_backtest_feedbacks(...)`.
+- [DONE] `/api/v1/quant/factor-library` now returns `real_backtest_feedbacks` and `real_backtest_feedback_error` alongside `simulation_reviews`.
+- [DONE] `/quant/factor-library` renders a separate “真实回测反馈” section before “安全模拟结果复核”.
+- [VERIFY] RED: real-backtest feedback focused tests initially failed because the function/API/UI surface did not exist.
+- [VERIFY] Focused: `uv run pytest tests/test_factor_library_insights_unit.py tests/test_mining_job_api_unit.py tests/test_factor_library_page_source_unit.py -q -k 'real_backtest_feedback'` -> 3 passed.
+- [VERIFY] Regression: `uv run pytest tests/test_factor_library_insights_unit.py tests/test_mining_job_api_unit.py tests/test_factor_library_page_source_unit.py tests/test_controlled_backtest_progress_report_surface_unit.py -q` -> 83 passed.
+- [VERIFY] Frontend: `npm.cmd run build` -> pass.
+- [VERIFY] Product API self-validation: existing `qa-pg-alt 7b7346a0cdfc` remains at `127.0.0.1:55432`; API restarted on the same `8350` port only; real HTTP flow created `mj_d868723d69c0`; Factor Library API returned `feedback_source=controlled_real_backtest`, `feedback_status=blocked`, `feedback_blocking_reasons=缺少正式回测 runner`, `payload_contains_dsn_value=false`.
+- [VERIFY] Browser self-validation: Playwright opened `/quant/factor-library`, rendered “真实回测反馈” separately from “安全模拟结果复核”, and expanded a card showing `缺少正式回测 runner`, `ran_backtest=false`, `wrote_backtest_tables=false`, `created_substitute_db=false`, `created_substitute_docker=false`.
+- [WORKER] Maxwell read-only review confirmed this should be a parallel real-backtest feedback field and not a reuse of safe-simulation review or legacy report modules.
+- [NEXT] `TRAJECTORY_REAL_BACKTEST_FEEDBACK_MEMORY_LOOP794`: map real-backtest feedback into trajectory feedback/read-model memory without treating blocked or no-metrics completed states as success.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
+
+## Previous Handoff — SYNC-807 Backtest progress/result report surface
+
+- [DONE] Added `controlled_backtest_progress_report_surface_v1` from `controlled_real_backtest_execution_bridge_v1`.
+- [DONE] `build_mining_job_observability(...)` now exposes `controlled_backtest_progress_report` for every mining job.
+- [DONE] `/quant/jobs` renders a real-backtest status card with headline, summary, `run_ids`, friendly blockers, sanitized failure summary, and next step.
+- [VERIFY] RED: focused test initially failed with missing `qa.quant_mining.controlled_backtest_progress_report_surface`.
+- [VERIFY] Backend: `uv run pytest tests/test_controlled_backtest_progress_report_surface_unit.py tests/test_mining_job_api_unit.py tests/test_factor_construction_controlled_backtest_execution_bridge_unit.py tests/test_small_batch_scoring_result_unit.py -q` -> 67 passed.
+- [VERIFY] Frontend: `npm.cmd run build` -> pass.
+- [VERIFY] Product API self-validation: stale API on 8350 was restarted on the same port only; default browser user created `mj_f466f614584b`; run -> confirm accepted -> confirm plan -> confirm execution check -> controlled real execution; final `report_status=blocked`, `report_headline=真实回测还不能开始`, `blocking_reasons=缺少正式回测 runner`, `bridge_ran_backtest=false`, `bridge_wrote_backtest_tables=false`, `payload_contains_dsn_value=false`.
+- [VERIFY] Runtime: existing `qa-pg-alt 7b7346a0cdfc` remains the DB runtime at `127.0.0.1:55432`; no substitute Docker/DB/port created.
+- [WORKER] Halley read-only report confirmed Jobs lacked real bridge status and warned Factor Library must not reuse safe-simulation review semantics.
+- [NEXT] `FACTOR_LIBRARY_REAL_BACKTEST_FEEDBACK_SURFACE_LOOP793`: surface real-backtest feedback in Factor Library/report/trajectory feedback, separated from safe-simulation review.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
+
+## Previous Handoff — SYNC-806 Controlled real backtest execution bridge
+
+- [DONE] Added `controlled_real_backtest_execution_bridge_v1` adapter/read-model and independent action `run_controlled_real_backtest_execution`.
+- [DONE] Added `POST /api/v1/quant/mining-jobs/{job_id}/controlled-real-backtest-execution`; default runner resolver returns `None`, so product fails closed until an official injected runner is provided.
+- [DONE] Hardened `ControlledBacktestExecutionBridgeV1` with required `execution_audit_ref` and fixed runner exception message `runner_failed_redacted`.
+- [DONE] `/quant/jobs` now labels the next step as “开始真实回测” with copy explaining missing runtime/runner/audit material will stop with a reason.
+- [VERIFY] Focused backend: `uv run pytest tests/test_mining_job_api_unit.py tests/test_factor_construction_controlled_backtest_execution_bridge_unit.py tests/test_small_batch_scoring_result_unit.py -q` -> 64 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [VERIFY] Product API self-validation: default browser user created `mj_f4d913d28598`; run -> confirm accepted -> confirm controlled plan -> confirm execution check -> controlled real execution; final `bridge_status=blocked`, `bridge_blockers=injected_backtest_runner_missing`, `audit_ref_present=true`, `dsn_redacted=true`, `ran_backtest=false`, `wrote_backtest_tables=false`, `queued_job=false`, `payload_contains_dsn=false`.
+- [VERIFY] Injected-runner unit path: route-level unit test completed `run_ids=["bt_fe_one"]` and did not call the safe-simulation trigger path.
+- [WORKER] Maxwell read-only review found direct-runner/secret/audit risks; exception redaction and execution-audit gate were fixed, and the new route stays independent from `/auto-backtest-actions/.../trigger`.
+- [NEXT] `BACKTEST_PROGRESS_AND_RESULT_REPORT_SURFACE_LOOP792`: surface bridge completed/failed/blocked status, run ids, failure summaries, report entry, and factor-library feedback state.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
+
+## Latest Handoff — SYNC-805 Controlled backtest execution confirmation surface
+
+- [DONE] Added `controlled_backtest_execution_confirmation_v1` read-model from `controlled_backtest_plan_confirmation_v1.status=plan_ready`.
+- [DONE] Added explicit action `confirm_controlled_backtest_execution`; it appears only after final accepted refs and controlled backtest plan refs are confirmed, while execution is still `not_started`.
+- [DONE] Added `POST /api/v1/quant/mining-jobs/{job_id}/controlled-backtest-execution`; it requires explicit click gate and records execution-confirmation-only state in the same mining job result.
+- [DONE] `/quant/jobs` now shows waiting/confirmed real-execution-check status and states that page load still cannot run backtests or write queues.
+- [VERIFY] Focused backend: `uv run pytest tests/test_mining_job_api_unit.py tests/test_small_batch_scoring_result_unit.py -q` -> 55 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [VERIFY] Product API self-validation: default browser user created `mj_0a120d1b9510`; run -> confirm accepted -> confirm controlled plan -> confirm execution check; final `execution_confirmation_ready`, `plan_count=20`, `will_run_backtest=false`, `will_write_queue=false`, `has_auto_backtest_execution=false`.
+- [VERIFY] Browser smoke: Chrome DOM for `/quant/jobs?source=factor_universe_job&job_id=mj_0a120d1b9510` contains “已确认进入真实回测执行前检查”, “系统仍不会因为打开页面而执行回测”, and “下一步会检查正确数据库、runner 和审计材料”.
+- [WORKER] Maxwell read-only risk review confirmed the loop790 direction: do not reuse `run_auto_backtest` or default runner paths; keep execution confirmation independent from actual execution.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_EXECUTION_BRIDGE_LOOP791`: wire the controlled real backtest execution bridge behind execution-confirmation-ready, correct qa-pg-alt runtime, explicit UI authorization, non-default injected runner, idempotency/audit/rollback refs, and no substitute DB/Docker/port.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
+
+## Latest Handoff — SYNC-804 Controlled backtest plan confirmation surface
+
+- [DONE] Added `controlled_backtest_plan_confirmation_v1` read-model from `final_accepted_pool_confirmation_v1.final_accepted_refs`.
+- [DONE] Added explicit action `confirm_controlled_backtest_plan`; it appears only after accepted refs are confirmed and execution is still `not_started`.
+- [DONE] Added `POST /api/v1/quant/mining-jobs/{job_id}/controlled-backtest-plan`; it requires explicit click gate and records plan-only drafts in the same mining job result.
+- [DONE] `/quant/jobs` now shows waiting/generated backtest plan status and states that real backtest still needs a later separate confirmation.
+- [VERIFY] Focused backend: `uv run pytest tests/test_small_batch_scoring_result_unit.py tests/test_mining_job_api_unit.py -q` -> 53 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [VERIFY] Product API self-validation: default browser user created `mj_6cb7fe2478a7`; run -> confirm accepted -> confirm controlled plan; final `plan_ready`, `plan_count=20`, `will_run_backtest=false`, `will_write_queue=false`, `has_backtest_execution=false`.
+- [VERIFY] Browser smoke: Chrome headless DOM for `/quant/jobs?source=factor_universe_job&job_id=mj_6cb7fe2478a7` contains “已生成 20 个回测计划”, “真实回测仍需要下一步单独确认”, and “本批候选筛选结果”.
+- [WORKER] Halley read-only report confirmed the plan-only route should not reuse the runner trigger path and requested old ready-backtest action isolation; regression added.
+- [NEXT] `CONTROLLED_BACKTEST_EXECUTION_CONFIRMATION_LOOP790`: build explicit execution confirmation gate from plan_ready refs; correct qa-pg-alt runtime, non-default injected runner, idempotency/audit/rollback refs required; no page-load execution.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest without explicit UI authorization.
+
+## Latest Handoff — SYNC-803 Final accepted confirmation surface
+
+- [DONE] Added `final_accepted_pool_confirmation_v1` read-model derived from `small_batch_scoring_result_read_model_v1.provisional_accepted`.
+- [DONE] Added explicit action `confirm_final_accepted`; the trigger only appears for Top50 factor-universe jobs in `awaiting_review` with execution `not_started`, so it does not override existing safe-simulation or retry actions.
+- [DONE] Added `POST /api/v1/quant/mining-jobs/{job_id}/confirm-final-accepted`; it requires explicit click gate and records final accepted refs in the same mining job result only.
+- [DONE] `/quant/jobs` now shows waiting/confirmed accepted status and states that real backtest remains a separate next-step confirmation.
+- [VERIFY] Focused backend: `uv run pytest tests/test_small_batch_scoring_result_unit.py tests/test_mining_job_api_unit.py -q` -> 50 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [VERIFY] Product API self-validation: created `mj_b1385c478b70`; after generation action=`confirm_final_accepted`, target_count=20; confirm response `final_status=accepted_ready`, `final_count=20`, `will_write_db=false`, `will_trigger_backtest_plan=false`, `ran_backtest=false`, `wrote_accepted_pool=false`.
+- [VERIFY] Browser smoke: Chrome headless DOM for `/quant/jobs?source=factor_universe_job&job_id=mj_b1385c478b70` contains “本批候选筛选结果”, “已确认 20 个 accepted 候选”, “确认 accepted 只记录本任务状态”, and “真实回测仍会在下一步单独询问”.
+- [WORKER] Maxwell pre-fix read-only blockers match the intended fix path and are resolved by current repo state; Halley is assigned read-only next-loop planning for controlled backtest plan confirmation.
+- [NEXT] `CONTROLLED_BACKTEST_PLAN_CONFIRMATION_SURFACE_LOOP789`: build plan-only controlled auto-backtest request/confirmation surface from accepted refs; no auto execution.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest without explicit UI authorization.
+
+## Latest Handoff — SYNC-802 Small batch scoring result read-model
+
+- [DONE] Added `small_batch_scoring_result_read_model_v1` from `mining_job.result.batch_report`, exposing candidate totals, passed/rejected counts, top candidates, failure explanations, provisional accepted summary, and all-false side-effect flags.
+- [DONE] `/api/v1/quant/mining-jobs` now returns `observability.small_batch_scoring_result` for generated mining jobs.
+- [DONE] `/quant/jobs` now renders a consumer panel “本批候选筛选结果” with 候选总数 / 通过筛选 / 未通过或不可用 / 待确认入池, plus top candidate expressions and rejection reasons.
+- [VERIFY] Focused backend: `uv run pytest tests/test_small_batch_scoring_result_unit.py tests/test_mining_job_api_unit.py tests/test_quant_mining_candidate_generator_unit.py -q` -> 51 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [VERIFY] Product API self-validation: created `mj_d3299d099a25`, explicit `run_mining_job` returned `status=awaiting_review`, `candidate_count=50`, `passed_count=38`, `rejected_count=14`, `provisional_count=20`, `top_count=5`, `failure_count=7`, `auto_run_backtest=false`, `wrote_factor_values=false`.
+- [VERIFY] Browser smoke: Chrome headless DOM for `/quant/jobs?source=factor_universe_job&job_id=mj_d3299d099a25` contains “本批候选筛选结果”, “provisional accepted”, “候选总数”, “通过筛选”, “待确认入池”.
+- [WORKER] Halley read-only review confirmed the same minimal path: keep results in the same `mining_job.result`, expose via observability, avoid substitute DB/runner/backtest; align next loop with existing formal scoring/provisional/accepted modules.
+- [NEXT] `FINAL_ACCEPTED_CONFIRMATION_SURFACE_LOOP788`: implement explicit user confirmation from provisional accepted to accepted state/read-model; do not auto-run backtest.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest without explicit UI authorization.
+
+## Latest Handoff — SYNC-801 Factor universe confirmed Top50 generation
+
+- [DONE] `/quant/jobs` now treats queued factor-universe jobs as candidate generation tasks, not safe-simulation tasks: the card says “可以生成这一批候选因子 / 生成候选 / 再次点击确认生成”.
+- [DONE] Added `run_mining_job` trigger surface and API route `POST /api/v1/quant/mining-jobs/{job_id}/run`; it requires explicit click gate and only writes mining job snapshots/results, not scorer/backtest output.
+- [DONE] Added internal candidate construction axes in `candidate_expression_axes.py`: window sweeps, field replacement, momentum/reversal, volatility, price-volume correlation, range position, transform and combination variants.
+- [DONE] Top-level A-E + 4/5 visible subclasses remain a clean user navigation layer; large-scale candidate volume now comes from internal generator/operator/window/field/transform/combination/lineage axes.
+- [VERIFY] RED: Top50 candidate generator test failed with 5 candidates; GREEN: same test passed with 50 unique static-check-valid expressions.
+- [VERIFY] `uv run pytest tests/test_quant_mining_candidate_generator_unit.py tests/test_mining_runner_unit.py tests/test_mining_job_api_unit.py -q` -> 58 passed.
+- [VERIFY] `npm run build` -> pass.
+- [VERIFY] Playwright product path `开始生成 -> 创建小批评分确认任务 -> 生成候选 -> 再次点击确认生成` created `mj_a1911fc7d5c0`; API readback `status=awaiting_review`, `batch_size=50`, `candidate_count=50`, `passed_count=38`, `rejected_candidates=1`.
+- [VERIFY] Docker check still points only to existing `qa-pg-alt 127.0.0.1:55432->5432/tcp`; no substitute DB/container/port.
+- [WORKER] Maxwell read-only report was based on pre-fix queued job behavior; its “no generation action” finding is now fixed, while its real scoring/provisional accepted warnings remain the next core gap.
+- [NEXT] `SMALL_BATCH_SCORING_RESULT_READ_MODEL_LOOP787`: expose scoring result/failure/provisional accepted read-model after Top50 generation; do not spend a loop on display-only cleanup.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest without explicit UI authorization.
+
+## Latest Handoff — SYNC-800 Factor universe preview to real queued job
+
+- [DONE] User dogfooding found a real product handoff break: `/quant/factor-mining` generated a good preview, but `/quant/jobs` still showed zero pending tasks.
+- [DONE] `web/src/api/client.ts` now exposes `postMiningJobConfirm()` for the existing durable mining-job confirmation API.
+- [DONE] `/quant/factor-mining` now creates a thread plus real queued `mining_job` from the Top 50 small-batch `MiningBrief`, then redirects to `/quant/jobs?source=factor_universe_job&job_id=...`.
+- [DONE] `/quant/jobs` now recognizes `source=factor_universe_job` and shows “小批评分确认任务已创建” plus the real task id instead of the old static “未写入任务” message.
+- [VERIFY] `npm run build` -> pass.
+- [VERIFY] Playwright with local Chrome: `开始生成 -> 创建小批评分确认任务` redirected to `/quant/jobs?source=factor_universe_job&job_id=mj_121205b4eed0` and the page displayed the expected task-created copy.
+- [VERIFY] API readback `/api/v1/quant/mining-jobs` found `mj_121205b4eed0`, `status=queued`, `batch_size=50`, `direction=B. 行情 / 价量 / 技术因子 Top 50 小批评分预览`.
+- [VERIFY] Post-split regression: `npm run build` pass; Playwright created `mj_48344fe0abfe`; API readback confirmed `status=queued` and `batch_size=50`.
+- [DONE] Split oversized factor mining page logic into `factorMiningBrief.ts`, `factorMiningReview.tsx`, and `FactorUniverseJobHandoffBanner.tsx`; `FactorMiningPage.tsx` now 171 pure LOC.
+- [NOTE] A-E + 4/5 user-visible subclasses are only first-level navigation. Large-scale construction must expand through internal generator/field/operator/window/data-source/transform/combination/lineage axes, then summarize for users.
+- [WORKER] Halley read-only sidecar confirmed the root cause and recommended a future draft endpoint; no overlapping worker writes.
+- [NEXT] `SMALL_BATCH_CONFIRMATION_EXECUTION_SURFACE_LOOP786`: make queued small-batch jobs consumer-confirmable and connect them to controlled scoring status/failure/provisional accepted flow.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest without explicit UI authorization.
+
+## Latest Handoff — SYNC-799 Product self-validation visualization repair
+
+- [DONE] User dogfooding found a real pre-review gap: the previous product self-validation proved clickable routes, but not batch construction visualization or reviewability.
+- [DONE] `/quant/factor-mining` now shows ConstructionSpec, A-E categories/subclasses, construction scale, generator methods, candidate expressions, sources, constructors, reasoning, quality gates, Top50/scoring/backtest flow, and batch review summary.
+- [DONE] Follow-up UX clarification: after clicking `开始生成`, the page now says the preview is generated, no background scoring/backtest task is running, and the next action is to confirm small-batch scoring from the progress page.
+- [DONE] `product_self_validation_gate_v1` now includes `construction_visualization_not_reviewable`; shallow consumer flow can no longer request human acceptance.
+- [VERIFY] `uv run pytest tests/test_factor_construction_product_self_validation_gate_unit.py -q` -> 3 passed; final related product gate/API/closure selector -> 8 passed.
+- [VERIFY] `npm run build` -> pass.
+- [VERIFY] Playwright construction visualization smoke `tmp/product-self-validation-reopen-2/report.json` -> pass, consumerWords and visualWords all true.
+- [VERIFY] Playwright multi-page smoke `tmp/product-self-validation-reopen-3/report.json` -> pass for `/quant/factor-mining`, `/quant/data-support`, `/quant/factor-library`, `/quant/jobs`, `/quant/backtests`; Data Support API 200; no visible UndefinedTable/read failure/wrong DB target.
+- [VERIFY] Playwright next-action clarification smoke `tmp/product-self-validation-followup-next-action/report.json` -> pass.
+- [VERIFY] `tmp/product-self-validation-reopen-3/product_self_validation_gate_v1.json` -> status pass, can_request_human_acceptance true, blocking_gap_ids empty.
+- [NEXT] `AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP785`; use SYNC-799 evidence, not the old SYNC-797/798 shallow evidence.
+- [STOP] Wait for user `accept` / `reject` / `request_changes`; do not continue implementation before user feedback.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not run optimizer/scorer/backtest or write DB/queue during review.
+
+## Latest Handoff — SYNC-798 Formal human review package
+
+- [DONE] Formal human review package created: `apps/quant_assistant/docs/ACCEPTANCE/2026-07-10-factor-construction-universe-human-review-package.md`.
+- [DONE] `loop-state.stop_reason=formal_human_acceptance_required`.
+- [NEXT] `AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP784`.
+- [STOP] Wait for user `accept` / `reject` / `request_changes`; do not continue implementation before user feedback.
+- [VERIFY] Package is based on SYNC-797 product dogfooding pass, focused tests 7 passed, targeted Ruff pass, frontend build pass, and `product_self_validation_gate_v1` pass.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not continue implementation until review feedback arrives.
+
+## Previous Handoff — SYNC-797 Product self-validation dogfooding pass
+
+- [DONE] Product-level dogfooding is now a hard gate before human acceptance.
+- [DONE] Baseline product blockers were repaired: factor mining stays in-platform instead of Chat prefill; API fail-open no longer exposes DB targets; Windows local API runtime normalizes the approved qa-pg-alt published host; frontend fetch has consumer-safe timeout/error handling; `/quant/jobs` and `/quant/backtests` route aliases are live.
+- [VERIFY] Focused tests `7 passed`; targeted Ruff pass; `npm run build` pass.
+- [VERIFY] Existing Docker container `qa-pg-alt` only; no new container/DB/port. API `127.0.0.1:8350` and Web `127.0.0.1:5273` used for product dogfooding.
+- [VERIFY] Playwright dogfooding `apps/quant_assistant/tmp/product-self-validation-loop783-final/report.json`: status `pass`, blocker_count `0`, hard_response_errors `0`; screenshots in the same directory.
+- [VERIFY] `product_self_validation_gate_v1.json`: status `pass`, can_request_human_acceptance `true`, blocking_gap_ids `[]`, next `FORMAL_HUMAN_REVIEW_PACKAGE_LOOP784`.
+- [NEXT] Superseded by `AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP784` after SYNC-798.
+- [STOP] At the formal human review package, ask the user to accept / reject / request changes.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not request human acceptance on code-level closure alone.
+
+## Previous Handoff — SYNC-796 Product self-validation gate planning sync
+
+- [DONE] Formal human review is no longer allowed from code-level closure alone.
+- [DONE] `apps/quant_assistant/docs/ENGINEERING/2026-07-04-factor-construction-universe-authoritative-plan.md` now requires product-level dogfooding before human acceptance.
+- [DONE] Added authoritative loops 780-784: product self-test baseline audit, product blocker repair, in-platform consumer E2E flow, product dogfooding regression, formal human review package.
+- [VERIFY] 2026-07-10 local browser/API smoke found product-level blockers: factor category click routes to Chat prefill; Factor Library/Data Support can remain loading or timeout; Backtest API can expose an incorrect DB target. Temporary services were stopped; no `.env` read; no substitute Docker/DB; no scorer/backtest execution.
+- [NEXT] Superseded by `FORMAL_HUMAN_REVIEW_PACKAGE_LOOP784` after SYNC-797.
+- [CONTINUE] Do not stop for formal review until `product_self_validation_gate_v1.can_request_human_acceptance=true`.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not request human acceptance on code-level closure alone.
+
+## Previous Handoff — SYNC-795 Trajectory feedback memory persistence loop779
 
 - [DONE] Added `TrajectoryFeedbackMemoryPersistenceV1`.
 - [DONE] Quality-gate, scoring, final-accepted, and backtest report outcomes can now become structured trajectory memory records.
@@ -11,9 +232,8 @@ updated_at: 2026-07-10T01:35:00+08:00
 - [DONE] `CandidateTrajectoryMemoryRowV1` now carries expression text, and `build_trajectory_mutation_generator_from_feedback_memory_v1` feeds persisted success/failure paths into the next trajectory mutation round.
 - [VERIFY] RED missing feedback-memory generator bridge; focused regression **10 passed**; targeted Ruff pass; compileall pass; closure smoke `complete_ready_for_final_acceptance / can_request_human_acceptance=true / blocking_gap_ids=[]`.
 - [WORKERS] Permanent Planner, Dispatcher, and Test Engineer returned loop779 read-only reports; no duplicate worker created.
-- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_LOOP780`.
-- [STOP] Formal human review is now required; wait for the user to accept, reject, or request changes.
-- [FORBIDDEN] Do not continue business implementation before review result; do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets.
+- [NEXT] Superseded by `PRODUCT_SELF_TEST_BASELINE_AUDIT_LOOP780`.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-794 Controlled backtest execution bridge loop778
 

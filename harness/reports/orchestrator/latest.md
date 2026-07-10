@@ -1,4 +1,374 @@
-# Orchestrator Latest Report — SYNC-795 Trajectory feedback memory persistence loop779
+# Orchestrator Latest Report — SYNC-811 Factor-universe product self-validation final gate loop796
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "FACTOR_UNIVERSE_PRODUCT_SELF_VALIDATION_FINAL_GATE_LOOP796"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
+      summary: "Makes controlled real-backtest progress status take precedence in acceptance_status, so blocked real backtests are not called ready."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_product_self_validation_gate.py"
+      summary: "Adds misleading_ready_for_backtest_with_blocked_real_backtest product gate."
+    - file: "apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx"
+      summary: "Adds real-backtest report surface and explicit simulation/real-backtest separation copy."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Narrows safe simulation copy to avoid implying real backtest completion."
+    - file: "apps/quant_assistant/tests/test_mining_job_api_unit.py"
+      summary: "Covers blocked real-backtest progress not returning ready_for_backtest."
+    - file: "apps/quant_assistant/tests/test_factor_construction_product_self_validation_gate_unit.py"
+      summary: "Covers the misleading ready + blocked real-backtest hard gate."
+    - file: "apps/quant_assistant/tests/test_factor_library_page_source_unit.py"
+      summary: "Covers real-backtest report surface markers and page copy."
+  verification:
+    - command: "uv run pytest tests/test_mining_job_api_unit.py -q -k 'blocked_real_backtest_ready'"
+      result: "RED returned screening_ready before implementation; GREEN passed after fix."
+    - command: "uv run pytest tests/test_factor_construction_product_self_validation_gate_unit.py -q -k 'misleading_ready'"
+      result: "RED gate passed before implementation; GREEN passed after fix."
+    - command: "uv run pytest tests/test_mining_job_api_unit.py tests/test_factor_library_page_source_unit.py tests/test_factor_construction_product_self_validation_gate_unit.py -q -k <focused selector>"
+      result: "11 passed."
+    - command: "uv run pytest tests/test_mining_job_api_unit.py tests/test_factor_library_page_source_unit.py tests/test_factor_construction_product_self_validation_gate_unit.py tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py tests/test_factor_construction_factor_library_report_surface_unit.py -q"
+      result: "81 passed."
+    - command: "uv run ruff check <changed Python files/tests>"
+      result: "All checks passed."
+    - command: "npm.cmd run build"
+      result: "pass."
+    - command: "Product API self-validation"
+      result: "Existing qa-pg-alt 7b7346a0cdfc at 127.0.0.1:55432; same 8350 API restarted with qa.api.app:app; mining-jobs returned acceptance_status=real_backtest_blocked/progress_report_status=blocked/has_secret=false; factor-library returned feedback_count=4/watchlist_count=4/success_path_count=0/has_secret=false."
+    - command: "Playwright browser self-validation"
+      result: "/quant/factor-mining click 开始生成 -> candidatePreview=true/visual=true/recap=true/top50=true; /quant/factor-library -> realFeedback=true/trajectory=true/reportSurface=true/watchlist=true/safeSimulation=true/separated=true; /quant/jobs -> blocked=true."
+    - command: "product_self_validation_gate_v1 live evidence"
+      result: "status=pass, blocking_gap_ids=[], can_request_human_acceptance=true, side_effects all false."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Product self-validation must reject any API state that says ready_for_backtest while controlled real backtest is blocked."
+      - "Safe simulation result copy must explicitly say non-real-backtest when real-backtest surfaces are present."
+    performance_note: "Loop796 closed with Maxwell read-only review, local TDD, API/browser product self-validation, live product gate pass, and formal human review stop."
+  blockers: []
+  next: "FORMAL_HUMAN_REVIEW_ENTRY_LOOP797"
+
+---
+
+# Orchestrator Latest Report — SYNC-810 Real-backtest feedback product/report consolidation loop795
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "REAL_BACKTEST_FEEDBACK_PRODUCT_REPORT_CONSOLIDATION_LOOP795"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_trajectory_real_backtest_feedback_adapter.py"
+      summary: "Adds real_backtest_feedback_trajectory_summary_v1 product summary with watchlist/failure/success counts and write_not_allowed."
+    - file: "apps/quant_assistant/src/qa/api/quant_routes.py"
+      summary: "Exposes real_backtest_feedback_trajectory_summary from /api/v1/quant/factor-library."
+    - file: "apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx"
+      summary: "Renders 真实回测复盘记忆 with feedback/watchlist/failure/success counts."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_factor_library_report_surface.py"
+      summary: "Carries the trajectory summary as read-only report surface passthrough."
+    - file: "apps/quant_assistant/tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py"
+      summary: "Covers product summary counts and wrong-source ignore."
+    - file: "apps/quant_assistant/tests/test_mining_job_api_unit.py"
+      summary: "Covers factor-library API summary field and fail-open empty summary."
+    - file: "apps/quant_assistant/tests/test_factor_library_page_source_unit.py"
+      summary: "Covers page markers and consumer copy for real-backtest trajectory memory summary."
+    - file: "apps/quant_assistant/tests/test_factor_construction_factor_library_report_surface_unit.py"
+      summary: "Covers report surface read-only summary passthrough."
+  verification:
+    - command: "uv run pytest tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py -q"
+      result: "RED missing summary before implementation; GREEN 6 passed."
+    - command: "uv run pytest tests/test_mining_job_api_unit.py -q -k 'factor_library_api'"
+      result: "3 passed."
+    - command: "uv run pytest tests/test_factor_library_page_source_unit.py -q -k 'real_backtest'"
+      result: "2 passed."
+    - command: "uv run pytest tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py tests/test_factor_library_insights_unit.py tests/test_mining_job_api_unit.py tests/test_factor_library_page_source_unit.py tests/test_controlled_backtest_progress_report_surface_unit.py tests/test_factor_trajectory_feedback_memory_persistence_unit.py tests/test_factor_construction_factor_library_report_surface_unit.py -q"
+      result: "97 passed."
+    - command: "uv run ruff check <changed Python files/tests>"
+      result: "All checks passed."
+    - command: "npm.cmd run build"
+      result: "pass."
+    - command: "Product API self-validation"
+      result: "Existing qa-pg-alt 7b7346a0cdfc at 127.0.0.1:55432; same 8350 API restarted with PYTHONPATH=src; factor-library returned feedback_count=4/watchlist_count=4/failure_path_count=0/success_path_count=0/write_status=write_not_allowed/payload_contains_dsn=False."
+    - command: "Playwright browser self-validation"
+      result: "/quant/factor-library rendered 真实回测复盘记忆 with 反馈 4 / 观察 4 / 失败路径 0 / 成功路径 0; console only favicon 404 and React Router future warnings."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Product copy must say real-backtest trajectory memory summary is read-only and not persisted."
+      - "Report surface should carry the same real-backtest feedback summary so Factor Library and reports tell one story."
+    performance_note: "Loop795 closed with local TDD, Halley read-only review, API/browser product self-validation, and truth-source sync."
+  blockers: []
+  next: "FACTOR_UNIVERSE_PRODUCT_SELF_VALIDATION_FINAL_GATE_LOOP796"
+
+---
+
+# Orchestrator Latest Report — SYNC-809 Trajectory real-backtest feedback memory adapter loop794
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "TRAJECTORY_REAL_BACKTEST_FEEDBACK_MEMORY_LOOP794"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_trajectory_real_backtest_feedback_adapter.py"
+      summary: "Adds a read-only adapter from real_backtest_feedback_v1 into trajectory memory semantics."
+    - file: "apps/quant_assistant/tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py"
+      summary: "Covers blocked, failed, completed-without-metrics, completed-with-promising-metrics, and simulation-shaped ignored feedback."
+  verification:
+    - command: "uv run pytest tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py -q"
+      result: "RED missing module before implementation; GREEN 6 passed."
+    - command: "uv run pytest tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py tests/test_factor_trajectory_feedback_memory_persistence_unit.py tests/test_factor_trajectory_memory_read_model_unit.py tests/test_factor_construction_trajectory_mutation_generator_unit.py -q"
+      result: "13 passed."
+    - command: "uv run pytest tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py tests/test_factor_library_insights_unit.py tests/test_mining_job_api_unit.py tests/test_controlled_backtest_progress_report_surface_unit.py tests/test_factor_trajectory_feedback_memory_persistence_unit.py -q"
+      result: "83 passed."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Real-backtest completed is not enough for trajectory success; success requires metrics plus a promising verdict."
+      - "Trajectory memory adapters must reject simulation-shaped feedback by source and kind."
+    performance_note: "Loop794 closed with local TDD, Halley read-only test review, and trajectory/factor-library boundary regression."
+  blockers: []
+  next: "REAL_BACKTEST_FEEDBACK_PRODUCT_REPORT_CONSOLIDATION_LOOP795"
+
+---
+
+# Orchestrator Previous Report — SYNC-808 Factor Library real-backtest feedback surface loop793
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "FACTOR_LIBRARY_REAL_BACKTEST_FEEDBACK_SURFACE_LOOP793"
+  changes:
+    - file: "apps/quant_assistant/src/qa/ui/factor_library_insights.py"
+      summary: "Adds list_real_backtest_feedbacks(...) and real_backtest_feedback_v1 from controlled real-backtest progress/report state."
+    - file: "apps/quant_assistant/src/qa/api/quant_routes.py"
+      summary: "Exposes real_backtest_feedbacks and real_backtest_feedback_error in /api/v1/quant/factor-library."
+    - file: "apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx"
+      summary: "Renders a separate 真实回测反馈 section, distinct from 安全模拟结果复核."
+    - file: "apps/quant_assistant/tests/test_factor_library_insights_unit.py"
+      summary: "Covers real-backtest feedback mapping and simulation separation."
+    - file: "apps/quant_assistant/tests/test_mining_job_api_unit.py"
+      summary: "Covers factor-library API real feedback field and fail-open behavior."
+    - file: "apps/quant_assistant/tests/test_factor_library_page_source_unit.py"
+      summary: "Covers page source markers for the real-backtest feedback surface."
+  verification:
+    - command: "uv run pytest tests/test_factor_library_insights_unit.py tests/test_mining_job_api_unit.py tests/test_factor_library_page_source_unit.py -q -k 'real_backtest_feedback'"
+      result: "RED failed before implementation; GREEN 3 passed."
+    - command: "uv run pytest tests/test_factor_library_insights_unit.py tests/test_mining_job_api_unit.py tests/test_factor_library_page_source_unit.py tests/test_controlled_backtest_progress_report_surface_unit.py -q"
+      result: "83 passed."
+    - command: "npm.cmd run build"
+      result: "pass."
+    - command: "Product API self-validation"
+      result: "Existing qa-pg-alt 7b7346a0cdfc remained at 127.0.0.1:55432; API restarted on same 8350 port; HTTP flow created mj_d868723d69c0; Factor Library API returned feedback_source=controlled_real_backtest, feedback_status=blocked, blocking_reasons=缺少正式回测 runner, payload_contains_dsn_value=false."
+    - command: "Playwright browser self-validation"
+      result: "/quant/factor-library rendered 真实回测反馈 separately from 安全模拟结果复核; expanded card showed 缺少正式回测 runner and no-run/no-write/no-substitute-runtime flags. Console only had favicon 404 and React Router future warnings."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Factor Library needs a real-backtest feedback lane parallel to simulation_reviews, not an overloaded simulation review object."
+      - "Do not map controlled real bridge completion to trajectory success until formal metrics payload exists."
+    performance_note: "Loop793 closed with TDD, Maxwell read-only review, backend/frontend validation, HTTP self-validation, and browser self-validation."
+  blockers: []
+  next: "TRAJECTORY_REAL_BACKTEST_FEEDBACK_MEMORY_LOOP794"
+
+---
+
+# Orchestrator Previous Report — SYNC-807 Backtest progress/result report surface loop792
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "BACKTEST_PROGRESS_AND_RESULT_REPORT_SURFACE_LOOP792"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_backtest_progress_report_surface.py"
+      summary: "Adds controlled_backtest_progress_report_surface_v1 for blocked/completed/failed real-backtest bridge states."
+    - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
+      summary: "Exposes controlled_backtest_progress_report in mining job observability."
+    - file: "apps/quant_assistant/web/src/pages/SmallBatchScoringResultPanel.tsx"
+      summary: "Renders the real-backtest status card with run ids, friendly blockers, sanitized failure summary, and next step."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Adds controlled_backtest_progress_report type and prop wiring."
+    - file: "apps/quant_assistant/tests/test_controlled_backtest_progress_report_surface_unit.py"
+      summary: "Covers blocked/completed/failed progress/report surface behavior and DSN redaction."
+    - file: "apps/quant_assistant/tests/test_mining_job_api_unit.py"
+      summary: "Asserts API observability exposes the progress report for blocked and completed bridge paths."
+  verification:
+    - command: "uv run pytest tests/test_controlled_backtest_progress_report_surface_unit.py tests/test_mining_job_api_unit.py tests/test_factor_construction_controlled_backtest_execution_bridge_unit.py tests/test_small_batch_scoring_result_unit.py -q"
+      result: "67 passed."
+    - command: "npm.cmd run build"
+      result: "pass."
+    - command: "Product API self-validation"
+      result: "After restarting stale API on the same 8350 port, default browser user flow created mj_f466f614584b; run -> confirm accepted -> confirm controlled plan -> confirm execution check -> controlled real execution; final report_status=blocked; report_headline=真实回测还不能开始; blocking_reasons=缺少正式回测 runner; bridge_ran_backtest=false; bridge_wrote_backtest_tables=false; payload_contains_dsn_value=false."
+    - command: "Docker/runtime check"
+      result: "Existing qa-pg-alt 7b7346a0cdfc is the DB runtime at 127.0.0.1:55432; no substitute Docker/DB/port created."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A successful bridge is not enough for product readiness; Jobs needs a consumer progress/report surface from the bridge state."
+      - "Factor Library real-backtest feedback must not reuse safe-simulation review semantics."
+    performance_note: "Loop792 closed with TDD, Halley read-only test review, backend/frontend validation, and real HTTP product self-validation."
+  blockers: []
+  next: "FACTOR_LIBRARY_REAL_BACKTEST_FEEDBACK_SURFACE_LOOP793"
+
+---
+
+# Orchestrator Previous Report — SYNC-806 Controlled real backtest execution bridge loop791
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_REAL_BACKTEST_EXECUTION_BRIDGE_LOOP791"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_real_backtest_execution_bridge.py"
+      summary: "Adds controlled_real_backtest_execution_bridge_v1 adapter/read-model from execution-confirmation-ready mining jobs to the existing controlled execution bridge."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_controlled_backtest_execution_bridge.py"
+      summary: "Adds required execution_audit_ref and redacts runner exception messages to avoid DSN/secret leakage."
+    - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
+      summary: "Adds run_controlled_real_backtest_execution action selection and persistence."
+    - file: "apps/quant_assistant/src/qa/api/quant_routes.py"
+      summary: "Adds independent controlled-real-backtest-execution route with default fail-closed runner resolver."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Adds consumer copy and button labels for starting controlled real backtest execution."
+  verification:
+    - command: "uv run pytest tests/test_mining_job_api_unit.py tests/test_factor_construction_controlled_backtest_execution_bridge_unit.py tests/test_small_batch_scoring_result_unit.py -q"
+      result: "64 passed."
+    - command: "npm run build"
+      result: "pass."
+    - command: "Product API self-validation"
+      result: "Default browser user flow created mj_f4d913d28598; run -> confirm accepted -> confirm controlled plan -> confirm execution check -> controlled real execution; final bridge_status=blocked; bridge_blockers=injected_backtest_runner_missing; audit_ref_present=true; dsn_redacted=true; ran_backtest=false; wrote_backtest_tables=false; queued_job=false; payload_contains_dsn=false."
+    - command: "Injected-runner unit path"
+      result: "run_controlled_real_backtest_execution_bridge_uses_injected_runner completed run_ids=[bt_fe_one] and did not call the safe-simulation trigger path."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Real execution bridge must redact injected-runner exceptions because runner error text can contain DSNs or runtime details."
+      - "Bridge-level execution audit refs must be separate from rollback refs before a real runner can be called."
+    performance_note: "Loop791 closed with TDD, Maxwell read-only risk review, backend/frontend validation, and real HTTP product self-validation."
+  blockers: []
+  next: "BACKTEST_PROGRESS_AND_RESULT_REPORT_SURFACE_LOOP792"
+
+---
+
+# Orchestrator Previous Report — SYNC-805 Controlled backtest execution confirmation surface loop790
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_BACKTEST_EXECUTION_CONFIRMATION_LOOP790"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_backtest_execution_confirmation.py"
+      summary: "Adds controlled_backtest_execution_confirmation_v1 read-model from plan_ready refs with execution-confirmation-only policy."
+    - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
+      summary: "Adds execution confirmation observability, action selection, and confirm_controlled_backtest_execution_once snapshot persistence."
+    - file: "apps/quant_assistant/src/qa/api/quant_routes.py"
+      summary: "Adds explicit controlled-backtest-execution route and action trigger_request without runner/backtest/queue side effects."
+    - file: "apps/quant_assistant/web/src/pages/SmallBatchScoringResultPanel.tsx"
+      summary: "Shows waiting/confirmed real-execution-check status and explains page load still cannot run backtests."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Recognizes confirm_controlled_backtest_execution as an explicit consumer action with execution-check copy."
+  verification:
+    - command: "uv run pytest tests/test_mining_job_api_unit.py tests/test_small_batch_scoring_result_unit.py -q"
+      result: "55 passed."
+    - command: "npm run build"
+      result: "pass."
+    - command: "Product API self-validation"
+      result: "Default browser user flow created mj_0a120d1b9510; run -> confirm accepted -> confirm controlled plan -> confirm execution check; final execution_confirmation_ready; plan_count=20; will_run_backtest=false; will_write_queue=false; has_auto_backtest_execution=false."
+    - command: "Chrome DOM smoke"
+      result: "Jobs page contains 已确认进入真实回测执行前检查, 系统仍不会因为打开页面而执行回测, 下一步会检查正确数据库、runner 和审计材料."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Execution confirmation must be independent from actual runner routes and must not imply queue writes."
+      - "The next execution bridge must require explicit UI authorization plus correct runtime and injected non-default runner evidence."
+    performance_note: "Loop790 closed with TDD, Maxwell read-only risk review, API/browser self-validation on the real local product, and truth-source sync."
+  blockers: []
+  next: "CONTROLLED_REAL_BACKTEST_EXECUTION_BRIDGE_LOOP791"
+
+---
+
+# Orchestrator Previous Report — SYNC-804 Controlled backtest plan confirmation surface loop789
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_BACKTEST_PLAN_CONFIRMATION_SURFACE_LOOP789"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_backtest_plan_confirmation.py"
+      summary: "Adds controlled_backtest_plan_confirmation_v1 read-model from accepted refs with plan-only single/multi-factor drafts."
+    - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
+      summary: "Adds controlled backtest plan observability, action selection, and confirm_controlled_backtest_plan_once snapshot persistence."
+    - file: "apps/quant_assistant/src/qa/api/quant_routes.py"
+      summary: "Adds explicit controlled-backtest-plan route and action trigger_request without runner/backtest/queue side effects."
+    - file: "apps/quant_assistant/web/src/pages/SmallBatchScoringResultPanel.tsx"
+      summary: "Shows generated/waiting backtest plan status and explains real backtest remains a separate confirmation."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Recognizes confirm_controlled_backtest_plan as a consumer action with plan-specific button copy."
+  verification:
+    - command: "uv run pytest tests/test_small_batch_scoring_result_unit.py tests/test_mining_job_api_unit.py -q"
+      result: "53 passed."
+    - command: "npm run build"
+      result: "pass."
+    - command: "Product API self-validation"
+      result: "Default browser user flow created mj_6cb7fe2478a7; run -> confirm accepted -> confirm controlled plan; final plan_ready count=20; will_run_backtest=false; will_write_queue=false; has_backtest_execution=false."
+    - command: "Chrome headless DOM smoke"
+      result: "Jobs page contains 已生成 20 个回测计划, 真实回测仍需要下一步单独确认, 本批候选筛选结果."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes:
+      - "Initial product self-test used X-QA-User=user-1 while browser uses the default user; corrected by rerunning the full flow without custom headers."
+    lessons:
+      - "Product self-validation must match browser identity/header behavior, not only API unit assumptions."
+      - "Plan-only backtest confirmation must not reuse auto-backtest trigger runner routes."
+    performance_note: "Loop789 closed with TDD, Halley read-only review, API/browser self-validation on the real local product, and truth-source sync."
+  blockers: []
+  next: "CONTROLLED_BACKTEST_EXECUTION_CONFIRMATION_LOOP790"
+
+---
+
+# Orchestrator Previous Report — SYNC-803 Final accepted confirmation surface loop788
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "FINAL_ACCEPTED_CONFIRMATION_SURFACE_LOOP788"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/small_batch_scoring_result.py"
+      summary: "Adds final_accepted_pool_confirmation_v1 read-model from provisional accepted refs with explicit user confirmation required."
+    - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
+      summary: "Adds final accepted observability and confirm_final_accepted_once persistence into the existing mining job snapshot."
+    - file: "apps/quant_assistant/src/qa/api/quant_routes.py"
+      summary: "Adds explicit confirm-final-accepted route and action trigger_request without runner/backtest side effects."
+    - file: "apps/quant_assistant/web/src/pages/SmallBatchScoringResultPanel.tsx"
+      summary: "Shows waiting/confirmed accepted status and explains that real backtest remains a later separate confirmation."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Exposes confirm_final_accepted as a consumer action for Top50 factor-universe jobs only."
+  verification:
+    - command: "uv run pytest tests/test_small_batch_scoring_result_unit.py tests/test_mining_job_api_unit.py -q"
+      result: "50 passed after fixing a regression where confirm_final_accepted could override existing safe-simulation/retry actions."
+    - command: "npm run build"
+      result: "pass."
+    - command: "Product API self-validation"
+      result: "mj_b1385c478b70 after-run action=confirm_final_accepted target_count=20; confirm response final_status=accepted_ready final_count=20 will_write_db=false will_trigger_backtest_plan=false ran_backtest=false wrote_accepted_pool=false."
+    - command: "Chrome headless DOM smoke"
+      result: "Jobs page contains 本批候选筛选结果, 已确认 20 个 accepted 候选, 确认 accepted 只记录本任务状态, 真实回测仍会在下一步单独询问."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes:
+      - "Initial action selection allowed confirm_final_accepted to override older action tests; fixed with Top50 factor-universe and execution-not-started gating."
+    lessons:
+      - "Accepted confirmation is a state transition only; it must not imply accepted-store writes, backtest-plan triggers, scorer execution, or runner availability."
+      - "Product action routing must preserve older action families unless the current job is explicitly in the factor-universe Top50 path."
+    performance_note: "Loop788 closed with local TDD, product API/browser self-validation, Maxwell read-only pre-fix risk report resolved, and Halley assigned next-loop planning."
+  blockers: []
+  next: "CONTROLLED_BACKTEST_PLAN_CONFIRMATION_SURFACE_LOOP789"
+
+---
+
+# Orchestrator Previous Report — SYNC-795 Trajectory feedback memory persistence loop779
 
 report:
   role_id: "orchestrator"
