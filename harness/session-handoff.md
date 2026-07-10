@@ -1,6 +1,22 @@
 # Session Handoff
 
-updated_at: 2026-07-10T23:18:00+08:00
+updated_at: 2026-07-10T23:58:00+08:00
+
+## Latest Handoff — SYNC-814 Factor-universe navigation deprecated cleanup
+
+- [DONE] Cleaned the user-visible navigation before formal human review.
+- [DONE] React sidebar now follows one flow: 首页 → 开始挖因子 → 当前任务 → 因子库与复盘 → 回测结果.
+- [DONE] Removed Promoted Assets, paper trading, personal asset, and old `/jobs` alias from ordinary user navigation; deep links/routes remain for compatibility.
+- [DONE] `/quant/jobs` no longer fetches `/api/v1/quant/jobs/specs`, no longer shows data job cards, and no longer shows the stale “待实现：预览批次” preview handoff block.
+- [DONE] Jobs page now keeps data checks as a single “数据状态（可选）” link and focuses the main area on one current task plus next-step actions.
+- [DONE] Streamlit sidebar/home copy now matches the factor-universe flow and no longer exposes Promoted Assets/Paper Trading/Personal Asset as ordinary nav.
+- [VERIFY] Focused tests: `test_factor_universe_consumer_flow_source_unit.py` + `test_ui_smoke.py` -> 49 passed.
+- [VERIFY] Frontend: `npm.cmd run build` -> pass.
+- [VERIFY] Runtime smoke: `/quant/jobs` -> 200; `/quant/factor-mining` -> 200.
+- [VERIFY] `git diff --check` for changed files -> pass.
+- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_LOOP800`: user reviews the cleaned main flow: 开始挖因子 → 当前任务 → 因子库与复盘 → 回测结果.
+- [STOP] `formal_human_acceptance_required` remains active; do not start a new implementation loop until user accepts, rejects, or requests changes.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
 
 ## Latest Handoff — SYNC-812 Factor-universe consumer flow single-active repair
 
