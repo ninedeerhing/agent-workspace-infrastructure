@@ -1,6 +1,21 @@
 # Session Handoff
 
-updated_at: 2026-07-11T00:16:00+08:00
+updated_at: 2026-07-11T00:36:00+08:00
+
+## Latest Handoff — SYNC-816 Factor-universe expanded taxonomy UI repair
+
+- [DONE] Addressed user review feedback that expanded A-E factor subclasses were discussed but not visible enough in the product.
+- [DONE] `/quant/factor-mining` `ConstructionSpec` now shows “扩展分类覆盖” and “生成配额”.
+- [DONE] A/B/C/D/E visible subclasses are now 16/16/10/11/15 instead of only 4-5 representative chips.
+- [DONE] A/C/D/E candidate previews are category-specific and no longer relabeled B-market candidates.
+- [DONE] MiningBrief `generation_mix` keeps numeric template/llm/literature mix and adds `factor_class`, `subclass_quota`, and `quota_policy=spread_across_expanded_taxonomy`.
+- [WORKER] Lovelace read-only review identified the A/C/D/E preview reuse and missing quota-routing gap; both were fixed.
+- [VERIFY] RED source/brief tests failed before implementation.
+- [VERIFY] Focused related tests: taxonomy/candidate/batch/page/factor-library set -> 32 passed.
+- [VERIFY] Frontend: `npm.cmd run build` -> pass.
+- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_LOOP802`: user reviews expanded taxonomy coverage, generation quota, category-specific previews, current task flow, factor-library report/feedback/memory separation.
+- [STOP] `formal_human_acceptance_required` remains active; do not start a new implementation loop until user accepts, rejects, or requests changes.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
 
 ## Latest Handoff — SYNC-815 Factor-universe first-time user smoke UX repair
 

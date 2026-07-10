@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T00:16:00+08:00",
+  "updated_at": "2026-07-11T00:36:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "formal_human_acceptance_required",
   "current_tree": "TREE-6",
-  "current_slice": "factor-universe-first-time-user-smoke-ux-repair-loop800",
-  "next_atomic_action": "FORMAL_HUMAN_REVIEW_ENTRY_LOOP801：用户正式人工验收因子构造宇宙；从左侧主流程按“开始挖因子 → 当前任务 → 因子库与复盘 → 回测结果”逐步检查，确认开始页首屏有“确认参数并开始生成”直达按钮，点击开始生成后自动带到构造可视化、候选预览、创建小批评分确认任务，/quant/jobs 只保留一个当前主任务和明确下一步按钮；最后到 /quant/factor-library 检查真实回测反馈、报告面、复盘记忆与安全模拟分离。",
+  "current_slice": "factor-universe-expanded-taxonomy-ui-repair-loop801",
+  "next_atomic_action": "FORMAL_HUMAN_REVIEW_ENTRY_LOOP802：用户正式人工验收因子构造宇宙；从左侧主流程按“开始挖因子 → 当前任务 → 因子库与复盘 → 回测结果”逐步检查；在 /quant/factor-mining 的 ConstructionSpec 检查 A-E 扩展分类覆盖、生成配额和更多子类 chips 是否清楚，B 类应能看到微观结构代理/日内分解等扩展子类；点击开始生成后检查构造可视化、候选预览、创建小批评分确认任务；/quant/jobs 只保留一个当前主任务和明确下一步按钮；最后到 /quant/factor-library 检查真实回测反馈、报告面、复盘记忆与安全模拟分离。",
   "next_after": "Wait for explicit human review result: accept, reject, or request changes. If rejected or gaps are found, continue with targeted repair loops; do not proceed to new implementation while formal_human_acceptance_required is active.",
   "blockers": [
     {
@@ -19,15 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-815-factor-universe-first-time-user-smoke-ux-repair-loop800",
+  "last_tick": "SYNC-816-factor-universe-expanded-taxonomy-ui-repair-loop801",
   "last_sync_sources": [
-    "SYNC-815 Factor-universe first-time user smoke UX repair loop800",
-    "loop800 trigger: user requested self-testing as a real novice user before formal human review",
-    "loop800 finding: /quant/factor-mining first screen showed manual entry and classification cards, but the next step required guessing to scroll down to Start/visualization/preview",
-    "loop800 UI: added first-screen 确认参数并开始生成 CTA, category/auto selection scroll to ConstructionSpec, and Start Generation scrolls to construction-review visualization/preview",
-    "loop800 product smoke: Chromium path homepage -> 开始挖因子 -> 开始生成 -> 创建小批评分确认任务 -> 当前任务 -> 因子库与复盘 -> 回测结果 PASS",
-    "loop800 verification: consumer-flow source + ui smoke 49 passed; npm build pass",
-    "next: FORMAL_HUMAN_REVIEW_ENTRY_LOOP801",
+    "SYNC-816 Factor-universe expanded taxonomy UI repair loop801",
+    "loop801 trigger: user pointed out expanded factor subclasses were discussed but not visible in product UI",
+    "loop801 UI: /quant/factor-mining ConstructionSpec now exposes expanded taxonomy coverage and generation quota",
+    "loop801 taxonomy: A/B/C/D/E visible subclasses now 16/16/10/11/15 instead of only 4-5 representative chips",
+    "loop801 previews: A/C/D/E now have category-specific candidate previews instead of relabeled B market candidates",
+    "loop801 brief contract: MiningBrief generation_mix carries factor_class/subclass_quota/quota_policy for expanded taxonomy quota routing",
+    "loop801 verification: taxonomy/candidate/batch/page/factor-library related tests 32 passed; npm build pass",
+    "next: FORMAL_HUMAN_REVIEW_ENTRY_LOOP802",
     "SYNC-814 Factor-universe navigation deprecated cleanup loop799",
     "loop799 trigger: user human-review feedback requested comprehensive audit/cleanup for deprecated content and useless/hollow navigation entries",
     "loop799 UI: React sidebar now follows main flow 首页 -> 开始挖因子 -> 当前任务 -> 因子库与复盘 -> 回测结果; Promoted Assets, paper trading, personal asset, old /jobs alias are removed from main nav",
