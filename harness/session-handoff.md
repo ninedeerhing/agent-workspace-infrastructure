@@ -1,6 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-10T23:58:00+08:00
+updated_at: 2026-07-11T00:16:00+08:00
+
+## Latest Handoff — SYNC-815 Factor-universe first-time user smoke UX repair
+
+- [DONE] Ran a real Chromium novice-user smoke before formal human review.
+- [FOUND] `/quant/factor-mining` first screen was understandable but required the user to guess they should scroll down to reach Start/visualization/preview.
+- [DONE] Added a first-screen “确认参数并开始生成” CTA.
+- [DONE] Category selection and auto direction now scroll to `ConstructionSpec`.
+- [DONE] Clicking “开始生成” now scrolls to `construction-review`, exposing progress, construction visualization, candidate preview, and the small-batch scoring confirmation action.
+- [VERIFY] `node tmp/manual-review-playwright/factor-universe-user-smoke.js` -> PASS for 首页 → 开始挖因子 → 开始生成 → 创建小批评分确认任务 → 当前任务 → 因子库与复盘 → 回测结果.
+- [VERIFY] Focused tests: `test_factor_universe_consumer_flow_source_unit.py` + `test_ui_smoke.py` -> 49 passed.
+- [VERIFY] Frontend: `npm.cmd run build` -> pass.
+- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_LOOP801`: user reviews the cleaned main flow and novice-friendly start page.
+- [STOP] `formal_human_acceptance_required` remains active; do not start a new implementation loop until user accepts, rejects, or requests changes.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
 
 ## Latest Handoff — SYNC-814 Factor-universe navigation deprecated cleanup
 
