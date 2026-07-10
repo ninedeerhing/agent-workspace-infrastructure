@@ -1,20 +1,20 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-09T12:00:20Z",
+  "updated_at": "2026-07-10T12:00:44Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "FORMAL_HUMAN_REVIEW_ENTRY_LOOP766：用户人工验收 seeded one-click 因子构造宇宙 demo flow；检查 UI/流程/因子卡片/报告/诊断是否符合消费级预期；连续实现 loop 暂停，等待人工反馈。",
+  "loop_next_atomic_action": "FORMAL_HUMAN_REVIEW_ENTRY_LOOP798：用户正式人工验收因子构造宇宙；从 /quant/factor-mining 点击开始生成，检查同页候选构造/可视化/Top50/复盘与当前唯一任务入口；点击创建小批评分确认任务后应停留本页且不重复建卡；再到 /quant/jobs 检查只突出一个主任务、历史任务折叠、真实回测 blocked/缺 runner 是否清楚；最后到 /quant/factor-library 检查真实回测反馈、报告面、复盘记忆与安全模拟分离。",
   "continuation_next_action": "REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_COMPLETION_REVIEW_LOOP706：基于 loop705 `real_scoring_formal_controls_acknowledgement_manual_capture_completion_candidate`，构建只读 manual acknowledgement capture completion review；复核 completed_acknowledgements=[]、missing_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack]、all_completed=false、controls_enabled=false、formal_controls_status=not_granted、authorization state not_granted、next_route=formal_controls_acknowledgement_manual_capture_blocked_summary/will_execute=false；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
   "task_trees_next_hint": "PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_AUTHORIZATION_DECISION_LOOP347：由 Planner 基于总规划、当前进度和 loop346 explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1 / final queue-write authorization packet；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。",
   "foreground_tree": "TREE-6",
   "foreground_slice": "",
-  "latest_section5_id": "1106",
-  "latest_section5_title": "Consumer flow formal verification gate loop766（2026-07-05 · TREE-6/PL-G · factor construction universe/formal-review-entry）",
-  "top_summary_section5_ref": "1106",
-  "top_summary_last_tick": "loop766",
-  "loop_last_tick": "SYNC-782-consumer-flow-formal-verification-gate-loop766",
+  "latest_section5_id": "1135",
+  "latest_section5_title": "Factor-universe consumer flow single-active repair loop797（2026-07-10 · TREE-6/PL-G · human review feedback repair）",
+  "top_summary_section5_ref": "696",
+  "top_summary_last_tick": "loop797",
+  "loop_last_tick": "SYNC-812-factor-universe-consumer-flow-single-active-repair-loop797",
   "findings": [
     {
       "severity": "warning",
@@ -23,7 +23,7 @@
         "harness\\loop-state.json",
         "apps\\quant_assistant\\docs\\CONTINUATION_PROMPT.md"
       ],
-      "detail": "loop-state next_atomic_action='FORMAL_HUMAN_REVIEW_ENTRY_LOOP766：用户人工验收 seeded one-click 因子构造宇宙 demo flow；检查 UI/流程/因子卡片/报告/诊断是否符合消费级预期；连续实现 loop 暂停，等待人工反馈。' vs CONTINUATION 下一动作='REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_COMPLETION_REVIEW_LOOP706：基于 loop705 `real_scoring_formal_controls_acknowledgement_manual_capture_completion_candidate`，构建只读 manual acknowledgement capture completion review；复核 completed_acknowledgements=[]、missing_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack]、all_completed=false、controls_enabled=false、formal_controls_status=not_granted、authorization state not_granted、next_route=formal_controls_acknowledgement_manual_capture_blocked_summary/will_execute=false；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
+      "detail": "loop-state next_atomic_action='FORMAL_HUMAN_REVIEW_ENTRY_LOOP798：用户正式人工验收因子构造宇宙；从 /quant/factor-mining 点击开始生成，检查同页候选构造/可视化/Top50/复盘与当前唯一任务入口；点击创建小批评分确认任务后应停留本页且不重复建卡；再到 /quant/jobs 检查只突出一个主任务、历史任务折叠、真实回测 blocked/缺 runner 是否清楚；最后到 /quant/factor-library 检查真实回测反馈、报告面、复盘记忆与安全模拟分离。' vs CONTINUATION 下一动作='REAL_SCORING_FORMAL_CONTROLS_ACKNOWLEDGEMENT_MANUAL_CAPTURE_COMPLETION_REVIEW_LOOP706：基于 loop705 `real_scoring_formal_controls_acknowledgement_manual_capture_completion_candidate`，构建只读 manual acknowledgement capture completion review；复核 completed_acknowledgements=[]、missing_acknowledgements=[operator_ack,reviewer_ack,controls_owner_ack]、all_completed=false、controls_enabled=false、formal_controls_status=not_granted、authorization state not_granted、next_route=formal_controls_acknowledgement_manual_capture_blocked_summary/will_execute=false；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得读 env/DB、启动 Docker/容器、创建替代 DB、写 DB/队列、连接 runner/adapter、运行真实 scorer/backtest、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run/backtest、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
       "recommendation": "对齐 loop-state.json 与 CONTINUATION_PROMPT 下一动作字段。"
     },
     {
@@ -33,8 +33,17 @@
         "harness\\loop-state.json",
         "apps\\quant_assistant\\docs\\TASK_TREES.md"
       ],
-      "detail": "loop-state='FORMAL_HUMAN_REVIEW_ENTRY_LOOP766：用户人工验收 seeded one-click 因子构造宇宙 demo flow；检查 UI/流程/因子卡片/报告/诊断是否符合消费级预期；连续实现 loop 暂停，等待人工反馈。' vs TASK_TREES 下一未勾选项='PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_AUTHORIZATION_DECISION_LOOP347：由 Planner 基于总规划、当前进度和 loop346 explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1 / final queue-write authorization packet；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
+      "detail": "loop-state='FORMAL_HUMAN_REVIEW_ENTRY_LOOP798：用户正式人工验收因子构造宇宙；从 /quant/factor-mining 点击开始生成，检查同页候选构造/可视化/Top50/复盘与当前唯一任务入口；点击创建小批评分确认任务后应停留本页且不重复建卡；再到 /quant/jobs 检查只突出一个主任务、历史任务折叠、真实回测 blocked/缺 runner 是否清楚；最后到 /quant/factor-library 检查真实回测反馈、报告面、复盘记忆与安全模拟分离。' vs TASK_TREES 下一未勾选项='PLANNER_SELECT_NEXT_CORE_FUNCTION_AFTER_OPERATOR_REVIEWER_FINAL_QUEUE_WRITE_AUTHORIZATION_DECISION_LOOP347：由 Planner 基于总规划、当前进度和 loop346 explicit_final_queue_write_authorization_review_to_operator_reviewer_final_queue_write_authorization_decision_v1 选择下一条核心功能 loop；必须继续自动挖掘 -> 自动回测链路，优先推进 operator_reviewer_final_queue_write_authorization_decision_to_final_queue_write_authorization_packet_v1 / final queue-write authorization packet；不得把治理、UI 文案、门禁补丁作为独立 loop；仍不得写真实队列、连接 runner/adapter、写入 DB enqueue、执行 worker handoff、标记 rollback ready、授予 authorization/manual/human acceptance/execution permission、执行 actual dry-run、启动 DB-backed real batch、PL-H、background、migration 或 backfill。'",
       "recommendation": "确认 TASK_TREES 排序与 loop-state 已同步。"
+    },
+    {
+      "severity": "warning",
+      "code": "SYNC-TOP-STALE",
+      "paths": [
+        "apps\\quant_assistant\\docs\\PROJECT_STATUS.md"
+      ],
+      "detail": "§5 最新为 5.1135 (Factor-universe consumer flow single-active repair loop797（2026-07-10 · TREE-6/PL-G · human review feedback repair）)，但顶部现状概述仍引用 §5.696",
+      "recommendation": "每轮原子任务后更新 PROJECT_STATUS 顶部「心流模式当前轮」（1–3 句：模式/本批/下一动作/阻塞），与 §5 最新条目对齐。"
     },
     {
       "severity": "warning",
@@ -43,14 +52,14 @@
         "apps\\quant_assistant\\docs\\PROJECT_STATUS.md",
         "harness\\loop-state.json"
       ],
-      "detail": "顶部摘要未体现 loop-state 下一动作：'FORMAL_HUMAN_REVIEW_ENTRY_LOOP766：用户人工验收 seeded one-click 因子构造宇宙 demo flow；检查 UI/流程/因子卡片/报告/诊断是否符合消费级预期；连续实现 loop 暂停，等待人工反馈。'",
+      "detail": "顶部摘要未体现 loop-state 下一动作：'FORMAL_HUMAN_REVIEW_ENTRY_LOOP798：用户正式人工验收因子构造宇宙；从 /quant/factor-mining 点击开始生成，检查同页候选构造/可视化/Top50/复盘与当前唯一任务入口；点击创建小批评分确认任务后应停留本页且不重复建卡；再到 /quant/jobs 检查只突出一个主任务、历史任务折叠、真实回测 blocked/缺 runner 是否清楚；最后到 /quant/factor-library 检查真实回测反馈、报告面、复盘记忆与安全模拟分离。'",
       "recommendation": "更新顶部「下一方向」与 next_atomic_action 一致。"
     }
   ],
   "last_lifecycle": {
-    "at": "2026-07-09T12:00:20Z",
-    "finding_count": 3,
-    "warning_count": 2,
+    "at": "2026-07-10T12:00:44Z",
+    "finding_count": 4,
+    "warning_count": 3,
     "error_count": 0
   }
 }
