@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:50:00+08:00
+updated_at: 2026-07-12T01:05:00+08:00
+
+## Latest Handoff — SYNC-904 post-acceptance-execution-confirmation-context-loop890
+
+- [DONE] `controlled_backtest_execution_confirmation_v1` now includes `controlled_backtest_execution_handoff_context_v1`.
+- [DONE] The handoff context carries factor refs, plan refs, accepted/skipped/failed refs, execution confirmation ref, single-factor plan count, multi-factor status, `database_runtime=qa-pg-alt`, injected runner/correct runtime requirements, no substitute DB/Docker markers, `page_load_execution_allowed=false`, `will_write_queue=false`, and `will_run_backtest=false`.
+- [DONE] Jobs execution-confirmation card now shows: execution plan refs, factor refs, DB/runner boundary, page-load no-execution marker, queue/backtest false markers, and “点击执行前仍只做显式确认，页面加载不会执行回测”.
+- [DONE] Current-task-card read-model fixtures were split into `check-controlled-real-current-task-card-readmodels.mjs` so fixture scripts stay small.
+- [VERIFY] RED API unit missed `execution_handoff_context`; RED browser dogfood missed execution handoff copy; GREEN full `test_mining_job_api_unit.py` 63 passed, Ruff passed, current-task browser passed, jobs entry-mode dogfood passed, formal-review E2E passed, build passed, lint 0 errors / 1 existing warning, diff check passed.
+- [WORKER] Kierkegaard fixed-thread read-only product review returned completed without report body; recorded as channel anomaly and not counted as evidence.
+- [NEXT] `POST_ACCEPTANCE_CONTROLLED_REAL_PROGRESS_CONTEXT_LOOP891`: carry execution handoff context into controlled-real progress states without DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-903 post-acceptance-backtest-plan-handoff-context-loop889
 
