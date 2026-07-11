@@ -1,15 +1,21 @@
-# Orchestrator Latest Report — SYNC-893 Post-acceptance multi-source-mode product dogfood loop879
+# Orchestrator Latest Report — SYNC-894 Post-acceptance user idea to ConstructionSpec entry loop880
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "POST_ACCEPTANCE_MULTI_SOURCE_MODE_PRODUCT_DOGFOOD_LOOP879"
+  task: "POST_ACCEPTANCE_USER_IDEA_TO_CONSTRUCTION_SPEC_ENTRY_LOOP880"
   changes:
-    - file: "apps/quant_assistant/web/scripts/check-factor-universe-multi-source-mode-dogfood.mjs"
-      summary: "Adds browser dogfood that clicks B/C/D factor categories, captures confirm payload source_mode values, and verifies distinct recap profiles/families."
+    - file: "apps/quant_assistant/web/src/pages/FactorMiningPage.tsx"
+      summary: "Adds a user idea textarea, clears stale preview/task state on edit, displays idea-expansion source mode, and passes ideaText into the confirmation brief."
+    - file: "apps/quant_assistant/web/src/pages/factorMiningBrief.ts"
+      summary: "Maps non-empty ideaText to source_mode=idea_to_candidates while preserving factor class, subclass quota, budget, direction summary, and hypothesis."
+    - file: "apps/quant_assistant/web/scripts/check-factor-universe-user-idea-dogfood.mjs"
+      summary: "Adds browser dogfood proving idea text reaches confirm POST payload and page recap without backtest/runtime side effects."
     - file: "apps/quant_assistant/web/package.json"
-      summary: "Registers npm run test:factor-universe-multi-source-mode-dogfood."
+      summary: "Registers npm run test:factor-universe-user-idea-dogfood."
   verification:
+    - command: "npm.cmd run test:factor-universe-user-idea-dogfood"
+      result: "pass"
     - command: "npm.cmd run test:factor-universe-multi-source-mode-dogfood"
       result: "pass"
     - command: "npm.cmd run test:formal-review-e2e-product-dogfood"
@@ -19,13 +25,13 @@ report:
     - command: "npm.cmd run lint"
       result: "0 errors / 1 existing ShellLayoutContext fast-refresh warning"
     - command: "git diff --check; git -C apps/quant_assistant diff --check"
-      result: "pass; package CRLF warning only"
+      result: "pass; CRLF warnings only"
   roster_update:
     workload_delta: "unchanged"
     mistakes: []
     lessons:
-      - "Product dogfood should bind request payload to mock response when validating routing semantics."
-      - "Negative profile/family assertions prevent source-mode tests from passing by text accumulation."
-    performance_note: "Loop879 proved B/C/D source-mode routing differences at the browser product level."
+      - "A user-facing idea entry is not complete until the input is proven in the confirm payload, not just echoed in page copy."
+      - "Idea expansion must preserve A-E category context and budget instead of becoming an unbounded free mode."
+    performance_note: "Loop880 turned the prior 'from an idea' copy into a real ConstructionSpec entry path with browser proof."
   blockers: []
-  next: "POST_ACCEPTANCE_USER_IDEA_TO_CONSTRUCTION_SPEC_ENTRY_LOOP880"
+  next: "POST_ACCEPTANCE_IDEA_SPEC_RECAP_AND_CANDIDATE_PREVIEW_LOOP881"

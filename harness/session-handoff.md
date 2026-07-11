@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T23:48:00+08:00
+updated_at: 2026-07-12T00:14:00+08:00
+
+## Latest Handoff — SYNC-894 post-acceptance-user-idea-construction-spec-entry-loop880
+
+- [DONE] Added a real “我有一个想法” textarea in `/quant/factor-mining`.
+- [DONE] Editing idea text resets stale preview/task state, so old tasks are not confused with a new user idea.
+- [DONE] `buildMiningBrief(category, { ideaText })` now routes non-empty idea text to `source_mode=idea_to_candidates`.
+- [DONE] The brief preserves selected A-E context: `factor_class`, `subclass_quota`, `quota_policy`, `subclass_count`, and compute budget remain in the request.
+- [DONE] The confirm payload now carries `generation_mix.user_idea_text`, plus idea-aware `direction_summary` and `hypothesis`.
+- [DONE] Added `web/scripts/check-factor-universe-user-idea-dogfood.mjs` and `npm run test:factor-universe-user-idea-dogfood`.
+- [VERIFY] Passed: user-idea dogfood, multi-source-mode dogfood, formal-review E2E product dogfood, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WORKER] Kierkegaard read-only product dogfood reviewer identified the UI-to-brief bridge as the missing path and recommended payload assertions plus idea echo; findings absorbed.
+- [NEXT] `POST_ACCEPTANCE_IDEA_SPEC_RECAP_AND_CANDIDATE_PREVIEW_LOOP881`: make idea text shape visible candidate preview / recap copy, still no DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-893 post-acceptance-multi-source-mode-product-dogfood-loop879
 

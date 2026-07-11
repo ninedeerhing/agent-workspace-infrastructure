@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T23:48:00+08:00",
+  "updated_at": "2026-07-12T00:14:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-multi-source-mode-product-dogfood-loop879",
-  "next_atomic_action": "POST_ACCEPTANCE_USER_IDEA_TO_CONSTRUCTION_SPEC_ENTRY_LOOP880：补齐“用户想法 → ConstructionSpec”真实入口；在 /quant/factor-mining 增加清晰的想法输入/想法扩展路径，让用户输入 idea_text 后构造 brief 使用 idea_to_candidates、保留 A-E 分类上下文并进入同一候选生成/复盘/确认任务链。补单测与 browser dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward user idea entry and end-to-end factor universe usability.",
+  "current_slice": "post-acceptance-user-idea-to-construction-spec-entry-loop880",
+  "next_atomic_action": "POST_ACCEPTANCE_IDEA_SPEC_RECAP_AND_CANDIDATE_PREVIEW_LOOP881：让用户输入的 idea_text 不只进入 confirm payload，也影响本页 ConstructionSpec/候选预览/复盘说明；在保持 A-E 分类上下文与 no-execution 边界的前提下，生成面向用户想法的候选预览、思路摘要和复盘标记，并用 browser dogfood 证明想法文本在页面预览、confirm payload、job recap 三处一致可见。不连 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward idea-aware candidate preview, scoring readiness, and factor universe usability.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-893-post-acceptance-multi-source-mode-product-dogfood-loop879",
+  "last_tick": "SYNC-894-post-acceptance-user-idea-construction-spec-entry-loop880",
   "last_sync_sources": [
+    "SYNC-894 Post-acceptance user idea to ConstructionSpec entry loop880",
+    "loop880 frontend: /quant/factor-mining now has a clear user idea textarea; editing the idea resets stale preview/task state and keeps the user on the same one-page flow",
+    "loop880 brief: buildMiningBrief(category, { ideaText }) now maps non-empty idea text to source_mode=idea_to_candidates, preserves factor_class/subclass_quota/quota_policy/budget, and writes user_idea_text plus idea-aware direction_summary/hypothesis",
+    "loop880 dogfood: new test:factor-universe-user-idea-dogfood fills idea text, selects B category, creates the small-batch confirmation task, captures confirm POST payload, and asserts idea_text/source_mode/factor_class/hypothesis all survived",
+    "loop880 safety: browser dogfood forbids backtest/controlled-real-backtest POST; no DB, Docker, scorer, or backtest was run",
+    "loop880 verification: user-idea dogfood pass; multi-source-mode dogfood pass; formal-review E2E product dogfood pass; web build pass; lint 0 errors/1 existing warning; diff check pass with CRLF warning only",
+    "loop880 worker: Kierkegaard read-only product dogfood reviewer identified exactly the missing UI-to-brief bridge and recommended payload assertions plus local idea echo; implementation absorbed those recommendations",
+    "next: POST_ACCEPTANCE_IDEA_SPEC_RECAP_AND_CANDIDATE_PREVIEW_LOOP881",
     "SYNC-893 Post-acceptance multi-source-mode product dogfood loop879",
     "loop879 frontend dogfood: added test:factor-universe-multi-source-mode-dogfood to click B auto, C formula, and D idea categories in /quant/factor-mining",
     "loop879 dogfood: the confirm route captures real request payloads and verifies generation_mix.source_mode is auto_from_category/formula_or_library_seed/idea_to_candidates for B/C/D respectively",
