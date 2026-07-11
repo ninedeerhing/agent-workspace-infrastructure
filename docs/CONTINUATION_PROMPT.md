@@ -9,12 +9,12 @@
 ## Current Continuation Entry
 
 - Current mainline: AWI CodeX-effective baseline 已验收（TREE-RT 防漂移维护）；业务主线为 `TREE-6 / Factor Construction Universe`
-- Business mainline: `apps/quant_assistant` — 因子构造宇宙真实可用链路正在补齐消费级自检和正式验收前缺口。loop855/SYNC-870 已完成 runner-ready manifest 产品级 dogfood：Jobs 页面显示正式回测引擎已接入但仍需用户点击确认，浏览器加载页面 POST count=0。下一步是 `CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856`。
+- Business mainline: `apps/quant_assistant` — 因子构造宇宙真实可用链路正在补齐消费级自检和正式验收前缺口。loop856/SYNC-871 已完成 explicit POST preflight：POST target candidates 必须与 execution plan 完全匹配，缺失/不匹配会在 runner 调用和 snapshot 写入前 400 fail-closed；API 成功响应返回 `explicit_post_preflight`，浏览器加载页面 POST count 仍为 0。下一步是 `CONTROLLED_REAL_BACKTEST_PREFLIGHT_PRODUCT_SURFACE_LOOP857`。
 - Current direction: 使用 CodeX orchestrator-only 模式；日常只开 orchestrator 会话；CodeX worker 优先通过跨对话 `send_message_to_thread` 续用永久 `codex_thread_id`；daily ops 只由 pinned `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0` 执行。canonical worker threads: test-engineer `019eeece-52d7-7b73-868a-7beb496ba303`, executor `019eeece-c617-71c3-a80a-39a693ad3ac3`, code-reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`, verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b`; `019ef130...` 是 runtime_agent_id 辅助证据，不得当 Codex thread id。下一拍必须先过 Goal/Plan Gate + Function-First Loop Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate + Skill Lifecycle Gate + Worker Capacity Gate，再执行 `CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856`；展示、UI 文案、业务原则、门禁、方法论、lifecycle 和真源同步只能作为核心功能完成后的 closing work。
 - Post-backfill directive: 已退出 backfill-monitoring 方式，按真源连续推进唯一核心主线 **auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph**；closure/收口表示阶段验收通过并继续下一切片，不是结束方案或停止 loop
-- **Next direction**: 读 `harness/loop-state.json`（当前业务下一原子动作是 `CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856`；Function-First Loop Gate v1.6 要求先声明 `core_function_artifact` / `phase_plan` / `functional_acceptance` / `closing_work_only`）
+- **Next direction**: 读 `harness/loop-state.json`（当前业务下一原子动作是 `CONTROLLED_REAL_BACKTEST_PREFLIGHT_PRODUCT_SURFACE_LOOP857`；Function-First Loop Gate v1.6 要求先声明 `core_function_artifact` / `phase_plan` / `functional_acceptance` / `closing_work_only`）
 - Recovery: CodeX 有效性自检 → `harness/scripts/codex-self-check.ps1 -Format markdown`
-- State facts: 见 `docs/PROJECT_STATUS.md` §5、`harness/loop-state.json` 与最新台账；SYNC-870 已完成 runner-ready manifest 产品级 dogfood，页面展示清楚且 page-load POST count=0。下一步做显式 POST preflight，证明只有用户确认才进入受控执行检查；缺口必须继续作为下一目标推进，不是停止点。
+- State facts: 见 `docs/PROJECT_STATUS.md` §5、`harness/loop-state.json` 与最新台账；SYNC-871 已完成显式 POST preflight target integrity 与 response evidence，mismatched target 不会调用 runner 或写 snapshot。下一步把 preflight ready/blocked 证据产品化，证明 preflight ready 不是 backtest started；缺口必须继续作为下一目标推进，不是停止点。
 - Context loading mode: 正式切换为 **热路径轻量 + 冷路径可追溯回源**。每轮默认只加载当前 slice gate、§5 最新 1-3 条、下一动作、方法论 visible status、必要 worker/skill 索引；阶段切换、冲突、自检失败、安全/真实执行/发布门禁、worker/skill 新增或重绑、方法论 synthesis、用户审计时再冷路径回源完整真源。workflow 不舍弃，默认按当前 gate 片段使用。
 
 ## Current Mainline Facts

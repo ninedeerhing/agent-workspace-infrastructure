@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-11T14:48:55+08:00
+updated_at: 2026-07-11T14:57:54+08:00
 
-## Latest Handoff — SYNC-870 Controlled real runner manifest product dogfood
+## Latest Handoff — SYNC-871 Controlled real backtest explicit POST preflight
+
+- [DONE] Added `controlled_real_backtest_explicit_post_preflight_v1` to compare POST `target_candidate_ids` with execution plan targets.
+- [DONE] Added `controlled_real_backtest_api_actions.py` so the historical large `quant_routes.py` remains a thin wrapper for this action.
+- [DONE] Missing or mismatched target candidates now return 400 before runner invocation and before mining job snapshot writes.
+- [DONE] Successful explicit POST returns `explicit_post_preflight` with requested/planned refs and all-false preflight side effects.
+- [VERIFY] RED mismatched target did not raise; GREEN explicit post preflight 2 passed.
+- [VERIFY] Related controlled-real regression 17 passed; targeted Ruff pass; targeted compileall pass; browser dogfood still confirms page-load POST count=0.
+- [WORKER] Permanent test-engineer loop856 read-only report returned success and was absorbed; no duplicate worker created.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_PREFLIGHT_PRODUCT_SURFACE_LOOP857`: surface ready/blocked preflight evidence in Jobs and keep preflight-ready distinct from backtest-started.
+- [FORBIDDEN] No substitute Docker/DB/ports; no default runner; no backtest/table write from GET/page-load/list refresh.
+
+## Previous Handoff — SYNC-870 Controlled real runner manifest product dogfood
 
 - [DONE] Added `ControlledRealBacktestRunnerManifestNotice` and wired it into the Jobs current confirmation card.
 - [DONE] Jobs now shows “正式回测引擎已接入” and “仍需你点击确认才会开始真实回测” when `runner_manifest.status=runner_ready_waiting_user_execution_confirmation`.

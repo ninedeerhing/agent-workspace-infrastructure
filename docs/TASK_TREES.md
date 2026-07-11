@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T14:48:55+08:00 · SYNC-870 · Controlled real runner manifest product dogfood
+Updated: 2026-07-11T14:57:54+08:00 · SYNC-871 · Controlled real backtest explicit POST preflight
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 

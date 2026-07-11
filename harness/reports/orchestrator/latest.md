@@ -1,4 +1,42 @@
-# Orchestrator Latest Report — SYNC-870 Controlled real runner manifest product dogfood loop855
+# Orchestrator Latest Report — SYNC-871 Controlled real backtest explicit POST preflight loop856
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_real_backtest_explicit_post_preflight.py"
+      summary: "Adds side-effect-free explicit POST preflight target integrity read-model."
+    - file: "apps/quant_assistant/src/qa/api/controlled_real_backtest_api_actions.py"
+      summary: "Extracts controlled real backtest POST action from the large route module."
+    - file: "apps/quant_assistant/src/qa/api/quant_routes.py"
+      summary: "Routes explicit POST through the action and returns explicit_post_preflight evidence."
+    - file: "apps/quant_assistant/tests/test_controlled_real_backtest_explicit_post_preflight_unit.py"
+      summary: "Covers mismatched targets fail before runner/snapshot and matched targets return preflight evidence."
+  verification:
+    - command: "uv run pytest -q tests/test_controlled_real_backtest_explicit_post_preflight_unit.py"
+      result: "RED mismatched target did not raise, then GREEN 2 passed."
+    - command: "uv run pytest -q tests/test_controlled_real_backtest_explicit_post_preflight_unit.py tests/test_controlled_real_backtest_runner_injection_unit.py tests/test_controlled_real_backtest_runner_manifest_unit.py tests/test_mining_job_api_unit.py tests/test_factor_construction_controlled_backtest_execution_bridge_unit.py tests/test_controlled_real_backtest_execution_bridge_read_model_unit.py tests/test_db_runner_preflight_validator_unit.py -k \"controlled_real_backtest or explicit_post_preflight or runner_provider or runner_manifest or execution_bridge\""
+      result: "17 passed, 60 deselected."
+    - command: "uv run ruff check src/qa/api/controlled_real_backtest_api_actions.py src/qa/quant_mining/controlled_real_backtest_explicit_post_preflight.py tests/test_controlled_real_backtest_explicit_post_preflight_unit.py src/qa/api/quant_routes.py"
+      result: "All checks passed."
+    - command: "python -m compileall -q targeted files"
+      result: "pass."
+    - command: "npm run test:controlled-real-runner-manifest-browser"
+      result: "controlled real runner manifest browser dogfood OK; page-load POST count=0."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Explicit POST preflight must verify requested targets against execution-plan targets before runner or snapshot side effects."
+      - "Preflight ready is not backtest started; UI/product copy must keep those states separate."
+    performance_note: "Explicit POST target integrity is fail-closed and observable; next target is product surface."
+  blockers: []
+  next: "CONTROLLED_REAL_BACKTEST_PREFLIGHT_PRODUCT_SURFACE_LOOP857"
+
+---
+
+# Orchestrator Previous Report — SYNC-870 Controlled real runner manifest product dogfood loop855
 
 report:
   role_id: "orchestrator"
