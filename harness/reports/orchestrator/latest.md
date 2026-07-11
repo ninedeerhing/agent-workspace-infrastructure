@@ -1,25 +1,31 @@
-# Orchestrator Latest Report — SYNC-875 Controlled real backtest targeted recap product self-validation loop860
+# Orchestrator Latest Report — SYNC-876 Controlled real backtest current task card read model loop861
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "CONTROLLED_REAL_BACKTEST_TARGETED_RECAP_PRODUCT_SELF_VALIDATION_LOOP860"
+  task: "CONTROLLED_REAL_BACKTEST_CURRENT_TASK_CARD_READ_MODEL_LOOP861"
   changes:
-    - file: "apps/quant_assistant/web/src/pages/JobsPageControlledRealBacktestTarget.ts"
-      summary: "Extracts controlled-real Factor Library target URL construction, factor ref collection, and preferred job parsing."
+    - file: "apps/quant_assistant/web/src/pages/JobsPageCurrentTaskCardModel.ts"
+      summary: "Extracts the Jobs current-task/confirmation card into a stable read model with state, title, description, CTA, reason lines, and diagnostic flags."
     - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
-      summary: "Uses the extracted target read model and lets completed controlled progress with feedback-ready state show the result recap CTA."
-    - file: "apps/quant_assistant/web/scripts/check-factor-library-targeted-recap-browser.mjs"
-      summary: "Browser dogfood now starts at Jobs, clicks the result recap CTA, verifies targeted Factor Library URL/copy, and checks blocked return focus."
-    - file: "apps/quant_assistant/web/scripts/check-controlled-real-targeted-recap-product-self-validation.mjs"
-      summary: "Adds loop860 product self-validation contract."
-    - file: "apps/quant_assistant/web/scripts/check-factor-library-recap.mjs"
-      summary: "Validates the extracted Jobs target model instead of requiring inline JobsPage logic."
+      summary: "Renders the current task card from the read model instead of scattered JSX branches."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-current-task-card-model.mjs"
+      summary: "Adds a static contract check for the model and JobsPage wiring."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-current-task-card-browser.mjs"
+      summary: "Adds browser dogfood for ready, submitted waiting refresh, running, blocked, failed, completed/report-ready, and completed/no-report."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-current-task-card-fixtures.mjs"
+      summary: "Keeps current-task card mocked job fixtures separate from browser runner logic so both files stay under the LOC ceiling."
+    - file: "apps/quant_assistant/web/package.json"
+      summary: "Registers targeted current-task card test scripts."
   verification:
+    - command: "npm run test:controlled-real-current-task-card-model"
+      result: "controlled real current task card model contract OK."
+    - command: "npm run test:controlled-real-current-task-card-browser"
+      result: "controlled real current task card browser OK; ready/submitted/running/blocked/failed/completed states covered; no page-load POST; one explicit-click POST only."
+    - command: "npm run test:factor-library-targeted-recap-browser"
+      result: "factor library targeted recap browser OK; current_task_duplicate_count=1."
     - command: "npm run test:controlled-real-targeted-recap-product-self-validation"
       result: "controlled real targeted recap product self-validation contract OK."
-    - command: "npm run test:factor-library-targeted-recap-browser"
-      result: "factor library targeted recap browser OK; Jobs CTA -> Factor Library targeted recap; blocked CTA -> Jobs target focus; current_task_duplicate_count=1."
     - command: "npm run test:factor-library-recap"
       result: "factor library recap guide OK."
     - command: "npm run test:factor-universe-review-readiness"
@@ -33,11 +39,12 @@ report:
   roster_update:
     workload_delta: "unchanged"
     mistakes:
-      - "Before loop860, targeted browser tests opened Jobs and Factor Library as separate pages instead of proving the user click-through."
-      - "Factor Library return CTAs used source=controlled_real_backtest, but Jobs previously only honored factor_universe_job as preferred job source."
+      - "Initial ready-state browser fixture lacked the real manual trigger request fields, causing the page to render idle; fixed the fixture to match the existing action contract."
+      - "A no-report CTA wording change was first applied to the report-ready branch; corrected the branch after browser test caught the missing no-report copy."
     lessons:
-      - "Product self-validation must start from the user's previous screen and click the real CTA."
-      - "Return routes need explicit preferred-job parsing for every source used by CTA hrefs."
-    performance_note: "Permanent Parfit/test-engineer and Meitner/code-reviewer findings were absorbed; no duplicate worker created."
+      - "Browser dogfood fixtures must satisfy the same trigger_request contract the page uses, including auto_execute=false and requires_injected_runner=true."
+      - "Current-task UX should have one product state source before formal review; gaps then become the next loop target."
+      - "Worker request_changes must be absorbed before commit when they expose product-state conflicts."
+    performance_note: "Permanent Parfit/test-engineer and Meitner/code-reviewer findings were absorbed: submitted waiting refresh state, no-report CTA, precise CTA assertions, and narrower trigger/CTA types."
   blockers: []
-  next: "CONTROLLED_REAL_BACKTEST_CURRENT_TASK_CARD_READ_MODEL_LOOP861"
+  next: "CONTROLLED_REAL_BACKTEST_REPORT_SURFACE_GUIDANCE_LOOP862"

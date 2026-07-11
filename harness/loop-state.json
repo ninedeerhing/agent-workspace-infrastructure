@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T15:49:20+08:00",
+  "updated_at": "2026-07-11T15:59:49+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-real-backtest-targeted-recap-product-self-validation-loop860",
-  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_CURRENT_TASK_CARD_READ_MODEL_LOOP861：抽取 JobsPage 当前任务/等待确认卡片 read model，统一 state/title/description/primary CTA/blocked-failed-no-report reasons/diagnostic flags，覆盖 completed/report-ready、completed/no-report、blocked、failed、ready、running；保持页面加载无 POST、无替代 Docker/DB、无默认 runner。",
+  "current_slice": "controlled-real-backtest-current-task-card-read-model-loop861",
+  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_REPORT_SURFACE_GUIDANCE_LOOP862：强化 Factor Library 受控真实回测报告面锚点与下一步说明，确保 completed/report-ready 点击“查看结果与复盘”后用户能看懂报告指标、复盘材料、失败/阻塞原因和下一轮动作；保持页面加载无 POST、无替代 Docker/DB、无默认 runner。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-875-controlled-real-backtest-targeted-recap-product-self-validation-loop860",
+  "last_tick": "SYNC-876-controlled-real-backtest-current-task-card-read-model-loop861",
   "last_sync_sources": [
+    "SYNC-876 Controlled real backtest current task card read model loop861",
+    "loop861 frontend: extracted JobsPageCurrentTaskCardModel to own Jobs current-task/confirmation card state, copy, primary CTA, reason lines, and diagnostic flags",
+    "loop861 browser: added six-state current task card dogfood for ready, running, blocked, failed, completed/report-ready, and completed/no-report",
+    "loop861 UX: current task card now has one stable product state source and explicit no-page-load-post/no-substitute-runtime/default-runner diagnostics",
+    "loop861 worker: permanent test-engineer and code-reviewer received read-only loop861 review assignments; no duplicate worker created",
+    "loop861 verification: current-task model pass, six-state browser pass, targeted recap browser pass, targeted self-validation pass, factor-library recap pass, review-readiness pass, build pass, lint 0 errors/1 existing warning",
+    "next: CONTROLLED_REAL_BACKTEST_REPORT_SURFACE_GUIDANCE_LOOP862",
     "SYNC-875 Controlled real backtest targeted recap product self-validation loop860",
     "loop860 product dogfood: browser now starts at Jobs, clicks 查看结果与复盘, lands on targeted Factor Library with job_id/source/factor_refs, and verifies page-load POST count=0",
     "loop860 Jobs focus: source=controlled_real_backtest now resolves preferred job_id through JobsPageControlledRealBacktestTarget, so Factor Library blocked/failed/no-report CTAs return to the intended task",

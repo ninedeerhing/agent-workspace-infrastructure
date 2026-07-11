@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-11T15:49:20+08:00
+updated_at: 2026-07-11T15:59:49+08:00
+
+## Latest Handoff — SYNC-876 controlled-real-backtest-current-task-card-read-model-loop861
+
+- [DONE] loop861 current task card read model: `JobsPageCurrentTaskCardModel.ts` now owns Jobs current-task/confirmation state, title, description, primary CTA, reason lines, and diagnostic flags.
+- [DONE] Jobs page consumes `currentTaskCard` instead of scattering next-step copy in JSX branches; ready/submitted/running/blocked/failed/completed-report-ready/completed-no-report now share one product model.
+- [VERIFY] Passed: `npm run test:controlled-real-current-task-card-model`; `npm run test:controlled-real-current-task-card-browser`; `npm run test:factor-library-targeted-recap-browser`; `npm run test:controlled-real-targeted-recap-product-self-validation`; `npm run test:factor-library-recap`; `npm run test:factor-universe-review-readiness`; `npm run build`; `npm run lint` (0 errors / 1 existing warning); `git diff --check` (CRLF warnings only).
+- [WORKERS] Parfit/test-engineer returned needs_attention and Meitner/code-reviewer returned request_changes. Findings were absorbed: submitted-but-not-refreshed state, no-report CTA wording, CTA href/secondary CTA assertions, and narrower trigger/CTA types. No duplicate worker created.
+- [BOUNDARY] No `.env`/DSN/secret read; no DB/Docker/scorer/backtest; no substitute runtime; mocked browser product dogfood only.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_REPORT_SURFACE_GUIDANCE_LOOP862`: strengthen Factor Library report surface guidance after completed/report-ready CTA so users can understand metrics, recap material, blocker/failure reasons, and next-round actions.
 
 ## Latest Handoff — SYNC-875 controlled-real-backtest-targeted-recap-product-self-validation-loop860
 
