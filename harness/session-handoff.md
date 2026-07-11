@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T17:05:00+08:00
+updated_at: 2026-07-11T17:25:00+08:00
+
+## Latest Handoff — SYNC-838 Source adapter manifest review UI surface
+
+- [DONE] `/quant/factor-mining` now shows “Manifest 复核状态”.
+- [DONE] The UI exposes `source_adapter_manifest_review_from_conversion_v1`.
+- [DONE] The UI shows `complete_for_review`, `pending_reviewer_approval`, `missing_manifest_fields`, `source_material_ref_count`, and `source_adapter_manifest_owner_approval`.
+- [VERIFY] Consumer/source + source review tests: 14 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824`: add product self-validation for this review surface.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-837 Source adapter manifest review from conversion
 

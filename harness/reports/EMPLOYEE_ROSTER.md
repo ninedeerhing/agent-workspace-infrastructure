@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T17:05:00+08:00
+Updated: 2026-07-11T17:25:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop822 | continuous_loop_active | gpt-5.5 | 2026-07-11T17:05:00+08:00 | SYNC-837 source adapter manifest review read-model complete; next SOURCE_ADAPTER_MANIFEST_REVIEW_UI_SURFACE_LOOP823 | keep moving; expose source adapter manifest review on UI |
+| orchestrator | current-thread | loop823 | continuous_loop_active | gpt-5.5 | 2026-07-11T17:25:00+08:00 | SYNC-838 source adapter manifest review UI surface complete; next SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824 | keep moving; product-gate source adapter manifest review surface |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T17:25:00+08:00 · loop823/SYNC-838: `/quant/factor-mining` now shows “Manifest 复核状态” for `source_adapter_manifest_review_from_conversion_v1`, including complete_for_review, pending_reviewer_approval, missing_manifest_fields, source_material_ref_count, and source_adapter_manifest_owner_approval. Verification: consumer/source + source review tests 14 passed, web build pass.
 - 2026-07-11T17:05:00+08:00 · loop822/SYNC-837: Added `source_adapter_manifest_review_from_conversion_v1`; conversion candidates now produce source adapter manifest review read-models with required field completeness and pending reviewer approval, not source ready. Batch-mining plan exposes `factor_universe_source_adapter_manifest_review_from_conversion`. Permanent code-reviewer thread received read-only boundary review request on gpt-5.4. Verification: source review + conversion + product gate 17 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T16:45:00+08:00 · loop821/SYNC-836: Manifest conversion UI/API evidence is now part of `product_self_validation_gate_v1`; missing route evidence blocks `missing_source_manifest_conversion_ui_not_visible`, missing API contract evidence blocks `missing_source_manifest_conversion_candidate_not_exposed`, and batch-mining plan exposes a blocked/read-only conversion candidate. Verification: product/API/consumer/onboarding/manifest regression 32 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T16:25:00+08:00 · loop820/SYNC-835: `/quant/factor-mining` now shows “Manifest 草案预览” for `missing_source_onboarding_manifest_conversion_candidate_v1`, including entity/alternative source adapter/table/PIT/coverage/owner/material refs and source_adapter_manifest_review boundary. Permanent test-engineer thread received read-only review request on gpt-5.4. Verification: manifest UI + backend focused tests 3 passed, consumer/source + onboarding regression 17 passed, web build pass.

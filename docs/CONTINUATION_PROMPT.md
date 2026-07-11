@@ -9,12 +9,12 @@
 ## Current Continuation Entry
 
 - Current mainline: AWI CodeX-effective baseline 已验收（TREE-RT 防漂移维护）；业务主线为 `TREE-6 / Factor Construction Universe`
-- Business mainline: `apps/quant_assistant` — 因子构造宇宙真实可用链路正在补齐 A/E 数据源缺口闭环。loop822/SYNC-837 已新增 `source_adapter_manifest_review_from_conversion_v1`，并在 batch-mining plan 顶层暴露该 read-model。下一步是 `SOURCE_ADAPTER_MANIFEST_REVIEW_UI_SURFACE_LOOP823`：把 review status、字段完整性、pending reviewer approval 和 next gate 展示到 `/quant/factor-mining`。
+- Business mainline: `apps/quant_assistant` — 因子构造宇宙真实可用链路正在补齐 A/E 数据源缺口闭环。loop823/SYNC-838 已把 `source_adapter_manifest_review_from_conversion_v1` 的 review status、字段完整性、pending reviewer approval 和 next gate 展示到 `/quant/factor-mining`。下一步是 `SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824`：把该 UI/API evidence 纳入产品自检门。
 - Current direction: 使用 CodeX orchestrator-only 模式；日常只开 orchestrator 会话；CodeX worker 优先通过跨对话 `send_message_to_thread` 续用永久 `codex_thread_id`；daily ops 只由 pinned `daily-ops` thread `019ef261-de0b-7ad0-8e9c-bb005dd38af0` 执行。canonical worker threads: test-engineer `019eeece-52d7-7b73-868a-7beb496ba303`, executor `019eeece-c617-71c3-a80a-39a693ad3ac3`, code-reviewer `019eeed1-7e14-7342-9d45-d7948aec94d2`, verifier `019eeed2-dbc0-7313-8d64-f9c6f199c68b`; `019ef130...` 是 runtime_agent_id 辅助证据，不得当 Codex thread id。下一拍必须先过 Goal/Plan Gate + Function-First Loop Gate + Skill Routing Gate + Worker Dispatch Gate + Worker Cluster/Rendezvous Gate + Skill Lifecycle Gate + Worker Capacity Gate，再执行 `SAFE_SIM_RESULT_TO_CANDIDATE_PROMOTION_DECISION_LOOP291`；展示、UI 文案、业务原则、门禁、方法论、lifecycle 和真源同步只能作为核心功能完成后的 closing work。
 - Post-backfill directive: 已退出 backfill-monitoring 方式，按真源连续推进唯一核心主线 **auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph**；closure/收口表示阶段验收通过并继续下一切片，不是结束方案或停止 loop
-- **Next direction**: 读 `harness/loop-state.json`（当前业务下一原子动作是 `SOURCE_ADAPTER_MANIFEST_REVIEW_UI_SURFACE_LOOP823`；Function-First Loop Gate v1.6 要求先声明 `core_function_artifact` / `phase_plan` / `functional_acceptance` / `closing_work_only`）
+- **Next direction**: 读 `harness/loop-state.json`（当前业务下一原子动作是 `SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824`；Function-First Loop Gate v1.6 要求先声明 `core_function_artifact` / `phase_plan` / `functional_acceptance` / `closing_work_only`）
 - Recovery: CodeX 有效性自检 → `harness/scripts/codex-self-check.ps1 -Format markdown`
-- State facts: 见 `docs/PROJECT_STATUS.md` §5、`harness/loop-state.json` 与最新台账；SYNC-837 已把 conversion candidate 转成 source adapter manifest review read-model。下一步要把 review read-model 展示到用户可见面，缺口必须继续作为下一目标推进，不是停止点。
+- State facts: 见 `docs/PROJECT_STATUS.md` §5、`harness/loop-state.json` 与最新台账；SYNC-838 已把 source adapter manifest review read-model 展示到用户可见面。下一步要把 review surface/API evidence 纳入产品自检，缺口必须继续作为下一目标推进，不是停止点。
 - Context loading mode: 正式切换为 **热路径轻量 + 冷路径可追溯回源**。每轮默认只加载当前 slice gate、§5 最新 1-3 条、下一动作、方法论 visible status、必要 worker/skill 索引；阶段切换、冲突、自检失败、安全/真实执行/发布门禁、worker/skill 新增或重绑、方法论 synthesis、用户审计时再冷路径回源完整真源。workflow 不舍弃，默认按当前 gate 片段使用。
 
 ## Current Mainline Facts

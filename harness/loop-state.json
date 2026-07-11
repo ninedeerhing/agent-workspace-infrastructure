@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T17:05:00+08:00",
+  "updated_at": "2026-07-11T17:25:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "source-adapter-manifest-review-from-conversion-loop822",
-  "next_atomic_action": "SOURCE_ADAPTER_MANIFEST_REVIEW_UI_SURFACE_LOOP823：在 /quant/factor-mining 展示 source_adapter_manifest_review_from_conversion_v1 的 review status、required field completeness、missing fields、pending reviewer approval 与 next gate；仍不得标 ready、不得写 DB、不得触发评分/回测/Docker/port。",
-  "next_after": "Continue until source adapter manifest review -> UI surface -> product self-validation -> Data Availability Gate partial closure.",
+  "current_slice": "source-adapter-manifest-review-ui-loop823",
+  "next_atomic_action": "SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824：把 source_adapter_manifest_review_from_conversion_v1 UI surface 与 API/contract evidence 纳入 product_self_validation_gate_v1；缺失时 fail closed，仍不得标 ready、不得写 DB、不得触发评分/回测/Docker/port。",
+  "next_after": "Continue until source adapter manifest review UI surface -> product self-validation -> Data Availability Gate partial closure.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-837-source-adapter-manifest-review-loop822",
+  "last_tick": "SYNC-838-source-adapter-manifest-review-ui-loop823",
   "last_sync_sources": [
+    "SYNC-838 Source adapter manifest review UI surface loop823",
+    "loop823 trigger: source adapter manifest review read-model needed a user-visible status surface",
+    "loop823 UI: /quant/factor-mining shows Manifest 复核状态 with source_adapter_manifest_review_from_conversion_v1, complete_for_review, pending_reviewer_approval, missing fields, material ref count, and owner approval next gate",
+    "loop823 boundary: no ready grant, no DB write, no scorer/backtest, no Docker/container/port",
+    "loop823 verification: consumer/source + source review tests 14 passed; npm run build pass",
+    "next: SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824",
     "SYNC-837 Source adapter manifest review from conversion loop822",
     "loop822 trigger: manifest conversion candidates needed a source adapter manifest review read-model before any source readiness claim",
     "loop822 backend: added source_adapter_manifest_review_from_conversion_v1 with required field completeness and pending reviewer approval",
