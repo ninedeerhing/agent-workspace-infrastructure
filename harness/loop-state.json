@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T12:20:00+08:00",
+  "updated_at": "2026-07-11T12:40:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "factor-mining-ui-source-confirmation-surface-loop808",
-  "next_atomic_action": "PRODUCT_SELF_VALIDATION_SOURCE_CONFIRMATION_SURFACE_LOOP809：从产品自检角度复核 /quant/factor-mining source confirmation surface、creation plan top-level gates、Data Availability Gate source statuses 三者是否同源；要求 UI/API 都能说明 A/E partial/missing 边界，且没有 scorer/backtest/DB write/Docker/port side effects；未通过则继续修复，不进入人工验收。",
-  "next_after": "Continue until source confirmation surface passes product-level self-validation and then advance to the next real-usability gap instead of stopping on the gap.",
+  "current_slice": "product-self-validation-source-confirmation-surface-loop809",
+  "next_atomic_action": "SOURCE_ADAPTER_MANIFEST_CAPTURE_CONTRACT_LOOP810：把 /quant/factor-mining 中 confirm_factor_universe_source_adapter_manifests 从静态 action_id 推进为受控 manifest capture contract/read-model：partial 源允许提交 adapter_ref、table_refs、pit_policy_ref、coverage_watermark_ref、owner_confirmation_ref；missing 源不可确认；确认后只生成 source review material，不触发评分/回测/DB 写入/Docker/port。",
+  "next_after": "Continue until A/E source manifest capture, review material, and candidate data-availability linkage have a controlled product path before moving to the next real-usability gap.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-823-factor-mining-ui-source-confirmation-surface-loop808",
+  "last_tick": "SYNC-824-product-self-validation-source-confirmation-surface-loop809",
   "last_sync_sources": [
+    "SYNC-824 Product self-validation source confirmation surface loop809",
+    "loop809 trigger: source confirmation surface needed to be a formal product self-validation hard gate, not just UI copy",
+    "loop809 gate: product_self_validation_gate_v1 now requires has_source_confirmation_surface=true and blocks source_confirmation_surface_not_visible",
+    "loop809 verification: product gate + consumer flow tests 15 passed; Ruff pass; npm run build pass; pure in-memory smoke pass",
+    "next: SOURCE_ADAPTER_MANIFEST_CAPTURE_CONTRACT_LOOP810",
     "SYNC-823 Factor-mining UI source confirmation surface loop808",
     "loop808 trigger: source-adapter/data-availability real source statuses needed a user-visible confirmation surface",
     "loop808 UI: /quant/factor-mining now shows 数据源确认清单 with real source ids and waiting_for_manifest_confirmation/blocked_missing_source statuses",

@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T12:20:00+08:00
+updated_at: 2026-07-11T12:40:00+08:00
+
+## Latest Handoff — SYNC-824 Product self-validation source confirmation surface
+
+- [DONE] `product_self_validation_gate_v1` now requires route evidence `has_source_confirmation_surface=true`.
+- [DONE] Missing source confirmation surface produces `source_confirmation_surface_not_visible` and blocks formal human review.
+- [VERIFY] Product gate + consumer flow tests: 15 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [VERIFY] Pure in-memory smoke: `product_self_validation_gate_v1 pass True [] False False False`.
+- [NEXT] `SOURCE_ADAPTER_MANIFEST_CAPTURE_CONTRACT_LOOP810`: turn the static manifest action id into a controlled manifest capture/read-model contract.
+- [FORBIDDEN] Do not treat source manifest capture as scoring readiness; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-823 Factor-mining UI source confirmation surface
 

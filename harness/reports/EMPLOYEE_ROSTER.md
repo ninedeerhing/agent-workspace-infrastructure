@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T12:20:00+08:00
+Updated: 2026-07-11T12:40:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop808 | continuous_loop_active | gpt-5.5 | 2026-07-11T12:20:00+08:00 | SYNC-823 factor-mining UI source confirmation surface complete; next PRODUCT_SELF_VALIDATION_SOURCE_CONFIRMATION_SURFACE_LOOP809 | keep moving; product-self-validate source confirmation alignment |
+| orchestrator | current-thread | loop809 | continuous_loop_active | gpt-5.5 | 2026-07-11T12:40:00+08:00 | SYNC-824 product self-validation source confirmation surface complete; next SOURCE_ADAPTER_MANIFEST_CAPTURE_CONTRACT_LOOP810 | keep moving; implement controlled manifest capture contract |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T12:40:00+08:00 · loop809/SYNC-824: Product self-validation gate now requires source confirmation surface evidence via `has_source_confirmation_surface=true`; missing surface blocks with `source_confirmation_surface_not_visible`. Verification: product gate + consumer flow tests 15 passed, Ruff pass, web build pass, pure in-memory smoke pass.
 - 2026-07-11T12:20:00+08:00 · loop808/SYNC-823: Factor-mining page now exposes “数据源确认清单” with real A/E source ids/statuses, action_id `confirm_factor_universe_source_adapter_manifests`, and explicit no scoring/backtest/substitute Docker/DB/port boundary. Verification: consumer-flow source tests 7 passed, Ruff pass, web build pass. Next: product self-validation for source confirmation surface.
 - 2026-07-11T11:55:00+08:00 · loop807/SYNC-822: Data Availability Gate now accepts `source_adapter_confirmation_gate`; A/E candidate missing sources can be real source ids and candidate JSON includes `source_confirmation_statuses`; old generic behavior preserved for compatibility. Godel/verifier report returned with aligned three-layer boundary advice and 15 passed. Verification: data-availability/downstream 20 passed, Ruff pass.
 - 2026-07-11T11:40:00+08:00 · loop806/SYNC-821: Added source adapter/manifest confirmation gate for A/E partial/missing sources; creation plan exposes the gate; product self-validation blocks missing gate; UI production readiness panel shows source adapter/manifest confirmation. Godel/verifier was assigned a read-only boundary review on gpt-5.4-mini; final report pending and not used as completion evidence. Verification: source-adapter/product/catalog/data-source 15 passed, Ruff pass, web build pass, creation-plan smoke pass.
