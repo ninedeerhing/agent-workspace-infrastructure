@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T22:32:11+08:00",
+  "updated_at": "2026-07-11T22:38:52+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-batch-recap-real-job-telemetry-loop874",
-  "next_atomic_action": "POST_ACCEPTANCE_JOBS_OBSERVABILITY_BATCH_RECAP_LOOP875：继续把 loop874 的 job.result.factor_construction_universe_summary 接入 Jobs/mining job observability/detail/list read-model，让用户从 /quant/jobs 也能看到同一批真实构造 telemetry；保持只读、无评分/回测/DB/Docker 副作用，并保留 preview vs job_payload source markers。",
-  "next_after": "Continue continuous loop toward persisted job observability and user-visible recap trust.",
+  "current_slice": "post-acceptance-jobs-observability-batch-recap-loop875",
+  "next_atomic_action": "POST_ACCEPTANCE_GENERATOR_QUOTA_AND_SEEDED_DEMO_COVERAGE_LOOP876：复查并修复因子构造宇宙真实 generator scheduler / seeded demo 是否消费 expanded taxonomy 与 subclass_quota，避免 UI 展示扩展但实际生成仍偏 B 类；补后端/前端 dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward real generator coverage breadth and seeded demo trust.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-888-post-acceptance-batch-recap-real-job-telemetry-loop874",
+  "last_tick": "SYNC-889-post-acceptance-jobs-observability-batch-recap-loop875",
   "last_sync_sources": [
+    "SYNC-889 Post-acceptance Jobs observability batch recap loop875",
+    "loop875 backend: quant mining job API now copies valid job.result.factor_construction_universe_summary into observability.factor_construction_universe_summary for list/detail read-models",
+    "loop875 frontend: Jobs page now renders a current-task construction recap from observability telemetry using the shared FactorMiningBatchRecap, with jobs_batch_recap_telemetry_visible=true and telemetry_source=job_payload/telemetry_status=real_batch markers",
+    "loop875 product dogfood: formal-review E2E mock now returns the same telemetry from /api/v1/quant/mining-jobs and asserts /quant/jobs shows this task's construction recap, generated candidate count, hard-gate pass copy, and no page-load scoring/backtest behavior",
+    "loop875 verification: RED test failed before bridge; targeted GREEN passed; jobs observability selector 3 passed; full test_mining_job_api_unit.py 62 passed; formal-review E2E dogfood pass; factor-universe review readiness pass; web build pass; lint 0 errors/1 existing warning; diff check pass with CRLF warnings only",
+    "loop875 worker: Kierkegaard read-only product/QA review confirmed Jobs page lacked batch recap telemetry and recommended source/status markers plus no-execution explanation; API-layer bridge chosen to avoid widening oversized runner in this loop",
+    "loop875 warning: touched inherited oversized JobsPage.tsx/test_mining_job_api_unit.py/check-formal-review-e2e-product-dogfood.mjs; new JobsPageBatchRecapTelemetryNotice contains new UI behavior, broader file splits remain follow-up hygiene",
+    "next: POST_ACCEPTANCE_GENERATOR_QUOTA_AND_SEEDED_DEMO_COVERAGE_LOOP876",
     "SYNC-888 Post-acceptance batch recap real job telemetry loop874",
     "loop874 backend: confirm_mining_job now records factor_construction_universe_summary in job.result using existing factor_construction_universe_summary and source-mode helpers",
     "loop874 frontend: FactorMiningPage stores returned job.result and FactorMiningBatchRecap switches telemetry_source/status from preview_structure/preview_not_real_batch to job_payload/real_batch when job payload telemetry exists",

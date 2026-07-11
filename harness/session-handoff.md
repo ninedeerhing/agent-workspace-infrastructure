@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T22:32:11+08:00
+updated_at: 2026-07-11T22:38:52+08:00
+
+## Latest Handoff — SYNC-889 post-acceptance-jobs-observability-batch-recap-loop875
+
+- [DONE] Jobs list/detail read-model now exposes `job.result.factor_construction_universe_summary` as `observability.factor_construction_universe_summary`.
+- [DONE] `/quant/jobs` current task now shows `这条任务的构造复盘` using shared `FactorMiningBatchRecap`, with `jobs_batch_recap_telemetry_visible=true`.
+- [DONE] Jobs-side recap preserves `telemetry_source=job_payload` and `telemetry_status=real_batch`, while copy states it is construction telemetry and not scoring/backtest output.
+- [VERIFY] Passed: RED/GREEN observability telemetry test, jobs observability selector 3 passed, full `tests/test_mining_job_api_unit.py` 62 passed, formal-review E2E product dogfood, factor-universe review readiness, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WORKER] Kierkegaard read-only product/QA review confirmed Jobs was the missing consumer and recommended source/status markers plus no-execution copy.
+- [WARN] Touched inherited oversized files (`JobsPage.tsx`, `test_mining_job_api_unit.py`, `check-formal-review-e2e-product-dogfood.mjs`); new UI behavior was placed in `JobsPageBatchRecapTelemetryNotice.tsx`, broader splits remain follow-up hygiene.
+- [NEXT] `POST_ACCEPTANCE_GENERATOR_QUOTA_AND_SEEDED_DEMO_COVERAGE_LOOP876`.
 
 ## Latest Handoff — SYNC-888 post-acceptance-batch-recap-real-job-telemetry-loop874
 
