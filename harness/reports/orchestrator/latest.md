@@ -1,3 +1,46 @@
+# Orchestrator Latest Report — SYNC-843 Data Availability owner approval linkage loop828
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "DATA_AVAILABILITY_OWNER_APPROVAL_LINKAGE_LOOP828"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_data_availability_gate.py"
+      summary: "Lets Data Availability Gate consume owner approval contract and expose approved refs as source_review_owner_approved partial state."
+    - file: "apps/quant_assistant/tests/test_factor_construction_data_availability_gate_unit.py"
+      summary: "Covers owner approval linkage without marking E candidates calculable or ready."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-843 and next loop829."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-843."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop829."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop829."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to owner approval UI recap."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-843."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updates orchestrator overlay."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_data_availability_gate_unit.py -k owner_approval"
+      result: "RED unexpected keyword argument before implementation; GREEN 1 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_universe_source_adapter_manifest_owner_approval_unit.py tests/test_factor_construction_compute_budget_gate_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py"
+      result: "28 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_construction_data_availability_gate.py tests/test_factor_construction_data_availability_gate_unit.py"
+      result: "All checks passed."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Owner approval changes the source-review state label but still must not enter calculable refs."
+    performance_note: "Loop828 closed via local TDD/regression/Ruff."
+  blockers: []
+  next: "DATA_AVAILABILITY_OWNER_APPROVAL_UI_RECAP_LOOP829"
+
+---
+
 # Orchestrator Latest Report — SYNC-842 Source adapter manifest owner approval UI surface loop827
 
 report:

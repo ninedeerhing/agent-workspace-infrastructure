@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T18:45:00+08:00
+updated_at: 2026-07-11T19:05:00+08:00
+
+## Latest Handoff — SYNC-843 Data Availability owner approval linkage
+
+- [DONE] `build_data_availability_gate_result_v1(...)` now accepts `source_adapter_manifest_owner_approval`.
+- [DONE] Approved owner refs map to `source_review_owner_approved`.
+- [DONE] Candidates remain `partial`; they do not enter `calculable_refs`.
+- [VERIFY] Focused owner approval linkage test: 1 passed.
+- [VERIFY] Data Availability + downstream budget/scoring/provisional regression: 28 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [NEXT] `DATA_AVAILABILITY_OWNER_APPROVAL_UI_RECAP_LOOP829`: expose source-review-owner-approved in the candidate availability/recap surface.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-842 Source adapter manifest owner approval UI surface
 
