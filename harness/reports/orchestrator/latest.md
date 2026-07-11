@@ -1,3 +1,48 @@
+# Orchestrator Latest Report — SYNC-844 Data Availability owner approval UI recap loop829
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "DATA_AVAILABILITY_OWNER_APPROVAL_UI_RECAP_LOOP829"
+  changes:
+    - file: "apps/quant_assistant/web/src/pages/factorMiningContent.ts"
+      summary: "Adds source_review_owner_approved candidate availability recap item."
+    - file: "apps/quant_assistant/web/src/pages/factorMiningCandidateAvailability.tsx"
+      summary: "Shows owner-approved-but-partial badge copy."
+    - file: "apps/quant_assistant/tests/test_factor_universe_consumer_flow_source_unit.py"
+      summary: "Covers owner approval recap markers."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-844 and next loop830."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-844."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop830."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop830."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to controlled A/E candidate readiness contract."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-844."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updates orchestrator overlay."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_universe_consumer_flow_source_unit.py -k candidate_availability"
+      result: "RED missing source_review_owner_approved marker before implementation; GREEN 1 passed."
+    - command: "uv run pytest -q tests/test_factor_universe_consumer_flow_source_unit.py"
+      result: "13 passed."
+    - command: "npm.cmd run build"
+      result: "pass."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Partial source-review states need user-facing recap labels, otherwise users cannot understand why approval still does not mean scoring readiness."
+    performance_note: "Loop829 closed via local UI source test and production build."
+  blockers: []
+  next: "CONTROLLED_AE_CANDIDATE_READINESS_CONTRACT_LOOP830"
+
+---
+
 # Orchestrator Latest Report — SYNC-843 Data Availability owner approval linkage loop828
 
 report:

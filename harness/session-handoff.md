@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T19:05:00+08:00
+updated_at: 2026-07-11T19:25:00+08:00
+
+## Latest Handoff — SYNC-844 Data Availability owner approval UI recap
+
+- [DONE] `/quant/factor-mining` candidate availability recap now shows `source_review_owner_approved`.
+- [DONE] Added `E-OWNER-approved` recap card.
+- [DONE] Badge copy says `owner 已批准 · 仍然 partial`.
+- [VERIFY] Focused candidate availability test: 1 passed.
+- [VERIFY] Consumer/source regression: 13 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `CONTROLLED_AE_CANDIDATE_READINESS_CONTRACT_LOOP830`: add controlled A/E candidate readiness contract from source-review-owner-approved partial refs.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-843 Data Availability owner approval linkage
 
