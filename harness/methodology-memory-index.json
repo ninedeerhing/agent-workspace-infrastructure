@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-07-12T04:35:00Z",
+  "updated_at": "2026-07-12T05:20:00Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
   "active_entry_count": 67,
   "archived_round_count": 0,
@@ -1557,7 +1557,7 @@
   "dream_candidates": [],
   "closure_candidates": [],
   "last_lifecycle": {
-    "at": "2026-07-12T04:35:00Z",
+    "at": "2026-07-12T05:20:00Z",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
@@ -1565,9 +1565,10 @@
     "archived_rounds": [],
     "active_step_digests": 39,
       "completed_tasks_hint": [
-        "SYNC-927 loop913 complete: reason-aware scoring context now reaches controlled execution, progress, result report, feedback memory, and Factor Library report summary.",
-        "post-acceptance-reason-aware-execution-progress-and-report-loop913",
-        "SYNC-927-post-acceptance-reason-aware-execution-progress-and-report-loop913"
+        "SYNC-928 loop914 complete: reason-aware scoring context now returns from report/Factor Library feedback memory into the next scheduler, MiningBrief, candidate preview, and batch recap.",
+        "post-acceptance-reason-aware-feedback-memory-to-next-scheduler-loop914",
+        "SYNC-928-post-acceptance-reason-aware-feedback-memory-to-next-scheduler-loop914",
+        "next: POST_ACCEPTANCE_MULTI_SEED_REASON_AWARE_COMBINATION_SCHEDULER_LOOP915"
       ],
     "ttl_days": 180
   }

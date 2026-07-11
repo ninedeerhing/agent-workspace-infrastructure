@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T12:35:00+08:00",
+  "updated_at": "2026-07-12T13:20:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-reason-aware-execution-progress-and-report-loop913",
-  "next_atomic_action": "POST_ACCEPTANCE_REASON_AWARE_FEEDBACK_MEMORY_TO_NEXT_SCHEDULER_LOOP914：把 report / Factor Library feedback memory 中的 reason_aware_scoring_context 回流到下一轮 adaptive scheduler / MiningBrief / candidate preview，让原因动作与决策依据不只显示在报告里，还能影响下一轮构造方向。",
-  "next_after": "Continue continuous loop toward reason-aware feedback memory roundtrip into next-generation scheduling.",
+  "current_slice": "post-acceptance-reason-aware-feedback-memory-to-next-scheduler-loop914",
+  "next_atomic_action": "POST_ACCEPTANCE_MULTI_SEED_REASON_AWARE_COMBINATION_SCHEDULER_LOOP915：把多条 report / Factor Library feedback seeds 的 reason-aware actions、decision_basis、lineage refs 合并为下一轮 generator quota、single-factor candidates 与 multi-factor combination candidate mix，避免下一轮只消费第一条复盘 seed。",
+  "next_after": "Continue continuous loop toward multi-seed reason-aware generator and combination scheduling.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-927-post-acceptance-reason-aware-execution-progress-and-report-loop913",
+  "last_tick": "SYNC-928-post-acceptance-reason-aware-feedback-memory-to-next-scheduler-loop914",
   "last_sync_sources": [
+    "SYNC-928 Post-acceptance reason-aware feedback memory to next scheduler loop914",
+    "loop914 backend: report feedback_memory_input now carries reason_aware_scoring_context into real_backtest_feedback_v1 payloads",
+    "loop914 backend: trajectory product summary outcome_details now preserve reason_aware_scoring_context from feedback/progress handoff",
+    "loop914 backend: adaptive generator feedback now consumes nested reason_aware_scoring_context outcome groups/actions for next-round scheduling",
+    "loop914 frontend: Factor Library feedback seed URLs, parser, MiningBrief trajectory_outcome_details, ConstructionSpec, and batch recap preserve reason-aware actions and decision basis",
+    "loop914 refactor: extracted factorMiningBatchFamilyMetrics.ts so touched batch telemetry file returns below 250 pure LOC",
+    "loop914 verification: RED payload/summary/scheduler/browser dogfood failures reproduced; GREEN target backend 27 passed; focused reason-aware selectors 3+3 passed; targeted Ruff pass; feedback-to-mining browser pass; web build pass; web lint 0 errors/1 existing warning",
+    "next: POST_ACCEPTANCE_MULTI_SEED_REASON_AWARE_COMBINATION_SCHEDULER_LOOP915",
     "SYNC-927 Post-acceptance reason-aware execution, progress, and report loop913",
     "loop913 backend: controlled backtest execution handoff now inherits reason_aware_scoring_context from plan handoff",
     "loop913 backend: progress report handoff, backtest result report, feedback_memory_input, and Factor Library report summary now preserve reason-aware scoring context",

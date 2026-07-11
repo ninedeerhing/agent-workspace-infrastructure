@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T12:35:00+08:00
+updated_at: 2026-07-12T13:20:00+08:00
+
+## Latest Handoff — SYNC-928 post-acceptance-reason-aware-feedback-memory-to-next-scheduler-loop914
+
+- [DONE] Report / Factor Library feedback memory now carries `reason_aware_scoring_context` into canonical `real_backtest_feedback_v1` payloads.
+- [DONE] Trajectory product summary outcome details preserve `reason_aware_scoring_context`, and adaptive scheduler feedback consumes nested outcome reason groups/actions.
+- [DONE] Factor Library feedback seed URL/parser roundtrips reason-aware actions and decision basis into FactorMining, `MiningBrief.generation_mix.trajectory_outcome_details`, ConstructionSpec, and batch recap.
+- [DONE] Batch telemetry family metrics were extracted to keep touched UI files below the file-size guard.
+- [VERIFY] RED payload/summary/scheduler/browser failures reproduced; GREEN targeted backend 27 passed; focused reason-aware selectors 3+3 passed; targeted Ruff pass; feedback-to-mining browser pass; web build pass; web lint 0 errors / 1 existing warning.
+- [WORKER] Read-only worker dispatch hit `agent thread limit reached`; no duplicate worker was created and no worker report was claimed.
+- [NEXT] `POST_ACCEPTANCE_MULTI_SEED_REASON_AWARE_COMBINATION_SCHEDULER_LOOP915`: combine multiple report / Factor Library feedback seeds so reason-aware actions, decision basis, and lineage refs influence generator quotas, single-factor candidates, and multi-factor combination mix.
 
 ## Latest Handoff — SYNC-927 post-acceptance-reason-aware-execution-progress-and-report-loop913
 
