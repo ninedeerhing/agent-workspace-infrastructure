@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T00:50:00+08:00",
+  "updated_at": "2026-07-12T01:10:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-real-backtest-bridge-reentry-loop843",
-  "next_atomic_action": "REAL_BACKTEST_PROGRESS_REPORT_REENTRY_LOOP844：让 real backtest progress/report read model 消费 bridge 的 plan_drafts/candidate_source/run_ids/error，向用户解释 completed/blocked/failed、执行了哪些 plan、哪些因子被排除，并继续禁止 secret 输出和替代 runtime。",
-  "next_after": "Continue consumer result report -> factor library result integration -> feedback memory.",
+  "current_slice": "real-backtest-progress-report-reentry-loop844",
+  "next_atomic_action": "CONSUMER_RESULT_REPORT_REENTRY_LOOP845：让 consumer result report / factor library result surface 消费 progress report 的 execution_summary、executed_plans、excluded_factor_refs、run_ids，形成小白可读结论与可复盘详情，并准备反馈记忆输入。",
+  "next_after": "Continue factor library result integration -> feedback memory -> one-click E2E self-validation.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-858-controlled-real-backtest-bridge-reentry-loop843",
+  "last_tick": "SYNC-859-real-backtest-progress-report-reentry-loop844",
   "last_sync_sources": [
+    "SYNC-859 real backtest progress report re-entry loop844",
+    "loop844 trigger: progress/report surface needed to explain bridge plan/source/run/error rather than naked run ids",
+    "loop844 backend: controlled_backtest_progress_report_surface now exposes executed_plans, candidate_source, excluded_factor_refs, execution_summary",
+    "loop844 boundary: report surface is read-only, no env/DB/runner/backtest, no DSN/secret output",
+    "loop844 verification: focused progress/API 5 passed; related regression 112 passed; Ruff pass; progress smoke pass",
+    "next: CONSUMER_RESULT_REPORT_REENTRY_LOOP845",
     "SYNC-858 controlled real backtest bridge re-entry loop843",
     "loop843 trigger: real bridge needed to consume execution-confirmed plan_drafts/candidate_source instead of naked factor ids",
     "loop843 backend: bridge read model preserves plan_drafts, candidate_source, and execution_confirmation_ref; missing drafts blocks with execution_plan_drafts_required",

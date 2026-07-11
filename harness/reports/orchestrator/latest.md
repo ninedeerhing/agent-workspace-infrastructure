@@ -1,3 +1,44 @@
+# Orchestrator Latest Report — SYNC-859 real backtest progress report re-entry loop844
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "REAL_BACKTEST_PROGRESS_REPORT_REENTRY_LOOP844"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_backtest_progress_report_surface.py"
+      summary: "Progress/report surface consumes bridge plan_drafts, candidate_source, run_ids, and error state; exposes executed_plans, excluded_factor_refs, and execution_summary."
+    - file: "apps/quant_assistant/tests/test_controlled_backtest_progress_report_surface_unit.py"
+      summary: "Covers completed, blocked, and failed report states with plan/source/run provenance."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-859 and next loop845."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-859."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop845."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to consumer result report re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-859."
+  verification:
+    - command: "uv run pytest -q progress surface + API bridge targets"
+      result: "5 passed."
+    - command: "uv run pytest -q related progress/bridge/report/API tests"
+      result: "112 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "progress report smoke"
+      result: "completed {'plan_count': 1, 'run_count': 1, 'excluded_count': 2} ['fe_held', 'fe_failed'] False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Progress reports must explain executed plans and excluded candidates, not only expose run ids."
+    performance_note: "Loop844 closed with focused/regression/Ruff/smoke; no duplicate worker created."
+  blockers: []
+  next: "CONSUMER_RESULT_REPORT_REENTRY_LOOP845"
+
+---
+
 # Orchestrator Latest Report — SYNC-858 controlled real backtest bridge re-entry loop843
 
 report:

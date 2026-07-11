@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:50:00+08:00
+updated_at: 2026-07-12T01:10:00+08:00
+
+## Latest Handoff — SYNC-859 real backtest progress report re-entry
+
+- [DONE] Progress/report surface now consumes bridge `plan_drafts`, `candidate_source`, `run_ids`, and error states.
+- [DONE] Output exposes `executed_plans`, `excluded_factor_refs`, and `execution_summary`.
+- [DONE] Completed, blocked, and failed states keep beginner-readable messages while preserving provenance for replay.
+- [DONE] Surface remains read-only: no env, DB, runner, Docker, or backtest side effects.
+- [VERIFY] Focused progress/API tests: 5 passed.
+- [VERIFY] Related regression: 112 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Progress smoke: `completed {'plan_count': 1, 'run_count': 1, 'excluded_count': 2} ['fe_held', 'fe_failed'] False`.
+- [NEXT] `CONSUMER_RESULT_REPORT_REENTRY_LOOP845`: consumer result/factor library surfaces must consume progress provenance for report and feedback memory.
+- [FORBIDDEN] Do not leak DSN/secrets; do not use substitute runtime; do not run backtest on page load.
 
 ## Latest Handoff — SYNC-858 controlled real backtest bridge re-entry
 
