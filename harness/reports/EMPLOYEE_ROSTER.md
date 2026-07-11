@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-12T02:50:00+08:00
+Updated: 2026-07-11T14:22:33+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop849 | continuous_loop_active | gpt-5.5 | 2026-07-12T02:50:00+08:00 | SYNC-864 Jobs confirmation dogfood re-entry complete; next RESULT_REPORT_LIBRARY_DOGFOOD_REENTRY_LOOP850 | keep moving; result report/library dogfood |
+| orchestrator | current-thread | loop850 | continuous_loop_active | gpt-5.5 | 2026-07-11T14:22:33+08:00 | SYNC-865 result report/library dogfood re-entry complete; next FORMAL_REVIEW_READINESS_SELF_CHECK_REENTRY_LOOP851 | keep moving; full consumer path self-check; gaps become next goals |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T14:22:33+08:00 · loop850/SYNC-865: Factor library now shows a novice-readable result recap guide answering generated/kept/result/next-round questions, with real report surface and no-substitute runtime markers preserved. No duplicate workers created. Verification: factor-library-recap pass, build pass, lint 0 errors/1 existing warning, Chrome/Playwright factor-library dogfood pass.
 - 2026-07-12T02:50:00+08:00 · loop849/SYNC-864: Jobs handoff banner now explains current location, next step, locate-confirmation button, result recap link, and single active task. No duplicate workers created. Verification: jobs handoff pass, factor flow pass, build pass, lint 0 errors/1 existing warning, Chrome/Playwright Jobs dogfood pass.
 - 2026-07-12T02:35:00+08:00 · loop848/SYNC-863: Factor mining page now has flow state contract, same-page next-action guide, true step highlight, and unique active task card. Permanent test-engineer received read-only dogfood review prompt; no duplicate workers created. Verification: factor-universe-flow pass, build pass, lint 0 errors/1 existing warning, Chrome/Playwright dogfood pass.
 - 2026-07-12T02:10:00+08:00 · loop847/SYNC-862: Seeded one-click flow now validates progress/report/factor-library/feedback-memory continuity and exposes UI feedback_memory; formal gate checks feedback_memory_ready and A-E five-card coverage. No duplicate workers created. Verification: regression 102 passed, Ruff pass, smoke pass.

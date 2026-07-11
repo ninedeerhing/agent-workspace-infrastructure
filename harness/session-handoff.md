@@ -1,8 +1,21 @@
 # Session Handoff
 
-updated_at: 2026-07-12T02:50:00+08:00
+updated_at: 2026-07-11T14:22:33+08:00
 
-## Latest Handoff — SYNC-864 Jobs confirmation dogfood re-entry
+## Latest Handoff — SYNC-865 Result report/library dogfood re-entry
+
+- [DONE] `/quant/factor-library` now starts the real backtest recap section with `结果复盘导航`.
+- [DONE] The recap answers four novice questions: `生成了什么`, `为什么留下`, `结果如何`, `下一轮怎么用`.
+- [DONE] Real report surface, trajectory memory summary, feedback cards, blockers, failure summary, next step, and no-substitute runtime markers are preserved.
+- [DONE] `FactorLibraryRealBacktestRecapSection.tsx` extracts the recap section instead of adding more JSX to the historical giant `FactorLibraryPage.tsx`.
+- [VERIFY] `npm run test:factor-library-recap`: pass.
+- [VERIFY] `npm run build`: pass.
+- [VERIFY] `npm run lint`: 0 errors / 1 existing Fast Refresh warning.
+- [VERIFY] Chrome/Playwright factor-library dogfood: recap navigation and real report surface visible.
+- [NEXT] `FORMAL_REVIEW_READINESS_SELF_CHECK_REENTRY_LOOP851`: full consumer path self-check from generation page to Jobs confirmation to factor library recap; gaps continue as next goals.
+- [FORBIDDEN] Do not create substitute Docker/DB/ports; do not treat recap visibility as real scorer/backtest execution.
+
+## Previous Handoff — SYNC-864 Jobs confirmation dogfood re-entry
 
 - [DONE] `/quant/jobs?source=factor_universe_job&job_id=...` handoff banner now explains the user's current location and immediate next step.
 - [DONE] Banner includes direct links for `定位确认按钮` and `查看结果与复盘`.

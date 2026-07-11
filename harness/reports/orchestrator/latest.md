@@ -1,3 +1,45 @@
+# Orchestrator Latest Report — SYNC-865 Result report/library dogfood re-entry loop850
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "RESULT_REPORT_LIBRARY_DOGFOOD_REENTRY_LOOP850"
+  changes:
+    - file: "apps/quant_assistant/web/src/pages/FactorLibraryRealBacktestRecapSection.tsx"
+      summary: "Adds a novice-readable result recap guide for generated factors, kept/rejected reasons, result status, and next iteration memory."
+    - file: "apps/quant_assistant/web/src/pages/FactorLibraryPage.tsx"
+      summary: "Replaces the inline real-backtest feedback section with the extracted recap component."
+    - file: "apps/quant_assistant/web/scripts/check-factor-library-recap.mjs"
+      summary: "Adds a front-end contract check for factor library recap copy."
+    - file: "apps/quant_assistant/web/package.json"
+      summary: "Adds npm script for factor library recap testing."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-865 and next loop851."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-865."
+  verification:
+    - command: "npm run test:factor-library-recap"
+      result: "factor library recap guide OK."
+    - command: "npm run build"
+      result: "TypeScript and Vite build passed."
+    - command: "npm run lint"
+      result: "0 errors; 1 pre-existing Fast Refresh warning in ShellLayoutContext.tsx."
+    - command: "Chrome/Playwright factor-library dogfood"
+      result: "Result recap navigation, four explanation steps, real feedback, and report surface visible."
+    - command: "Pure LOC check"
+      result: "FactorLibraryRealBacktestRecapSection.tsx=188, check-factor-library-recap.mjs=21; FactorLibraryPage.tsx remains historical oversized file but this loop reduced the touched section."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A result page needs an explicit recap navigation that maps generated candidates to gates, results, and next-round memory."
+      - "When improving an oversized React page, extract the user-facing section rather than adding more inline JSX."
+    performance_note: "Loop850 closed with contract/build/lint/browser dogfood; next is formal review readiness self-check re-entry."
+  blockers: []
+  next: "FORMAL_REVIEW_READINESS_SELF_CHECK_REENTRY_LOOP851"
+
+---
+
 # Orchestrator Latest Report — SYNC-864 Jobs confirmation dogfood re-entry loop849
 
 report:
