@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T22:38:52+08:00
+updated_at: 2026-07-11T23:07:36+08:00
+
+## Latest Handoff — SYNC-890 post-acceptance-generator-quota-and-seeded-demo-coverage-loop876
+
+- [DONE] Expanded subclass quota now materializes in generation, not just quota accounting. `TemplateParameterSweepGeneratorV1` expands active subclass quota across `FACTOR_SUBCLASS_BY_CLASS`.
+- [DONE] `factor_factory` accepts valid `generation_mix.factor_class/factor_subclass` overrides, and recipes vary deterministic windows/source families by subclass so generated expressions are not just relabeled copies.
+- [DONE] Generator reports now expose `materialized_subclass_count` and `materialized_subclasses` in `subclass_quota_trace`.
+- [DONE] Seeded demo factor cards now include `subclass`, `generator_family`, and `generation_source`; tests assert A-E coverage, unique subclasses, and multiple generator families.
+- [VERIFY] Passed: RED/GREEN materialized subclass test, registry 5 passed, factory+seeded 6 passed, seeded demo 3 passed, factor-library+registry 10 passed, factor-construction broad regression 239 passed, factor-universe review readiness, formal-review E2E dogfood, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WARN] Full `uv run pytest -q` timed out at 120s and 300s without failure output; use targeted broad regressions as current evidence unless a later loop needs full-suite runtime triage.
+- [WORKER] Kierkegaard read-only product QA confirmed quota was previously only accounting and demo/dogfood coverage risk was real. Remaining finding: `generation_mix.source_mode` is still not the backend authority.
+- [NEXT] `POST_ACCEPTANCE_SOURCE_MODE_AUTHORITY_AND_DOGFOOD_LOOP877`.
 
 ## Latest Handoff — SYNC-889 post-acceptance-jobs-observability-batch-recap-loop875
 

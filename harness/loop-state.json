@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T22:38:52+08:00",
+  "updated_at": "2026-07-11T23:07:36+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-jobs-observability-batch-recap-loop875",
-  "next_atomic_action": "POST_ACCEPTANCE_GENERATOR_QUOTA_AND_SEEDED_DEMO_COVERAGE_LOOP876：复查并修复因子构造宇宙真实 generator scheduler / seeded demo 是否消费 expanded taxonomy 与 subclass_quota，避免 UI 展示扩展但实际生成仍偏 B 类；补后端/前端 dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward real generator coverage breadth and seeded demo trust.",
+  "current_slice": "post-acceptance-generator-quota-and-seeded-demo-coverage-loop876",
+  "next_atomic_action": "POST_ACCEPTANCE_SOURCE_MODE_AUTHORITY_AND_DOGFOOD_LOOP877：修复 generation_mix.source_mode 不是后端权威输入的漂移；让前端选择的 source_mode 经 API/creation plan/registry 白名单消费，并补单测与 browser dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward truthful source-mode authority and end-to-end product dogfood.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-889-post-acceptance-jobs-observability-batch-recap-loop875",
+  "last_tick": "SYNC-890-post-acceptance-generator-quota-and-seeded-demo-coverage-loop876",
   "last_sync_sources": [
+    "SYNC-890 Post-acceptance generator quota and seeded demo coverage loop876",
+    "loop876 backend: TemplateParameterSweepGeneratorV1 now expands active subclass_quota across FACTOR_SUBCLASS_BY_CLASS subclasses instead of running a single seed taxonomy only",
+    "loop876 backend: factor_factory now accepts valid generation_mix factor_class/factor_subclass overrides and recipes vary deterministically by subclass windows/source_family, so expanded taxonomy produces distinct calculable expressions",
+    "loop876 telemetry: generator reports now include materialized_subclass_count/materialized_subclasses in subclass_quota_trace, proving realized coverage rather than quota accounting only",
+    "loop876 seeded demo: factor cards now expose subclass, generator_family, and generation_source; tests assert A-E coverage, unique subclasses, and multiple generator families",
+    "loop876 verification: RED materialized subclass coverage test failed before trace; registry 5 passed; factory+seeded 6 passed; seeded demo 3 passed; factor library+registry 10 passed; factor-construction broad regression 239 passed; factor-universe review readiness pass; formal-review E2E dogfood pass; web build pass; lint 0 errors/1 existing warning; diff check pass; full pytest timed out at 5 minutes without failure output",
+    "loop876 worker: Kierkegaard read-only product QA confirmed quota was only accounting and demo-taxonomy/dogfood were at risk of nominal coverage; implemented quota materialization and seeded-demo card evidence; remaining source_mode authority drift becomes loop877",
+    "next: POST_ACCEPTANCE_SOURCE_MODE_AUTHORITY_AND_DOGFOOD_LOOP877",
     "SYNC-889 Post-acceptance Jobs observability batch recap loop875",
     "loop875 backend: quant mining job API now copies valid job.result.factor_construction_universe_summary into observability.factor_construction_universe_summary for list/detail read-models",
     "loop875 frontend: Jobs page now renders a current-task construction recap from observability telemetry using the shared FactorMiningBatchRecap, with jobs_batch_recap_telemetry_visible=true and telemetry_source=job_payload/telemetry_status=real_batch markers",
