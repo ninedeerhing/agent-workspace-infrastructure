@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T13:00:00+08:00
+updated_at: 2026-07-11T13:20:00+08:00
+
+## Latest Handoff — SYNC-826 Source manifest capture UI surface
+
+- [DONE] `/quant/factor-mining` now shows “Manifest 填写要求”.
+- [DONE] The UI lists `adapter_ref`, `table_refs`, `pit_policy_ref`, `coverage_watermark_ref`, and `owner_confirmation_ref`.
+- [DONE] Copy states partial sources only produce source review material; missing sources cannot be confirmed; no DB/scoring/backtest is triggered.
+- [VERIFY] Consumer flow + manifest contract tests: 11 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `SOURCE_MANIFEST_CAPTURE_PRODUCT_SELF_VALIDATION_LOOP812`: add product self-validation coverage for manifest field UI and source-review-only boundary.
+- [FORBIDDEN] Do not treat manifest capture UI as readiness; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-825 Source adapter manifest capture contract
 
