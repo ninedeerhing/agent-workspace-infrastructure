@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-11T17:45:00+08:00
+updated_at: 2026-07-11T18:05:00+08:00
+
+## Latest Handoff — SYNC-840 Source adapter manifest review Data Availability linkage
+
+- [DONE] `build_data_availability_gate_result_v1(...)` now accepts `source_adapter_manifest_review`.
+- [DONE] `pending_reviewer_approval` review items map to `manifest_review_pending_reviewer_approval`.
+- [DONE] Candidates with that support enter `partial` only; they do not enter `calculable_refs`.
+- [VERIFY] Focused manifest-review Data Availability test: 1 passed.
+- [VERIFY] Data/source/onboarding regression: 16 passed.
+- [VERIFY] Downstream compute-budget/scoring/provisional regression: 24 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [WORKER] Permanent code-reviewer thread `019eeed1-7e14-7342-9d45-d7948aec94d2` received loop825 read-only boundary review request on gpt-5.4; report pending.
+- [NEXT] `SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_CONTRACT_LOOP826`: add owner approval no-execution contract for pending review items.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-839 Source adapter manifest review product gate
 

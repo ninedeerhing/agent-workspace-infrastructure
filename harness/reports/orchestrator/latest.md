@@ -1,3 +1,48 @@
+# Orchestrator Latest Report — SYNC-840 Source adapter manifest review Data Availability linkage loop825
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "SOURCE_ADAPTER_MANIFEST_REVIEW_TO_DATA_AVAILABILITY_LINKAGE_LOOP825"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_data_availability_gate.py"
+      summary: "Lets Data Availability Gate consume source adapter manifest review and expose pending reviewer approval as partial source-review support."
+    - file: "apps/quant_assistant/tests/test_factor_construction_data_availability_gate_unit.py"
+      summary: "Covers E-class manifest review linkage without marking candidates calculable or ready."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-840 and next loop826."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-840."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop826."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop826."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to source adapter manifest owner approval contract."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-840."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updates orchestrator overlay and code-reviewer assignment."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_data_availability_gate_unit.py -k manifest_review"
+      result: "RED unexpected keyword argument before implementation; GREEN 1 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_universe_source_adapter_manifest_review_unit.py tests/test_factor_universe_missing_source_manifest_conversion_unit.py tests/test_factor_universe_missing_source_onboarding_unit.py"
+      result: "16 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_construction_compute_budget_gate_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py"
+      result: "24 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_construction_data_availability_gate.py tests/test_factor_construction_data_availability_gate_unit.py"
+      result: "All checks passed."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Manifest review can reduce missing-source ambiguity only to partial source-review state; owner approval remains a separate no-execution gate."
+    performance_note: "Loop825 closed via local TDD/regression/Ruff. Maxwell/code-reviewer received read-only boundary review request on gpt-5.4; report pending."
+  blockers: []
+  next: "SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_CONTRACT_LOOP826"
+
+---
+
 # Orchestrator Latest Report — SYNC-839 Source adapter manifest review product gate loop824
 
 report:
