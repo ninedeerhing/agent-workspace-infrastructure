@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T16:45:00+08:00 · SYNC-836 · missing source manifest conversion product gate
+Updated: 2026-07-11T17:05:00+08:00 · SYNC-837 · source adapter manifest review from conversion
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop821/SYNC-836 completed `MISSING_SOURCE_MANIFEST_CONVERSION_PRODUCT_SELF_VALIDATION_LOOP821` by requiring manifest conversion UI/API evidence in product self-validation.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop822/SYNC-837 completed `SOURCE_ADAPTER_MANIFEST_REVIEW_FROM_CONVERSION_LOOP822` by deriving source adapter manifest review read-models from manifest conversion candidates.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `SOURCE_ADAPTER_MANIFEST_REVIEW_FROM_CONVERSION_LOOP822` — build source adapter manifest review read-model from manifest conversion candidates, validating adapter/table/PIT/coverage/owner/material refs without marking ready, writing DB, scoring/backtesting, Docker, or ports.
+- Next atomic action: `SOURCE_ADAPTER_MANIFEST_REVIEW_UI_SURFACE_LOOP823` — expose source adapter manifest review status, required field completeness, missing fields, pending reviewer approval, and next gate on `/quant/factor-mining` without marking ready, writing DB, scoring/backtesting, Docker, or ports.
 
 ## EXCLUDE: Default Exclusions
 

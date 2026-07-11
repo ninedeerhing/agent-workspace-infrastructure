@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-11T16:45:00+08:00
+updated_at: 2026-07-11T17:05:00+08:00
+
+## Latest Handoff — SYNC-837 Source adapter manifest review from conversion
+
+- [DONE] Added `source_adapter_manifest_review_from_conversion_v1`.
+- [DONE] Review checks adapter/table/PIT/coverage/owner/material refs from manifest conversion candidates.
+- [DONE] Complete draft items become `pending_reviewer_approval`, not source ready.
+- [DONE] Batch-mining plan exposes `factor_universe_source_adapter_manifest_review_from_conversion`.
+- [VERIFY] Source review + conversion + product gate tests: 17 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `True source_adapter_manifest_review_from_conversion_v1 blocked_waiting_for_manifest_conversion False`.
+- [WORKER] Permanent code-reviewer thread `019eeed1-7e14-7342-9d45-d7948aec94d2` received loop822 read-only boundary review request on gpt-5.4; local TDD/Ruff/smoke is current completion evidence.
+- [NEXT] `SOURCE_ADAPTER_MANIFEST_REVIEW_UI_SURFACE_LOOP823`: expose the review read-model on `/quant/factor-mining`.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-836 Missing source manifest conversion product gate
 
