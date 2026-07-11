@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-11T19:08:00+08:00
+updated_at: 2026-07-11T19:32:00+08:00
+
+## Latest Handoff — SYNC-886 post-acceptance-result-type-and-batch-recap-reality-loop872
+
+- [DONE] Backtest results now show stable `单因子结果` / `多因子组合结果` badges.
+- [DONE] Multi-factor combo results now explain that combo performance is joint performance and should not be read as a single-factor effect.
+- [DONE] Factor construction batch recap now has a `复盘口径` notice: current metrics are preview structure; real batch telemetry will replace examples after task completion.
+- [VERIFY] Passed: formal-review final product self-check, factor-universe review readiness, data-support consumer readiness, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WARN] `web/src/pages/factorMiningReview.tsx` pure LOC is 250. Next behavior touch must split or move behavior before adding more lines.
+- [NEXT] `POST_ACCEPTANCE_BATCH_RECAP_TELEMETRY_INTEGRATION_LOOP873`.
 
 ## Latest Handoff — SYNC-885 post-acceptance-data-support-consumer-readiness-loop871
 

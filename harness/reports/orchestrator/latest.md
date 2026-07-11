@@ -1,28 +1,24 @@
-# Orchestrator Latest Report — SYNC-885 Post-acceptance Data Support consumer readiness loop871
+# Orchestrator Latest Report — SYNC-886 Post-acceptance result type and batch recap reality loop872
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "POST_ACCEPTANCE_DATA_SOURCE_AND_RESULT_RECAP_POLISH_LOOP871"
+  task: "POST_ACCEPTANCE_RESULT_TYPE_AND_BATCH_RECAP_REALITY_LOOP872"
   changes:
-    - file: "apps/quant_assistant/web/src/pages/DataSupportPage.tsx"
-      summary: "Adds a consumer readiness panel showing B/C try-now paths, A/E source/PIT/event/text/alternative-data gaps, no page-load scoring/backtest, and next-action buttons."
-    - file: "apps/quant_assistant/web/scripts/check-data-support-consumer-readiness.mjs"
-      summary: "Adds browser dogfood for Data Support consumer copy with mocked read-only readiness response and no runtime POST."
+    - file: "apps/quant_assistant/web/src/pages/BacktestPage.tsx"
+      summary: "Adds stable single-factor vs multi-factor combo result badges and combo guidance."
+    - file: "apps/quant_assistant/web/src/pages/factorMiningReview.tsx"
+      summary: "Adds batch recap scope notice: current metrics are preview structure until real batch telemetry replaces them."
+    - file: "apps/quant_assistant/web/scripts/check-formal-review-final-product-self-check.mjs"
+      summary: "Adds browser assertions for single-factor and multi-factor combo result type labels and combo guidance."
     - file: "apps/quant_assistant/web/scripts/check-factor-universe-review-readiness.mjs"
-      summary: "Mocks Factor Library/Data Support read-only responses and includes Data Support in product review readiness dogfood."
-    - file: "apps/quant_assistant/web/package.json"
-      summary: "Adds npm run test:data-support-consumer-readiness."
-    - file: "harness/loop-state.json"
-      summary: "Advances current slice to loop871 and next action to loop872 result type and batch recap reality."
-    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
-      summary: "Adds §5.1208 ledger with verification evidence and next action."
+      summary: "Adds browser assertions for batch recap preview/real telemetry boundary."
   verification:
-    - command: "npm.cmd run test:data-support-consumer-readiness"
+    - command: "npm.cmd run test:formal-review-final-product-self-check"
       result: "pass"
     - command: "npm.cmd run test:factor-universe-review-readiness"
       result: "pass"
-    - command: "npm.cmd run test:formal-review-final-product-self-check"
+    - command: "npm.cmd run test:data-support-consumer-readiness"
       result: "pass"
     - command: "npm.cmd run build"
       result: "pass"
@@ -34,7 +30,8 @@ report:
     workload_delta: "unchanged"
     mistakes: []
     lessons:
-      - "A data-readiness page must distinguish try-now factor classes from source-gated classes before users enter generation."
-    performance_note: "Post-acceptance P0 fixed with browser dogfood and worker sidecar review."
+      - "Backtest result surfaces need explicit single-factor/combo labels; title inference is not enough for consumer review."
+      - "Preview telemetry must be labelled before real batch telemetry is wired."
+    performance_note: "Loop872 closed worker P1/P2 user confusion items while preserving no-runtime side effects."
   blockers: []
-  next: "POST_ACCEPTANCE_RESULT_TYPE_AND_BATCH_RECAP_REALITY_LOOP872"
+  next: "POST_ACCEPTANCE_BATCH_RECAP_TELEMETRY_INTEGRATION_LOOP873"
