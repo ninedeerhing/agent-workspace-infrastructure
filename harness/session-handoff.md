@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-11T23:00:00+08:00
+updated_at: 2026-07-11T23:25:00+08:00
+
+## Latest Handoff — SYNC-854 persisted provisional accepted re-entry
+
+- [DONE] Provisional store write now writes only `provisional_ready` + `persistable` records.
+- [DONE] Held/rejected records are exposed as `skipped_refs`, not written records.
+- [DONE] Hold-only admission blocks with `no_provisional_ready_refs_to_persist`.
+- [DONE] Artifact adapter tests now expect ready-only snapshots.
+- [VERIFY] Focused store-write tests: 4 passed.
+- [VERIFY] Persisted/store/artifact/final/backtest regression: 21 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Store smoke: `provisional_admission_store_write_v1 written ['candidate:momentum'] ['candidate:thin'] False False`.
+- [NEXT] `FINAL_ACCEPTED_UI_CONFIRMATION_REENTRY_LOOP840`: final accepted must consume only written refs and require explicit UI confirmation.
+- [FORBIDDEN] Do not final-accept automatically; do not auto-backtest; do not write backtest queue; do not include skipped/failed refs.
 
 ## Latest Handoff — SYNC-853 quality metrics admission re-entry
 

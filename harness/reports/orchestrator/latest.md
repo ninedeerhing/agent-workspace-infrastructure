@@ -1,3 +1,48 @@
+# Orchestrator Latest Report — SYNC-854 persisted provisional accepted re-entry loop839
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "PERSISTED_PROVISIONAL_ACCEPTED_REENTRY_LOOP839"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_provisional_admission_store_write.py"
+      summary: "Writes only provisional_ready persistable records; skipped refs capture held/rejected records."
+    - file: "apps/quant_assistant/tests/test_factor_construction_provisional_admission_store_write_unit.py"
+      summary: "Covers ready-only writes, ready record failures, and hold-only blocking."
+    - file: "apps/quant_assistant/tests/test_factor_construction_provisional_admission_artifact_store_adapter_unit.py"
+      summary: "Aligns artifact adapter expectations to ready-only snapshots."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-854 and next loop840."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-854."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop840."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop840."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to final accepted UI confirmation re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-854."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_provisional_admission_store_write_unit.py"
+      result: "RED held records were written; GREEN 4 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_persisted_provisional_admission_unit.py tests/test_factor_construction_provisional_admission_store_write_unit.py tests/test_factor_construction_provisional_admission_artifact_store_adapter_unit.py tests/test_factor_construction_final_accepted_pool_unit.py tests/test_factor_construction_final_accepted_artifact_confirmation_unit.py tests/test_factor_construction_backtest_plan_allocator_unit.py"
+      result: "21 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "store smoke"
+      result: "provisional_admission_store_write_v1 written ['candidate:momentum'] ['candidate:thin'] False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Persistence must write only provisional-ready records; held/rejected records are review evidence, not accepted candidates."
+    performance_note: "Loop839 closed with RED/GREEN/regression/Ruff/smoke; no duplicate worker created."
+  blockers: []
+  next: "FINAL_ACCEPTED_UI_CONFIRMATION_REENTRY_LOOP840"
+
+---
+
 # Orchestrator Latest Report — SYNC-853 quality metrics admission re-entry loop838
 
 report:
