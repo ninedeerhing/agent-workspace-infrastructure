@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-11T16:16:03+08:00
+updated_at: 2026-07-11T16:24:34+08:00
+
+## Latest Handoff — SYNC-878 formal-review-e2e-product-dogfood-loop863
+
+- [DONE] loop863 full product dogfood: `check-formal-review-e2e-product-dogfood.mjs` clicks from factor-mining generation to explicit unique task creation, Jobs current task, and targeted Factor Library report recap.
+- [DONE] Task-context generic Factor Library links were removed from the active factor-mining flow and Jobs handoff banner; result links now come from the current task card with `job_id/source/factor_refs`.
+- [VERIFY] Passed: `npm run test:formal-review-e2e-product-dogfood`; `npm run test:factor-universe-flow`; `npm run test:factor-universe-jobs-handoff`; `npm run test:factor-universe-review-readiness`; `npm run test:factor-library-targeted-recap-browser`; `npm run build`; `npm run lint` (0 errors / 1 existing warning); `git diff --check` (CRLF warnings only).
+- [WORKERS] Meitner/code-reviewer returned request_changes and Parfit/test-engineer returned needs_attention. Findings absorbed: fragmented page-goto dogfood, generic factor-library links, missing unique-task browser proof, no-report Jobs-to-library path, blocked/failed current-task negative assertions. No duplicate worker created.
+- [BOUNDARY] No `.env`/DSN/secret read; no DB/Docker/scorer/backtest; no substitute runtime; mocked browser product dogfood only.
+- [NEXT] `FORMAL_REVIEW_RUNTIME_READINESS_SMOKE_LOOP864`: run read-only runtime readiness smoke for correct DB/runner/controlled execution boundaries before human review; gaps become next targets.
 
 ## Latest Handoff — SYNC-877 controlled-real-backtest-report-surface-guidance-loop862
 

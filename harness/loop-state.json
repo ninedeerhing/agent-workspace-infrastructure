@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T16:16:03+08:00",
+  "updated_at": "2026-07-11T16:24:34+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-real-backtest-report-surface-guidance-loop862",
-  "next_atomic_action": "FORMAL_REVIEW_E2E_PRODUCT_DOGFOOD_LOOP863：从小白用户视角串跑因子构造入口→Jobs 当前任务→Factor Library 报告复盘的 seeded mocked 产品路径，覆盖 report-ready/no-report/blocked/failed/error 的下一步导航与误解防护；保持页面加载无 POST、无替代 Docker/DB、无默认 runner。",
+  "current_slice": "formal-review-e2e-product-dogfood-loop863",
+  "next_atomic_action": "FORMAL_REVIEW_RUNTIME_READINESS_SMOKE_LOOP864：进入人工验收前做只读运行态 readiness smoke，确认正确 DB/runner/受控执行边界、无替代 Docker/DB/端口、无默认 runner、无页面加载执行；若运行态不满足则把缺口转为下一功能目标而不是停在人工验收。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-877-controlled-real-backtest-report-surface-guidance-loop862",
+  "last_tick": "SYNC-878-formal-review-e2e-product-dogfood-loop863",
   "last_sync_sources": [
+    "SYNC-878 Formal review E2E product dogfood loop863",
+    "loop863 frontend: removed task-scope generic Factor Library links from FactorMining active flow and Jobs handoff banner",
+    "loop863 browser: added formal-review E2E product dogfood covering factor-mining explicit task creation, Jobs current task, targeted Factor Library report-ready/no-report/blocked/failed/read-error paths",
+    "loop863 safety: page-load POST is forbidden; only explicit factor-mining task creation POSTs are allowed; no backtest/runtime POSTs are allowed",
+    "loop863 worker: permanent test-engineer and code-reviewer findings absorbed; no duplicate worker created",
+    "loop863 verification: formal E2E dogfood pass, factor-universe flow/handoff/review-readiness pass, targeted recap browser pass, build pass, lint 0 errors/1 existing warning",
+    "next: FORMAL_REVIEW_RUNTIME_READINESS_SMOKE_LOOP864",
     "SYNC-877 Controlled real backtest report surface guidance loop862",
     "loop862 frontend: added FactorLibraryRealBacktestReportGuidance so report-ready feedback explains IC, RankIC, annual return, drawdown, turnover, win rate, risk/cost, and next action",
     "loop862 Factor Library: targeted report-ready jobs now default-open the concrete feedback card, anchor report CTA to the task feedback, and filter trajectory summary to the targeted job",
