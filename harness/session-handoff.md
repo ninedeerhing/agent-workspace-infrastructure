@@ -1,6 +1,24 @@
 # Session Handoff
 
-updated_at: 2026-07-11T00:36:00+08:00
+updated_at: 2026-07-11T01:24:00+08:00
+
+## Latest Handoff — SYNC-817 Factor-universe pre-review real usability repair
+
+- [DONE] Ran pre-human-review product usability repair instead of handing off code-only completion.
+- [WORKER] Heisenberg UI/UX read-only review PASS.
+- [WORKER] Bohr backend/product-flow read-only review found three must-fix gaps: front-end brief did not submit real subclass quota, seeded demo was still B-momentum biased, and medium/full scoring lacked a controlled execution entry.
+- [DONE] `/quant/factor-mining` MiningBrief now submits `factor_class`, `subclass_quota`, `quota_policy`, `subclass_count`, and `source_mode`.
+- [DONE] `FactorConstructionSpecV1` now carries `subclass_quota_policy`; registry allocation uses expanded taxonomy quota before building generator family reports.
+- [DONE] Seeded demo now covers A/B/C/D/E categories with cross-category accepted refs and consumer copy.
+- [DONE] Added `tiered_real_scoring_executor_v1` for medium/full controlled real scoring. It requires UI authorization, qa-pg-alt ready status, official writer/runner, idempotency key, rollback audit, prior metrics, and full-run chunk manifests; otherwise it fails closed without touching the writer.
+- [VERIFY] Related Python regression: 39 passed.
+- [VERIFY] Tiered/readiness/small-batch executor tests: 12 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm.cmd run build` -> pass.
+- [VERIFY] Jobs browser smoke: pass; no page-load auto trigger, one ready trigger only, no duplicate trigger, folded retry not triggered.
+- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_LOOP803`: user formal review of factor universe UI flow and controlled execution fail-closed semantics.
+- [STOP] `formal_human_acceptance_required` remains active; if user finds gaps, continue targeted repair loops before any new implementation.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
 
 ## Latest Handoff — SYNC-816 Factor-universe expanded taxonomy UI repair
 
