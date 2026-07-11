@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T15:21:56+08:00",
+  "updated_at": "2026-07-11T15:37:10+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-real-backtest-preflight-to-execution-progress-loop858",
-  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_RESULT_TARGETED_FACTOR_LIBRARY_RECAP_LOOP859：把受控真实回测 completed/failed/blocked 结果定向带入 Factor Library/报告复盘路径，至少携带 job_id/source/factor refs；继续补 completed success CTA、blocked/failure next-step 和 JobsPage 当前确认卡片抽取债务，保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
+  "current_slice": "controlled-real-backtest-result-targeted-factor-library-recap-loop859",
+  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_TARGETED_RECAP_PRODUCT_SELF_VALIDATION_LOOP860：用产品级自检复查任务页 -> Factor Library 定向复盘 -> 报告面路径，覆盖 completed/report-ready、completed/no-report、blocked、failed、read-error，并继续收敛 JobsPage 当前确认卡片抽取债务；保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,17 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-873-controlled-real-backtest-preflight-to-execution-progress-loop858",
+  "last_tick": "SYNC-874-controlled-real-backtest-result-targeted-factor-library-recap-loop859",
   "last_sync_sources": [
+    "SYNC-874 Controlled real backtest result targeted Factor Library recap loop859",
+    "loop859 backend: Factor Library real-backtest feedback read model now accepts job_id/source/factor_refs; job_id uses get_mining_job directly instead of recent-list limit scanning",
+    "loop859 API: GET /api/v1/quant/factor-library forwards job_id/source/factor_refs into the targeted read model and preserves real_backtest_feedback_error separately",
+    "loop859 frontend: Factor Library builds the targeted API URL from location params, shows job/source/factor refs, distinguishes read errors from no-result, and filters visible feedbacks to the target",
+    "loop859 Jobs UX: completed controlled-real CTA carries job_id/source/factor_refs into Factor Library instead of losing factor traceability",
+    "loop859 recap UX: completed/report-ready, completed/no-report, failed, and blocked each get a distinct CTA; blocked/failure do not masquerade as success",
+    "loop859 worker: permanent test-engineer and code-reviewer read-only findings were absorbed; fetch-level error and completed-no-report semantic gaps were fixed",
+    "loop859 verification: backend targeted unit 17 passed; factor-library recap static pass; targeted browser pass; review-readiness dogfood pass; controlled-real browser regressions pass; web build pass; lint 0 errors/1 existing warning",
+    "next: CONTROLLED_REAL_BACKTEST_TARGETED_RECAP_PRODUCT_SELF_VALIDATION_LOOP860",
     "SYNC-873 Controlled real backtest preflight-to-execution progress loop858",
     "loop858 correction: code-reviewer found backend explicit POST already enters controlled execution after preflight, so product copy must not claim preflight-only or real backtest not started",
     "loop858 frontend: ControlledRealBacktestPreflightNotice now says execution checks passed and points users to the current task card for controlled execution progress/result",

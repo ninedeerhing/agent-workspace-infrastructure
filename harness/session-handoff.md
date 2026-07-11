@@ -1,8 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-11T15:21:56+08:00
+updated_at: 2026-07-11T15:37:10+08:00
 
-## Latest Handoff — SYNC-873 Controlled real backtest preflight-to-execution progress
+## Latest Handoff — SYNC-874 Controlled real backtest targeted Factor Library recap
+
+- [DONE] Factor Library real-backtest feedback is now targeted by `job_id/source/factor_refs`; `job_id` uses direct `get_mining_job` lookup instead of recent-list limit scanning.
+- [DONE] `GET /api/v1/quant/factor-library` forwards `job_id/source/factor_refs` into the read model and keeps `real_backtest_feedback_error` separate.
+- [DONE] Factor Library builds its API URL from the current location target, shows `job_id/source/factor_refs`, and distinguishes read errors from “no matching feedback”.
+- [DONE] Jobs completed controlled-real CTA now carries `factor_refs` gathered from progress report / reviewed plan into Factor Library.
+- [DONE] Recap CTA is four-way: completed/report-ready → view report; completed/no-report →补齐报告材料; failed →查看失败原因; blocked →处理阻塞.
+- [VERIFY] Backend targeted unit 17 passed; factor-library recap static pass; targeted browser mock pass; review-readiness dogfood pass; controlled-real browser regressions pass; web build pass; lint 0 errors / 1 existing Fast Refresh warning.
+- [WORKER] Permanent test-engineer found fetch-level error mislabel risk and it was fixed; permanent code-reviewer found completed/no-report semantic drift and it was fixed. No duplicate worker created.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_TARGETED_RECAP_PRODUCT_SELF_VALIDATION_LOOP860`: product-level self-validation of Jobs → targeted Factor Library recap → report surface, then continue current task card extraction debt.
+- [FORBIDDEN] No substitute Docker/DB/ports; no default runner; no backtest/table write from GET/page-load/list refresh; no scorer/backtest execution in this recap path.
+
+## Previous Handoff — SYNC-873 Controlled real backtest preflight-to-execution progress
 
 - [DONE] Corrected the product semantics for `run_controlled_real_backtest_execution`: explicit POST is a controlled execution entry with preflight checks, not a preflight-only action.
 - [DONE] `ControlledRealBacktestPreflightNotice` now says execution checks passed, check itself is not the backtest result, and users should look at the current task card for execution progress/results.
