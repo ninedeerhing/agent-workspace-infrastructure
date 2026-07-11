@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T15:20:00+08:00",
+  "updated_at": "2026-07-11T15:40:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "missing-source-candidate-availability-explanation-loop817",
-  "next_atomic_action": "MISSING_SOURCE_ONBOARDING_INTAKE_CONTRACT_LOOP818：为 entity_linking_table 与 alternative_data_snapshot 建立缺源接入材料 intake contract，接收用户/数据负责人提供的规则、映射、授权、时间戳、覆盖范围、水位等材料并输出 source-onboarding review packet；只做 schema/read-model/validation，不写 DB、不标 ready、不触发评分/回测/Docker/port。",
-  "next_after": "Continue until missing-source onboarding intake, review packet, adapter manifest conversion, and Data Availability Gate closure are implemented.",
+  "current_slice": "missing-source-onboarding-intake-contract-loop818",
+  "next_atomic_action": "MISSING_SOURCE_ONBOARDING_REVIEW_PACKET_TO_MANIFEST_CONVERSION_LOOP819：把完成材料的 source-onboarding review packet 转成 source adapter manifest conversion candidate，为 entity_linking_table / alternative_data_snapshot 生成可复核的 adapter/table/PIT/coverage/owner manifest 草案；仍不得标 ready、不得写 DB、不得触发评分/回测/Docker/port。",
+  "next_after": "Continue until missing-source onboarding review packet -> manifest conversion -> source adapter gate -> Data Availability Gate partial closure.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-832-missing-source-candidate-availability-explanation-loop817",
+  "last_tick": "SYNC-833-missing-source-onboarding-intake-contract-loop818",
   "last_sync_sources": [
+    "SYNC-833 Missing source onboarding intake contract loop818",
+    "loop818 trigger: missing-source explanations needed an actionable material intake contract",
+    "loop818 backend: added factor_universe_missing_source_onboarding_intake_contract_v1 and review packet for entity_linking_table / alternative_data_snapshot",
+    "loop818 UI: /quant/factor-mining missing-source cards now show intake material field keys",
+    "loop818 refactor: extracted missing-source, source-confirmation, and candidate-availability sections from factorMiningReview.tsx; review file now 242 pure LOC",
+    "loop818 verification: onboarding + consumer flow + data availability tests 21 passed; Ruff pass; npm run build pass",
+    "next: MISSING_SOURCE_ONBOARDING_REVIEW_PACKET_TO_MANIFEST_CONVERSION_LOOP819",
     "SYNC-832 Missing source candidate availability explanation loop817",
     "loop817 trigger: missing-source onboarding needed to be aligned with E-class candidate availability explanations",
     "loop817 backend: Data Availability Gate now accepts missing_source_onboarding_request and emits source_onboarding_explanations per candidate",

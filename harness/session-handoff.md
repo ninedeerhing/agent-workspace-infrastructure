@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T15:20:00+08:00
+updated_at: 2026-07-11T15:40:00+08:00
+
+## Latest Handoff — SYNC-833 Missing source onboarding intake contract
+
+- [DONE] Added `factor_universe_missing_source_onboarding_intake_contract_v1`.
+- [DONE] Intake submissions for `entity_linking_table` and `alternative_data_snapshot` now produce waiting/ready-for-source-review packet states.
+- [DONE] `/quant/factor-mining` missing-source cards expose material field keys.
+- [DONE] Extracted missing-source, source-confirmation, and candidate-availability sections into smaller TSX modules; `factorMiningReview.tsx` is now 242 pure LOC.
+- [VERIFY] Onboarding + consumer flow + data availability tests: 21 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `MISSING_SOURCE_ONBOARDING_REVIEW_PACKET_TO_MANIFEST_CONVERSION_LOOP819`: convert completed onboarding review packets into manifest conversion candidates.
+- [FORBIDDEN] Do not fake source readiness; do not generate real E candidates from missing sources; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-832 Missing source candidate availability explanation
 
