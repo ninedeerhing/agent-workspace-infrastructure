@@ -2,7 +2,19 @@
 
 updated_at: 2026-07-11T14:22:33+08:00
 
-## Latest Handoff — SYNC-865 Result report/library dogfood re-entry
+## Latest Handoff — SYNC-866 Formal review readiness self-check
+
+- [DONE] Added `npm run test:factor-universe-review-readiness` for product-level pre-review dogfood.
+- [DONE] The smoke launches Vite + Playwright and checks `/quant/factor-mining`, `/quant/jobs?source=factor_universe_job&job_id=job-ready-smoke`, and `/quant/factor-library`.
+- [DONE] It clicks “开始生成” and verifies construction preview, Jobs handoff guidance, single task copy, result recap navigation, and real report surface.
+- [VERIFY] RED missing script, then GREEN `factor universe review readiness browser dogfood OK`.
+- [VERIFY] Flow/jobs/library contracts: pass.
+- [VERIFY] `npm run build`: pass.
+- [VERIFY] `npm run lint`: 0 errors / 1 existing Fast Refresh warning.
+- [NEXT] `RUNTIME_DB_RUNNER_SMOKE_REENTRY_LOOP852`: confirm existing qa-pg-alt / runner / API runtime without creating substitute Docker/DB/ports.
+- [FORBIDDEN] Do not create substitute Docker/DB/ports; do not treat frontend smoke as proof that real scorer/backtest runtime is ready.
+
+## Previous Handoff — SYNC-865 Result report/library dogfood re-entry
 
 - [DONE] `/quant/factor-library` now starts the real backtest recap section with `结果复盘导航`.
 - [DONE] The recap answers four novice questions: `生成了什么`, `为什么留下`, `结果如何`, `下一轮怎么用`.

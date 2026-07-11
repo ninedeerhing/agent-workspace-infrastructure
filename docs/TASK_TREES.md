@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T14:22:33+08:00 · SYNC-865 · Result report/library dogfood re-entry
+Updated: 2026-07-11T14:22:33+08:00 · SYNC-866 · Formal review readiness self-check
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 

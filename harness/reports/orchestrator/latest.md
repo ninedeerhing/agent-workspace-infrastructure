@@ -1,3 +1,40 @@
+# Orchestrator Latest Report — SYNC-866 Formal review readiness self-check loop851
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "FORMAL_REVIEW_READINESS_SELF_CHECK_REENTRY_LOOP851"
+  changes:
+    - file: "apps/quant_assistant/web/scripts/check-factor-universe-review-readiness.mjs"
+      summary: "Adds a Playwright/Vite product-level smoke for factor-mining, Jobs handoff, and factor-library recap."
+    - file: "apps/quant_assistant/web/package.json"
+      summary: "Adds npm script for formal-review readiness dogfood."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-866 and next loop852."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-866."
+  verification:
+    - command: "npm run test:factor-universe-review-readiness"
+      result: "RED missing script, then GREEN factor universe review readiness browser dogfood OK."
+    - command: "npm run test:factor-universe-flow && npm run test:factor-universe-jobs-handoff && npm run test:factor-library-recap"
+      result: "All three contract checks passed."
+    - command: "npm run build"
+      result: "TypeScript and Vite build passed."
+    - command: "npm run lint"
+      result: "0 errors; 1 pre-existing Fast Refresh warning in ShellLayoutContext.tsx."
+    - command: "Pure LOC check"
+      result: "review readiness script=69, FactorMiningPage=220, Jobs handoff banner=32, factor-library recap section=188."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Before formal human review, run a product-level browser dogfood across the actual user path, not only isolated component checks."
+    performance_note: "Loop851 closed with browser dogfood/build/lint; next is correct DB/runner runtime smoke."
+  blockers: []
+  next: "RUNTIME_DB_RUNNER_SMOKE_REENTRY_LOOP852"
+
+---
+
 # Orchestrator Latest Report — SYNC-865 Result report/library dogfood re-entry loop850
 
 report:
