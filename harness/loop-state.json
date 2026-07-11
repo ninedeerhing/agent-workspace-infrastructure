@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T00:30:00+08:00",
+  "updated_at": "2026-07-12T00:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-backtest-request-reentry-loop842",
-  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_BRIDGE_REENTRY_LOOP843：让 controlled real backtest bridge 只消费 execution-confirmed plan drafts/candidate_source，并强制正确 runner、qa-pg-alt runtime、幂等键与审计材料；禁止默认 runner、替代 DB/Docker/端口和页面加载执行。",
-  "next_after": "Continue real backtest progress/report read model -> consumer result report -> feedback memory.",
+  "current_slice": "controlled-real-backtest-bridge-reentry-loop843",
+  "next_atomic_action": "REAL_BACKTEST_PROGRESS_REPORT_REENTRY_LOOP844：让 real backtest progress/report read model 消费 bridge 的 plan_drafts/candidate_source/run_ids/error，向用户解释 completed/blocked/failed、执行了哪些 plan、哪些因子被排除，并继续禁止 secret 输出和替代 runtime。",
+  "next_after": "Continue consumer result report -> factor library result integration -> feedback memory.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-857-controlled-backtest-request-reentry-loop842",
+  "last_tick": "SYNC-858-controlled-real-backtest-bridge-reentry-loop843",
   "last_sync_sources": [
+    "SYNC-858 controlled real backtest bridge re-entry loop843",
+    "loop843 trigger: real bridge needed to consume execution-confirmed plan_drafts/candidate_source instead of naked factor ids",
+    "loop843 backend: bridge read model preserves plan_drafts, candidate_source, and execution_confirmation_ref; missing drafts blocks with execution_plan_drafts_required",
+    "loop843 boundary: official injected runner, qa_pg_alt_ready, idempotency, execution/rollback audit still required; no default runner, substitute DB/Docker/port, or page-load execution",
+    "loop843 verification: focused real-bridge/API 4 passed; related regression 109 passed; Ruff pass; real bridge smoke pass",
+    "next: REAL_BACKTEST_PROGRESS_REPORT_REENTRY_LOOP844",
     "SYNC-857 controlled backtest request re-entry loop842",
     "loop842 trigger: execution confirmation needed to consume plan-ready drafts rather than legacy factor_version_ids",
     "loop842 backend: controlled_backtest_execution_confirmation derives factor_version_ids from single_factor_plans and requires confirmation_ref when user_confirmed",

@@ -1,3 +1,46 @@
+# Orchestrator Latest Report — SYNC-858 controlled real backtest bridge re-entry loop843
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_REAL_BACKTEST_BRIDGE_REENTRY_LOOP843"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_real_backtest_execution_bridge.py"
+      summary: "Consumes execution-confirmed plan_drafts/candidate_source and blocks ready confirmations without drafts."
+    - file: "apps/quant_assistant/tests/test_controlled_real_backtest_execution_bridge_read_model_unit.py"
+      summary: "Covers missing plan drafts blocking and source-preserving execution."
+    - file: "apps/quant_assistant/tests/test_mining_job_api_unit.py"
+      summary: "Asserts real bridge API output preserves plan_drafts, candidate_source, and execution confirmation ref."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-858 and next loop844."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-858."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop844."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to real backtest progress/report re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-858."
+  verification:
+    - command: "uv run pytest -q tests/test_controlled_real_backtest_execution_bridge_read_model_unit.py API real bridge targets"
+      result: "4 passed."
+    - command: "uv run pytest -q related real bridge/execution/API/progress tests"
+      result: "109 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "real bridge smoke"
+      result: "completed ['fe_one'] ['fe_held'] ['fe_one'] False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Real execution bridges must preserve plan/source provenance, not reconstruct from naked factor ids."
+    performance_note: "Loop843 closed with focused/regression/Ruff/smoke; no duplicate worker created."
+  blockers: []
+  next: "REAL_BACKTEST_PROGRESS_REPORT_REENTRY_LOOP844"
+
+---
+
 # Orchestrator Latest Report — SYNC-857 controlled backtest request re-entry loop842
 
 report:

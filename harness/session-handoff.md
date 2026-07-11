@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:30:00+08:00
+updated_at: 2026-07-12T00:50:00+08:00
+
+## Latest Handoff — SYNC-858 controlled real backtest bridge re-entry
+
+- [DONE] Real bridge read model now consumes execution-confirmed `plan_drafts` and `candidate_source`.
+- [DONE] Execution ready without plan drafts blocks with `execution_plan_drafts_required`.
+- [DONE] Bridge output preserves `plan_drafts`, `candidate_source`, and `execution_confirmation_ref`.
+- [DONE] Runner/runtime/audit gates remain enforced.
+- [VERIFY] Focused real-bridge/API tests: 4 passed.
+- [VERIFY] Related regression: 109 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Real bridge smoke: `completed ['fe_one'] ['fe_held'] ['fe_one'] False False`.
+- [NEXT] `REAL_BACKTEST_PROGRESS_REPORT_REENTRY_LOOP844`: progress/report must explain bridge plan/source/run/error states.
+- [FORBIDDEN] Do not leak DSN/secrets; do not use substitute runtime; do not run on page load.
 
 ## Latest Handoff — SYNC-857 controlled backtest request re-entry
 
