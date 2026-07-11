@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T12:40:00+08:00",
+  "updated_at": "2026-07-11T13:00:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "product-self-validation-source-confirmation-surface-loop809",
-  "next_atomic_action": "SOURCE_ADAPTER_MANIFEST_CAPTURE_CONTRACT_LOOP810：把 /quant/factor-mining 中 confirm_factor_universe_source_adapter_manifests 从静态 action_id 推进为受控 manifest capture contract/read-model：partial 源允许提交 adapter_ref、table_refs、pit_policy_ref、coverage_watermark_ref、owner_confirmation_ref；missing 源不可确认；确认后只生成 source review material，不触发评分/回测/DB 写入/Docker/port。",
-  "next_after": "Continue until A/E source manifest capture, review material, and candidate data-availability linkage have a controlled product path before moving to the next real-usability gap.",
+  "current_slice": "source-adapter-manifest-capture-contract-loop810",
+  "next_atomic_action": "SOURCE_MANIFEST_CAPTURE_UI_SURFACE_LOOP811：把 factor_universe_source_manifest_capture_contract_v1 落到 /quant/factor-mining 用户确认面，用户能看到每个 partial 源需要填哪些 manifest 字段、missing 源为何不能确认、确认后只生成 source review material；仍不得触发评分/回测/DB 写入/Docker/port。",
+  "next_after": "Continue until manifest capture contract has a consumer-grade UI path and product self-validation coverage before moving to the next real-usability gap.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-824-product-self-validation-source-confirmation-surface-loop809",
+  "last_tick": "SYNC-825-source-adapter-manifest-capture-contract-loop810",
   "last_sync_sources": [
+    "SYNC-825 Source adapter manifest capture contract loop810",
+    "loop810 trigger: confirm_factor_universe_source_adapter_manifests was static action id and needed controlled manifest capture/read-model contract",
+    "loop810 backend: added factor_universe_source_manifest_capture_contract_v1 with required manifest fields and source review material only",
+    "loop810 creation plan: exposes factor_universe_source_manifest_capture_contract top-level using the same source_adapter_gate",
+    "loop810 verification: source manifest/source adapter/data availability tests 11 passed; Ruff pass; creation-plan smoke pass",
+    "next: SOURCE_MANIFEST_CAPTURE_UI_SURFACE_LOOP811",
     "SYNC-824 Product self-validation source confirmation surface loop809",
     "loop809 trigger: source confirmation surface needed to be a formal product self-validation hard gate, not just UI copy",
     "loop809 gate: product_self_validation_gate_v1 now requires has_source_confirmation_surface=true and blocks source_confirmation_surface_not_visible",

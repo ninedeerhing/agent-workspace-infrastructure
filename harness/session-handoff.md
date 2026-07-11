@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T12:40:00+08:00
+updated_at: 2026-07-11T13:00:00+08:00
+
+## Latest Handoff — SYNC-825 Source adapter manifest capture contract
+
+- [DONE] Added `factor_universe_source_manifest_capture_contract_v1`.
+- [DONE] Partial sources can submit `adapter_ref`, `table_refs`, `pit_policy_ref`, `coverage_watermark_ref`, and `owner_confirmation_ref` to produce source review material only.
+- [DONE] Missing sources remain `blocked_missing_source` and cannot be user-confirmed.
+- [DONE] Creation plan now exposes `factor_universe_source_manifest_capture_contract`.
+- [VERIFY] Source manifest/source adapter/data availability tests: 11 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: contract exposed, blocked waiting for manifest capture, no DB/scorer/backtest side effects.
+- [NEXT] `SOURCE_MANIFEST_CAPTURE_UI_SURFACE_LOOP811`: expose the manifest field requirements and source review material boundary in the user-facing flow.
+- [FORBIDDEN] Do not treat captured manifest as scoring readiness; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-824 Product self-validation source confirmation surface
 
