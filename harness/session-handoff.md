@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-12T02:05:00+08:00
+updated_at: 2026-07-12T02:35:00+08:00
+
+## Latest Handoff — SYNC-908 post-acceptance-trajectory-memory-to-generator-scheduler-context-loop894
+
+- [DONE] Adaptive generator scheduling now accepts `trajectory_outcome_details`.
+- [DONE] Completed report-ready `success_seed` rows expand the matching generator family; blocked/watchlist rows become `watchlist_repair_before_seed`; failed rows are deprioritized.
+- [DONE] Universe summaries now carry outcome detail count, success seed refs, family feedback signals, and trajectory memory outcome counts from `MiningBrief.generation_mix.trajectory_outcome_details`.
+- [DONE] Trajectory memory `next_schedule_summary` keeps feedback_signal, feedback refs, plan refs, and seed eligible refs.
+- [DONE] Batch recap generator distribution shows feedback_signal when real job telemetry contains feedback-driven schedule decisions.
+- [VERIFY] RED scheduler test failed on missing `trajectory_outcome_details`; GREEN scheduler unit 3 passed, batch feedback targeted pass, combined scheduler/batch flow 15 passed, Ruff pass, factor-universe review readiness pass, formal-review E2E pass, targeted recap browser pass, current-task browser pass, build pass, lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread read-only product QA assignment was sent with model_tier=gpt-5.4; no usable report body was available before sync, so local RED/GREEN verification is the evidence.
+- [NEXT] `POST_ACCEPTANCE_FACTOR_LIBRARY_FEEDBACK_TO_NEW_MINING_BRIEF_LOOP895`: carry selected outcome details from Factor Library / Jobs recaps into the next MiningBrief / ConstructionSpec.
 
 ## Latest Handoff — SYNC-907 post-acceptance-report-feedback-memory-handoff-context-loop893
 
