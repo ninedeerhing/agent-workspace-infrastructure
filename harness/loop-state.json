@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T08:25:00+08:00",
+  "updated_at": "2026-07-12T09:00:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-feedback-driven-scoring-result-lineage-context-loop905",
-  "next_atomic_action": "POST_ACCEPTANCE_SCORING_RESULT_HELD_REJECTED_REASON_CONTEXT_LOOP906：把 loop905 已传入评分结果页的 lineage/seed/scheduler context 继续深化为消费级 held/rejected/provisional 三分组原因解释，让用户不仅看到 scored/held/rejected refs，还能看懂为什么进入 provisional accepted、为什么暂缓、为什么淘汰，并保持无自动 accepted/无自动回测。",
+  "current_slice": "post-acceptance-scoring-result-held-rejected-reason-context-loop906",
+  "next_atomic_action": "POST_ACCEPTANCE_FINAL_ACCEPTED_REASON_CONTEXT_TO_BACKTEST_PLAN_LOOP907：把 loop906 的 provisional/held/rejected 三分组原因解释继续带入 final accepted 确认与回测计划 handoff，让用户点击确认 accepted 后仍能看懂哪些因子进入回测计划、哪些暂缓或淘汰、为什么，并保持无自动回测/无队列写入。",
   "next_after": "Continue continuous loop toward provisional accepted reason explainability, final accepted confirmation, and backtest plan real product path.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-919-post-acceptance-feedback-driven-scoring-result-lineage-context-loop905",
+  "last_tick": "SYNC-920-post-acceptance-scoring-result-held-rejected-reason-context-loop906",
   "last_sync_sources": [
+    "SYNC-920 Post-acceptance scoring result held/rejected reason context loop906",
+    "loop906 backend: small_batch_scoring_result_read_model now carries outcome_reason_groups split into provisional_ready, held, and rejected groups using scoring results plus provisional store write skipped/failed reasons",
+    "loop906 frontend: SmallBatchScoringResultPanel now renders consumer-readable result destination cards explaining why candidates can enter provisional accepted, why they are held, or why they are rejected/failed",
+    "loop906 refactor: extracted small_batch_scoring_outcome_reasons, SmallBatchScoringOutcomeReasonGroups, and SmallBatchScoringLineageContext so touched production files remain under the file-size guard",
+    "loop906 worker: Kierkegaard fixed-thread read-only product QA returned partial; its three-group reason and dogfood findings were absorbed",
+    "loop906 verification: backend scoring/API unit 69 passed; controlled-real current task browser pass; jobs entry-mode dogfood pass; feedback-lineage payload pass; formal-review E2E pass; factor-universe review readiness pass; targeted Ruff pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_FINAL_ACCEPTED_REASON_CONTEXT_TO_BACKTEST_PLAN_LOOP907",
     "SYNC-919 Post-acceptance feedback-driven scoring result lineage context loop905",
     "loop905 backend: small_batch_scoring_result_read_model now carries feedback_lineage_context with lineage refs, A-E lineage class codes, seed_eligible_refs, scheduler action, feedback signal, scheduler quota, scored refs, held refs, and rejected refs",
     "loop905 frontend: SmallBatchScoringResultPanel now displays scoring lineage, scheduler action, seed refs, feedback signal, quota, and scored/held/rejected refs after result refresh",

@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T08:25:00+08:00
+updated_at: 2026-07-12T09:00:00+08:00
+
+## Latest Handoff — SYNC-920 post-acceptance-scoring-result-held-rejected-reason-context-loop906
+
+- [DONE] Small-batch scoring result read-model now carries `outcome_reason_groups`.
+- [DONE] The result page splits outcomes into `可进入 provisional accepted`, `暂缓观察`, and `本轮淘汰或失败`, each with refs, reason, and next-step copy.
+- [DONE] Extracted `small_batch_scoring_outcome_reasons.py`, `SmallBatchScoringOutcomeReasonGroups.tsx`, and `SmallBatchScoringLineageContext.tsx`; touched production files remain under the file-size guard.
+- [VERIFY] Backend scoring/API unit 69 passed; controlled-real current task browser pass; Jobs entry-mode dogfood pass; feedback-lineage payload pass; formal-review E2E pass; factor-universe review readiness pass; targeted Ruff pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; its three-group reason and dogfood findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_FINAL_ACCEPTED_REASON_CONTEXT_TO_BACKTEST_PLAN_LOOP907`: carry provisional/held/rejected explanations into final accepted confirmation and backtest plan handoff.
 
 ## Latest Handoff — SYNC-919 post-acceptance-feedback-driven-scoring-result-lineage-context-loop905
 
