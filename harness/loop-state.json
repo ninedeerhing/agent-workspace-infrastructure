@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T19:25:00+08:00",
+  "updated_at": "2026-07-11T19:45:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "data-availability-owner-approval-ui-recap-loop829",
-  "next_atomic_action": "CONTROLLED_AE_CANDIDATE_READINESS_CONTRACT_LOOP830：新增受控 A/E 候选准备态合同，消费 Data Availability 的 source_review_owner_approved partial refs，输出可进入下一步 source-review validation 的候选集合；仍不得标 calculable/ready、不得写 DB、不得评分/回测/Docker/port。",
-  "next_after": "Continue until controlled A/E candidate readiness UI -> small-batch real scoring preflight closure.",
+  "current_slice": "controlled-ae-candidate-readiness-contract-loop830",
+  "next_atomic_action": "CONTROLLED_AE_CANDIDATE_READINESS_UI_SURFACE_LOOP831：把 controlled_ae_candidate_readiness_v1 展示到 /quant/factor-mining，说明哪些 A/E 候选可进入 source-review validation、哪些仍 held，以及仍不允许评分/回测；不得写 DB、不得评分/回测/Docker/port。",
+  "next_after": "Continue until small-batch real scoring preflight closure.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-844-data-availability-owner-approval-ui-recap-loop829",
+  "last_tick": "SYNC-845-controlled-ae-candidate-readiness-contract-loop830",
   "last_sync_sources": [
+    "SYNC-845 Controlled A/E candidate readiness contract loop830",
+    "loop830 trigger: source_review_owner_approved partial refs needed a controlled A/E candidate readiness contract before any scoring preflight",
+    "loop830 backend: added controlled_ae_candidate_readiness_v1 and exposed factor_universe_controlled_ae_candidate_readiness in creation plan",
+    "loop830 boundary: readiness only forms source_review_validation_candidate_refs; no calculable/ready grant, no DB write, no scorer/backtest, no Docker/container/port",
+    "loop830 verification: focused readiness tests 3 passed; Data Availability + compute/scoring regression 20 passed; Ruff pass; creation-plan smoke pass",
+    "next: CONTROLLED_AE_CANDIDATE_READINESS_UI_SURFACE_LOOP831",
     "SYNC-844 Data Availability owner approval UI recap loop829",
     "loop829 trigger: source_review_owner_approved needed to be visible in candidate availability recap",
     "loop829 UI: /quant/factor-mining candidate availability shows E-OWNER-approved and badge owner 已批准 · 仍然 partial",

@@ -1,3 +1,50 @@
+# Orchestrator Latest Report — SYNC-845 Controlled A/E candidate readiness contract loop830
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_AE_CANDIDATE_READINESS_CONTRACT_LOOP830"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_universe_controlled_ae_candidate_readiness.py"
+      summary: "Adds controlled A/E candidate readiness contract from source-review-owner-approved partial refs."
+    - file: "apps/quant_assistant/tests/test_factor_universe_controlled_ae_candidate_readiness_unit.py"
+      summary: "Covers ready, blocked, and creation-plan exposure states."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes factor_universe_controlled_ae_candidate_readiness in creation-plan payload."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-845 and next loop831."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-845."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop831."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop831."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to controlled A/E readiness UI surface."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-845."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updates orchestrator overlay."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_universe_controlled_ae_candidate_readiness_unit.py"
+      result: "RED missing module and missing creation-plan key before implementation; GREEN 3 passed."
+    - command: "uv run pytest -q tests/test_factor_universe_controlled_ae_candidate_readiness_unit.py tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_construction_compute_budget_gate_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py"
+      result: "20 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_universe_controlled_ae_candidate_readiness.py tests/test_factor_universe_controlled_ae_candidate_readiness_unit.py src/qa/brain/batch_mining_creation_plan_builder.py"
+      result: "All checks passed."
+    - command: "creation-plan smoke for factor_universe_controlled_ae_candidate_readiness"
+      result: "True controlled_ae_candidate_readiness_v1 blocked_no_owner_approved_partial_refs False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A/E readiness should collect source-review validation candidates without implying calculable or scoring readiness."
+    performance_note: "Loop830 closed via local TDD/regression/Ruff/smoke."
+  blockers: []
+  next: "CONTROLLED_AE_CANDIDATE_READINESS_UI_SURFACE_LOOP831"
+
+---
+
 # Orchestrator Latest Report — SYNC-844 Data Availability owner approval UI recap loop829
 
 report:

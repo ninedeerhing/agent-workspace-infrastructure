@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-11T19:25:00+08:00
+updated_at: 2026-07-11T19:45:00+08:00
+
+## Latest Handoff — SYNC-845 Controlled A/E candidate readiness contract
+
+- [DONE] Added `controlled_ae_candidate_readiness_v1`.
+- [DONE] Source-review-owner-approved partial refs become `source_review_validation_candidate_refs`.
+- [DONE] Other refs become `held_candidate_refs`.
+- [DONE] Creation plan exposes `factor_universe_controlled_ae_candidate_readiness`.
+- [VERIFY] Focused readiness tests: 3 passed.
+- [VERIFY] Data Availability + compute/scoring regression: 20 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `True controlled_ae_candidate_readiness_v1 blocked_no_owner_approved_partial_refs False`.
+- [NEXT] `CONTROLLED_AE_CANDIDATE_READINESS_UI_SURFACE_LOOP831`: show readiness status on `/quant/factor-mining`.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-844 Data Availability owner approval UI recap
 

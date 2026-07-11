@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T19:25:00+08:00 · SYNC-844 · Data Availability owner approval UI recap
+Updated: 2026-07-11T19:45:00+08:00 · SYNC-845 · controlled A/E candidate readiness contract
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop829/SYNC-844 completed `DATA_AVAILABILITY_OWNER_APPROVAL_UI_RECAP_LOOP829` by showing source-review-owner-approved in the candidate availability recap.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop830/SYNC-845 completed `CONTROLLED_AE_CANDIDATE_READINESS_CONTRACT_LOOP830` by adding controlled A/E readiness contract and exposing it in creation-plan payload.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `CONTROLLED_AE_CANDIDATE_READINESS_CONTRACT_LOOP830` — add controlled A/E candidate readiness contract from source_review_owner_approved partial refs without marking calculable/ready, writing DB, scoring/backtesting, Docker, or ports.
+- Next atomic action: `CONTROLLED_AE_CANDIDATE_READINESS_UI_SURFACE_LOOP831` — expose controlled A/E candidate readiness on `/quant/factor-mining` without marking calculable/ready, writing DB, scoring/backtesting, Docker, or ports.
 
 ## EXCLUDE: Default Exclusions
 
