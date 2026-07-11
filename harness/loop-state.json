@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T04:55:00+08:00",
+  "updated_at": "2026-07-12T05:25:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-jobs-feedback-seed-recap-visibility-loop898",
-  "next_atomic_action": "POST_ACCEPTANCE_FEEDBACK_SEEDED_CANDIDATE_CARD_LINEAGE_LOOP899：把 feedback seed outcome 写入具体候选卡的来源、构造器、质量闸解释和 lineage 标记，让用户在单张候选卡上看懂该因子是扩成功族、观察修复还是失败规避生成，而不只是在页面总览里看到 seed 说明。",
+  "current_slice": "post-acceptance-feedback-seeded-candidate-card-lineage-loop899",
+  "next_atomic_action": "POST_ACCEPTANCE_FEEDBACK_SEEDED_LINEAGE_TO_JOB_PAYLOAD_LOOP900：把 per-candidate feedback lineage 从预览延伸到创建任务后的 job payload、Jobs recap 与后续结果复盘，让用户创建任务后仍能追踪每个候选来自哪个 seed、采用什么生成器动作、为何被保留或规避。",
   "next_after": "Continue continuous loop toward feedback-driven next-round factor construction and controlled product review readiness.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-912-post-acceptance-jobs-feedback-seed-recap-visibility-loop898",
+  "last_tick": "SYNC-913-post-acceptance-feedback-seeded-candidate-card-lineage-loop899",
   "last_sync_sources": [
+    "SYNC-913 Post-acceptance feedback seeded candidate card lineage loop899",
+    "loop899 frontend: CandidatePreview now supports optional lineage and feedbackAction fields rendered on each candidate card with feedback_seed_candidate_card_lineage=true",
+    "loop899 frontend: candidatePreviewFor now accepts feedbackSeed and emits success_seed/watchlist/failure_path-specific candidate cards",
+    "loop899 semantics: success_seed cards inherit success seed refs and expand success family; watchlist cards show repair-only context; failure_path cards avoid failed seed lineage",
+    "loop899 verification: RED feedback-seeded candidate card lineage browser failed on missing per-card lineage; GREEN feedback-seeded candidate card lineage pass; feedback-seeded preview pass; Jobs feedback seed recap visibility pass; feedback seed outcome pass; feedback-to-mining browser pass; factor-universe review readiness pass; formal-review E2E pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "loop899 worker: Kierkegaard fixed-thread read-only product QA returned partial; per-card lineage field gap and dogfood requirements were absorbed",
+    "next: POST_ACCEPTANCE_FEEDBACK_SEEDED_LINEAGE_TO_JOB_PAYLOAD_LOOP900",
     "SYNC-912 Post-acceptance Jobs feedback seed recap visibility loop898",
     "loop898 frontend: Jobs current task cards now show jobs_feedback_seed_current_task_visible=true with success/watchlist/failure seed impact copy and generator action",
     "loop898 frontend: Jobs batch recap now shows jobs_feedback_seed_recap_visible=true with inherited feedback count, seed refs, and next actions",

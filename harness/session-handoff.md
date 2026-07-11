@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T04:55:00+08:00
+updated_at: 2026-07-12T05:25:00+08:00
+
+## Latest Handoff — SYNC-913 post-acceptance-feedback-seeded-candidate-card-lineage-loop899
+
+- [DONE] Candidate cards now support `lineage` and `feedbackAction`, rendered with `feedback_seed_candidate_card_lineage=true`.
+- [DONE] `candidatePreviewFor(...)` now consumes `feedbackSeed` and emits per-card success_seed / watchlist / failure_path variants.
+- [DONE] Success cards show “扩成功族候选” and “候选 lineage：继承成功种子 ...”; watchlist cards show “观察修复候选” and “候选 lineage：观察修复 ...”; failure cards show “失败规避候选” and “候选 lineage：规避失败种子 ...”.
+- [VERIFY] RED candidate-card lineage browser failed on missing per-card lineage. GREEN: candidate-card lineage pass, feedback-seeded preview pass, Jobs feedback seed recap visibility pass, feedback seed outcome pass, feedback-to-mining browser pass, factor-universe review readiness pass, formal-review E2E pass, build pass, lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread read-only product QA returned `partial`; per-card lineage field gap and dogfood requirements were absorbed.
+- [NEXT] `POST_ACCEPTANCE_FEEDBACK_SEEDED_LINEAGE_TO_JOB_PAYLOAD_LOOP900`: carry per-candidate feedback lineage into job payload, Jobs recap, and later result recap.
 
 ## Latest Handoff — SYNC-912 post-acceptance-jobs-feedback-seed-recap-visibility-loop898
 
