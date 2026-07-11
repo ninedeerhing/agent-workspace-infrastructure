@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T03:15:00+08:00
+updated_at: 2026-07-12T03:45:00+08:00
+
+## Latest Handoff — SYNC-910 post-acceptance-feedback-seed-outcome-variant-dogfood-loop896
+
+- [DONE] Factor Library trajectory outcome CTAs now distinguish explicit report-ready `success_seed`, watchlist/no-report observation context, and `failure_path` failure context.
+- [DONE] Jobs completed current-task cards no longer infer `success_seed` from completed/report-ready state alone; without explicit outcome detail, they carry watchlist observation context into the next FactorMining round.
+- [DONE] Adaptive generator scheduling now treats `memory_outcome=failure_path` as a failure signal so failed lineage is deprioritized instead of routed as watchlist.
+- [VERIFY] RED browser dogfood failed on missing success CTA; RED scheduler test failed on `failure_path` treated as watchlist. GREEN: feedback seed outcome browser pass, feedback-to-mining browser pass, current-task browser pass, targeted recap pass, factor-universe review readiness pass, formal-review E2E pass, scheduler/batch pytest 16 passed, build pass, lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread read-only product QA returned `needs_followup`; CTA label drift, Jobs success drift, `failure_path` naming drift, and browser matrix gaps were absorbed before sync.
+- [NEXT] `POST_ACCEPTANCE_FEEDBACK_SEEDED_CANDIDATE_PREVIEW_EXPLANATION_LOOP897`: show how success/watchlist/failure feedback seeds alter candidate previews, generator families, explanations, and lineage.
 
 ## Latest Handoff — SYNC-909 post-acceptance-factor-library-feedback-to-new-mining-brief-loop895
 
