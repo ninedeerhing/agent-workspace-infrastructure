@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:14:00+08:00
+updated_at: 2026-07-12T00:31:00+08:00
+
+## Latest Handoff — SYNC-895 post-acceptance-idea-spec-recap-candidate-preview-loop881
+
+- [DONE] Backend universe summary now carries `user_idea_text` from `brief.generation_mix` into job payload telemetry.
+- [DONE] `candidatePreviewFor(category, ideaText)` returns idea-aware candidate cards when a user idea exists.
+- [DONE] Idea-aware cards preserve the selected A-E category and show LLM hypothesis, program synthesis, and trajectory/combination variants.
+- [DONE] `ConstructionUniverseReview` shows `idea_aware_preview=true` and explains that the batch is expanding the user's idea inside the current category.
+- [DONE] `FactorMiningBatchRecap` shows `idea_recap_context=...` in preview mode, and job payload telemetry displays “用户想法 / 已进入复盘”.
+- [VERIFY] Passed: universe model 8, API/universe/registry 76, user-idea dogfood, multi-source-mode dogfood, formal-review E2E dogfood, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WORKER] Kierkegaard read-only product reviewer confirmed the preview/summary gap and recommended idea-aware previews plus dogfood assertions; findings absorbed.
+- [NEXT] `POST_ACCEPTANCE_NO_IDEA_AUTO_DIRECTION_EXPLORATION_LOOP882`: make no-idea auto exploration explainable instead of just defaulting to B category.
 
 ## Latest Handoff — SYNC-894 post-acceptance-user-idea-construction-spec-entry-loop880
 

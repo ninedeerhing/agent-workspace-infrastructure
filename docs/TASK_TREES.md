@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-12T00:14:00+08:00 · SYNC-894 · Post-acceptance user idea to ConstructionSpec entry
+Updated: 2026-07-12T00:31:00+08:00 · SYNC-895 · Post-acceptance idea spec recap and candidate preview
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop880/SYNC-894 completed `POST_ACCEPTANCE_USER_IDEA_TO_CONSTRUCTION_SPEC_ENTRY_LOOP880` by adding a real user idea textarea, mapping idea_text into `source_mode=idea_to_candidates`, preserving category/quota/budget context, and proving the confirm payload with browser dogfood.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop881/SYNC-895 completed `POST_ACCEPTANCE_IDEA_SPEC_RECAP_AND_CANDIDATE_PREVIEW_LOOP881` by making user idea text shape visible candidate previews, review summaries, preview recap context, and job payload telemetry while preserving A-E category context.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `POST_ACCEPTANCE_IDEA_SPEC_RECAP_AND_CANDIDATE_PREVIEW_LOOP881` — make idea_text influence the visible ConstructionSpec, candidate preview, idea summary, and recap markers, not only the confirm payload. Preserve A-E context and keep no DB/Docker/scorer/backtest.
+- Next atomic action: `POST_ACCEPTANCE_NO_IDEA_AUTO_DIRECTION_EXPLORATION_LOOP882` — upgrade “自动帮我选择方向” into an explainable no-idea auto exploration entry that produces a clear ConstructionSpec, selected class/subclass/generator rationale, and the same preview/recap/confirmation chain. Keep no DB/Docker/scorer/backtest.
 
 ## EXCLUDE: Default Exclusions
 

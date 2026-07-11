@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T00:14:00+08:00",
+  "updated_at": "2026-07-12T00:31:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-user-idea-to-construction-spec-entry-loop880",
-  "next_atomic_action": "POST_ACCEPTANCE_IDEA_SPEC_RECAP_AND_CANDIDATE_PREVIEW_LOOP881：让用户输入的 idea_text 不只进入 confirm payload，也影响本页 ConstructionSpec/候选预览/复盘说明；在保持 A-E 分类上下文与 no-execution 边界的前提下，生成面向用户想法的候选预览、思路摘要和复盘标记，并用 browser dogfood 证明想法文本在页面预览、confirm payload、job recap 三处一致可见。不连 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward idea-aware candidate preview, scoring readiness, and factor universe usability.",
+  "current_slice": "post-acceptance-idea-spec-recap-and-candidate-preview-loop881",
+  "next_atomic_action": "POST_ACCEPTANCE_NO_IDEA_AUTO_DIRECTION_EXPLORATION_LOOP882：把“自动帮我选择方向”从默认切到 B 类的按钮，升级为可解释的无想法自动探索入口；生成自动方向 ConstructionSpec，明确为什么选择当前 A-E 分类/子类配额/生成器 mix，并进入同一候选预览、复盘、确认任务链。补 browser dogfood 证明 auto direction payload、页面说明、候选预览和 recap 一致；不连 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward no-idea auto exploration, scoring readiness, and factor universe usability.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-894-post-acceptance-user-idea-construction-spec-entry-loop880",
+  "last_tick": "SYNC-895-post-acceptance-idea-spec-recap-candidate-preview-loop881",
   "last_sync_sources": [
+    "SYNC-895 Post-acceptance idea spec recap and candidate preview loop881",
+    "loop881 backend: factor_construction_universe_summary now carries user_idea_text from brief.generation_mix into job payload telemetry",
+    "loop881 frontend: candidatePreviewFor(category, ideaText) now returns idea-aware candidate cards with LLM hypothesis, program synthesis, and trajectory/combination variants while preserving A-E category context",
+    "loop881 frontend: ConstructionUniverseReview and FactorMiningBatchRecap now show idea_aware_preview and idea_recap_context markers before and after task creation",
+    "loop881 dogfood: user-idea browser test now asserts idea-aware preview cards, recap context, job payload user idea metric, source_mode=idea_to_candidates, and no backtest/runtime POST",
+    "loop881 verification: universe model 8 passed; API/universe/registry 76 passed; user-idea dogfood pass; multi-source-mode dogfood pass; formal-review E2E dogfood pass; web build pass; lint 0 errors/1 existing warning; diff check pass with CRLF warnings only",
+    "loop881 worker: Kierkegaard read-only product dogfood reviewer confirmed the preview/summary gap and recommended candidatePreviewFor ideaText, review summary, and dogfood assertions; implementation absorbed those recommendations",
+    "next: POST_ACCEPTANCE_NO_IDEA_AUTO_DIRECTION_EXPLORATION_LOOP882",
     "SYNC-894 Post-acceptance user idea to ConstructionSpec entry loop880",
     "loop880 frontend: /quant/factor-mining now has a clear user idea textarea; editing the idea resets stale preview/task state and keeps the user on the same one-page flow",
     "loop880 brief: buildMiningBrief(category, { ideaText }) now maps non-empty idea text to source_mode=idea_to_candidates, preserves factor_class/subclass_quota/quota_policy/budget, and writes user_idea_text plus idea-aware direction_summary/hypothesis",
