@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T15:59:49+08:00",
+  "updated_at": "2026-07-11T16:16:03+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-real-backtest-current-task-card-read-model-loop861",
-  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_REPORT_SURFACE_GUIDANCE_LOOP862：强化 Factor Library 受控真实回测报告面锚点与下一步说明，确保 completed/report-ready 点击“查看结果与复盘”后用户能看懂报告指标、复盘材料、失败/阻塞原因和下一轮动作；保持页面加载无 POST、无替代 Docker/DB、无默认 runner。",
+  "current_slice": "controlled-real-backtest-report-surface-guidance-loop862",
+  "next_atomic_action": "FORMAL_REVIEW_E2E_PRODUCT_DOGFOOD_LOOP863：从小白用户视角串跑因子构造入口→Jobs 当前任务→Factor Library 报告复盘的 seeded mocked 产品路径，覆盖 report-ready/no-report/blocked/failed/error 的下一步导航与误解防护；保持页面加载无 POST、无替代 Docker/DB、无默认 runner。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-876-controlled-real-backtest-current-task-card-read-model-loop861",
+  "last_tick": "SYNC-877-controlled-real-backtest-report-surface-guidance-loop862",
   "last_sync_sources": [
+    "SYNC-877 Controlled real backtest report surface guidance loop862",
+    "loop862 frontend: added FactorLibraryRealBacktestReportGuidance so report-ready feedback explains IC, RankIC, annual return, drawdown, turnover, win rate, risk/cost, and next action",
+    "loop862 Factor Library: targeted report-ready jobs now default-open the concrete feedback card, anchor report CTA to the task feedback, and filter trajectory summary to the targeted job",
+    "loop862 UX: non-report states no longer show report metrics guidance; read errors no longer also claim no feedback result",
+    "loop862 worker: permanent test-engineer and code-reviewer findings absorbed; no duplicate worker created",
+    "loop862 verification: recap static pass, targeted recap browser pass, current-task browser regression pass, targeted self-validation pass, build pass, lint 0 errors/1 existing warning",
+    "next: FORMAL_REVIEW_E2E_PRODUCT_DOGFOOD_LOOP863",
     "SYNC-876 Controlled real backtest current task card read model loop861",
     "loop861 frontend: extracted JobsPageCurrentTaskCardModel to own Jobs current-task/confirmation card state, copy, primary CTA, reason lines, and diagnostic flags",
     "loop861 browser: added six-state current task card dogfood for ready, running, blocked, failed, completed/report-ready, and completed/no-report",

@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-11T15:59:49+08:00
+updated_at: 2026-07-11T16:16:03+08:00
+
+## Latest Handoff — SYNC-877 controlled-real-backtest-report-surface-guidance-loop862
+
+- [DONE] loop862 report surface guidance: `FactorLibraryRealBacktestReportGuidance.tsx` now explains report-ready metrics (IC, RankIC, annual return, max drawdown, turnover, win rate), risk/cost, and next action.
+- [DONE] Targeted Factor Library pages default-open the concrete feedback card, anchor report-ready CTA to the task feedback, filter trajectory summary to the targeted job, and suppress no-result empty state when feedback read fails.
+- [VERIFY] Passed: `npm run test:factor-library-recap`; `npm run test:factor-library-targeted-recap-browser`; `npm run test:controlled-real-current-task-card-browser`; `npm run test:controlled-real-targeted-recap-product-self-validation`; `npm run build`; `npm run lint` (0 errors / 1 existing warning); `git diff --check` (CRLF warnings only).
+- [WORKERS] Meitner/code-reviewer returned request_changes and Parfit/test-engineer returned needs_attention. Findings absorbed: non-empty concrete report surface, targeted summary filtering, blocked return focus wait, non-report negative assertions, read-error/no-result distinction, and next-action content assertion. No duplicate worker created.
+- [BOUNDARY] No `.env`/DSN/secret read; no DB/Docker/scorer/backtest; no substitute runtime; mocked browser product dogfood only.
+- [NEXT] `FORMAL_REVIEW_E2E_PRODUCT_DOGFOOD_LOOP863`: run a full seeded product dogfood from factor construction entry to Jobs current task to Factor Library report recap, covering report-ready/no-report/blocked/failed/error navigation and misunderstanding prevention.
 
 ## Latest Handoff — SYNC-876 controlled-real-backtest-current-task-card-read-model-loop861
 
