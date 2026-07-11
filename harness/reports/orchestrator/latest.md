@@ -1,22 +1,20 @@
-# Orchestrator Latest Report — SYNC-886 Post-acceptance result type and batch recap reality loop872
+# Orchestrator Latest Report — SYNC-887 Post-acceptance batch recap telemetry boundary loop873
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "POST_ACCEPTANCE_RESULT_TYPE_AND_BATCH_RECAP_REALITY_LOOP872"
+  task: "POST_ACCEPTANCE_BATCH_RECAP_TELEMETRY_INTEGRATION_LOOP873"
   changes:
-    - file: "apps/quant_assistant/web/src/pages/BacktestPage.tsx"
-      summary: "Adds stable single-factor vs multi-factor combo result badges and combo guidance."
+    - file: "apps/quant_assistant/web/src/pages/FactorMiningBatchRecap.tsx"
+      summary: "New focused batch recap component with preview/real telemetry source markers."
     - file: "apps/quant_assistant/web/src/pages/factorMiningReview.tsx"
-      summary: "Adds batch recap scope notice: current metrics are preview structure until real batch telemetry replaces them."
-    - file: "apps/quant_assistant/web/scripts/check-formal-review-final-product-self-check.mjs"
-      summary: "Adds browser assertions for single-factor and multi-factor combo result type labels and combo guidance."
+      summary: "Replaces inline batch recap implementation with FactorMiningBatchRecap; pure LOC reduced from 250 to 209."
     - file: "apps/quant_assistant/web/scripts/check-factor-universe-review-readiness.mjs"
-      summary: "Adds browser assertions for batch recap preview/real telemetry boundary."
+      summary: "Adds assertions for telemetry_source=preview_structure and telemetry_status=preview_not_real_batch."
   verification:
-    - command: "npm.cmd run test:formal-review-final-product-self-check"
-      result: "pass"
     - command: "npm.cmd run test:factor-universe-review-readiness"
+      result: "pass"
+    - command: "npm.cmd run test:formal-review-final-product-self-check"
       result: "pass"
     - command: "npm.cmd run test:data-support-consumer-readiness"
       result: "pass"
@@ -30,8 +28,7 @@ report:
     workload_delta: "unchanged"
     mistakes: []
     lessons:
-      - "Backtest result surfaces need explicit single-factor/combo labels; title inference is not enough for consumer review."
-      - "Preview telemetry must be labelled before real batch telemetry is wired."
-    performance_note: "Loop872 closed worker P1/P2 user confusion items while preserving no-runtime side effects."
+      - "Do not keep adding behavior to review shells at the 250 pure LOC boundary; extract focused product components first."
+    performance_note: "Loop873 restored file health and made preview telemetry machine-checkable."
   blockers: []
-  next: "POST_ACCEPTANCE_BATCH_RECAP_TELEMETRY_INTEGRATION_LOOP873"
+  next: "POST_ACCEPTANCE_BATCH_RECAP_REAL_JOB_TELEMETRY_LOOP874"

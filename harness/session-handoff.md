@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-11T19:32:00+08:00
+updated_at: 2026-07-11T19:54:00+08:00
+
+## Latest Handoff — SYNC-887 post-acceptance-batch-recap-telemetry-boundary-loop873
+
+- [DONE] Extracted `FactorMiningBatchRecap` from `factorMiningReview.tsx`.
+- [DONE] `factorMiningReview.tsx` pure LOC reduced from 250 to 209; new `FactorMiningBatchRecap.tsx` is 52 pure LOC.
+- [DONE] Batch recap now exposes `telemetry_source=preview_structure` and `telemetry_status=preview_not_real_batch`.
+- [VERIFY] Passed: factor-universe review readiness, formal-review final product self-check, data-support consumer readiness, web build, web lint 0 errors / 1 existing warning, diff check.
+- [NEXT] `POST_ACCEPTANCE_BATCH_RECAP_REAL_JOB_TELEMETRY_LOOP874`.
 
 ## Latest Handoff — SYNC-886 post-acceptance-result-type-and-batch-recap-reality-loop872
 
