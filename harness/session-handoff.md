@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T23:50:00+08:00
+updated_at: 2026-07-12T00:10:00+08:00
+
+## Latest Handoff — SYNC-856 backtest plan allocator re-entry
+
+- [DONE] Backtest plan allocator now emits `candidate_source` from final accepted confirmation.
+- [DONE] Controlled backtest plan confirmation carries accepted/skipped/failed refs and confirmation_ref across blocked/awaiting/plan_ready states.
+- [DONE] Plan drafts still remain plan-only: no queue write and no backtest execution.
+- [VERIFY] Focused allocator/API tests: 5 passed.
+- [VERIFY] Related regression: 121 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Allocator smoke: `planned 1 ... False False`.
+- [NEXT] `CONTROLLED_BACKTEST_REQUEST_REENTRY_LOOP842`: request/execution confirmation must consume only plan-ready drafts and remain no queue/no execution until explicit execution gate.
+- [FORBIDDEN] Do not write queue; do not run backtest; do not create substitute DB/Docker/runner.
 
 ## Latest Handoff — SYNC-855 final accepted UI confirmation re-entry
 

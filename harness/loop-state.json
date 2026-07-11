@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T23:50:00+08:00",
+  "updated_at": "2026-07-12T00:10:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "final-accepted-ui-confirmation-reentry-loop840",
-  "next_atomic_action": "BACKTEST_PLAN_ALLOCATOR_REENTRY_LOOP841：让 backtest plan allocator / UI read model 只消费 final accepted confirmation 的 final_accepted_refs，并保留 skipped/failed/provenance 说明；输出 plan draft 但不得写 backtest queue、不得运行 backtest、不得创建替代 DB/Docker/runner。",
-  "next_after": "Continue controlled backtest request -> execution confirmation -> report/progress read model.",
+  "current_slice": "backtest-plan-allocator-reentry-loop841",
+  "next_atomic_action": "CONTROLLED_BACKTEST_REQUEST_REENTRY_LOOP842：让 controlled backtest plan confirmation / request builder 只消费 plan-ready drafts，并要求用户明确确认 execution；继续保持 no queue/no execution，下一步再接正确 runner 与 qa-pg-alt runtime。",
+  "next_after": "Continue controlled execution confirmation -> real backtest bridge -> progress/report read model.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-855-final-accepted-ui-confirmation-reentry-loop840",
+  "last_tick": "SYNC-856-backtest-plan-allocator-reentry-loop841",
   "last_sync_sources": [
+    "SYNC-856 backtest plan allocator re-entry loop841",
+    "loop841 trigger: backtest plan drafts needed to consume only final_accepted_refs while preserving skipped/failed/provenance for user review",
+    "loop841 backend: BacktestPlanAllocatorV1 emits candidate_source with accepted/skipped/failed refs and confirmation_ref",
+    "loop841 UI/read-model: controlled_backtest_plan_confirmation_v1 carries the same candidate_source in blocked/awaiting/plan_ready states",
+    "loop841 boundary: plan-only draft; no queue write, no backtest run, no substitute DB/Docker/runner",
+    "loop841 verification: focused allocator/API 5 passed; related regression 121 passed; Ruff pass; allocator smoke pass",
+    "next: CONTROLLED_BACKTEST_REQUEST_REENTRY_LOOP842",
     "SYNC-855 final accepted UI confirmation re-entry loop840",
     "loop840 trigger: final accepted confirmation needed to consume persisted store write written_refs instead of provisional admission or small-batch passed candidates",
     "loop840 backend: FinalAcceptedPoolConfirmationV1 now takes ProvisionalAdmissionStoreWriteResultV1; skipped_refs and failed_refs are exposed but never accepted",

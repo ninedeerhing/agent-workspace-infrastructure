@@ -1,3 +1,48 @@
+# Orchestrator Latest Report — SYNC-856 backtest plan allocator re-entry loop841
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "BACKTEST_PLAN_ALLOCATOR_REENTRY_LOOP841"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_backtest_plan_allocator.py"
+      summary: "Adds candidate_source provenance to plan allocator output while keeping plan-only/no-execution."
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_backtest_plan_confirmation.py"
+      summary: "Carries final accepted source refs into controlled plan confirmation in blocked/awaiting/ready states."
+    - file: "apps/quant_assistant/tests/test_factor_construction_backtest_plan_allocator_unit.py"
+      summary: "Covers accepted/skipped/failed provenance and budget-blocked source preservation."
+    - file: "apps/quant_assistant/tests/test_mining_job_api_unit.py"
+      summary: "Asserts controlled plan confirmation exposes candidate_source to API consumers."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-856 and next loop842."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-856."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop842."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to controlled backtest request re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-856."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_backtest_plan_allocator_unit.py API controlled-plan targets"
+      result: "5 passed."
+    - command: "uv run pytest -q related final/provisional/backtest/API tests"
+      result: "121 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "allocator smoke"
+      result: "planned 1 candidate_source accepted/skipped/failed refs; will_write_queue False; will_run_backtest False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Backtest plans need source provenance even when budget gates block plan creation."
+    performance_note: "Loop841 closed with focused/regression/Ruff/smoke; no duplicate worker created."
+  blockers: []
+  next: "CONTROLLED_BACKTEST_REQUEST_REENTRY_LOOP842"
+
+---
+
 # Orchestrator Latest Report — SYNC-855 final accepted UI confirmation re-entry loop840
 
 report:
