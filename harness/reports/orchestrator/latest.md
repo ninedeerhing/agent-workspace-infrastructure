@@ -1,3 +1,46 @@
+# Orchestrator Latest Report — SYNC-861 real backtest feedback memory re-entry loop846
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "REAL_BACKTEST_FEEDBACK_MEMORY_REENTRY_LOOP846"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_trajectory_real_backtest_feedback_adapter.py"
+      summary: "Adds consumer-report feedback conversion and preserves executed_plan_ids/excluded_factor_refs/run_ids in trajectory feedback rows."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_trajectory_real_backtest_feedback_summary.py"
+      summary: "Extracts product summary logic so the adapter stays below the LOC ceiling."
+    - file: "apps/quant_assistant/tests/test_factor_trajectory_real_backtest_feedback_adapter_unit.py"
+      summary: "Covers consumer report feedback_memory_input conversion into real backtest trajectory feedback."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-861 and next loop847."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-861."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop847."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to one-click E2E self-validation re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-861."
+  verification:
+    - command: "uv run pytest -q trajectory feedback adapter focused tests"
+      result: "7 passed."
+    - command: "uv run pytest -q trajectory/report/library/API related regression"
+      result: "84 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "feedback memory smoke"
+      result: "ready_for_memory_intake success_path ['plan_one'] ['candidate_held'] False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Trajectory memory intake should consume report-produced feedback input, not require callers to rebuild legacy feedback payloads."
+    performance_note: "Loop846 closed with focused/regression/Ruff/smoke; LOC defect corrected by module extraction."
+  blockers: []
+  next: "ONE_CLICK_E2E_SELF_VALIDATION_REENTRY_LOOP847"
+
+---
+
 # Orchestrator Latest Report — SYNC-860 consumer result report re-entry loop845
 
 report:

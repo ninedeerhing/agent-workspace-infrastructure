@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-12T01:30:00+08:00
+updated_at: 2026-07-12T01:50:00+08:00
+
+## Latest Handoff — SYNC-861 real backtest feedback memory re-entry
+
+- [DONE] `build_real_backtest_feedback_from_consumer_report_v1` converts consumer report summary and `feedback_memory_input` into canonical `real_backtest_feedback_v1`.
+- [DONE] Trajectory feedback rows preserve `executed_plan_ids`, `excluded_factor_refs`, and `run_ids`.
+- [DONE] Product summary logic was split to `factor_trajectory_real_backtest_feedback_summary.py`; adapter pure LOC is back under 250.
+- [DONE] Adapter remains read-model only: no trajectory memory write, DB, env, runner, backtest, substitute runtime, or secret output.
+- [VERIFY] Focused trajectory feedback tests: 7 passed.
+- [VERIFY] Related regression: 84 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Feedback smoke: `ready_for_memory_intake success_path ['plan_one'] ['candidate_held'] False False`.
+- [NEXT] `ONE_CLICK_E2E_SELF_VALIDATION_REENTRY_LOOP847`: wire the seeded one-click flow through feedback memory and prove the user path.
+- [FORBIDDEN] Do not create substitute Docker/DB/ports; do not write trajectory memory without the official writer gate.
 
 ## Latest Handoff — SYNC-860 consumer result report re-entry
 

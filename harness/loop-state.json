@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T01:10:00+08:00",
+  "updated_at": "2026-07-12T01:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "consumer-result-report-reentry-loop845",
-  "next_atomic_action": "REAL_BACKTEST_FEEDBACK_MEMORY_REENTRY_LOOP846：让真实回测反馈记忆适配器消费 feedback_memory_input、executed plan ids、run ids、excluded refs 与 consumer verdict，形成可复盘轨迹输入，同时保持 no secret/no substitute runtime。",
-  "next_after": "Continue one-click E2E self-validation -> UI dogfood -> formal human review entry.",
+  "current_slice": "real-backtest-feedback-memory-reentry-loop846",
+  "next_atomic_action": "ONE_CLICK_E2E_SELF_VALIDATION_REENTRY_LOOP847：把生成→筛选→评分→provisional→accepted→plan→execution progress→consumer report→feedback memory 串成可自检的一键 seeded flow，验证用户无需理解内部 gate 也能看到下一步与结果复盘。",
+  "next_after": "Continue UI dogfood -> formal human review entry.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-860-consumer-result-report-reentry-loop845",
+  "last_tick": "SYNC-861-real-backtest-feedback-memory-reentry-loop846",
   "last_sync_sources": [
+    "SYNC-861 real backtest feedback memory re-entry loop846",
+    "loop846 trigger: report feedback_memory_input needed to feed trajectory memory without caller-handwritten old feedback payload",
+    "loop846 backend: build_real_backtest_feedback_from_consumer_report_v1 converts report summary to canonical real_backtest_feedback_v1",
+    "loop846 trajectory: candidate feedback rows preserve executed_plan_ids, excluded_factor_refs, and run_ids",
+    "loop846 refactor: product summary moved to factor_trajectory_real_backtest_feedback_summary.py; adapter LOC back under 250",
+    "loop846 boundary: read-model only, no env/DB/scorer/backtest/trajectory memory write/substitute runtime/secrets",
+    "loop846 verification: focused trajectory feedback 7 passed; related regression 84 passed; Ruff pass; feedback smoke pass",
+    "next: ONE_CLICK_E2E_SELF_VALIDATION_REENTRY_LOOP847",
     "SYNC-860 consumer result report re-entry loop845",
     "loop845 trigger: consumer report and factor library needed to consume progress report provenance before feedback memory",
     "loop845 backend: BacktestResultReportV1 now accepts progress_report_surface and emits execution_summary, executed_plans, excluded_factor_refs, run_ids, feedback_memory_input",
