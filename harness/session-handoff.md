@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T13:20:00+08:00
+updated_at: 2026-07-11T13:40:00+08:00
+
+## Latest Handoff — SYNC-827 Source manifest capture product self-validation
+
+- [DONE] `product_self_validation_gate_v1` now requires `has_manifest_capture_field_requirements=true`.
+- [DONE] Missing manifest capture UI produces `manifest_capture_ui_not_visible` and blocks formal human review.
+- [VERIFY] Product gate + consumer flow + manifest contract tests: 20 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `SOURCE_REVIEW_MATERIAL_DATA_AVAILABILITY_LINKAGE_LOOP813`: let source review material feed candidate-level Data Availability Gate without granting scoring readiness.
+- [FORBIDDEN] Do not mark A/E sources ready from manifest material; do not generate real A/E candidates; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-826 Source manifest capture UI surface
 

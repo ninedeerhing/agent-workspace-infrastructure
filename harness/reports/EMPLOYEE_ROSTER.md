@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T13:20:00+08:00
+Updated: 2026-07-11T13:40:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop811 | continuous_loop_active | gpt-5.5 | 2026-07-11T13:20:00+08:00 | SYNC-826 source manifest capture UI surface complete; next SOURCE_MANIFEST_CAPTURE_PRODUCT_SELF_VALIDATION_LOOP812 | keep moving; product-self-validate manifest capture UI |
+| orchestrator | current-thread | loop812 | continuous_loop_active | gpt-5.5 | 2026-07-11T13:40:00+08:00 | SYNC-827 source manifest capture product self-validation complete; next SOURCE_REVIEW_MATERIAL_DATA_AVAILABILITY_LINKAGE_LOOP813 | keep moving; link source review material to Data Availability Gate |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T13:40:00+08:00 · loop812/SYNC-827: Product self-validation gate now requires manifest capture field requirements via `has_manifest_capture_field_requirements=true`; missing surface blocks with `manifest_capture_ui_not_visible`. Verification: product gate + consumer flow + manifest contract tests 20 passed, Ruff pass, web build pass.
 - 2026-07-11T13:20:00+08:00 · loop811/SYNC-826: Factor-mining UI now shows manifest capture field requirements and source-review-only/no-execution boundary. Verification: consumer flow + manifest contract tests 11 passed, Ruff pass, web build pass.
 - 2026-07-11T13:00:00+08:00 · loop810/SYNC-825: Added `factor_universe_source_manifest_capture_contract_v1` and exposed it in creation plan. Partial sources can produce source review material only after required manifest fields are present; missing sources remain blocked; no DB/scorer/backtest side effects. Verification: source manifest/source adapter/data availability tests 11 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T12:40:00+08:00 · loop809/SYNC-824: Product self-validation gate now requires source confirmation surface evidence via `has_source_confirmation_surface=true`; missing surface blocks with `source_confirmation_surface_not_visible`. Verification: product gate + consumer flow tests 15 passed, Ruff pass, web build pass, pure in-memory smoke pass.
