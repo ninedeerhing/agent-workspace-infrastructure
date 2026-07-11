@@ -1,6 +1,26 @@
 # Session Handoff
 
-updated_at: 2026-07-11T11:18:00+08:00
+updated_at: 2026-07-11T11:22:00+08:00
+
+## Latest Handoff — SYNC-819 Factor-universe runtime runner and A/E data readiness
+
+- [DONE] User completed item 1 first-pass human review as acceptable for now, with later UI polish still expected.
+- [DONE] Reopened implementation for item 2 (official runner / authorization chain) and item 3 (A/E fundamental, event, text, sentiment data sources).
+- [DONE] Added `factor_universe_runtime_readiness_v1` as a read-only readiness contract for medium scoring, full scoring, and controlled real backtest.
+- [DONE] Runtime readiness requires existing `qa-pg-alt`, official `qa.factors.compute.compute_factor_values` writer, official `qa.backtest.engine.run_backtest` runner, UI authorization, idempotency key, execution/rollback audit refs, prior metrics, and full-run chunk manifests.
+- [DONE] Added `factor_universe_ae_data_source_readiness_v1` for A-class fundamental PIT sources and E-class event/text/sentiment/alternative sources.
+- [DONE] Creation plan now exposes `factor_universe_runtime_readiness` and `factor_universe_ae_data_source_readiness` as top-level read models.
+- [DONE] `build_factor_construction_spec_v1(...)` accepts `data_source_confirmation`, so A/E source readiness can enter real generator specs without test-only replacement.
+- [DONE] `/quant/factor-mining` now renders “生产化准备检查” with formal runner/auth, A-class PIT, and E-class event/text/sentiment gaps.
+- [WORKER] Godel read-only QA found the prior state had fail-closed model layers but lacked UI/API aggregation; this loop added the aggregation/readiness slice. Real A/E adapters/catalogs remain explicitly not ready until confirmed.
+- [VERIFY] New runtime/A-E/creation-plan tests pass; related runner/data/tiered tests: 18 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [VERIFY] Runtime smoke: existing `qa-pg-alt 7b7346a0cdfc` at `127.0.0.1:55432`; no substitute Docker/DB/port.
+- [VERIFY] Creation-plan smoke: `factor_universe_runtime_readiness_v1` and `job_ingest_news_rss` present.
+- [VERIFY] Browser Playwright smoke could not run because the web workspace does not install `playwright`; build and source smoke were used instead.
+- [NEXT] `PRODUCT_SELF_VALIDATION_AFTER_RUNTIME_AND_AE_READINESS_LOOP805`: run product self-validation over the new readiness panel and creation-plan fields before re-entering formal human review.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
 
 ## Latest Handoff — SYNC-818 Factor-universe six-gap self-review repair
 

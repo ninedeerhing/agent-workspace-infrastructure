@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T11:18:00+08:00",
+  "updated_at": "2026-07-11T11:22:00+08:00",
   "mode": "continuous_implementation_loop",
-  "stop_reason": "formal_human_acceptance_required",
+  "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "factor-universe-six-gap-self-review-repair-loop803",
-  "next_atomic_action": "FORMAL_HUMAN_REVIEW_ENTRY_LOOP804：用户正式人工验收因子构造宇宙；从左侧主流程按“开始挖因子 → 当前任务 → 因子库与复盘 → 回测结果”逐步检查；在 /quant/factor-mining 点击开始生成后检查同页候选复盘、数据源/PIT 缺口、单因子/组合因子说明、批量复盘说明和唯一小批评分确认任务；/quant/jobs 只保留一个当前主任务和明确下一步按钮；/quant/factor-library 检查安全模拟、真实回测反馈、报告面、复盘记忆分离；medium/full 真实评分入口应在缺 runner/授权/qa-pg-alt 时 fail-closed，而不是伪装执行。",
-  "next_after": "Wait for explicit human review result: accept, reject, or request changes. If rejected or gaps are found, continue with targeted repair loops; do not proceed to new implementation while formal_human_acceptance_required is active.",
+  "current_slice": "factor-universe-runtime-runner-and-ae-data-readiness-loop804",
+  "next_atomic_action": "PRODUCT_SELF_VALIDATION_AFTER_RUNTIME_AND_AE_READINESS_LOOP805：复跑因子构造宇宙用户路径与后端 readiness 聚合，确认 /quant/factor-mining 生产化准备检查可见、creation plan 暴露 factor_universe_runtime_readiness 与 factor_universe_ae_data_source_readiness、medium/full 真实评分和真实回测仍在缺 runner/授权/审计时 fail-closed，A/E 基本面/事件/文本/情绪数据源缺口可读且不会伪装为可计算。",
+  "next_after": "If product self-validation passes, re-enter formal human review with explicit notes that item 1 was accepted with later UI polish and items 2+3 were repaired; if self-validation finds gaps, continue targeted repair without stopping.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,19 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-818-factor-universe-six-gap-self-review-repair-loop803",
+  "last_tick": "SYNC-819-factor-universe-runtime-runner-and-ae-data-readiness-loop804",
   "last_sync_sources": [
+    "SYNC-819 Factor-universe runtime runner and A/E data readiness loop804",
+    "loop804 trigger: user completed item 1 human pass as acceptable for now but requested solving items 2+3 before final polish",
+    "loop804 runtime: added factor_universe_runtime_readiness_v1 read-only contract for medium scoring, full scoring, and controlled real backtest readiness",
+    "loop804 runner gates: readiness requires qa-pg-alt, official qa.factors.compute.compute_factor_values writer, official qa.backtest.engine.run_backtest runner, UI authorization, idempotency key, execution/rollback audit, prior metrics, and chunk manifests for full runs",
+    "loop804 data: added factor_universe_ae_data_source_readiness_v1 A/E source matrix for fundamental PIT plus event/text/sentiment/alternative gaps; RSS news is partial support while announcement/entity/sentiment/alternative sources remain explicit gaps",
+    "loop804 plan/API: creation plan now exposes factor_universe_runtime_readiness and factor_universe_ae_data_source_readiness top-level read models",
+    "loop804 spec: build_factor_construction_spec_v1 accepts data_source_confirmation so A/E confirmed readiness can enter real generator specs without test-only replace",
+    "loop804 UI: /quant/factor-mining review now shows Production readiness checks for formal runner/auth chain, A class PIT data, and E class event/text/sentiment gaps",
+    "loop804 worker: Godel read-only QA confirmed prior gap was missing UI/API aggregation for runner/auth and A/E source chains; the new read models and page panel address that slice",
+    "loop804 verification: new runtime/A-E/creation plan tests pass; related runner/data tests 18 passed; Ruff pass; npm run build pass; qa-pg-alt existing container smoke pass; creation-plan smoke pass",
+    "next: PRODUCT_SELF_VALIDATION_AFTER_RUNTIME_AND_AE_READINESS_LOOP805",
     "SYNC-818 Factor-universe six-gap self-review repair loop803",
     "loop803 trigger: user asked whether six pre-human-review risk items were truly solved and required orchestrator self-review instead of user audit",
     "loop803 backend: fixed generator scheduler so two-family requests no longer let the first generator consume all budget",
