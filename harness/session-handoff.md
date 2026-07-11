@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T06:25:00+08:00
+updated_at: 2026-07-12T06:55:00+08:00
+
+## Latest Handoff — SYNC-916 post-acceptance-factor-library-lineage-roundtrip-to-next-generation-loop902
+
+- [DONE] Factor Library trajectory outcome CTAs now carry compact candidate lineage seed params and inferred `feedback_factor_class` into `/quant/factor-mining`.
+- [DONE] FactorMining initializes the correct A-E category from the feedback seed; the E-class dogfood proves non-B lineage no longer falls back to the default B path.
+- [DONE] ConstructionSpec shows `factor_class`, candidate lineage refs/actions/notes/gates; feedback-seeded candidate cards use previous candidate lineage ids as mutate/repair/avoid seeds.
+- [DONE] `feedbackSeedToOutcomeDetail(...)` preserves `candidate_lineage_previews`, and the next MiningBrief carries generated `candidate_lineage_previews` in `generation_mix`.
+- [VERIFY] Factor Library feedback-to-mining browser pass with E-class roundtrip; targeted recap browser pass; feedback-lineage payload browser pass; formal-review E2E pass; factor-universe review readiness pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; category fallback and full-query concerns were absorbed. Multi-seed compression remains next-loop scope.
+- [NEXT] `POST_ACCEPTANCE_LINEAGE_ROUNDTRIP_TO_ADAPTIVE_SCHEDULER_TELEMETRY_LOOP903`: connect roundtripped lineage/category to adaptive scheduler telemetry and multi-seed recap.
 
 ## Latest Handoff — SYNC-915 post-acceptance-feedback-lineage-to-factor-library-recap-loop901
 

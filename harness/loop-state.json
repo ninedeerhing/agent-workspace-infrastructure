@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T06:25:00+08:00",
+  "updated_at": "2026-07-12T06:55:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-feedback-lineage-to-factor-library-recap-loop901",
-  "next_atomic_action": "POST_ACCEPTANCE_FACTOR_LIBRARY_LINEAGE_ROUNDTRIP_TO_NEXT_GENERATION_LOOP902：把 Factor Library 结果复盘中可见的 candidate lineage 回流到下一轮 FactorMining seed / MiningBrief，让成功、观察、失败 lineage 不只可见，还能驱动下一轮扩展、修复或规避。",
-  "next_after": "Continue continuous loop toward feedback-driven next-round factor construction and controlled product review readiness.",
+  "current_slice": "post-acceptance-factor-library-lineage-roundtrip-to-next-generation-loop902",
+  "next_atomic_action": "POST_ACCEPTANCE_LINEAGE_ROUNDTRIP_TO_ADAPTIVE_SCHEDULER_TELEMETRY_LOOP903：把 roundtripped candidate lineage 与 factor_class/category_code 输入接入下一轮 adaptive generator scheduler / batch recap telemetry，让调度结果显示具体 lineage 对 quota、family action、多 seed/非 B 类回流的影响。",
+  "next_after": "Continue continuous loop toward feedback-driven scheduler telemetry, multi-seed lineage handling, and controlled product review readiness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-915-post-acceptance-feedback-lineage-to-factor-library-recap-loop901",
+  "last_tick": "SYNC-916-post-acceptance-factor-library-lineage-roundtrip-to-next-generation-loop902",
   "last_sync_sources": [
+    "SYNC-916 Post-acceptance Factor Library lineage roundtrip to next generation loop902",
+    "loop902 frontend: Factor Library trajectory outcome CTAs now carry compact candidate lineage seed params and inferred factor_class/category_code into /quant/factor-mining",
+    "loop902 frontend: FactorMining initializes the correct A-E category from feedback_factor_class, so non-B lineage such as E-class text/event feedback no longer falls back to the default B category",
+    "loop902 frontend: ConstructionSpec shows factor_class plus candidate_lineage refs/actions/notes/gates, and feedback-seeded candidate cards use prior candidate lineage ids as mutate/repair/avoid seeds",
+    "loop902 payload: feedbackSeedToOutcomeDetail preserves candidate_lineage_previews, and buildMiningBrief writes generated candidate_lineage_previews into generation_mix for the next job payload",
+    "loop902 worker: Kierkegaard fixed-thread read-only product QA returned partial; category fallback and dogfood assertions were absorbed",
+    "loop902 verification: factor-library-feedback-to-mining-brief browser pass with E-class roundtrip; targeted Factor Library recap pass; feedback-lineage payload browser pass; formal-review E2E pass; factor-universe review readiness pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_LINEAGE_ROUNDTRIP_TO_ADAPTIVE_SCHEDULER_TELEMETRY_LOOP903",
     "SYNC-915 Post-acceptance feedback lineage to Factor Library recap loop901",
     "loop901 backend: Factor Library real_backtest_feedback_v1 now carries candidate_lineage_previews from mining job result when present",
     "loop901 frontend: Factor Library real-backtest recap cards render candidate lineage review with candidate id, lineage, generator action, and quality gate reason",
