@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T10:00:00+08:00
+updated_at: 2026-07-12T10:30:00+08:00
+
+## Latest Handoff — SYNC-923 post-acceptance-result-report-reason-context-loop909
+
+- [DONE] Backtest result report now exposes `progress_handoff_context` and `outcome_reason_groups`, and `feedback_memory_input` carries the same reason groups.
+- [DONE] Factor Library report summary and real-backtest feedback payloads preserve outcome reason groups for recap and trajectory-memory consumption.
+- [DONE] Factor Library progress handoff and trajectory outcome details render `执行原因分组`, making accepted/skipped/failed refs and reasons visible in result recap.
+- [DONE] Extracted `factor_trajectory_real_backtest_feedback_payload.py`; touched production files stay under the 250 pure LOC guard.
+- [VERIFY] Backend report/library/feedback/API unit 83 passed; targeted Ruff pass; Factor Library recap static pass; progress handoff browser pass; targeted recap browser pass; formal-review E2E pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; its report/Factor Library/trajectory memory reason-continuity gaps were absorbed.
+- [NEXT] `POST_ACCEPTANCE_REASON_AWARE_NEXT_GENERATION_SCHEDULING_LOOP910`: turn outcome reason groups into next-generation scheduling signals and candidate-preview actions.
 
 ## Latest Handoff — SYNC-922 post-acceptance-backtest-execution-reason-context-loop908
 

@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-07-12T02:00:00Z",
+  "updated_at": "2026-07-12T02:30:00Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
   "active_entry_count": 67,
   "archived_round_count": 0,
@@ -1564,11 +1564,11 @@
     "closure_candidates": 0,
     "archived_rounds": [],
     "active_step_digests": 39,
-    "completed_tasks_hint": [
-      "SYNC-922 loop908 complete: controlled backtest execution confirmation and progress handoff now preserve scoring outcome reason groups.",
-      "post-acceptance-backtest-execution-reason-context-loop908",
-      "SYNC-922-post-acceptance-backtest-execution-reason-context-loop908"
-    ],
+      "completed_tasks_hint": [
+        "SYNC-923 loop909 complete: result report, Factor Library recap, and feedback memory now preserve outcome reason groups.",
+        "post-acceptance-result-report-reason-context-loop909",
+        "SYNC-923-post-acceptance-result-report-reason-context-loop909"
+      ],
     "ttl_days": 180
   }
 }
