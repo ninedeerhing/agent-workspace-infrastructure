@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T11:05:00+08:00
+updated_at: 2026-07-12T11:35:00+08:00
+
+## Latest Handoff — SYNC-925 post-acceptance-reason-aware-scoring-confirmation-loop911
+
+- [DONE] Extracted `reason_aware_scoring_context_v1` from universe family summaries so scoring confirmation, request payloads, and result read-models use the same reason groups/actions.
+- [DONE] `run_mining_job` trigger payload, `SmallBatchRealScoringRequestV1`, `SmallBatchScoringResult`, and scoring result read-model now carry reason-aware context without granting runner/scorer/backtest/queue permission.
+- [DONE] Jobs scoring confirmation and submitted states show scoring reason groups, group refs, `reason_aware_actions`, and `decision_basis`.
+- [DONE] Small-batch scoring result panel shows result-side reason-aware context, keeping accepted/skipped/failed reason-group continuity visible after scoring result refresh.
+- [VERIFY] Scoring read-model unit 5 passed; reason-aware/API focused 3 passed; expanded backend regression 87 passed; targeted Ruff pass; jobs entry-mode observability dogfood pass; controlled-real current-task browser pass; web lint 0 errors / 1 existing warning; web build pass.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; missing reason-aware payload/read-model/UI/dogfood findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_REASON_AWARE_ACCEPTED_POOL_AND_BACKTEST_PLAN_LOOP912`: carry reason-aware scoring context into provisional accepted / final accepted confirmation / controlled backtest plan handoff.
 
 ## Latest Handoff — SYNC-924 post-acceptance-reason-aware-next-generation-scheduling-loop910
 

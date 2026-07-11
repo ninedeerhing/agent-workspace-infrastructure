@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T11:05:00+08:00",
+  "updated_at": "2026-07-12T11:35:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-reason-aware-next-generation-scheduling-loop910",
-  "next_atomic_action": "POST_ACCEPTANCE_REASON_AWARE_SCORING_CONFIRMATION_LOOP911：把下一轮生成调度中的 outcome reason groups / reason-aware actions 继续带入小批评分确认卡、评分请求 payload 与 scoring result read-model，让用户在确认真实评分前能看到本轮将扩展、修复或规避哪些原因分组。",
-  "next_after": "Continue continuous loop toward reason-aware scoring confirmation and scoring result propagation.",
+  "current_slice": "post-acceptance-reason-aware-scoring-confirmation-loop911",
+  "next_atomic_action": "POST_ACCEPTANCE_REASON_AWARE_ACCEPTED_POOL_AND_BACKTEST_PLAN_LOOP912：把 reason-aware scoring context 继续带入 provisional accepted / final accepted confirmation / controlled backtest plan handoff，让用户在确认 accepted 和生成回测计划前能看到哪些原因分组会进入回测、哪些被暂缓或规避。",
+  "next_after": "Continue continuous loop toward reason-aware accepted-pool confirmation and backtest-plan handoff propagation.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-924-post-acceptance-reason-aware-next-generation-scheduling-loop910",
+  "last_tick": "SYNC-925-post-acceptance-reason-aware-scoring-confirmation-loop911",
   "last_sync_sources": [
+    "SYNC-925 Post-acceptance reason-aware scoring confirmation loop911",
+    "loop911 backend: extracted build_reason_aware_scoring_context so family_summaries reason groups/actions are shared by API trigger payloads and scoring read-models",
+    "loop911 backend: run_mining_job action body, SmallBatchRealScoringRequestV1, SmallBatchScoringResult, and scoring result read-model now carry reason_aware_scoring_context without default runner/scorer/backtest side effects",
+    "loop911 frontend: Jobs scoring confirmation and submitted states show scoring reason groups, reason_aware_actions, decision_basis, and group refs before real scoring confirmation",
+    "loop911 frontend: SmallBatchScoringResultPanel shows result-side scoring reason groups so users can see which accepted/skipped/failed reason groups shaped the scoring request/result",
+    "loop911 worker: Kierkegaard fixed-thread read-only product QA returned partial; missing reason-aware payload/read-model/UI/dogfood findings were absorbed",
+    "loop911 verification: scoring read-model unit 5 passed; reason-aware/API focused 3 passed; expanded backend regression 87 passed; targeted Ruff pass; jobs entry-mode observability dogfood pass; controlled-real current-task browser pass; web lint 0 errors/1 existing warning; web build pass",
+    "next: POST_ACCEPTANCE_REASON_AWARE_ACCEPTED_POOL_AND_BACKTEST_PLAN_LOOP912",
     "SYNC-924 Post-acceptance reason-aware next-generation scheduling loop910",
     "loop910 backend: adaptive generator feedback now consumes outcome_reason_groups and derives reason_aware_actions for expand/repair/avoid scheduling",
     "loop910 backend: GeneratorFamilyScheduleV1 and factor_construction_universe_summary.family_summaries now expose decision_basis, outcome_reason_groups, and reason_aware_actions",
