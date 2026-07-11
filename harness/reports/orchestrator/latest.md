@@ -1,27 +1,33 @@
-# Orchestrator Latest Report — SYNC-895 Post-acceptance idea spec recap and candidate preview loop881
+# Orchestrator Latest Report — SYNC-896 Post-acceptance no-idea auto direction exploration loop882
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "POST_ACCEPTANCE_IDEA_SPEC_RECAP_AND_CANDIDATE_PREVIEW_LOOP881"
+  task: "POST_ACCEPTANCE_NO_IDEA_AUTO_DIRECTION_EXPLORATION_LOOP882"
   changes:
+    - file: "apps/quant_assistant/web/src/pages/FactorMiningPage.tsx"
+      summary: "Adds explicit autoDirectionActive state and shows auto_direction=true rationale when the user asks the system to choose a direction."
+    - file: "apps/quant_assistant/web/src/pages/factorMiningBrief.ts"
+      summary: "Writes auto_direction and auto_direction_reason into the brief while preserving source_mode, category, quota, and budget."
     - file: "apps/quant_assistant/src/qa/brain/batch_mining_construction_universe.py"
-      summary: "Carries user_idea_text from MiningBrief generation_mix into factor construction universe summary telemetry."
+      summary: "Carries auto_direction and auto_direction_reason into universe summary telemetry."
     - file: "apps/quant_assistant/web/src/pages/factorMiningCandidatePreviews.ts"
-      summary: "Makes candidate preview idea-aware with LLM hypothesis, program synthesis, and trajectory/combination cards while preserving A-E category context."
+      summary: "Adds no-idea auto direction preview cards for selection rationale, subclass quota, and generator mix."
     - file: "apps/quant_assistant/web/src/pages/factorMiningReview.tsx"
-      summary: "Shows idea_aware_preview marker, user idea recap copy, and idea-specific batch summary before task creation."
+      summary: "Shows auto_direction_preview and no-idea batch summary copy."
     - file: "apps/quant_assistant/web/src/pages/FactorMiningBatchRecap.tsx"
-      summary: "Shows idea_recap_context in preview recap."
+      summary: "Shows auto_direction_recap_context in preview recap."
     - file: "apps/quant_assistant/web/src/pages/factorMiningBatchTelemetry.ts"
-      summary: "Displays user idea metric from job payload telemetry when summary.user_idea_text is present."
-    - file: "apps/quant_assistant/web/scripts/check-factor-universe-user-idea-dogfood.mjs"
-      summary: "Extends browser dogfood to assert idea-aware preview, recap context, payload source mode, job recap metric, and no runtime/backtest POSTs."
+      summary: "Shows job-payload auto direction metric and reason."
+    - file: "apps/quant_assistant/web/scripts/check-factor-universe-no-idea-auto-dogfood.mjs"
+      summary: "Adds browser dogfood proving auto direction preview, payload, recap, and no runtime/backtest POST."
   verification:
     - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_universe_model_unit.py -q"
-      result: "8 passed"
+      result: "9 passed"
     - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_mining_job_api_unit.py tests/test_factor_construction_universe_model_unit.py tests/test_factor_construction_registry_unit.py -q"
-      result: "76 passed"
+      result: "77 passed"
+    - command: "npm.cmd run test:factor-universe-no-idea-auto-dogfood"
+      result: "pass"
     - command: "npm.cmd run test:factor-universe-user-idea-dogfood"
       result: "pass"
     - command: "npm.cmd run test:factor-universe-multi-source-mode-dogfood"
@@ -38,8 +44,8 @@ report:
     workload_delta: "unchanged"
     mistakes: []
     lessons:
-      - "A valid idea payload is still incomplete if preview candidates remain generic."
-      - "Product dogfood should assert pre-task preview parity, not only post-task telemetry."
-    performance_note: "Loop881 made the user idea visible across preview, payload, and recap."
+      - "An auto button must expose an entry-mode signal and rationale; otherwise it is indistinguishable from a default category."
+      - "Entry-mode dogfood should assert preview, payload, and recap parity."
+    performance_note: "Loop882 made no-idea auto exploration explainable and testable."
   blockers: []
-  next: "POST_ACCEPTANCE_NO_IDEA_AUTO_DIRECTION_EXPLORATION_LOOP882"
+  next: "POST_ACCEPTANCE_ENTRY_MODE_OBSERVABILITY_IN_JOBS_LOOP883"

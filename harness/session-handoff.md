@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:31:00+08:00
+updated_at: 2026-07-12T00:50:00+08:00
+
+## Latest Handoff — SYNC-896 post-acceptance-no-idea-auto-direction-exploration-loop882
+
+- [DONE] The “自动帮我选择方向” button now sets an explicit auto-direction state instead of only resetting to default B.
+- [DONE] ConstructionSpec shows `auto_direction=true` and explains why B. 行情 / 价量 / 技术因子 is selected first for no-idea exploration.
+- [DONE] `buildMiningBrief(..., { autoDirection: true })` writes `generation_mix.auto_direction=true` and `auto_direction_reason`, while preserving category/quota/budget.
+- [DONE] Backend universe summary carries `auto_direction` and `auto_direction_reason` into job payload telemetry.
+- [DONE] Candidate preview now has auto-direction cards for automatic selection rationale, subclass quota, and generator mix.
+- [DONE] Preview/job recap shows `auto_direction_preview=true`, `auto_direction_recap_context=no_idea_auto_exploration`, and “自动方向 / 无想法探索”.
+- [VERIFY] Passed: universe model 9, API/universe/registry 77, no-idea auto dogfood, user-idea dogfood, multi-source-mode dogfood, formal-review E2E dogfood, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WORKER] Kierkegaard read-only product reviewer confirmed auto button was previously only default-B and recommended explicit payload/preview/recap assertions; findings absorbed.
+- [NEXT] `POST_ACCEPTANCE_ENTRY_MODE_OBSERVABILITY_IN_JOBS_LOOP883`: carry entry-mode context into Jobs current task/list observability.
 
 ## Latest Handoff — SYNC-895 post-acceptance-idea-spec-recap-candidate-preview-loop881
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T00:31:00+08:00",
+  "updated_at": "2026-07-12T00:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-idea-spec-recap-and-candidate-preview-loop881",
-  "next_atomic_action": "POST_ACCEPTANCE_NO_IDEA_AUTO_DIRECTION_EXPLORATION_LOOP882：把“自动帮我选择方向”从默认切到 B 类的按钮，升级为可解释的无想法自动探索入口；生成自动方向 ConstructionSpec，明确为什么选择当前 A-E 分类/子类配额/生成器 mix，并进入同一候选预览、复盘、确认任务链。补 browser dogfood 证明 auto direction payload、页面说明、候选预览和 recap 一致；不连 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward no-idea auto exploration, scoring readiness, and factor universe usability.",
+  "current_slice": "post-acceptance-no-idea-auto-direction-exploration-loop882",
+  "next_atomic_action": "POST_ACCEPTANCE_ENTRY_MODE_OBSERVABILITY_IN_JOBS_LOOP883：把用户想法、无想法自动探索、手动分类三种入口模式的上下文从 FactorMining 页面延续到 Jobs 当前任务/任务列表观测面；Jobs 应显示 entry mode、source_mode、idea/auto reason、分类与生成器 profile，让用户点击“查看当前任务”后仍知道这条任务从哪里来、为什么这样生成。补 browser dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward jobs observability, scoring readiness, and factor universe usability.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-895-post-acceptance-idea-spec-recap-candidate-preview-loop881",
+  "last_tick": "SYNC-896-post-acceptance-no-idea-auto-direction-exploration-loop882",
   "last_sync_sources": [
+    "SYNC-896 Post-acceptance no-idea auto direction exploration loop882",
+    "loop882 frontend: auto direction state now distinguishes no-idea exploration from manual B category selection and shows auto_direction=true in ConstructionSpec",
+    "loop882 brief/backend: buildMiningBrief writes auto_direction and auto_direction_reason; factor_construction_universe_summary carries those fields into job payload telemetry",
+    "loop882 preview/recap: candidatePreviewFor supports auto-direction candidate cards and FactorMining review/recap show auto_direction_preview and auto_direction_recap_context markers",
+    "loop882 dogfood: new test:factor-universe-no-idea-auto-dogfood clicks 自动帮我选择方向, verifies preview explanation, confirm payload auto fields, job recap auto metric, and no backtest/runtime POST",
+    "loop882 verification: universe model 9 passed; API/universe/registry 77 passed; no-idea auto dogfood pass; user-idea dogfood pass; multi-source-mode dogfood pass; formal-review E2E dogfood pass; web build pass; lint 0 errors/1 existing warning; diff check pass with CRLF warnings only",
+    "loop882 worker: Kierkegaard read-only product dogfood reviewer confirmed the auto button was only default-B and recommended explicit auto-direction payload/preview/recap assertions; implementation absorbed those recommendations",
+    "next: POST_ACCEPTANCE_ENTRY_MODE_OBSERVABILITY_IN_JOBS_LOOP883",
     "SYNC-895 Post-acceptance idea spec recap and candidate preview loop881",
     "loop881 backend: factor_construction_universe_summary now carries user_idea_text from brief.generation_mix into job payload telemetry",
     "loop881 frontend: candidatePreviewFor(category, ideaText) now returns idea-aware candidate cards with LLM hypothesis, program synthesis, and trajectory/combination variants while preserving A-E category context",
