@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T04:25:00+08:00",
+  "updated_at": "2026-07-12T04:55:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-feedback-seeded-candidate-preview-explanation-loop897",
-  "next_atomic_action": "POST_ACCEPTANCE_JOBS_FEEDBACK_SEED_RECAP_VISIBILITY_LOOP898：让 Jobs 当前任务和批量复盘面也明确展示继承的 feedback seed outcome、生成器家族动作和 success/watchlist/failure 影响，避免用户只能在 FactorMining 页看懂复盘种子而在 Jobs 进度面看不到其作用。",
+  "current_slice": "post-acceptance-jobs-feedback-seed-recap-visibility-loop898",
+  "next_atomic_action": "POST_ACCEPTANCE_FEEDBACK_SEEDED_CANDIDATE_CARD_LINEAGE_LOOP899：把 feedback seed outcome 写入具体候选卡的来源、构造器、质量闸解释和 lineage 标记，让用户在单张候选卡上看懂该因子是扩成功族、观察修复还是失败规避生成，而不只是在页面总览里看到 seed 说明。",
   "next_after": "Continue continuous loop toward feedback-driven next-round factor construction and controlled product review readiness.",
   "blockers": [
     {
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-911-post-acceptance-feedback-seeded-candidate-preview-explanation-loop897",
+  "last_tick": "SYNC-912-post-acceptance-jobs-feedback-seed-recap-visibility-loop898",
   "last_sync_sources": [
+    "SYNC-912 Post-acceptance Jobs feedback seed recap visibility loop898",
+    "loop898 frontend: Jobs current task cards now show jobs_feedback_seed_current_task_visible=true with success/watchlist/failure seed impact copy and generator action",
+    "loop898 frontend: Jobs batch recap now shows jobs_feedback_seed_recap_visible=true with inherited feedback count, seed refs, and next actions",
+    "loop898 semantics: explicit feedback_seed_outcome=success_seed expands success family; watchlist remains repair/observation; failure_path avoids same lineage; absent explicit outcome stays watchlist to avoid completed/no-report success drift",
+    "loop898 telemetry: failure and failure_path are both translated to 失败规避",
+    "loop898 worker: Kierkegaard fixed-thread read-only product QA returned partial; Jobs seed impact, batch recap action, failure/failure_path drift, and browser matrix gaps were absorbed",
+    "loop898 verification: RED jobs feedback seed recap visibility browser failed on missing Jobs seed impact copy; GREEN jobs feedback seed recap visibility pass; controlled-real current-task browser pass; feedback-seeded candidate preview pass; feedback seed outcome pass; feedback-to-mining browser pass; factor-universe review readiness pass; formal-review E2E pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_FEEDBACK_SEEDED_CANDIDATE_CARD_LINEAGE_LOOP899",
     "SYNC-911 Post-acceptance feedback seeded candidate preview explanation loop897",
     "loop897 frontend: FactorMining now shows feedback_seed_candidate_preview=true impact copy for success_seed, watchlist, and failure_path seeds",
     "loop897 product semantics: success_seed expands same-family candidates, watchlist remains repair/observation context, and failure_path avoids failed lineage",

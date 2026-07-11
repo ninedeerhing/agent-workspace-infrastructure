@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T04:25:00+08:00
+updated_at: 2026-07-12T04:55:00+08:00
+
+## Latest Handoff — SYNC-912 post-acceptance-jobs-feedback-seed-recap-visibility-loop898
+
+- [DONE] Jobs current-task cards now show `jobs_feedback_seed_current_task_visible=true` with seed impact copy for success_seed, watchlist, and failure_path.
+- [DONE] Jobs batch recap now shows `jobs_feedback_seed_recap_visible=true`, inherited feedback count, seed refs, generator action, and next actions.
+- [DONE] Explicit `feedback_seed_outcome=success_seed` expands success family; watchlist remains repair/observation; failure_path avoids same lineage; absent explicit outcome remains watchlist to avoid completed/no-report success drift.
+- [DONE] `factorMiningFeedbackTelemetry` now treats both `failure_path` and `failure` as “失败规避”.
+- [VERIFY] RED Jobs feedback seed recap browser failed on missing Jobs seed impact copy. GREEN: Jobs feedback seed recap visibility pass, current-task browser pass, feedback-seeded candidate preview pass, feedback seed outcome variant pass, feedback-to-mining browser pass, factor-universe review readiness pass, formal-review E2E pass, build pass, lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread read-only product QA returned `partial`; Jobs current-task seed impact, batch recap generator action, failure/failure_path drift, and browser matrix findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_FEEDBACK_SEEDED_CANDIDATE_CARD_LINEAGE_LOOP899`: write feedback seed outcome into per-candidate source, generator, quality-gate explanation, and lineage markers.
 
 ## Latest Handoff — SYNC-911 post-acceptance-feedback-seeded-candidate-preview-explanation-loop897
 
