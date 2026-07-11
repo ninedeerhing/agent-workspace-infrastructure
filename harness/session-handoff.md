@@ -1,6 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-11T23:25:00+08:00
+updated_at: 2026-07-11T23:50:00+08:00
+
+## Latest Handoff — SYNC-855 final accepted UI confirmation re-entry
+
+- [DONE] Final accepted pool confirmation now consumes `provisional_admission_store_write_v1.written_refs` only.
+- [DONE] `skipped_refs` and `failed_refs` remain visible explanation fields but never enter `final_accepted_refs`.
+- [DONE] User confirmation requires `confirmation_ref`; missing persisted store write result blocks the UI read model.
+- [DONE] `confirm_final_accepted_once` records a server-side confirmation ref.
+- [VERIFY] Focused final/backtest/read-model tests: 12 passed.
+- [VERIFY] Mining API target tests: 2 passed.
+- [VERIFY] Related regression: 113 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Read-model smoke: `accepted_ready ['fe_one'] ['fe_held']`.
+- [NEXT] `BACKTEST_PLAN_ALLOCATOR_REENTRY_LOOP841`: plan allocator must consume only final accepted refs and remain plan-only/no queue/no execution.
+- [FORBIDDEN] Do not write backtest queue; do not run backtest; do not auto-accept skipped/failed refs; do not create substitute DB/Docker/runner.
 
 ## Latest Handoff — SYNC-854 persisted provisional accepted re-entry
 

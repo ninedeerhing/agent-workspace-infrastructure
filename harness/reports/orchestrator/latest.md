@@ -1,3 +1,56 @@
+# Orchestrator Latest Report — SYNC-855 final accepted UI confirmation re-entry loop840
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "FINAL_ACCEPTED_UI_CONFIRMATION_REENTRY_LOOP840"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_final_accepted_pool.py"
+      summary: "Final accepted confirmation now consumes persisted store write results; only written_refs can become confirmation candidates."
+    - file: "apps/quant_assistant/src/qa/quant_mining/small_batch_scoring_result.py"
+      summary: "UI read model blocks without provisional_admission_store_write_v1 and requires confirmation_ref for acceptance."
+    - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
+      summary: "Explicit final accepted confirmation records a server-side confirmation ref."
+    - file: "apps/quant_assistant/tests/test_factor_construction_final_accepted_pool_unit.py"
+      summary: "Covers written_refs-only, skipped/failed preservation, confirmation ref, and store blockers."
+    - file: "apps/quant_assistant/tests/test_factor_construction_backtest_plan_allocator_unit.py"
+      summary: "Keeps backtest plan allocation downstream of final accepted refs only."
+    - file: "apps/quant_assistant/tests/test_small_batch_scoring_result_unit.py"
+      summary: "Covers UI read-model fail-closed behavior and persisted written refs."
+    - file: "apps/quant_assistant/tests/test_mining_job_api_unit.py"
+      summary: "API action fixture now exposes final accepted confirmation only after persisted store write."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-855 and next loop841."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-855."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop841."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to backtest plan allocator re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-855."
+  verification:
+    - command: "uv run pytest -q tests/test_small_batch_scoring_result_unit.py tests/test_factor_construction_final_accepted_pool_unit.py tests/test_factor_construction_backtest_plan_allocator_unit.py"
+      result: "12 passed."
+    - command: "uv run pytest -q tests/test_mining_job_api_unit.py::test_get_mining_job_api_exposes_explicit_final_accepted_confirmation_action tests/test_mining_job_api_unit.py::test_confirm_final_accepted_requires_explicit_click_and_records_confirmation"
+      result: "2 passed."
+    - command: "uv run pytest -q related final/provisional/backtest/API tests"
+      result: "113 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "read-model smoke"
+      result: "accepted_ready ['fe_one'] ['fe_held']."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "UI/read-model confirmation must not infer final acceptance from scored provisional candidates; persisted written refs are the boundary."
+    performance_note: "Loop840 closed with focused/API/regression/Ruff/smoke; permanent workers dispatched for read-only review."
+  blockers: []
+  next: "BACKTEST_PLAN_ALLOCATOR_REENTRY_LOOP841"
+
+---
+
 # Orchestrator Latest Report — SYNC-854 persisted provisional accepted re-entry loop839
 
 report:

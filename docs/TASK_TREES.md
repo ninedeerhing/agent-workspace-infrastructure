@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T23:25:00+08:00 · SYNC-854 · persisted provisional accepted re-entry
+Updated: 2026-07-11T23:50:00+08:00 · SYNC-855 · final accepted UI confirmation re-entry
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
