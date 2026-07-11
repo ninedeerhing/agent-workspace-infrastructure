@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T10:30:00+08:00",
+  "updated_at": "2026-07-12T11:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-result-report-reason-context-loop909",
-  "next_atomic_action": "POST_ACCEPTANCE_REASON_AWARE_NEXT_GENERATION_SCHEDULING_LOOP910：把结果报告、Factor Library 复盘与 feedback memory 中的 outcome reason groups 转成下一轮生成调度信号，让 success/held/rejected 不只可见，还能影响 generator family quota、repair/avoid/expand action 与候选预览解释。",
-  "next_after": "Continue continuous loop toward reason-aware next generation scheduling and candidate preview/action propagation.",
+  "current_slice": "post-acceptance-reason-aware-next-generation-scheduling-loop910",
+  "next_atomic_action": "POST_ACCEPTANCE_REASON_AWARE_SCORING_CONFIRMATION_LOOP911：把下一轮生成调度中的 outcome reason groups / reason-aware actions 继续带入小批评分确认卡、评分请求 payload 与 scoring result read-model，让用户在确认真实评分前能看到本轮将扩展、修复或规避哪些原因分组。",
+  "next_after": "Continue continuous loop toward reason-aware scoring confirmation and scoring result propagation.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-923-post-acceptance-result-report-reason-context-loop909",
+  "last_tick": "SYNC-924-post-acceptance-reason-aware-next-generation-scheduling-loop910",
   "last_sync_sources": [
+    "SYNC-924 Post-acceptance reason-aware next-generation scheduling loop910",
+    "loop910 backend: adaptive generator feedback now consumes outcome_reason_groups and derives reason_aware_actions for expand/repair/avoid scheduling",
+    "loop910 backend: GeneratorFamilyScheduleV1 and factor_construction_universe_summary.family_summaries now expose decision_basis, outcome_reason_groups, and reason_aware_actions",
+    "loop910 frontend: Factor Library feedback seed href/parser roundtrips outcome_reason_groups into FactorMining ConstructionSpec, MiningBrief, candidate preview, and batch recap",
+    "loop910 product: ConstructionSpec shows execution reason groups and reason_group_actions before generation; candidate preview and recap explain accepted/skipped/failed reason impact",
+    "loop910 worker: Kierkegaard fixed-thread read-only product QA returned partial; scheduler/feedback seed/reason visibility findings were absorbed",
+    "loop910 verification: scheduler+batch unit 17 passed; report/feedback/API regression 95 passed; targeted Ruff pass; feedback-to-mining browser pass; feedback seeded preview pass; feedback outcome variant pass; formal-review E2E pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_REASON_AWARE_SCORING_CONFIRMATION_LOOP911",
     "SYNC-923 Post-acceptance result report reason context loop909",
     "loop909 backend: BacktestResultReportV1 now carries progress_handoff_context and outcome_reason_groups into to_json and feedback_memory_input",
     "loop909 backend: FactorLibraryReportSurfaceV1 now exposes outcome_reason_groups in report_summary; real_backtest_feedback payloads and trajectory feedback adapter/summary now preserve reason groups for memory/next-round use",

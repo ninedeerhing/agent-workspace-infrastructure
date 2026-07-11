@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-07-12T02:30:00Z",
+  "updated_at": "2026-07-12T03:05:00Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
   "active_entry_count": 67,
   "archived_round_count": 0,
@@ -1557,7 +1557,7 @@
   "dream_candidates": [],
   "closure_candidates": [],
   "last_lifecycle": {
-    "at": "2026-07-11T12:01:04Z",
+    "at": "2026-07-12T03:05:00Z",
     "apply": true,
     "dedupe_actions": 0,
     "dream_candidates": 0,
@@ -1565,9 +1565,9 @@
     "archived_rounds": [],
     "active_step_digests": 39,
       "completed_tasks_hint": [
-        "SYNC-923 loop909 complete: result report, Factor Library recap, and feedback memory now preserve outcome reason groups.",
-        "post-acceptance-result-report-reason-context-loop909",
-        "SYNC-923-post-acceptance-result-report-reason-context-loop909"
+        "SYNC-924 loop910 complete: outcome reason groups now drive next-generation scheduling, feedback seed payloads, candidate preview, and batch recap actions.",
+        "post-acceptance-reason-aware-next-generation-scheduling-loop910",
+        "SYNC-924-post-acceptance-reason-aware-next-generation-scheduling-loop910"
       ],
     "ttl_days": 180
   }

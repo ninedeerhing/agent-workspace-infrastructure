@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T10:30:00+08:00
+updated_at: 2026-07-12T11:05:00+08:00
+
+## Latest Handoff — SYNC-924 post-acceptance-reason-aware-next-generation-scheduling-loop910
+
+- [DONE] Adaptive generator feedback now consumes `outcome_reason_groups` from trajectory outcome details and derives `reason_aware_actions`.
+- [DONE] `GeneratorFamilyScheduleV1` and `factor_construction_universe_summary.family_summaries` expose `decision_basis`, `outcome_reason_groups`, and `reason_aware_actions`.
+- [DONE] Factor Library feedback seed href/parser roundtrips outcome reason groups into FactorMining and `MiningBrief.generation_mix.trajectory_outcome_details`.
+- [DONE] ConstructionSpec, feedback impact, candidate preview, and batch recap now show reason groups and explain expand/repair/avoid effects before runtime scoring/backtest.
+- [VERIFY] Scheduler+batch unit 17 passed; report/feedback/API regression 95 passed; targeted Ruff pass; feedback-to-mining browser pass; feedback seeded preview pass; feedback outcome variant pass; formal-review E2E pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; scheduler, feedback seed, reason visibility, and dogfood gaps were absorbed.
+- [NEXT] `POST_ACCEPTANCE_REASON_AWARE_SCORING_CONFIRMATION_LOOP911`: carry reason-aware scheduling into small-batch scoring confirmation and result read-model.
 
 ## Latest Handoff — SYNC-923 post-acceptance-result-report-reason-context-loop909
 
