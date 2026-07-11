@@ -1,8 +1,30 @@
 # Session Handoff
 
-updated_at: 2026-07-11T01:24:00+08:00
+updated_at: 2026-07-11T11:18:00+08:00
 
-## Latest Handoff — SYNC-817 Factor-universe pre-review real usability repair
+## Latest Handoff — SYNC-818 Factor-universe six-gap self-review repair
+
+- [DONE] Re-audited the six user-raised pre-human-review blockers instead of asking the user to keep auditing.
+- [DONE] Fixed generator scheduler fairness: two-family generation no longer lets the first generator consume all budget.
+- [DONE] Added `subclass_quota_policy` and `subclass_quota_trace` to generator reports, proving expanded subclass quota is consumed by the real scheduler/report path.
+- [DONE] Kept seeded demo A/B/C/D/E coverage verified; no B-only demo regression found.
+- [DONE] Centralized qa-pg-alt local DSN normalization in `qa.db.engine`; API now reuses the same normalization instead of a private helper.
+- [DONE] `/quant/factor-mining` now keeps the user on the same page after generation and shows data-source/PIT gaps, single-vs-multi-factor path, and batch recap materials before the unique small-batch confirmation task.
+- [DONE] Godel found the first recap patch was still too static; fixed that by adding an aggregate “批量复盘仪表盘” with candidate flow, generator distribution, quota/rejection attribution, pool admission and feedback-memory sections.
+- [DONE] The dashboard exposes the backend quality-gate concepts `candidate_survival`, `family_telemetry`, `source_family_quota`, `pool_admission_plan`, and `trajectory_feedback_inputs` in user-readable form.
+- [VERIFY] Targeted Python regression: 142 passed.
+- [VERIFY] Expanded quality/seeded/trajectory regression: 28 passed.
+- [VERIFY] Godel read-only QA final report: complete; verification groups 10 passed, 8 passed, 10 passed.
+- [VERIFY] Scheduler smoke: five generator reports all had `scheduler_consumed_subclass_quota=True`.
+- [VERIFY] Runtime smoke: existing `qa-pg-alt 7b7346a0cdfc` at `127.0.0.1:55432`; daily_bar/daily_trade_status 3995 days to 2026-06-18; `factor_value_daily` and `mining_job` exist; no substitute Docker/DB/port.
+- [VERIFY] Product smoke: direct API confirm returned 200 after same-port 8350 API restart; `node tmp/manual-review-playwright/factor-universe-user-smoke.js` passed home → factor-mining → current task → factor-library → backtest path.
+- [VERIFY] Recap dashboard browser smoke: `批量复盘仪表盘` plus all five telemetry markers visible after clicking 开始生成.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_LOOP804`: user formal review from 开始挖因子 → 当前任务 → 因子库与复盘 → 回测结果.
+- [STOP] `formal_human_acceptance_required` remains active after self-repair; if user finds gaps, continue targeted repair.
+- [FORBIDDEN] Do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
+
+## Previous Handoff — SYNC-817 Factor-universe pre-review real usability repair
 
 - [DONE] Ran pre-human-review product usability repair instead of handing off code-only completion.
 - [WORKER] Heisenberg UI/UX read-only review PASS.
