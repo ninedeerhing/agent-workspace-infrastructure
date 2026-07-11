@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T19:54:00+08:00
+updated_at: 2026-07-11T22:32:11+08:00
+
+## Latest Handoff — SYNC-888 post-acceptance-batch-recap-real-job-telemetry-loop874
+
+- [DONE] `confirm_mining_job` now records `factor_construction_universe_summary` in `job.result`.
+- [DONE] `/quant/factor-mining` stores returned job payload and `FactorMiningBatchRecap` switches from preview telemetry to `telemetry_source=job_payload` / `telemetry_status=real_batch`.
+- [DONE] Real batch recap sections now derive from candidate count, survived count, family summaries, budget, rejection telemetry, shortlist, and trajectory memory.
+- [VERIFY] Passed: targeted RED/GREEN telemetry test, confirm API pair, full `tests/test_mining_job_api_unit.py` 61 passed, formal-review E2E product dogfood, factor-universe review readiness, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WORKER] Kierkegaard read-only review confirmed the existing universe summary telemetry fields and recommended Jobs observability integration next.
+- [WARN] Touched inherited oversized files (`brain_routes.py`, `test_mining_job_api_unit.py`, `check-formal-review-e2e-product-dogfood.mjs`); record as follow-up file-health risk, not a functional blocker.
+- [NEXT] `POST_ACCEPTANCE_JOBS_OBSERVABILITY_BATCH_RECAP_LOOP875`.
 
 ## Latest Handoff — SYNC-887 post-acceptance-batch-recap-telemetry-boundary-loop873
 

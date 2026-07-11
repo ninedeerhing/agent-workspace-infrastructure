@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T19:54:00+08:00",
+  "updated_at": "2026-07-11T22:32:11+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-batch-recap-telemetry-boundary-loop873",
-  "next_atomic_action": "POST_ACCEPTANCE_BATCH_RECAP_REAL_JOB_TELEMETRY_LOOP874：继续把 FactorMiningBatchRecap 从 preview_structure 推进为可消费真实 job telemetry；优先查 mining job API payload 是否已有 candidate_survival/family_telemetry/source_family_quota/pool_admission_plan/trajectory_feedback_inputs，若有则接入，若无则新增只读 read-model/API 字段并保持无评分/回测副作用。",
-  "next_after": "Continue continuous loop toward real job telemetry and user-visible recap trust.",
+  "current_slice": "post-acceptance-batch-recap-real-job-telemetry-loop874",
+  "next_atomic_action": "POST_ACCEPTANCE_JOBS_OBSERVABILITY_BATCH_RECAP_LOOP875：继续把 loop874 的 job.result.factor_construction_universe_summary 接入 Jobs/mining job observability/detail/list read-model，让用户从 /quant/jobs 也能看到同一批真实构造 telemetry；保持只读、无评分/回测/DB/Docker 副作用，并保留 preview vs job_payload source markers。",
+  "next_after": "Continue continuous loop toward persisted job observability and user-visible recap trust.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-887-post-acceptance-batch-recap-telemetry-boundary-loop873",
+  "last_tick": "SYNC-888-post-acceptance-batch-recap-real-job-telemetry-loop874",
   "last_sync_sources": [
+    "SYNC-888 Post-acceptance batch recap real job telemetry loop874",
+    "loop874 backend: confirm_mining_job now records factor_construction_universe_summary in job.result using existing factor_construction_universe_summary and source-mode helpers",
+    "loop874 frontend: FactorMiningPage stores returned job.result and FactorMiningBatchRecap switches telemetry_source/status from preview_structure/preview_not_real_batch to job_payload/real_batch when job payload telemetry exists",
+    "loop874 product dogfood: formal-review E2E mock now asserts telemetry_source=job_payload, telemetry_status=real_batch, real construction telemetry copy, candidate count 184, and survived count 57 after creating the task",
+    "loop874 verification: targeted RED/GREEN telemetry test passed, confirm API pair passed, full test_mining_job_api_unit.py 61 passed, formal-review E2E dogfood pass, factor-universe review readiness pass, web build pass, lint 0 errors/1 existing warning, diff check pass with CRLF warnings only",
+    "loop874 worker: Kierkegaard read-only review confirmed existing universe summary telemetry fields and recommended Jobs observability integration next",
+    "loop874 warning: touched inherited oversized files brain_routes.py/test_mining_job_api_unit.py/check-formal-review-e2e-product-dogfood.mjs; no scope-expanding split done in this loop, record as follow-up hygiene risk",
+    "next: POST_ACCEPTANCE_JOBS_OBSERVABILITY_BATCH_RECAP_LOOP875",
     "SYNC-887 Post-acceptance batch recap telemetry boundary loop873",
     "loop873 refactor: extracted FactorMiningBatchRecap from factorMiningReview; factorMiningReview pure LOC reduced from 250 to 209 and new component pure LOC 52",
     "loop873 product: batch recap exposes telemetry_source=preview_structure and telemetry_status=preview_not_real_batch for machine-checkable preview/real boundary",
