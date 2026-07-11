@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-11T18:05:00+08:00
+updated_at: 2026-07-11T18:25:00+08:00
+
+## Latest Handoff — SYNC-841 Source adapter manifest owner approval contract
+
+- [DONE] Added `source_adapter_manifest_owner_approval_v1`.
+- [DONE] Owner approval consumes `source_adapter_manifest_review_from_conversion_v1`.
+- [DONE] Missing owner refs wait as `waiting_for_owner_approval`; complete owner refs become `owner_approval_ready_for_source_review`.
+- [DONE] Creation plan exposes `factor_universe_source_adapter_manifest_owner_approval`.
+- [VERIFY] Focused owner approval tests: 3 passed.
+- [VERIFY] Source/review/data regression: 18 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `True source_adapter_manifest_owner_approval_v1 blocked_waiting_for_manifest_review False`.
+- [NEXT] `SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_UI_SURFACE_LOOP827`: show owner approval status on `/quant/factor-mining`.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-840 Source adapter manifest review Data Availability linkage
 

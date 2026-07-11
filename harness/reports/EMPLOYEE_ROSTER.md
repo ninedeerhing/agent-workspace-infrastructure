@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T18:05:00+08:00
+Updated: 2026-07-11T18:25:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop825 | continuous_loop_active | gpt-5.5 | 2026-07-11T18:05:00+08:00 | SYNC-840 source adapter manifest review Data Availability linkage complete; next SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_CONTRACT_LOOP826 | keep moving; owner approval no-execution contract |
+| orchestrator | current-thread | loop826 | continuous_loop_active | gpt-5.5 | 2026-07-11T18:25:00+08:00 | SYNC-841 source adapter manifest owner approval contract complete; next SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_UI_SURFACE_LOOP827 | keep moving; owner approval UI surface |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -60,6 +60,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 ## Latest Roster Notes
 
 - 2026-07-11T17:25:00+08:00 · loop823/SYNC-838: `/quant/factor-mining` now shows “Manifest 复核状态” for `source_adapter_manifest_review_from_conversion_v1`, including complete_for_review, pending_reviewer_approval, missing_manifest_fields, source_material_ref_count, and source_adapter_manifest_owner_approval. Verification: consumer/source + source review tests 14 passed, web build pass.
+- 2026-07-11T18:25:00+08:00 · loop826/SYNC-841: Added `source_adapter_manifest_owner_approval_v1`; creation plan exposes `factor_universe_source_adapter_manifest_owner_approval`. Owner approvals only enter source-review read-model and do not mark ready or generate real E candidates. Verification: focused 3 passed, source/review/data 18 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T18:05:00+08:00 · loop825/SYNC-840: Data Availability Gate now consumes source adapter manifest review and maps pending reviewer approval to `manifest_review_pending_reviewer_approval`; candidates remain partial and never enter calculable/ready. Maxwell/code-reviewer received read-only boundary review on gpt-5.4. Verification: focused 1 passed, data/source/onboarding 16 passed, downstream budget/scoring/provisional 24 passed, Ruff pass.
 - 2026-07-11T17:45:00+08:00 · loop824/SYNC-839: `product_self_validation_gate_v1` now requires source adapter manifest review UI/API evidence. Missing route evidence blocks `source_adapter_manifest_review_ui_not_visible`; missing contract key blocks `source_adapter_manifest_review_not_exposed`. Verification: product gate 15 passed, product/API/consumer/source/review regression 31 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T17:05:00+08:00 · loop822/SYNC-837: Added `source_adapter_manifest_review_from_conversion_v1`; conversion candidates now produce source adapter manifest review read-models with required field completeness and pending reviewer approval, not source ready. Batch-mining plan exposes `factor_universe_source_adapter_manifest_review_from_conversion`. Permanent code-reviewer thread received read-only boundary review request on gpt-5.4. Verification: source review + conversion + product gate 17 passed, Ruff pass, creation-plan smoke pass.

@@ -1,3 +1,50 @@
+# Orchestrator Latest Report — SYNC-841 Source adapter manifest owner approval contract loop826
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_CONTRACT_LOOP826"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_universe_source_adapter_manifest_owner_approval.py"
+      summary: "Adds no-execution owner approval contract for source adapter manifest review items."
+    - file: "apps/quant_assistant/tests/test_factor_universe_source_adapter_manifest_owner_approval_unit.py"
+      summary: "Covers waiting, approved-for-source-review, and creation-plan exposure states."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes factor_universe_source_adapter_manifest_owner_approval in creation-plan payload."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-841 and next loop827."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-841."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop827."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop827."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to source adapter manifest owner approval UI surface."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-841."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updates orchestrator overlay."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_universe_source_adapter_manifest_owner_approval_unit.py"
+      result: "RED missing module before implementation; GREEN 3 passed."
+    - command: "uv run pytest -q tests/test_factor_universe_source_adapter_manifest_owner_approval_unit.py tests/test_factor_universe_source_adapter_manifest_review_unit.py tests/test_factor_universe_missing_source_manifest_conversion_unit.py tests/test_factor_construction_data_availability_gate_unit.py tests/test_factor_universe_source_manifest_capture_contract_unit.py"
+      result: "18 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_universe_source_adapter_manifest_owner_approval.py tests/test_factor_universe_source_adapter_manifest_owner_approval_unit.py src/qa/brain/batch_mining_creation_plan_builder.py"
+      result: "All checks passed."
+    - command: "creation-plan smoke for factor_universe_source_adapter_manifest_owner_approval"
+      result: "True source_adapter_manifest_owner_approval_v1 blocked_waiting_for_manifest_review False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Owner approval must be a separate contract between manifest review and any source-review approval state."
+    performance_note: "Loop826 closed via local TDD/regression/Ruff/smoke; no duplicate worker created."
+  blockers: []
+  next: "SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_UI_SURFACE_LOOP827"
+
+---
+
 # Orchestrator Latest Report — SYNC-840 Source adapter manifest review Data Availability linkage loop825
 
 report:
