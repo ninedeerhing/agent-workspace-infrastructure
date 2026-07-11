@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-11T15:37:10+08:00
+updated_at: 2026-07-11T15:49:20+08:00
+
+## Latest Handoff — SYNC-875 controlled-real-backtest-targeted-recap-product-self-validation-loop860
+
+- [DONE] loop860 product self-validation: Jobs now uses `JobsPageControlledRealBacktestTarget.ts` for controlled-real Factor Library hrefs and preferred job parsing; browser dogfood starts at Jobs, clicks “查看结果与复盘”, lands on targeted Factor Library with `job_id/source/factor_refs`, and verifies blocked return focus back to Jobs.
+- [VERIFY] Passed: `npm run test:controlled-real-targeted-recap-product-self-validation`; `npm run test:factor-library-targeted-recap-browser`; `npm run test:factor-library-recap`; `npm run test:factor-universe-review-readiness`; `npm run build`; `npm run lint` (0 errors / 1 existing warning); `git diff --check` (CRLF warnings only).
+- [WORKERS] Parfit/test-engineer found missing real click-through product dogfood; Meitner/code-reviewer found `source=controlled_real_backtest` return focus drift. Both findings absorbed; no duplicate worker created.
+- [BOUNDARY] No `.env`/DSN/secret read; no DB/Docker/scorer/backtest; no substitute runtime; mocked browser product dogfood only.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_CURRENT_TASK_CARD_READ_MODEL_LOOP861`: extract JobsPage current task / confirmation card read model to unify state/title/description/primary CTA/reasons/diagnostic flags across completed/report-ready, completed/no-report, blocked, failed, ready, running.
 
 ## Latest Handoff — SYNC-874 Controlled real backtest targeted Factor Library recap
 

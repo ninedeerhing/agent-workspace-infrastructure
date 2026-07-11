@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T15:37:10+08:00",
+  "updated_at": "2026-07-11T15:49:20+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-real-backtest-result-targeted-factor-library-recap-loop859",
-  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_TARGETED_RECAP_PRODUCT_SELF_VALIDATION_LOOP860：用产品级自检复查任务页 -> Factor Library 定向复盘 -> 报告面路径，覆盖 completed/report-ready、completed/no-report、blocked、failed、read-error，并继续收敛 JobsPage 当前确认卡片抽取债务；保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
+  "current_slice": "controlled-real-backtest-targeted-recap-product-self-validation-loop860",
+  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_CURRENT_TASK_CARD_READ_MODEL_LOOP861：抽取 JobsPage 当前任务/等待确认卡片 read model，统一 state/title/description/primary CTA/blocked-failed-no-report reasons/diagnostic flags，覆盖 completed/report-ready、completed/no-report、blocked、failed、ready、running；保持页面加载无 POST、无替代 Docker/DB、无默认 runner。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-874-controlled-real-backtest-result-targeted-factor-library-recap-loop859",
+  "last_tick": "SYNC-875-controlled-real-backtest-targeted-recap-product-self-validation-loop860",
   "last_sync_sources": [
+    "SYNC-875 Controlled real backtest targeted recap product self-validation loop860",
+    "loop860 product dogfood: browser now starts at Jobs, clicks 查看结果与复盘, lands on targeted Factor Library with job_id/source/factor_refs, and verifies page-load POST count=0",
+    "loop860 Jobs focus: source=controlled_real_backtest now resolves preferred job_id through JobsPageControlledRealBacktestTarget, so Factor Library blocked/failed/no-report CTAs return to the intended task",
+    "loop860 Jobs state: completed controlled_backtest_progress_report with factor_library_feedback_ready=true enters the result recap CTA state even without legacy audit completed evidence",
+    "loop860 worker: permanent test-engineer and code-reviewer findings absorbed; no duplicate worker created",
+    "loop860 verification: targeted self-validation contract pass, targeted browser pass, factor-library recap pass, review-readiness pass, build pass, lint 0 errors/1 existing warning",
+    "next: CONTROLLED_REAL_BACKTEST_CURRENT_TASK_CARD_READ_MODEL_LOOP861",
     "SYNC-874 Controlled real backtest result targeted Factor Library recap loop859",
     "loop859 backend: Factor Library real-backtest feedback read model now accepts job_id/source/factor_refs; job_id uses get_mining_job directly instead of recent-list limit scanning",
     "loop859 API: GET /api/v1/quant/factor-library forwards job_id/source/factor_refs into the targeted read model and preserves real_backtest_feedback_error separately",
