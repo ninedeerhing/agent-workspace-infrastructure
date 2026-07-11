@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T16:24:34+08:00",
+  "updated_at": "2026-07-11T16:55:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "formal-review-e2e-product-dogfood-loop863",
-  "next_atomic_action": "FORMAL_REVIEW_RUNTIME_READINESS_SMOKE_LOOP864：进入人工验收前做只读运行态 readiness smoke，确认正确 DB/runner/受控执行边界、无替代 Docker/DB/端口、无默认 runner、无页面加载执行；若运行态不满足则把缺口转为下一功能目标而不是停在人工验收。",
-  "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
+  "current_slice": "formal-review-runtime-readiness-smoke-loop865",
+  "next_atomic_action": "FORMAL_REVIEW_PRODUCT_RUNTIME_READINESS_DOGFOOD_LOOP866：把 loop865 的正确 DB/runner/no-substitute 运行态证据纳入产品级前验收狗粮，确认用户从因子构造宇宙到当前任务/结果复盘路径能看到清楚的 readiness 状态；若发现缺口，继续转为下一功能目标。",
+  "next_after": "Continue product-facing formal review readiness; gaps become next goals, not stop reasons.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-878-formal-review-e2e-product-dogfood-loop863",
+  "last_tick": "SYNC-879-formal-review-runtime-readiness-smoke-loop865",
   "last_sync_sources": [
+    "SYNC-879 Formal review runtime readiness smoke loop865",
+    "loop865 backend: added formal_review_runtime_readiness_smoke_v1 read-only smoke with DB identity/table/watermark facts and official runner identity proof",
+    "loop865 script: check_formal_review_runtime_readiness.py uses approved env loading and get_postgres_dsn without printing DSN; readiness is derived from current_database, required tables, trade-date watermarks, aggregate counts, and runner module/name/ref",
+    "loop865 safety: no Docker/container creation, no substitute DB/port, no scorer/backtest, no DB write, no page-load execution, no secret output",
+    "loop865 worker: permanent code-reviewer Meitner request_changes absorbed; final APPROVED; no duplicate worker created",
+    "loop865 verification: unit 9 passed, related backend 19 passed, Ruff pass, runtime smoke ready_for_product_review with daily_bar/daily_trade_status 3995 days max 2026-06-18, browser dogfoods pass, jobs smoke pass, build pass, lint 0 errors/1 existing warning, diff check pass",
+    "next: FORMAL_REVIEW_PRODUCT_RUNTIME_READINESS_DOGFOOD_LOOP866",
     "SYNC-878 Formal review E2E product dogfood loop863",
     "loop863 frontend: removed task-scope generic Factor Library links from FactorMining active flow and Jobs handoff banner",
     "loop863 browser: added formal-review E2E product dogfood covering factor-mining explicit task creation, Jobs current task, targeted Factor Library report-ready/no-report/blocked/failed/read-error paths",

@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T16:24:34+08:00
+updated_at: 2026-07-11T16:55:00+08:00
+
+## Latest Handoff — SYNC-879 formal-review-runtime-readiness-smoke-loop865
+
+- [DONE] loop865 runtime readiness smoke: added `formal_review_runtime_readiness_smoke_v1` and `scripts/check_formal_review_runtime_readiness.py`.
+- [DONE] DB proof now uses read-only data-plane evidence: `current_database()`, required table presence, `daily_bar` / `daily_trade_status` watermarks, aggregate counts, and `mining_job` table presence; no `55432` string heuristic remains in the smoke script.
+- [DONE] Runner proof now checks official runner `ref/module/name/dry_run/presence`, not provider presence alone.
+- [VERIFY] Passed: runtime smoke `overall_status=ready_for_product_review`, `database_name=quant_assistant`, `daily_bar_days=3995`, `daily_trade_status_days=3995`, max trade_date `2026-06-18`; focused unit 9 passed; related backend 19 passed; Ruff pass; controlled-real runner/preflight/formal-review browser dogfoods pass; Jobs smoke pass; build pass; lint 0 errors / 1 existing warning; diff check pass.
+- [WORKERS] Meitner/code-reviewer first returned request_changes for port-string DB proof; fix absorbed; final report APPROVED. No duplicate worker created.
+- [BOUNDARY] No `.env`/DSN/secret print; no Docker/container creation; no substitute DB/port; no scorer/backtest; no DB write; no page-load execution.
+- [NEXT] `FORMAL_REVIEW_PRODUCT_RUNTIME_READINESS_DOGFOOD_LOOP866`: product-facing dogfood should make this readiness evidence visible/understandable in the factor-universe -> Jobs -> Factor Library path; gaps become next targets.
 
 ## Latest Handoff — SYNC-878 formal-review-e2e-product-dogfood-loop863
 

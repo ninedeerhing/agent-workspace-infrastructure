@@ -1,5 +1,29 @@
 # Worker Report — code-reviewer
 
+## loop865 Report — 2026-07-11T16:55:00+08:00
+
+report:
+  role_id: "code-reviewer"
+  status: "approved"
+  task: "loop865 formal review runtime readiness smoke review"
+  changes: []
+  verification:
+    - command: "read-only code review"
+      result: "Initial review requested changes because DB proof still depended on the old DSN port-string helper."
+    - command: "read-only re-review"
+      result: "Approved after readiness was derived from current_database, required tables, watermarks, aggregate facts, and runner identity ref/module/name/dry-run/presence."
+    - command: "pytest"
+      result: "Worker reported focused unit 9 passed."
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons:
+      - "Runtime readiness proof must use data-plane evidence, not DSN port/string heuristics."
+      - "Runner proof must include callable identity, but still not imply execution authorization."
+    performance_note: "Permanent Code Reviewer caught the only remaining false-proof risk and approved the corrected implementation."
+  blockers: []
+  next: "Review product-facing readiness dogfood in loop866 if assigned."
+
 ## loop390 Report — 2026-07-01T21:28:58+08:00
 
 report:
