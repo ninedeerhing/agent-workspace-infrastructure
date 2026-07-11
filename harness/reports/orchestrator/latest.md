@@ -1,3 +1,48 @@
+# Orchestrator Latest Report — SYNC-862 one-click E2E self-validation re-entry loop847
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "ONE_CLICK_E2E_SELF_VALIDATION_REENTRY_LOOP847"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_seeded_e2e_demo_flow.py"
+      summary: "Seeded flow now builds progress surface, consumer report feedback input, real feedback summary, and A-E feedback memory path."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_one_click_ui_api_surface.py"
+      summary: "Exposes feedback_memory in the one-click UI/API payload."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_consumer_flow_formal_verification_gate.py"
+      summary: "Adds feedback_memory_ready self-validation and A-E five-card seeded coverage."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_factor_library_report_surface.py"
+      summary: "Keeps report-like compatibility while exposing provenance fields."
+    - file: "apps/quant_assistant/tests/test_factor_construction_seeded_e2e_demo_flow_unit.py"
+      summary: "Covers feedback_memory_input readiness and feedback memory success paths."
+    - file: "apps/quant_assistant/tests/test_factor_construction_consumer_flow_formal_verification_gate_unit.py"
+      summary: "Updates formal self-validation expectations for A-E five-card seeded flow."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-862 and next loop848."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-862."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop848."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to UI dogfood self-validation re-entry."
+  verification:
+    - command: "uv run pytest -q seeded/one-click/formal/report/feedback/API regression"
+      result: "102 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "seeded one-click smoke"
+      result: "ready result_ready True 5 False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Seeded E2E self-validation must include feedback memory continuity, not just report cards."
+    performance_note: "Loop847 closed with regression/Ruff/smoke; next is React UI dogfood."
+  blockers: []
+  next: "UI_DOGFOOD_SELF_VALIDATION_REENTRY_LOOP848"
+
+---
+
 # Orchestrator Latest Report — SYNC-861 real backtest feedback memory re-entry loop846
 
 report:

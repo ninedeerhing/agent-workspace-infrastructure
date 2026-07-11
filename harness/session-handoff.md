@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-12T01:50:00+08:00
+updated_at: 2026-07-12T02:10:00+08:00
+
+## Latest Handoff — SYNC-862 one-click E2E self-validation re-entry
+
+- [DONE] Seeded one-click demo now builds progress surface, consumer report feedback input, real feedback summary, and UI `feedback_memory`.
+- [DONE] Formal verification gate checks `feedback_memory_ready` and A-E five-card seeded coverage.
+- [DONE] UI payload exposes `result.feedback_memory_input.ready=true` and `feedback_memory.success_path_count=5`.
+- [DONE] Seeded path remains deterministic and no-execution.
+- [VERIFY] Seeded/one-click/formal/report/feedback/API regression: 102 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Seeded smoke: `ready result_ready True 5 False False`.
+- [NEXT] `UI_DOGFOOD_SELF_VALIDATION_REENTRY_LOOP848`: dogfood the React factor-construction path as a novice user.
+- [FORBIDDEN] Do not create substitute Docker/DB/ports; do not treat seeded demo as real backtest execution.
 
 ## Latest Handoff — SYNC-861 real backtest feedback memory re-entry
 

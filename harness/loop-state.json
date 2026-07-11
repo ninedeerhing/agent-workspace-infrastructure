@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T01:50:00+08:00",
+  "updated_at": "2026-07-12T02:10:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-backtest-feedback-memory-reentry-loop846",
-  "next_atomic_action": "ONE_CLICK_E2E_SELF_VALIDATION_REENTRY_LOOP847：把生成→筛选→评分→provisional→accepted→plan→execution progress→consumer report→feedback memory 串成可自检的一键 seeded flow，验证用户无需理解内部 gate 也能看到下一步与结果复盘。",
-  "next_after": "Continue UI dogfood -> formal human review entry.",
+  "current_slice": "one-click-e2e-self-validation-reentry-loop847",
+  "next_atomic_action": "UI_DOGFOOD_SELF_VALIDATION_REENTRY_LOOP848：以真实用户视角检查 React 因子构造入口/进度/报告/feedback memory 展示是否能无跳转迷路地完成 seeded flow，并修复阻断体验的问题。",
+  "next_after": "Continue formal human review entry.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-861-real-backtest-feedback-memory-reentry-loop846",
+  "last_tick": "SYNC-862-one-click-e2e-self-validation-reentry-loop847",
   "last_sync_sources": [
+    "SYNC-862 one-click E2E self-validation re-entry loop847",
+    "loop847 trigger: seeded one-click flow needed to prove progress/report/feedback-memory continuity, not only independent unit surfaces",
+    "loop847 backend: seeded flow now builds progress surface, report feedback input, real feedback summary, and UI feedback_memory payload",
+    "loop847 formal gate: added feedback_memory_ready check and A-E five-card seeded expectation",
+    "loop847 boundary: deterministic self-validation only, no env/DB/scorer/backtest/queue/trajectory write/substitute runtime",
+    "loop847 verification: seeded/one-click/formal/report/feedback/API regression 102 passed; Ruff pass; seeded smoke pass",
+    "next: UI_DOGFOOD_SELF_VALIDATION_REENTRY_LOOP848",
     "SYNC-861 real backtest feedback memory re-entry loop846",
     "loop846 trigger: report feedback_memory_input needed to feed trajectory memory without caller-handwritten old feedback payload",
     "loop846 backend: build_real_backtest_feedback_from_consumer_report_v1 converts report summary to canonical real_backtest_feedback_v1",

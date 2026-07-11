@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-12T01:50:00+08:00
+Updated: 2026-07-12T02:10:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop846 | continuous_loop_active | gpt-5.5 | 2026-07-12T01:50:00+08:00 | SYNC-861 real backtest feedback memory re-entry complete; next ONE_CLICK_E2E_SELF_VALIDATION_REENTRY_LOOP847 | keep moving; one-click E2E self-validation |
+| orchestrator | current-thread | loop847 | continuous_loop_active | gpt-5.5 | 2026-07-12T02:10:00+08:00 | SYNC-862 one-click E2E self-validation re-entry complete; next UI_DOGFOOD_SELF_VALIDATION_REENTRY_LOOP848 | keep moving; UI dogfood self-validation |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-12T02:10:00+08:00 · loop847/SYNC-862: Seeded one-click flow now validates progress/report/factor-library/feedback-memory continuity and exposes UI feedback_memory; formal gate checks feedback_memory_ready and A-E five-card coverage. No duplicate workers created. Verification: regression 102 passed, Ruff pass, smoke pass.
 - 2026-07-12T01:50:00+08:00 · loop846/SYNC-861: Real backtest feedback memory adapter now consumes consumer report `feedback_memory_input`, keeps executed_plan_ids/excluded refs/run ids in trajectory rows, and adapter LOC was brought below 250 by extracting product summary. No duplicate workers created. Verification: focused 7 passed, regression 84 passed, Ruff pass, smoke pass.
 - 2026-07-12T01:30:00+08:00 · loop845/SYNC-860: Consumer report and factor library surface now consume progress provenance, exposing execution_summary, executed_plans, excluded refs, run ids, and feedback_memory_input. Permanent code-reviewer and test-engineer received read-only review prompts; no duplicate workers created. Verification: focused 11 passed, regression 115 passed, Ruff pass, smoke pass.
 - 2026-07-12T01:10:00+08:00 · loop844/SYNC-859: Controlled backtest progress/report surface now consumes plan_drafts, candidate_source, run_ids, and error state, exposing executed_plans, excluded_factor_refs, and execution_summary for report/factor-library consumers. No duplicate workers created. Verification: focused 5 passed, regression 112 passed, Ruff pass, smoke pass.
