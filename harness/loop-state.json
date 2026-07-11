@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T16:55:00+08:00",
+  "updated_at": "2026-07-11T17:00:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "formal-review-runtime-readiness-smoke-loop865",
-  "next_atomic_action": "FORMAL_REVIEW_PRODUCT_RUNTIME_READINESS_DOGFOOD_LOOP866：把 loop865 的正确 DB/runner/no-substitute 运行态证据纳入产品级前验收狗粮，确认用户从因子构造宇宙到当前任务/结果复盘路径能看到清楚的 readiness 状态；若发现缺口，继续转为下一功能目标。",
-  "next_after": "Continue product-facing formal review readiness; gaps become next goals, not stop reasons.",
+  "current_slice": "formal-review-product-runtime-readiness-dogfood-loop866",
+  "next_atomic_action": "FORMAL_REVIEW_FINAL_PRODUCT_SELF_CHECK_LOOP867：从用户视角完整自测因子构造宇宙 → 当前任务 → 运行态 readiness → Factor Library/回测结果复盘路径，确认是否已真正进入正式人工验收；若仍发现可用性、导航、真实运行态或报告复盘缺口，立即转为下一功能目标继续修复。",
+  "next_after": "Run final product self-check before formal human review; gaps become next goals, not stop reasons.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-879-formal-review-runtime-readiness-smoke-loop865",
+  "last_tick": "SYNC-880-formal-review-product-runtime-readiness-dogfood-loop866",
   "last_sync_sources": [
+    "SYNC-880 Formal review product runtime readiness dogfood loop866",
+    "loop866 product: Jobs page now fetches /api/v1/quant/formal-review-runtime-readiness and shows a consumer-readable runtime readiness card with DB watermarks, official runner identity, and no page-load execution/substitute runtime boundaries",
+    "loop866 backend: added shared formal_review_runtime_readiness_probe and API route that returns read-only readiness via fail-open wrapper without printing secrets or executing scorer/backtest",
+    "loop866 smoke: Jobs fixture now uses the created Chrome target / navigates away from about:blank when needed; journey assertions cover page-load no POST, explicit click only, duplicate trigger guard, and product-visible readiness",
+    "loop866 validation hygiene: no-secret checks now use a shared forbidden-marker helper that restores broad secret=/*_secret= detection while allowing printed_secret=false and *_contains_secret_values=false safety evidence",
+    "loop866 worker: Parfit/test-engineer read-only report confirmed the about:blank target race and recommended the adopted target-selection/navigation fix; Meitner/code-reviewer review dispatched",
+    "loop866 verification: backend 22 passed, Ruff pass, runtime smoke ready_for_product_review, Jobs smoke ok=true with pageLoadTriggerRequests=[] duplicateTriggerUrls=[], formal review E2E pass, factor universe review readiness pass, controlled-real dogfoods pass, build pass, lint 0 errors/1 existing warning, diff check pass",
+    "next: FORMAL_REVIEW_FINAL_PRODUCT_SELF_CHECK_LOOP867",
     "SYNC-879 Formal review runtime readiness smoke loop865",
     "loop865 backend: added formal_review_runtime_readiness_smoke_v1 read-only smoke with DB identity/table/watermark facts and official runner identity proof",
     "loop865 script: check_formal_review_runtime_readiness.py uses approved env loading and get_postgres_dsn without printing DSN; readiness is derived from current_database, required tables, trade-date watermarks, aggregate counts, and runner module/name/ref",

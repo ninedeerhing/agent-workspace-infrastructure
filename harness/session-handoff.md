@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T16:55:00+08:00
+updated_at: 2026-07-11T17:00:00+08:00
+
+## Latest Handoff — SYNC-880 formal-review-product-runtime-readiness-dogfood-loop866
+
+- [DONE] loop866 product runtime readiness dogfood: Jobs page now fetches `GET /api/v1/quant/formal-review-runtime-readiness` and shows a consumer-readable “验收前运行态检查” card.
+- [DONE] Backend readiness collector was extracted to `formal_review_runtime_readiness_probe.py`; CLI script is now a thin wrapper over the same read-only collector.
+- [DONE] Product card shows DB `quant_assistant`, daily_bar / daily_trade_status `3995 / 3995` days, watermarks `2026-06-18`, official runner identity verified, page-load execution false, substitute/default runtime false.
+- [DONE] Jobs smoke fixture now stabilizes Chrome target selection by using the created page target and navigating away from `about:blank` if necessary; assertions cover full user journey evidence instead of only first render text.
+- [DONE] Runner-adapter no-secret checks now use a shared forbidden-marker helper: real `secret=` / `*_secret=` keys remain forbidden, while `printed_secret=false` and `*_contains_secret_values=false` safety evidence is allowed.
+- [VERIFY] Passed: backend focused/API tests 22 passed; targeted Ruff pass; runtime smoke `ready_for_product_review`; Jobs smoke `ok=true`, `pageLoadTriggerRequests=[]`, `duplicateTriggerUrls=[]`; formal review E2E dogfood pass; factor universe review readiness pass; controlled-real preflight/runner-manifest browser dogfoods pass; web build pass; lint 0 errors / 1 existing warning; diff check pass.
+- [WORKERS] Parfit/test-engineer read-only report confirmed the `about:blank` CDP target race and recommended the adopted target selection / navigation fix. Meitner/code-reviewer returned request_changes on over-narrowed secret markers; the shared forbidden-marker helper absorbed the issue and Jobs smoke now passes with `readiness_gate_no_secret_output:true`.
+- [BOUNDARY] No `.env`/DSN/secret print; no Docker/container creation; no substitute DB/port; no scorer/backtest; no DB write; no page-load execution.
+- [NEXT] `FORMAL_REVIEW_FINAL_PRODUCT_SELF_CHECK_LOOP867`: run a final product self-check from factor construction entry to current task, runtime readiness, Factor Library/result recap, and keep turning any gap into the next goal.
 
 ## Latest Handoff — SYNC-879 formal-review-runtime-readiness-smoke-loop865
 
