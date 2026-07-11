@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T14:40:45+08:00
+updated_at: 2026-07-11T14:48:55+08:00
+
+## Latest Handoff — SYNC-870 Controlled real runner manifest product dogfood
+
+- [DONE] Added `ControlledRealBacktestRunnerManifestNotice` and wired it into the Jobs current confirmation card.
+- [DONE] Jobs now shows “正式回测引擎已接入” and “仍需你点击确认才会开始真实回测” when `runner_manifest.status=runner_ready_waiting_user_execution_confirmation`.
+- [DONE] Added browser dogfood for `/quant/jobs?source=factor_universe_job&job_id=job-ready-smoke` with mocked mining-jobs API.
+- [VERIFY] Browser dogfood confirms user-visible runner-ready copy and page-load POST count=0.
+- [VERIFY] Notice source contract pass; factor-universe review-readiness browser dogfood pass; web build pass; lint 0 errors / 1 existing Fast Refresh warning; API runner manifest target regression 7 passed.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856`: prove explicit user POST is the only path into controlled real backtest preflight.
+- [FORBIDDEN] No substitute Docker/DB/ports; no default runner; no DB writes/backtest unless explicit POST user execution gate passes correct runtime/runner/idempotency/audit/rollback checks.
 
 ## Latest Handoff — SYNC-869 Controlled real backtest runner injection seam
 

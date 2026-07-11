@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T14:40:45+08:00",
+  "updated_at": "2026-07-11T14:48:55+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-real-backtest-runner-injection-loop854",
-  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_READY_MANIFEST_PRODUCT_DOGFOOD_LOOP855：用 API/浏览器产品路径自检 runner-ready manifest 是否对用户清楚、是否不会自动执行真实回测；必须确认无页面加载执行、无替代 DB/Docker、无默认 runner、无未授权 DB 写入。",
+  "current_slice": "controlled-real-runner-manifest-product-dogfood-loop855",
+  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856：从 runner-ready 页面继续推进显式 POST 路径的受控执行前检查；证明只有用户点击确认才会进入 preflight，仍必须使用正确 DB/official runner/idempotency/audit/rollback，禁止替代 Docker/DB/默认 runner 和页面加载执行。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-869-controlled-real-backtest-runner-injection-loop854",
+  "last_tick": "SYNC-870-controlled-real-runner-manifest-product-dogfood-loop855",
   "last_sync_sources": [
+    "SYNC-870 Controlled real runner manifest product dogfood loop855",
+    "loop855 trigger: runner-ready manifest needed to be product-visible and browser-dogfooded before formal review",
+    "loop855 frontend: added ControlledRealBacktestRunnerManifestNotice and wired it into Jobs current confirmation card",
+    "loop855 dogfood: mocked API browser smoke confirms Jobs page shows runner ready/user-click required copy and page-load POST count=0",
+    "loop855 boundary: no env, DB, Docker, scorer, backtest, substitute runtime, or unauthorized DB write",
+    "loop855 verification: browser dogfood pass, notice contract pass, review-readiness dogfood pass, build pass, lint 0 errors/1 existing warning, API runner target 7 passed",
+    "next: CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856",
     "SYNC-869 Controlled real backtest runner injection loop854",
     "loop854 trigger: runner manifest was visible but runner was not connected; gap became next implementation target",
     "loop854 backend: added controlled_real_backtest_runner_injection.py with inert official provider and request-to-req adapter",

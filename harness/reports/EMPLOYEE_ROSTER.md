@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T14:40:45+08:00
+Updated: 2026-07-11T14:48:55+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop854 | continuous_loop_active | gpt-5.5 | 2026-07-11T14:40:45+08:00 | SYNC-869 controlled real backtest runner injection seam complete; next CONTROLLED_REAL_BACKTEST_READY_MANIFEST_PRODUCT_DOGFOOD_LOOP855 | keep moving; product-level ready manifest/no-auto-execution dogfood is the next gap-goal |
+| orchestrator | current-thread | loop855 | continuous_loop_active | gpt-5.5 | 2026-07-11T14:48:55+08:00 | SYNC-870 controlled real runner manifest product dogfood complete; next CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856 | keep moving; explicit POST preflight is the next gap-goal |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop854 | dispatched_readonly | gpt-5.5 | 2026-07-11T14:38:00+08:00 | loop854 read-only verification strategy review dispatched for official runner injection/no-auto-execution matrix | preserve permanent identity; integrate report when available |
 ## Latest Roster Notes
 
+- 2026-07-11T14:48:55+08:00 · loop855/SYNC-870: Runner-ready manifest is now visible in Jobs product path and browser dogfood confirms page-load POST count=0. No duplicate workers created; existing loop854 code-reviewer/verifier reports remain pending. Verification: runner manifest browser dogfood pass, notice contract pass, review-readiness dogfood pass, build pass, lint 0 errors/1 existing warning, API target 7 passed.
 - 2026-07-11T14:40:45+08:00 · loop854/SYNC-869: Official controlled real backtest runner seam is connected through an inert provider; Jobs/API manifest can show runner ready while preserving `execution_permission=not_granted_by_manifest` and `will_run_backtest=false`. Permanent code-reviewer and verifier received read-only prompts; no duplicate workers created. Verification: RED missing module, target 7 passed, related regression 83 passed, Ruff pass.
 - 2026-07-11T14:37:01+08:00 · loop853/SYNC-868: Controlled real backtest action now exposes `controlled_real_backtest_runner_manifest_v1` with current `runner_not_connected` state, explicit `runner_manifest_missing,dry_run_capability_missing`, and `will_run_backtest=false`. Verification: RED missing runner_manifest, target 4 passed, related regression 82 passed, targeted Ruff pass.
 - 2026-07-11T14:22:33+08:00 · loop852/SYNC-867: Existing qa-pg-alt runtime is healthy on 55432 with core schema and data aggregates available; controlled real backtest runner is missing, so preflight blocks with runner_manifest_missing and dry_run_capability_missing. Verification: DB smoke pass, runner preflight smoke pass, fail-closed tests 19 passed.

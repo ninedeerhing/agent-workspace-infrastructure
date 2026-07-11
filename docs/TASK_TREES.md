@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T14:40:45+08:00 · SYNC-869 · Controlled real backtest runner injection seam
+Updated: 2026-07-11T14:48:55+08:00 · SYNC-870 · Controlled real runner manifest product dogfood
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop835/SYNC-850 completed `AE_CONTROLLED_SCORING_READINESS_REENTRY_LOOP835` by exposing controlled scoring readiness states and blocker groups from closure-aware preflight.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop855/SYNC-870 completed `CONTROLLED_REAL_BACKTEST_READY_MANIFEST_PRODUCT_DOGFOOD_LOOP855` by surfacing runner-ready manifest in Jobs and proving page-load POST count=0 in browser dogfood.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `CONTROLLED_SCORING_EXECUTION_BRIDGE_REENTRY_LOOP836` — let scorer execution bridge consume controlled scoring readiness ready refs while still requiring official writer/runner/idempotency/audit and no substitute DB/Docker/port.
+- Next atomic action: `CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856` — prove only explicit user POST enters controlled real backtest preflight, while still requiring correct qa-pg-alt runtime, official runner ref, idempotency, rollback/audit, and no substitute DB/Docker/default runner/page-load execution.
 
 ## EXCLUDE: Default Exclusions
 

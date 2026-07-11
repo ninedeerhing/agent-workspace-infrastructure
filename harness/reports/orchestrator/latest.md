@@ -1,4 +1,45 @@
-# Orchestrator Latest Report — SYNC-869 Controlled real backtest runner injection seam loop854
+# Orchestrator Latest Report — SYNC-870 Controlled real runner manifest product dogfood loop855
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_REAL_BACKTEST_READY_MANIFEST_PRODUCT_DOGFOOD_LOOP855"
+  changes:
+    - file: "apps/quant_assistant/web/src/pages/ControlledRealBacktestRunnerManifestNotice.tsx"
+      summary: "Shows runner-ready / user-click-required controlled real backtest manifest copy."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Wires runner manifest notice into the current confirmation card."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-runner-manifest-notice.mjs"
+      summary: "Adds source-level contract checks for notice wiring and manifest markers."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-runner-manifest-browser.mjs"
+      summary: "Adds Vite + Playwright dogfood proving user-visible copy and no page-load POST."
+    - file: "apps/quant_assistant/web/package.json"
+      summary: "Adds runner manifest notice and browser dogfood scripts."
+  verification:
+    - command: "npm run test:controlled-real-runner-manifest-browser"
+      result: "RED missing folded No POST marker, then GREEN controlled real runner manifest browser dogfood OK; POST count=0."
+    - command: "npm run test:controlled-real-runner-manifest-notice"
+      result: "controlled real runner manifest notice contract OK."
+    - command: "npm run test:factor-universe-review-readiness"
+      result: "factor universe review readiness browser dogfood OK."
+    - command: "npm run build"
+      result: "tsc + Vite build passed."
+    - command: "npm run lint"
+      result: "0 errors / 1 existing Fast Refresh warning in ShellLayoutContext.tsx."
+    - command: "uv run pytest -q tests/test_controlled_real_backtest_runner_injection_unit.py tests/test_controlled_real_backtest_runner_manifest_unit.py tests/test_mining_job_api_unit.py -k \"controlled_real_backtest_execution_bridge_action or controlled_real_backtest_execution_bridge_blocks_without_injected_runner or controlled_real_backtest_execution_bridge_uses_injected_runner or runner_provider or runner_manifest\""
+      result: "7 passed, 57 deselected."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Runner-ready copy must be checked through the actual product page and network POST count, not only source markers."
+    performance_note: "Product dogfood passed; next target is explicit POST preflight."
+  blockers: []
+  next: "CONTROLLED_REAL_BACKTEST_EXPLICIT_POST_PREFLIGHT_LOOP856"
+
+---
+
+# Orchestrator Previous Report — SYNC-869 Controlled real backtest runner injection seam loop854
 
 report:
   role_id: "orchestrator"
