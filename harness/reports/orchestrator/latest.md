@@ -1,3 +1,42 @@
+# Orchestrator Latest Report — SYNC-864 Jobs confirmation dogfood re-entry loop849
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "JOBS_CONFIRMATION_DOGFOOD_REENTRY_LOOP849"
+  changes:
+    - file: "apps/quant_assistant/web/src/pages/FactorUniverseJobHandoffBanner.tsx"
+      summary: "Adds current-location, next-step, locate-confirmation, result-recap, and single-active-task guidance."
+    - file: "apps/quant_assistant/web/scripts/check-factor-universe-jobs-handoff.mjs"
+      summary: "Adds a front-end contract check for factor-universe Jobs handoff copy."
+    - file: "apps/quant_assistant/web/package.json"
+      summary: "Adds npm script for Jobs handoff contract testing."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-864 and next loop850."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-864."
+  verification:
+    - command: "npm run test:factor-universe-jobs-handoff"
+      result: "factor universe jobs handoff copy OK."
+    - command: "npm run test:factor-universe-flow"
+      result: "factor universe flow contract OK."
+    - command: "npm run build"
+      result: "TypeScript and Vite build passed."
+    - command: "npm run lint"
+      result: "0 errors; 1 pre-existing Fast Refresh warning in ShellLayoutContext.tsx."
+    - command: "Chrome/Playwright Jobs dogfood"
+      result: "Jobs handoff next-action text visible."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "A cross-page handoff needs explicit current-location and next-action copy, not just an internal task banner."
+    performance_note: "Loop849 closed with contract/build/lint/browser dogfood; next is result report/library dogfood."
+  blockers: []
+  next: "RESULT_REPORT_LIBRARY_DOGFOOD_REENTRY_LOOP850"
+
+---
+
 # Orchestrator Latest Report — SYNC-863 UI dogfood self-validation re-entry loop848
 
 report:

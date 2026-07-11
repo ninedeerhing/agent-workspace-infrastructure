@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T02:35:00+08:00",
+  "updated_at": "2026-07-12T02:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "ui-dogfood-self-validation-reentry-loop848",
-  "next_atomic_action": "JOBS_CONFIRMATION_DOGFOOD_REENTRY_LOOP849：继续以小白用户视角检查创建唯一小批评分任务后的 /quant/jobs 确认、完成、结果复盘、因子库跳转路径，修复仍然迷路或高级诊断过重的问题。",
+  "current_slice": "jobs-confirmation-dogfood-reentry-loop849",
+  "next_atomic_action": "RESULT_REPORT_LIBRARY_DOGFOOD_REENTRY_LOOP850：以小白用户视角检查完成确认后的因子库/结果报告/feedback memory 复盘页是否能解释“生成了什么、为什么留下、结果如何、下一轮怎么用”，修复报告复盘可视化不足的问题。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-863-ui-dogfood-self-validation-reentry-loop848",
+  "last_tick": "SYNC-864-jobs-confirmation-dogfood-reentry-loop849",
   "last_sync_sources": [
+    "SYNC-864 Jobs confirmation dogfood re-entry loop849",
+    "loop849 trigger: user can still get lost after entering Jobs from factor universe active task",
+    "loop849 frontend: FactorUniverseJobHandoffBanner now shows location, next step, locate confirmation button, result recap link, single task marker",
+    "loop849 boundary: Jobs handoff guidance only; no env/DB/Docker/scorer/backtest/queue/substitute runtime",
+    "loop849 verification: jobs handoff contract pass; factor flow contract pass; npm build pass; npm lint 0 errors/1 existing warning; Chrome/Playwright Jobs dogfood pass",
+    "next: RESULT_REPORT_LIBRARY_DOGFOOD_REENTRY_LOOP850",
     "SYNC-863 UI dogfood self-validation re-entry loop848",
     "loop848 trigger: user could still get lost after clicking start generation; gap must become next target",
     "loop848 frontend: FactorMining flow state contract, flow guide, active job panel, true step highlight, confirmation/candidate anchors",

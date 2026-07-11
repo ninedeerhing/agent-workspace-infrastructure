@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-12T02:35:00+08:00
+updated_at: 2026-07-12T02:50:00+08:00
+
+## Latest Handoff — SYNC-864 Jobs confirmation dogfood re-entry
+
+- [DONE] `/quant/jobs?source=factor_universe_job&job_id=...` handoff banner now explains the user's current location and immediate next step.
+- [DONE] Banner includes direct links for `定位确认按钮` and `查看结果与复盘`.
+- [DONE] Banner declares `job_handoff_single_active_task=true`, avoiding duplicate-task confusion.
+- [VERIFY] `npm run test:factor-universe-jobs-handoff`: pass.
+- [VERIFY] `npm run test:factor-universe-flow`: pass.
+- [VERIFY] `npm run build`: pass.
+- [VERIFY] `npm run lint`: 0 errors / 1 existing Fast Refresh warning.
+- [VERIFY] Chrome/Playwright Jobs dogfood: handoff next-action text visible on the queried Jobs page.
+- [NEXT] `RESULT_REPORT_LIBRARY_DOGFOOD_REENTRY_LOOP850`: dogfood factor library/result report/feedback memory recap for novice readability.
+- [FORBIDDEN] Do not create substitute Docker/DB/ports; do not treat Jobs handoff as execution authorization.
 
 ## Latest Handoff — SYNC-863 UI dogfood self-validation re-entry
 
