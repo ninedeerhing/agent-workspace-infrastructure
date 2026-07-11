@@ -1,3 +1,54 @@
+# Orchestrator Latest Report — SYNC-850 A/E controlled scoring readiness re-entry loop835
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "AE_CONTROLLED_SCORING_READINESS_REENTRY_LOOP835"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_controlled_scoring_readiness_reentry.py"
+      summary: "Adds controlled scoring readiness re-entry read-model."
+    - file: "apps/quant_assistant/tests/test_factor_construction_controlled_scoring_readiness_reentry_unit.py"
+      summary: "Covers validation-not-closed, validation-closed-runtime-not-ready, and ready states."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes factor_construction_controlled_scoring_readiness_reentry in creation plan."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Covers creation-plan re-entry exposure."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-850 and next loop836."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-850."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop836."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop836."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to controlled scoring execution bridge re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-850."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Records test-engineer channel_system_error without creating duplicate worker."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_controlled_scoring_readiness_reentry_unit.py"
+      result: "RED missing module; GREEN 3 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_controlled_scoring_readiness_reentry_unit.py tests/test_batch_mining_flow_unit.py -k controlled_scoring_readiness_reentry"
+      result: "4 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_controlled_scoring_readiness_reentry_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_universe_ae_source_review_validation_closure_unit.py tests/test_batch_mining_flow_unit.py tests/test_factor_construction_real_scoring_execution_bridge_unit.py"
+      result: "29 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "creation-plan smoke for controlled_scoring_readiness_reentry"
+      result: "controlled_scoring_readiness_reentry_v1 validation_closed_runtime_not_ready closed ['no_calculable_candidates_for_scoring_budget'] False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Expose readiness as grouped blockers before execution bridge so users and code can see what remains missing."
+    performance_note: "Loop835 closed with local RED/GREEN/regression/smoke; test-engineer channel returned systemError and was recorded."
+  blockers: []
+  next: "CONTROLLED_SCORING_EXECUTION_BRIDGE_REENTRY_LOOP836"
+
+---
+
 # Orchestrator Latest Report — SYNC-849 A/E small-batch preflight re-entry loop834
 
 report:

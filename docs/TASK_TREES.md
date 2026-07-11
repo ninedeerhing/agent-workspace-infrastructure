@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T21:15:00+08:00 · SYNC-849 · A/E small-batch preflight re-entry
+Updated: 2026-07-11T21:35:00+08:00 · SYNC-850 · A/E controlled scoring readiness re-entry
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop834/SYNC-849 completed `AE_SMALL_BATCH_PREFLIGHT_REENTRY_WITH_VALIDATION_CLOSURE_LOOP834` by letting small-batch preflight consume validation closure closed refs without bypassing runtime/runner/UI/compute gates.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop835/SYNC-850 completed `AE_CONTROLLED_SCORING_READINESS_REENTRY_LOOP835` by exposing controlled scoring readiness states and blocker groups from closure-aware preflight.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `AE_CONTROLLED_SCORING_READINESS_REENTRY_LOOP835` — derive controlled scoring readiness re-entry states from closure-aware preflight, separating validation closed, runtime/runner/UI missing, fully ready, and blocked states; no auto scorer/backtest execution.
+- Next atomic action: `CONTROLLED_SCORING_EXECUTION_BRIDGE_REENTRY_LOOP836` — let scorer execution bridge consume controlled scoring readiness ready refs while still requiring official writer/runner/idempotency/audit and no substitute DB/Docker/port.
 
 ## EXCLUDE: Default Exclusions
 

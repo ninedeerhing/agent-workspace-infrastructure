@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T21:15:00+08:00",
+  "updated_at": "2026-07-11T21:35:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "ae-small-batch-preflight-reentry-loop834",
-  "next_atomic_action": "AE_CONTROLLED_SCORING_READINESS_REENTRY_LOOP835：基于 closure-aware preflight 生成 controlled scoring readiness re-entry read-model，区分 validation 已闭合但 runtime/runner/UI/compute 未齐、完全 ready、blocked 三态；仍不得自动执行 scorer/backtest 或写 DB。",
-  "next_after": "Continue controlled scoring readiness -> scorer execution bridge -> quality metrics/admission.",
+  "current_slice": "ae-controlled-scoring-readiness-reentry-loop835",
+  "next_atomic_action": "CONTROLLED_SCORING_EXECUTION_BRIDGE_REENTRY_LOOP836：让 scorer execution bridge 消费 controlled_scoring_readiness_reentry_v1.ready_candidate_refs，只有 re-entry 状态为 ready_for_controlled_scoring 且官方 writer/runner/idempotency/audit 齐全时才 bridge-ready；仍不得自动执行 scorer/backtest 或创建替代 DB/Docker/port。",
+  "next_after": "Continue scorer execution bridge -> quality metrics/admission -> provisional accepted.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-849-ae-small-batch-preflight-reentry-loop834",
+  "last_tick": "SYNC-850-ae-controlled-scoring-readiness-reentry-loop835",
   "last_sync_sources": [
+    "SYNC-850 A/E controlled scoring readiness re-entry loop835",
+    "loop835 trigger: product/API needed a readable readiness state after closure-aware preflight",
+    "loop835 backend: added controlled_scoring_readiness_reentry_v1 with validation/runtime/runner/ui/compute blocker groups",
+    "loop835 boundary: readiness never executes scorer/backtest or writes DB; creation plan exposes factor_construction_controlled_scoring_readiness_reentry",
+    "loop835 worker: Halley/test-engineer dispatch returned systemError without report; no duplicate worker was created; local verification authoritative",
+    "loop835 verification: focused re-entry tests 4 passed; small-batch/closure/creation-plan/scoring bridge regression 29 passed; Ruff pass; creation-plan smoke pass",
+    "next: CONTROLLED_SCORING_EXECUTION_BRIDGE_REENTRY_LOOP836",
     "SYNC-849 A/E small-batch preflight re-entry loop834",
     "loop834 trigger: preflight needed to consume ae_source_review_validation_closure_v1 directly instead of caller-assembled closed refs",
     "loop834 backend: SmallBatchRealScoringRequestV1 accepts ae_source_review_validation_closure and resolves closed refs from closure.closed_refs",

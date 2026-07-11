@@ -1,6 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-11T21:15:00+08:00
+updated_at: 2026-07-11T21:35:00+08:00
+
+## Latest Handoff — SYNC-850 A/E controlled scoring readiness re-entry
+
+- [DONE] Added `controlled_scoring_readiness_reentry_v1`.
+- [DONE] Re-entry derives validation, runtime, runner, UI, and compute blocker groups from closure-aware preflight.
+- [DONE] Re-entry distinguishes `validation_not_closed`, `validation_closed_runtime_not_ready`, and `ready_for_controlled_scoring`.
+- [DONE] Creation plan exposes `factor_construction_controlled_scoring_readiness_reentry`.
+- [VERIFY] Focused re-entry tests: 4 passed.
+- [VERIFY] Small-batch + closure + creation-plan + scoring bridge regression: 29 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `controlled_scoring_readiness_reentry_v1 validation_closed_runtime_not_ready closed ['no_calculable_candidates_for_scoring_budget'] False False`.
+- [WORKER] Halley/test-engineer thread returned systemError for this dispatch; no duplicate worker was created; local TDD/regression/smoke are authoritative.
+- [NEXT] `CONTROLLED_SCORING_EXECUTION_BRIDGE_REENTRY_LOOP836`: feed readiness ready refs into controlled scorer bridge.
+- [FORBIDDEN] Do not execute scorer/backtest from readiness; do not write DB; do not bypass official writer/runner/idempotency/audit checks.
 
 ## Latest Handoff — SYNC-849 A/E small-batch preflight re-entry
 
