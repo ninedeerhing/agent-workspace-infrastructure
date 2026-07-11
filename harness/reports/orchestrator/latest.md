@@ -1,28 +1,20 @@
-# Orchestrator Latest Report — SYNC-897 Post-acceptance entry-mode observability in Jobs loop883
+# Orchestrator Latest Report — SYNC-898 Post-acceptance scoring confirmation entry context loop884
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "POST_ACCEPTANCE_ENTRY_MODE_OBSERVABILITY_IN_JOBS_LOOP883"
+  task: "POST_ACCEPTANCE_SCORING_CONFIRMATION_ENTRY_CONTEXT_LOOP884"
   changes:
-    - file: "apps/quant_assistant/src/qa/brain/batch_mining_construction_universe.py"
-      summary: "Adds entry_mode, factor_class, and subclass_quota to the factor construction universe job payload summary."
-    - file: "apps/quant_assistant/tests/test_factor_construction_universe_model_unit.py"
-      summary: "Locks user-idea and no-idea-auto summary context fields in unit tests."
-    - file: "apps/quant_assistant/web/src/pages/JobsPageBatchRecapTelemetryNotice.tsx"
-      summary: "Adds a first-class Jobs task source block showing entry mode, source_mode, classification quota, generator profile, user idea text, and auto reason."
-    - file: "apps/quant_assistant/web/src/pages/factorMiningBatchTelemetry.ts"
-      summary: "Adds a shared entry-mode metric to job-payload batch recap telemetry."
+    - file: "apps/quant_assistant/web/src/pages/JobsPageScoringConfirmationEntryContext.tsx"
+      summary: "Adds a scoring-confirmation source context component for run_mining_job tasks, showing entry mode, current category, subclass quota, generation strategy, idea/auto reason, explicit authorization rationale, and no-auto-backtest guidance."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Mounts the scoring confirmation context inside the current task confirmation card, between next-step copy and the confirmation button."
     - file: "apps/quant_assistant/web/scripts/check-jobs-entry-mode-observability-dogfood.mjs"
-      summary: "Adds browser dogfood for user-idea, no-idea-auto, and manual-category Jobs tasks with zero POST behavior."
-    - file: "apps/quant_assistant/web/package.json"
-      summary: "Adds npm script test:jobs-entry-mode-observability-dogfood."
+      summary: "Extends the three-entry Jobs dogfood with run_mining_job actions and assertions for scoring confirmation source context with zero page-load POSTs."
   verification:
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_factor_construction_universe_model_unit.py -q"
-      result: "9 passed"
-    - command: "$env:PYTHONPATH='src'; uv run pytest tests/test_mining_job_api_unit.py tests/test_factor_construction_universe_model_unit.py tests/test_factor_construction_registry_unit.py -q"
-      result: "77 passed"
     - command: "npm run test:jobs-entry-mode-observability-dogfood"
+      result: "pass"
+    - command: "npm run test:controlled-real-current-task-card-browser"
       result: "pass"
     - command: "npm run test:factor-universe-user-idea-dogfood"
       result: "pass"
@@ -36,12 +28,14 @@ report:
       result: "pass"
     - command: "npm run lint"
       result: "0 errors / 1 existing ShellLayoutContext fast-refresh warning"
+    - command: "git diff --check"
+      result: "pass; CRLF warnings only"
   roster_update:
     workload_delta: "unchanged"
     mistakes: []
     lessons:
-      - "Entry mode should be an explicit job payload fact, not inferred from source_mode alone."
-      - "Jobs task observability must preserve the user's entry context before asking for the next confirmation."
-    performance_note: "Loop883 carried FactorMining entry context into Jobs and proved it with browser dogfood."
+      - "A confirmation CTA needs product-language provenance, not only technical source_mode diagnostics."
+      - "Worker partial-pass reports should be absorbed before sync when they identify P0/P1 user clarity gaps."
+    performance_note: "Loop884 preserved entry context through the scoring confirmation CTA and proved it with browser dogfood."
   blockers: []
-  next: "POST_ACCEPTANCE_SCORING_CONFIRMATION_ENTRY_CONTEXT_LOOP884"
+  next: "POST_ACCEPTANCE_SCORING_SUBMISSION_STATE_CONTEXT_LOOP885"

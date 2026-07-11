@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-12T01:15:00+08:00
+updated_at: 2026-07-11T23:48:13+08:00
+
+## Latest Handoff — SYNC-898 post-acceptance-scoring-confirmation-entry-context-loop884
+
+- [DONE] Jobs current task confirmation card now shows scoring-confirmation source context for `run_mining_job`.
+- [DONE] The card tells users the next step is small-batch scoring confirmation, why explicit button authorization is required, and that confirmation will not automatically run a backtest.
+- [DONE] The card carries `entry_mode`, `source_mode`, `factor_class`, `subclass_quota`, `generator_profile`, plus user idea text or auto exploration reason.
+- [DONE] Added product-language summaries for current A-E category, subclass quota, and generation strategy before the technical diagnostic line.
+- [DONE] `subclass_quota` display tolerates string/list/object telemetry instead of silently dropping structured future payloads.
+- [VERIFY] Passed: jobs entry-mode dogfood, controlled-real current task card browser, user-idea dogfood, no-idea auto dogfood, multi-source-mode dogfood, formal-review E2E dogfood, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WORKER] Kierkegaard read-only qa-product-reviewer returned `partial_pass_with_gaps`; P0/P1 source-summary and structured quota findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_SCORING_SUBMISSION_STATE_CONTEXT_LOOP885`: preserve the same source context after the user clicks confirmation and the task enters submitted/waiting-refresh state.
 
 ## Latest Handoff — SYNC-897 post-acceptance-entry-mode-observability-in-jobs-loop883
 
