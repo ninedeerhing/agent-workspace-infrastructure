@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T23:32:00+08:00
+updated_at: 2026-07-11T23:48:00+08:00
+
+## Latest Handoff — SYNC-893 post-acceptance-multi-source-mode-product-dogfood-loop879
+
+- [DONE] Added `web/scripts/check-factor-universe-multi-source-mode-dogfood.mjs` and `npm run test:factor-universe-multi-source-mode-dogfood`.
+- [DONE] The browser dogfood clicks B auto, C formula, and D idea categories in `/quant/factor-mining`.
+- [DONE] The confirm route captures real request payloads and asserts `generation_mix.source_mode` equals `auto_from_category`, `formula_or_library_seed`, and `idea_to_candidates` respectively.
+- [DONE] Dynamic summaries return different `generator_family_mix.profile`, `family_summaries`, and recap-visible families for each source mode.
+- [DONE] Negative assertions prevent cross-profile leakage, e.g. formula page must not show idea profile/family and idea page must not show library replay.
+- [VERIFY] Passed: multi-source-mode dogfood, formal-review E2E product dogfood, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WORKER] Kierkegaard read-only product QA recommended dynamic request-payload-based mocks and negative family/profile assertions; findings absorbed.
+- [NEXT] `POST_ACCEPTANCE_USER_IDEA_TO_CONSTRUCTION_SPEC_ENTRY_LOOP880`: add a clear user idea input / idea expansion path into ConstructionSpec, still no DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-892 post-acceptance-source-mode-aware-generator-mix-loop878
 

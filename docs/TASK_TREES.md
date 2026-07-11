@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T23:32:00+08:00 · SYNC-892 · Post-acceptance source-mode-aware generator mix
+Updated: 2026-07-11T23:48:00+08:00 · SYNC-893 · Post-acceptance multi-source-mode product dogfood
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop878/SYNC-892 completed `POST_ACCEPTANCE_SOURCE_MODE_AWARE_GENERATOR_MIX_LOOP878` by making canonical source_mode choose different generator family profiles and exposing generator_family_mix in recap telemetry.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop879/SYNC-893 completed `POST_ACCEPTANCE_MULTI_SOURCE_MODE_PRODUCT_DOGFOOD_LOOP879` by proving B auto, C formula, and D idea category choices produce distinct sourceModeId payloads and recap-visible generator profiles in browser dogfood.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `POST_ACCEPTANCE_MULTI_SOURCE_MODE_PRODUCT_DOGFOOD_LOOP879` — prove source-mode-aware family profiles through multi-category product dogfood: B auto, C formula, and D idea must show distinct UI payload sourceModeId, API job summary profile, family_summaries, and recap-visible strategy. Keep no DB/Docker/scorer/backtest.
+- Next atomic action: `POST_ACCEPTANCE_USER_IDEA_TO_CONSTRUCTION_SPEC_ENTRY_LOOP880` — add a clear user idea input / idea expansion path in `/quant/factor-mining`, with idea_text mapped into ConstructionSpec/brief using `source_mode=idea_to_candidates`, selected A-E context preserved, and the same preview/recap/confirmation task chain. Keep no DB/Docker/scorer/backtest.
 
 ## EXCLUDE: Default Exclusions
 
