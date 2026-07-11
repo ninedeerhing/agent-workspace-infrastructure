@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-11T16:05:00+08:00
+updated_at: 2026-07-11T16:25:00+08:00
+
+## Latest Handoff — SYNC-835 Missing source manifest conversion UI surface
+
+- [DONE] `/quant/factor-mining` now shows “Manifest 草案预览”.
+- [DONE] The UI exposes `missing_source_onboarding_manifest_conversion_candidate_v1`.
+- [DONE] The UI shows `entity_linking_table` and `alternative_data_snapshot` draft adapter/table/PIT/coverage/owner/material refs.
+- [DONE] The UI points the next gate to `source_adapter_manifest_review`.
+- [VERIFY] Manifest UI + backend focused tests: 3 passed.
+- [VERIFY] Consumer/source + onboarding regression: 17 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [WORKER] Permanent test-engineer thread `019eeece-52d7-7b73-868a-7beb496ba303` received loop820 read-only UI review request on gpt-5.4; local TDD/build is current completion evidence.
+- [NEXT] `MISSING_SOURCE_MANIFEST_CONVERSION_PRODUCT_SELF_VALIDATION_LOOP821`: add product self-validation gate coverage for this surface.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-834 Missing source manifest conversion candidate
 

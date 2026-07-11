@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T16:05:00+08:00
+Updated: 2026-07-11T16:25:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,15 +50,16 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop819 | continuous_loop_active | gpt-5.5 | 2026-07-11T16:05:00+08:00 | SYNC-834 missing source manifest conversion candidate complete; next MISSING_SOURCE_MANIFEST_CONVERSION_UI_SURFACE_LOOP820 | keep moving; expose manifest conversion candidate on factor-mining UI |
+| orchestrator | current-thread | loop820 | continuous_loop_active | gpt-5.5 | 2026-07-11T16:25:00+08:00 | SYNC-835 missing source manifest conversion UI surface complete; next MISSING_SOURCE_MANIFEST_CONVERSION_PRODUCT_SELF_VALIDATION_LOOP821 | keep moving; add product self-validation for manifest conversion surface |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop796 | report_success | gpt-5.5 | 2026-07-10T22:35:00+08:00 | Maxwell read-only loop796 review identified ready_for_backtest + blocked real-backtest semantic bug and UI copy risks; all addressed | preserve permanent identity; do not duplicate same-role worker |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop795 | report_success | gpt-5.4 | 2026-07-10T22:15:00+08:00 | Halley read-only loop795 review recommended pure summary read-model and report surface passthrough without persistence/scorer/backtest/DB writes; applied | local TDD/regression/product verification authoritative |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop820 | assigned_read_only | gpt-5.4 | 2026-07-11T16:25:00+08:00 | Halley assigned read-only review for manifest conversion UI surface; report pending | local TDD/regression/product verification authoritative until report returns |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T16:25:00+08:00 · loop820/SYNC-835: `/quant/factor-mining` now shows “Manifest 草案预览” for `missing_source_onboarding_manifest_conversion_candidate_v1`, including entity/alternative source adapter/table/PIT/coverage/owner/material refs and source_adapter_manifest_review boundary. Permanent test-engineer thread received read-only review request on gpt-5.4. Verification: manifest UI + backend focused tests 3 passed, consumer/source + onboarding regression 17 passed, web build pass.
 - 2026-07-11T16:05:00+08:00 · loop819/SYNC-834: Added no-execution `missing_source_onboarding_manifest_conversion_candidate_v1`; completed `entity_linking_table` / `alternative_data_snapshot` onboarding review packets now produce review-only adapter/table/PIT/coverage/owner/material manifest drafts. Verification: focused manifest conversion tests 2 passed, adjacent onboarding/source-manifest/data-availability regression 16 passed, Ruff pass.
 - 2026-07-11T15:40:00+08:00 · loop818/SYNC-833: Added no-execution missing-source onboarding intake contract and review packet for `entity_linking_table` / `alternative_data_snapshot`; UI now exposes material field keys; missing-source/source-confirmation/candidate-availability sections extracted into small files and `factorMiningReview.tsx` is 242 pure LOC. Verification: onboarding + consumer flow + data availability tests 21 passed, Ruff pass, web build pass.
 - 2026-07-11T15:20:00+08:00 · loop817/SYNC-832: Data Availability Gate now accepts `missing_source_onboarding_request` and emits candidate-level `source_onboarding_explanations`; `/quant/factor-mining` shows “候选可用性解释” with blocked source ids, action id, required user inputs, required system work, and next step. Verification: data availability + consumer flow + missing-source onboarding/downstream tests 31 passed, Ruff pass, web build pass.
