@@ -1,4 +1,48 @@
-# Orchestrator Latest Report — SYNC-871 Controlled real backtest explicit POST preflight loop856
+# Orchestrator Latest Report — SYNC-872 Controlled real backtest preflight product surface loop857
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_REAL_BACKTEST_PREFLIGHT_PRODUCT_SURFACE_LOOP857"
+  changes:
+    - file: "apps/quant_assistant/web/src/pages/ControlledRealBacktestPreflightNotice.tsx"
+      summary: "Shows ready/blocked explicit POST preflight evidence and novice-readable target blockers."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Preserves explicit_post_preflight on success and failure responses, and changes controlled-real button copy to preflight semantics."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-preflight-product-surface.mjs"
+      summary: "Adds source-level product surface contract checks."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-preflight-product-browser.mjs"
+      summary: "Adds browser dogfood for success and blocked explicit POST preflight."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-runner-manifest-browser.mjs"
+      summary: "Aligns runner-ready browser regression with preflight wording."
+    - file: "apps/quant_assistant/web/package.json"
+      summary: "Adds preflight product surface and browser dogfood npm scripts."
+  verification:
+    - command: "npm run test:controlled-real-preflight-product-surface"
+      result: "RED missing notice component, then GREEN controlled real preflight product surface contract OK."
+    - command: "npm run test:controlled-real-preflight-product-browser"
+      result: "controlled real preflight product browser dogfood OK; page load POST count=0; explicit success and blocked POST paths covered."
+    - command: "npm run test:controlled-real-runner-manifest-browser"
+      result: "controlled real runner manifest browser dogfood OK."
+    - command: "npm run build"
+      result: "tsc + Vite build passed."
+    - command: "npm run lint"
+      result: "0 errors / 1 existing Fast Refresh warning in ShellLayoutContext.tsx."
+    - command: "git diff --check"
+      result: "pass with CRLF warnings only."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Preflight ready must be tested as a product state distinct from backtest started."
+      - "Blocked target mismatch must stay visible in the same confirmation card, not collapse into generic failed POST copy."
+    performance_note: "Permanent test-engineer report was absorbed; no duplicate worker created."
+  blockers: []
+  next: "CONTROLLED_REAL_BACKTEST_PREFLIGHT_TO_EXECUTION_PROGRESS_LOOP858"
+
+---
+
+# Orchestrator Previous Report — SYNC-871 Controlled real backtest explicit POST preflight loop856
 
 report:
   role_id: "orchestrator"

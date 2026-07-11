@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T14:57:54+08:00",
+  "updated_at": "2026-07-11T15:07:17+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-real-backtest-explicit-post-preflight-loop856",
-  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_PREFLIGHT_PRODUCT_SURFACE_LOOP857：把 explicit POST preflight 的 ready/blocked 证据接入 Jobs 用户可见确认结果与下一步说明；继续证明 preflight ready 不是 backtest started，并保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
+  "current_slice": "controlled-real-backtest-preflight-product-surface-loop857",
+  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_PREFLIGHT_TO_EXECUTION_PROGRESS_LOOP858：在 Jobs/Factor Library 中把 preflight 通过后的受控执行进度、blocked/failure/success 结果与下一步说明接入消费级路径；继续证明 preflight ready 不是 backtest started，并保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-871-controlled-real-backtest-explicit-post-preflight-loop856",
+  "last_tick": "SYNC-872-controlled-real-backtest-preflight-product-surface-loop857",
   "last_sync_sources": [
+    "SYNC-872 Controlled real backtest preflight product surface loop857",
+    "loop857 trigger: explicit POST preflight evidence existed but was not visible in the Jobs confirmation result",
+    "loop857 frontend: added ControlledRealBacktestPreflightNotice and wired trigger submissions to preserve explicit_post_preflight in success and failed responses",
+    "loop857 copy: action labels now say preflight, and notice states preflight ready is not backtest started / real backtest has not started",
+    "loop857 blocked UX: target_candidate_ids_mismatch and target_candidate_ids_required get novice-readable blockers while side effects remain all false",
+    "loop857 worker: permanent test-engineer read-only report absorbed; no duplicate worker created",
+    "loop857 verification: product surface contract pass, browser dogfood success+blocked pass, runner manifest browser regression pass, web build pass, lint 0 errors/1 existing warning",
+    "next: CONTROLLED_REAL_BACKTEST_PREFLIGHT_TO_EXECUTION_PROGRESS_LOOP858",
     "SYNC-871 Controlled real backtest explicit POST preflight loop856",
     "loop856 trigger: runner-ready page proved no page-load POST, but explicit POST target integrity still needed server-side fail-closed protection",
     "loop856 backend: added controlled_real_backtest_explicit_post_preflight_v1 and controlled_real_backtest_api_actions.py",

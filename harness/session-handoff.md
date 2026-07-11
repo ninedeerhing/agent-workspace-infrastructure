@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T14:57:54+08:00
+updated_at: 2026-07-11T15:07:17+08:00
+
+## Latest Handoff — SYNC-872 Controlled real backtest preflight product surface
+
+- [DONE] Added `ControlledRealBacktestPreflightNotice` for explicit POST preflight ready/blocked evidence.
+- [DONE] Jobs now preserves `explicit_post_preflight` on both success and failed POST responses.
+- [DONE] The controlled real action button now says preflight: `开始回测预检 / 再次点击确认预检 / 预检完成`.
+- [DONE] User-visible copy states `预检通过` and `真实回测还没有开始`; hidden markers preserve `preflight ready is not backtest started` and `will_run_backtest=false`.
+- [DONE] Blocked target cases show novice-readable explanations for `target_candidate_ids_mismatch` and `target_candidate_ids_required`.
+- [VERIFY] Source contract pass; browser dogfood success+blocked pass; runner manifest browser regression pass; web build pass; lint 0 errors / 1 existing Fast Refresh warning.
+- [WORKER] Permanent test-engineer loop857 read-only report returned success and was absorbed; no duplicate worker created.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_PREFLIGHT_TO_EXECUTION_PROGRESS_LOOP858`: connect preflight to controlled execution progress/result surface in Jobs/Factor Library.
+- [FORBIDDEN] No substitute Docker/DB/ports; no default runner; no backtest/table write from GET/page-load/list refresh; preflight ready is not backtest started.
 
 ## Latest Handoff — SYNC-871 Controlled real backtest explicit POST preflight
 

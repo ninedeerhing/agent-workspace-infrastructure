@@ -1,15 +1,15 @@
 {
-  "recorded_at": "2026-06-30T00:15:01+08:00",
-  "last_tick": "loop321-auto-backtest-no-execution-real-queue-write-plan-preflight",
-  "pytest_passed": 354,
-  "ruff": "pass",
+  "recorded_at": "2026-07-11T07:13:06Z",
+  "last_tick": "SYNC-872-controlled-real-backtest-preflight-product-surface-loop857",
+  "pytest_passed": null,
+  "ruff": "ok",
   "evidence_paths": [
-    "focused 24 passed",
-    "adjacent 354 passed",
-    "consumer 123 passed",
-    "Ruff pass",
-    "diff/marker/code-review/verifier pass"
+    "npm run test:controlled-real-preflight-product-surface: pass",
+    "npm run test:controlled-real-preflight-product-browser: pass",
+    "npm run test:controlled-real-runner-manifest-browser: pass",
+    "npm run build: pass",
+    "npm run lint: 0 errors / 1 existing warning"
   ],
-  "section5_ref": "5.652",
+  "section5_ref": "5.1195",
   "source": "manual"
 }
