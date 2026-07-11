@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T02:35:00+08:00
+updated_at: 2026-07-12T03:15:00+08:00
+
+## Latest Handoff — SYNC-909 post-acceptance-factor-library-feedback-to-new-mining-brief-loop895
+
+- [DONE] Factor Library trajectory outcome details now include a CTA to open `/quant/factor-mining` with `feedback_seed=trajectory_outcome`.
+- [DONE] FactorMining parses feedback seed query params, shows outcome/status/factor refs/plan refs/run ids/reason/strategy in ConstructionSpec, and submits them through `generation_mix.trajectory_outcome_details`.
+- [DONE] Jobs completed current-task cards keep the familiar “继续挖下一批” CTA while carrying feedback seed refs into the next FactorMining round; blocked/failed cards do not show the misleading next-batch CTA.
+- [DONE] Batch recap now shows “继承复盘” and success seed refs when job telemetry includes trajectory feedback outcome details.
+- [VERIFY] RED browser dogfood failed on missing Factor Library feedback-seed CTA. GREEN: feedback-to-mining browser pass, current-task browser pass, targeted recap pass, factor-universe review readiness pass, formal-review E2E pass, user-idea/no-idea dogfoods pass, build pass, lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread read-only product QA returned `partial_pass`; Factor Library chain was connected, Jobs CTA and feedback observability gaps were absorbed before sync.
+- [NEXT] `POST_ACCEPTANCE_FEEDBACK_SEED_OUTCOME_VARIANT_DOGFOOD_LOOP896`: add watchlist/failure/completed-no-report seed variant dogfood so only report-ready success expands success families.
 
 ## Latest Handoff — SYNC-908 post-acceptance-trajectory-memory-to-generator-scheduler-context-loop894
 

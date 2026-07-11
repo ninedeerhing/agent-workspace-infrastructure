@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T02:35:00+08:00",
+  "updated_at": "2026-07-12T03:15:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-trajectory-memory-to-generator-scheduler-context-loop894",
-  "next_atomic_action": "POST_ACCEPTANCE_FACTOR_LIBRARY_FEEDBACK_TO_NEW_MINING_BRIEF_LOOP895：把 Factor Library / Jobs 复盘中的 selected outcome_details 带回新一轮 FactorMining ConstructionSpec/MiningBrief，让用户从结果复盘页发起下一轮时自动继承 success/watchlist/failure 记忆，而不是只靠手动重新输入。",
+  "current_slice": "post-acceptance-factor-library-feedback-to-new-mining-brief-loop895",
+  "next_atomic_action": "POST_ACCEPTANCE_FEEDBACK_SEED_OUTCOME_VARIANT_DOGFOOD_LOOP896：补齐 watchlist/failure/completed-no-report 复盘种子变体的产品级 dogfood，确保只有 completed report-ready success_seed 会扩展成功族，watchlist/failure 不会被误当 success seed。",
   "next_after": "Continue continuous loop toward feedback-driven next-round factor construction and controlled product review readiness.",
   "blockers": [
     {
@@ -19,8 +19,17 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-908-post-acceptance-trajectory-memory-to-generator-scheduler-context-loop894",
+  "last_tick": "SYNC-909-post-acceptance-factor-library-feedback-to-new-mining-brief-loop895",
   "last_sync_sources": [
+    "SYNC-909 Post-acceptance Factor Library/Jobs feedback to new MiningBrief loop895",
+    "loop895 frontend: Factor Library trajectory outcome details now include a CTA to open the next FactorMining round with feedback_seed=trajectory_outcome",
+    "loop895 FactorMining: query feedback seeds are parsed into ConstructionSpec context and written into buildMiningBrief generation_mix.trajectory_outcome_details with feedback_memory_seeded metadata",
+    "loop895 Jobs: completed controlled-real current task cards keep the familiar continue-next-batch CTA while carrying feedback seed refs into the next FactorMining round",
+    "loop895 telemetry: job payload batch recap now shows inherited feedback-memory outcome count and success seed refs",
+    "loop895 refactor: FactorMining entry/spec panels, feedback seed helpers, Jobs current-task feedback seed helper, and feedback telemetry helper keep touched production files below LOC guardrails",
+    "loop895 worker: Kierkegaard fixed-thread read-only product QA returned partial_pass; Factor Library chain was connected, Jobs CTA and feedback recap observability gaps were absorbed before sync",
+    "loop895 verification: RED browser dogfood failed on missing Factor Library feedback-seed CTA; GREEN factor-library-feedback-to-mining-brief browser pass covering Factor Library and Jobs seed flows; current-task browser pass; Factor Library targeted recap pass; factor-universe review readiness pass; formal-review E2E pass; user-idea and no-idea dogfoods pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_FEEDBACK_SEED_OUTCOME_VARIANT_DOGFOOD_LOOP896",
     "SYNC-908 Post-acceptance trajectory memory to generator scheduler context loop894",
     "loop894 scheduler: adaptive generator schedule now consumes trajectory_outcome_details, boosts completed report-ready success seeds, keeps blocked/watchlist rows as repair-before-seed, and deprioritizes failed lineage",
     "loop894 universe summary: ConstructionSpec/MiningBrief generation_mix can carry trajectory_outcome_details into family_summaries, success_seed_factor_refs, trajectory memory outcome counts, and consumer steps",
