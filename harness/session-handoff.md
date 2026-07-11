@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T23:48:13+08:00
+updated_at: 2026-07-11T23:59:02+08:00
+
+## Latest Handoff — SYNC-899 post-acceptance-scoring-submission-state-context-loop885
+
+- [DONE] Jobs current task scoring confirmation card now preserves source context after explicit `run_mining_job` submission.
+- [DONE] Submitted/waiting-refresh state says: small-batch scoring request was submitted, wait for scoring result refresh, do not start a second task, and no backtest has run.
+- [DONE] The submitted state still carries `entry_mode`, `source_mode`, current A-E category, subclass quota, generator profile, user idea text, or auto exploration reason.
+- [DONE] `run_mining_job` button labels now use small-batch scoring language instead of generic simulation wording.
+- [DONE] Jobs entry-mode dogfood was split into reusable fixtures and now explicitly double-click confirms user-idea, no-idea-auto, and manual-category scoring requests.
+- [VERIFY] Passed: jobs entry-mode observability dogfood, controlled-real current-task card browser, formal-review E2E product dogfood, web build, web lint 0 errors / 1 existing warning, diff check; pure LOC component/script/fixture = 126/180/142.
+- [WORKER] Kierkegaard read-only qa-product-reviewer returned `pass_with_minor_gaps`; auto/manual submitted assertions and scoring-specific button wording were absorbed.
+- [NEXT] `POST_ACCEPTANCE_SCORING_TRIGGER_SIDE_EFFECTS_READMODEL_LOOP886`: add backend/API/read-model side-effect proof for explicit scoring trigger without DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-898 post-acceptance-scoring-confirmation-entry-context-loop884
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T23:48:13+08:00",
+  "updated_at": "2026-07-11T23:59:02+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-scoring-confirmation-entry-context-loop884",
-  "next_atomic_action": "POST_ACCEPTANCE_SCORING_SUBMISSION_STATE_CONTEXT_LOOP885：把 loop884 的评分确认来源上下文继续延续到用户点击确认后的提交/等待刷新状态；确认后当前任务卡仍显示这批来自哪里、刚刚确认了什么、下一步应等待评分结果而不是寻找第二入口或误以为已经回测。补 browser dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward scoring submission clarity, factor library context, and controlled scoring readiness.",
+  "current_slice": "post-acceptance-scoring-submission-state-context-loop885",
+  "next_atomic_action": "POST_ACCEPTANCE_SCORING_TRIGGER_SIDE_EFFECTS_READMODEL_LOOP886：为 run_mining_job 小批评分确认补后端/API/read-model 层 side-effect 证据，证明页面加载无 POST、显式点击路径可被区分、评分确认不会创建替代 DB/Docker/runner、不会自动 backtest；优先用现有 mock/API 单测和浏览器 dogfood，不连接真实 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward controlled scoring readiness, API side-effect proof, and factor library context continuity.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,17 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-898-post-acceptance-scoring-confirmation-entry-context-loop884",
+  "last_tick": "SYNC-899-post-acceptance-scoring-submission-state-context-loop885",
   "last_sync_sources": [
+    "SYNC-899 Post-acceptance scoring submission state context loop885",
+    "loop885 frontend: Jobs scoring confirmation context now switches copy when run_mining_job submission status becomes submitting/succeeded",
+    "loop885 product copy: submitted state says small-batch scoring request was submitted, wait for scoring result refresh, do not start a second task, and no backtest has run",
+    "loop885 button copy: run_mining_job action labels now use small-batch scoring wording instead of generic simulation/generation wording",
+    "loop885 dogfood: three entry modes now each perform explicit double-click scoring confirmation and assert submitted/waiting-refresh source context",
+    "loop885 refactor: Jobs entry-mode dogfood fixtures split out so script remains under 250 pure LOC; changed files are 126/180/142 pure LOC",
+    "loop885 verification: jobs entry-mode dogfood pass; controlled-real current-task-card browser pass; formal-review E2E product dogfood pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning; diff check pass",
+    "loop885 worker: Kierkegaard read-only qa-product-reviewer pass_with_minor_gaps; P1 submitted auto/manual coverage and run_mining_job button wording were absorbed",
+    "next: POST_ACCEPTANCE_SCORING_TRIGGER_SIDE_EFFECTS_READMODEL_LOOP886",
     "SYNC-898 Post-acceptance scoring confirmation entry context loop884",
     "loop884 frontend: Jobs current task confirmation card now shows scoring-confirmation source context when action_id=run_mining_job",
     "loop884 product copy: the card says next step is small-batch scoring confirmation, why explicit button authorization is required, and confirmation will not automatically run backtests",

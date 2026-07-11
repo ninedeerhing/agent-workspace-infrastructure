@@ -1,26 +1,22 @@
-# Orchestrator Latest Report — SYNC-898 Post-acceptance scoring confirmation entry context loop884
+# Orchestrator Latest Report — SYNC-899 Post-acceptance scoring submission state context loop885
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "POST_ACCEPTANCE_SCORING_CONFIRMATION_ENTRY_CONTEXT_LOOP884"
+  task: "POST_ACCEPTANCE_SCORING_SUBMISSION_STATE_CONTEXT_LOOP885"
   changes:
     - file: "apps/quant_assistant/web/src/pages/JobsPageScoringConfirmationEntryContext.tsx"
-      summary: "Adds a scoring-confirmation source context component for run_mining_job tasks, showing entry mode, current category, subclass quota, generation strategy, idea/auto reason, explicit authorization rationale, and no-auto-backtest guidance."
+      summary: "Adds submissionStatus handling so submitted/waiting-refresh state says the small-batch scoring request was submitted, preserves source context, tells users to wait for scoring results, prevents second-task confusion, and keeps no-auto-backtest guidance."
     - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
-      summary: "Mounts the scoring confirmation context inside the current task confirmation card, between next-step copy and the confirmation button."
+      summary: "Passes trigger submission state into the scoring context component and uses small-batch scoring-specific labels for run_mining_job confirmation buttons."
     - file: "apps/quant_assistant/web/scripts/check-jobs-entry-mode-observability-dogfood.mjs"
-      summary: "Extends the three-entry Jobs dogfood with run_mining_job actions and assertions for scoring confirmation source context with zero page-load POSTs."
+      summary: "Extends browser dogfood to explicitly confirm user-idea, no-idea-auto, and manual-category scoring requests, then assert submitted-state source context and exactly three explicit-click mock scoring POSTs."
+    - file: "apps/quant_assistant/web/scripts/check-jobs-entry-mode-observability-fixtures.mjs"
+      summary: "Extracts shared mocked Jobs fixtures so the dogfood script stays below the file-size warning band and can reuse the same three entry-mode jobs."
   verification:
     - command: "npm run test:jobs-entry-mode-observability-dogfood"
       result: "pass"
     - command: "npm run test:controlled-real-current-task-card-browser"
-      result: "pass"
-    - command: "npm run test:factor-universe-user-idea-dogfood"
-      result: "pass"
-    - command: "npm run test:factor-universe-no-idea-auto-dogfood"
-      result: "pass"
-    - command: "npm run test:factor-universe-multi-source-mode-dogfood"
       result: "pass"
     - command: "npm run test:formal-review-e2e-product-dogfood"
       result: "pass"
@@ -34,8 +30,8 @@ report:
     workload_delta: "unchanged"
     mistakes: []
     lessons:
-      - "A confirmation CTA needs product-language provenance, not only technical source_mode diagnostics."
-      - "Worker partial-pass reports should be absorbed before sync when they identify P0/P1 user clarity gaps."
-    performance_note: "Loop884 preserved entry context through the scoring confirmation CTA and proved it with browser dogfood."
+      - "Submitted/waiting-refresh states must retain provenance; otherwise users cannot tell whether to wait, click elsewhere, or whether a backtest has started."
+      - "Generic trigger labels are misleading for scoring actions; action-specific labels are part of the product contract."
+    performance_note: "Loop885 preserved source context through explicit scoring submission and proved it across all three entry modes."
   blockers: []
-  next: "POST_ACCEPTANCE_SCORING_SUBMISSION_STATE_CONTEXT_LOOP885"
+  next: "POST_ACCEPTANCE_SCORING_TRIGGER_SIDE_EFFECTS_READMODEL_LOOP886"
