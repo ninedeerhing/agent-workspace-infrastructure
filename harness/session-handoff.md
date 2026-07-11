@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T05:55:00+08:00
+updated_at: 2026-07-12T06:25:00+08:00
+
+## Latest Handoff — SYNC-915 post-acceptance-feedback-lineage-to-factor-library-recap-loop901
+
+- [DONE] Factor Library `real_backtest_feedback_v1` now carries `candidate_lineage_previews` from mining job result when present.
+- [DONE] Added `FactorLibraryCandidateLineagePreview` and rendered candidate id, lineage, generator action, and quality gate reason in real-backtest recap cards.
+- [DONE] Factor Library targeted recap dogfood now covers success_seed, watchlist, and failure_path candidate lineage copy.
+- [VERIFY] `tests/test_factor_library_insights_unit.py` 18 passed; Factor Library targeted recap browser pass; formal-review E2E pass; factor-universe review readiness pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; confirmed backend bridge existed and front-end final consumption/dogfood was the gap.
+- [NEXT] `POST_ACCEPTANCE_FACTOR_LIBRARY_LINEAGE_ROUNDTRIP_TO_NEXT_GENERATION_LOOP902`: feed Factor Library-visible lineage back into the next FactorMining seed / MiningBrief.
 
 ## Latest Handoff — SYNC-914 post-acceptance-feedback-seeded-lineage-to-job-payload-loop900
 
