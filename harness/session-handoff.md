@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T11:55:00+08:00
+updated_at: 2026-07-11T12:20:00+08:00
+
+## Latest Handoff — SYNC-823 Factor-mining UI source confirmation surface
+
+- [DONE] `/quant/factor-mining` now exposes a “数据源确认清单” source review surface.
+- [DONE] `SOURCE_CONFIRMATION_ITEMS` lists real A/E source ids and statuses: partial sources wait for manifest confirmation; missing sources are blocked.
+- [DONE] The UI shows action_id `confirm_factor_universe_source_adapter_manifests`.
+- [DONE] Copy states confirmation only enters source review and will not trigger scoring/backtest or create substitute Docker/DB/port.
+- [VERIFY] Consumer-flow source tests: 7 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `PRODUCT_SELF_VALIDATION_SOURCE_CONFIRMATION_SURFACE_LOOP809`: product-level self-validation that UI/API/catalog/source gate/data availability are aligned.
+- [FORBIDDEN] Do not treat source review as readiness; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-822 Data availability gate catalog source status
 
