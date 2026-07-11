@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T11:40:00+08:00
+updated_at: 2026-07-11T11:55:00+08:00
+
+## Latest Handoff — SYNC-822 Data availability gate catalog source status
+
+- [DONE] `build_data_availability_gate_result_v1(...)` now accepts optional `source_adapter_confirmation_gate`.
+- [DONE] With source gate provided, A/E candidate required/missing sources become real source ids instead of generic `*_confirmation_required` placeholders.
+- [DONE] Candidate result JSON now includes `source_confirmation_statuses`.
+- [DONE] Old calls without source gate keep the previous generic behavior for compatibility.
+- [WORKER] Godel/verifier confirmed the intended three-layer boundary: catalog facts, source adapter confirmation, candidate data availability.
+- [VERIFY] Data-availability/downstream tests: 20 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [NEXT] `FACTOR_MINING_UI_SOURCE_CONFIRMATION_SURFACE_LOOP808`: expose source confirmation states in the user-facing flow.
+- [FORBIDDEN] Do not treat data availability mapping as execution readiness; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-821 Factor-universe source adapter confirmation gate
 

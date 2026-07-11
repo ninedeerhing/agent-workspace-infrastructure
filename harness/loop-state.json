@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T11:40:00+08:00",
+  "updated_at": "2026-07-11T11:55:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "factor-universe-source-adapter-confirmation-gate-loop806",
-  "next_atomic_action": "DATA_AVAILABILITY_GATE_CATALOG_SOURCE_STATUS_LOOP807：让 Data Availability Gate 消费 factor_universe_source_adapter_confirmation_gate_v1 / local source catalog 的真实 source_id 与 manifest 状态，把 A/E 候选的 missing_sources 从泛化 *_confirmation_required 推进为 financial_statement_pit / valuation_snapshot_pit / industry_classification_history / corporate_action_adjustment / news_event_stream / announcement_event_stream / entity_linking_table / sentiment_score_stream / alternative_data_snapshot 等可复盘来源；仍不得标 ready、不得执行 scorer/backtest、不得创建替代 Docker/DB/port。",
-  "next_after": "Continue targeted repair loops until candidate-level data availability, source adapter confirmation, and UI/API self-validation all reflect the same source catalog before formal human review.",
+  "current_slice": "data-availability-gate-catalog-source-status-loop807",
+  "next_atomic_action": "FACTOR_MINING_UI_SOURCE_CONFIRMATION_SURFACE_LOOP808：把 source-adapter confirmation gate 与 Data Availability Gate 的真实 source_id/status 汇总到 /quant/factor-mining 或当前任务的用户确认面，用户能看到每个 A/E 源是 waiting_for_manifest_confirmation、blocked_missing_source、confirmed_partial_for_source_review，且明确确认后只进入 source review、不触发评分/回测；不得标 ready、不得执行 scorer/backtest、不得创建替代 Docker/DB/port。",
+  "next_after": "Continue until product UI/API shows source confirmation states and candidate-level data availability from the same catalog before formal human review.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-821-factor-universe-source-adapter-confirmation-gate-loop806",
+  "last_tick": "SYNC-822-data-availability-gate-catalog-source-status-loop807",
   "last_sync_sources": [
+    "SYNC-822 Data availability gate catalog source status loop807",
+    "loop807 trigger: next action required candidate-level Data Availability Gate to consume source-adapter/local catalog statuses instead of generic confirmation placeholders",
+    "loop807 backend: build_data_availability_gate_result_v1 now accepts source_adapter_confirmation_gate and maps A/E candidates to real source ids",
+    "loop807 output: candidate results now include source_confirmation_statuses dict; A/E missing_sources can be financial_statement_pit/news_event_stream/entity_linking_table etc",
+    "loop807 compatibility: old calls without source_adapter_confirmation_gate keep existing generic *_confirmation_required behavior",
+    "loop807 worker: Godel read-only verifier confirmed the three-layer boundary catalog -> source adapter gate -> data availability gate and recommended the same minimal fields",
+    "loop807 verification: data-availability/downstream tests 20 passed; Ruff pass",
+    "next: FACTOR_MINING_UI_SOURCE_CONFIRMATION_SURFACE_LOOP808",
     "SYNC-821 Factor-universe source adapter confirmation gate loop806",
     "loop806 trigger: loop-state next action required turning local source catalog partial/missing entries into user-confirmable source adapter/manifest gate",
     "loop806 backend: added factor_universe_source_adapter_confirmation_gate_v1 read-only contract; partial sources wait for adapter/table/PIT/coverage/owner manifest refs, missing sources are not user-confirmable",
