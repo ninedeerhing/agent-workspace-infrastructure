@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T17:35:00+08:00
+updated_at: 2026-07-11T18:05:00+08:00
+
+## Latest Handoff — SYNC-882 formal-review-live-product-dogfood-loop868
+
+- [DONE] loop868 live product dogfood used existing runtime only: frontend `127.0.0.1:5273`, API `127.0.0.1:8350`, existing `qa-pg-alt` container `7b7346a0cdfc` on `127.0.0.1:55432`.
+- [DONE] Found stale API runtime: old 8350 process returned 404 for `/api/v1/quant/formal-review-runtime-readiness`. Replaced it on the same 8350 port with latest FastAPI using inherited `PYTHONPATH=src`.
+- [DONE] Readiness API now returns `ready_for_product_review`, DB `quant_assistant`, daily_bar/daily_trade_status `3995` days, max trade_date `2026-06-18`, official runner binding verified, and no scorer/backtest/write/page-load execution.
+- [DONE] Added `web/scripts/check-formal-review-live-product-dogfood.mjs` and `npm run test:formal-review-live-product-dogfood`. It visits live factor-mining, Jobs readiness, Factor Library, and Backtest result pages without mocks and forbids runtime POSTs.
+- [VERIFY] Passed: live product dogfood; final product self-check; formal-review E2E product dogfood after serial rerun; web build; lint 0 errors / 1 existing warning.
+- [WORKERS] Meitner/code-reviewer was dispatched for read-only live dogfood risk review, but `wait_agent` returned completed with no report body. Record as worker channel/report anomaly; do not use as completion evidence.
+- [BOUNDARY] No `.env`/DSN/secret print; no substitute Docker/DB/port; no scorer/backtest; no DB write; same-port API runtime replacement only.
+- [NEXT] `FORMAL_HUMAN_REVIEW_ENTRY_PACKAGE_REFRESH_LOOP869`: refresh formal human review package and step-by-step user acceptance instructions from current product dogfood evidence.
 
 ## Latest Handoff — SYNC-881 formal-review-final-product-self-check-loop867
 
