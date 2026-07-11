@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T14:40:00+08:00",
+  "updated_at": "2026-07-11T15:00:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "ae-missing-source-onboarding-ui-loop815",
-  "next_atomic_action": "MISSING_SOURCE_ONBOARDING_PRODUCT_SELF_VALIDATION_LOOP816：把缺源接入请求纳入 product_self_validation_gate_v1，要求 /quant/factor-mining route evidence 显示 missing-source onboarding surface、entity_linking_table、alternative_data_snapshot、start_factor_universe_missing_source_onboarding 和 no-execution boundary；缺失时 fail-closed，不得触发评分/回测/DB 写入/Docker/port。",
-  "next_after": "Continue until missing-source onboarding, product self-validation, candidate availability, and real source onboarding boundaries form a closed loop.",
+  "current_slice": "missing-source-onboarding-product-gate-loop816",
+  "next_atomic_action": "MISSING_SOURCE_ONBOARDING_CANDIDATE_AVAILABILITY_EXPLANATION_LOOP817：把 missing-source onboarding request 与 E 类候选 Data Availability Gate 的 missing_sources/source_confirmation_statuses 用户解释对齐，使候选预览/复盘能说明哪些 E 类候选因 entity_linking_table 或 alternative_data_snapshot 只能停留在缺源待接入；不得伪造 ready，不得触发评分/回测/DB 写入/Docker/port。",
+  "next_after": "Continue until missing-source onboarding, product self-validation, candidate availability explanations, and real source onboarding boundaries form a closed loop.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-830-ae-missing-source-onboarding-ui-loop815",
+  "last_tick": "SYNC-831-missing-source-onboarding-product-gate-loop816",
   "last_sync_sources": [
+    "SYNC-831 Missing source onboarding product gate loop816",
+    "loop816 trigger: missing-source onboarding UI needed product self-validation hard gates before any formal review",
+    "loop816 gate: product_self_validation_gate_v1 requires has_missing_source_onboarding_surface route evidence and factor_universe_missing_source_onboarding_request API evidence",
+    "loop816 verification: product gate + consumer flow + missing-source onboarding tests 22 passed; Ruff pass",
+    "next: MISSING_SOURCE_ONBOARDING_CANDIDATE_AVAILABILITY_EXPLANATION_LOOP817",
     "SYNC-830 A/E missing source onboarding UI loop815",
     "loop815 trigger: loop814 missing source onboarding request needed a visible product surface before users can act on A/E data gaps",
     "loop815 UI: /quant/factor-mining shows 缺源接入请求, contract kind, action id, entity_linking_table, alternative_data_snapshot, blockers, user inputs, system work, and no-execution boundary",

@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T14:40:00+08:00 · SYNC-830 · A/E missing source onboarding UI
+Updated: 2026-07-11T15:00:00+08:00 · SYNC-831 · missing source onboarding product gate
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop815/SYNC-830 completed `AE_MISSING_SOURCE_ONBOARDING_UI_SURFACE_LOOP815` by exposing the missing-source onboarding request on `/quant/factor-mining`. The page now shows `entity_linking_table` and `alternative_data_snapshot`, why they block E-class real candidates, required user inputs, system onboarding work, and keeps all scoring/backtest/DB/Docker side effects false.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop816/SYNC-831 completed `MISSING_SOURCE_ONBOARDING_PRODUCT_SELF_VALIDATION_LOOP816` by adding missing-source onboarding UI/API hard gates to `product_self_validation_gate_v1`.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `MISSING_SOURCE_ONBOARDING_PRODUCT_SELF_VALIDATION_LOOP816` — add the missing-source onboarding surface to `product_self_validation_gate_v1`; require route evidence for the surface, two missing source ids, action id, and no-execution boundary; fail closed if absent and do not trigger scoring/backtest/DB/Docker/ports.
+- Next atomic action: `MISSING_SOURCE_ONBOARDING_CANDIDATE_AVAILABILITY_EXPLANATION_LOOP817` — align missing-source onboarding request with E-class candidate Data Availability Gate explanations so candidate preview/recap can explain which E candidates are blocked by `entity_linking_table` or `alternative_data_snapshot`; do not fake readiness or trigger scoring/backtest/DB/Docker/ports.
 
 ## EXCLUDE: Default Exclusions
 

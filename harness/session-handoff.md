@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T14:40:00+08:00
+updated_at: 2026-07-11T15:00:00+08:00
+
+## Latest Handoff — SYNC-831 Missing source onboarding product gate
+
+- [DONE] `product_self_validation_gate_v1` now requires `has_missing_source_onboarding_surface=true`.
+- [DONE] Missing route evidence produces `missing_source_onboarding_ui_not_visible`.
+- [DONE] Missing API contract key `factor_universe_missing_source_onboarding_request` produces `missing_source_onboarding_request_not_exposed`.
+- [VERIFY] Product gate + consumer flow + missing-source onboarding tests: 22 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [NEXT] `MISSING_SOURCE_ONBOARDING_CANDIDATE_AVAILABILITY_EXPLANATION_LOOP817`: align candidate availability explanations with missing-source onboarding gaps.
+- [FORBIDDEN] Do not fake source readiness; do not generate real E candidates from missing sources; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-830 A/E missing source onboarding UI
 
