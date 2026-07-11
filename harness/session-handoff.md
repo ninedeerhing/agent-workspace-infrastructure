@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-12T01:05:00+08:00
+updated_at: 2026-07-12T01:25:00+08:00
+
+## Latest Handoff — SYNC-905 post-acceptance-controlled-real-progress-context-loop891
+
+- [DONE] `controlled_backtest_progress_report_surface_v1` now includes `controlled_backtest_progress_handoff_context_v1`.
+- [DONE] The progress handoff context carries status, factor refs, plan refs, accepted/skipped/failed refs, execution confirmation ref, run ids, runner ref, `required_db_runtime=qa-pg-alt`, no substitute DB/Docker markers, page-load no-execution marker, will-run marker, executed plan count, and next-step label.
+- [DONE] Bridge payloads preserve `execution_handoff_context`, so progress/report surfaces can keep the execution-confirmed plan/factor/runtime boundary.
+- [DONE] Jobs progress cards now show: progress plan refs, factor refs, run ids, DB/runner boundary, no-substitute runtime markers, page-load boundary, execution marker, and “补齐运行条件后仍需通过当前任务卡继续受控执行”.
+- [DONE] Frontend status cards were extracted into `ControlledBacktestStatusCards.tsx`; touched production Python/frontend/script files stay below 250 LOC.
+- [VERIFY] RED API unit missed `progress_handoff_context`; RED browser dogfood missed progress handoff copy; GREEN targeted API 3 passed, full API unit 63 passed, Ruff passed, current-task browser passed, jobs entry-mode dogfood passed, formal-review E2E passed, build passed, lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread read-only product QA assignment was sent with model_tier=gpt-5.4; no usable report body was available before sync, so local RED/GREEN verification is the evidence.
+- [NEXT] `POST_ACCEPTANCE_FACTOR_LIBRARY_RESULT_CONTINUITY_CONTEXT_LOOP892`: carry controlled-real progress/report handoff into Factor Library result recap without page-load execution or substitute runtime.
 
 ## Latest Handoff — SYNC-904 post-acceptance-execution-confirmation-context-loop890
 
