@@ -1,6 +1,22 @@
 # Session Handoff
 
-updated_at: 2026-07-11T11:24:00+08:00
+updated_at: 2026-07-11T11:40:00+08:00
+
+## Latest Handoff — SYNC-821 Factor-universe source adapter confirmation gate
+
+- [DONE] Added `factor_universe_source_adapter_confirmation_gate_v1`.
+- [DONE] Partial A/E sources require `adapter_ref`, `table_refs`, `pit_policy_ref`, `coverage_watermark_ref`, and `owner_confirmation_ref` manifest fields.
+- [DONE] Missing sources cannot be user-confirmed.
+- [DONE] Confirmed partial sources only enter `confirmed_partial_for_source_review`; they remain `partial_not_ready_for_scoring`.
+- [DONE] Creation plan now exposes `factor_universe_source_adapter_confirmation_gate`.
+- [DONE] `product_self_validation_gate_v1` blocks `source_adapter_confirmation_gate_not_exposed`.
+- [DONE] `/quant/factor-mining` production readiness panel now includes “源 adapter / manifest 确认”.
+- [VERIFY] Source-adapter/product/catalog/data-source tests: 15 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [VERIFY] Creation-plan smoke: `factor_universe_source_adapter_confirmation_gate_v1`, `blocked_waiting_for_source_adapter_manifest`, `waiting_for_manifest_confirmation`, no real A/E candidate generation.
+- [NEXT] `DATA_AVAILABILITY_GATE_CATALOG_SOURCE_STATUS_LOOP807`: make candidate-level Data Availability Gate consume real source ids and manifest statuses from catalog/source-adapter gate.
+- [FORBIDDEN] Do not mark A/E sources ready from manifest confirmation alone; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-820 Factor-universe local source catalog and product self-validation
 

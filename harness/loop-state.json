@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T11:24:00+08:00",
+  "updated_at": "2026-07-11T11:40:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "factor-universe-local-source-catalog-and-product-self-validation-loop805",
-  "next_atomic_action": "AE_SOURCE_ADAPTER_CONFIRMATION_AND_UI_GATE_LOOP806：把 factor_universe_local_source_catalog_v1 的 partial/missing 结果推进为下一目标，优先为 A/E 源建立用户可确认的 source adapter/manifest 接线计划与 UI 确认面：financial_statement_pit、valuation_snapshot_pit、industry_classification_history、corporate_action_adjustment、news_event_stream、announcement_event_stream、sentiment_score_stream 只能 partial，entity_linking_table 与 alternative_data_snapshot 仍 missing；不得伪装 ready，不得执行 scorer/backtest，不得创建替代 Docker/DB/port。",
-  "next_after": "Continue targeted repair loops until A/E source adapter confirmation, local catalog visibility, and product self-validation are strong enough for formal human review; remaining gaps become next loop goals, not stop reasons.",
+  "current_slice": "factor-universe-source-adapter-confirmation-gate-loop806",
+  "next_atomic_action": "DATA_AVAILABILITY_GATE_CATALOG_SOURCE_STATUS_LOOP807：让 Data Availability Gate 消费 factor_universe_source_adapter_confirmation_gate_v1 / local source catalog 的真实 source_id 与 manifest 状态，把 A/E 候选的 missing_sources 从泛化 *_confirmation_required 推进为 financial_statement_pit / valuation_snapshot_pit / industry_classification_history / corporate_action_adjustment / news_event_stream / announcement_event_stream / entity_linking_table / sentiment_score_stream / alternative_data_snapshot 等可复盘来源；仍不得标 ready、不得执行 scorer/backtest、不得创建替代 Docker/DB/port。",
+  "next_after": "Continue targeted repair loops until candidate-level data availability, source adapter confirmation, and UI/API self-validation all reflect the same source catalog before formal human review.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-820-factor-universe-local-source-catalog-and-product-self-validation-loop805",
+  "last_tick": "SYNC-821-factor-universe-source-adapter-confirmation-gate-loop806",
   "last_sync_sources": [
+    "SYNC-821 Factor-universe source adapter confirmation gate loop806",
+    "loop806 trigger: loop-state next action required turning local source catalog partial/missing entries into user-confirmable source adapter/manifest gate",
+    "loop806 backend: added factor_universe_source_adapter_confirmation_gate_v1 read-only contract; partial sources wait for adapter/table/PIT/coverage/owner manifest refs, missing sources are not user-confirmable",
+    "loop806 bridge: creation plan now exposes factor_universe_source_adapter_confirmation_gate top-level, still with can_generate_real_a_candidates=false and can_generate_real_e_candidates=false",
+    "loop806 product gate: product_self_validation_gate_v1 now blocks source_adapter_confirmation_gate_not_exposed before formal human review",
+    "loop806 UI: /quant/factor-mining production readiness panel now includes source adapter/manifest confirmation card",
+    "loop806 verification: source-adapter/product/catalog/data-source tests 15 passed; Ruff pass; npm run build pass; creation-plan smoke confirms blocked_waiting_for_source_adapter_manifest and no real generation",
+    "next: DATA_AVAILABILITY_GATE_CATALOG_SOURCE_STATUS_LOOP807",
     "SYNC-820 Factor-universe local source catalog and product self-validation loop805",
     "loop805 trigger: user said remaining gaps must become next goals instead of stopping",
     "loop805 backend: added factor_universe_local_source_catalog_v1 read-only contract with A/E local source entries, support_status, PIT status, local tables, jobs, adapter refs, blocker flags, next actions, and all-false side effects",
