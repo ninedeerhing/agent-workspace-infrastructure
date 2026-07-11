@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T07:55:00+08:00
+updated_at: 2026-07-12T08:25:00+08:00
+
+## Latest Handoff — SYNC-919 post-acceptance-feedback-driven-scoring-result-lineage-context-loop905
+
+- [DONE] Small-batch scoring result read-model now carries `feedback_lineage_context`.
+- [DONE] The result page displays scoring lineage refs, A-E lineage class codes, `seed_eligible_refs`, scheduler action, feedback signal, scheduler quota, and scored/held/rejected refs.
+- [DONE] Refactored scoring result helpers into `small_batch_scoring_feedback_lineage.py` and `small_batch_final_accepted_confirmation.py`; touched production files are under 250 pure LOC.
+- [VERIFY] Backend scoring/API unit 68 passed; controlled-real current task browser pass; Jobs entry-mode dogfood pass; feedback-lineage payload pass; formal-review E2E pass; factor-universe review readiness pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; its scoring-result lineage visibility gap was absorbed. Held/rejected reason depth becomes loop906 scope.
+- [NEXT] `POST_ACCEPTANCE_SCORING_RESULT_HELD_REJECTED_REASON_CONTEXT_LOOP906`: turn scored/held/rejected refs into consumer-readable provisional/held/rejected reason groups.
 
 ## Latest Handoff — SYNC-918 post-acceptance-feedback-driven-small-batch-scoring-path-loop904
 

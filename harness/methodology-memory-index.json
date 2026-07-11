@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-07-11T23:55:00Z",
+  "updated_at": "2026-07-12T00:25:00Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
   "active_entry_count": 67,
   "archived_round_count": 0,
@@ -1565,9 +1565,9 @@
     "archived_rounds": [],
     "active_step_digests": 39,
     "completed_tasks_hint": [
-      "SYNC-799 loop785 complete: product self-validation was reopened after user dogfooding; batch construction visualization and reviewability are now visible and covered by a hard product gate.",
-      "formal-human-review-entry-package-refresh-loop869",
-      "SYNC-883-formal-human-review-entry-package-refresh-loop869"
+      "SYNC-919 loop905 complete: scoring result read-model and panel now preserve feedback lineage / seed / scheduler provenance after result refresh.",
+      "post-acceptance-feedback-driven-scoring-result-lineage-context-loop905",
+      "SYNC-919-post-acceptance-feedback-driven-scoring-result-lineage-context-loop905"
     ],
     "ttl_days": 180
   }
