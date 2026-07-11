@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-11T21:35:00+08:00
+updated_at: 2026-07-11T22:05:00+08:00
+
+## Latest Handoff — SYNC-851 controlled scoring execution bridge re-entry
+
+- [DONE] `real_scoring_execution_bridge_v1` now accepts `controlled_scoring_readiness_reentry_v1`.
+- [DONE] Bridge candidate refs come from `readiness_reentry.ready_candidate_refs` when re-entry is ready.
+- [DONE] Non-ready re-entry adds `controlled_scoring_readiness_not_ready` and exposes grouped blockers without execution.
+- [DONE] Creation plan exposes `factor_construction_real_scoring_execution_bridge_reentry`.
+- [VERIFY] Focused bridge/re-entry tests: 4 passed.
+- [VERIFY] Bridge + readiness + small-batch + closure + creation-plan regression: 32 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `real_scoring_execution_bridge_v1 blocked ... False False`.
+- [NEXT] `CONTROLLED_SCORING_EXECUTOR_REENTRY_LOOP837`: feed bridge-ready refs into controlled scorer executor.
+- [FORBIDDEN] Do not execute scorer/backtest unless bridge is ready and injected writer/runner, DSN, idempotency, rollback/audit, and UI authorization are explicit; do not create substitute Docker/DB/port.
 
 ## Latest Handoff — SYNC-850 A/E controlled scoring readiness re-entry
 

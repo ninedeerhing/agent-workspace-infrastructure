@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T21:35:00+08:00 · SYNC-850 · A/E controlled scoring readiness re-entry
+Updated: 2026-07-11T22:05:00+08:00 · SYNC-851 · controlled scoring execution bridge re-entry
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 

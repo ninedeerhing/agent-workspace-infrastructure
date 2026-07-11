@@ -1,3 +1,52 @@
+# Orchestrator Latest Report — SYNC-851 controlled scoring execution bridge re-entry loop836
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_SCORING_EXECUTION_BRIDGE_REENTRY_LOOP836"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_real_scoring_execution_bridge.py"
+      summary: "Bridge now consumes controlled_scoring_readiness_reentry_v1 and uses ready_candidate_refs only when re-entry is ready."
+    - file: "apps/quant_assistant/tests/test_factor_construction_real_scoring_execution_bridge_unit.py"
+      summary: "Covers ready re-entry consumption and non-ready re-entry fail-closed blockers."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Exposes factor_construction_real_scoring_execution_bridge_reentry in creation plan."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Covers creation-plan bridge re-entry exposure."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-851 and next loop837."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-851."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop837."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop837."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to controlled scoring executor re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-851."
+  verification:
+    - command: "uv run pytest -q tests/test_batch_mining_flow_unit.py -k real_scoring_execution_bridge_reentry"
+      result: "RED KeyError before creation-plan bridge exposure."
+    - command: "uv run pytest -q tests/test_factor_construction_real_scoring_execution_bridge_unit.py tests/test_batch_mining_flow_unit.py -k \"reentry or real_scoring_execution_bridge_reentry\""
+      result: "4 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_real_scoring_execution_bridge_unit.py tests/test_factor_construction_controlled_scoring_readiness_reentry_unit.py tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_universe_ae_source_review_validation_closure_unit.py tests/test_batch_mining_flow_unit.py"
+      result: "32 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "creation-plan smoke for factor_construction_real_scoring_execution_bridge_reentry"
+      result: "real_scoring_execution_bridge_v1 blocked ['controlled_scoring_readiness_not_ready', 'small_batch_request_not_ready', 'candidate_refs_missing', 'injected_runner_missing', 'idempotency_key_missing', 'rollback_audit_ref_missing', 'qa_pg_alt_runtime_not_ready'] False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Execution bridge must consume the latest controlled readiness refs, not older request refs, so discovered gaps become the next executor target rather than a stop point."
+    performance_note: "Loop836 closed with RED/GREEN/regression/Ruff/smoke; no duplicate worker created."
+  blockers: []
+  next: "CONTROLLED_SCORING_EXECUTOR_REENTRY_LOOP837"
+
+---
+
 # Orchestrator Latest Report — SYNC-850 A/E controlled scoring readiness re-entry loop835
 
 report:
