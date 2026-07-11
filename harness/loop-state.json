@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T23:07:36+08:00",
+  "updated_at": "2026-07-11T23:14:17+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-generator-quota-and-seeded-demo-coverage-loop876",
-  "next_atomic_action": "POST_ACCEPTANCE_SOURCE_MODE_AUTHORITY_AND_DOGFOOD_LOOP877：修复 generation_mix.source_mode 不是后端权威输入的漂移；让前端选择的 source_mode 经 API/creation plan/registry 白名单消费，并补单测与 browser dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward truthful source-mode authority and end-to-end product dogfood.",
+  "current_slice": "post-acceptance-source-mode-authority-and-dogfood-loop877",
+  "next_atomic_action": "POST_ACCEPTANCE_SOURCE_MODE_AWARE_GENERATOR_MIX_LOOP878：让 canonical source_mode 不只回显 telemetry，而是影响 generator family mix / quota / recap；formula seed 优先公式论文库与程序合成，idea seed 优先 LLM/程序合成/组合探索，auto 维持分类扩展覆盖。补单测与 browser dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward source-mode-aware construction generation and end-to-end product dogfood.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-890-post-acceptance-generator-quota-and-seeded-demo-coverage-loop876",
+  "last_tick": "SYNC-891-post-acceptance-source-mode-authority-and-dogfood-loop877",
   "last_sync_sources": [
+    "SYNC-891 Post-acceptance source_mode authority and dogfood loop877",
+    "loop877 backend: generation_mix.source_mode is now resolved through a whitelist helper and becomes the authority for API confirm and creation plan when valid; invalid values fall back to user_goal heuristic",
+    "loop877 telemetry: factor_construction_universe_summary now exposes source_mode and source_mode_authority so recap/dogfood can catch authority drift",
+    "loop877 frontend: factor category cards now separate human-readable sourceMode copy from canonical sourceModeId sent in generation_mix.source_mode",
+    "loop877 dogfood: formal-review E2E product dogfood mock/assertions now require source_mode=formula_or_library_seed from job_payload telemetry",
+    "loop877 verification: source-mode targeted 2 passed; universe model 7 passed; related API/registry regression 75 passed; batch taxonomy/registry/API regression 74 passed; formal-review E2E dogfood pass; web build pass; lint 0 errors/1 existing warning; diff check pass with CRLF warnings only",
+    "loop877 worker: Kierkegaard read-only product QA independently confirmed source_mode authority drift and tests/dogfood blindness; implemented the minimal authority bridge and whitelist fallback",
+    "next: POST_ACCEPTANCE_SOURCE_MODE_AWARE_GENERATOR_MIX_LOOP878",
     "SYNC-890 Post-acceptance generator quota and seeded demo coverage loop876",
     "loop876 backend: TemplateParameterSweepGeneratorV1 now expands active subclass_quota across FACTOR_SUBCLASS_BY_CLASS subclasses instead of running a single seed taxonomy only",
     "loop876 backend: factor_factory now accepts valid generation_mix factor_class/factor_subclass overrides and recipes vary deterministically by subclass windows/source_family, so expanded taxonomy produces distinct calculable expressions",

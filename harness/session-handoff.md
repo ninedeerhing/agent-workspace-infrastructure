@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T23:07:36+08:00
+updated_at: 2026-07-11T23:14:17+08:00
+
+## Latest Handoff — SYNC-891 post-acceptance-source-mode-authority-and-dogfood-loop877
+
+- [DONE] `generation_mix.source_mode` is now resolved by a backend whitelist helper and becomes the authority for API confirm / creation plan when valid.
+- [DONE] Invalid source_mode strings, including human-readable Chinese display copy, are not trusted; they fall back to the `user_goal` heuristic and record `source_mode_authority=user_goal_heuristic`.
+- [DONE] `factor_construction_universe_summary` exposes `source_mode` and `source_mode_authority`, so product dogfood and recap telemetry can detect drift.
+- [DONE] Frontend factor cards now separate human-readable `sourceMode` copy from canonical `sourceModeId` sent in `generation_mix.source_mode`.
+- [VERIFY] Passed: source-mode targeted 2 passed, universe model 7 passed, API/universe/registry regression 75 passed, batch taxonomy/API/registry regression 74 passed, formal-review E2E product dogfood, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WORKER] Kierkegaard read-only product QA independently confirmed the drift and that prior dogfood could not catch it; implementation absorbed its authority bridge and conflict-sample recommendations.
+- [NEXT] `POST_ACCEPTANCE_SOURCE_MODE_AWARE_GENERATOR_MIX_LOOP878`: make canonical source_mode affect generator family mix / quota / recap, still no DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-890 post-acceptance-generator-quota-and-seeded-demo-coverage-loop876
 
