@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T23:59:02+08:00
+updated_at: 2026-07-12T00:10:54+08:00
+
+## Latest Handoff — SYNC-900 post-acceptance-scoring-trigger-side-effects-readmodel-loop886
+
+- [DONE] `run_mining_job` now exposes `run_mining_job_scoring_trigger_side_effect_readmodel_v1` in `trigger_request.side_effect_contract`.
+- [DONE] The contract proves: page load POST is not allowed, explicit click is required, no substitute DB/Docker/default runner is created, no scorer/backtest/queue/background process is started, and no env/secret output is expected.
+- [DONE] `trigger_queued_mining_job` response returns `trigger_side_effect_contract` with `explicit_click_observed=true`, keeping scoring confirmation distinct from automatic backtest execution.
+- [DONE] Jobs current task card surfaces the safety boundary visibly, not only inside collapsed diagnostics.
+- [VERIFY] Passed: targeted API/read-model pytest 4 passed, Ruff passed, jobs entry-mode dogfood passed, controlled-real current-task card browser passed, formal-review E2E product dogfood passed, web build passed, web lint 0 errors / 1 existing warning, diff check passed with CRLF warnings only.
+- [WORKER] Kierkegaard fixed-thread read-only review found the missing side-effect contract/test lock; findings were absorbed. Spawn-agent creation remained blocked by thread limit, so no duplicate worker was created.
+- [NEXT] `POST_ACCEPTANCE_SCORING_RESULT_CONTEXT_CONTINUITY_LOOP887`: connect scoring result/failure/waiting-refresh read-model continuity into Jobs and Factor Library without DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-899 post-acceptance-scoring-submission-state-context-loop885
 
