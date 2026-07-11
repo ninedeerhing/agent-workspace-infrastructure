@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T09:00:00+08:00
+updated_at: 2026-07-12T09:30:00+08:00
+
+## Latest Handoff — SYNC-921 post-acceptance-final-accepted-reason-context-to-backtest-plan-loop907
+
+- [DONE] Final accepted confirmation context now inherits `outcome_reason_groups`.
+- [DONE] Controlled backtest plan handoff context now inherits the same reason groups while keeping `candidate_source` refs-only.
+- [DONE] Accepted and plan cards render `accepted 去向说明` / `回测计划去向说明`, reusing the provisional-ready / held / rejected explanation cards.
+- [VERIFY] Accepted/plan/API unit 71 passed; controlled-real current task browser pass; Jobs entry-mode dogfood pass; feedback-lineage payload pass; formal-review E2E pass; factor-universe review readiness pass; Ruff pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; reason-continuity findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_BACKTEST_EXECUTION_REASON_CONTEXT_LOOP908`: carry outcome reason groups into controlled backtest execution confirmation and progress handoff.
 
 ## Latest Handoff — SYNC-920 post-acceptance-scoring-result-held-rejected-reason-context-loop906
 

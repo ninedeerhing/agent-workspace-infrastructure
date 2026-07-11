@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T09:00:00+08:00",
+  "updated_at": "2026-07-12T09:30:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-scoring-result-held-rejected-reason-context-loop906",
-  "next_atomic_action": "POST_ACCEPTANCE_FINAL_ACCEPTED_REASON_CONTEXT_TO_BACKTEST_PLAN_LOOP907：把 loop906 的 provisional/held/rejected 三分组原因解释继续带入 final accepted 确认与回测计划 handoff，让用户点击确认 accepted 后仍能看懂哪些因子进入回测计划、哪些暂缓或淘汰、为什么，并保持无自动回测/无队列写入。",
+  "current_slice": "post-acceptance-final-accepted-reason-context-to-backtest-plan-loop907",
+  "next_atomic_action": "POST_ACCEPTANCE_BACKTEST_EXECUTION_REASON_CONTEXT_LOOP908：把 loop907 已带入回测计划 handoff 的 outcome reason groups 继续延续到受控回测执行确认与进度 handoff，让用户在点击开始受控回测前后仍能看懂计划候选来源、暂缓/淘汰原因和无自动执行边界。",
   "next_after": "Continue continuous loop toward provisional accepted reason explainability, final accepted confirmation, and backtest plan real product path.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-920-post-acceptance-scoring-result-held-rejected-reason-context-loop906",
+  "last_tick": "SYNC-921-post-acceptance-final-accepted-reason-context-to-backtest-plan-loop907",
   "last_sync_sources": [
+    "SYNC-921 Post-acceptance final accepted reason context to backtest plan loop907",
+    "loop907 backend: final_accepted_confirmation.confirmation_context and controlled_backtest_plan_confirmation.plan_handoff_context now inherit outcome_reason_groups from scoring result/store evidence",
+    "loop907 frontend: accepted and backtest plan cards now render accepted/plan destination explanation sections with provisional-ready, held, and rejected/failed reasons",
+    "loop907 contract hygiene: candidate_source stays refs-only; reason groups live in handoff/read-model context, avoiding internal source contract drift",
+    "loop907 worker: Kierkegaard fixed-thread read-only product QA returned partial; reason-continuity findings were absorbed",
+    "loop907 verification: backend accepted/plan/API unit 71 passed; controlled-real current task browser pass; jobs entry-mode dogfood pass; feedback-lineage payload pass; formal-review E2E pass; factor-universe review readiness pass; targeted Ruff pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_BACKTEST_EXECUTION_REASON_CONTEXT_LOOP908",
     "SYNC-920 Post-acceptance scoring result held/rejected reason context loop906",
     "loop906 backend: small_batch_scoring_result_read_model now carries outcome_reason_groups split into provisional_ready, held, and rejected groups using scoring results plus provisional store write skipped/failed reasons",
     "loop906 frontend: SmallBatchScoringResultPanel now renders consumer-readable result destination cards explaining why candidates can enter provisional accepted, why they are held, or why they are rejected/failed",

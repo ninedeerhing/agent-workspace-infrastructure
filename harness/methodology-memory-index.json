@@ -1,6 +1,6 @@
 {
   "version": "1.1.0",
-  "updated_at": "2026-07-12T01:00:00Z",
+  "updated_at": "2026-07-12T01:30:00Z",
   "memory_path": "apps/quant_assistant/docs/METHODOLOGY_MEMORY.md",
   "active_entry_count": 67,
   "archived_round_count": 0,
@@ -1565,9 +1565,9 @@
     "archived_rounds": [],
     "active_step_digests": 39,
     "completed_tasks_hint": [
-      "SYNC-920 loop906 complete: scoring result read-model and panel now explain provisional-ready, held, and rejected or failed outcome groups.",
-      "post-acceptance-scoring-result-held-rejected-reason-context-loop906",
-      "SYNC-920-post-acceptance-scoring-result-held-rejected-reason-context-loop906"
+      "SYNC-921 loop907 complete: final accepted confirmation and backtest plan handoff now preserve scoring outcome reason groups.",
+      "post-acceptance-final-accepted-reason-context-to-backtest-plan-loop907",
+      "SYNC-921-post-acceptance-final-accepted-reason-context-to-backtest-plan-loop907"
     ],
     "ttl_days": 180
   }
