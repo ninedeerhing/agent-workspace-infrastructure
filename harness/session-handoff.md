@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T06:55:00+08:00
+updated_at: 2026-07-12T07:25:00+08:00
+
+## Latest Handoff — SYNC-917 post-acceptance-lineage-roundtrip-to-adaptive-scheduler-telemetry-loop903
+
+- [DONE] Adaptive generator feedback buckets now collect `candidate_lineage_refs` and `feedback_category_codes` from trajectory outcome candidate lineage previews.
+- [DONE] `GeneratorFamilyScheduleV1` and `family_summaries` expose `feedback_candidate_lineage_refs`, `feedback_category_codes`, quota, action, feedback signal, and seed eligibility.
+- [DONE] Batch recap generator distribution shows lineage/class telemetry, and ConstructionSpec now displays primary plus additional seed refs for multi-seed feedback.
+- [DONE] E-class dual-seed dogfood proves primary/additional seed refs, candidate lineage, factor class, job payload, and recap telemetry remain visible.
+- [VERIFY] Scheduler unit 4 passed; batch mining flow 12 passed; combined scheduler/batch/model 26 passed; feedback-to-mining browser pass; feedback-lineage payload browser pass; formal-review E2E pass; factor-universe review readiness pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; scheduler consumption, family summary telemetry, and multi-seed visibility findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_FEEDBACK_DRIVEN_SMALL_BATCH_SCORING_PATH_LOOP904`: connect feedback-driven candidate/scheduler recap to the controlled small-batch scoring confirmation path and Jobs current-task provenance.
 
 ## Latest Handoff — SYNC-916 post-acceptance-factor-library-lineage-roundtrip-to-next-generation-loop902
 
