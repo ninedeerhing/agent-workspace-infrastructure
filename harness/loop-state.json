@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T07:25:00+08:00",
+  "updated_at": "2026-07-12T07:55:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-lineage-roundtrip-to-adaptive-scheduler-telemetry-loop903",
-  "next_atomic_action": "POST_ACCEPTANCE_FEEDBACK_DRIVEN_SMALL_BATCH_SCORING_PATH_LOOP904：把反馈驱动的下一轮候选/调度复盘接回小批真实评分确认路径，让用户从 lineage 回流生成的候选继续创建唯一评分任务，并在 Jobs 当前任务卡看到该任务来自哪条 lineage、哪些 seed、什么调度动作。",
-  "next_after": "Continue continuous loop toward feedback-driven candidates to controlled small-batch scoring, provisional accepted, and backtest plan real product path.",
+  "current_slice": "post-acceptance-feedback-driven-small-batch-scoring-path-loop904",
+  "next_atomic_action": "POST_ACCEPTANCE_FEEDBACK_DRIVEN_SCORING_RESULT_LINEAGE_CONTEXT_LOOP905：把本轮 Jobs 评分确认卡可见的 lineage/seed/scheduler provenance 继续带入小批评分结果 read-model 与 provisional accepted 前置解释，让用户在评分结果刷新后仍能看到哪些 lineage 被 scored/held/rejected、为什么进入或未进入 provisional accepted。",
+  "next_after": "Continue continuous loop toward feedback-driven scoring results to provisional accepted, final accepted, and backtest plan real product path.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-917-post-acceptance-lineage-roundtrip-to-adaptive-scheduler-telemetry-loop903",
+  "last_tick": "SYNC-918-post-acceptance-feedback-driven-small-batch-scoring-path-loop904",
   "last_sync_sources": [
+    "SYNC-918 Post-acceptance feedback-driven small-batch scoring path loop904",
+    "loop904 frontend: Jobs small-batch scoring confirmation card now displays feedback lineage refs, lineage class, primary/additional seed refs, seed_eligible_refs, scheduler action, feedback signal, and scheduler quota",
+    "loop904 dogfood: jobs entry-mode observability now covers feedback-driven user-idea scoring job before and after explicit scoring submission while preserving no page-load POST and no auto backtest",
+    "loop904 worker: Kierkegaard fixed-thread read-only product QA returned partial; current-task/scoring confirmation consumption gap and seed_eligible/feedback_signal markers were absorbed",
+    "loop904 verification: jobs entry-mode dogfood RED/GREEN pass; controlled-real current task card pass; feedback-lineage payload pass; factor-library feedback-to-mining pass; formal-review E2E pass; factor-universe review readiness pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_FEEDBACK_DRIVEN_SCORING_RESULT_LINEAGE_CONTEXT_LOOP905",
     "SYNC-917 Post-acceptance lineage roundtrip to adaptive scheduler telemetry loop903",
     "loop903 backend: adaptive generator feedback buckets now collect candidate_lineage_refs and feedback category codes from trajectory outcome candidate lineage previews",
     "loop903 scheduler: GeneratorFamilyScheduleV1 exposes feedback_candidate_lineage_refs and feedback_category_codes in schedule JSON, rationale, and family_summaries",

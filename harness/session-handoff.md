@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T07:25:00+08:00
+updated_at: 2026-07-12T07:55:00+08:00
+
+## Latest Handoff — SYNC-918 post-acceptance-feedback-driven-small-batch-scoring-path-loop904
+
+- [DONE] Jobs small-batch scoring confirmation card now consumes feedback-driven scheduler telemetry.
+- [DONE] The card shows feedback lineage refs, lineage class, primary/additional seed refs, `seed_eligible_refs`, scheduler action, feedback signal, and scheduler quota.
+- [DONE] Explicit scoring submission keeps the same provenance visible, so users do not lose context after clicking confirm.
+- [VERIFY] Jobs entry-mode dogfood RED/GREEN pass; controlled-real current-task browser pass; feedback-lineage payload browser pass; Factor Library feedback-to-mining browser pass; formal-review E2E pass; factor-universe review readiness pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; its current-task/scoring confirmation gap and seed/provenance marker findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_FEEDBACK_DRIVEN_SCORING_RESULT_LINEAGE_CONTEXT_LOOP905`: carry the same provenance into scoring result read-model and provisional accepted explanation.
 
 ## Latest Handoff — SYNC-917 post-acceptance-lineage-roundtrip-to-adaptive-scheduler-telemetry-loop903
 
