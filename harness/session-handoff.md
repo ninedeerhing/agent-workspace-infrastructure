@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T15:00:00+08:00
+updated_at: 2026-07-11T15:20:00+08:00
+
+## Latest Handoff — SYNC-832 Missing source candidate availability explanation
+
+- [DONE] `build_data_availability_gate_result_v1(...)` accepts `missing_source_onboarding_request`.
+- [DONE] Candidate JSON includes `source_onboarding_explanations` for blocked E-class missing sources.
+- [DONE] `/quant/factor-mining` shows “候选可用性解释” with blocked source ids, action id, required user inputs, required system work, and next step.
+- [VERIFY] Data availability + consumer flow + missing-source onboarding/downstream tests: 31 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `MISSING_SOURCE_ONBOARDING_INTAKE_CONTRACT_LOOP818`: build no-execution intake contract for `entity_linking_table` and `alternative_data_snapshot`.
+- [FORBIDDEN] Do not fake source readiness; do not generate real E candidates from missing sources; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-831 Missing source onboarding product gate
 
