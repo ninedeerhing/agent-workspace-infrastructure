@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T11:35:00+08:00
+updated_at: 2026-07-12T12:05:00+08:00
+
+## Latest Handoff — SYNC-926 post-acceptance-reason-aware-accepted-pool-and-backtest-plan-loop912
+
+- [DONE] Provisional accepted admission now preserves `reason_aware_scoring_context` from the small-batch scoring request.
+- [DONE] Final accepted confirmation context now inherits reason-aware actions and decision basis from the scoring result context.
+- [DONE] Controlled backtest plan handoff now inherits the same reason-aware scoring context while preserving `will_write_queue=false` and `will_run_backtest=false`.
+- [DONE] Accepted and backtest plan cards render reason actions and decision basis in their destination explanation blocks.
+- [VERIFY] RED final/plan and provisional tests failed on missing context; GREEN target tests 12 passed; expanded selected regression 12 passed / 69 deselected; targeted Ruff pass; controlled-real current-task browser pass; web lint 0 errors / 1 existing warning; web build pass.
+- [WORKER] Kierkegaard fixed-thread product QA was dispatched read-only; no completion report was available before closeout, so local evidence is authoritative and no duplicate worker was created.
+- [NEXT] `POST_ACCEPTANCE_REASON_AWARE_EXECUTION_PROGRESS_AND_REPORT_LOOP913`: carry reason-aware scoring context into execution confirmation, progress report, result report, and Factor Library feedback memory.
 
 ## Latest Handoff — SYNC-925 post-acceptance-reason-aware-scoring-confirmation-loop911
 
