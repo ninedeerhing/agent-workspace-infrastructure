@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T01:45:00+08:00
+updated_at: 2026-07-12T02:05:00+08:00
+
+## Latest Handoff — SYNC-907 post-acceptance-report-feedback-memory-handoff-context-loop893
+
+- [DONE] Feedback memory adapter now falls back to `progress_handoff_context.plan_refs` / `run_ids` when top-level executed plan/run ids are absent.
+- [DONE] `real_backtest_feedback_trajectory_summary` now emits `outcome_details` with job id, status, memory outcome, factor refs, plan refs, run ids, reason, next-round strategy, and report_ready.
+- [DONE] Factor Library targeted recap shows “下一轮处理” rows so blocked/failed/watchlist/completed-report-ready records explain how they should influence the next generation.
+- [VERIFY] RED targeted pytest failed for missing executed_plan_ids fallback and missing outcome_details. GREEN: adapter unit 9 passed, Ruff pass, mining_job API selector 1 passed, Factor Library progress handoff browser pass, recap static pass, targeted recap browser pass, current-task browser pass, formal-review E2E pass, build pass, lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread read-only product QA assignment was sent with model_tier=gpt-5.4; no usable report body was available before sync, so local RED/GREEN verification is the evidence.
+- [NEXT] `POST_ACCEPTANCE_TRAJECTORY_MEMORY_TO_GENERATOR_SCHEDULER_CONTEXT_LOOP894`: let the next generator scheduler consume feedback memory outcome details to adjust family priority and candidate explanations without page-load execution or substitute runtime.
 
 ## Latest Handoff — SYNC-906 post-acceptance-factor-library-result-continuity-context-loop892
 
