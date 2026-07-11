@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T03:45:00+08:00
+updated_at: 2026-07-12T04:25:00+08:00
+
+## Latest Handoff — SYNC-911 post-acceptance-feedback-seeded-candidate-preview-explanation-loop897
+
+- [DONE] FactorMining candidate preview now shows `feedback_seed_candidate_preview=true` when entering from feedback memory.
+- [DONE] Success seeds explain “成功复盘会扩展同族候选” / “扩展成功族” and surface `trajectory_crossover`, seed factor refs, plan refs, run ids, and `expand_success_seed_family`.
+- [DONE] Watchlist seeds explain “观察复盘只做修复参考” / “不会扩展成功族” and surface `watchlist_repair_before_seed`.
+- [DONE] Failure seeds explain “失败复盘会规避相同 lineage” / “失败规避” and fixture recap now carries `deprioritize_failed_lineage`.
+- [VERIFY] RED browser dogfood failed on missing feedback-seed candidate preview copy. GREEN: feedback-seeded candidate preview browser pass, feedback seed outcome browser pass, feedback-to-mining browser pass, current-task browser pass, factor-universe review readiness pass, formal-review E2E pass, build pass, lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread read-only product QA returned `needs_followup`; candidate-preview seed impact, batch recap consumer translation, and failure_path next-action gaps were absorbed.
+- [NEXT] `POST_ACCEPTANCE_JOBS_FEEDBACK_SEED_RECAP_VISIBILITY_LOOP898`: make Jobs current-task and batch-recap views show inherited feedback seed outcome, generator-family action, and success/watchlist/failure effect.
 
 ## Latest Handoff — SYNC-910 post-acceptance-feedback-seed-outcome-variant-dogfood-loop896
 
