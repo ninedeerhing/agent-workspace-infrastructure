@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T18:25:00+08:00
+updated_at: 2026-07-11T18:45:00+08:00
+
+## Latest Handoff — SYNC-842 Source adapter manifest owner approval UI surface
+
+- [DONE] `/quant/factor-mining` now shows “Owner approval 状态”.
+- [DONE] The UI exposes `source_adapter_manifest_owner_approval_v1`.
+- [DONE] The UI shows `pending_owner_approval`, `approved_for_source_review`, `owner_approval_ready_for_source_review`, owner refs, and `data_availability_source_review_approval_linkage`.
+- [VERIFY] Owner approval UI focused test: 1 passed.
+- [VERIFY] Consumer/source + owner approval regression: 16 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `DATA_AVAILABILITY_OWNER_APPROVAL_LINKAGE_LOOP828`: let Data Availability consume owner approval as source-review-owner-approved partial state.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-841 Source adapter manifest owner approval contract
 

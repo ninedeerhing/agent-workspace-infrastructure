@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T18:25:00+08:00 · SYNC-841 · source adapter manifest owner approval contract
+Updated: 2026-07-11T18:45:00+08:00 · SYNC-842 · source adapter manifest owner approval UI
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop826/SYNC-841 completed `SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_CONTRACT_LOOP826` by adding a no-execution owner approval contract and exposing it in creation-plan payload.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop827/SYNC-842 completed `SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_UI_SURFACE_LOOP827` by exposing owner approval status on `/quant/factor-mining`.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_UI_SURFACE_LOOP827` — expose owner approval status on `/quant/factor-mining` without marking ready, writing DB, scoring/backtesting, Docker, or ports.
+- Next atomic action: `DATA_AVAILABILITY_OWNER_APPROVAL_LINKAGE_LOOP828` — let Data Availability Gate consume owner approval contract as source-review-owner-approved partial state without marking ready, writing DB, scoring/backtesting, Docker, or ports.
 
 ## EXCLUDE: Default Exclusions
 

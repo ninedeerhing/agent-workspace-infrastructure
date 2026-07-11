@@ -1,3 +1,48 @@
+# Orchestrator Latest Report — SYNC-842 Source adapter manifest owner approval UI surface loop827
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_UI_SURFACE_LOOP827"
+  changes:
+    - file: "apps/quant_assistant/web/src/pages/factorMiningManifestConversionContent.ts"
+      summary: "Adds owner approval contract kind, status items, and ready-for-source-review label."
+    - file: "apps/quant_assistant/web/src/pages/factorMiningManifestConversion.tsx"
+      summary: "Renders Owner approval status on the factor mining Manifest section."
+    - file: "apps/quant_assistant/tests/test_factor_universe_consumer_flow_source_unit.py"
+      summary: "Covers owner approval UI markers and no-ready/no-execution copy."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-842 and next loop828."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-842."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop828."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop828."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to Data Availability owner approval linkage."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-842."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updates orchestrator overlay."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_universe_consumer_flow_source_unit.py -k owner_approval"
+      result: "RED missing UI marker before implementation; GREEN 1 passed."
+    - command: "uv run pytest -q tests/test_factor_universe_consumer_flow_source_unit.py tests/test_factor_universe_source_adapter_manifest_owner_approval_unit.py"
+      result: "16 passed."
+    - command: "npm.cmd run build"
+      result: "pass."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "New source-review contracts need a visible product surface before they can be useful in user dogfooding."
+    performance_note: "Loop827 closed via local UI source test and production build."
+  blockers: []
+  next: "DATA_AVAILABILITY_OWNER_APPROVAL_LINKAGE_LOOP828"
+
+---
+
 # Orchestrator Latest Report — SYNC-841 Source adapter manifest owner approval contract loop826
 
 report:

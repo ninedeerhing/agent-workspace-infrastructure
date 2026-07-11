@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T18:25:00+08:00",
+  "updated_at": "2026-07-11T18:45:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "source-adapter-manifest-owner-approval-contract-loop826",
-  "next_atomic_action": "SOURCE_ADAPTER_MANIFEST_OWNER_APPROVAL_UI_SURFACE_LOOP827：把 source_adapter_manifest_owner_approval_v1 展示到 /quant/factor-mining，让用户看见 pending owner approval、approved-for-source-review 与 no-ready/no-execution 边界；不得写 DB、不得评分/回测/Docker/port。",
-  "next_after": "Continue until owner approval UI surface -> Data Availability approved source-review state -> controlled A/E candidate readiness.",
+  "current_slice": "source-adapter-manifest-owner-approval-ui-loop827",
+  "next_atomic_action": "DATA_AVAILABILITY_OWNER_APPROVAL_LINKAGE_LOOP828：让候选级 Data Availability Gate 消费 source_adapter_manifest_owner_approval_v1，把 approved owner refs 显示为 source-review-owner-approved state，但仍保持 partial、不进入 calculable/ready、不写 DB、不评分/回测/Docker/port。",
+  "next_after": "Continue until Data Availability approved source-review state -> controlled A/E candidate readiness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-841-source-adapter-manifest-owner-approval-contract-loop826",
+  "last_tick": "SYNC-842-source-adapter-manifest-owner-approval-ui-loop827",
   "last_sync_sources": [
+    "SYNC-842 Source adapter manifest owner approval UI surface loop827",
+    "loop827 trigger: owner approval contract needed a user-visible surface on factor mining page",
+    "loop827 UI: /quant/factor-mining shows Owner approval 状态 with source_adapter_manifest_owner_approval_v1, pending_owner_approval, approved_for_source_review, owner refs, owner_approval_ready_for_source_review, and data_availability_source_review_approval_linkage",
+    "loop827 boundary: no ready grant, no DB write, no scorer/backtest, no Docker/container/port",
+    "loop827 verification: owner approval UI focused test 1 passed; consumer/source + owner approval regression 16 passed; npm run build pass",
+    "next: DATA_AVAILABILITY_OWNER_APPROVAL_LINKAGE_LOOP828",
     "SYNC-841 Source adapter manifest owner approval contract loop826",
     "loop826 trigger: pending reviewer approval needed a separate owner approval contract before any source-review approval state",
     "loop826 backend: added source_adapter_manifest_owner_approval_v1 and exposed factor_universe_source_adapter_manifest_owner_approval in creation plan",
