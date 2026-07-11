@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-11T18:05:00+08:00
+updated_at: 2026-07-11T18:25:00+08:00
+
+## Latest Handoff — SYNC-883 formal-human-review-entry-package-refresh-loop869
+
+- [DONE] Formal human review package refreshed at `apps/quant_assistant/docs/ACCEPTANCE/2026-07-11-factor-construction-universe-formal-human-review-package.md`.
+- [DONE] Package includes current runtime, evidence, review goal, five review steps, pass/fail criteria, formal decision rules, and caveats.
+- [DONE] Review steps cover `/quant/factor-mining`, `/quant/jobs`, `/quant/factor-library`, `/quant/backtest`, and `/quant/data-support`.
+- [VERIFY] Evidence baseline comes from loop868 live product dogfood, loop867 final product self-check, and loop866 runtime readiness dogfood.
+- [STOP] `loop-state.stop_reason=formal_human_acceptance_required`.
+- [NEXT] `AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP870`: wait for user accept/reject/request-changes.
 
 ## Latest Handoff — SYNC-882 formal-review-live-product-dogfood-loop868
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T18:05:00+08:00",
+  "updated_at": "2026-07-11T18:25:00+08:00",
   "mode": "continuous_implementation_loop",
-  "stop_reason": "",
+  "stop_reason": "formal_human_acceptance_required",
   "current_tree": "TREE-6",
-  "current_slice": "formal-review-live-product-dogfood-loop868",
-  "next_atomic_action": "FORMAL_HUMAN_REVIEW_ENTRY_PACKAGE_REFRESH_LOOP869：基于 loop867/868 的产品自测和 live dogfood 证据，刷新正式人工验收入口包与用户验收步骤；只在确认可从 UI 验收因子构造宇宙、当前任务、运行态 readiness、Factor Library、回测结果页后，设置正式人工验收停止点。",
-  "next_after": "Prepare formal human review package only after product dogfood evidence is current.",
+  "current_slice": "formal-human-review-entry-package-refresh-loop869",
+  "next_atomic_action": "AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP870：等待用户按 2026-07-11 formal human review package 完成人工验收；用户接受、驳回或提出修改后再继续。",
+  "next_after": "Stop because formal human acceptance is now required.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,12 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-882-formal-review-live-product-dogfood-loop868",
+  "last_tick": "SYNC-883-formal-human-review-entry-package-refresh-loop869",
   "last_sync_sources": [
+    "SYNC-883 Formal human review entry package refresh loop869",
+    "loop869 acceptance package: added apps/quant_assistant/docs/ACCEPTANCE/2026-07-11-factor-construction-universe-formal-human-review-package.md with runtime, evidence, five review steps, pass/fail criteria, formal decision rules, and known caveats",
+    "loop869 stop: loop-state stop_reason set to formal_human_acceptance_required because current product dogfood evidence is current and the next step requires user manual review",
+    "next: AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP870",
     "SYNC-882 Formal review live product dogfood loop868",
     "loop868 runtime: existing frontend 5273 and API 8350 were checked; qa-pg-alt 7b7346a0cdfc remained the correct existing DB container on 127.0.0.1:55432; no substitute Docker/DB/port was created",
     "loop868 gap fixed in runtime: old 8350 API process returned 404 for /api/v1/quant/formal-review-runtime-readiness; replaced it on the same 8350 port with latest FastAPI using PYTHONPATH=src",
