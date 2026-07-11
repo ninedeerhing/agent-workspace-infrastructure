@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T15:07:17+08:00
+updated_at: 2026-07-11T15:21:56+08:00
+
+## Latest Handoff — SYNC-873 Controlled real backtest preflight-to-execution progress
+
+- [DONE] Corrected the product semantics for `run_controlled_real_backtest_execution`: explicit POST is a controlled execution entry with preflight checks, not a preflight-only action.
+- [DONE] `ControlledRealBacktestPreflightNotice` now says execution checks passed, check itself is not the backtest result, and users should look at the current task card for execution progress/results.
+- [DONE] Jobs action labels now say `开始受控回测 / 再次确认开始 / 执行检查中 / 已提交执行 / 重新检查并执行`.
+- [DONE] Blocked or no-retry controlled actions keep users in the current task card for runner/DB/audit/target blockers instead of sending them back to factor construction.
+- [DONE] Factor Library completed CTA now carries `job_id` and `source=controlled_real_backtest`; deeper targeted recap remains the next loop.
+- [VERIFY] Product surface contract pass; browser dogfood pass with page-load POST count=0 and explicit POST count=1; runner manifest browser regression pass; web build pass; lint 0 errors / 1 existing Fast Refresh warning.
+- [WORKER] Permanent test-engineer report returned success; permanent code-reviewer returned request_changes and the high-priority semantics issue was fixed. No duplicate worker created.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_RESULT_TARGETED_FACTOR_LIBRARY_RECAP_LOOP859`: make Factor Library/report recap consume job_id/source/factor refs and show completed/failed/blocked controlled real backtest results.
+- [FORBIDDEN] No substitute Docker/DB/ports; no default runner; no backtest/table write from GET/page-load/list refresh; do not claim formal human review until targeted result recap is product-visible and dogfooded.
 
 ## Latest Handoff — SYNC-872 Controlled real backtest preflight product surface
 

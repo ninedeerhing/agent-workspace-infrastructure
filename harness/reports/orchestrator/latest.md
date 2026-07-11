@@ -1,4 +1,49 @@
-# Orchestrator Latest Report — SYNC-872 Controlled real backtest preflight product surface loop857
+# Orchestrator Latest Report — SYNC-873 Controlled real backtest preflight-to-execution progress loop858
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_REAL_BACKTEST_PREFLIGHT_TO_EXECUTION_PROGRESS_LOOP858"
+  changes:
+    - file: "apps/quant_assistant/web/src/pages/ControlledRealBacktestPreflightNotice.tsx"
+      summary: "Corrects explicit POST semantics: checks passed is not the final result; controlled execution progress/results live in the current task card."
+    - file: "apps/quant_assistant/web/src/pages/JobsPage.tsx"
+      summary: "Renames controlled-real action labels to execution semantics, keeps blocked users on the current task, and routes completed CTA to Factor Library with job_id/source."
+    - file: "apps/quant_assistant/web/scripts/controlled-real-preflight-fixtures.mjs"
+      summary: "Extracts reusable mocked fixtures for preflight/progress browser dogfood."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-preflight-product-browser.mjs"
+      summary: "Proves explicit POST success refreshes controlled_backtest_progress_report in the current task while page-load POST remains zero."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-preflight-product-surface.mjs"
+      summary: "Adds static contract checks for progress surface wiring and no-execution markers."
+    - file: "apps/quant_assistant/web/scripts/check-controlled-real-runner-manifest-browser.mjs"
+      summary: "Aligns runner-ready browser regression with controlled execution wording."
+  verification:
+    - command: "npm run test:controlled-real-preflight-product-surface"
+      result: "controlled real preflight product surface contract OK."
+    - command: "npm run test:controlled-real-preflight-product-browser"
+      result: "controlled real preflight product browser dogfood OK; page-load POST count=0; explicit POST count=1; refreshed task shows real backtest progress."
+    - command: "npm run test:controlled-real-runner-manifest-browser"
+      result: "controlled real runner manifest browser dogfood OK."
+    - command: "npm run build"
+      result: "tsc + Vite build passed."
+    - command: "npm run lint"
+      result: "0 errors / 1 existing Fast Refresh warning in ShellLayoutContext.tsx."
+    - command: "git diff --check"
+      result: "pass with CRLF warnings only."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes:
+      - "loop857 UI wording over-stated preflight-only semantics while backend action can enter controlled execution after checks."
+    lessons:
+      - "Explicit POST controlled-real actions must be described as check-then-controlled-execute, with final result separated into the progress/report surfaces."
+      - "Blocked controlled-real CTAs should keep users in the current task when runner/DB/audit/target blockers exist."
+    performance_note: "Permanent test-engineer and code-reviewer reports were absorbed; no duplicate worker created."
+  blockers: []
+  next: "CONTROLLED_REAL_BACKTEST_RESULT_TARGETED_FACTOR_LIBRARY_RECAP_LOOP859"
+
+---
+
+# Orchestrator Previous Report — SYNC-872 Controlled real backtest preflight product surface loop857
 
 report:
   role_id: "orchestrator"

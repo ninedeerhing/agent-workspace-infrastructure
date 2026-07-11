@@ -1,6 +1,6 @@
 {
-  "recorded_at": "2026-07-11T07:13:06Z",
-  "last_tick": "SYNC-872-controlled-real-backtest-preflight-product-surface-loop857",
+  "recorded_at": "2026-07-11T07:25:12Z",
+  "last_tick": "SYNC-873-controlled-real-backtest-preflight-to-execution-progress-loop858",
   "pytest_passed": null,
   "ruff": "ok",
   "evidence_paths": [
@@ -10,6 +10,6 @@
     "npm run build: pass",
     "npm run lint: 0 errors / 1 existing warning"
   ],
-  "section5_ref": "5.1195",
+  "section5_ref": "5.1196",
   "source": "manual"
 }

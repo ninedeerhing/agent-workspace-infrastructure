@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T15:07:17+08:00",
+  "updated_at": "2026-07-11T15:21:56+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-real-backtest-preflight-product-surface-loop857",
-  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_PREFLIGHT_TO_EXECUTION_PROGRESS_LOOP858：在 Jobs/Factor Library 中把 preflight 通过后的受控执行进度、blocked/failure/success 结果与下一步说明接入消费级路径；继续证明 preflight ready 不是 backtest started，并保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
+  "current_slice": "controlled-real-backtest-preflight-to-execution-progress-loop858",
+  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_RESULT_TARGETED_FACTOR_LIBRARY_RECAP_LOOP859：把受控真实回测 completed/failed/blocked 结果定向带入 Factor Library/报告复盘路径，至少携带 job_id/source/factor refs；继续补 completed success CTA、blocked/failure next-step 和 JobsPage 当前确认卡片抽取债务，保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,17 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-872-controlled-real-backtest-preflight-product-surface-loop857",
+  "last_tick": "SYNC-873-controlled-real-backtest-preflight-to-execution-progress-loop858",
   "last_sync_sources": [
+    "SYNC-873 Controlled real backtest preflight-to-execution progress loop858",
+    "loop858 correction: code-reviewer found backend explicit POST already enters controlled execution after preflight, so product copy must not claim preflight-only or real backtest not started",
+    "loop858 frontend: ControlledRealBacktestPreflightNotice now says execution checks passed and points users to the current task card for controlled execution progress/result",
+    "loop858 Jobs UX: run_controlled_real_backtest_execution labels changed to controlled backtest execution; disabled controlled actions keep users on the current task for runner/DB/audit/target blockers",
+    "loop858 result path: completed CTA now routes to Factor Library with job_id and source=controlled_real_backtest; deeper targeted recap remains next loop",
+    "loop858 tests: product surface contract now requires progress surface wiring and static no-execution markers; browser dogfood proves explicit POST success refreshes controlled_backtest_progress_report in current task while page-load POST count remains 0",
+    "loop858 worker: permanent test-engineer success and code-reviewer request_changes absorbed; no duplicate worker created",
+    "loop858 verification: controlled preflight product surface pass, browser dogfood pass, runner manifest browser regression pass, web build pass, lint 0 errors/1 existing warning",
+    "next: CONTROLLED_REAL_BACKTEST_RESULT_TARGETED_FACTOR_LIBRARY_RECAP_LOOP859",
     "SYNC-872 Controlled real backtest preflight product surface loop857",
     "loop857 trigger: explicit POST preflight evidence existed but was not visible in the Jobs confirmation result",
     "loop857 frontend: added ControlledRealBacktestPreflightNotice and wired trigger submissions to preserve explicit_post_preflight in success and failed responses",

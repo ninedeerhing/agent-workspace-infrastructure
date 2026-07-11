@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T15:07:17+08:00 · SYNC-872 · Controlled real backtest preflight product surface
+Updated: 2026-07-11T15:21:56+08:00 · SYNC-873 · Controlled real backtest preflight-to-execution progress
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop857/SYNC-872 completed `CONTROLLED_REAL_BACKTEST_PREFLIGHT_PRODUCT_SURFACE_LOOP857` by surfacing explicit POST preflight success/blocked evidence in Jobs and proving page-load POST count=0 plus explicit double-confirm POST in browser dogfood.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop858/SYNC-873 completed `CONTROLLED_REAL_BACKTEST_PREFLIGHT_TO_EXECUTION_PROGRESS_LOOP858` by correcting the explicit POST semantics from preflight-only to controlled execution-with-preflight, surfacing progress/result in the current task card, and proving page-load POST count remains 0 while explicit double-confirm POST refreshes `controlled_backtest_progress_report`.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `CONTROLLED_REAL_BACKTEST_PREFLIGHT_TO_EXECUTION_PROGRESS_LOOP858` — connect preflight-passed controlled real backtest to consumer-visible execution progress/result surface in Jobs/Factor Library, while keeping preflight ready distinct from backtest started and preserving no substitute DB/Docker/default runner/page-load execution.
+- Next atomic action: `CONTROLLED_REAL_BACKTEST_RESULT_TARGETED_FACTOR_LIBRARY_RECAP_LOOP859` — route controlled real backtest completed/failed/blocked results into a targeted Factor Library/report recap path with job_id/source/factor refs, refine completed/blocked/failure CTAs, and begin extracting the oversized Jobs current confirmation card without page-load execution, substitute DB/Docker, or default runner.
 
 ## EXCLUDE: Default Exclusions
 

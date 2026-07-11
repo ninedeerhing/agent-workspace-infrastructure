@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T07:13:06Z",
+  "updated_at": "2026-07-11T07:25:12Z",
   "snapshot_path": "harness/verification-latest.json",
   "archive_path": "harness/verification-archive.jsonl",
   "latest": {
-    "recorded_at": "2026-07-11T07:13:06Z",
-    "last_tick": "SYNC-872-controlled-real-backtest-preflight-product-surface-loop857",
+    "recorded_at": "2026-07-11T07:25:12Z",
+    "last_tick": "SYNC-873-controlled-real-backtest-preflight-to-execution-progress-loop858",
     "pytest_passed": null,
     "ruff": "ok",
     "evidence_paths": [
@@ -15,18 +15,18 @@
       "npm run build: pass",
       "npm run lint: 0 errors / 1 existing warning"
     ],
-    "section5_ref": "5.1195",
+    "section5_ref": "5.1196",
     "source": "manual"
   },
   "git_dirty": true,
-  "age_hours": 7.619361111111112e-05,
+  "age_hours": 0.00025729944444444447,
   "stale": false,
   "findings": [],
   "last_lifecycle": {
-    "at": "2026-07-11T07:13:06Z",
+    "at": "2026-07-11T07:25:12Z",
     "apply": true,
     "stale": false,
     "git_dirty": true,
-    "age_hours": 7.619361111111112e-05
+    "age_hours": 0.00025729944444444447
   }
 }
