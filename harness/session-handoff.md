@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T22:35:00+08:00
+updated_at: 2026-07-11T23:00:00+08:00
+
+## Latest Handoff — SYNC-853 quality metrics admission re-entry
+
+- [DONE] `ScoringResultReadModelV1` exposes `ignored_quality_event_refs`.
+- [DONE] Scoring adapter only applies quality events to `execution_result.successful_candidate_refs`.
+- [DONE] Provisional admission passes ignored quality refs through for UI/report explanation.
+- [VERIFY] Focused ignored-quality tests: 2 passed.
+- [VERIFY] Scoring/provisional/backtest-readiness regression: 29 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Admission smoke: `['candidate:not-executed'] ['candidate:not-executed'] [] ['fg_sym_e75be4c441fb']`.
+- [NEXT] `PERSISTED_PROVISIONAL_ACCEPTED_REENTRY_LOOP839`: store/write layer must consume only provisional-ready refs.
+- [FORBIDDEN] Do not final-accept; do not auto-backtest; do not write backtest queue; do not persist held/rejected/ignored refs as provisional accepted.
 
 ## Latest Handoff — SYNC-852 controlled scoring executor re-entry
 

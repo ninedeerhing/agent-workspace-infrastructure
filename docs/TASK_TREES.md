@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T22:35:00+08:00 · SYNC-852 · controlled scoring executor re-entry
+Updated: 2026-07-11T23:00:00+08:00 · SYNC-853 · quality metrics admission re-entry
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 

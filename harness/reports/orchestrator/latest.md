@@ -1,3 +1,50 @@
+# Orchestrator Latest Report — SYNC-853 quality metrics admission re-entry loop838
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "QUALITY_METRICS_ADMISSION_REENTRY_LOOP838"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_scoring_result_read_model.py"
+      summary: "Adds ignored_quality_event_refs to scoring result read-model JSON."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_scoring_execution_result_adapter.py"
+      summary: "Consumes quality events only for successful executor refs and records ignored refs."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_provisional_accepted_pool.py"
+      summary: "Passes ignored_quality_event_refs through provisional admission JSON."
+    - file: "apps/quant_assistant/tests/test_factor_construction_scoring_execution_result_adapter_unit.py"
+      summary: "Covers ignored quality events for non-executed and failed refs."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-853 and next loop839."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-853."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop839."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop839."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to persisted provisional accepted re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-853."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_scoring_execution_result_adapter_unit.py -k \"quality_metrics_for_non_executed_refs or quality_metrics_for_failed_refs\""
+      result: "RED missing ignored_quality_event_refs; GREEN 2 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_real_quality_metrics_unit.py tests/test_factor_construction_provisional_accepted_pool_unit.py tests/test_factor_construction_persisted_provisional_admission_unit.py tests/test_factor_construction_final_accepted_pool_unit.py tests/test_factor_construction_backtest_plan_allocator_unit.py tests/test_factor_construction_small_batch_real_scoring_executor_unit.py"
+      result: "29 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "admission smoke with non-executed quality event"
+      result: "ignored refs passed through; provisional_ready_refs empty; executed ref held."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Quality events must be tied to successful executor refs; otherwise a stray high-score event can falsely promote a candidate."
+    performance_note: "Loop838 closed with RED/GREEN/regression/Ruff/smoke; no duplicate worker created."
+  blockers: []
+  next: "PERSISTED_PROVISIONAL_ACCEPTED_REENTRY_LOOP839"
+
+---
+
 # Orchestrator Latest Report — SYNC-852 controlled scoring executor re-entry loop837
 
 report:

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T22:35:00+08:00",
+  "updated_at": "2026-07-11T23:00:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-scoring-executor-reentry-loop837",
-  "next_atomic_action": "QUALITY_METRICS_ADMISSION_REENTRY_LOOP838：让 scoring result read model、real quality metrics 和 provisional admission 显式消费 executor successful/failed refs 与 real quality events；非执行 refs、失败 refs、缺 metrics refs 必须 hold/reject，只有真实评分+质量指标通过的 refs 才 provisional-ready；仍不得自动回测或写 accepted pool。",
-  "next_after": "Continue quality metrics/admission -> persisted provisional accepted -> auto-backtest plan.",
+  "current_slice": "quality-metrics-admission-reentry-loop838",
+  "next_atomic_action": "PERSISTED_PROVISIONAL_ACCEPTED_REENTRY_LOOP839：让 persisted provisional admission/store write 只消费 admission.provisional_ready_refs，并显式拒绝 held/rejected/ignored_quality_event_refs；仍不得授予 final accepted、不得自动回测、不得写 backtest queue。",
+  "next_after": "Continue persisted provisional accepted -> final accepted UI confirmation -> auto-backtest plan.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-852-controlled-scoring-executor-reentry-loop837",
+  "last_tick": "SYNC-853-quality-metrics-admission-reentry-loop838",
   "last_sync_sources": [
+    "SYNC-853 quality metrics admission re-entry loop838",
+    "loop838 trigger: quality events needed explicit admission boundaries so non-executed or failed refs cannot become provisional-ready",
+    "loop838 backend: ScoringResultReadModelV1 exposes ignored_quality_event_refs and adapter only consumes quality events for successful executor refs",
+    "loop838 admission: ProvisionalAcceptedPoolAdmissionV1 passes ignored_quality_event_refs through to UI/report consumers",
+    "loop838 boundary: ignored quality events do not write accepted pool, do not backtest, and do not grant provisional-ready",
+    "loop838 verification: RED missing ignored refs; focused ignored-quality tests 2 passed; scoring/provisional/backtest-readiness regression 29 passed; Ruff pass; admission smoke pass",
+    "next: PERSISTED_PROVISIONAL_ACCEPTED_REENTRY_LOOP839",
     "SYNC-852 controlled scoring executor re-entry loop837",
     "loop837 trigger: small-batch executor needed to consume bridge-ready refs and reject caller-handwritten candidate refs",
     "loop837 backend: executor preflight adds execution_item_not_bridge_ready when item refs are outside bridge.candidate_refs_for_scoring",
