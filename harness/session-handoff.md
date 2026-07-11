@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T13:40:00+08:00
+updated_at: 2026-07-11T14:00:00+08:00
+
+## Latest Handoff — SYNC-828 Source review material data availability linkage
+
+- [DONE] `build_data_availability_gate_result_v1(...)` now accepts optional `source_manifest_capture_contract`.
+- [DONE] `source_review_material_ready` is consumed as a partial source-review support status.
+- [DONE] A candidates with all required source review material become `availability_status=partial`, not calculable.
+- [VERIFY] Data availability + downstream scoring/pool tests: 24 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [NEXT] `AE_MISSING_SOURCE_ONBOARDING_REQUEST_LOOP814`: add user-readable onboarding request/read-model for missing A/E sources such as entity linking and alternative data snapshots.
+- [FORBIDDEN] Do not mark source review material as ready for scoring; do not generate real A/E candidates; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-827 Source manifest capture product self-validation
 
