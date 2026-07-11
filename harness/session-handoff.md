@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:41:56+08:00
+updated_at: 2026-07-12T00:50:00+08:00
+
+## Latest Handoff — SYNC-903 post-acceptance-backtest-plan-handoff-context-loop889
+
+- [DONE] `controlled_backtest_plan_confirmation_v1` now includes `controlled_backtest_plan_handoff_context_v1` for both generated and existing plan-confirmation paths.
+- [DONE] The handoff context carries accepted refs, skipped/failed refs, confirmation_ref, single-factor plan count, multi-factor status, `will_write_queue=false`, `will_run_backtest=false`, and next-step label.
+- [DONE] Jobs plan-confirmation card now shows: backtest plan source refs, held/failed refs, accepted confirmation credential, single-factor count, multi-factor status, no-queue/no-backtest markers, and “生成回测计划后仍需单独确认执行”.
+- [VERIFY] RED API unit missed `plan_handoff_context`; GREEN full `test_mining_job_api_unit.py` 63 passed, Ruff passed, current-task browser passed, jobs entry-mode dogfood passed, formal-review E2E passed, build passed, lint 0 errors / 1 existing warning, diff check passed.
+- [WORKER] Kierkegaard fixed-thread read-only product QA review identified the plan-card source/single-vs-multi/no-auto-execution gap; findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_EXECUTION_CONFIRMATION_CONTEXT_LOOP890`: carry plan-ready context into execution-confirmation surface without DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-902 post-acceptance-final-accepted-confirmation-context-loop888
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T00:41:56+08:00",
+  "updated_at": "2026-07-12T00:50:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-final-accepted-confirmation-context-loop888",
-  "next_atomic_action": "POST_ACCEPTANCE_BACKTEST_PLAN_HANDOFF_CONTEXT_LOOP889：把 accepted 确认后的回测计划生成入口与 accepted/scoring 上下文贯通，让用户在生成回测计划前看到 accepted refs、单因子/多因子边界、不会自动执行；优先用 mock/API/browser dogfood，不连接真实 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward backtest-plan handoff context, execution confirmation context, and factor-library result continuity.",
+  "current_slice": "post-acceptance-backtest-plan-handoff-context-loop889",
+  "next_atomic_action": "POST_ACCEPTANCE_EXECUTION_CONFIRMATION_CONTEXT_LOOP890：把 plan-ready 之后的真实执行确认入口与 backtest plan handoff 上下文贯通，让用户在点击执行前看到 plan refs、single/multi 计划、runner/runtime/audit 边界、不会页面加载执行；优先用 mock/API/browser dogfood，不连接真实 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward execution confirmation context, controlled real progress clarity, and factor-library result continuity.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-902-post-acceptance-final-accepted-confirmation-context-loop888",
+  "last_tick": "SYNC-903-post-acceptance-backtest-plan-handoff-context-loop889",
   "last_sync_sources": [
+    "SYNC-903 Post-acceptance backtest plan handoff context loop889",
+    "loop889 backend: controlled_backtest_plan_confirmation_v1 now includes controlled_backtest_plan_handoff_context_v1 for both generated and existing plan confirmations",
+    "loop889 API: plan handoff context carries accepted refs, skipped/failed refs, confirmation_ref, single_factor_plan_count, multi_factor_status, will_write_queue=false, will_run_backtest=false, and next_step_label",
+    "loop889 frontend: SmallBatchScoringResultPanel now shows backtest plan source refs, held/failed refs, accepted confirmation credential, single-factor count, multi-factor status, queue/backtest false markers, and next-step guidance",
+    "loop889 dogfood: controlled-real current-task-card browser asserts plan handoff copy alongside scoring and accepted confirmation context with no page-load POST/no substitute runtime markers",
+    "loop889 worker: Kierkegaard fixed-thread read-only product QA review identified the same plan-card candidate-source/single-vs-multi/no-auto-execution gap; findings absorbed before sync",
+    "loop889 verification: RED controlled_backtest_plan API missing plan_handoff_context; GREEN API unit 63 passed; Ruff pass; current-task browser pass; jobs entry-mode dogfood pass; formal-review E2E product dogfood pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning; diff check pass",
+    "next: POST_ACCEPTANCE_EXECUTION_CONFIRMATION_CONTEXT_LOOP890",
     "SYNC-902 Post-acceptance final accepted confirmation context loop888",
     "loop888 backend: final_accepted_pool_confirmation_v1 now includes confirmation_context with entry/source mode, factor class label, subclass quota, quality-gate summary, candidate refs, skipped/failed refs, will_trigger_backtest=false, and next_step_label",
     "loop888 frontend: SmallBatchScoringResultPanel now shows accepted confirmation provenance, A-E class/subclass, quality gate summary, pending refs, skipped/failed refs, and will_trigger_backtest=false",
