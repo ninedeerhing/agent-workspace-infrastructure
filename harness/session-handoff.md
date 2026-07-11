@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T05:25:00+08:00
+updated_at: 2026-07-12T05:55:00+08:00
+
+## Latest Handoff — SYNC-914 post-acceptance-feedback-seeded-lineage-to-job-payload-loop900
+
+- [DONE] FactorMining now sends candidate-level feedback lineage into `MiningBrief.generation_mix.candidate_lineage_previews`.
+- [DONE] `MiningBrief.from_json()` preserves nested JSON arrays/objects in `generation_mix`, so `trajectory_outcome_details` and `candidate_lineage_previews` survive API parsing.
+- [DONE] `factor_construction_universe_summary(...)` exposes `candidate_lineage_previews` in `job.result.factor_construction_universe_summary` for Jobs/result recaps.
+- [DONE] Jobs batch recap shows `候选 lineage`, lineage count, first lineage, generator action, and marker `job_payload_candidate_lineage_visible=true`.
+- [VERIFY] Backend universe summary unit `10 passed`; feedback lineage payload browser pass; candidate-card lineage pass; feedback-seeded preview pass; Jobs feedback seed recap visibility pass; feedback-to-mining browser pass; factor-universe review readiness pass; formal-review E2E pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; brief-as-input and summary-as-persistent-read-model findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_FEEDBACK_LINEAGE_TO_FACTOR_LIBRARY_RECAP_LOOP901`: carry `candidate_lineage_previews` into Factor Library / result recap surfaces.
 
 ## Latest Handoff — SYNC-913 post-acceptance-feedback-seeded-candidate-card-lineage-loop899
 

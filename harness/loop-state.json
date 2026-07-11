@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T05:25:00+08:00",
+  "updated_at": "2026-07-12T05:55:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-feedback-seeded-candidate-card-lineage-loop899",
-  "next_atomic_action": "POST_ACCEPTANCE_FEEDBACK_SEEDED_LINEAGE_TO_JOB_PAYLOAD_LOOP900：把 per-candidate feedback lineage 从预览延伸到创建任务后的 job payload、Jobs recap 与后续结果复盘，让用户创建任务后仍能追踪每个候选来自哪个 seed、采用什么生成器动作、为何被保留或规避。",
+  "current_slice": "post-acceptance-feedback-seeded-lineage-to-job-payload-loop900",
+  "next_atomic_action": "POST_ACCEPTANCE_FEEDBACK_LINEAGE_TO_FACTOR_LIBRARY_RECAP_LOOP901：把 job payload 中的 candidate_lineage_previews 延伸到 Factor Library / 结果复盘面，让用户从评分、accepted、回测结果继续看到每个因子继承或规避的 seed lineage、生成器动作和质量闸理由。",
   "next_after": "Continue continuous loop toward feedback-driven next-round factor construction and controlled product review readiness.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-913-post-acceptance-feedback-seeded-candidate-card-lineage-loop899",
+  "last_tick": "SYNC-914-post-acceptance-feedback-seeded-lineage-to-job-payload-loop900",
   "last_sync_sources": [
+    "SYNC-914 Post-acceptance feedback seeded lineage to job payload loop900",
+    "loop900 frontend: FactorMining buildMiningBrief now carries candidate_lineage_previews from visible candidate cards into MiningBrief.generation_mix",
+    "loop900 backend: MiningBrief.from_json now preserves nested generation_mix JSON arrays/objects and factor_construction_universe_summary exposes candidate_lineage_previews",
+    "loop900 Jobs recap: job payload batch telemetry shows candidate lineage count, lineage note, generator action, and job_payload_candidate_lineage_visible=true",
+    "loop900 worker: Kierkegaard fixed-thread read-only product QA returned partial; brief input authority and summary persistent read-model findings were absorbed",
+    "loop900 verification: backend universe summary unit 10 passed; feedback lineage payload browser pass; candidate-card lineage pass; feedback-seeded preview pass; Jobs recap visibility pass; feedback-to-mining browser pass; factor-universe review readiness pass; formal-review E2E pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_FEEDBACK_LINEAGE_TO_FACTOR_LIBRARY_RECAP_LOOP901",
     "SYNC-913 Post-acceptance feedback seeded candidate card lineage loop899",
     "loop899 frontend: CandidatePreview now supports optional lineage and feedbackAction fields rendered on each candidate card with feedback_seed_candidate_card_lineage=true",
     "loop899 frontend: candidatePreviewFor now accepts feedbackSeed and emits success_seed/watchlist/failure_path-specific candidate cards",
