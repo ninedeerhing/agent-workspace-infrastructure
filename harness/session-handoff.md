@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-11T18:25:00+08:00
+updated_at: 2026-07-11T18:40:00+08:00
+
+## Latest Handoff — SYNC-884 formal-human-review-accepted-loop870
+
+- [DONE] User formally accepted the current direction: `接受，大方向没问题`.
+- [DONE] Decision recorded at `apps/quant_assistant/docs/ACCEPTANCE/2026-07-11-factor-construction-universe-formal-human-review-decision.md`.
+- [DONE] `loop-state.stop_reason` cleared; acceptance is direction-level, not final project completion.
+- [NEXT] `POST_ACCEPTANCE_DATA_SOURCE_AND_RESULT_RECAP_POLISH_LOOP871`: continue post-acceptance product/function gap fixes for Data Support status, A/E source gaps, single-factor vs multi-factor result distinction, and batch factor recap visualization.
+- [BOUNDARY] No `.env`, DB, Docker, scorer, or backtest action was performed while recording the decision.
 
 ## Latest Handoff — SYNC-883 formal-human-review-entry-package-refresh-loop869
 

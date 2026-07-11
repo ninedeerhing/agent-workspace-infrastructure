@@ -1,25 +1,46 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T07:25:12Z",
+  "updated_at": "2026-07-11T12:01:04Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "CONTROLLED_REAL_BACKTEST_RESULT_TARGETED_FACTOR_LIBRARY_RECAP_LOOP859：把受控真实回测 completed/failed/blocked 结果定向带入 Factor Library/报告复盘路径，至少携带 job_id/source/factor refs；继续补 completed success CTA、blocked/failure next-step 和 JobsPage 当前确认卡片抽取债务，保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
-  "continuation_next_action": "CONTROLLED_REAL_BACKTEST_RESULT_TARGETED_FACTOR_LIBRARY_RECAP_LOOP859：把受控真实回测 completed/failed/blocked 结果定向带入 Factor Library/报告复盘路径，至少携带 job_id/source/factor refs；继续补 completed success CTA、blocked/failure next-step 和 JobsPage 当前确认卡片抽取债务，保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
-  "task_trees_next_hint": "CONTROLLED_REAL_BACKTEST_RESULT_TARGETED_FACTOR_LIBRARY_RECAP_LOOP859：把受控真实回测 completed/failed/blocked 结果定向带入 Factor Library/报告复盘路径，至少携带 job_id/source/factor refs；继续补 completed success CTA、blocked/failure next-step 和 JobsPage 当前确认卡片抽取债务，保持无页面加载执行、无替代 Docker/DB、无默认 runner。",
+  "loop_next_atomic_action": "AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP870：等待用户按 2026-07-11 formal human review package 完成人工验收；用户接受、驳回或提出修改后再继续。",
+  "continuation_next_action": "FORMAL_REVIEW_PRODUCT_RUNTIME_READINESS_DOGFOOD_LOOP866：把 loop865 的正确 DB/runner/no-substitute 运行态证据纳入产品级前验收狗粮，确认用户从因子构造宇宙到当前任务/结果复盘路径能看到清楚的 readiness 状态；若发现缺口，继续转为下一功能目标。",
+  "task_trees_next_hint": "FORMAL_REVIEW_RUNTIME_READINESS_SMOKE_LOOP864：进入人工验收前做只读运行态 readiness smoke，确认正确 DB/runner/受控执行边界、无替代 Docker/DB/端口、无默认 runner、无页面加载执行；若运行态不满足则把缺口转为下一功能目标而不是停在人工验收。",
   "foreground_tree": "TREE-6",
   "foreground_slice": "",
-  "latest_section5_id": "1196",
-  "latest_section5_title": "Controlled real backtest preflight-to-execution progress loop858（2026-07-11 · TREE-6/PL-G · Jobs execution progress）",
-  "top_summary_section5_ref": "1196",
-  "top_summary_last_tick": "loop858",
-  "loop_last_tick": "SYNC-873-controlled-real-backtest-preflight-to-execution-progress-loop858",
-  "findings": [],
+  "latest_section5_id": "1206",
+  "latest_section5_title": "Formal human review entry package refresh loop869（2026-07-11 · TREE-6/PL-G · formal review）",
+  "top_summary_section5_ref": "1206",
+  "top_summary_last_tick": "loop869",
+  "loop_last_tick": "SYNC-883-formal-human-review-entry-package-refresh-loop869",
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "SYNC-LOOP-CONT",
+      "paths": [
+        "harness\\loop-state.json",
+        "apps\\quant_assistant\\docs\\CONTINUATION_PROMPT.md"
+      ],
+      "detail": "loop-state next_atomic_action='AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP870：等待用户按 2026-07-11 formal human review package 完成人工验收；用户接受、驳回或提出修改后再继续。' vs CONTINUATION 下一动作='FORMAL_REVIEW_PRODUCT_RUNTIME_READINESS_DOGFOOD_LOOP866：把 loop865 的正确 DB/runner/no-substitute 运行态证据纳入产品级前验收狗粮，确认用户从因子构造宇宙到当前任务/结果复盘路径能看到清楚的 readiness 状态；若发现缺口，继续转为下一功能目标。'",
+      "recommendation": "对齐 loop-state.json 与 CONTINUATION_PROMPT 下一动作字段。"
+    },
+    {
+      "severity": "info",
+      "code": "SYNC-LOOP-TREES",
+      "paths": [
+        "harness\\loop-state.json",
+        "apps\\quant_assistant\\docs\\TASK_TREES.md"
+      ],
+      "detail": "loop-state='AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP870：等待用户按 2026-07-11 formal human review package 完成人工验收；用户接受、驳回或提出修改后再继续。' vs TASK_TREES 下一未勾选项='FORMAL_REVIEW_RUNTIME_READINESS_SMOKE_LOOP864：进入人工验收前做只读运行态 readiness smoke，确认正确 DB/runner/受控执行边界、无替代 Docker/DB/端口、无默认 runner、无页面加载执行；若运行态不满足则把缺口转为下一功能目标而不是停在人工验收。'",
+      "recommendation": "确认 TASK_TREES 排序与 loop-state 已同步。"
+    }
+  ],
   "last_lifecycle": {
-    "at": "2026-07-11T07:25:12Z",
-    "finding_count": 0,
-    "warning_count": 0,
+    "at": "2026-07-11T12:01:04Z",
+    "finding_count": 2,
+    "warning_count": 1,
     "error_count": 0
   }
 }

@@ -1,35 +1,34 @@
-# Orchestrator Latest Report — SYNC-883 Formal human review entry package refresh loop869
+# Orchestrator Latest Report — SYNC-884 Formal human review accepted loop870
 
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "FORMAL_HUMAN_REVIEW_ENTRY_PACKAGE_REFRESH_LOOP869"
+  task: "FORMAL_HUMAN_REVIEW_ACCEPTED_LOOP870"
   changes:
-    - file: "apps/quant_assistant/docs/ACCEPTANCE/2026-07-11-factor-construction-universe-formal-human-review-package.md"
-      summary: "Adds the current formal human review package with runtime, evidence, five review steps, pass/fail criteria, formal decision rules, and caveats."
+    - file: "apps/quant_assistant/docs/ACCEPTANCE/2026-07-11-factor-construction-universe-formal-human-review-decision.md"
+      summary: "Records the user decision: accepted direction; clarifies this is not final project completion."
     - file: "harness/loop-state.json"
-      summary: "Sets stop_reason=formal_human_acceptance_required and next action AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP870."
+      summary: "Clears stop_reason and sets next action to post-acceptance data/source/result recap polish loop871."
     - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
-      summary: "Adds §5.1206 formal review package ledger and current-round stop state."
+      summary: "Adds §5.1207 acceptance ledger and updates the current round to continuous loop active."
     - file: "apps/quant_assistant/docs/CONTINUATION_PROMPT.md"
-      summary: "Updates continuation to SYNC-883 and formal human review wait state."
+      summary: "Updates continuation prompt from formal human review wait to accepted direction and next loop871."
     - file: "apps/quant_assistant/docs/TASK_TREES.md"
-      summary: "Updates latest quant-only tree progress and next action."
+      summary: "Updates TREE-6 latest progress and preserves SYNC-883 as history."
     - file: "harness/session-handoff.md"
-      summary: "Adds latest handoff for loop869."
+      summary: "Adds latest handoff for user acceptance and next loop."
     - file: "harness/reports/EMPLOYEE_ROSTER.md"
-      summary: "Marks orchestrator as waiting for formal human review."
+      summary: "Marks orchestrator continuous_loop_active for loop870/871."
   verification:
-    - command: "Review package content audit"
-      result: "Package covers factor-mining, Jobs, Factor Library, Backtest results, Data Support, pass/fail criteria, and formal decision options."
-    - command: "Evidence baseline"
-      result: "References loop868 live dogfood, loop867 final product self-check, and loop866 runtime readiness dogfood."
+    - command: "Truth-source sync review"
+      result: "loop-state, PROJECT_STATUS, CONTINUATION_PROMPT, TASK_TREES, session-handoff, roster, and latest orchestrator report all point to loop871."
+    - command: "Runtime boundary"
+      result: "No .env read, no DB connection, no Docker/container action, no scorer execution, no backtest execution."
   roster_update:
     workload_delta: "unchanged"
     mistakes: []
     lessons:
-      - "A formal review stop must include concrete URL-by-URL pass/fail instructions, not only a readiness statement."
-    performance_note: "Formal human review stop is now explicit and backed by fresh dogfood evidence."
-  blockers:
-    - "Requires user formal human review decision."
-  next: "AWAIT_USER_FORMAL_HUMAN_REVIEW_LOOP870"
+      - "Direction acceptance must clear formal review stop_reason while preserving that product detail work continues."
+    performance_note: "Formal review direction accepted and continuous loop restored."
+  blockers: []
+  next: "POST_ACCEPTANCE_DATA_SOURCE_AND_RESULT_RECAP_POLISH_LOOP871"
