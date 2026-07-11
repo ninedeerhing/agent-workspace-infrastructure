@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:16:38+08:00
+updated_at: 2026-07-12T00:41:56+08:00
+
+## Latest Handoff — SYNC-902 post-acceptance-final-accepted-confirmation-context-loop888
+
+- [DONE] `final_accepted_pool_confirmation_v1` now includes `confirmation_context`.
+- [DONE] `confirmation_context` carries entry/source mode, A-E factor class label, subclass quota label, quality-gate summary, candidate refs for confirmation, skipped/failed refs, `will_trigger_backtest=false`, and next-step label.
+- [DONE] Jobs accepted confirmation card now shows: accepted confirmation source, classification/subclass, quality gate summary, pending refs, held/failed refs, and “确认 accepted 后仍不会自动回测”.
+- [VERIFY] RED API unit missed `confirmation_context`; RED browser dogfood missed accepted confirmation copy; GREEN full `test_mining_job_api_unit.py` 63 passed, Ruff passed, current-task browser passed, jobs entry-mode dogfood passed, formal-review E2E passed, build passed, lint 0 errors / 1 existing warning, diff check passed.
+- [WORKER] Kierkegaard fixed-thread read-only product QA review identified the accepted-card context/refs dogfood gap; findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_BACKTEST_PLAN_HANDOFF_CONTEXT_LOOP889`: carry accepted/scoring context into backtest-plan handoff without DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-901 post-acceptance-scoring-result-context-continuity-loop887
 
