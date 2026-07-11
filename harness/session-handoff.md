@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T16:25:00+08:00
+updated_at: 2026-07-11T16:45:00+08:00
+
+## Latest Handoff — SYNC-836 Missing source manifest conversion product gate
+
+- [DONE] `product_self_validation_gate_v1` now requires route evidence `has_missing_source_manifest_conversion_surface=true`.
+- [DONE] Missing route evidence blocks with `missing_source_manifest_conversion_ui_not_visible`.
+- [DONE] Batch-mining plan now exposes `factor_universe_missing_source_manifest_conversion_candidate`.
+- [DONE] Missing API/contract evidence blocks with `missing_source_manifest_conversion_candidate_not_exposed`.
+- [VERIFY] Product/API/consumer/onboarding/manifest regression: 32 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `True missing_source_onboarding_manifest_conversion_candidate_v1 blocked_waiting_for_onboarding_review_packet False`.
+- [NEXT] `SOURCE_ADAPTER_MANIFEST_REVIEW_FROM_CONVERSION_LOOP822`: build a source adapter manifest review read-model from the conversion candidate.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-835 Missing source manifest conversion UI surface
 

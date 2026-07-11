@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T16:25:00+08:00
+Updated: 2026-07-11T16:45:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop820 | continuous_loop_active | gpt-5.5 | 2026-07-11T16:25:00+08:00 | SYNC-835 missing source manifest conversion UI surface complete; next MISSING_SOURCE_MANIFEST_CONVERSION_PRODUCT_SELF_VALIDATION_LOOP821 | keep moving; add product self-validation for manifest conversion surface |
+| orchestrator | current-thread | loop821 | continuous_loop_active | gpt-5.5 | 2026-07-11T16:45:00+08:00 | SYNC-836 missing source manifest conversion product gate complete; next SOURCE_ADAPTER_MANIFEST_REVIEW_FROM_CONVERSION_LOOP822 | keep moving; build source adapter manifest review read-model |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T16:45:00+08:00 · loop821/SYNC-836: Manifest conversion UI/API evidence is now part of `product_self_validation_gate_v1`; missing route evidence blocks `missing_source_manifest_conversion_ui_not_visible`, missing API contract evidence blocks `missing_source_manifest_conversion_candidate_not_exposed`, and batch-mining plan exposes a blocked/read-only conversion candidate. Verification: product/API/consumer/onboarding/manifest regression 32 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T16:25:00+08:00 · loop820/SYNC-835: `/quant/factor-mining` now shows “Manifest 草案预览” for `missing_source_onboarding_manifest_conversion_candidate_v1`, including entity/alternative source adapter/table/PIT/coverage/owner/material refs and source_adapter_manifest_review boundary. Permanent test-engineer thread received read-only review request on gpt-5.4. Verification: manifest UI + backend focused tests 3 passed, consumer/source + onboarding regression 17 passed, web build pass.
 - 2026-07-11T16:05:00+08:00 · loop819/SYNC-834: Added no-execution `missing_source_onboarding_manifest_conversion_candidate_v1`; completed `entity_linking_table` / `alternative_data_snapshot` onboarding review packets now produce review-only adapter/table/PIT/coverage/owner/material manifest drafts. Verification: focused manifest conversion tests 2 passed, adjacent onboarding/source-manifest/data-availability regression 16 passed, Ruff pass.
 - 2026-07-11T15:40:00+08:00 · loop818/SYNC-833: Added no-execution missing-source onboarding intake contract and review packet for `entity_linking_table` / `alternative_data_snapshot`; UI now exposes material field keys; missing-source/source-confirmation/candidate-availability sections extracted into small files and `factorMiningReview.tsx` is 242 pure LOC. Verification: onboarding + consumer flow + data availability tests 21 passed, Ruff pass, web build pass.

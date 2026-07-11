@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T16:25:00+08:00",
+  "updated_at": "2026-07-11T16:45:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "missing-source-manifest-conversion-ui-loop820",
-  "next_atomic_action": "MISSING_SOURCE_MANIFEST_CONVERSION_PRODUCT_SELF_VALIDATION_LOOP821：把 Manifest 草案预览纳入 product_self_validation_gate_v1，要求 route evidence 暴露 manifest conversion surface 与 API/contract evidence；缺失时 fail closed，仍不得标 ready、不得写 DB、不得触发评分/回测/Docker/port。",
-  "next_after": "Continue until missing-source manifest conversion UI surface -> product self-validation gate -> source adapter manifest review -> Data Availability Gate partial closure.",
+  "current_slice": "missing-source-manifest-conversion-product-gate-loop821",
+  "next_atomic_action": "SOURCE_ADAPTER_MANIFEST_REVIEW_FROM_CONVERSION_LOOP822：基于 missing_source_onboarding_manifest_conversion_candidate_v1 构建 source adapter manifest review read-model，复核 adapter/table/PIT/coverage/owner/material refs 是否齐全并输出 review status；通过前仍不得标 ready、不得写 DB、不得触发评分/回测/Docker/port。",
+  "next_after": "Continue until manifest conversion candidate -> source adapter manifest review -> Data Availability Gate partial closure.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-835-missing-source-manifest-conversion-ui-loop820",
+  "last_tick": "SYNC-836-missing-source-manifest-conversion-product-gate-loop821",
   "last_sync_sources": [
+    "SYNC-836 Missing source manifest conversion product gate loop821",
+    "loop821 trigger: manifest conversion UI/API evidence needed to be product self-validation guarded",
+    "loop821 gate: product_self_validation_gate_v1 now blocks missing_source_manifest_conversion_ui_not_visible and missing_source_manifest_conversion_candidate_not_exposed",
+    "loop821 API: batch mining plan exposes factor_universe_missing_source_manifest_conversion_candidate as blocked/read-only evidence",
+    "loop821 verification: product/API/consumer/onboarding/manifest regression 32 passed; Ruff pass; creation-plan smoke pass",
+    "next: SOURCE_ADAPTER_MANIFEST_REVIEW_FROM_CONVERSION_LOOP822",
     "SYNC-835 Missing source manifest conversion UI surface loop820",
     "loop820 trigger: manifest conversion candidates needed a user-visible surface before product review",
     "loop820 UI: /quant/factor-mining shows Manifest 草案预览 with contract kind, entity_linking_table, alternative_data_snapshot, adapter/table/PIT/coverage/owner/material refs",
