@@ -1,3 +1,46 @@
+# Orchestrator Latest Report — SYNC-857 controlled backtest request re-entry loop842
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_BACKTEST_REQUEST_REENTRY_LOOP842"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_backtest_execution_confirmation.py"
+      summary: "Derives execution candidates from plan-ready single_factor_plans and requires execution confirmation ref."
+    - file: "apps/quant_assistant/src/qa/quant_mining/mining_runner.py"
+      summary: "Records server-side execution confirmation ref when user confirms execution."
+    - file: "apps/quant_assistant/tests/test_controlled_backtest_execution_confirmation_unit.py"
+      summary: "Covers plan-drafts-only, confirmation-ref-required, no queue/no execution boundaries."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-857 and next loop843."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-857."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop843."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to controlled real backtest bridge re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-857."
+  verification:
+    - command: "uv run pytest -q tests/test_controlled_backtest_execution_confirmation_unit.py API execution targets"
+      result: "6 passed."
+    - command: "uv run pytest -q related execution/backtest/API tests"
+      result: "110 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "execution confirmation smoke"
+      result: "execution_confirmation_ready ['fe_one'] ui-confirm-execution-smoke False False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Execution confirmation must consume plan drafts, not legacy naked factor_version_ids."
+    performance_note: "Loop842 closed with focused/regression/Ruff/smoke; no duplicate worker created."
+  blockers: []
+  next: "CONTROLLED_REAL_BACKTEST_BRIDGE_REENTRY_LOOP843"
+
+---
+
 # Orchestrator Latest Report — SYNC-856 backtest plan allocator re-entry loop841
 
 report:

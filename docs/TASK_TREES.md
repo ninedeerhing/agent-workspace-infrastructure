@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-12T00:10:00+08:00 · SYNC-856 · backtest plan allocator re-entry
+Updated: 2026-07-12T00:30:00+08:00 · SYNC-857 · controlled backtest request re-entry
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 

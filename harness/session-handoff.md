@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:10:00+08:00
+updated_at: 2026-07-12T00:30:00+08:00
+
+## Latest Handoff — SYNC-857 controlled backtest request re-entry
+
+- [DONE] Execution confirmation now derives factor ids from `single_factor_plans`, not legacy naked `factor_version_ids`.
+- [DONE] User execution confirmation requires `confirmation_ref`.
+- [DONE] Output keeps plan_drafts and candidate_source for later execution/report provenance.
+- [DONE] Confirmation remains no queue/no execution.
+- [VERIFY] Focused execution/API tests: 6 passed.
+- [VERIFY] Related regression: 110 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Execution smoke: `execution_confirmation_ready ['fe_one'] ui-confirm-execution-smoke False False False`.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_BRIDGE_REENTRY_LOOP843`: real bridge must consume execution-confirmed plan drafts/candidate_source and enforce runner/runtime/audit gates.
+- [FORBIDDEN] Do not run with default runner; do not use substitute DB/Docker/ports; do not execute on page load.
 
 ## Latest Handoff — SYNC-856 backtest plan allocator re-entry
 

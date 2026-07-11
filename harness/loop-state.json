@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T00:10:00+08:00",
+  "updated_at": "2026-07-12T00:30:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "backtest-plan-allocator-reentry-loop841",
-  "next_atomic_action": "CONTROLLED_BACKTEST_REQUEST_REENTRY_LOOP842：让 controlled backtest plan confirmation / request builder 只消费 plan-ready drafts，并要求用户明确确认 execution；继续保持 no queue/no execution，下一步再接正确 runner 与 qa-pg-alt runtime。",
-  "next_after": "Continue controlled execution confirmation -> real backtest bridge -> progress/report read model.",
+  "current_slice": "controlled-backtest-request-reentry-loop842",
+  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_BRIDGE_REENTRY_LOOP843：让 controlled real backtest bridge 只消费 execution-confirmed plan drafts/candidate_source，并强制正确 runner、qa-pg-alt runtime、幂等键与审计材料；禁止默认 runner、替代 DB/Docker/端口和页面加载执行。",
+  "next_after": "Continue real backtest progress/report read model -> consumer result report -> feedback memory.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-856-backtest-plan-allocator-reentry-loop841",
+  "last_tick": "SYNC-857-controlled-backtest-request-reentry-loop842",
   "last_sync_sources": [
+    "SYNC-857 controlled backtest request re-entry loop842",
+    "loop842 trigger: execution confirmation needed to consume plan-ready drafts rather than legacy factor_version_ids",
+    "loop842 backend: controlled_backtest_execution_confirmation derives factor_version_ids from single_factor_plans and requires confirmation_ref when user_confirmed",
+    "loop842 boundary: confirmation-only, no queue write, no backtest run, no DB/Docker/runner invocation",
+    "loop842 verification: focused execution/API 6 passed; related regression 110 passed; Ruff pass; execution smoke pass",
+    "next: CONTROLLED_REAL_BACKTEST_BRIDGE_REENTRY_LOOP843",
     "SYNC-856 backtest plan allocator re-entry loop841",
     "loop841 trigger: backtest plan drafts needed to consume only final_accepted_refs while preserving skipped/failed/provenance for user review",
     "loop841 backend: BacktestPlanAllocatorV1 emits candidate_source with accepted/skipped/failed refs and confirmation_ref",
