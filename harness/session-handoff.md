@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T17:00:00+08:00
+updated_at: 2026-07-11T17:35:00+08:00
+
+## Latest Handoff — SYNC-881 formal-review-final-product-self-check-loop867
+
+- [DONE] loop867 final product self-check found and fixed a product gap in `/quant/backtest`: the page is no longer an English/backend-style history list.
+- [DONE] Backtest result page now shows consumer copy: “回测结果”, four-step path from factor construction to report, page-load no-execution explanation, empty-state next actions, Chinese status labels, metric interpretation, and NAV curve guidance.
+- [DONE] Added `web/scripts/check-formal-review-final-product-self-check.mjs` and `npm run test:formal-review-final-product-self-check`; the browser dogfood covers result list, detail expansion, empty state, and no runtime POST on load/expand.
+- [VERIFY] Passed: final product self-check; formal-review E2E product dogfood; factor-universe review readiness; controlled-real current-task browser; web build; lint 0 errors / 1 existing warning.
+- [WORKERS] Parfit/test-engineer was dispatched for read-only final product self-check, but `wait_agent` returned completed with no report body. Record as worker channel/report anomaly; do not use it as completion evidence.
+- [BOUNDARY] No `.env`/DSN/secret print; no Docker/container creation; no substitute DB/port; no scorer/backtest; no DB write; mocked browser product dogfood only.
+- [NEXT] `FORMAL_REVIEW_LIVE_PRODUCT_DOGFOOD_LOOP868`: continue a live product dogfood from factor construction to current task, runtime readiness, Factor Library, and Backtest result page; gaps become next goals, not stop reasons.
 
 ## Latest Handoff — SYNC-880 formal-review-product-runtime-readiness-dogfood-loop866
 
