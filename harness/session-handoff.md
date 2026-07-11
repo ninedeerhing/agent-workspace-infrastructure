@@ -1,6 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-11T20:55:00+08:00
+updated_at: 2026-07-11T21:15:00+08:00
+
+## Latest Handoff — SYNC-849 A/E small-batch preflight re-entry
+
+- [DONE] `small_batch_real_scoring_request_v1` now accepts `ae_source_review_validation_closure`.
+- [DONE] Preflight resolves `ae_source_review_validation_closed_refs` from closure `closed_refs`.
+- [DONE] Creation-plan preflight now carries `closure_contract_kind=ae_source_review_validation_closure_v1`.
+- [DONE] Closure only clears validation blockers; runtime, runner, UI, and compute blockers remain independent.
+- [VERIFY] Focused closure/re-entry tests: 4 passed.
+- [VERIFY] Small-batch + closure + creation-plan + scoring bridge regression: 25 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `small_batch_real_scoring_request_v1 blocked ae_source_review_validation_closure_v1 [] False False`.
+- [WORKER] Maxwell/code-reviewer thread returned systemError for this dispatch; no duplicate worker was created; local TDD/regression/smoke are authoritative.
+- [NEXT] `AE_CONTROLLED_SCORING_READINESS_REENTRY_LOOP835`: derive controlled scoring readiness states from closure-aware preflight.
+- [FORBIDDEN] Do not let closure bypass Data Availability, Compute Budget, qa-pg-alt runtime, injected runner, or UI authorization; do not run scorer/backtest; do not write DB.
 
 ## Latest Handoff — SYNC-848 A/E source-review validation closure
 

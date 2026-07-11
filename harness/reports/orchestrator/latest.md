@@ -1,3 +1,52 @@
+# Orchestrator Latest Report — SYNC-849 A/E small-batch preflight re-entry loop834
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "AE_SMALL_BATCH_PREFLIGHT_REENTRY_WITH_VALIDATION_CLOSURE_LOOP834"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_small_batch_real_scoring.py"
+      summary: "Small-batch preflight now accepts ae_source_review_validation_closure and resolves closed refs from closure.closed_refs."
+    - file: "apps/quant_assistant/tests/test_factor_construction_small_batch_real_scoring_unit.py"
+      summary: "Covers closure closed refs and confirms closure does not bypass runtime/runner/UI blockers."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Passes the creation-plan closure object into small-batch preflight."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Covers creation-plan preflight closure_contract_kind."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-849 and next loop835."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-849."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop835."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop835."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to controlled scoring readiness re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-849."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Records code-reviewer channel_system_error without creating duplicate worker."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_small_batch_real_scoring_unit.py -k closure"
+      result: "RED missing ae_source_review_validation_closure parameter; GREEN 2 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_universe_ae_source_review_validation_closure_unit.py tests/test_batch_mining_flow_unit.py tests/test_factor_construction_real_scoring_execution_bridge_unit.py"
+      result: "25 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "creation-plan smoke for closure-aware preflight"
+      result: "small_batch_real_scoring_request_v1 blocked ae_source_review_validation_closure_v1 [] False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Closure refs can clear only validation blockers; runtime, runner, UI, and compute gates must remain independent."
+    performance_note: "Loop834 closed with local RED/GREEN/regression/smoke; code-reviewer channel returned systemError and was recorded."
+  blockers: []
+  next: "AE_CONTROLLED_SCORING_READINESS_REENTRY_LOOP835"
+
+---
+
 # Orchestrator Latest Report — SYNC-848 A/E source-review validation closure loop833
 
 report:

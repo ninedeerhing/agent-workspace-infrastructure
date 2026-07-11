@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T20:55:00+08:00",
+  "updated_at": "2026-07-11T21:15:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "ae-source-review-validation-closure-loop833",
-  "next_atomic_action": "AE_SMALL_BATCH_PREFLIGHT_REENTRY_WITH_VALIDATION_CLOSURE_LOOP834：让 small-batch preflight re-entry 消费 ae_source_review_validation_closure_v1.closed_refs 作为 ae_source_review_validation_closed_refs；closed refs 可解除 validation blocker，但仍必须经过 Data Availability/Compute Budget/qa-pg-alt/runner/UI 授权，且不得自动执行 scorer/backtest。",
-  "next_after": "Continue small-batch preflight re-entry -> controlled scoring readiness -> scorer execution bridge.",
+  "current_slice": "ae-small-batch-preflight-reentry-loop834",
+  "next_atomic_action": "AE_CONTROLLED_SCORING_READINESS_REENTRY_LOOP835：基于 closure-aware preflight 生成 controlled scoring readiness re-entry read-model，区分 validation 已闭合但 runtime/runner/UI/compute 未齐、完全 ready、blocked 三态；仍不得自动执行 scorer/backtest 或写 DB。",
+  "next_after": "Continue controlled scoring readiness -> scorer execution bridge -> quality metrics/admission.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-848-ae-source-review-validation-closure-loop833",
+  "last_tick": "SYNC-849-ae-small-batch-preflight-reentry-loop834",
   "last_sync_sources": [
+    "SYNC-849 A/E small-batch preflight re-entry loop834",
+    "loop834 trigger: preflight needed to consume ae_source_review_validation_closure_v1 directly instead of caller-assembled closed refs",
+    "loop834 backend: SmallBatchRealScoringRequestV1 accepts ae_source_review_validation_closure and resolves closed refs from closure.closed_refs",
+    "loop834 boundary: closure clears validation blockers only; compute/runtime/runner/UI blockers still apply; no DB/scorer/backtest",
+    "loop834 worker: Maxwell/code-reviewer dispatch returned systemError without report; no duplicate worker was created; local verification authoritative",
+    "loop834 verification: focused closure/re-entry tests 4 passed; small-batch/closure/creation-plan/scoring bridge regression 25 passed; Ruff pass; creation-plan smoke pass",
+    "next: AE_CONTROLLED_SCORING_READINESS_REENTRY_LOOP835",
     "SYNC-848 A/E source-review validation closure loop833",
     "loop833 trigger: small-batch preflight needed explicit closed refs rather than oral/UI validation",
     "loop833 backend: added ae_source_review_validation_closure_v1 with reviewer/owner/source evidence intersection",
