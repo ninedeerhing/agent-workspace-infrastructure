@@ -1,3 +1,50 @@
+# Orchestrator Latest Report — SYNC-839 Source adapter manifest review product gate loop824
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_product_self_validation_gate.py"
+      summary: "Adds source adapter manifest review UI/API hard gates and compresses repeated route/API checks into table-driven rules."
+    - file: "apps/quant_assistant/tests/test_factor_construction_product_self_validation_gate_unit.py"
+      summary: "Covers missing review surface and missing review contract evidence, plus clean pass baseline with the new evidence."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-839 and next loop825."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-839."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop825."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop825."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to source adapter manifest review Data Availability linkage."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-839."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updates orchestrator overlay and roster note."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_product_self_validation_gate_unit.py"
+      result: "RED missing review evidence failed before implementation; GREEN 15 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_product_self_validation_gate_unit.py tests/test_quant_api_product_self_validation_unit.py tests/test_factor_universe_consumer_flow_source_unit.py tests/test_factor_universe_source_adapter_manifest_review_unit.py"
+      result: "31 passed."
+    - command: "uv run ruff check src/qa/quant_mining/factor_construction_product_self_validation_gate.py tests/test_factor_construction_product_self_validation_gate_unit.py"
+      result: "All checks passed."
+    - command: "creation-plan smoke for factor_universe_source_adapter_manifest_review_from_conversion"
+      result: "True source_adapter_manifest_review_from_conversion_v1 blocked_waiting_for_manifest_conversion False."
+    - command: "python -m json.tool harness/loop-state.json"
+      result: "pass."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Each new user-visible review surface must also be represented in product self-validation route evidence and API contract evidence before formal review."
+    performance_note: "Loop824 closed via local TDD/regression/Ruff/smoke; permanent worker reports from prior read-only assignments remain pending and must not block the next functional loop."
+  blockers: []
+  next: "SOURCE_ADAPTER_MANIFEST_REVIEW_TO_DATA_AVAILABILITY_LINKAGE_LOOP825"
+
+---
+
 # Orchestrator Latest Report — SYNC-811 Factor-universe product self-validation final gate loop796
 
 report:

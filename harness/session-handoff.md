@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-11T17:25:00+08:00
+updated_at: 2026-07-11T17:45:00+08:00
+
+## Latest Handoff — SYNC-839 Source adapter manifest review product gate
+
+- [DONE] `product_self_validation_gate_v1` now requires source adapter manifest review UI evidence.
+- [DONE] Missing `has_source_adapter_manifest_review_surface=true` blocks with `source_adapter_manifest_review_ui_not_visible`.
+- [DONE] Missing API/contract key `factor_universe_source_adapter_manifest_review_from_conversion` blocks with `source_adapter_manifest_review_not_exposed`.
+- [DONE] Gate internals were compressed to table-driven route/API checks; production file is 219 pure LOC.
+- [VERIFY] Product gate focused tests: 15 passed.
+- [VERIFY] Product/API/consumer/source/review regression: 31 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `True source_adapter_manifest_review_from_conversion_v1 blocked_waiting_for_manifest_conversion False`.
+- [NEXT] `SOURCE_ADAPTER_MANIFEST_REVIEW_TO_DATA_AVAILABILITY_LINKAGE_LOOP825`: link manifest review status into Data Availability Gate / local source status as partial source-review state.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-838 Source adapter manifest review UI surface
 

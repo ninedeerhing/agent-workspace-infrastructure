@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T17:25:00+08:00",
+  "updated_at": "2026-07-11T17:45:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "source-adapter-manifest-review-ui-loop823",
-  "next_atomic_action": "SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824：把 source_adapter_manifest_review_from_conversion_v1 UI surface 与 API/contract evidence 纳入 product_self_validation_gate_v1；缺失时 fail closed，仍不得标 ready、不得写 DB、不得触发评分/回测/Docker/port。",
-  "next_after": "Continue until source adapter manifest review UI surface -> product self-validation -> Data Availability Gate partial closure.",
+  "current_slice": "source-adapter-manifest-review-product-gate-loop824",
+  "next_atomic_action": "SOURCE_ADAPTER_MANIFEST_REVIEW_TO_DATA_AVAILABILITY_LINKAGE_LOOP825：把 source_adapter_manifest_review_from_conversion_v1 接入候选级 Data Availability Gate / local source status，把 pending reviewer approval 表达为 partial/source-review state；不得标 ready、不得写 DB、不得评分/回测/Docker/port。",
+  "next_after": "Continue until source adapter manifest review -> Data Availability Gate partial source-review state -> source owner approval -> controlled A/E candidate readiness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-838-source-adapter-manifest-review-ui-loop823",
+  "last_tick": "SYNC-839-source-adapter-manifest-review-product-gate-loop824",
   "last_sync_sources": [
+    "SYNC-839 Source adapter manifest review product gate loop824",
+    "loop824 trigger: source adapter manifest review UI/API evidence needed to be product self-validation guarded",
+    "loop824 gate: product_self_validation_gate_v1 now blocks source_adapter_manifest_review_ui_not_visible and source_adapter_manifest_review_not_exposed",
+    "loop824 refactor: route/API contract checks are table-driven and gate production file is 219 pure LOC",
+    "loop824 boundary: no ready grant, no DB write, no scorer/backtest, no Docker/container/port",
+    "loop824 verification: product gate 15 passed; product/API/consumer/source/review regression 31 passed; Ruff pass; creation-plan smoke pass",
+    "next: SOURCE_ADAPTER_MANIFEST_REVIEW_TO_DATA_AVAILABILITY_LINKAGE_LOOP825",
     "SYNC-838 Source adapter manifest review UI surface loop823",
     "loop823 trigger: source adapter manifest review read-model needed a user-visible status surface",
     "loop823 UI: /quant/factor-mining shows Manifest 复核状态 with source_adapter_manifest_review_from_conversion_v1, complete_for_review, pending_reviewer_approval, missing fields, material ref count, and owner approval next gate",

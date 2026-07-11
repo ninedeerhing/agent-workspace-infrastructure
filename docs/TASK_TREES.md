@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T17:25:00+08:00 · SYNC-838 · source adapter manifest review UI surface
+Updated: 2026-07-11T17:45:00+08:00 · SYNC-839 · source adapter manifest review product gate
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop823/SYNC-838 completed `SOURCE_ADAPTER_MANIFEST_REVIEW_UI_SURFACE_LOOP823` by exposing source adapter manifest review status on `/quant/factor-mining`.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop824/SYNC-839 completed `SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824` by adding product self-validation for source adapter manifest review UI/API evidence.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `SOURCE_ADAPTER_MANIFEST_REVIEW_PRODUCT_SELF_VALIDATION_LOOP824` — add product self-validation for source adapter manifest review UI/API evidence without marking ready, writing DB, scoring/backtesting, Docker, or ports.
+- Next atomic action: `SOURCE_ADAPTER_MANIFEST_REVIEW_TO_DATA_AVAILABILITY_LINKAGE_LOOP825` — link `source_adapter_manifest_review_from_conversion_v1` into candidate-level Data Availability Gate / local source status as partial source-review state without marking ready, writing DB, scoring/backtesting, Docker, or ports.
 
 ## EXCLUDE: Default Exclusions
 
