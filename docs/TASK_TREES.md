@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T20:30:00+08:00 · SYNC-847 · A/E small-batch scoring preflight closure
+Updated: 2026-07-11T20:55:00+08:00 · SYNC-848 · A/E source-review validation closure
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop832/SYNC-847 completed `AE_SMALL_BATCH_SCORING_PREFLIGHT_CLOSURE_LOOP832` by making small-batch scoring preflight consume controlled A/E readiness and fail closed on pending/held refs.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop833/SYNC-848 completed `AE_SOURCE_REVIEW_VALIDATION_CLOSURE_LOOP833` by adding explicit reviewer/owner/source evidence closure for A/E source-review validation refs.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `AE_SOURCE_REVIEW_VALIDATION_CLOSURE_LOOP833` — add explicit A/E source-review validation closure contract that produces closed refs only from reviewer/owner validation evidence; no DB write, scorer/backtest, Docker, or ports.
+- Next atomic action: `AE_SMALL_BATCH_PREFLIGHT_REENTRY_WITH_VALIDATION_CLOSURE_LOOP834` — let small-batch preflight re-entry consume validation closure closed refs while still requiring Data Availability, Compute Budget, qa-pg-alt, runner, and UI authorization; no auto scorer/backtest execution.
 
 ## EXCLUDE: Default Exclusions
 

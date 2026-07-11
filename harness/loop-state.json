@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T20:30:00+08:00",
+  "updated_at": "2026-07-11T20:55:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "ae-small-batch-scoring-preflight-closure-loop832",
-  "next_atomic_action": "AE_SOURCE_REVIEW_VALIDATION_CLOSURE_LOOP833：新增 A/E source-review validation closure contract，只有明确 reviewer/owner validation evidence 闭合 source_review_validation_candidate_refs 后才产出 closed refs；仍不得写 DB、不得运行 scorer/backtest/Docker/port。",
-  "next_after": "Continue source-review validation closure -> small-batch scoring preflight re-entry -> controlled scoring readiness.",
+  "current_slice": "ae-source-review-validation-closure-loop833",
+  "next_atomic_action": "AE_SMALL_BATCH_PREFLIGHT_REENTRY_WITH_VALIDATION_CLOSURE_LOOP834：让 small-batch preflight re-entry 消费 ae_source_review_validation_closure_v1.closed_refs 作为 ae_source_review_validation_closed_refs；closed refs 可解除 validation blocker，但仍必须经过 Data Availability/Compute Budget/qa-pg-alt/runner/UI 授权，且不得自动执行 scorer/backtest。",
+  "next_after": "Continue small-batch preflight re-entry -> controlled scoring readiness -> scorer execution bridge.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-847-ae-small-batch-scoring-preflight-closure-loop832",
+  "last_tick": "SYNC-848-ae-source-review-validation-closure-loop833",
   "last_sync_sources": [
+    "SYNC-848 A/E source-review validation closure loop833",
+    "loop833 trigger: small-batch preflight needed explicit closed refs rather than oral/UI validation",
+    "loop833 backend: added ae_source_review_validation_closure_v1 with reviewer/owner/source evidence intersection",
+    "loop833 boundary: closed refs do not imply calculable; authorization not_granted; no DB/scorer/backtest/Docker/port",
+    "loop833 worker: Halley/test-engineer checklist absorbed into per-ref evidence and no Docker/port assertions",
+    "loop833 verification: focused closure tests 4 passed; controlled readiness/small-batch/creation-plan regression 23 passed; Ruff pass; creation-plan smoke pass",
+    "next: AE_SMALL_BATCH_PREFLIGHT_REENTRY_WITH_VALIDATION_CLOSURE_LOOP834",
     "SYNC-847 A/E small-batch scoring preflight closure loop832",
     "loop832 trigger: small-batch scoring preflight needed to consume controlled_ae_candidate_readiness_v1 before any A/E scoring readiness claim",
     "loop832 backend: SmallBatchRealScoringRequestV1 now accepts controlled_ae_candidate_readiness and ae_source_review_validation_closed_refs",

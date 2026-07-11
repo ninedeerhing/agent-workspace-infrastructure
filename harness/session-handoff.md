@@ -1,6 +1,21 @@
 # Session Handoff
 
-updated_at: 2026-07-11T20:30:00+08:00
+updated_at: 2026-07-11T20:55:00+08:00
+
+## Latest Handoff — SYNC-848 A/E source-review validation closure
+
+- [DONE] Added `ae_source_review_validation_closure_v1`.
+- [DONE] Closure consumes `controlled_ae_candidate_readiness_v1` only.
+- [DONE] A candidate enters `closed_refs` only with reviewer, owner, and source validation refs.
+- [DONE] Missing evidence remains pending; held refs remain blockers.
+- [DONE] Creation plan exposes `factor_universe_ae_source_review_validation_closure`.
+- [VERIFY] Focused closure tests: 4 passed.
+- [VERIFY] Controlled readiness + small-batch + creation-plan regression: 23 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `ae_source_review_validation_closure_v1 controlled_ae_candidate_readiness_v1 blocked_no_validation_candidates [] not_granted False False`.
+- [WORKER] Halley/test-engineer checklist was absorbed into per-ref and no Docker/port assertions.
+- [NEXT] `AE_SMALL_BATCH_PREFLIGHT_REENTRY_WITH_VALIDATION_CLOSURE_LOOP834`: feed closure closed refs back into small-batch preflight.
+- [FORBIDDEN] Do not treat closure refs as calculable by themselves; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-847 A/E small-batch scoring preflight closure
 
