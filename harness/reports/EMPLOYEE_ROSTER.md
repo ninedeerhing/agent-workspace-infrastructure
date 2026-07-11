@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T18:40:00+08:00
+Updated: 2026-07-11T19:08:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop870 | continuous_loop_active | gpt-5.5 | 2026-07-11T18:40:00+08:00 | SYNC-884 user accepted formal review direction; stop_reason cleared; next loop871 post-acceptance data/source/result polish | continue loop871; acceptance is direction-level, not final completion |
+| orchestrator | current-thread | loop871 | continuous_loop_active | gpt-5.5 | 2026-07-11T19:08:00+08:00 | SYNC-885 Data Support consumer readiness fixed; next loop872 result type labels and batch recap reality | continue loop872 |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop854 | dispatched_readonly | gpt-5.5 | 2026-07-11T14:38:00+08:00 | loop854 read-only verification strategy review dispatched for official runner injection/no-auto-execution matrix | preserve permanent identity; integrate report when available |
 ## Latest Roster Notes
 
+- 2026-07-11T19:08:00+08:00 · loop871/SYNC-885: Data Support consumer readiness P0 fixed. `/quant/data-support` now explains B/C try-now paths, A/E source/PIT/event/text/alternative-data gaps, no page-load scoring/backtest, and next actions. Added `test:data-support-consumer-readiness`; expanded factor-universe review readiness dogfood to mock Factor Library/Data Support and include Data Support assertions. Kierkegaard/test-engineer readonly sidecar confirmed the P0 and identified next P1/P2 gaps. Verification passed: data-support consumer readiness, factor-universe review readiness, formal-review final product self-check, build, lint 0 errors/1 existing warning, diff check.
 - 2026-07-11T18:40:00+08:00 · loop870/SYNC-884: User accepted the formal human review direction with `接受，大方向没问题`. Decision recorded in `apps/quant_assistant/docs/ACCEPTANCE/2026-07-11-factor-construction-universe-formal-human-review-decision.md`. `loop-state.stop_reason` cleared. Next loop is `POST_ACCEPTANCE_DATA_SOURCE_AND_RESULT_RECAP_POLISH_LOOP871`, focused on Data Support status, A/E source-gap explanations, single-factor vs multi-factor result distinction, and batch factor recap visualization. No DB/Docker/scorer/backtest action was performed for this decision sync.
 - 2026-07-11T18:25:00+08:00 · loop869/SYNC-883: Formal human review package refreshed at `apps/quant_assistant/docs/ACCEPTANCE/2026-07-11-factor-construction-universe-formal-human-review-package.md`. It gives runtime, evidence, five review steps, pass/fail criteria, formal decision rules, and caveats for factor-mining, Jobs, Factor Library, Backtest results, and Data Support. `loop-state.stop_reason=formal_human_acceptance_required`; orchestrator must wait for user accept/reject/request-changes before continuing.
 - 2026-07-11T18:05:00+08:00 · loop868/SYNC-882: Live product dogfood used existing 5273/8350/qa-pg-alt 55432. Old API process was stale and returned 404 for readiness endpoint; same-port latest FastAPI restart fixed it. Added `test:formal-review-live-product-dogfood`, visiting live factor-mining, Jobs readiness, Factor Library, and Backtest result pages with no runtime POST. Verification: live dogfood pass, final product self-check pass, formal-review E2E pass after serial rerun, build pass, lint 0 errors/1 existing warning. Meitner/code-reviewer returned completed without report body; recorded as channel/report anomaly and not used as evidence. No duplicate workers created.

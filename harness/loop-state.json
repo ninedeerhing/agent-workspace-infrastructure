@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T18:40:00+08:00",
+  "updated_at": "2026-07-11T19:08:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "formal-human-review-accepted-loop870",
-  "next_atomic_action": "POST_ACCEPTANCE_DATA_SOURCE_AND_RESULT_RECAP_POLISH_LOOP871：基于用户“接受，大方向没问题”的正式反馈，继续验收后第一轮功能打磨：优先检查并修复 Data Support 消费级状态、A/E 基本面/事件/文本数据源缺口提示、多因子/单因子结果区分、批量因子复盘可视化；每个发现直接转功能修复并验证。",
-  "next_after": "Continue continuous loop; no stop_reason after formal direction acceptance.",
+  "current_slice": "post-acceptance-data-support-consumer-readiness-loop871",
+  "next_atomic_action": "POST_ACCEPTANCE_RESULT_TYPE_AND_BATCH_RECAP_REALITY_LOOP872：继续 loop871 worker findings 的 P1/P2 缺口，给单因子/多因子/组合结果增加稳定类型标签与结果解释，并把批量复盘仪表盘从静态示例改成真实批次 telemetry 或明确标注为示例结构。",
+  "next_after": "Continue continuous loop; remaining post-acceptance product gaps become next functional targets.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-884-formal-human-review-accepted-loop870",
+  "last_tick": "SYNC-885-post-acceptance-data-support-consumer-readiness-loop871",
   "last_sync_sources": [
+    "SYNC-885 Post-acceptance Data Support consumer readiness loop871",
+    "loop871 product: Data Support now explains B/C can be tried now, A/E require source/PIT/event/text completion, and page load will not start scoring/backtest",
+    "loop871 test: added npm run test:data-support-consumer-readiness and expanded factor-universe review readiness dogfood to include mocked Data Support and mocked Factor Library",
+    "loop871 worker: readonly test-engineer sidecar confirmed P0 Data Support misleading readiness and P1/P2 gaps for A/E front-loading, result type badges, and static batch recap",
+    "next: POST_ACCEPTANCE_RESULT_TYPE_AND_BATCH_RECAP_REALITY_LOOP872",
     "SYNC-884 Formal human review accepted loop870",
     "loop870 decision: user accepted the formal human review direction with “接受，大方向没问题”",
     "loop870 state: stop_reason cleared; this is direction acceptance, not final project completion",

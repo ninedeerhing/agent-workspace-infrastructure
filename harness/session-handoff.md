@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-11T18:40:00+08:00
+updated_at: 2026-07-11T19:08:00+08:00
+
+## Latest Handoff — SYNC-885 post-acceptance-data-support-consumer-readiness-loop871
+
+- [DONE] Post-acceptance P0 fixed: `/quant/data-support` now explains what users can do now and what still needs data/source confirmation.
+- [DONE] Data Support now shows `B 行情 / 价量 / 技术因子` and `C 表达式 / 公式 / 论文 / 库因子` as try-now paths, while `A 基本面 / 风格因子` and `E 文本 / 事件 / 另类因子` remain source/PIT/event/text/alternative-data gap paths.
+- [DONE] Added `npm run test:data-support-consumer-readiness`; expanded `test:factor-universe-review-readiness` to mock Factor Library/Data Support read-only responses and cover Data Support copy.
+- [WORKER] Kierkegaard/test-engineer readonly sidecar confirmed Data Support misleading readiness as P0 and identified next P1/P2 gaps: A/E front-loading, single-vs-multi-factor result labels, static batch recap.
+- [VERIFY] Passed: data-support consumer readiness, factor-universe review readiness, formal-review final product self-check, web build, web lint 0 errors / 1 existing warning, diff check.
+- [NEXT] `POST_ACCEPTANCE_RESULT_TYPE_AND_BATCH_RECAP_REALITY_LOOP872`.
 
 ## Latest Handoff — SYNC-884 formal-human-review-accepted-loop870
 
