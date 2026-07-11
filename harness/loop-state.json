@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T15:40:00+08:00",
+  "updated_at": "2026-07-11T16:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "missing-source-onboarding-intake-contract-loop818",
-  "next_atomic_action": "MISSING_SOURCE_ONBOARDING_REVIEW_PACKET_TO_MANIFEST_CONVERSION_LOOP819：把完成材料的 source-onboarding review packet 转成 source adapter manifest conversion candidate，为 entity_linking_table / alternative_data_snapshot 生成可复核的 adapter/table/PIT/coverage/owner manifest 草案；仍不得标 ready、不得写 DB、不得触发评分/回测/Docker/port。",
-  "next_after": "Continue until missing-source onboarding review packet -> manifest conversion -> source adapter gate -> Data Availability Gate partial closure.",
+  "current_slice": "missing-source-manifest-conversion-loop819",
+  "next_atomic_action": "MISSING_SOURCE_MANIFEST_CONVERSION_UI_SURFACE_LOOP820：在 /quant/factor-mining 展示 manifest conversion candidate 草案，把 entity_linking_table / alternative_data_snapshot 的 adapter/table/PIT/coverage/owner 草案、来源材料 ref、review-only 边界展示给用户；不得标 ready、不得写 DB、不得触发评分/回测/Docker/port。",
+  "next_after": "Continue until missing-source manifest conversion candidate -> UI surface -> source adapter manifest review -> Data Availability Gate partial closure.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-833-missing-source-onboarding-intake-contract-loop818",
+  "last_tick": "SYNC-834-missing-source-manifest-conversion-loop819",
   "last_sync_sources": [
+    "SYNC-834 Missing source manifest conversion candidate loop819",
+    "loop819 trigger: completed onboarding review packets needed to become review-only source adapter manifest drafts",
+    "loop819 backend: added missing_source_onboarding_manifest_conversion_candidate_v1 for entity_linking_table and alternative_data_snapshot",
+    "loop819 boundary: no source ready grant, no DB write, no scorer/backtest, no Docker/container/port",
+    "loop819 verification: manifest conversion tests 2 passed; adjacent onboarding/source-manifest/data-availability regression 16 passed; Ruff pass",
+    "next: MISSING_SOURCE_MANIFEST_CONVERSION_UI_SURFACE_LOOP820",
     "SYNC-833 Missing source onboarding intake contract loop818",
     "loop818 trigger: missing-source explanations needed an actionable material intake contract",
     "loop818 backend: added factor_universe_missing_source_onboarding_intake_contract_v1 and review packet for entity_linking_table / alternative_data_snapshot",

@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T15:40:00+08:00 · SYNC-833 · missing source onboarding intake contract
+Updated: 2026-07-11T16:05:00+08:00 · SYNC-834 · missing source manifest conversion candidate
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -72,11 +72,11 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 ## Current Mainline
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop817/SYNC-832 completed `MISSING_SOURCE_ONBOARDING_CANDIDATE_AVAILABILITY_EXPLANATION_LOOP817` by aligning E-class candidate data availability results with missing-source onboarding explanations and exposing them on `/quant/factor-mining`.
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop819/SYNC-834 completed `MISSING_SOURCE_ONBOARDING_REVIEW_PACKET_TO_MANIFEST_CONVERSION_LOOP819` by converting completed missing-source onboarding review packets into review-only source adapter manifest conversion candidates.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `MISSING_SOURCE_ONBOARDING_INTAKE_CONTRACT_LOOP818` — add a no-execution intake contract for `entity_linking_table` and `alternative_data_snapshot` onboarding materials; validate user/data-owner inputs and emit a source-onboarding review packet without DB writes, readiness grants, scoring/backtest, Docker, or ports.
+- Next atomic action: `MISSING_SOURCE_MANIFEST_CONVERSION_UI_SURFACE_LOOP820` — expose manifest conversion candidate drafts on `/quant/factor-mining`, showing adapter/table/PIT/coverage/owner/material refs for `entity_linking_table` and `alternative_data_snapshot` without marking ready, writing DB, scoring/backtesting, Docker, or ports.
 
 ## EXCLUDE: Default Exclusions
 

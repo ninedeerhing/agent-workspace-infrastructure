@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T15:40:00+08:00
+updated_at: 2026-07-11T16:05:00+08:00
+
+## Latest Handoff — SYNC-834 Missing source manifest conversion candidate
+
+- [DONE] Added `missing_source_onboarding_manifest_conversion_candidate_v1`.
+- [DONE] Completed `entity_linking_table` onboarding material now converts into review-only manifest draft fields: adapter, table, PIT, coverage, owner, material refs.
+- [DONE] Completed `alternative_data_snapshot` onboarding material now converts into review-only manifest draft fields: adapter, table, PIT, coverage watermark, owner, material refs.
+- [VERIFY] Focused manifest conversion tests: 2 passed.
+- [VERIFY] Adjacent onboarding/source-manifest/data-availability regression: 16 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [NEXT] `MISSING_SOURCE_MANIFEST_CONVERSION_UI_SURFACE_LOOP820`: expose the manifest conversion candidate on `/quant/factor-mining`.
+- [FORBIDDEN] Do not mark missing sources ready; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-833 Missing source onboarding intake contract
 

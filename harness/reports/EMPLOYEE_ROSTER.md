@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T15:40:00+08:00
+Updated: 2026-07-11T16:05:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop818 | continuous_loop_active | gpt-5.5 | 2026-07-11T15:40:00+08:00 | SYNC-833 missing source onboarding intake contract complete; next MISSING_SOURCE_ONBOARDING_REVIEW_PACKET_TO_MANIFEST_CONVERSION_LOOP819 | keep moving; convert review packet into manifest conversion candidate |
+| orchestrator | current-thread | loop819 | continuous_loop_active | gpt-5.5 | 2026-07-11T16:05:00+08:00 | SYNC-834 missing source manifest conversion candidate complete; next MISSING_SOURCE_MANIFEST_CONVERSION_UI_SURFACE_LOOP820 | keep moving; expose manifest conversion candidate on factor-mining UI |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T16:05:00+08:00 · loop819/SYNC-834: Added no-execution `missing_source_onboarding_manifest_conversion_candidate_v1`; completed `entity_linking_table` / `alternative_data_snapshot` onboarding review packets now produce review-only adapter/table/PIT/coverage/owner/material manifest drafts. Verification: focused manifest conversion tests 2 passed, adjacent onboarding/source-manifest/data-availability regression 16 passed, Ruff pass.
 - 2026-07-11T15:40:00+08:00 · loop818/SYNC-833: Added no-execution missing-source onboarding intake contract and review packet for `entity_linking_table` / `alternative_data_snapshot`; UI now exposes material field keys; missing-source/source-confirmation/candidate-availability sections extracted into small files and `factorMiningReview.tsx` is 242 pure LOC. Verification: onboarding + consumer flow + data availability tests 21 passed, Ruff pass, web build pass.
 - 2026-07-11T15:20:00+08:00 · loop817/SYNC-832: Data Availability Gate now accepts `missing_source_onboarding_request` and emits candidate-level `source_onboarding_explanations`; `/quant/factor-mining` shows “候选可用性解释” with blocked source ids, action id, required user inputs, required system work, and next step. Verification: data availability + consumer flow + missing-source onboarding/downstream tests 31 passed, Ruff pass, web build pass.
 - 2026-07-11T15:00:00+08:00 · loop816/SYNC-831: Product self-validation gate now requires missing-source onboarding UI route evidence and API contract exposure. Missing surface fails `missing_source_onboarding_ui_not_visible`; missing API contract fails `missing_source_onboarding_request_not_exposed`. Verification: product gate + consumer flow + missing-source onboarding tests 22 passed, Ruff pass.
