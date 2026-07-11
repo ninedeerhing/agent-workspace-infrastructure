@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T09:30:00+08:00
+updated_at: 2026-07-12T10:00:00+08:00
+
+## Latest Handoff — SYNC-922 post-acceptance-backtest-execution-reason-context-loop908
+
+- [DONE] Controlled backtest execution handoff context now inherits `outcome_reason_groups` from the plan handoff chain.
+- [DONE] Controlled backtest progress handoff context now inherits the same reason groups from execution handoff, so blocked/failed/completed progress can retain candidate destination explanations.
+- [DONE] Execution and progress cards render `执行确认去向说明` / `回测进度去向说明`, and explicitly show accepted/skipped/failed refs while preserving DB/runner/no-page-load/no-queue/no-substitute runtime boundaries.
+- [VERIFY] Execution/progress/API unit 78 passed; controlled-real current task browser pass; Jobs entry-mode dogfood pass; feedback-lineage payload pass; formal-review E2E pass; factor-universe review readiness pass; Ruff pass; build pass; lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread product QA returned `partial`; its reason-continuity and refs-visibility findings were absorbed.
+- [NEXT] `POST_ACCEPTANCE_RESULT_REPORT_REASON_CONTEXT_LOOP909`: carry execution/progress outcome reason groups into backtest result report, Factor Library recap, and feedback memory.
 
 ## Latest Handoff — SYNC-921 post-acceptance-final-accepted-reason-context-to-backtest-plan-loop907
 

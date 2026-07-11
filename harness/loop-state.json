@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T09:30:00+08:00",
+  "updated_at": "2026-07-12T10:00:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-final-accepted-reason-context-to-backtest-plan-loop907",
-  "next_atomic_action": "POST_ACCEPTANCE_BACKTEST_EXECUTION_REASON_CONTEXT_LOOP908：把 loop907 已带入回测计划 handoff 的 outcome reason groups 继续延续到受控回测执行确认与进度 handoff，让用户在点击开始受控回测前后仍能看懂计划候选来源、暂缓/淘汰原因和无自动执行边界。",
-  "next_after": "Continue continuous loop toward provisional accepted reason explainability, final accepted confirmation, and backtest plan real product path.",
+  "current_slice": "post-acceptance-backtest-execution-reason-context-loop908",
+  "next_atomic_action": "POST_ACCEPTANCE_RESULT_REPORT_REASON_CONTEXT_LOOP909：把受控回测执行确认与进度 handoff 中的 outcome reason groups 继续带入回测结果报告、Factor Library 复盘和下一轮反馈记忆，让完成/失败/blocked 报告仍能解释哪些因子进入执行、哪些暂缓/淘汰、为什么，以及这些原因如何影响下一轮生成。",
+  "next_after": "Continue continuous loop toward result-report reason continuity, Factor Library recap, and feedback-memory roundtrip.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-921-post-acceptance-final-accepted-reason-context-to-backtest-plan-loop907",
+  "last_tick": "SYNC-922-post-acceptance-backtest-execution-reason-context-loop908",
   "last_sync_sources": [
+    "SYNC-922 Post-acceptance backtest execution reason context loop908",
+    "loop908 backend: controlled_backtest_execution_confirmation.execution_handoff_context and controlled_backtest_progress_report.progress_handoff_context now inherit outcome_reason_groups from the plan/execution handoff chain",
+    "loop908 frontend: execution and progress cards render execution/progress destination explanation sections and explicitly show accepted/skipped/failed refs while preserving no page-load execution/no queue/no substitute runtime boundaries",
+    "loop908 worker: Kierkegaard fixed-thread read-only product QA returned partial; execution/progress reason-continuity and refs visibility findings were absorbed",
+    "loop908 verification: backend execution/progress/API unit 78 passed; controlled-real current task browser pass; jobs entry-mode dogfood pass; feedback-lineage payload pass; formal-review E2E pass; factor-universe review readiness pass; targeted Ruff pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_RESULT_REPORT_REASON_CONTEXT_LOOP909",
     "SYNC-921 Post-acceptance final accepted reason context to backtest plan loop907",
     "loop907 backend: final_accepted_confirmation.confirmation_context and controlled_backtest_plan_confirmation.plan_handoff_context now inherit outcome_reason_groups from scoring result/store evidence",
     "loop907 frontend: accepted and backtest plan cards now render accepted/plan destination explanation sections with provisional-ready, held, and rejected/failed reasons",
