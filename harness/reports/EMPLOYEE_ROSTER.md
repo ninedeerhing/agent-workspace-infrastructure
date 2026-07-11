@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T19:45:00+08:00
+Updated: 2026-07-11T20:05:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop830 | continuous_loop_active | gpt-5.5 | 2026-07-11T19:45:00+08:00 | SYNC-845 controlled A/E candidate readiness contract complete; next CONTROLLED_AE_CANDIDATE_READINESS_UI_SURFACE_LOOP831 | keep moving; controlled A/E readiness UI |
+| orchestrator | current-thread | loop831 | continuous_loop_active | gpt-5.5 | 2026-07-11T20:05:00+08:00 | SYNC-846 controlled A/E candidate readiness UI complete; next AE_SMALL_BATCH_SCORING_PREFLIGHT_CLOSURE_LOOP832 | keep moving; scoring preflight closure |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T20:05:00+08:00 · loop831/SYNC-846: `/quant/factor-mining` now shows `controlled_ae_candidate_readiness_v1`, including source-review validation candidate refs, held refs, and no direct scoring/backtest boundary. Verification: focused 1 passed, consumer/source 14 passed, web build pass.
 - 2026-07-11T17:25:00+08:00 · loop823/SYNC-838: `/quant/factor-mining` now shows “Manifest 复核状态” for `source_adapter_manifest_review_from_conversion_v1`, including complete_for_review, pending_reviewer_approval, missing_manifest_fields, source_material_ref_count, and source_adapter_manifest_owner_approval. Verification: consumer/source + source review tests 14 passed, web build pass.
 - 2026-07-11T19:45:00+08:00 · loop830/SYNC-845: Added `controlled_ae_candidate_readiness_v1`; creation plan exposes `factor_universe_controlled_ae_candidate_readiness`. Owner-approved partial refs become source-review validation candidates without calculable/scoring/backtest readiness. Verification: focused 3 passed, Data Availability + compute/scoring 20 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T19:25:00+08:00 · loop829/SYNC-844: Candidate availability recap now shows `source_review_owner_approved` via `E-OWNER-approved`, with badge copy `owner 已批准 · 仍然 partial`. Verification: focused 1 passed, consumer/source 13 passed, web build pass.

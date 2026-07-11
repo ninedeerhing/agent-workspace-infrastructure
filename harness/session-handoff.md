@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T19:45:00+08:00
+updated_at: 2026-07-11T20:05:00+08:00
+
+## Latest Handoff — SYNC-846 Controlled A/E candidate readiness UI
+
+- [DONE] `/quant/factor-mining` now shows controlled A/E candidate readiness.
+- [DONE] The page exposes `controlled_ae_candidate_readiness_v1`.
+- [DONE] The page shows `source_review_validation_candidate_refs` and `held_candidate_refs`.
+- [DONE] The UI states source-review validation readiness still cannot directly score or backtest.
+- [VERIFY] Focused controlled A/E UI test: 1 passed.
+- [VERIFY] Consumer/source regression: 14 passed.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `AE_SMALL_BATCH_SCORING_PREFLIGHT_CLOSURE_LOOP832`: make small-batch scoring preflight consume controlled A/E readiness and remain blocked until source-review validation closes.
+- [FORBIDDEN] Do not mark A/E source-review candidates calculable; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-845 Controlled A/E candidate readiness contract
 

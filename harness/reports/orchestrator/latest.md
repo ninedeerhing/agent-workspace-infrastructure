@@ -1,3 +1,48 @@
+# Orchestrator Latest Report — SYNC-846 Controlled A/E candidate readiness UI surface loop831
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_AE_CANDIDATE_READINESS_UI_SURFACE_LOOP831"
+  changes:
+    - file: "apps/quant_assistant/web/src/pages/factorMiningContent.ts"
+      summary: "Adds controlled A/E candidate readiness recap content."
+    - file: "apps/quant_assistant/web/src/pages/factorMiningCandidateAvailability.tsx"
+      summary: "Shows source-review validation candidates, held refs, and no-scoring/no-backtest boundary."
+    - file: "apps/quant_assistant/tests/test_factor_universe_consumer_flow_source_unit.py"
+      summary: "Covers controlled A/E readiness UI markers."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-846 and next loop832."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-846."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop832."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop832."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to A/E small-batch scoring preflight closure."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-846."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updates orchestrator overlay."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_universe_consumer_flow_source_unit.py -k controlled_ae"
+      result: "RED missing CONTROLLED_AE_CANDIDATE_READINESS_RECAP before implementation; GREEN 1 passed."
+    - command: "uv run pytest -q tests/test_factor_universe_consumer_flow_source_unit.py"
+      result: "14 passed."
+    - command: "npm.cmd run build"
+      result: "pass."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Readiness contracts need a visible source-review validation surface before preflight gates consume them."
+    performance_note: "Loop831 closed via local UI source regression and production build."
+  blockers: []
+  next: "AE_SMALL_BATCH_SCORING_PREFLIGHT_CLOSURE_LOOP832"
+
+---
+
 # Orchestrator Latest Report — SYNC-845 Controlled A/E candidate readiness contract loop830
 
 report:
