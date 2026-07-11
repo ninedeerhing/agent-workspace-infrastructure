@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T23:14:17+08:00
+updated_at: 2026-07-11T23:32:00+08:00
+
+## Latest Handoff — SYNC-892 post-acceptance-source-mode-aware-generator-mix-loop878
+
+- [DONE] `factor_construction_universe_summary` now chooses source-mode-aware generator family profiles instead of always using one fixed family list.
+- [DONE] `formula_or_library_seed` prioritizes `library_paper_replay`, `program_synthesis`, and `symbolic_expression`; `idea_to_candidates` prioritizes `llm_hypothesis`, `program_synthesis`, and `trajectory_crossover`; `auto_from_category` preserves expanded taxonomy auto exploration.
+- [DONE] Summary telemetry exposes `generator_family_mix` with profile, selected families, priority families, and selection reason.
+- [DONE] Batch recap shows a “生成策略” metric from job payload telemetry so users can see what the selected source mode changed.
+- [VERIFY] Passed: universe model 8, API/universe/registry 76, batch taxonomy/universe/API/registry 83, formal-review E2E product dogfood, web build, web lint 0 errors / 1 existing warning, diff check.
+- [WORKER] Kierkegaard read-only product QA confirmed source_mode had only been lineage/telemetry and recommended source-mode-aware family/quota/recap proof; findings absorbed.
+- [NEXT] `POST_ACCEPTANCE_MULTI_SOURCE_MODE_PRODUCT_DOGFOOD_LOOP879`: prove B/C/D source-mode differences through multi-category product dogfood, still no DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-891 post-acceptance-source-mode-authority-and-dogfood-loop877
 

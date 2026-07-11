@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T23:14:17+08:00",
+  "updated_at": "2026-07-11T23:32:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-source-mode-authority-and-dogfood-loop877",
-  "next_atomic_action": "POST_ACCEPTANCE_SOURCE_MODE_AWARE_GENERATOR_MIX_LOOP878：让 canonical source_mode 不只回显 telemetry，而是影响 generator family mix / quota / recap；formula seed 优先公式论文库与程序合成，idea seed 优先 LLM/程序合成/组合探索，auto 维持分类扩展覆盖。补单测与 browser dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward source-mode-aware construction generation and end-to-end product dogfood.",
+  "current_slice": "post-acceptance-source-mode-aware-generator-mix-loop878",
+  "next_atomic_action": "POST_ACCEPTANCE_MULTI_SOURCE_MODE_PRODUCT_DOGFOOD_LOOP879：把 source-mode-aware generator mix 从后端单测/单 fixture 推到多类别产品狗粮；覆盖 B auto、C formula、D idea 的 UI payload sourceModeId、API job summary profile、family_summaries 与 recap 可见差异，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward multi-source-mode product dogfood and user-visible factor universe correctness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-891-post-acceptance-source-mode-authority-and-dogfood-loop877",
+  "last_tick": "SYNC-892-post-acceptance-source-mode-aware-generator-mix-loop878",
   "last_sync_sources": [
+    "SYNC-892 Post-acceptance source-mode-aware generator mix loop878",
+    "loop878 backend: factor_construction_universe_summary now chooses generator family profiles by source_mode instead of using a fixed universe family list",
+    "loop878 backend: formula_or_library_seed prioritizes library_paper_replay/program_synthesis/symbolic_expression; idea_to_candidates prioritizes llm_hypothesis/program_synthesis/trajectory_crossover; auto_from_category preserves expanded taxonomy auto exploration",
+    "loop878 telemetry: summary exposes generator_family_mix with profile, selected_families, priority_families, and selection_reason",
+    "loop878 frontend: batch recap now shows generation strategy profile and priority family explanation from job payload telemetry",
+    "loop878 verification: universe model 8 passed; API/universe/registry 76 passed; batch taxonomy/universe/API/registry 83 passed; formal-review E2E dogfood pass; web build pass; lint 0 errors/1 existing warning; diff check pass with CRLF warnings only",
+    "loop878 worker: Kierkegaard read-only product QA confirmed source_mode had been only lineage/telemetry and recommended source-mode-aware families/quota/recap; implementation absorbed family profiles and recap strategy visibility",
+    "next: POST_ACCEPTANCE_MULTI_SOURCE_MODE_PRODUCT_DOGFOOD_LOOP879",
     "SYNC-891 Post-acceptance source_mode authority and dogfood loop877",
     "loop877 backend: generation_mix.source_mode is now resolved through a whitelist helper and becomes the authority for API confirm and creation plan when valid; invalid values fall back to user_goal heuristic",
     "loop877 telemetry: factor_construction_universe_summary now exposes source_mode and source_mode_authority so recap/dogfood can catch authority drift",
