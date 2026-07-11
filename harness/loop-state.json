@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T01:25:00+08:00",
+  "updated_at": "2026-07-12T01:45:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-controlled-real-progress-context-loop891",
-  "next_atomic_action": "POST_ACCEPTANCE_FACTOR_LIBRARY_RESULT_CONTINUITY_CONTEXT_LOOP892：把 controlled-real progress/report handoff 上下文贯通到 Factor Library 结果复盘入口，让报告页按 plan refs、run ids、factor refs 区分 blocked/failed/completed-no-report/completed-report-ready，并继续保持 no page-load execution/no substitute runtime。",
-  "next_after": "Continue continuous loop toward factor-library result continuity, report feedback memory usability, and controlled real backtest review readiness.",
+  "current_slice": "post-acceptance-factor-library-result-continuity-context-loop892",
+  "next_atomic_action": "POST_ACCEPTANCE_REPORT_FEEDBACK_MEMORY_HANDOFF_CONTEXT_LOOP893：把 Factor Library 复盘中已显示的 plan/run/factor context 继续写入 feedback memory/trajectory summary 的用户可读复盘，让下一轮生成能区分 blocked/failed/completed-no-report/completed-report-ready 的来源和处理策略。",
+  "next_after": "Continue continuous loop toward report feedback memory usability, trajectory recap, and controlled real backtest review readiness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-905-post-acceptance-controlled-real-progress-context-loop891",
+  "last_tick": "SYNC-906-post-acceptance-factor-library-result-continuity-context-loop892",
   "last_sync_sources": [
+    "SYNC-906 Post-acceptance Factor Library result continuity context loop892",
+    "loop892 backend: Factor Library real backtest feedback rows now carry progress_handoff_context from controlled_backtest_progress_report",
+    "loop892 frontend: Factor Library recap cards now show progress plan refs, factor refs, run ids, qa-pg-alt DB runtime, runner ref, no substitute DB/Docker markers, page-load no-execution marker, will-run marker, and next-step label",
+    "loop892 dogfood: new factor-library progress handoff browser check asserts targeted recap copy and zero POST requests",
+    "loop892 worker: Kierkegaard fixed-thread read-only product QA task was dispatched with model_tier=gpt-5.4; no report body was available before sync, so local RED/GREEN verification remains authoritative evidence",
+    "loop892 verification: RED backend missing progress_handoff_context; RED browser missing progress handoff copy; GREEN factor library insights 17 passed; Ruff pass; progress handoff browser pass; recap static pass; targeted recap browser pass; current-task browser pass; jobs entry-mode dogfood pass; formal-review E2E pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning",
+    "next: POST_ACCEPTANCE_REPORT_FEEDBACK_MEMORY_HANDOFF_CONTEXT_LOOP893",
     "SYNC-905 Post-acceptance controlled real progress context loop891",
     "loop891 backend: controlled_backtest_progress_report_surface_v1 now includes controlled_backtest_progress_handoff_context_v1 for waiting/blocked/failed/completed progress states",
     "loop891 API: controlled real bridge payload preserves execution_handoff_context and progress context carries status, factor refs, plan refs, accepted/skipped/failed refs, execution confirmation ref, run ids, runner ref, qa-pg-alt runtime, no substitute DB/Docker markers, page-load false, execution markers, and executed plan count",

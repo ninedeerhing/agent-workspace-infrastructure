@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T01:25:00+08:00
+updated_at: 2026-07-12T01:45:00+08:00
+
+## Latest Handoff — SYNC-906 post-acceptance-factor-library-result-continuity-context-loop892
+
+- [DONE] `real_backtest_feedback_v1` rows in Factor Library now carry `progress_handoff_context` from `controlled_backtest_progress_report`.
+- [DONE] Factor Library targeted recap cards show progress plan refs, factor refs, run ids, `qa-pg-alt` DB runtime, runner ref, no substitute DB/Docker markers, page-load no-execution marker, will-run marker, and next-step label.
+- [DONE] Added `FactorLibraryProgressHandoffContext.tsx` to keep the recap page small; `FactorLibraryRealBacktestRecapSection.tsx` is back to 240 LOC.
+- [VERIFY] RED backend missed `progress_handoff_context`; RED browser missed progress handoff copy. GREEN: Factor Library insights 17 passed, Ruff pass, progress handoff browser pass, recap static pass, targeted recap browser pass, current-task browser pass, jobs entry-mode dogfood pass, formal-review E2E pass, build pass, lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard fixed-thread read-only product QA assignment was sent with model_tier=gpt-5.4; no usable report body was available before sync, so local RED/GREEN verification is the evidence.
+- [NEXT] `POST_ACCEPTANCE_REPORT_FEEDBACK_MEMORY_HANDOFF_CONTEXT_LOOP893`: carry Factor Library-visible plan/run/factor context into feedback memory and trajectory summary so next generation can distinguish blocked/failed/completed-no-report/completed-report-ready provenance.
 
 ## Latest Handoff — SYNC-905 post-acceptance-controlled-real-progress-context-loop891
 
