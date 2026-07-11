@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T22:05:00+08:00
+Updated: 2026-07-11T22:35:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop836 | continuous_loop_active | gpt-5.5 | 2026-07-11T22:05:00+08:00 | SYNC-851 controlled scoring execution bridge re-entry complete; next CONTROLLED_SCORING_EXECUTOR_REENTRY_LOOP837 | keep moving; controlled scorer executor re-entry |
+| orchestrator | current-thread | loop837 | continuous_loop_active | gpt-5.5 | 2026-07-11T22:35:00+08:00 | SYNC-852 controlled scoring executor re-entry complete; next QUALITY_METRICS_ADMISSION_REENTRY_LOOP838 | keep moving; quality metrics/admission re-entry |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T22:35:00+08:00 · loop837/SYNC-852: `small_batch_real_scoring_executor_v1` now rejects execution items outside `bridge.candidate_refs_for_scoring`; result-adapter and real-quality tests inherit bridge refs into provisional admission. No duplicate worker created. Verification: RED non-bridge item executed, focused 2 passed, related regressions 15/22 passed, Ruff pass, executor smoke pass.
 - 2026-07-11T22:05:00+08:00 · loop836/SYNC-851: `real_scoring_execution_bridge_v1` now consumes `controlled_scoring_readiness_reentry_v1.ready_candidate_refs`; non-ready re-entry blocks bridge, while official writer/runner/idempotency/audit/qa-pg-alt runtime remain required. No duplicate worker created. Verification: RED creation-plan KeyError, focused 4 passed, related regression 32 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T21:35:00+08:00 · loop835/SYNC-850: Added `controlled_scoring_readiness_reentry_v1`; validation/runtime/runner/ui/compute blocker groups are exposed from closure-aware preflight. Halley/test-engineer dispatch returned systemError with no report; no duplicate worker created. Verification: focused 4 passed, related regression 29 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T21:15:00+08:00 · loop834/SYNC-849: Small-batch preflight now consumes `ae_source_review_validation_closure_v1` directly; closure only clears validation blockers and does not bypass compute/runtime/runner/UI. Maxwell/code-reviewer dispatch returned systemError with no report; no duplicate worker created. Verification: focused 4 passed, related regression 25 passed, Ruff pass, creation-plan smoke pass.

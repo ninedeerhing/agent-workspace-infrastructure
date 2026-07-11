@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-11T22:05:00+08:00
+updated_at: 2026-07-11T22:35:00+08:00
+
+## Latest Handoff — SYNC-852 controlled scoring executor re-entry
+
+- [DONE] `small_batch_real_scoring_executor_v1` now rejects execution items outside `bridge.candidate_refs_for_scoring`.
+- [DONE] Added `execution_item_not_bridge_ready` blocker and kept writer calls at zero for non-bridge refs.
+- [DONE] Result-adapter and real-quality-metrics tests inherit the same bridge ref into provisional admission.
+- [VERIFY] Focused executor ref tests: 2 passed.
+- [VERIFY] Executor + bridge + tiered regression: 15 passed.
+- [VERIFY] Executor + result-adapter + quality + provisional + bridge regression: 22 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Executor smoke: `small_batch_real_scoring_executor_v1 completed True 3 True 1`.
+- [NEXT] `QUALITY_METRICS_ADMISSION_REENTRY_LOOP838`: make scoring read model, quality metrics, and provisional admission explicitly consume executor refs and real quality events.
+- [FORBIDDEN] Do not backtest automatically; do not write accepted pool; do not allow non-executed refs into provisional-ready.
 
 ## Latest Handoff — SYNC-851 controlled scoring execution bridge re-entry
 

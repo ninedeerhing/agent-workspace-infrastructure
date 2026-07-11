@@ -1,3 +1,52 @@
+# Orchestrator Latest Report — SYNC-852 controlled scoring executor re-entry loop837
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_SCORING_EXECUTOR_REENTRY_LOOP837"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_small_batch_real_scoring_executor.py"
+      summary: "Executor preflight now blocks execution items outside bridge.candidate_refs_for_scoring."
+    - file: "apps/quant_assistant/tests/test_factor_construction_small_batch_real_scoring_executor_unit.py"
+      summary: "Covers bridge-ready execution and non-bridge-ready fail-closed behavior."
+    - file: "apps/quant_assistant/tests/test_factor_construction_scoring_execution_result_adapter_unit.py"
+      summary: "Scoring read-model tests now inherit candidate refs from the executor bridge."
+    - file: "apps/quant_assistant/tests/test_factor_construction_real_quality_metrics_unit.py"
+      summary: "Real quality metrics/provisional admission test now uses the same bridge ref."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-852 and next loop838."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-852."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop838."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop838."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to quality metrics admission re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-852."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_small_batch_real_scoring_executor_unit.py -k \"bridge_ready or outside_bridge\""
+      result: "RED non-bridge-ready item executed; GREEN 2 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_small_batch_real_scoring_executor_unit.py tests/test_factor_construction_tiered_real_scoring_executor_unit.py tests/test_factor_construction_real_scoring_execution_bridge_unit.py"
+      result: "15 passed."
+    - command: "uv run pytest -q tests/test_factor_construction_small_batch_real_scoring_executor_unit.py tests/test_factor_construction_scoring_execution_result_adapter_unit.py tests/test_factor_construction_real_quality_metrics_unit.py tests/test_factor_construction_persisted_provisional_admission_unit.py tests/test_factor_construction_real_scoring_execution_bridge_unit.py"
+      result: "22 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "executor smoke with bridge-ready ref"
+      result: "small_batch_real_scoring_executor_v1 completed True 3 True 1."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Executor inputs must inherit candidate refs from the bridge; hand-written refs can silently bypass readiness unless fail-closed."
+    performance_note: "Loop837 closed with RED/GREEN/regression/Ruff/smoke; no duplicate worker created."
+  blockers: []
+  next: "QUALITY_METRICS_ADMISSION_REENTRY_LOOP838"
+
+---
+
 # Orchestrator Latest Report — SYNC-851 controlled scoring execution bridge re-entry loop836
 
 report:

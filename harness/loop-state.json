@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T22:05:00+08:00",
+  "updated_at": "2026-07-11T22:35:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-scoring-execution-bridge-reentry-loop836",
-  "next_atomic_action": "CONTROLLED_SCORING_EXECUTOR_REENTRY_LOOP837：让 small-batch scorer executor 消费 bridge-ready candidate refs 与 official writer seam；只有 bridge_status=ready_for_controlled_execution 且 injected writer/runner、DSN、idempotency、rollback/audit、UI authorization 齐全时才允许受控执行；默认 creation-plan 仍 blocked/no-execution，不自动写 DB。",
-  "next_after": "Continue controlled scorer executor -> quality metrics/admission -> provisional accepted.",
+  "current_slice": "controlled-scoring-executor-reentry-loop837",
+  "next_atomic_action": "QUALITY_METRICS_ADMISSION_REENTRY_LOOP838：让 scoring result read model、real quality metrics 和 provisional admission 显式消费 executor successful/failed refs 与 real quality events；非执行 refs、失败 refs、缺 metrics refs 必须 hold/reject，只有真实评分+质量指标通过的 refs 才 provisional-ready；仍不得自动回测或写 accepted pool。",
+  "next_after": "Continue quality metrics/admission -> persisted provisional accepted -> auto-backtest plan.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-851-controlled-scoring-execution-bridge-reentry-loop836",
+  "last_tick": "SYNC-852-controlled-scoring-executor-reentry-loop837",
   "last_sync_sources": [
+    "SYNC-852 controlled scoring executor re-entry loop837",
+    "loop837 trigger: small-batch executor needed to consume bridge-ready refs and reject caller-handwritten candidate refs",
+    "loop837 backend: executor preflight adds execution_item_not_bridge_ready when item refs are outside bridge.candidate_refs_for_scoring",
+    "loop837 downstream: scoring result adapter and real quality metrics tests now inherit the same bridge candidate ref into provisional admission",
+    "loop837 boundary: no Docker/substitute DB/backtest/accepted-pool write; writer is called only through injected official writer and bridge-ready refs",
+    "loop837 verification: RED non-bridge-ready item executed; focused refs 2 passed; executor/bridge/tiered 15 passed; executor/result-adapter/quality/provisional/bridge 22 passed; Ruff pass; executor smoke pass",
+    "next: QUALITY_METRICS_ADMISSION_REENTRY_LOOP838",
     "SYNC-851 controlled scoring execution bridge re-entry loop836",
     "loop836 trigger: scorer bridge needed to consume controlled_scoring_readiness_reentry_v1 ready refs instead of older scoring request refs",
     "loop836 backend: RealScoringExecutionBridgeV1 accepts controlled_scoring_readiness_reentry and uses reentry.ready_candidate_refs when ready",
