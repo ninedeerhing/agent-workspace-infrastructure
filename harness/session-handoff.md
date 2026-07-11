@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-12T12:05:00+08:00
+updated_at: 2026-07-12T12:35:00+08:00
+
+## Latest Handoff — SYNC-927 post-acceptance-reason-aware-execution-progress-and-report-loop913
+
+- [DONE] Controlled backtest execution handoff now inherits `reason_aware_scoring_context` from the plan handoff.
+- [DONE] Controlled backtest progress handoff now carries the same reason-aware actions and decision basis from execution confirmation.
+- [DONE] Backtest result report JSON and `feedback_memory_input` now include `reason_aware_scoring_context`.
+- [DONE] Factor Library report summary exposes reason-aware context, and execution/progress cards render reason-aware continuation blocks.
+- [VERIFY] RED execution/progress/report tests failed on missing context; GREEN target tests 18 passed; expanded reason/progress/feedback regression 7 passed / 83 deselected; targeted Ruff pass; controlled-real current-task browser pass; web lint 0 errors / 1 existing warning; web build pass.
+- [WORKER] No duplicate worker was created; current fixed worker channels were not used as completion evidence for this loop.
+- [NEXT] `POST_ACCEPTANCE_REASON_AWARE_FEEDBACK_MEMORY_TO_NEXT_SCHEDULER_LOOP914`: feed report / Factor Library feedback-memory `reason_aware_scoring_context` into the next adaptive scheduler, MiningBrief, and candidate preview.
 
 ## Latest Handoff — SYNC-926 post-acceptance-reason-aware-accepted-pool-and-backtest-plan-loop912
 

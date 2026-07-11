@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T12:05:00+08:00",
+  "updated_at": "2026-07-12T12:35:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-reason-aware-accepted-pool-and-backtest-plan-loop912",
-  "next_atomic_action": "POST_ACCEPTANCE_REASON_AWARE_EXECUTION_PROGRESS_AND_REPORT_LOOP913：把 reason-aware scoring context 从回测计划 handoff 继续带入 controlled backtest execution confirmation / progress report / result report / Factor Library feedback memory，让用户在执行确认、等待进度和查看报告时仍能看到原因动作与决策依据。",
-  "next_after": "Continue continuous loop toward reason-aware execution, progress, report, and feedback-memory propagation.",
+  "current_slice": "post-acceptance-reason-aware-execution-progress-and-report-loop913",
+  "next_atomic_action": "POST_ACCEPTANCE_REASON_AWARE_FEEDBACK_MEMORY_TO_NEXT_SCHEDULER_LOOP914：把 report / Factor Library feedback memory 中的 reason_aware_scoring_context 回流到下一轮 adaptive scheduler / MiningBrief / candidate preview，让原因动作与决策依据不只显示在报告里，还能影响下一轮构造方向。",
+  "next_after": "Continue continuous loop toward reason-aware feedback memory roundtrip into next-generation scheduling.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-926-post-acceptance-reason-aware-accepted-pool-and-backtest-plan-loop912",
+  "last_tick": "SYNC-927-post-acceptance-reason-aware-execution-progress-and-report-loop913",
   "last_sync_sources": [
+    "SYNC-927 Post-acceptance reason-aware execution, progress, and report loop913",
+    "loop913 backend: controlled backtest execution handoff now inherits reason_aware_scoring_context from plan handoff",
+    "loop913 backend: progress report handoff, backtest result report, feedback_memory_input, and Factor Library report summary now preserve reason-aware scoring context",
+    "loop913 frontend: execution/progress current-task cards render reason actions and decision basis through ControlledBacktestReasonContinuation",
+    "loop913 verification: RED execution/progress/report tests failed on missing reason-aware context; GREEN execution/progress/report/library unit 18 passed; related feedback/API selector 7 passed/83 deselected; targeted Ruff pass; controlled-real current-task browser pass; web lint 0 errors/1 existing warning; web build pass",
+    "next: POST_ACCEPTANCE_REASON_AWARE_FEEDBACK_MEMORY_TO_NEXT_SCHEDULER_LOOP914",
     "SYNC-926 Post-acceptance reason-aware accepted pool and backtest plan loop912",
     "loop912 backend: provisional accepted admission now preserves reason_aware_scoring_context from scoring requests",
     "loop912 backend: final accepted confirmation context and controlled backtest plan handoff now inherit reason-aware scoring context alongside outcome_reason_groups",
