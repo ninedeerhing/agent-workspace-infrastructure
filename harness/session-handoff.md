@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T14:37:01+08:00
+updated_at: 2026-07-11T14:40:45+08:00
+
+## Latest Handoff — SYNC-869 Controlled real backtest runner injection seam
+
+- [DONE] Added `controlled_real_backtest_runner_injection.py` with an inert official runner provider.
+- [DONE] The provider exposes an adapter for `qa.backtest.engine.run_backtest`, mapping `request` to the engine's `req` parameter only when invoked.
+- [DONE] `resolve_controlled_real_backtest_runner()` now returns the official adapter, so Jobs/API manifest can show runner ready.
+- [DONE] Manifest still says `execution_permission=not_granted_by_manifest` and `will_run_backtest=false`; GET/page load does not execute.
+- [VERIFY] RED missing module; target 7 passed; related regression 83 passed; targeted Ruff passed.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_READY_MANIFEST_PRODUCT_DOGFOOD_LOOP855`: API/browser dogfood runner-ready manifest and no auto execution.
+- [FORBIDDEN] No substitute Docker/DB/ports; no default runner; no DB writes/backtest unless explicit POST user execution gate is invoked.
 
 ## Latest Handoff — SYNC-868 Controlled real backtest runner manifest
 

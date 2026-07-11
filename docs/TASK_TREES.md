@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T14:22:33+08:00 · SYNC-868 · Controlled real backtest runner manifest
+Updated: 2026-07-11T14:40:45+08:00 · SYNC-869 · Controlled real backtest runner injection seam
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 

@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T14:37:01+08:00
+Updated: 2026-07-11T14:40:45+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,15 +50,16 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop853 | continuous_loop_active | gpt-5.5 | 2026-07-11T14:37:01+08:00 | SYNC-868 controlled real backtest runner manifest complete; next CONTROLLED_REAL_BACKTEST_RUNNER_INJECTION_DRY_RUN_REENTRY_LOOP854 | keep moving; official runner dry-run injection seam is the next gap-goal |
+| orchestrator | current-thread | loop854 | continuous_loop_active | gpt-5.5 | 2026-07-11T14:40:45+08:00 | SYNC-869 controlled real backtest runner injection seam complete; next CONTROLLED_REAL_BACKTEST_READY_MANIFEST_PRODUCT_DOGFOOD_LOOP855 | keep moving; product-level ready manifest/no-auto-execution dogfood is the next gap-goal |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop845 | dispatched_readonly | gpt-5.4 | 2026-07-12T01:30:00+08:00 | loop845 read-only risk review dispatched for consumer report provenance and no-execution boundaries | preserve thread; integrate report when available |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop854 | dispatched_readonly | gpt-5.5 | 2026-07-11T14:38:00+08:00 | loop854 read-only authorization boundary review dispatched for official runner injection seam | preserve thread; integrate report when available |
 | test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop845 | dispatched_readonly | gpt-5.4 | 2026-07-12T01:30:00+08:00 | loop845 read-only test design review dispatched for report/library progress provenance coverage | preserve thread; integrate report when available |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop854 | dispatched_readonly | gpt-5.5 | 2026-07-11T14:38:00+08:00 | loop854 read-only verification strategy review dispatched for official runner injection/no-auto-execution matrix | preserve permanent identity; integrate report when available |
 ## Latest Roster Notes
 
+- 2026-07-11T14:40:45+08:00 · loop854/SYNC-869: Official controlled real backtest runner seam is connected through an inert provider; Jobs/API manifest can show runner ready while preserving `execution_permission=not_granted_by_manifest` and `will_run_backtest=false`. Permanent code-reviewer and verifier received read-only prompts; no duplicate workers created. Verification: RED missing module, target 7 passed, related regression 83 passed, Ruff pass.
 - 2026-07-11T14:37:01+08:00 · loop853/SYNC-868: Controlled real backtest action now exposes `controlled_real_backtest_runner_manifest_v1` with current `runner_not_connected` state, explicit `runner_manifest_missing,dry_run_capability_missing`, and `will_run_backtest=false`. Verification: RED missing runner_manifest, target 4 passed, related regression 82 passed, targeted Ruff pass.
 - 2026-07-11T14:22:33+08:00 · loop852/SYNC-867: Existing qa-pg-alt runtime is healthy on 55432 with core schema and data aggregates available; controlled real backtest runner is missing, so preflight blocks with runner_manifest_missing and dry_run_capability_missing. Verification: DB smoke pass, runner preflight smoke pass, fail-closed tests 19 passed.
 - 2026-07-11T14:22:33+08:00 · loop851/SYNC-866: Product-level pre-review smoke now traverses factor-mining, Jobs handoff, and factor-library recap with Vite + Playwright. Permanent test-engineer and verifier received read-only review prompts; no duplicate workers created. Verification: review-readiness pass, flow/jobs/library contracts pass, build pass, lint 0 errors/1 existing warning.

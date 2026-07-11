@@ -1,3 +1,39 @@
+# Orchestrator Latest Report — SYNC-869 Controlled real backtest runner injection seam loop854
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_REAL_BACKTEST_RUNNER_INJECTION_DRY_RUN_REENTRY_LOOP854"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_real_backtest_runner_injection.py"
+      summary: "Adds inert official runner provider and adapter for qa.backtest.engine.run_backtest."
+    - file: "apps/quant_assistant/src/qa/api/quant_routes.py"
+      summary: "Connects resolve_controlled_real_backtest_runner to the official provider."
+    - file: "apps/quant_assistant/tests/test_controlled_real_backtest_runner_injection_unit.py"
+      summary: "Covers provider readiness, no construction-time execution, and explicit adapter delegation."
+    - file: "apps/quant_assistant/tests/test_mining_job_api_unit.py"
+      summary: "Updates Jobs/API manifest expectation to runner ready but not execution-authorized."
+  verification:
+    - command: "uv run pytest -q tests/test_controlled_real_backtest_runner_injection_unit.py"
+      result: "RED missing module, then GREEN 1 passed."
+    - command: "uv run pytest -q tests/test_controlled_real_backtest_runner_injection_unit.py tests/test_controlled_real_backtest_runner_manifest_unit.py tests/test_mining_job_api_unit.py -k \"controlled_real_backtest_execution_bridge_action or controlled_real_backtest_execution_bridge_blocks_without_injected_runner or controlled_real_backtest_execution_bridge_uses_injected_runner or runner_provider or runner_manifest\""
+      result: "7 passed, 57 deselected."
+    - command: "uv run pytest -q tests/test_controlled_real_backtest_runner_injection_unit.py tests/test_controlled_real_backtest_runner_manifest_unit.py tests/test_mining_job_api_unit.py tests/test_db_runner_preflight_validator_unit.py tests/test_factor_construction_controlled_auto_backtest_execution_gate_unit.py tests/test_factor_construction_controlled_backtest_execution_bridge_unit.py tests/test_controlled_real_backtest_execution_bridge_read_model_unit.py tests/test_db_engine_unit.py"
+      result: "83 passed."
+    - command: "uv run ruff check src/qa/quant_mining/controlled_real_backtest_runner_injection.py src/qa/api/quant_routes.py tests/test_controlled_real_backtest_runner_injection_unit.py tests/test_mining_job_api_unit.py"
+      result: "All checks passed."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Official runner can be connected as an inert adapter while keeping GET/manifest no-execution and POST-only execution boundaries."
+    performance_note: "Official runner seam connected; next target is product-level dogfood for ready manifest/no auto execution."
+  blockers:
+    - "Product path still needs API/browser dogfood after runner-ready manifest."
+  next: "CONTROLLED_REAL_BACKTEST_READY_MANIFEST_PRODUCT_DOGFOOD_LOOP855"
+
+---
+
 # Orchestrator Latest Report — SYNC-868 Controlled real backtest runner manifest loop853
 
 report:
