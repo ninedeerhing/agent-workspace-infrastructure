@@ -1,3 +1,45 @@
+# Orchestrator Latest Report — SYNC-863 UI dogfood self-validation re-entry loop848
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "UI_DOGFOOD_SELF_VALIDATION_REENTRY_LOOP848"
+  changes:
+    - file: "apps/quant_assistant/web/src/pages/factorMiningFlowState.ts"
+      summary: "Adds a front-end flow state contract for initial, preview, submitting, and active-job states."
+    - file: "apps/quant_assistant/web/src/pages/FactorMiningFlowGuide.tsx"
+      summary: "Shows same-page current position and next action for novice users."
+    - file: "apps/quant_assistant/web/src/pages/FactorMiningActiveJobPanel.tsx"
+      summary: "Shows the unique active task and reuses the canonical next-action target."
+    - file: "apps/quant_assistant/web/src/pages/FactorMiningPage.tsx"
+      summary: "Wires flow state into the page and fixes step highlighting."
+    - file: "apps/quant_assistant/web/src/pages/factorMiningReview.tsx"
+      summary: "Adds anchors for small-batch confirmation and candidate preview sections."
+    - file: "apps/quant_assistant/web/scripts/check-factor-universe-flow.mjs"
+      summary: "Adds a bundled front-end contract smoke for factor universe flow states."
+    - file: "apps/quant_assistant/web/package.json"
+      summary: "Adds npm script for the factor universe flow contract test."
+  verification:
+    - command: "npm run test:factor-universe-flow"
+      result: "factor universe flow contract OK."
+    - command: "npm run build"
+      result: "TypeScript and Vite build passed."
+    - command: "npm run lint"
+      result: "0 errors; 1 pre-existing Fast Refresh warning in ShellLayoutContext.tsx."
+    - command: "Chrome/Playwright dogfood /quant/factor-mining click 开始生成"
+      result: "Required next-action, recap, candidate preview, and single-active-task markers visible."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Product dogfood gaps must become the next loop target rather than a stopping point."
+      - "When a TSX page is near 250 pure LOC, extract UI state/components before adding UX behavior."
+    performance_note: "Loop848 closed with contract/build/lint/browser dogfood; next is Jobs confirmation dogfood."
+  blockers: []
+  next: "JOBS_CONFIRMATION_DOGFOOD_REENTRY_LOOP849"
+
+---
+
 # Orchestrator Latest Report — SYNC-862 one-click E2E self-validation re-entry loop847
 
 report:

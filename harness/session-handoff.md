@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-12T02:10:00+08:00
+updated_at: 2026-07-12T02:35:00+08:00
+
+## Latest Handoff — SYNC-863 UI dogfood self-validation re-entry
+
+- [DONE] `/quant/factor-mining` now has a front-door flow state contract and same-page "现在你在这里 / 下一步" guide.
+- [DONE] Clicking "开始生成" reveals candidate preview, construction visualization, batch recap, and a unique small-batch confirmation target without leaving the page.
+- [DONE] Step tracker now highlights the real current phase instead of lighting every future step.
+- [DONE] Active job panel reuses the same flow state and keeps single-active-task copy visible.
+- [VERIFY] `npm run test:factor-universe-flow`: pass.
+- [VERIFY] `npm run build`: pass.
+- [VERIFY] `npm run lint`: 0 errors / 1 existing Fast Refresh warning in `ShellLayoutContext.tsx`.
+- [VERIFY] Chrome/Playwright dogfood: `/quant/factor-mining` click "开始生成" shows next-action, recap, candidates, and single active task marker.
+- [NEXT] `JOBS_CONFIRMATION_DOGFOOD_REENTRY_LOOP849`: dogfood `/quant/jobs` after unique task creation and simplify remaining confusing confirmation/result navigation.
+- [FORBIDDEN] Do not create substitute Docker/DB/ports; do not treat UI preview as real scoring/backtest execution.
 
 ## Latest Handoff — SYNC-862 one-click E2E self-validation re-entry
 
