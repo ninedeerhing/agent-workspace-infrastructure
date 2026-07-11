@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T20:05:00+08:00",
+  "updated_at": "2026-07-11T20:30:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "controlled-ae-candidate-readiness-ui-loop831",
-  "next_atomic_action": "AE_SMALL_BATCH_SCORING_PREFLIGHT_CLOSURE_LOOP832：让小批真实评分 preflight 消费 controlled_ae_candidate_readiness_v1，在 A/E source-review validation 未闭合前保持 blocked；仍不得写 DB、不得运行 scorer/backtest/Docker/port。",
-  "next_after": "Continue source-review validation closure -> small-batch scoring preflight closure.",
+  "current_slice": "ae-small-batch-scoring-preflight-closure-loop832",
+  "next_atomic_action": "AE_SOURCE_REVIEW_VALIDATION_CLOSURE_LOOP833：新增 A/E source-review validation closure contract，只有明确 reviewer/owner validation evidence 闭合 source_review_validation_candidate_refs 后才产出 closed refs；仍不得写 DB、不得运行 scorer/backtest/Docker/port。",
+  "next_after": "Continue source-review validation closure -> small-batch scoring preflight re-entry -> controlled scoring readiness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-846-controlled-ae-candidate-readiness-ui-loop831",
+  "last_tick": "SYNC-847-ae-small-batch-scoring-preflight-closure-loop832",
   "last_sync_sources": [
+    "SYNC-847 A/E small-batch scoring preflight closure loop832",
+    "loop832 trigger: small-batch scoring preflight needed to consume controlled_ae_candidate_readiness_v1 before any A/E scoring readiness claim",
+    "loop832 backend: SmallBatchRealScoringRequestV1 now accepts controlled_ae_candidate_readiness and ae_source_review_validation_closed_refs",
+    "loop832 boundary: pending validation refs and held refs both block; creation plan exposes factor_construction_small_batch_real_scoring_preflight; no DB/scorer/backtest/Docker/port",
+    "loop832 worker: Maxwell/code-reviewer found held-ref bypass P2; local RED/GREEN fix added blocker ae_source_review_validation_held_refs_not_closed; re-review requested",
+    "loop832 verification: focused small-batch tests 7 passed; small-batch/scoring-bridge/compute/creation-plan regression 26 passed; Ruff pass; creation-plan smoke pass",
+    "next: AE_SOURCE_REVIEW_VALIDATION_CLOSURE_LOOP833",
     "SYNC-846 Controlled A/E candidate readiness UI surface loop831",
     "loop831 trigger: controlled_ae_candidate_readiness_v1 needed to be visible before scoring preflight could consume it",
     "loop831 UI: /quant/factor-mining shows source_review_validation_candidate_refs, held_candidate_refs, and no-scoring/no-backtest note",

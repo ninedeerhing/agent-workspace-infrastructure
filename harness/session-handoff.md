@@ -1,6 +1,20 @@
 # Session Handoff
 
-updated_at: 2026-07-11T20:05:00+08:00
+updated_at: 2026-07-11T20:30:00+08:00
+
+## Latest Handoff — SYNC-847 A/E small-batch scoring preflight closure
+
+- [DONE] `small_batch_real_scoring_request_v1` now consumes `controlled_ae_candidate_readiness_v1`.
+- [DONE] Pending `source_review_validation_candidate_refs` block small-batch scoring preflight.
+- [DONE] Non-empty `held_candidate_refs` also block preflight, fixing the code-reviewer P2 bypass.
+- [DONE] Creation plan exposes `factor_construction_small_batch_real_scoring_preflight`.
+- [VERIFY] Focused small-batch tests: 7 passed.
+- [VERIFY] Small-batch/scoring-bridge/compute/creation-plan regression: 26 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: `small_batch_real_scoring_request_v1 blocked ... closed False False`.
+- [WORKER] Maxwell/code-reviewer first pass returned partial with held-ref bypass; fix implemented; re-review returned success and closed the P2.
+- [NEXT] `AE_SOURCE_REVIEW_VALIDATION_CLOSURE_LOOP833`: add explicit source-review validation closure contract.
+- [FORBIDDEN] Do not mark A/E source-review candidates calculable without closure refs; do not write DB; do not run scorer/backtest; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-846 Controlled A/E candidate readiness UI
 

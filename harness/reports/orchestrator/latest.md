@@ -1,3 +1,54 @@
+# Orchestrator Latest Report — SYNC-847 A/E small-batch scoring preflight closure loop832
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "AE_SMALL_BATCH_SCORING_PREFLIGHT_CLOSURE_LOOP832"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_small_batch_real_scoring.py"
+      summary: "Small-batch scoring preflight now consumes controlled A/E readiness and blocks on pending or held A/E validation refs."
+    - file: "apps/quant_assistant/src/qa/brain/batch_mining_creation_plan_builder.py"
+      summary: "Creation plan exposes factor_construction_small_batch_real_scoring_preflight."
+    - file: "apps/quant_assistant/tests/test_factor_construction_small_batch_real_scoring_unit.py"
+      summary: "Covers pending validation refs, held refs, and closed refs behavior."
+    - file: "apps/quant_assistant/tests/test_batch_mining_flow_unit.py"
+      summary: "Covers creation-plan preflight exposure."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-847 and next loop833."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-847."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop833."
+    - file: "docs/TASK_TREES.md"
+      summary: "Updates root task-tree index to loop833."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to A/E source-review validation closure."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-847."
+    - file: "harness/reports/EMPLOYEE_ROSTER.md"
+      summary: "Updates orchestrator and code-reviewer overlay."
+  verification:
+    - command: "uv run pytest -q tests/test_factor_construction_small_batch_real_scoring_unit.py -k ae_source_review"
+      result: "RED unexpected keyword before implementation; GREEN after readiness input added."
+    - command: "uv run pytest -q tests/test_factor_construction_small_batch_real_scoring_unit.py -k held_refs"
+      result: "RED request became ready with held refs; GREEN after ae_source_review_validation_held_refs_not_closed blocker; Maxwell re-review closed P2."
+    - command: "uv run pytest -q tests/test_factor_construction_small_batch_real_scoring_unit.py tests/test_factor_construction_scoring_result_read_model_unit.py tests/test_factor_construction_real_scoring_execution_bridge_unit.py tests/test_factor_construction_compute_budget_gate_unit.py tests/test_batch_mining_flow_unit.py"
+      result: "26 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "creation-plan smoke for factor_construction_small_batch_real_scoring_preflight"
+      result: "small_batch_real_scoring_request_v1 blocked ... closed False False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Preflight gates must treat both pending validation refs and held A/E refs as blockers; readiness without closure is not scoring readiness."
+    performance_note: "Loop832 closed with worker-found P2 fixed via RED/GREEN, local regression, and Maxwell success re-review."
+  blockers: []
+  next: "AE_SOURCE_REVIEW_VALIDATION_CLOSURE_LOOP833"
+
+---
+
 # Orchestrator Latest Report — SYNC-846 Controlled A/E candidate readiness UI surface loop831
 
 report:
