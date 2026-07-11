@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:50:00+08:00
+updated_at: 2026-07-12T01:15:00+08:00
+
+## Latest Handoff — SYNC-897 post-acceptance-entry-mode-observability-in-jobs-loop883
+
+- [DONE] Backend `factor_construction_universe_summary` now exposes `entry_mode`, `factor_class`, and `subclass_quota` as job payload summary facts.
+- [DONE] Jobs task recap now has a first-class “任务来源” block for manual category / user idea / no-idea auto exploration.
+- [DONE] Jobs shows `entry_mode`, `source_mode`, `factor_class`, `subclass_quota`, `generator_profile`, user idea text, and auto exploration reason before the batch recap.
+- [DONE] Job-payload recap sections now include an “入口模式” metric, so recap and Jobs share the same source context.
+- [DONE] Added `npm run test:jobs-entry-mode-observability-dogfood`, covering user-idea, no-idea-auto, and manual-category Jobs tasks with zero POST/runtime behavior.
+- [VERIFY] Passed: universe model 9, API/universe/registry 77, jobs entry-mode dogfood, user-idea dogfood, no-idea auto dogfood, multi-source-mode dogfood, formal-review E2E dogfood, web build, web lint 0 errors / 1 existing warning.
+- [WORKER] Kierkegaard read-only qa-product-reviewer reported the same Jobs entry-mode P0 gap; findings absorbed.
+- [NEXT] `POST_ACCEPTANCE_SCORING_CONFIRMATION_ENTRY_CONTEXT_LOOP884`: carry entry-mode context into Jobs scoring confirmation CTA / next-step guidance.
 
 ## Latest Handoff — SYNC-896 post-acceptance-no-idea-auto-direction-exploration-loop882
 

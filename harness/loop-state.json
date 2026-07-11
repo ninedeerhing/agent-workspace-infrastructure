@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T00:50:00+08:00",
+  "updated_at": "2026-07-12T01:15:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-no-idea-auto-direction-exploration-loop882",
-  "next_atomic_action": "POST_ACCEPTANCE_ENTRY_MODE_OBSERVABILITY_IN_JOBS_LOOP883：把用户想法、无想法自动探索、手动分类三种入口模式的上下文从 FactorMining 页面延续到 Jobs 当前任务/任务列表观测面；Jobs 应显示 entry mode、source_mode、idea/auto reason、分类与生成器 profile，让用户点击“查看当前任务”后仍知道这条任务从哪里来、为什么这样生成。补 browser dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward jobs observability, scoring readiness, and factor universe usability.",
+  "current_slice": "post-acceptance-entry-mode-observability-in-jobs-loop883",
+  "next_atomic_action": "POST_ACCEPTANCE_SCORING_CONFIRMATION_ENTRY_CONTEXT_LOOP884：把 loop883 的 entry_mode/source_mode/idea-or-auto-reason/factor_class/subclass_quota/generator_profile 延续到 Jobs 当前任务的评分确认 CTA 与下一步说明；用户点击“查看当前任务”后，不仅能知道任务来源，还能知道下一步是否是小批评分确认、为什么仍需按钮授权、确认后不会自动回测。补 browser dogfood，保持不连 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward scoring confirmation clarity, factor library context, and controlled scoring readiness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,16 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-896-post-acceptance-no-idea-auto-direction-exploration-loop882",
+  "last_tick": "SYNC-897-post-acceptance-entry-mode-observability-in-jobs-loop883",
   "last_sync_sources": [
+    "SYNC-897 Post-acceptance entry-mode observability in Jobs loop883",
+    "loop883 backend: factor_construction_universe_summary now exposes entry_mode, factor_class, and subclass_quota in the job payload summary",
+    "loop883 frontend: JobsPageBatchRecapTelemetryNotice now shows a first-class task source block with entry mode, source_mode, factor class, subclass quota, generator profile, user idea text, and auto exploration reason",
+    "loop883 telemetry: batch recap job-payload sections now include an entry-mode metric so Jobs and recap surfaces share the same source context",
+    "loop883 dogfood: new test:jobs-entry-mode-observability-dogfood opens Jobs for user-idea, no-idea-auto, and manual-category jobs, verifies source context visibility, and asserts zero POST/runtime behavior",
+    "loop883 verification: universe model 9 passed; API/universe/registry 77 passed; jobs entry-mode dogfood pass; user-idea dogfood pass; no-idea auto dogfood pass; multi-source-mode dogfood pass; formal-review E2E dogfood pass; web build pass; lint 0 errors/1 existing warning",
+    "loop883 worker: Kierkegaard read-only product reviewer identified the same P0 entry-mode Jobs gap; implementation absorbed its source-context and dogfood recommendations",
+    "next: POST_ACCEPTANCE_SCORING_CONFIRMATION_ENTRY_CONTEXT_LOOP884",
     "SYNC-896 Post-acceptance no-idea auto direction exploration loop882",
     "loop882 frontend: auto direction state now distinguishes no-idea exploration from manual B category selection and shows auto_direction=true in ConstructionSpec",
     "loop882 brief/backend: buildMiningBrief writes auto_direction and auto_direction_reason; factor_construction_universe_summary carries those fields into job payload telemetry",
