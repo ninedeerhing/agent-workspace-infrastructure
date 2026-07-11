@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-11T14:00:00+08:00",
+  "updated_at": "2026-07-11T14:20:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "source-review-material-data-availability-linkage-loop813",
-  "next_atomic_action": "AE_MISSING_SOURCE_ONBOARDING_REQUEST_LOOP814：为 entity_linking_table、alternative_data_snapshot 等 missing 源建立用户可读的数据源接入请求/read-model，说明缺什么、为什么阻塞 E 类真实候选、需要用户/数据提供什么；不得伪造数据源，不得标 ready，不得触发评分/回测/DB 写入/Docker/port。",
-  "next_after": "Continue until missing source onboarding, UI, product self-validation, and candidate availability form a closed loop; then handle real A/E source onboarding or confirmation boundaries.",
+  "current_slice": "ae-missing-source-onboarding-request-loop814",
+  "next_atomic_action": "AE_MISSING_SOURCE_ONBOARDING_UI_SURFACE_LOOP815：把 factor_universe_missing_source_onboarding_request_v1 落到 /quant/factor-mining 用户可见页面，显示 entity_linking_table 与 alternative_data_snapshot 缺什么、为什么阻塞、用户需要提供什么、系统接入步骤；不得伪造 ready，不得触发评分/回测/DB 写入/Docker/port。",
+  "next_after": "Continue until missing source onboarding UI and product self-validation/candidate availability form a closed loop; then handle real source onboarding or confirmation boundaries.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-828-source-review-material-data-availability-linkage-loop813",
+  "last_tick": "SYNC-829-ae-missing-source-onboarding-request-loop814",
   "last_sync_sources": [
+    "SYNC-829 A/E missing source onboarding request loop814",
+    "loop814 trigger: missing entity_linking_table and alternative_data_snapshot needed to become actionable next goals instead of silent blockers",
+    "loop814 backend: added factor_universe_missing_source_onboarding_request_v1 with user-readable blockers, required user inputs, system onboarding work, and UI action id",
+    "loop814 creation plan: exposes factor_universe_missing_source_onboarding_request top-level",
+    "loop814 verification: missing-source onboarding + source catalog/manifest/source-adapter/data-confirmation tests 13 passed; Ruff pass; creation-plan smoke pass",
+    "next: AE_MISSING_SOURCE_ONBOARDING_UI_SURFACE_LOOP815",
     "SYNC-828 Source review material data availability linkage loop813",
     "loop813 trigger: source review material needed to affect candidate Data Availability Gate without granting scoring readiness",
     "loop813 backend: build_data_availability_gate_result_v1 accepts source_manifest_capture_contract and treats source_review_material_ready as partial source-review support",

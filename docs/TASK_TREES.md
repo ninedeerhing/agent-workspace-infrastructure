@@ -1,5 +1,7 @@
 # Task Tree Ledger
 
+Updated: 2026-07-11T14:20:00+08:00 · SYNC-829 · A/E missing source onboarding request
+
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
 ## Usage Rules
@@ -69,11 +71,12 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 
 ## Current Mainline
 
-- Current sole foreground mainline: `TREE-6 / PL-G` mining_job Template B；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` PL-G `manual-safe-backtest-result-consumer-loop274` completed（TREE-2 data gate passed；loop274 completed confirmed mining consumer observability bundle, multi-candidate Chat result list, manual-safe action handoff, and fail-closed trigger identity/execution-boundary validation; next is explicit manual-safe trigger/API roundtrip loop275; worker permanent `codex_thread_id` and temporary `runtime_agent_id` are separated, and dispatch must verify cross-dialogue thread reachability before assignment；见 `harness/loop-state.json` and app §5.601）
-- Post-backfill route: leave backfill-monitoring mode and continue `apps/quant_assistant` quant core toward the unique core mainline auto mining → auto backtest full flow + intent understanding state machine / intent quant subgraph. Closure/收口 means a stage gate passes and the loop advances to the next planned slice; it is not a terminal stop.
+- Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
+- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop814/SYNC-829 completed `AE_MISSING_SOURCE_ONBOARDING_REQUEST_LOOP814` by adding `factor_universe_missing_source_onboarding_request_v1` for missing A/E sources (`entity_linking_table`, `alternative_data_snapshot`). It explains what is missing, why it blocks E-class real candidates, required user inputs, system onboarding work, and keeps all scoring/backtest/DB/Docker side effects false.
+- Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
+- Next atomic action: `AE_MISSING_SOURCE_ONBOARDING_UI_SURFACE_LOOP815` — put the missing-source onboarding request into `/quant/factor-mining`, showing `entity_linking_table` and `alternative_data_snapshot` gaps, why they block E-class real candidates, what users/data owners need to provide, and system onboarding steps; do not fake readiness or trigger scoring/backtest/DB/Docker/ports.
 
 ## EXCLUDE: Default Exclusions
 

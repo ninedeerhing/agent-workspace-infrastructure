@@ -1,6 +1,18 @@
 # Session Handoff
 
-updated_at: 2026-07-11T14:00:00+08:00
+updated_at: 2026-07-11T14:20:00+08:00
+
+## Latest Handoff — SYNC-829 A/E missing source onboarding request
+
+- [DONE] Added `factor_universe_missing_source_onboarding_request_v1`.
+- [DONE] The request covers missing sources `entity_linking_table` and `alternative_data_snapshot`.
+- [DONE] Each missing source now explains what blocks E-class real candidates, required user inputs, and required system onboarding work.
+- [DONE] Creation plan exposes `factor_universe_missing_source_onboarding_request`.
+- [VERIFY] Missing source onboarding + source catalog/manifest/source-adapter/data-confirmation tests: 13 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Creation-plan smoke: request exposed with 2 missing sources, `start_factor_universe_missing_source_onboarding`, and all scoring/backtest/DB/Docker side effects false.
+- [NEXT] `AE_MISSING_SOURCE_ONBOARDING_UI_SURFACE_LOOP815`: show the missing-source onboarding request on `/quant/factor-mining`.
+- [FORBIDDEN] Do not fake source readiness; do not generate real E candidates from missing sources; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-828 Source review material data availability linkage
 
