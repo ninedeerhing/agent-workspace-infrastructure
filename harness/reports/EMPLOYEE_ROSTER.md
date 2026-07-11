@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T14:20:00+08:00
+Updated: 2026-07-11T14:40:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop814 | continuous_loop_active | gpt-5.5 | 2026-07-11T14:20:00+08:00 | SYNC-829 A/E missing source onboarding request complete; next AE_MISSING_SOURCE_ONBOARDING_UI_SURFACE_LOOP815 | keep moving; expose onboarding request in product UI |
+| orchestrator | current-thread | loop815 | continuous_loop_active | gpt-5.5 | 2026-07-11T14:40:00+08:00 | SYNC-830 A/E missing source onboarding UI complete; next MISSING_SOURCE_ONBOARDING_PRODUCT_SELF_VALIDATION_LOOP816 | keep moving; add product self-validation hard gate |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T14:40:00+08:00 · loop815/SYNC-830: `/quant/factor-mining` now shows the missing-source onboarding request for `entity_linking_table` and `alternative_data_snapshot`, including blockers, user inputs, system onboarding work, action id, and no scoring/backtest/DB/Docker boundary. Verification: consumer flow + missing-source onboarding tests 11 passed, Ruff pass, web build pass. Halley/test-engineer received a permanent-thread read-only review request.
 - 2026-07-11T14:20:00+08:00 · loop814/SYNC-829: Added `factor_universe_missing_source_onboarding_request_v1` and exposed it in creation plan. Missing `entity_linking_table` and `alternative_data_snapshot` now have user-readable blockers, required user inputs, required system work, and no scoring/backtest/DB/Docker side effects. Verification: missing-source onboarding + source catalog/manifest/source-adapter/data-confirmation tests 13 passed, Ruff pass, creation-plan smoke pass.
 - 2026-07-11T14:00:00+08:00 · loop813/SYNC-828: Data Availability Gate now consumes optional source manifest capture contract; `source_review_material_ready` turns A candidates into partial/source-review status without entering calculable or scoring readiness. Verification: data availability + downstream scoring/pool tests 24 passed, Ruff pass.
 - 2026-07-11T13:40:00+08:00 · loop812/SYNC-827: Product self-validation gate now requires manifest capture field requirements via `has_manifest_capture_field_requirements=true`; missing surface blocks with `manifest_capture_ui_not_visible`. Verification: product gate + consumer flow + manifest contract tests 20 passed, Ruff pass, web build pass.

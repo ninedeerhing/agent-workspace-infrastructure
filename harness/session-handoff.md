@@ -1,6 +1,17 @@
 # Session Handoff
 
-updated_at: 2026-07-11T14:20:00+08:00
+updated_at: 2026-07-11T14:40:00+08:00
+
+## Latest Handoff — SYNC-830 A/E missing source onboarding UI
+
+- [DONE] `/quant/factor-mining` now shows “缺源接入请求”.
+- [DONE] The UI exposes `factor_universe_missing_source_onboarding_request_v1` and action id `start_factor_universe_missing_source_onboarding`.
+- [DONE] The page lists `entity_linking_table` and `alternative_data_snapshot`, why each blocks E-class real candidates, required user inputs, and required system onboarding work.
+- [VERIFY] Consumer flow + missing-source onboarding tests: 11 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [NEXT] `MISSING_SOURCE_ONBOARDING_PRODUCT_SELF_VALIDATION_LOOP816`: make the missing-source onboarding surface a product self-validation hard gate.
+- [FORBIDDEN] Do not fake source readiness; do not generate real E candidates from missing sources; do not run scorer/backtest; do not write DB; do not create substitute DB/container/port; do not read/print `.env` or secrets.
 
 ## Latest Handoff — SYNC-829 A/E missing source onboarding request
 
