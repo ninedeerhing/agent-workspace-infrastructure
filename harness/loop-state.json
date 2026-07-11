@@ -4,9 +4,9 @@
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-backtest-progress-report-reentry-loop844",
-  "next_atomic_action": "CONSUMER_RESULT_REPORT_REENTRY_LOOP845：让 consumer result report / factor library result surface 消费 progress report 的 execution_summary、executed_plans、excluded_factor_refs、run_ids，形成小白可读结论与可复盘详情，并准备反馈记忆输入。",
-  "next_after": "Continue factor library result integration -> feedback memory -> one-click E2E self-validation.",
+  "current_slice": "consumer-result-report-reentry-loop845",
+  "next_atomic_action": "REAL_BACKTEST_FEEDBACK_MEMORY_REENTRY_LOOP846：让真实回测反馈记忆适配器消费 feedback_memory_input、executed plan ids、run ids、excluded refs 与 consumer verdict，形成可复盘轨迹输入，同时保持 no secret/no substitute runtime。",
+  "next_after": "Continue one-click E2E self-validation -> UI dogfood -> formal human review entry.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-859-real-backtest-progress-report-reentry-loop844",
+  "last_tick": "SYNC-860-consumer-result-report-reentry-loop845",
   "last_sync_sources": [
+    "SYNC-860 consumer result report re-entry loop845",
+    "loop845 trigger: consumer report and factor library needed to consume progress report provenance before feedback memory",
+    "loop845 backend: BacktestResultReportV1 now accepts progress_report_surface and emits execution_summary, executed_plans, excluded_factor_refs, run_ids, feedback_memory_input",
+    "loop845 UI/read-model: FactorLibraryReportSurfaceV1 exposes execution replay material in report_summary and factor cards",
+    "loop845 boundary: read-only report surface, excluded refs stay explanatory, no env/DB/runner/backtest/queue side effects",
+    "loop845 verification: focused report/library 11 passed; related regression 115 passed; Ruff pass; consumer report smoke pass",
+    "next: REAL_BACKTEST_FEEDBACK_MEMORY_REENTRY_LOOP846",
     "SYNC-859 real backtest progress report re-entry loop844",
     "loop844 trigger: progress/report surface needed to explain bridge plan/source/run/error rather than naked run ids",
     "loop844 backend: controlled_backtest_progress_report_surface now exposes executed_plans, candidate_source, excluded_factor_refs, execution_summary",

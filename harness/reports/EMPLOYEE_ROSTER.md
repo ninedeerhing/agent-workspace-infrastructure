@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-12T01:10:00+08:00
+Updated: 2026-07-12T01:30:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,15 +50,16 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop844 | continuous_loop_active | gpt-5.5 | 2026-07-12T01:10:00+08:00 | SYNC-859 real backtest progress report re-entry complete; next CONSUMER_RESULT_REPORT_REENTRY_LOOP845 | keep moving; consumer result/report re-entry |
+| orchestrator | current-thread | loop845 | continuous_loop_active | gpt-5.5 | 2026-07-12T01:30:00+08:00 | SYNC-860 consumer result report re-entry complete; next REAL_BACKTEST_FEEDBACK_MEMORY_REENTRY_LOOP846 | keep moving; feedback memory re-entry |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop840 | dispatched_readonly | gpt-5.4 | 2026-07-11T23:50:00+08:00 | loop840 read-only risk review dispatched for final accepted written-refs-only boundary | preserve thread; integrate report when available |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop840 | dispatched_readonly | gpt-5.4 | 2026-07-11T23:50:00+08:00 | loop840 read-only test design review dispatched for final accepted confirmation boundary | preserve thread; integrate report when available |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop845 | dispatched_readonly | gpt-5.4 | 2026-07-12T01:30:00+08:00 | loop845 read-only risk review dispatched for consumer report provenance and no-execution boundaries | preserve thread; integrate report when available |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop845 | dispatched_readonly | gpt-5.4 | 2026-07-12T01:30:00+08:00 | loop845 read-only test design review dispatched for report/library progress provenance coverage | preserve thread; integrate report when available |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-12T01:30:00+08:00 · loop845/SYNC-860: Consumer report and factor library surface now consume progress provenance, exposing execution_summary, executed_plans, excluded refs, run ids, and feedback_memory_input. Permanent code-reviewer and test-engineer received read-only review prompts; no duplicate workers created. Verification: focused 11 passed, regression 115 passed, Ruff pass, smoke pass.
 - 2026-07-12T01:10:00+08:00 · loop844/SYNC-859: Controlled backtest progress/report surface now consumes plan_drafts, candidate_source, run_ids, and error state, exposing executed_plans, excluded_factor_refs, and execution_summary for report/factor-library consumers. No duplicate workers created. Verification: focused 5 passed, regression 112 passed, Ruff pass, smoke pass.
 - 2026-07-12T00:50:00+08:00 · loop843/SYNC-858: Controlled real bridge read model now consumes execution-confirmed plan_drafts/candidate_source, blocks missing drafts, and preserves plan/source/ref in output while keeping runner/runtime/audit gates. No duplicate workers created. Verification: focused 4 passed, regression 109 passed, Ruff pass, smoke pass.
 - 2026-07-12T00:30:00+08:00 · loop842/SYNC-857: Execution confirmation now consumes plan-ready `single_factor_plans` rather than naked factor_version_ids and requires confirmation_ref; it remains no queue/no execution. No duplicate workers created. Verification: focused 6 passed, regression 110 passed, Ruff pass, smoke pass.

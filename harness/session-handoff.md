@@ -1,6 +1,19 @@
 # Session Handoff
 
-updated_at: 2026-07-12T01:10:00+08:00
+updated_at: 2026-07-12T01:30:00+08:00
+
+## Latest Handoff — SYNC-860 consumer result report re-entry
+
+- [DONE] Consumer result report now consumes progress report provenance.
+- [DONE] Report output includes `execution_summary`, `executed_plans`, `excluded_factor_refs`, `run_ids`, and `feedback_memory_input`.
+- [DONE] Factor library report surface exposes execution replay material in `report_summary` and factor cards.
+- [DONE] Completed progress surface can re-enter a report-ready consumer report without reading DB or rerunning backtests.
+- [VERIFY] Focused report/library tests: 11 passed.
+- [VERIFY] Related regression: 115 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Consumer report smoke: `ready {'plan_count': 1, 'run_count': 1, 'excluded_count': 1} p1 True False`.
+- [NEXT] `REAL_BACKTEST_FEEDBACK_MEMORY_REENTRY_LOOP846`: feed report `feedback_memory_input` into real backtest trajectory memory.
+- [FORBIDDEN] Do not leak DSN/secrets; do not add substitute runtime; excluded refs remain explanatory, not accepted.
 
 ## Latest Handoff — SYNC-859 real backtest progress report re-entry
 

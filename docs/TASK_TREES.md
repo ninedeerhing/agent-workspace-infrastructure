@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-12T01:10:00+08:00 · SYNC-859 · real backtest progress report re-entry
+Updated: 2026-07-12T01:30:00+08:00 · SYNC-860 · consumer result report re-entry
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 

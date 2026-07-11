@@ -1,3 +1,48 @@
+# Orchestrator Latest Report — SYNC-860 consumer result report re-entry loop845
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONSUMER_RESULT_REPORT_REENTRY_LOOP845"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_backtest_result_report.py"
+      summary: "Consumes progress_report_surface and emits execution_summary, executed_plans, excluded_factor_refs, run_ids, and feedback_memory_input."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_factor_library_report_surface.py"
+      summary: "Exposes execution replay material through report_summary and factor cards."
+    - file: "apps/quant_assistant/tests/test_factor_construction_backtest_result_report_unit.py"
+      summary: "Covers progress provenance consumption and completed progress-surface re-entry."
+    - file: "apps/quant_assistant/tests/test_factor_construction_factor_library_report_surface_unit.py"
+      summary: "Covers factor library replay material propagation."
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records SYNC-860 and next loop846."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and latest progress to SYNC-860."
+    - file: "docs/CONTINUATION_PROMPT.md"
+      summary: "Updates continuation copy to loop846."
+    - file: "harness/loop-state.json"
+      summary: "Sets next_atomic_action to real backtest feedback memory re-entry."
+    - file: "harness/session-handoff.md"
+      summary: "Adds latest handoff for SYNC-860."
+  verification:
+    - command: "uv run pytest -q report/library focused tests"
+      result: "11 passed."
+    - command: "uv run pytest -q related report/progress/bridge/API/feedback tests"
+      result: "115 passed."
+    - command: "uv run ruff check targeted files"
+      result: "All checks passed."
+    - command: "consumer report smoke"
+      result: "ready {'plan_count': 1, 'run_count': 1, 'excluded_count': 1} p1 True False."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Consumer reports should consume real execution provenance before trajectory memory writes are attempted."
+    performance_note: "Loop845 closed with focused/regression/Ruff/smoke; permanent code-reviewer and test-engineer received read-only review prompts."
+  blockers: []
+  next: "REAL_BACKTEST_FEEDBACK_MEMORY_REENTRY_LOOP846"
+
+---
+
 # Orchestrator Latest Report — SYNC-859 real backtest progress report re-entry loop844
 
 report:
