@@ -4,8 +4,8 @@
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "runtime-db-runner-smoke-loop852",
-  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_RUNNER_MANIFEST_REENTRY_LOOP853：补齐受控真实回测 runner manifest / dry-run capability read-model，使 UI/后端能明确区分“DB 已就绪但 runner 未授权/未接入”与“runner 准备好但仍需用户显式执行确认”，禁止默认 runner 和替代 runtime。",
+  "current_slice": "controlled-real-backtest-runner-manifest-loop853",
+  "next_atomic_action": "CONTROLLED_REAL_BACKTEST_RUNNER_INJECTION_DRY_RUN_REENTRY_LOOP854：设计并实现 official runner 注入的 dry-run capability/authorization seam；必须保持默认 runner 禁止、替代 runtime 禁止、未授权不写 DB/不运行回测，只有显式用户执行门后才能调用真实 qa.backtest.engine.run_backtest。",
   "next_after": "Continue formal human review entry; gaps become next goals, not stop reasons.",
   "blockers": [
     {
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-867-runtime-db-runner-smoke-loop852",
+  "last_tick": "SYNC-868-controlled-real-backtest-runner-manifest-loop853",
   "last_sync_sources": [
+    "SYNC-868 Controlled real backtest runner manifest loop853",
+    "loop853 trigger: API needed to explain runner state, not only requires_injected_runner=true",
+    "loop853 backend: added controlled_real_backtest_runner_manifest_v1 and factored controlled real trigger request builder",
+    "loop853 API: run_controlled_real_backtest_execution trigger_request now exposes runner_manifest with runner_not_connected/current blockers/will_run_backtest=false",
+    "loop853 boundary: read-model/API payload only; no env/DB/Docker/scorer/backtest/queue",
+    "loop853 verification: RED missing runner_manifest, target 4 passed, related regression 82 passed, Ruff pass",
+    "next: CONTROLLED_REAL_BACKTEST_RUNNER_INJECTION_DRY_RUN_REENTRY_LOOP854",
     "SYNC-867 Runtime DB/runner smoke loop852",
     "loop852 trigger: product smoke was not enough; correct DB/runner runtime had to be checked before formal review",
     "loop852 runtime: existing qa-pg-alt on 127.0.0.1:55432 is up; DSN present and uses 55432; daily_bar/trade_status 3995 days max 2026-06-18; core schema tables present",

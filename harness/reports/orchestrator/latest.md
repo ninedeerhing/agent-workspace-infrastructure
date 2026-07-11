@@ -1,3 +1,42 @@
+# Orchestrator Latest Report — SYNC-868 Controlled real backtest runner manifest loop853
+
+report:
+  role_id: "orchestrator"
+  status: "success"
+  task: "CONTROLLED_REAL_BACKTEST_RUNNER_MANIFEST_REENTRY_LOOP853"
+  changes:
+    - file: "apps/quant_assistant/src/qa/quant_mining/controlled_real_backtest_runner_manifest.py"
+      summary: "Adds controlled_real_backtest_runner_manifest_v1 with fail-closed runner presence, dry-run capability, and default-runner blockers."
+    - file: "apps/quant_assistant/src/qa/api/controlled_real_backtest_trigger_request.py"
+      summary: "Builds the controlled real backtest trigger request payload with runner_manifest."
+    - file: "apps/quant_assistant/src/qa/api/quant_routes.py"
+      summary: "Exposes runner_manifest from run_controlled_real_backtest_execution without enabling execution."
+    - file: "apps/quant_assistant/tests/test_controlled_real_backtest_runner_manifest_unit.py"
+      summary: "Covers missing runner, official ready runner, and default runner rejection."
+    - file: "apps/quant_assistant/tests/test_mining_job_api_unit.py"
+      summary: "Locks API trigger_request runner_manifest shape."
+  verification:
+    - command: "uv run pytest -q tests/test_mining_job_api_unit.py -k \"controlled_real_backtest_execution_bridge_action\""
+      result: "RED: missing runner_manifest in trigger_request."
+    - command: "uv run pytest -q tests/test_controlled_real_backtest_runner_manifest_unit.py tests/test_mining_job_api_unit.py -k \"controlled_real_backtest_execution_bridge_action or runner_manifest\""
+      result: "4 passed, 59 deselected."
+    - command: "uv run pytest -q tests/test_controlled_real_backtest_runner_manifest_unit.py tests/test_mining_job_api_unit.py tests/test_db_runner_preflight_validator_unit.py tests/test_factor_construction_controlled_auto_backtest_execution_gate_unit.py tests/test_factor_construction_controlled_backtest_execution_bridge_unit.py tests/test_controlled_real_backtest_execution_bridge_read_model_unit.py tests/test_db_engine_unit.py"
+      result: "82 passed."
+    - command: "uv run ruff check src/qa/api/controlled_real_backtest_trigger_request.py src/qa/quant_mining/controlled_real_backtest_runner_manifest.py src/qa/api/quant_routes.py tests/test_controlled_real_backtest_runner_manifest_unit.py tests/test_mining_job_api_unit.py"
+      result: "All checks passed."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Runner readiness must be exposed as a concrete manifest, not an implied blocker hidden behind requires_injected_runner."
+    performance_note: "Runner manifest gap closed; official runner dry-run injection seam becomes next target."
+  blockers:
+    - "official runner injection seam not implemented"
+    - "dry_run capability not yet declared by a real runner provider"
+  next: "CONTROLLED_REAL_BACKTEST_RUNNER_INJECTION_DRY_RUN_REENTRY_LOOP854"
+
+---
+
 # Orchestrator Latest Report — SYNC-867 Runtime DB/runner smoke loop852
 
 report:

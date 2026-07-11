@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-11T14:22:33+08:00
+Updated: 2026-07-11T14:37:01+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -50,7 +50,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop852 | continuous_loop_active | gpt-5.5 | 2026-07-11T14:22:33+08:00 | SYNC-867 runtime DB/runner smoke partial: qa-pg-alt ready, controlled real runner missing; next CONTROLLED_REAL_BACKTEST_RUNNER_MANIFEST_REENTRY_LOOP853 | keep moving; runner manifest/dry-run capability gap becomes next goal |
+| orchestrator | current-thread | loop853 | continuous_loop_active | gpt-5.5 | 2026-07-11T14:37:01+08:00 | SYNC-868 controlled real backtest runner manifest complete; next CONTROLLED_REAL_BACKTEST_RUNNER_INJECTION_DRY_RUN_REENTRY_LOOP854 | keep moving; official runner dry-run injection seam is the next gap-goal |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop779 | report_success | gpt-5.4 | 2026-07-10T01:05:37+08:00 | loop779 plan returned; required structured trajectory memory and no fake/demo success feedback | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop779 | report_success | gpt-5.4 | 2026-07-10T01:04:53+08:00 | loop779 boundary report returned; single-writer implementation, read-only review lanes, no duplicate memory subsystem | preserve permanent identity |
 | executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
@@ -59,6 +59,7 @@ This roster is the stable cross-chat inventory for AWI managers and workers. It 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop556 | channel_waitingOnApproval | gpt-5.5 | 2026-07-03T09:06:44+08:00 | loop556 initial verifier partial occurred before truth-source sync; final recheck is waitingOnApproval; local consistency check used as authoritative evidence | preserve permanent identity; do not create duplicate verifier |
 ## Latest Roster Notes
 
+- 2026-07-11T14:37:01+08:00 · loop853/SYNC-868: Controlled real backtest action now exposes `controlled_real_backtest_runner_manifest_v1` with current `runner_not_connected` state, explicit `runner_manifest_missing,dry_run_capability_missing`, and `will_run_backtest=false`. Verification: RED missing runner_manifest, target 4 passed, related regression 82 passed, targeted Ruff pass.
 - 2026-07-11T14:22:33+08:00 · loop852/SYNC-867: Existing qa-pg-alt runtime is healthy on 55432 with core schema and data aggregates available; controlled real backtest runner is missing, so preflight blocks with runner_manifest_missing and dry_run_capability_missing. Verification: DB smoke pass, runner preflight smoke pass, fail-closed tests 19 passed.
 - 2026-07-11T14:22:33+08:00 · loop851/SYNC-866: Product-level pre-review smoke now traverses factor-mining, Jobs handoff, and factor-library recap with Vite + Playwright. Permanent test-engineer and verifier received read-only review prompts; no duplicate workers created. Verification: review-readiness pass, flow/jobs/library contracts pass, build pass, lint 0 errors/1 existing warning.
 - 2026-07-11T14:22:33+08:00 · loop850/SYNC-865: Factor library now shows a novice-readable result recap guide answering generated/kept/result/next-round questions, with real report surface and no-substitute runtime markers preserved. No duplicate workers created. Verification: factor-library-recap pass, build pass, lint 0 errors/1 existing warning, Chrome/Playwright factor-library dogfood pass.

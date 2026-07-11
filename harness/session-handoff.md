@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-11T14:22:33+08:00
+updated_at: 2026-07-11T14:37:01+08:00
+
+## Latest Handoff — SYNC-868 Controlled real backtest runner manifest
+
+- [DONE] Added `controlled_real_backtest_runner_manifest_v1` so the Jobs/API action explains runner state instead of only saying injected runner is required.
+- [DONE] Factored the controlled real backtest trigger request builder out of the large API route file.
+- [DONE] `run_controlled_real_backtest_execution` now exposes `runner_manifest` with current status `runner_not_connected`.
+- [DONE] Current blockers are explicit: `runner_manifest_missing,dry_run_capability_missing`; `will_run_backtest=false`.
+- [VERIFY] RED missing `runner_manifest`; target 4 passed; related regression 82 passed; targeted Ruff passed.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_RUNNER_INJECTION_DRY_RUN_REENTRY_LOOP854`: design and implement the official runner injection dry-run capability / authorization seam.
+- [FORBIDDEN] No default runner, no substitute runtime, no DB writes, and no backtest execution before the explicit user execution gate.
 
 ## Latest Handoff — SYNC-867 Runtime DB/runner smoke
 
