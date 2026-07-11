@@ -1,3 +1,37 @@
+# Orchestrator Latest Report — SYNC-867 Runtime DB/runner smoke loop852
+
+report:
+  role_id: "orchestrator"
+  status: "partial"
+  task: "RUNTIME_DB_RUNNER_SMOKE_REENTRY_LOOP852"
+  changes:
+    - file: "apps/quant_assistant/docs/PROJECT_STATUS.md"
+      summary: "Records qa-pg-alt readiness and controlled real runner gap."
+    - file: "apps/quant_assistant/docs/TASK_TREES.md"
+      summary: "Updates current mainline and next loop853."
+  verification:
+    - command: "docker ps --format ... | Select-String qa-pg-alt"
+      result: "qa-pg-alt postgres:16 mapped 127.0.0.1:55432->5432/tcp and running."
+    - command: "uv run python - (load_env_files + get_postgres_dsn + read-only aggregate queries)"
+      result: "DSN present=true, uses_55432=true, daily_bar days=3995 max=2026-06-18, daily_trade_status days=3995 max=2026-06-18, core schema tables present=4."
+    - command: "uv run python - (resolve_controlled_real_backtest_runner + db_runner_preflight_validator_v1)"
+      result: "controlled_real_runner_present=false; preflight_status=blocked_runner_preflight_not_ready; blockers=runner_manifest_missing,dry_run_capability_missing; may_run_backtest=false."
+    - command: "uv run pytest -q tests/test_db_runner_preflight_validator_unit.py tests/test_factor_construction_controlled_auto_backtest_execution_gate_unit.py tests/test_factor_construction_controlled_backtest_execution_bridge_unit.py tests/test_controlled_real_backtest_execution_bridge_read_model_unit.py tests/test_db_engine_unit.py"
+      result: "19 passed."
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons:
+      - "Formal product review cannot proceed from frontend dogfood alone when the controlled real runner manifest is still absent."
+    performance_note: "DB is ready; runner manifest/dry-run capability gap becomes next target."
+  blockers:
+    - "controlled_real_runner_present=false"
+    - "runner_manifest_missing"
+    - "dry_run_capability_missing"
+  next: "CONTROLLED_REAL_BACKTEST_RUNNER_MANIFEST_REENTRY_LOOP853"
+
+---
+
 # Orchestrator Latest Report — SYNC-866 Formal review readiness self-check loop851
 
 report:

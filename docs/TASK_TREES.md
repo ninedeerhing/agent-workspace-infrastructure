@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-11T14:22:33+08:00 · SYNC-866 · Formal review readiness self-check
+Updated: 2026-07-11T14:22:33+08:00 · SYNC-867 · Runtime DB/runner smoke
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 

@@ -2,7 +2,18 @@
 
 updated_at: 2026-07-11T14:22:33+08:00
 
-## Latest Handoff — SYNC-866 Formal review readiness self-check
+## Latest Handoff — SYNC-867 Runtime DB/runner smoke
+
+- [DONE] Existing Docker runtime has `qa-pg-alt` running on `127.0.0.1:55432`.
+- [DONE] Project DSN is present and resolves to the 55432 qa-pg-alt mapping without printing DSN values.
+- [DONE] Read-only DB aggregate smoke: `daily_bar` 3995 days max `2026-06-18`; `daily_trade_status` 3995 days max `2026-06-18`; core schema table count 4.
+- [BLOCKED] Controlled real backtest runner is not yet connected: `controlled_real_runner_present=False`.
+- [BLOCKED] Preflight remains `blocked_runner_preflight_not_ready` with `runner_manifest_missing,dry_run_capability_missing`; `may_run_backtest=false`.
+- [VERIFY] Related fail-closed regression: 19 passed.
+- [NEXT] `CONTROLLED_REAL_BACKTEST_RUNNER_MANIFEST_REENTRY_LOOP853`: add a controlled runner manifest / dry-run capability read-model without default runner or substitute runtime.
+- [FORBIDDEN] Do not create substitute Docker/DB/ports; do not enable default runner; do not run backtests until explicit user execution gate and official runner are present.
+
+## Previous Handoff — SYNC-866 Formal review readiness self-check
 
 - [DONE] Added `npm run test:factor-universe-review-readiness` for product-level pre-review dogfood.
 - [DONE] The smoke launches Vite + Playwright and checks `/quant/factor-mining`, `/quant/jobs?source=factor_universe_job&job_id=job-ready-smoke`, and `/quant/factor-library`.
