@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T00:10:54+08:00",
+  "updated_at": "2026-07-12T00:16:38+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "post-acceptance-scoring-trigger-side-effects-readmodel-loop886",
-  "next_atomic_action": "POST_ACCEPTANCE_SCORING_RESULT_CONTEXT_CONTINUITY_LOOP887：把小批评分提交后的结果/失败/等待刷新 read-model 与 Jobs/Factor Library 入口上下文贯通，让用户看到评分结果回来后这批候选的来源、质量闸、评分状态、provisional-ready/held/rejected 的下一步；优先用 mock/API/browser dogfood，不连接真实 DB、不启动 Docker、不运行 scorer/backtest。",
-  "next_after": "Continue continuous loop toward scoring-result continuity, provisional readiness, and factor-library context handoff.",
+  "current_slice": "post-acceptance-scoring-result-context-continuity-loop887",
+  "next_atomic_action": "POST_ACCEPTANCE_FINAL_ACCEPTED_CONFIRMATION_CONTEXT_LOOP888：把 provisional-ready 之后的 accepted 确认入口与评分结果上下文贯通，让用户在点击确认 accepted 前看到来源、质量闸、待确认 refs、确认后不会自动回测；优先用 mock/API/browser dogfood，不连接真实 DB、不启动 Docker、不运行 scorer/backtest。",
+  "next_after": "Continue continuous loop toward accepted confirmation context, backtest-plan handoff, and factor-library result continuity.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-900-post-acceptance-scoring-trigger-side-effects-readmodel-loop886",
+  "last_tick": "SYNC-901-post-acceptance-scoring-result-context-continuity-loop887",
   "last_sync_sources": [
+    "SYNC-901 Post-acceptance scoring result context continuity loop887",
+    "loop887 backend: small_batch_scoring_result_read_model_v1 now includes result_context with entry_mode, source_mode, factor class label, subclass quota label, quality gate summary, provisional-ready/held/rejected counts, and next_step_label",
+    "loop887 frontend: SmallBatchScoringResultPanel renders result provenance, A-E classification, quality-gate summary, provisional/held/rejected counts, and next step alongside scoring results",
+    "loop887 dogfood: controlled-real current-task-card browser now asserts visible scoring result context and still proves page-load no POST/no substitute runtime markers",
+    "loop887 verification: RED current-task browser missing result context; RED API missing result_context; API unit full 63 passed; controlled-real current-task-card browser pass; jobs entry-mode dogfood pass; formal-review E2E product dogfood pass; web build pass; lint 0 errors/1 existing ShellLayoutContext warning; Ruff pass; diff check pass",
+    "next: POST_ACCEPTANCE_FINAL_ACCEPTED_CONFIRMATION_CONTEXT_LOOP888",
     "SYNC-900 Post-acceptance scoring trigger side-effects readmodel loop886",
     "loop886 backend: run_mining_job trigger_request now exposes run_mining_job_scoring_trigger_side_effect_readmodel_v1 with page_load_post_allowed=false, explicit_click_required=true, no substitute DB/Docker, no default runner, no scorer/backtest/queue/background process, no env/secret output",
     "loop886 API: trigger_queued_mining_job response now returns trigger_side_effect_contract with explicit_click_observed=true while keeping scoring trigger distinct from backtest execution",

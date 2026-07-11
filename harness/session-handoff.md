@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-12T00:10:54+08:00
+updated_at: 2026-07-12T00:16:38+08:00
+
+## Latest Handoff — SYNC-901 post-acceptance-scoring-result-context-continuity-loop887
+
+- [DONE] `small_batch_scoring_result_read_model_v1` now includes `result_context`.
+- [DONE] `result_context` carries entry/source mode, A-E factor class label, subclass quota label, quality-gate summary, provisional-ready/held/rejected counts, and next-step label.
+- [DONE] Jobs scoring result panel now shows: scoring result source, classification/subclass, quality gate summary, provisional-ready/held/rejected counts, and accepted-confirmation next step.
+- [VERIFY] RED browser dogfood missed those strings; RED API unit missed `result_context`; GREEN full `test_mining_job_api_unit.py` 63 passed, Ruff passed, current-task browser passed, jobs entry-mode dogfood passed, formal-review E2E passed, build passed, lint 0 errors / 1 existing warning, diff check passed.
+- [NEXT] `POST_ACCEPTANCE_FINAL_ACCEPTED_CONFIRMATION_CONTEXT_LOOP888`: carry the same scoring result context into accepted confirmation without DB/Docker/scorer/backtest.
 
 ## Latest Handoff — SYNC-900 post-acceptance-scoring-trigger-side-effects-readmodel-loop886
 
