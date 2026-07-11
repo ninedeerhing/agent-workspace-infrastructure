@@ -1,6 +1,27 @@
 # Session Handoff
 
-updated_at: 2026-07-11T11:22:00+08:00
+updated_at: 2026-07-11T11:24:00+08:00
+
+## Latest Handoff — SYNC-820 Factor-universe local source catalog and product self-validation
+
+- [DONE] User stated remaining gaps must become next goals, not a reason to stop.
+- [DONE] Added `factor_universe_local_source_catalog_v1` read-only contract.
+- [DONE] Catalog records A/E source `support_status`, `pit_status`, local tables, local jobs, adapter refs, blocker flags, next actions, and all-false side effects.
+- [DONE] Current A partial sources: `financial_statement_pit`, `valuation_snapshot_pit`, `industry_classification_history`, `corporate_action_adjustment`.
+- [DONE] Current E partial sources: `news_event_stream`, `announcement_event_stream`, `sentiment_score_stream`; missing sources: `entity_linking_table`, `alternative_data_snapshot`.
+- [DONE] Creation plan now exposes `factor_universe_local_source_catalog` and uses catalog-derived source status for `factor_universe_ae_data_source_readiness`.
+- [DONE] `product_self_validation_gate_v1` blocks `local_source_catalog_not_exposed` before formal human review.
+- [DONE] `/quant/factor-mining` production readiness copy now distinguishes local partial support from missing sources.
+- [WORKER] Godel/verifier read-only source-catalog boundary review returned: no A/E source should be marked ready; catalog partial/missing boundaries are correct. Godel's stale 40/28 budget failure was resolved by local current-worktree recheck.
+- [VERIFY] Catalog/data-source/product gate tests: 14 passed.
+- [VERIFY] Expanded runtime/data/runner group: 24 passed.
+- [VERIFY] Targeted Ruff: pass.
+- [VERIFY] Frontend: `npm run build` -> pass.
+- [VERIFY] Runtime smoke: existing `qa-pg-alt 7b7346a0cdfc` at `127.0.0.1:55432`; no substitute Docker/DB/port.
+- [VERIFY] Creation-plan smoke: `factor_universe_local_source_catalog_v1`, A source `partial`, A readiness `partial`, runtime `qa-pg-alt`.
+- [VERIFY] Godel stale-failure recheck group: 44 passed.
+- [NEXT] `AE_SOURCE_ADAPTER_CONFIRMATION_AND_UI_GATE_LOOP806`: turn catalog partial/missing entries into user-confirmable source adapter/manifest plan and UI gate.
+- [FORBIDDEN] Do not mark A/E sources ready without source adapter/manifest/PIT confirmation; do not create substitute DB/container/port; do not use default runner; do not read/print `.env` or secrets; do not auto-run scorer/backtest on page load.
 
 ## Latest Handoff — SYNC-819 Factor-universe runtime runner and A/E data readiness
 
