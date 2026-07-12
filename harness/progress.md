@@ -104,6 +104,7 @@
 | 共享环境认证 | P0 | 仍为最小实现，缺严格会话/审计 | 已默认 fail-closed |
 | 可观测性 | P1 | 仍以日志为主，缺 metrics/health 面板 | 列入 P2 待办 |
 | 文档分散 | P1 | 部分文档散布于多处 | 按簇治理持续收敛 |
+| 消费端 action/primary 映射漂移 | P1 | 后端 queued job 已可显式 run，但前端 Jobs 页可能因 read-model action 缺失或 terminal 历史任务排在前面显示 idle | 对关键手动动作增加消费端 fallback contract，用混乱顺序 selector fixture 锁定 active primary，并用 smoke 证明 page-load no POST |
 
 ---
 

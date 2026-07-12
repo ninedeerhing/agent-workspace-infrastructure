@@ -6526,3 +6526,13 @@ CodeX 新会话首聊粘贴 `codex-zero-config-prompt.md` + 上方 CONTEXT 一�
 ```powershell
 python harness/loop_tick.py prepare
 ```
+# Current Handoff · SYNC-941 · 2026-07-13
+
+- **Goal**: Factor Construction Universe real usable: idea/no-idea/category -> generation -> quality -> real scoring -> accepted -> controlled backtest -> report -> feedback.
+- **Completed**: LOOP926 connected real D-class UI jobs to durable research sessions, PIT-safe qa-pg-alt panels, deterministic model artifact persistence, compiled Factor DSL, and existing live small-batch scoring.
+- **Real evidence**: browser job `mj_f90c4b58e51c`; console/HTTP errors 0; `provisional-ready=1`; unique scored ref `fe_bffb7b6ef83a`; UI stopped at accepted confirmation; no automatic backtest. Only original `qa-pg-alt` on 55432 was used.
+- **Defects repaired during dogfood**: `volume` vs real `vol` schema, missing UI-created session, duplicate model/factor refs, stale-task cancellation order, PIT label beyond analysis end, artifact side-effect underreporting, queued task lacking a visible action, and cancelled history masking the active task.
+- **5.6 audit**: terminal objective is aligned. The remaining risk is evidence inflation and uneven runtime depth, not architectural drift. The authoritative plan now records actual loops 915-930.
+- **Next**: `D_ML_CANDIDATE_FEATURE_RECIPE_DIVERSITY_LOOP927` — candidate-specific D feature recipes must yield multiple unique model/factor refs in a real UI small batch.
+- **After**: A fundamental PIT live computation -> E text/event/sentiment live computation -> current A-E full product self-validation.
+- **Do not repeat**: do not create Docker/DB/ports; do not use default runners; do not treat candidate count as unique output count; do not request human review from contract tests alone.

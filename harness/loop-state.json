@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T23:57:00+08:00",
+  "updated_at": "2026-07-13T02:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "d-ml-feature-label-training-executor-loop925",
-  "next_atomic_action": "D_ML_LIVE_PRODUCT_INTEGRATION_LOOP926：在真实 D 类 UI job 的显式运行确认后，从 existing qa-pg-alt 构建时点安全 feature/forward-return panel，调用 deterministic trainer，保存 model lineage/read-model，并把 verified model ref 与编译后的 Factor DSL 候选交给 existing live small-batch materialization/scoring；失败逐任务隔离，不自动 accepted/backtest。",
-  "next_after": "Run a real D-class browser job through scoring and review, then continue A/E source onboarding or formal review readiness based on remaining runtime gaps.",
+  "current_slice": "d-ml-live-product-integration-loop926",
+  "next_atomic_action": "D_ML_CANDIDATE_FEATURE_RECIPE_DIVERSITY_LOOP927：让 D 类 shortlist 的 candidate expression/subclass/source family 编译为不同的 PIT-safe feature recipes 与 model signals；在 existing qa-pg-alt 的真实 UI 小批运行中产出多个唯一 model/factor refs，保留预算、去重、artifact lineage、逐候选失败隔离和显式确认边界，不自动 accepted/backtest。",
+  "next_after": "Implement A fundamental PIT live computation, then E text/event/sentiment live computation, then rerun current A-E full product self-validation.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-940-seeded-taxonomy-runtime-identity-guards",
+  "last_tick": "SYNC-941-d-ml-live-product-integration",
   "last_sync_sources": [
+    "SYNC-941 D ML live product integration loop926",
+    "loop926 runtime: real UI job mj_f90c4b58e51c used existing qa-pg-alt, durable session, PIT panel, artifact lineage and live small-batch scoring",
+    "loop926 product: queued active task is selectable/actionable; 1 unique provisional-ready factor; no browser/HTTP errors; no auto accepted/backtest",
+    "loop926 fixes: real vol schema, durable session, duplicate signal suppression, PIT label end boundary, artifact side-effect truth, queued job action and active-task priority",
+    "loop926 evidence: 98 focused backend tests, Ruff/compileall/diff pass, web contracts/build/lint pass, real browser dogfood pass",
+    "next: D_ML_CANDIDATE_FEATURE_RECIPE_DIVERSITY_LOOP927",
     "SYNC-940 seeded taxonomy demo and qa-pg-alt/runner execution guards",
     "SYNC-940 demo: formal seed demo-taxonomy with exact A-E one-per-class coverage",
     "SYNC-940 runtime: only original qa-pg-alt running at 55432; read-only probe 3995/3995 and runner binding verified",

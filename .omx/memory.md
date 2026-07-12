@@ -197,3 +197,13 @@ LLM 自行决定是否合并，不依赖外部模型。
 | `$executor` | 读取 build 命令，写入实现笔记 |
 | `$code-review` | 参考约定检查代码风格一致性 |
 | `$finishing-dev-branch` | 写入部署和环境笔记 |
+
+## Session Discoveries
+
+### 2026-07-13 · Jobs queued action fallback
+
+- [可复用方法] 当后端已有显式 POST endpoint 但 Jobs 消费端 read-model 可能缺 action 时，在前端为单一 active queued job 合成只读 manual action fallback；必须同时用 contract test 锁定 endpoint、按钮文案、`auto_execute=false`、`page_load_post_allowed=false`，并用 Jobs smoke 证明页面加载没有 POST。
+- 场景：`/quant/factor-mining` 创建 queued mining job 后 `/quant/jobs` 显示 idle，用户无法手动调用现有 run endpoint。
+- 复现条件：后端 job `status=queued`、session present、`observability.actions` 缺少 ready manual action。
+- 置信度：confirmed。
+- [经验教训] action fallback 之外还要测试 primary selection；API 返回 cancelled/completed 历史任务在 active queued 前面时，`choosePrimaryMiningJob` 必须优先 active/actionable job，preferred terminal history 不能遮蔽当前唯一任务。混乱顺序 fixture 是该类 UI 缺陷的最小回归保护。
