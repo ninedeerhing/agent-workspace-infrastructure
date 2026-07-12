@@ -28,3 +28,11 @@ report:
 - verification: 134 backend passed; Ruff/build pass; real C 20 scored; real A zero-write blocked
 - workers: permanent Planner/Dispatcher/Test Engineer reused; bounded Executor fallback, no duplicate
 - next: REAL_MULTI_FACTOR_ACCEPTED_BACKTEST_REPORT_VALIDATION_LOOP923
+# Orchestrator Latest — SYNC-937
+
+- status: success
+- task: REAL_MULTI_FACTOR_ACCEPTED_BACKTEST_REPORT_VALIDATION_LOOP923
+- core: real accepted metrics -> 5-factor decorrelated selection -> official runner -> report/feedback product recap
+- runtime: job mj_a4fbd3ae2d27, 13 runs; multi-factor run success with 5 members and metrics
+- verification: 91 backend passed; Ruff/build/browser pass; no substitute runtime
+- next: A_D_E_SOURCE_AND_EXECUTOR_ONBOARDING_READINESS_LOOP924

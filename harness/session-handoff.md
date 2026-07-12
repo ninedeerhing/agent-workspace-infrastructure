@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-12T10:48:00+08:00
+updated_at: 2026-07-12T11:22:00+08:00
+
+## Latest Handoff — SYNC-937 real multi-factor accepted backtest/report loop923
+
+- [DONE] Real accepted scoring evidence now drives a five-factor quality/decorrelation selection; controlled bridge uses selected refs for the combination and retains accepted singles.
+- [VERIFY] UI job `mj_a4fbd3ae2d27` completed 13 controlled runs; latest multi-factor run `2297c1c9-1876-49eb-9f8a-a1a34f94d2c3` succeeded with 5 members and metrics.
+- [DONE] Jobs shows selected/excluded reasons; Backtest correctly labels 5-factor combinations; Factor Library shows report-ready success path and next action.
+- [VERIFY] 91 focused backend tests, Ruff, web build, and live browser checks passed; lint has only the inherited ShellLayout warning.
+- [NEXT] `A_D_E_SOURCE_AND_EXECUTOR_ONBOARDING_READINESS_LOOP924`.
 
 ## Latest Handoff — SYNC-936 multi-class live execution coverage loop922
 

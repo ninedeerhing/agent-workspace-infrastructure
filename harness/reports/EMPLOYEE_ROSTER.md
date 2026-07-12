@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-> 2026-07-12 SYNC-936：永久 Planner/Dispatcher/Test Engineer 已参与 loop922；Executor/Code Reviewer 固定线程仍受旧 approval 状态影响，采用 bounded fallback 且未创建重复角色。下一任务为真实多因子 accepted→回测→报告验证。
+> 2026-07-12 SYNC-937：永久 Planner/Dispatcher/Test Engineer 已参与 loop923；Executor/Code Reviewer 固定线程仍受旧 approval 状态影响，采用 bounded fallback 且未创建重复角色。下一任务为 A/D/E source/executor onboarding readiness。
 
 Updated: 2026-07-12T16:00:00+08:00
 
