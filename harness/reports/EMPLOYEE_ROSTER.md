@@ -1,8 +1,8 @@
 # AWI Employee Roster
 
-> 2026-07-13 SYNC-951：LOOP934 由 planner、QA、A/E backend executors、web executor 与 reviewer 分工完成；QA 最终无 P0/P1，reviewer 最终 APPROVE。下一任务为 E 历史评分深度。
+> 2026-07-13 SYNC-952：LOOP935 planner/source executor/reviewer 完成有界历史执行器与真实 provider 诊断；外部 frequency-limit deferred，下一任务转 A 财报 PIT。
 
-Updated: 2026-07-13T12:00:00+08:00
+Updated: 2026-07-13T13:20:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -54,7 +54,7 @@ Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop934 | continuous_loop_active | gpt-5.6-sol | 2026-07-13T12:00:00+08:00 | SYNC-951 A-E full product self-validation completed; next loop935 expands E historical scoring depth | continue loop935 |
+| orchestrator | current-thread | loop935 | continuous_loop_active | gpt-5.6-sol | 2026-07-13T13:20:00+08:00 | SYNC-952 historical news provider frequency-limit deferred; next loop936 A financial revision PIT | continue loop936 |
 | Kierkegaard | 019f5188-a129-7092-a5b7-9635c2d11f8f | loop913 | idle_no_report | gpt-5.4 | 2026-07-12T11:50:00+08:00 | previous read-only product QA did not provide completion evidence; not used for loop913 completion | preserve fixed thread; do not create duplicate worker |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop924 | report_success | gpt-5.6-sol | 2026-07-12T11:05:42+08:00 | loop924 plan returned; runtime-backed A/D/E six-state readiness, consumer checklist, no fake ready | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop924 | report_success | gpt-5.6-sol | 2026-07-12T11:06:49+08:00 | loop924 assignment matrix returned; disjoint backend/UI/test scopes and no substitute runtime | preserve permanent identity |

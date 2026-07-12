@@ -1,5 +1,13 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-952
+
+- status: partial_external_deferred
+- task: E_HISTORICAL_NEWS_PANEL_SCORING_DEPTH_LOOP935
+- core: resumable bounded source-date ingestion contract completed
+- runtime: 62 source-date requests, zero persisted rows, provider frequency-limit confirmed after cooldown; backtests unchanged
+- next: A_FINANCIAL_REVISION_HISTORY_PIT_EXECUTION_LOOP936
+
 # Orchestrator Latest — SYNC-951
 
 - status: success

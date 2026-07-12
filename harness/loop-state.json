@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T12:00:00+08:00",
+  "updated_at": "2026-07-13T13:20:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "current-a-e-full-product-self-validation-loop934",
-  "next_atomic_action": "E_HISTORICAL_NEWS_PANEL_SCORING_DEPTH_LOOP935：通过已批准 A 股新闻源做有界历史抓取、PIT enrichment 与 event panel 重建，使 E 类达到至少 20 个交易日/30 个 matched pairs 的正式评分门槛，并从真实 UI job 验证评分；逐源失败可见，不自动 accepted/backtest。",
-  "next_after": "After E historical scoring closes, validate provisional selection, controlled single/multi-factor backtest handoff and report/feedback with real metrics.",
+  "current_slice": "e-historical-news-panel-scoring-depth-loop935-deferred-provider-rate-limit",
+  "next_atomic_action": "A_FINANCIAL_REVISION_HISTORY_PIT_EXECUTION_LOOP936：把财报披露/修订记录建模为按公告时间可用的 PIT-safe revision history，接入 A 类候选计算与真实小批评分；旧 destructive snapshot 路径继续 fail-closed，不自动 accepted/backtest。",
+  "next_after": "Resume LOOP935 only after the approved news provider rate limit resets; otherwise continue A financial PIT execution and downstream real scoring.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-951-loop934-a-e-full-product-self-validation",
+  "last_tick": "SYNC-952-loop935-historical-news-source-deferred",
   "last_sync_sources": [
+    "SYNC-952 LOOP935 historical news source execution deferred on provider rate limit",
+    "loop935 core: bounded per-source-date K<=100, N<=31, derived cap, partial_capped retry watermark and deterministic new-row UUID",
+    "loop935 runtime: 62 source-date requests produced zero rows; 61 failed; three contrast probes plus one cooldown probe all classified frequency-limit",
+    "loop935 boundary: original qa-pg-alt only; DB/news/backtest deltas zero; no enrichment/scoring/accepted/backtest",
+    "next: A_FINANCIAL_REVISION_HISTORY_PIT_EXECUTION_LOOP936 while E source cooldown remains external deferred",
     "SYNC-951 LOOP934 A-E full product self-validation",
     "loop934 A runtime: five PIT-safe valuation/style candidates materialized/scored on original qa-pg-alt; 23 factor values; backtest unchanged",
     "loop934 E: one-date 155-row compute remains valid but formal scoring/provisional fail closed below 20 dates and 30 pairs",

@@ -6598,3 +6598,10 @@ python harness/loop_tick.py prepare
 - **Real evidence**: original qa-pg-alt 4011/4011 days through 2026-07-13; A smoke 5/5 materialized/scored and 23 values; E 155 rows but `insufficient_scoring_history`; backtests stayed 25. No substitute runtime.
 - **Verification**: backend 139 passed and Ruff; browser/product/smoke/build/lint pass; QA final no P0/P1; independent reviewer final APPROVE after multiple repair rounds.
 - **Next**: `E_HISTORICAL_NEWS_PANEL_SCORING_DEPTH_LOOP935` — bounded approved-source historical news -> enrichment -> panel -> real UI scoring depth, no automatic accepted/backtest.
+
+# Current Handoff · SYNC-952 · 2026-07-13
+
+- **Completed**: LOOP935 safe resumable historical Tushare source-date executor; partial-capped requests remain retryable and derived caps cannot starve later dates.
+- **Runtime**: original qa-pg-alt, 62 source-date calls over 2026-06-09..2026-07-09 produced zero persisted rows; 61 failed. Contrast probes and one post-cooldown probe consistently classified provider frequency-limit. Backtests stayed 25.
+- **Deferred**: E historical scoring depth remains external-deferred until provider reset. Do not busy-retry or widen sources/dates automatically.
+- **Next**: `A_FINANCIAL_REVISION_HISTORY_PIT_EXECUTION_LOOP936`.
