@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T16:00:00+08:00",
+  "updated_at": "2026-07-12T09:10:45+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "realistic-multi-family-batch-generation-benchmark-loop917",
-  "next_atomic_action": "APPROVED_QAPGALT_RUNTIME_REVALIDATION_AND_TIERED_SCORING_LOOP918：只针对现有 approved qa-pg-alt 与 official scorer/runner 做当前运行态只读 preflight；通过后按既有 UI 授权/幂等/rollback/audit 边界运行 bounded small→medium real scoring evidence，禁止创建替代 Docker/DB/service/port。",
+  "current_slice": "approved-qapgalt-runtime-revalidation-and-tiered-scoring-loop918",
+  "next_atomic_action": "REAL_MULTI_FACTOR_SELECTION_AND_BACKTEST_LOOP919：基于真实评分/accepted 证据复核多因子组合选择、边际增益与去相关路径；仅在既有 UI 授权、official runner、幂等与 rollback/audit 门禁满足时执行 bounded real backtest，禁止替代 Docker/DB/service/port。",
   "next_after": "Continue the GPT-5.6 recalibrated core-function sequence toward realistic multi-family generation, approved qa-pg-alt scoring, real multi-factor backtest, and fresh product self-validation.",
   "blockers": [
     {
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-931-realistic-multi-family-batch-generation-benchmark-loop917",
+  "last_tick": "SYNC-932-approved-qapgalt-runtime-revalidation-and-tiered-scoring-loop918",
   "last_sync_sources": [
+    "SYNC-932 Approved qa-pg-alt runtime revalidation and scoring smoke loop918",
+    "loop918 runtime: started only existing qa-pg-alt container 7b7346a0cdfc on 127.0.0.1:55432; no docker create/run and no substitute runtime",
+    "loop918 fix: explicit DSNs now share normalize_local_postgres_dsn with environment-derived DSNs, removing API/scorer connection divergence",
+    "loop918 evidence: daily_bar 3995 days through 2026-06-18; factor tables reachable; official writer smoke wrote 14 rows then cleanup left defs/versions/values all zero",
+    "loop918 verification: RED explicit DSN normalization test; GREEN db/scoring regression 13 passed; Ruff pass; real qa-pg-alt smoke completed; medium tier remained blocked without UI authorization",
+    "next: REAL_MULTI_FACTOR_SELECTION_AND_BACKTEST_LOOP919",
     "SYNC-928 Post-acceptance reason-aware feedback memory to next scheduler loop914",
     "loop914 backend: report feedback_memory_input now carries reason_aware_scoring_context into real_backtest_feedback_v1 payloads",
     "loop914 backend: trajectory product summary outcome_details now preserve reason_aware_scoring_context from feedback/progress handoff",

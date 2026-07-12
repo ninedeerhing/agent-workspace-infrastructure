@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-12T16:00:00+08:00
+updated_at: 2026-07-12T09:10:45+08:00
+
+## Latest Handoff — SYNC-932 approved qa-pg-alt runtime and scoring smoke loop918
+
+- [DONE] Started only existing `qa-pg-alt` container `7b7346a0cdfc` on its approved `127.0.0.1:55432` mapping; no substitute runtime was created.
+- [DONE] Fixed explicit DSNs bypassing `normalize_local_postgres_dsn`, which had split API and scorer connectivity.
+- [VERIFY] RED explicit-DSN unit failure; GREEN DB/scoring regression 13 passed; Ruff pass; live official-writer smoke wrote 14 rows and cleanup left factor definition/version/value counts at zero.
+- [BOUNDARY] Medium/full scoring still requires explicit UI authorization; loop918 did not manufacture that authorization or execute a backtest.
+- [NEXT] `REAL_MULTI_FACTOR_SELECTION_AND_BACKTEST_LOOP919`.
 
 ## Latest Handoff — SYNC-931 realistic multi-family generation benchmark loop917
 
