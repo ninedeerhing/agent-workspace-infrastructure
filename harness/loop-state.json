@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T04:35:00+08:00",
+  "updated_at": "2026-07-13T05:10:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "e-local-news-entity-sentiment-enrichment-loop930",
-  "next_atomic_action": "E_LIVE_NEWS_SOURCE_INGESTION_AND_COVERAGE_LOOP931：复用现有 RSS ingestion 在原 qa-pg-alt 做受控真实抓取，验证可信 published_at 覆盖、来源失败和零输入语义，再运行 bounded enrichment；禁止替代数据源/DB/端口和自动 accepted/backtest。",
+  "current_slice": "e-live-news-source-ingestion-and-coverage-loop931",
+  "next_atomic_action": "E_A_SHARE_NEWS_SOURCE_ONBOARDING_LOOP932：调研并接入许可明确、可稳定抓取的 A 股/中文财经源，验证可信发布时间与非零 PIT 实体链接产出；逐源隔离失败，不以外文财经或模糊匹配冒充 A 股覆盖。",
   "next_after": "Build the E PIT event panel and official writer, then run current A-E full product self-validation.",
   "blockers": [
     {
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-945-e-local-enrichment",
+  "last_tick": "SYNC-946-e-live-news-coverage",
   "last_sync_sources": [
+    "SYNC-946 E live news ingestion and coverage loop931",
+    "loop931 runtime: original qa-pg-alt ingested 54 unique BBC rows with 54/54 trusted timestamps; Reuters and Zaobao failed",
+    "loop931 enrichment: bounded 54 rows, 54 sentiment scores, zero A-share entity links, no_entity_match=54, accepted_for_backtest=0",
+    "loop931 evidence: 26 focused tests and Ruff/diff pass; review APPROVE_WITH_GAP",
+    "next: E_A_SHARE_NEWS_SOURCE_ONBOARDING_LOOP932",
     "SYNC-945 E local news entity/sentiment enrichment loop930",
     "loop930 core: trusted publication time, PIT aliases, versioned entity/sentiment tables, atomic idempotent job and typed read contract",
     "loop930 runtime: existing qa-pg-alt job/read smoke returned raw_source_empty with zero links/scores/accepted_for_backtest",

@@ -6564,3 +6564,11 @@ python harness/loop_tick.py prepare
 - **5.6 audit**: the objective and terminal chain remain aligned, but runtime evidence invalidated the old ordering. Live news ingestion/coverage must precede an event panel; an empty panel would be contract-only progress.
 - **Next**: `E_LIVE_NEWS_SOURCE_INGESTION_AND_COVERAGE_LOOP931`.
 - **After**: E PIT event panel and official writer -> current A-E full product self-validation.
+
+# Current Handoff · SYNC-946 · 2026-07-13
+
+- **Completed**: LOOP931 made RSS ingestion coverage typed and source-specific, then ran a real controlled fetch and bounded enrichment on the existing qa-pg-alt.
+- **Real evidence**: BBC succeeded with 54 unique rows and 54/54 trusted publication timestamps; Reuters and Zaobao failed. Enrichment processed 54 and wrote 54 transparent sentiment scores, but all 54 were `no_entity_match`; entity links and accepted/backtest stayed zero.
+- **Interpretation**: source availability and timestamp quality are not A-share domain coverage. Do not build the E panel on foreign-news-only zero-yield data and do not loosen entity ambiguity to manufacture links.
+- **Next**: `E_A_SHARE_NEWS_SOURCE_ONBOARDING_LOOP932` — onboard a permitted, stable A-share/Chinese-finance source and prove non-zero PIT-safe entity yield.
+- **After**: E PIT event panel and official writer -> current A-E full product self-validation.
