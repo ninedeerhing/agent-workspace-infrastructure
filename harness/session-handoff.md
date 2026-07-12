@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-12T11:40:00+08:00
+updated_at: 2026-07-12T12:05:00+08:00
+
+## Latest Handoff — SYNC-939 D ML training executor loop925
+
+- [DONE] Added deterministic temporal ridge trainer and compiled model coefficients into existing Factor DSL.
+- [VERIFY] Existing qa-pg-alt sample: 9269 train / 2039 validation rows, model ref `mlr_168573af4d697f11`, correlation 0.047845, no DB writes.
+- [DONE] D live coverage accepts only verified `mlr_*` artifacts; unverified D remains blocked.
+- [VERIFY] 15 focused tests and Ruff passed.
+- [NEXT] `D_ML_LIVE_PRODUCT_INTEGRATION_LOOP926`.
 
 ## Latest Handoff — SYNC-938 A/D/E runtime onboarding readiness loop924
 

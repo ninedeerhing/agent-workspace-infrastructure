@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T11:40:00+08:00",
+  "updated_at": "2026-07-12T12:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "a-d-e-runtime-onboarding-readiness-loop924",
-  "next_atomic_action": "D_ML_FEATURE_LABEL_TRAINING_EXECUTOR_LOOP925：复用现有行情、候选注册、评分结果与 official runtime 边界，建立 D 类最小真实 feature panel、label policy、model registry 和受控 training executor；先做小批训练/候选输出与失败隔离，不依赖外部来源，不创建替代 DB/Docker/端口，不伪造模型就绪。",
-  "next_after": "Validate D-class candidates through the live small-batch chain, then return to A/E onboarding inputs or formal product readiness depending on remaining real gaps.",
+  "current_slice": "d-ml-feature-label-training-executor-loop925",
+  "next_atomic_action": "D_ML_LIVE_PRODUCT_INTEGRATION_LOOP926：在真实 D 类 UI job 的显式运行确认后，从 existing qa-pg-alt 构建时点安全 feature/forward-return panel，调用 deterministic trainer，保存 model lineage/read-model，并把 verified model ref 与编译后的 Factor DSL 候选交给 existing live small-batch materialization/scoring；失败逐任务隔离，不自动 accepted/backtest。",
+  "next_after": "Run a real D-class browser job through scoring and review, then continue A/E source onboarding or formal review readiness based on remaining runtime gaps.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-938-a-d-e-runtime-onboarding-readiness-loop924",
+  "last_tick": "SYNC-939-d-ml-training-executor-loop925",
   "last_sync_sources": [
+    "SYNC-939 D ML feature label training executor loop925",
+    "loop925 core: deterministic temporal ridge training compiles a versioned D-class model signal back to Factor DSL",
+    "loop925 runtime: existing qa-pg-alt sample trained 9269 rows and validated 2039 rows with model ref mlr_168573af4d697f11 and correlation 0.047845",
+    "loop925 boundary: verified ml model refs can unlock D coverage; unverified D remains fail-closed; no DB writes or substitute runtime",
+    "loop925 evidence: 15 focused tests passed; Ruff and diff check pass",
+    "next: D_ML_LIVE_PRODUCT_INTEGRATION_LOOP926",
     "SYNC-938 A/D/E runtime onboarding readiness loop924",
     "loop924 core: live schema/row/adapter evidence drives ready, schema_ready_empty, partial, missing_user_input, missing_executor, and blocked statuses",
     "loop924 runtime: A valuation/industry/corporate-action data ready; financial PIT and E news/announcement schemas empty; D feature/label/model/training executor absent",
