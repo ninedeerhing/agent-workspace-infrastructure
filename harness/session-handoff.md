@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T13:20:00+08:00
+updated_at: 2026-07-12T14:45:00+08:00
+
+## Latest Handoff — SYNC-929 GPT-5.6 direction audit and multi-seed scheduler loop915
+
+- [DONE] GPT-5.6 repository-wide direction audit confirms the terminal chain is correct and downgrades the stale formal-review-ready claim until fresh real-runtime product evidence exists.
+- [DONE] Factor Library can bundle success/watchlist/failure outcome details into one next-round Factor Mining request.
+- [DONE] Adaptive scheduling now emits feedback signal mix, combined reason-aware actions/basis, and single/multi-factor candidate mix.
+- [VERIFY] Scheduler unit 7 passed; expanded backend regression 28 passed; targeted Ruff pass; multi-seed browser dogfood pass; web build pass; web lint 0 errors / 1 existing warning; touched production files pure LOC <=250.
+- [WORKER] Permanent Planner returned GPT-5.6 read-only planning evidence; permanent Architect and sole Verifier were dispatched without duplicate roles, but unfinished reports were not claimed.
+- [NEXT] `FEEDBACK_WEIGHTED_SUBCLASS_QUOTA_SCHEDULER_LOOP916`: make A-E subclass quotas a measured scheduler input and prove candidate-distribution impact.
 
 ## Latest Handoff — SYNC-928 post-acceptance-reason-aware-feedback-memory-to-next-scheduler-loop914
 
