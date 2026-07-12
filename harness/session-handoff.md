@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-12T11:22:00+08:00
+updated_at: 2026-07-12T11:40:00+08:00
+
+## Latest Handoff — SYNC-938 A/D/E runtime onboarding readiness loop924
+
+- [DONE] Replaced static A/E readiness copy with a runtime-backed A/D/E contract and Data Support surface.
+- [VERIFY] Existing qa-pg-alt: A valuation/industry/corporate-action data ready; financial PIT and E news/announcement schemas empty; D executor stack missing.
+- [VERIFY] Backend 8 passed, Ruff/build/consumer smoke/live API/browser pass; no runtime POST or substitute runtime.
+- [WORKER] Permanent Planner/Dispatcher reports absorbed; Test Engineer remained approval-blocked, local matrix used without duplicate worker.
+- [NEXT] `D_ML_FEATURE_LABEL_TRAINING_EXECUTOR_LOOP925`.
 
 ## Latest Handoff — SYNC-937 real multi-factor accepted backtest/report loop923
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T11:22:00+08:00",
+  "updated_at": "2026-07-12T11:40:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-multi-factor-accepted-backtest-report-loop923",
-  "next_atomic_action": "A_D_E_SOURCE_AND_EXECUTOR_ONBOARDING_READINESS_LOOP924：基于 loop922 已验证的候选级 fail-closed 结果，分别把 A 类 PIT 基本面、D 类特征/标签/模型训练执行器、E 类事件/文本/情绪/另类数据的现有 source manifest 与 adapter 状态汇总为可执行 onboarding plan；能用现有数据接入者做受控小批验证，仍缺外部数据/授权者在 UI 明确列出用户需提供的内容，不伪造 ready。",
-  "next_after": "Advance executable A/D/E slices when prerequisites exist; otherwise preserve actionable blockers and move to fresh full-product formal-review readiness.",
+  "current_slice": "a-d-e-runtime-onboarding-readiness-loop924",
+  "next_atomic_action": "D_ML_FEATURE_LABEL_TRAINING_EXECUTOR_LOOP925：复用现有行情、候选注册、评分结果与 official runtime 边界，建立 D 类最小真实 feature panel、label policy、model registry 和受控 training executor；先做小批训练/候选输出与失败隔离，不依赖外部来源，不创建替代 DB/Docker/端口，不伪造模型就绪。",
+  "next_after": "Validate D-class candidates through the live small-batch chain, then return to A/E onboarding inputs or formal product readiness depending on remaining real gaps.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-937-real-multi-factor-accepted-backtest-report-loop923",
+  "last_tick": "SYNC-938-a-d-e-runtime-onboarding-readiness-loop924",
   "last_sync_sources": [
+    "SYNC-938 A/D/E runtime onboarding readiness loop924",
+    "loop924 core: live schema/row/adapter evidence drives ready, schema_ready_empty, partial, missing_user_input, missing_executor, and blocked statuses",
+    "loop924 runtime: A valuation/industry/corporate-action data ready; financial PIT and E news/announcement schemas empty; D feature/label/model/training executor absent",
+    "loop924 product: Data Support consumes the runtime contract and shows one consumer checklist while preserving proven B/C live classes",
+    "loop924 evidence: 8 backend tests passed; Ruff/build/consumer smoke/live API/browser pass; no runtime POST or substitute runtime",
+    "next: D_ML_FEATURE_LABEL_TRAINING_EXECUTOR_LOOP925",
     "SYNC-937 Real multi-factor accepted backtest report loop923",
     "loop923 core: persisted real RankIC/coverage/overlap/correlation select a five-factor combination; controlled bridge uses selection for multi-factor request while preserving accepted singles",
     "loop923 runtime: real UI job mj_a4fbd3ae2d27 completed 13 controlled runs; latest multi_factor run succeeded with 5 members and one metrics row on existing qa-pg-alt",
