@@ -6536,3 +6536,8 @@ python harness/loop_tick.py prepare
 - **Next**: `D_ML_CANDIDATE_FEATURE_RECIPE_DIVERSITY_LOOP927` — candidate-specific D feature recipes must yield multiple unique model/factor refs in a real UI small batch.
 - **After**: A fundamental PIT live computation -> E text/event/sentiment live computation -> current A-E full product self-validation.
 - **Do not repeat**: do not create Docker/DB/ports; do not use default runners; do not treat candidate count as unique output count; do not request human review from contract tests alone.
+# Current Handoff · SYNC-942 · 2026-07-13
+
+- **Completed**: LOOP927 candidate-specific D ML recipe compiler. Real UI job `mj_b1a93712e772` produced 18 provisional-ready and 20 unique factor refs on original qa-pg-alt, with no browser/HTTP errors and no automatic backtest.
+- **Next**: `A_FUNDAMENTAL_PIT_LIVE_COMPUTATION_LOOP928` — bind valuation/industry/corporate-action and available financial PIT sources to A-class real small-batch computation with per-candidate data-gap isolation.
+- **After**: E text/event/sentiment live computation -> current A-E full product self-validation.
