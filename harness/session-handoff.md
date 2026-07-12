@@ -6547,3 +6547,11 @@ python harness/loop_tick.py prepare
 - **Safety**: financial statements remain blocked because current destructive upsert does not preserve revision-as-of history; no future/restated financial data is presented as PIT-safe.
 - **Next**: `E_TEXT_EVENT_SENTIMENT_LIVE_COMPUTATION_LOOP929`.
 - **After**: current A-E full product self-validation and next functional phase selection.
+
+# Current Handoff · SYNC-944 · 2026-07-13
+
+- **Completed**: LOOP929 removed the E-class market proxy and replaced it with strict source-readiness evaluation. News without trustworthy publication time/entity/sentiment provenance, same-day filing events, and missing alternative sources remain candidate-specific fail-closed.
+- **Real evidence**: UI/DB job `mj_0e6152132848` remained `candidate_count=0` and live blocked; no accepted promotion or backtest was triggered. Focused tests and Ruff passed; independent review approved the final boundary.
+- **Next**: `E_LOCAL_NEWS_ENTITY_SENTIMENT_ENRICHMENT_LOOP930` — build versioned local news entity links, sentiment provenance, and publication-time trust metadata from `news_item` plus `security_master`.
+- **After**: E event panel and official writer -> current A-E full product self-validation.
+- **Do not repeat**: do not reintroduce price proxies or fictitious data writers/panels; do not treat fallback-to-now as event time; do not create substitute Docker/DB/ports.
