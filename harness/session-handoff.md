@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T09:35:00+08:00
+updated_at: 2026-07-12T10:08:00+08:00
+
+## Latest Handoff — SYNC-935 live Factor Universe product self-validation loop921
+
+- [DONE] Fixed stale active-task reuse and collapsed all active tasks per user; same brief reuses, changed brief cancels stale jobs and uses a brief-digest idempotency key.
+- [DONE] Fixed the UI→API candidate loss and added official candidate materialization plus executable Factor DSL scoring, including `vwap` and `decay_linear`.
+- [DONE] Existing qa-pg-alt real product flow completed generation→20 materialized candidates→18 real metric results→provisional/final accepted→plan→execution→14 successful backtests.
+- [VERIFY] DB aggregate: factor_version=36, factor_value_daily=39409, backtest_run=15 (14 success + one retained failed date-contract diagnostic), backtest_metrics=14.
+- [VERIFY] Backend focused regression 92 passed; DSL/compute 11 passed; Ruff pass; browser product scripts pass; web build pass; lint 0 errors/1 existing warning.
+- [NEXT] `MULTI_CLASS_LIVE_EXECUTION_COVERAGE_LOOP922`: prove C and classify A/D/E real execution/data gaps without fabricated metrics.
 
 ## Latest Handoff — SYNC-934 intent-to-universe product audit loop920
 

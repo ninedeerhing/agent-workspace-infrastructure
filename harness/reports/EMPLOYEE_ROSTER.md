@@ -1,5 +1,7 @@
 # AWI Employee Roster
 
+> 2026-07-12 SYNC-935：永久 Planner/Test Engineer 已参与 loop921；Code Reviewer 固定线程仍为 waitingOnApproval，不创建重复 reviewer。下一任务为多分类真实执行覆盖。
+
 Updated: 2026-07-12T16:00:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
