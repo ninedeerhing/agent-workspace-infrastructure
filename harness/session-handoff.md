@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-12T14:45:00+08:00
+updated_at: 2026-07-12T15:20:00+08:00
+
+## Latest Handoff — SYNC-930 feedback-weighted subclass quota scheduler loop916
+
+- [DONE] Subclass floor, total generation budget, and multi-seed success/watchlist/failure feedback now form a deterministic pre-generation family quota plan.
+- [DONE] Candidate pool invokes each generator with the planned quota; report trace records feedback signal, refs, equal baseline, and quota delta only when feedback changes allocation.
+- [VERIFY] RED 3 failures; GREEN focused 7 passed; registry/generator/scheduler/batch bridge regression 34 passed; Ruff and compileall pass.
+- [WORKER] Permanent Test Engineer returned success; permanent Executor remained `waitingOnApproval`, so channel-blocked local fallback was used without creating a duplicate Executor.
+- [NEXT] `REALISTIC_MULTI_FAMILY_BATCH_GENERATION_BENCHMARK_LOOP917`.
 
 ## Latest Handoff — SYNC-929 GPT-5.6 direction audit and multi-seed scheduler loop915
 

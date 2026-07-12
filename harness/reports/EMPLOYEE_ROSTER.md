@@ -1,12 +1,12 @@
 # AWI Employee Roster
 
-Updated: 2026-07-12T14:45:00+08:00
+Updated: 2026-07-12T15:20:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
 ## Field Contract
 
-Latest dispatch: loop915 GPT-5.6 direction recalibration used the permanent Architect, Planner, and sole Verifier threads. Planner returned a read-only remaining-plan review; Architect and Verifier remained in progress at loop close and were not claimed as evidence. No duplicate same-role worker was created.
+Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor threads. Test Engineer returned a successful TDD matrix; Dispatcher remained in progress; Executor hit `waitingOnApproval` again and produced no changes, so local channel-blocked fallback completed the bounded integration. No duplicate same-role worker was created.
 
 | Field | Meaning |
 |---|---|
