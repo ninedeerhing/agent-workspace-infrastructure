@@ -6605,3 +6605,10 @@ python harness/loop_tick.py prepare
 - **Runtime**: original qa-pg-alt, 62 source-date calls over 2026-06-09..2026-07-09 produced zero persisted rows; 61 failed. Contrast probes and one post-cooldown probe consistently classified provider frequency-limit. Backtests stayed 25.
 - **Deferred**: E historical scoring depth remains external-deferred until provider reset. Do not busy-retry or widen sources/dates automatically.
 - **Next**: `A_FINANCIAL_REVISION_HISTORY_PIT_EXECUTION_LOOP936`.
+
+# Current Handoff · SYNC-953 · 2026-07-13
+
+- **Completed**: LOOP936 immutable A income-statement revision history, authoritative DB readiness, strict next-open availability and revision-only compute.
+- **Real evidence**: 234 revisions/20 codes; 147 clean and 34 ambiguous latest groups. Revenue and attributable-net-income factors each produced 8,215 values over 562 dates and finite IC/RankIC/coverage. Backtest tables unchanged.
+- **Verification**: 58 focused tests, Ruff, final independent review APPROVE after two repair rounds.
+- **Next**: `A_FINANCIAL_UI_JOB_PROVISIONAL_VALIDATION_LOOP937`.

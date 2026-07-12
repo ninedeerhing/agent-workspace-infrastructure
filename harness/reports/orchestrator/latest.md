@@ -1,5 +1,13 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-953
+
+- status: success
+- task: A_FINANCIAL_REVISION_HISTORY_PIT_EXECUTION_LOOP936
+- runtime: 234 revisions/20 codes; two factors x 8215 values/562 dates; finite quality metrics; backtest unchanged
+- verification: 58 focused tests, Ruff, reviewer APPROVE
+- next: A_FINANCIAL_UI_JOB_PROVISIONAL_VALIDATION_LOOP937
+
 # Orchestrator Latest — SYNC-952
 
 - status: partial_external_deferred

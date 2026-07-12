@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T13:20:00+08:00",
+  "updated_at": "2026-07-13T15:00:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "e-historical-news-panel-scoring-depth-loop935-deferred-provider-rate-limit",
-  "next_atomic_action": "A_FINANCIAL_REVISION_HISTORY_PIT_EXECUTION_LOOP936：把财报披露/修订记录建模为按公告时间可用的 PIT-safe revision history，接入 A 类候选计算与真实小批评分；旧 destructive snapshot 路径继续 fail-closed，不自动 accepted/backtest。",
-  "next_after": "Resume LOOP935 only after the approved news provider rate limit resets; otherwise continue A financial PIT execution and downstream real scoring.",
+  "current_slice": "a-financial-revision-history-pit-execution-loop936",
+  "next_atomic_action": "A_FINANCIAL_UI_JOB_PROVISIONAL_VALIDATION_LOOP937：从真实 UI A 类盈利能力入口创建任务，验证 revision 候选生成、正式评分、歧义隔离与 provisional-ready 展示/确认边界；保持 final accepted/backtest 需显式后续确认。",
+  "next_after": "After A financial UI validation, continue real multi-class provisional selection and controlled single/multi-factor backtest/report validation; resume E history after provider reset.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-952-loop935-historical-news-source-deferred",
+  "last_tick": "SYNC-953-loop936-a-financial-revision-pit",
   "last_sync_sources": [
+    "SYNC-953 LOOP936 A financial revision-history PIT execution",
+    "loop936 runtime: 234 immutable revisions for 20 codes; 147 clean latest groups and 34 ambiguous groups isolated",
+    "loop936 scoring: revenue and n_income_attr_p each wrote/read 8215 values across 562 dates with finite IC/RankIC/coverage",
+    "loop936 verification: 58 focused tests, Ruff, multi-round review final APPROVE; backtest tables unchanged",
+    "next: A_FINANCIAL_UI_JOB_PROVISIONAL_VALIDATION_LOOP937",
     "SYNC-952 LOOP935 historical news source execution deferred on provider rate limit",
     "loop935 core: bounded per-source-date K<=100, N<=31, derived cap, partial_capped retry watermark and deterministic new-row UUID",
     "loop935 runtime: 62 source-date requests produced zero rows; 61 failed; three contrast probes plus one cooldown probe all classified frequency-limit",
