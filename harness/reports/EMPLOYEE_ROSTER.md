@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-Updated: 2026-07-12T15:20:00+08:00
+Updated: 2026-07-12T16:00:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
