@@ -1,8 +1,8 @@
 # AWI Employee Roster
 
-> 2026-07-13 SYNC-948：LOOP933 复用固定 executor/test/reviewer 职责完成 E PIT panel 与 official writer；reviewer 两次退回均由同一 executor 修复，最终 APPROVE。下一任务为 A-E 全产品自检。
+> 2026-07-13 SYNC-951：LOOP934 由 planner、QA、A/E backend executors、web executor 与 reviewer 分工完成；QA 最终无 P0/P1，reviewer 最终 APPROVE。下一任务为 E 历史评分深度。
 
-Updated: 2026-07-13T09:05:00+08:00
+Updated: 2026-07-13T12:00:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -54,7 +54,7 @@ Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop933 | continuous_loop_active | gpt-5.6-sol | 2026-07-13T09:05:00+08:00 | SYNC-948 E PIT panel/official writer completed; next loop934 performs current A-E full product self-validation | continue loop934 |
+| orchestrator | current-thread | loop934 | continuous_loop_active | gpt-5.6-sol | 2026-07-13T12:00:00+08:00 | SYNC-951 A-E full product self-validation completed; next loop935 expands E historical scoring depth | continue loop935 |
 | Kierkegaard | 019f5188-a129-7092-a5b7-9635c2d11f8f | loop913 | idle_no_report | gpt-5.4 | 2026-07-12T11:50:00+08:00 | previous read-only product QA did not provide completion evidence; not used for loop913 completion | preserve fixed thread; do not create duplicate worker |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop924 | report_success | gpt-5.6-sol | 2026-07-12T11:05:42+08:00 | loop924 plan returned; runtime-backed A/D/E six-state readiness, consumer checklist, no fake ready | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop924 | report_success | gpt-5.6-sol | 2026-07-12T11:06:49+08:00 | loop924 assignment matrix returned; disjoint backend/UI/test scopes and no substitute runtime | preserve permanent identity |
@@ -63,6 +63,8 @@ Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor 
 | test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop924 | channel_waitingOnApproval | gpt-5.6-terra | 2026-07-12T11:08:00+08:00 | loop924 read-only verification queued behind stale loop923 build approval; local focused/API/browser matrix used | preserve permanent thread; do not create duplicate; clear stale approval before next write assignment |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop854 | dispatched_readonly | gpt-5.5 | 2026-07-11T14:38:00+08:00 | loop854 read-only verification strategy review dispatched for official runner injection/no-auto-execution matrix | preserve permanent identity; integrate report when available |
 ## Latest Roster Notes
+
+- **SYNC-951 · loop934**：Planner 给出 A-E 实证矩阵；QA 真实 GET/browser 发现并复验单任务、报告、accepted 状态问题；A/E backend executors 与固定 web executor 按互斥范围实现，reviewer 多轮退回后最终 APPROVE。未创建同职责重复 worker，未自动 accepted/backtest。
 
 - **SYNC-948 · loop933**：固定 executor/test/reviewer 职责完成 E PIT event panel、official writer 与原 qa-pg-alt 真实写入。独立 reviewer 两次 REJECT（占位版本、readiness/compute 边界漂移），均由同一 executor TDD 修复，最终 APPROVE；98 tests + Ruff pass，真实写入 155 factor values，未自动 accepted/backtest。未创建重复角色。
 

@@ -6590,3 +6590,11 @@ python harness/loop_tick.py prepare
 - **Runtime boundary**: calendar and market/status data were extended only through 2026-07-13 on the original runtime. Later event-panel availability dates remain honestly non-computable until market data exists. No substitute Docker/DB/port and no automatic accepted/backtest.
 - **Next**: `CURRENT_A_E_FULL_PRODUCT_SELF_VALIDATION_LOOP934` — real UI/API/qa-pg-alt dogfood across A-E; repair core product gaps in-loop and choose the next functional phase from evidence.
 - **Do not repeat**: do not use placeholder provenance versions; do not declare provider ready unless readiness and compute share the exact query boundary.
+
+# Current Handoff · SYNC-951 · 2026-07-13
+
+- **Completed**: LOOP934 real A-E product self-validation. A now has five distinct executable PIT-safe valuation/style candidates; E computes official single-day values but formal scoring/provisional admission requires 20 trade dates and 30 matched pairs.
+- **Product repairs**: explicit Jobs job IDs are honored, otherwise active nonterminal wins; cancelled history cannot steal current-task focus. Runtime watermarks are read dynamically. Factor Library/API/feedback require six finite decision metrics and accept the real `metrics` shape plus legacy aliases.
+- **Real evidence**: original qa-pg-alt 4011/4011 days through 2026-07-13; A smoke 5/5 materialized/scored and 23 values; E 155 rows but `insufficient_scoring_history`; backtests stayed 25. No substitute runtime.
+- **Verification**: backend 139 passed and Ruff; browser/product/smoke/build/lint pass; QA final no P0/P1; independent reviewer final APPROVE after multiple repair rounds.
+- **Next**: `E_HISTORICAL_NEWS_PANEL_SCORING_DEPTH_LOOP935` — bounded approved-source historical news -> enrichment -> panel -> real UI scoring depth, no automatic accepted/backtest.

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T09:05:00+08:00",
+  "updated_at": "2026-07-13T12:00:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "e-pit-event-panel-official-writer-loop933",
-  "next_atomic_action": "CURRENT_A_E_FULL_PRODUCT_SELF_VALIDATION_LOOP934：从真实 UI/API 在原 qa-pg-alt 上逐类验证 A-E 候选生成、质量闸、正式评分、provisional accepted 边界、单/多因子回测衔接与消费级复盘；发现产品缺口即在本轮修复，不自动 accepted/backtest。",
-  "next_after": "Use full A-E dogfood evidence to select the next highest-value functional gap; request human review only when the complete consumer flow is truly usable.",
+  "current_slice": "current-a-e-full-product-self-validation-loop934",
+  "next_atomic_action": "E_HISTORICAL_NEWS_PANEL_SCORING_DEPTH_LOOP935：通过已批准 A 股新闻源做有界历史抓取、PIT enrichment 与 event panel 重建，使 E 类达到至少 20 个交易日/30 个 matched pairs 的正式评分门槛，并从真实 UI job 验证评分；逐源失败可见，不自动 accepted/backtest。",
+  "next_after": "After E historical scoring closes, validate provisional selection, controlled single/multi-factor backtest handoff and report/feedback with real metrics.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-948-e-pit-event-panel-official-writer",
+  "last_tick": "SYNC-951-loop934-a-e-full-product-self-validation",
   "last_sync_sources": [
+    "SYNC-951 LOOP934 A-E full product self-validation",
+    "loop934 A runtime: five PIT-safe valuation/style candidates materialized/scored on original qa-pg-alt; 23 factor values; backtest unchanged",
+    "loop934 E: one-date 155-row compute remains valid but formal scoring/provisional fail closed below 20 dates and 30 pairs",
+    "loop934 product: single-task selection, entry provenance, accepted-state copy, six-metric API/UI/report/feedback completeness repaired",
+    "loop934 verification: 139 backend tests, Ruff, browser/product scripts, build/lint; live QA no P0/P1; independent review final APPROVE",
+    "next: E_HISTORICAL_NEWS_PANEL_SCORING_DEPTH_LOOP935",
     "SYNC-948 E PIT event panel and official writer loop933",
     "loop933 runtime: original qa-pg-alt has 6084 PIT-safe E panel rows; daily_bar/trade status extended to 2026-07-13 without substitute runtime",
     "loop933 official writer: real E candidate rank(sentiment_mean) wrote/read 155 factor_value_daily rows with official panel/matcher/scorer/availability lineage",

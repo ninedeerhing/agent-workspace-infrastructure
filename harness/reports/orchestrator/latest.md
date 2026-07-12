@@ -1,5 +1,14 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-951
+
+- status: success
+- task: CURRENT_A_E_FULL_PRODUCT_SELF_VALIDATION_LOOP934
+- core: real A-E product reconciliation across generation, compute, scoring, provisional boundary, Jobs and Factor Library report evidence
+- runtime: original qa-pg-alt 4011/4011; A five candidates/23 values; E 155 single-day values held below history threshold; backtests 25 unchanged
+- verification: backend 139 passed; Ruff; browser/product scripts; build/lint; QA no P0/P1; reviewer APPROVE
+- next: E_HISTORICAL_NEWS_PANEL_SCORING_DEPTH_LOOP935
+
 # Orchestrator Latest — SYNC-948
 
 - status: success
