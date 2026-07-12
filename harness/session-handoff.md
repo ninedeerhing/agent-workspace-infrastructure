@@ -6555,3 +6555,12 @@ python harness/loop_tick.py prepare
 - **Next**: `E_LOCAL_NEWS_ENTITY_SENTIMENT_ENRICHMENT_LOOP930` — build versioned local news entity links, sentiment provenance, and publication-time trust metadata from `news_item` plus `security_master`.
 - **After**: E event panel and official writer -> current A-E full product self-validation.
 - **Do not repeat**: do not reintroduce price proxies or fictitious data writers/panels; do not treat fallback-to-now as event time; do not create substitute Docker/DB/ports.
+
+# Current Handoff · SYNC-945 · 2026-07-13
+
+- **Completed**: LOOP930 added trustworthy publication-time semantics, PIT-safe versioned entity/sentiment enrichment, an atomic idempotent local job, and a typed LOOP931 read contract. No-entity outcomes terminate explicitly; different matcher/scorer versions cannot cross-mix.
+- **Verification**: 24 focused tests, Ruff and diff checks passed. Independent review required three repair rounds and finished `APPROVE`.
+- **Real evidence**: schema and bounded job/read smoke ran on the existing qa-pg-alt. The source is honestly `raw_source_empty`; processed/links/scores/accepted_for_backtest are all zero. No Docker/DB/port was created.
+- **5.6 audit**: the objective and terminal chain remain aligned, but runtime evidence invalidated the old ordering. Live news ingestion/coverage must precede an event panel; an empty panel would be contract-only progress.
+- **Next**: `E_LIVE_NEWS_SOURCE_INGESTION_AND_COVERAGE_LOOP931`.
+- **After**: E PIT event panel and official writer -> current A-E full product self-validation.
