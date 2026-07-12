@@ -3,24 +3,24 @@
 report:
   role_id: "orchestrator"
   status: "success"
-  task: "APPROVED_QAPGALT_RUNTIME_REVALIDATION_AND_TIERED_SCORING_LOOP918"
+  task: "REAL_MULTI_FACTOR_SELECTION_AND_BACKTEST_LOOP919"
   changes:
-    - file: "apps/quant_assistant/src/qa/db/engine.py"
-      summary: "Normalizes explicit approved qa-pg-alt DSNs at the common connection boundary."
-    - file: "apps/quant_assistant/tests/test_db_engine_unit.py"
-      summary: "Locks explicit-DSN localhost normalization without changing unrelated hosts or ports."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_real_multi_factor_selector.py"
+      summary: "Selects decorrelated combinations from real RankIC/coverage and overlapping factor values."
+    - file: "apps/quant_assistant/src/qa/quant_mining/factor_construction_multi_factor_backtest_request_builder.py"
+      summary: "Carries real selection and exclusion evidence into multi-factor backtest request drafts."
   verification:
-    - command: "uv run pytest -q tests/test_db_engine_unit.py tests/test_factor_construction_real_qapgalt_scoring_smoke_unit.py tests/test_factor_construction_tiered_real_scoring_executor_unit.py"
-      result: "13 passed after failing-first explicit DSN test"
-    - command: "uv run ruff check src/qa/db/engine.py tests/test_db_engine_unit.py"
+    - command: "uv run pytest <loop919 focused and adjacent suite> -q"
+      result: "43 passed after two failing-first seams"
+    - command: "uv run ruff check <loop919 scope>"
       result: "All checks passed"
-    - command: "approved qa-pg-alt official writer smoke"
-      result: "completed; 14 rows written; 14 rows plus temp version/definition deleted; post-cleanup all zero"
+    - command: "python -m compileall -q src/qa/quant_mining; git diff --check"
+      result: "passed"
   roster_update:
     workload_delta: "unchanged"
     mistakes: []
     lessons:
-      - "Explicit and environment-derived DSNs must converge at the common connection boundary; runtime smoke must prove cleanup residue is zero."
-    performance_note: "Loop918 restored one authoritative qa-pg-alt connection path and refreshed real scoring evidence without bypassing UI authorization."
+      - "A multi-factor request must carry real selection evidence; non-positive RankIC is excluded until direction inversion is explicit."
+    performance_note: "Loop919 replaced naked-ref combination drafting with evidence-aware decorrelation and marginal-gain selection."
   blockers: []
-  next: "REAL_MULTI_FACTOR_SELECTION_AND_BACKTEST_LOOP919"
+  next: "INTENT_TO_UNIVERSE_STATE_MACHINE_PRODUCT_AUDIT_LOOP920"

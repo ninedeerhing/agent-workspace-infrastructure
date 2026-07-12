@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T09:10:45+08:00
+updated_at: 2026-07-12T09:25:18+08:00
+
+## Latest Handoff — SYNC-933 real multi-factor selection loop919
+
+- [DONE] Real RankIC/coverage and overlapping factor values now drive deterministic quality/decorrelation/marginal-gain combination selection.
+- [DONE] Multi-factor backtest request drafts consume the real selection result and preserve selected/excluded refs, constraints, steps, and weights.
+- [VERIFY] RED missing selector and missing request seam; GREEN focused/adjacent 43 passed; Ruff, compileall, and diff check pass.
+- [BOUNDARY] Approved qa-pg-alt currently has no persistent eligible factor values and no fresh UI execution authorization, so no real backtest was executed or claimed.
+- [WORKER] Planner/Dispatcher/Test Engineer reports absorbed; Executor/Code Reviewer permanent channels were approval-blocked, bounded takeover used without duplicate roles.
+- [NEXT] `INTENT_TO_UNIVERSE_STATE_MACHINE_PRODUCT_AUDIT_LOOP920`.
 
 ## Latest Handoff — SYNC-932 approved qa-pg-alt runtime and scoring smoke loop918
 
