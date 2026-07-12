@@ -1,5 +1,14 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-948
+
+- status: success
+- task: E_PIT_EVENT_PANEL_AND_OFFICIAL_WRITER_LOOP933
+- core: strict next-open-day E event panel -> typed E DSL/provider -> official factor_value_daily writer
+- runtime: original qa-pg-alt 6084 panel rows; real `rank(sentiment_mean)` wrote/read 155 factor values; backtest 25 -> 25
+- verification: 98 focused tests; Ruff pass; reviewer REJECT twice then final APPROVE after version/readiness-contract fixes
+- next: CURRENT_A_E_FULL_PRODUCT_SELF_VALIDATION_LOOP934
+
 # Orchestrator Latest — SYNC-938
 
 - status: success

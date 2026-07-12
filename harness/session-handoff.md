@@ -6581,3 +6581,12 @@ python harness/loop_tick.py prepare
 - **Runtime note**: one later source call was transiently unavailable; per-source failure remains visible and does not corrupt persisted coverage.
 - **Next**: `E_PIT_EVENT_PANEL_AND_OFFICIAL_WRITER_LOOP933`.
 - **After**: current A-E full product self-validation and next functional phase selection.
+
+# Current Handoff · SYNC-948 · 2026-07-13
+
+- **Completed**: LOOP933 built the strict next-open-day `news_event_daily_panel_v1`, E DSL/provider/registry integration, and the official factor writer path. The panel contains no forward-return labels.
+- **Real evidence**: original qa-pg-alt has 6,084 panel rows. DB-backed candidate `rank(sentiment_mean)` wrote/read 155 `factor_value_daily` rows for 2026-07-13 with official panel/matcher/scorer/availability lineage; backtest count stayed 25.
+- **Verification**: 98 focused tests and Ruff passed. Independent review rejected twice; fixes unified official version constants and made readiness use the same lookback=5/daily_bar join contract as compute. Final verdict APPROVE.
+- **Runtime boundary**: calendar and market/status data were extended only through 2026-07-13 on the original runtime. Later event-panel availability dates remain honestly non-computable until market data exists. No substitute Docker/DB/port and no automatic accepted/backtest.
+- **Next**: `CURRENT_A_E_FULL_PRODUCT_SELF_VALIDATION_LOOP934` — real UI/API/qa-pg-alt dogfood across A-E; repair core product gaps in-loop and choose the next functional phase from evidence.
+- **Do not repeat**: do not use placeholder provenance versions; do not declare provider ready unless readiness and compute share the exact query boundary.
