@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-12T09:25:18+08:00
+updated_at: 2026-07-12T09:35:00+08:00
+
+## Latest Handoff — SYNC-934 intent-to-universe product audit loop920
+
+- [DONE] User idea, no-idea auto exploration, and manual A-E/category/source-mode entries converge on ConstructionSpec and the same Factor Universe bridge.
+- [DONE] Macro intent persistence/recovery and mining-to-backtest intent-quant handoff remain intact and fail closed around execution.
+- [VERIFY] Backend state-machine/Universe matrix 34 passed; four browser dogfood scripts passed.
+- [EVIDENCE] A pytest invocation from the web cwd collected no tests and was rejected; the correct project-root rerun is the only backend evidence.
+- [NEXT] `CURRENT_FULL_PRODUCT_SELF_VALIDATION_LOOP921`.
 
 ## Latest Handoff — SYNC-933 real multi-factor selection loop919
 

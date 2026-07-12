@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T09:25:18+08:00",
+  "updated_at": "2026-07-12T09:35:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-multi-factor-selection-and-backtest-loop919",
-  "next_atomic_action": "INTENT_TO_UNIVERSE_STATE_MACHINE_PRODUCT_AUDIT_LOOP920：以用户想法、无想法自动探索、A-E 分类选择三类入口，逐态核对意图理解状态机是否真实产出 ConstructionSpec、触发因子构造宇宙、保留确认/澄清/恢复语义并进入同一生成→评分→accepted→回测链；发现断链立即用核心功能修复并做真实产品 dogfood。",
+  "current_slice": "intent-to-universe-state-machine-product-audit-loop920",
+  "next_atomic_action": "CURRENT_FULL_PRODUCT_SELF_VALIDATION_LOOP921：启动现有 approved qa-pg-alt、正式 API 与新版 Web（不创建替代 runtime），用真实浏览器从首页走用户想法/无想法/分类入口→ConstructionSpec→生成→Jobs→评分确认→accepted→回测确认→报告；记录网络/控制台/DB 聚合证据，修复任何实际断链，只有新鲜全产品 evidence 通过才进入正式人工验收。",
   "next_after": "Continue the GPT-5.6 recalibrated core-function sequence toward realistic multi-family generation, approved qa-pg-alt scoring, real multi-factor backtest, and fresh product self-validation.",
   "blockers": [
     {
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-933-real-multi-factor-selection-and-backtest-loop919",
+  "last_tick": "SYNC-934-intent-to-universe-state-machine-product-audit-loop920",
   "last_sync_sources": [
+    "SYNC-934 Intent-to-Universe state-machine product audit loop920",
+    "loop920 backend: Universe and macro intent/checkpoint/quant handoff matrix 34 passed",
+    "loop920 browser: multi-source-mode, user-idea, no-idea-auto, and Jobs entry-mode dogfood all passed",
+    "loop920 audit: three user entry modes converge on ConstructionSpec and Factor Universe; no new route break found",
+    "loop920 evidence hygiene: invalid pytest cwd produced no tests and was rejected before the correct 34-pass rerun",
+    "next: CURRENT_FULL_PRODUCT_SELF_VALIDATION_LOOP921",
     "SYNC-933 Real multi-factor selection and backtest request loop919",
     "loop919 core: real RankIC/coverage plus overlapping factor values drive deterministic greedy quality/decorrelation selection",
     "loop919 constraints: non-positive RankIC, missing metrics, insufficient overlap, and abs pairwise correlation above 0.85 are excluded fail-closed",
