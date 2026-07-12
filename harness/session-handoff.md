@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-12T12:05:00+08:00
+updated_at: 2026-07-12T23:57:00+08:00
+
+## Latest Handoff — SYNC-940 seeded taxonomy + runtime identity guards
+
+- [DONE] Formal seeded demo now uses `demo-taxonomy`; tests require exact A/B/C/D/E one-per-class coverage while retaining the legacy seed only for compatibility.
+- [DONE] Controlled real backtest execution parses and checks the original qa-pg-alt DSN target and only accepts the official injected runner callable; substitute database/port/callable paths fail closed.
+- [VERIFY] Original `qa-pg-alt` alone is running on 127.0.0.1:55432; read-only probe reports 3995 daily-bar/status days, 33 mining jobs, verified runner binding, no blockers, no writes/backtests/new runtime.
+- [VERIFY] 78 focused/API tests, Ruff, compileall, diff check, and live TestClient readiness smoke passed.
+- [NEXT] `D_ML_LIVE_PRODUCT_INTEGRATION_LOOP926` remains unchanged.
 
 ## Latest Handoff — SYNC-939 D ML training executor loop925
 

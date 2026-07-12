@@ -1,15 +1,11 @@
 {
-  "recorded_at": "2026-07-11T07:25:12Z",
-  "last_tick": "SYNC-873-controlled-real-backtest-preflight-to-execution-progress-loop858",
-  "pytest_passed": null,
-  "ruff": "ok",
+  "recorded_at": "2026-07-12T16:00:48Z",
+  "last_tick": "SYNC-940-seeded-taxonomy-runtime-identity-guards",
+  "pytest_passed": 103,
+  "ruff": "pass",
   "evidence_paths": [
-    "npm run test:controlled-real-preflight-product-surface: pass",
-    "npm run test:controlled-real-preflight-product-browser: pass",
-    "npm run test:controlled-real-runner-manifest-browser: pass",
-    "npm run build: pass",
-    "npm run lint: 0 errors / 1 existing warning"
+    "SYNC-940 seeded taxonomy, runtime identity guards, live qa-pg-alt readiness smoke"
   ],
-  "section5_ref": "5.1196",
+  "section5_ref": "5.1263",
   "source": "manual"
 }
