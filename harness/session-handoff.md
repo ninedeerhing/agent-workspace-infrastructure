@@ -6541,3 +6541,9 @@ python harness/loop_tick.py prepare
 - **Completed**: LOOP927 candidate-specific D ML recipe compiler. Real UI job `mj_b1a93712e772` produced 18 provisional-ready and 20 unique factor refs on original qa-pg-alt, with no browser/HTTP errors and no automatic backtest.
 - **Next**: `A_FUNDAMENTAL_PIT_LIVE_COMPUTATION_LOOP928` — bind valuation/industry/corporate-action and available financial PIT sources to A-class real small-batch computation with per-candidate data-gap isolation.
 - **After**: E text/event/sentiment live computation -> current A-E full product self-validation.
+# Current Handoff · SYNC-943 · 2026-07-13
+
+- **Completed**: LOOP928 A valuation PIT live computation. Real UI job `mj_df2c544f1a71` on original qa-pg-alt: live partial, materialized/scored 1 valuation candidate, blocked 19 candidate-specific missing dependencies, browser errors 0, no automatic backtest.
+- **Safety**: financial statements remain blocked because current destructive upsert does not preserve revision-as-of history; no future/restated financial data is presented as PIT-safe.
+- **Next**: `E_TEXT_EVENT_SENTIMENT_LIVE_COMPUTATION_LOOP929`.
+- **After**: current A-E full product self-validation and next functional phase selection.

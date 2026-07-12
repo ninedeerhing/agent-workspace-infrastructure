@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T02:32:00+08:00",
+  "updated_at": "2026-07-13T03:10:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "d-ml-candidate-feature-recipe-diversity-loop927",
-  "next_atomic_action": "A_FUNDAMENTAL_PIT_LIVE_COMPUTATION_LOOP928：把 A 类 valuation/industry/corporate-action 与可用 financial PIT 数据编译为时点安全候选，接入 existing qa-pg-alt 小批计算/评分；缺表、空表和缺字段逐候选隔离并在 UI 说明，不自动 accepted/backtest。",
-  "next_after": "Implement E text/event/sentiment live computation, then rerun current A-E full product self-validation.",
+  "current_slice": "a-fundamental-pit-live-computation-loop928",
+  "next_atomic_action": "E_TEXT_EVENT_SENTIMENT_LIVE_COMPUTATION_LOOP929：把新闻/公告事件时间、实体链接与情绪 provenance 编译为 E 类候选的真实可计算路径；可用源小批评分，缺实体/情绪/另类源逐候选隔离并在 UI 说明，不自动 accepted/backtest。",
+  "next_after": "Rerun current A-E full product self-validation and derive the next functional phase from real product gaps.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-942-d-ml-candidate-feature-recipe-diversity",
+  "last_tick": "SYNC-943-a-fundamental-pit-live-computation",
   "last_sync_sources": [
+    "SYNC-943 A fundamental PIT live computation loop928",
+    "loop928 runtime: UI job mj_df2c544f1a71 on existing qa-pg-alt live_status=partial materialized=1 scoring=1 blocked=19",
+    "loop928 PIT: valuation-only candidates execute; financial revision history remains fail-closed; industry/action gaps isolate per candidate",
+    "loop928 product: browser errors=0 after stable list keys; no auto accepted/backtest",
+    "loop928 evidence: 40 focused tests, Ruff/compileall/diff, web browser contract/build/lint, final code review APPROVE",
+    "next: E_TEXT_EVENT_SENTIMENT_LIVE_COMPUTATION_LOOP929",
     "SYNC-942 D ML candidate feature recipe diversity loop927",
     "loop927 runtime: real UI job mj_b1a93712e772 produced 18 provisional-ready and 20 unique factor refs on existing qa-pg-alt",
     "loop927 compiler: explicit features > supported expression > subclass/source recipe; unsafe/unsupported fail closed; real duplicate detection retained",
