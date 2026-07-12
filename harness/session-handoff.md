@@ -6572,3 +6572,12 @@ python harness/loop_tick.py prepare
 - **Interpretation**: source availability and timestamp quality are not A-share domain coverage. Do not build the E panel on foreign-news-only zero-yield data and do not loosen entity ambiguity to manufacture links.
 - **Next**: `E_A_SHARE_NEWS_SOURCE_ONBOARDING_LOOP932` — onboard a permitted, stable A-share/Chinese-finance source and prove non-zero PIT-safe entity yield.
 - **After**: E PIT event panel and official writer -> current A-E full product self-validation.
+
+# Current Handoff · SYNC-947 · 2026-07-13
+
+- **Completed**: LOOP932 added an official Tushare major_news bounded path using the existing project credential, then repaired timezone/identity defects and historical rows without creating a substitute runtime.
+- **Real evidence**: original qa-pg-alt has 202 trusted Tushare news rows, 223 PIT-safe entity links and 202 terminal item states. Duplicate groups are zero; two repeated ingests had zero row growth; repair3 scanned zero. accepted/backtest remained zero.
+- **Safety**: naive provider times are interpreted in Asia/Shanghai before UTC conversion; stable identity excludes mutable content; source/news writes are transactional; repair migrates child enrichment rows before duplicate deletion and uses normalization_version for idempotency.
+- **Runtime note**: one later source call was transiently unavailable; per-source failure remains visible and does not corrupt persisted coverage.
+- **Next**: `E_PIT_EVENT_PANEL_AND_OFFICIAL_WRITER_LOOP933`.
+- **After**: current A-E full product self-validation and next functional phase selection.

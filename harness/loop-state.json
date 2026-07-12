@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T05:10:00+08:00",
+  "updated_at": "2026-07-13T06:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "e-live-news-source-ingestion-and-coverage-loop931",
-  "next_atomic_action": "E_A_SHARE_NEWS_SOURCE_ONBOARDING_LOOP932：调研并接入许可明确、可稳定抓取的 A 股/中文财经源，验证可信发布时间与非零 PIT 实体链接产出；逐源隔离失败，不以外文财经或模糊匹配冒充 A 股覆盖。",
+  "current_slice": "e-a-share-news-source-onboarding-loop932",
+  "next_atomic_action": "E_PIT_EVENT_PANEL_AND_OFFICIAL_WRITER_LOOP933：把 versioned entity/sentiment rows 聚合为交易日可用的 PIT-safe E 因子面板，注册 official writer/DSL 字段并接受控小批真实评分；缺源/低覆盖逐候选阻断，不自动 accepted/backtest。",
   "next_after": "Build the E PIT event panel and official writer, then run current A-E full product self-validation.",
   "blockers": [
     {
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-946-e-live-news-coverage",
+  "last_tick": "SYNC-947-e-a-share-news-onboarding",
   "last_sync_sources": [
+    "SYNC-947 E A-share news-source onboarding loop932",
+    "loop932 runtime: existing qa-pg-alt now has 202 trusted Tushare major_news rows, 223 PIT-safe entity links and 202 item states",
+    "loop932 integrity: Asia/Shanghai event time, stable content-independent identity, transactional ingest, bounded chunks and idempotent repair",
+    "loop932 verification: focused tests and Ruff/diff pass; final review APPROVE_WITH_RUNTIME_NOTE; no accepted/backtest",
+    "next: E_PIT_EVENT_PANEL_AND_OFFICIAL_WRITER_LOOP933",
     "SYNC-946 E live news ingestion and coverage loop931",
     "loop931 runtime: original qa-pg-alt ingested 54 unique BBC rows with 54/54 trusted timestamps; Reuters and Zaobao failed",
     "loop931 enrichment: bounded 54 rows, 54 sentiment scores, zero A-share entity links, no_entity_match=54, accepted_for_backtest=0",
