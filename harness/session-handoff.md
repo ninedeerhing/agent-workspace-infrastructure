@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T10:08:00+08:00
+updated_at: 2026-07-12T10:48:00+08:00
+
+## Latest Handoff — SYNC-936 multi-class live execution coverage loop922
+
+- [DONE] Added class-correct per-candidate live execution coverage: B/C supported DSL runs; A/D/E missing data/training dependencies fail closed before writers.
+- [DONE] Preserved factor_class through quality survival, shortlist, screening allocation, observability, and Jobs consumer state.
+- [VERIFY] Real C job `mj_afca28faa783`: 30 C shortlist, 20 executable/scored candidates, awaiting_review. Real A job `mj_85fe0ff4c7f0`: blocked on fundamental PIT, zero scoring/writes/backtests/substitute runtime.
+- [VERIFY] Backend 134 passed; Ruff, web build, live C/A browser checks pass; lint 0 errors/1 inherited warning.
+- [WORKER] Planner/Dispatcher/Test Engineer reused; Executor channel approval-blocked, bounded single-writer fallback used; no duplicate role.
+- [NEXT] `REAL_MULTI_FACTOR_ACCEPTED_BACKTEST_REPORT_VALIDATION_LOOP923`.
 
 ## Latest Handoff — SYNC-935 live Factor Universe product self-validation loop921
 

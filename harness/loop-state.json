@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-12T10:08:00+08:00",
+  "updated_at": "2026-07-12T10:48:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "live-factor-universe-materialization-scoring-backtest-loop921",
-  "next_atomic_action": "MULTI_CLASS_LIVE_EXECUTION_COVERAGE_LOOP922：复用已闭合的真实候选物化→DSL评分→provisional→accepted→回测链，分别验证 C 类可计算表达式与 A/D/E 类数据/训练依赖；可执行者走 qa-pg-alt 小批真实评分，不可执行者必须在候选级给出数据源或执行器缺口，禁止伪造指标或退回静态展示。",
-  "next_after": "Continue from the proven B-class live chain into A-E execution coverage, then multi-factor report/feedback validation and fresh formal-review readiness.",
+  "current_slice": "multi-class-live-execution-coverage-loop922",
+  "next_atomic_action": "REAL_MULTI_FACTOR_ACCEPTED_BACKTEST_REPORT_VALIDATION_LOOP923：从已持久化的 B/C 真实评分结果构建至少一个可审计多因子组合，验证 accepted→多因子回测请求→existing qa-pg-alt official runner→单因子/组合报告区分→反馈记忆闭环；任何缺授权、样本或真实值条件必须 fail-closed，不创建替代运行时。",
+  "next_after": "Close real multi-factor execution/report evidence, then re-audit A/D/E onboarding readiness and formal-review product readiness.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-935-live-factor-universe-product-self-validation-loop921",
+  "last_tick": "SYNC-936-multi-class-live-execution-coverage-loop922",
   "last_sync_sources": [
+    "SYNC-936 Multi-class live execution coverage loop922",
+    "loop922 core: factor_class now survives quality-gate and shortlist contracts; C supported DSL routes to live scoring, A/D/E fail closed per candidate",
+    "loop922 product: blocked class results are exposed through observability and Jobs shows consumer-readable missing dependencies instead of an idle card",
+    "loop922 runtime: real C job mj_afca28faa783 preserved C on 30 shortlist candidates and scored 20; real A job mj_85fe0ff4c7f0 blocked before writers with fundamental PIT gap and zero scoring rows",
+    "loop922 evidence: 134 focused backend tests passed; Ruff pass; web build pass; lint 0 errors/1 inherited warning; live browser C/A checks pass",
+    "loop922 workers: permanent Planner/Dispatcher/Test Engineer reused; Executor channel remained approval-blocked, bounded single-writer fallback used without duplicate role",
+    "next: REAL_MULTI_FACTOR_ACCEPTED_BACKTEST_REPORT_VALIDATION_LOOP923",
     "SYNC-935 Live Factor Universe product self-validation loop921",
     "loop921 product: real browser completed idea→generation→20-candidate materialization/scoring→accepted→backtest plan→execution confirmation→14 successful real backtests",
     "loop921 persistence: approved qa-pg-alt holds 36 factor versions, 39409 factor values, 15 backtest runs (14 success, one retained failed diagnostic), and 14 metrics rows",
