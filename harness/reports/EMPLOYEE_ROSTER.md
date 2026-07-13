@@ -1,5 +1,7 @@
 # AWI Employee Roster
 
+> 2026-07-13 AWI worker-report-inbox v1：永久 Worker 主动上报链已完成 Executor -> Test -> Review -> Verifier -> Sync 冷/热双路径验证。新增永久 Report Relay `019f59d6-f86d-75d3-9266-082079e31d71`；Dispatcher 消费 Relay accepted receipt 并直接派下一 canonical thread。模型完全由用户在 CodeX UI 管理，任何角色不得传 model override。
+>
 > 2026-07-13 SYNC-957：LOOP939R 因 Executor final report P2 重新打开；LOOP940 dispatch 已撤销。Executor/Test Engineer/Code Reviewer/Verifier 全部是强制 rendezvous role，任一 systemError/waiting/空 report/unresolved finding 即阻断当前 loop；只重试原永久线程，不创建重复身份。
 >
 > 2026-07-13 SYNC-954：LOOP937 Backend Executor、Web Executor、Planner、Code Reviewer、QA Tester 按单一职责完成 A 财务 UI→真实评分→provisional 链；多轮真实 QA 暴露并关闭 stale summary、跨 thread 多任务和 revision lineage 展示问题，最终 reviewer APPROVE。
@@ -48,11 +50,11 @@ Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor 
 - Dispatch order is fail-closed for identity and fail-open only for work continuity: resolve `codex_thread_id` from this roster, verify the thread is reachable with CodeX thread tools, then send the assignment. If the channel is missing or stale, record `channel_stale`, rebind or ask for an approved thread repair path, and keep the worker identity. Do not silently create a duplicate worker or replace the worker with a disposable subagent.
 - Duplicate same-role threads must be archived or marked do-not-dispatch; the canonical worker thread remains the roster entry.
 
-## Model Budget Policy
+## Model Policy
 
-- **Default**: non-critical workers and routine work use `<=gpt-5.4`. Prefer `gpt-5.4-mini` for daily ops, git/status checks, index refresh, report formatting, thread hygiene, and other low-risk mechanical work; use `gpt-5.4` for ordinary read-only research, planning, governance, traceability, and routine verification.
-- **Critical**: use the current available latest/strongest model (currently `gpt-5.6`) for production code edits, product/UI design, architecture boundary decisions, security/authorization reviews, real-execution gates, release/high-risk final verification, and any worker asked to make or review user-facing product behavior.
-- **Dispatch requirement**: every worker assignment must record `model_tier` and `model_reason` in the assignment envelope / cluster manifest. Existing cross-dialogue worker threads must be continued with `send_message_to_thread(model=...)` instead of creating duplicate threads only to change model.
+- 用户在 CodeX UI 直接管理每个永久 Worker 的模型。
+- Orchestrator、Dispatcher、Report Relay 和 Worker 的跨对话消息都不得传 model override。
+- 模型容量或不支持属于通道状态，不得通过创建同职责重复 Worker 规避。
 
 ## Current Assignment Overlay
 
@@ -66,7 +68,10 @@ Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor 
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop868 | report_channel_anomaly | gpt-5.5 | 2026-07-11T18:05:00+08:00 | loop868 read-only live dogfood risk review dispatched; wait_agent returned completed with no report body | preserve permanent thread; do not count empty-body completion as review evidence |
 | test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop924 | channel_waitingOnApproval | gpt-5.6-terra | 2026-07-12T11:08:00+08:00 | loop924 read-only verification queued behind stale loop923 build approval; local focused/API/browser matrix used | preserve permanent thread; do not create duplicate; clear stale approval before next write assignment |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop854 | dispatched_readonly | gpt-5.5 | 2026-07-11T14:38:00+08:00 | loop854 read-only verification strategy review dispatched for official runner injection/no-auto-execution matrix | preserve permanent identity; integrate report when available |
+| report-relay | 019f59d6-f86d-75d3-9266-082079e31d71 | awi-worker-report-inbox-v1 | report_success_idle | UI-configured | 2026-07-13T17:10:00+08:00 | canonical hot receipt collection, validation, dedupe, Dispatcher handoff, cold-mirror lineage | permanent lifecycle supervisor; no planning/code/review authority |
 ## Latest Roster Notes
+
+- **AWI worker-report-inbox v1 Sync**：永久 Executor、Test Engineer、Code Reviewer、Verifier 均主动把 hot receipt 发给 Report Relay；Relay 验证后交 Dispatcher，Dispatcher 直接派下一 canonical thread，最终 Sync delegation 主动回到 Orchestrator。generation-2 冷镜像 5/5 receipts、5/5 assignments、cursor 1..5、canonical SHA256 和 applied transitions 全部一致；legacy root 与 generation-1 保留。CodeX approval 卡死的已验证恢复方式是对同一 thread archive -> unarchive -> 窄 follow-up，不换 identity、不建 duplicate。
 
 - **SYNC-956 · loop939**：永久 Executor 完成 confirmation contract/API/UI 接线，且在用户更新策略后使用 `gpt-5.6`；Test Engineer reverify 关闭 API/UI must-fix。Executor 最后 cosmetic closeout channel waitingOnApproval，已按用户继续授权做极小本地清理；Code Reviewer systemError，Verifier pending，不创建同职责重复 worker。遗留 Jobs static suite 31 失败是旧“源码不得出现 POST”断言与现有显式点击 POST 的语义冲突，独立登记。
 

@@ -1,0 +1,83 @@
+{
+  "version": 1,
+  "updated_at": "2026-07-13T17:10:00+08:00",
+  "mandatory_phase_chain": [
+    "Executor",
+    "Test",
+    "Review",
+    "Verifier",
+    "Sync"
+  ],
+  "proposal_lifecycle": [
+    "proposed",
+    "user_approved",
+    "registered",
+    "routable"
+  ],
+  "dispatch_policy": {
+    "minimum_state": "routable",
+    "new_worker_or_skill_requires_user_approval": true,
+    "hard_worker_count_limit": null,
+    "dedupe_required": true,
+    "model_override_allowed": false
+  },
+  "capabilities": [
+    {
+      "capability_id": "worker:planner",
+      "kind": "worker",
+      "responsibility": "goal-oriented loop planning only",
+      "state": "routable",
+      "canonical_thread_id": "019f0890-69e6-7270-a742-1178836608ef",
+      "adjacent_boundary": "does not dispatch or implement"
+    },
+    {
+      "capability_id": "worker:dispatcher",
+      "kind": "worker",
+      "responsibility": "assignment routing and canonical phase handoff only",
+      "state": "routable",
+      "canonical_thread_id": "019f0890-af82-7ad3-a19a-d319d9aa8bb5",
+      "adjacent_boundary": "does not plan, implement, review, or verify"
+    },
+    {
+      "capability_id": "worker:executor",
+      "kind": "worker",
+      "responsibility": "bounded production implementation",
+      "state": "routable",
+      "canonical_thread_id": "019eeece-c617-71c3-a80a-39a693ad3ac3",
+      "adjacent_boundary": "does not accept its own implementation"
+    },
+    {
+      "capability_id": "worker:test-engineer",
+      "kind": "worker",
+      "responsibility": "TDD and independent test gate",
+      "state": "routable",
+      "canonical_thread_id": "019eeece-52d7-7b73-868a-7beb496ba303",
+      "adjacent_boundary": "does not perform code review or final verification"
+    },
+    {
+      "capability_id": "worker:code-reviewer",
+      "kind": "worker",
+      "responsibility": "independent code risk review",
+      "state": "routable",
+      "canonical_thread_id": "019eeed1-7e14-7342-9d45-d7948aec94d2",
+      "adjacent_boundary": "does not implement or certify final evidence"
+    },
+    {
+      "capability_id": "worker:verifier",
+      "kind": "worker",
+      "responsibility": "final evidence and completion verification",
+      "state": "routable",
+      "canonical_thread_id": "019eeed2-dbc0-7313-8d64-f9c6f199c68b",
+      "adjacent_boundary": "does not implement or advance Sync"
+    },
+    {
+      "capability_id": "worker:report-relay",
+      "kind": "worker",
+      "responsibility": "worker receipt validation, dedupe, relay, and cold mirror",
+      "state": "routable",
+      "canonical_thread_id": "019f59d6-f86d-75d3-9266-082079e31d71",
+      "adjacent_boundary": "does not plan, dispatch, implement, review, or verify"
+    }
+  ],
+  "proposals": []
+}

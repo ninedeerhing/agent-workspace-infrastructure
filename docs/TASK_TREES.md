@@ -71,6 +71,8 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 
 ## Current Mainline
 
+- AWI architecture blocker `awi-worker-report-inbox-v1` is closed: permanent hot-report Relay, direct Dispatcher phase handoff, correction cycle, cold mirror and same-thread approval recovery are verified. It remains a runtime governance sidecar and does not replace TREE-6 business goals.
+
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
 - Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；loop882/SYNC-896 completed `POST_ACCEPTANCE_NO_IDEA_AUTO_DIRECTION_EXPLORATION_LOOP882` by turning the auto direction button into an explicit no-idea exploration entry with auto state, rationale, payload fields, preview cards, recap markers, and browser proof.
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.

@@ -1,5 +1,14 @@
 # Project Status
 
+## 2026-07-13 AWI Worker Report Inbox V1
+
+- Permanent cross-chat chain is verified end to end: Executor -> Report Relay -> Dispatcher -> Test -> Review -> Verifier -> Sync.
+- Active cold-mirror `generation-2` is complete with 5 assignments, 5 ordered receipts, exact canonical SHA256 matches, and consistent applied transitions.
+- Legacy v2 root ledgers and generation-1 remain preserved as drift/replacement audit evidence.
+- Same-thread archive/unarchive plus a narrow no-approval follow-up recovered CodeX approval stalls without replacing worker identities.
+- User controls worker models in the CodeX UI; AWI messages no longer carry model overrides.
+- Evidence: `harness/reports/orchestrator/worker-report-inbox-v1-sync.md` and 77 passing harness tests. Business mainline remains LOOP939R.
+
 This file serves as the **single source of truth for project state**. On every implementation push or decision change, synchronously update the following sections: overall milestones, module progress table, in-progress tasks, incomplete module list.
 
 ## Absolute Traceability Rule (Hard Constraint)

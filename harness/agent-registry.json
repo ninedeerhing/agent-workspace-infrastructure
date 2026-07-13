@@ -5,8 +5,8 @@
   "project_root": "E:\\raindeer",
   "orchestrator_role": "orchestrator",
   "user_facing_role": "orchestrator",
-  "role_count": 24,
-  "worker_count": 23,
+  "role_count": 25,
+  "worker_count": 24,
   "roles": [
     {
       "role_id": "orchestrator",
@@ -205,6 +205,26 @@
       "platform_binding": {
         "platform": null,
         "session_id": null,
+        "adapter": null
+      }
+    },
+    {
+      "role_id": "report-relay",
+      "kind": "worker",
+      "user_facing": false,
+      "enabled": true,
+      "source_file": "agents/report-relay.md",
+      "session_name": "AWI / report-relay",
+      "model": null,
+      "description": "Permanent canonical worker receipt validation and relay",
+      "mailbox": {
+        "inbox": "harness/mailbox/report-relay/inbox",
+        "processed": "harness/mailbox/report-relay/processed"
+      },
+      "worklog": "harness/worklogs/report-relay.md",
+      "platform_binding": {
+        "platform": "codex",
+        "session_id": "019f59d6-f86d-75d3-9266-082079e31d71",
         "adapter": null
       }
     },

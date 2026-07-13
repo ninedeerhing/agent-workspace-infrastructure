@@ -86,6 +86,14 @@
       "source_file": "agents/executor.md"
     },
     {
+      "role_id": "report-relay",
+      "kind": "worker",
+      "enabled": true,
+      "session_name": "AWI / report-relay",
+      "model": null,
+      "source_file": "agents/report-relay.md"
+    },
+    {
       "role_id": "explore",
       "kind": "worker",
       "enabled": true,

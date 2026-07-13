@@ -23,15 +23,14 @@ assignment:
     cluster_id: ""
     rendezvous_gate: ""
     write_scope_mode: "read-only | disjoint-write"
-  model_policy:
-    assigned_model: "gpt-5.5 | gpt-5.4 | gpt-5.4-mini | gpt-5.3-codex-spark"
-    model_tier: "critical-gpt-5.5 | routine-<=gpt-5.4"
-    model_reason: ""
   do_not_touch:
     - ".env"
     - ".env.local"
     - "secrets"
-  report_back_to: "orchestrator chat"
+  report_back_to:
+    role: "report-relay"
+    codex_thread_id: "019f59d6-f86d-75d3-9266-082079e31d71"
+    protocol: "HOT_PATH_WORKER_REPORT_V1"
 ```
 
 ## 工作规则
@@ -46,7 +45,11 @@ assignment:
 - 不自行创建新 worker 或 skill；如当前角色不足以承担任务，报告 `blocked` 并交回总调度请求用户批准。
 - `role_id` 必须来自 `harness/reports/EMPLOYEE_ROSTER.md`；不要使用 `reviewer` / `tester` / `other` 等未登记别名。
 - 默认只返回 report；只有 `cluster.write_scope_mode=disjoint-write` 且 `target_files` 明确时才能改文件。不要抢写共享真源。
-- 模型预算由 orchestrator 在创建/续派线程时决定；你不得自行要求升模。若任务实际风险与 `assignment.model_policy` 不匹配，报告 `blocked` 或 `risks` 交回总调度。
+- 模型由用户在 CodeX UI 统一管理。Worker、Dispatcher、Relay 和 Orchestrator 都不得在跨对话消息中传入 model override。
+- 完成、部分完成、阻塞、系统错误或等待授权时，都必须主动使用 CodeX `send_message_to_thread` 把结构化报告发给固定 Report Relay；只在当前对话输出 YAML 不算完成上报。
+- 热路径上报必须带本 Worker 的 canonical `source_thread_id`、`assignment_id`、`phase`、`role`、`status`、`clean_state`、验证摘要与 blocker。热路径可声明 `report_hash_pending_cold_mirror=true`，最终 SHA256 只由 Sync 冷镜像确定。
+- Worker 不自行联系下一阶段，也不自行推进 phase。Report Relay 验证后只转 Dispatcher，由 Dispatcher 派发下一 canonical Worker。
+- 遇到工具授权卡住时主动上报 `waitingOnApproval`，不要静默结束。优先使用无需交互授权的项目既有编辑/测试路径；不得以绕过安全边界的方式规避授权。
 
 ## Token 压缩
 
@@ -89,9 +92,24 @@ report:
     - ""
   risks:
     - ""
-  model_policy_observed:
-    assigned_model: ""
-    model_tier: ""
-    mismatch: "none | task_requires_higher_model | task_can_use_lower_model | unknown"
   next: ""
 ```
+
+## 主动热路径上报
+
+YAML 报告形成后，必须立即向 `report_back_to.codex_thread_id` 发送：
+
+```text
+HOT_PATH_WORKER_REPORT_V1
+assignment_id=<task_id>
+phase=<canonical phase>
+role=<role_id>
+source_thread_id=<本 Worker 的 canonical thread id>
+status=<completed | partial | blocked | systemError | waitingOnApproval>
+clean_state=<true | false>
+report_hash_pending_cold_mirror=true
+verification=<最小证据摘要>
+blockers=<无则 []>
+```
+
+只有 Report Relay 返回 accepted 且 Dispatcher 已确认下一阶段 dispatch，当前阶段才算完成交接。
