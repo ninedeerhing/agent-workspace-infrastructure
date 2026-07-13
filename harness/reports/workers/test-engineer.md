@@ -1,5 +1,21 @@
 # Worker Report — test-engineer
 
+## loop938 Report — 2026-07-13T17:05:00+08:00
+
+report:
+  role_id: "test-engineer"
+  status: "failed"
+  task: "A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938"
+  changes: []
+  verification: []
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: ["A systemError on a permanent channel is a blocker, not completion evidence; do not create a duplicate role."]
+    performance_note: "No report body returned."
+  blockers: ["permanent Test Engineer thread returned systemError"]
+  next: "Reuse the same permanent Test Engineer after channel repair on the next eligible verification bundle."
+
 ## loop779 Report — 2026-07-10T01:04:59+08:00
 
 report:

@@ -2,6 +2,14 @@
 
 updated_at: 2026-07-13T16:40:00+08:00
 
+## Latest Handoff — SYNC-955 A/D cross-class provisional cohort loop938
+
+- [DONE] Cross-class cohort read-model consumes persisted real provisional metrics and separates provisional candidates from accepted references.
+- [VERIFY] Same-window/same-stock scope, shortlist, candidate-level exclusion reasons, pairwise correlation evidence, API GET-only surface, no final accepted/backtest/substitute runtime.
+- [VERIFY] Backend focused 24 passed; cohort/multi-factor regression 19 passed; Ruff/compileall, web dogfood and build passed.
+- [WORKER] Planner/Dispatcher returned; Executor partial/no_changes; Test Engineer systemError; Code Reviewer/Verifier reports unavailable and recorded as blockers; no duplicate roles created.
+- [NEXT] `REAL_MULTI_FACTOR_PROVISIONAL_COHORT_CONFIRMATION_LOOP939`.
+
 ## Latest Handoff — SYNC-954 A financial UI provisional loop937
 
 - [DONE] A profitability/financial-quality ConstructionSpec now reaches DB-backed revision candidates from the consumer UI, with user-global atomic mining-job reuse/supersede and exactly one actionable task.

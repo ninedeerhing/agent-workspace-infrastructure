@@ -1,5 +1,15 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-955
+
+- status: partial_worker_reports_local_verified
+- task: A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938
+- core: persisted-real A/B/C/D provisional cohort with same-window/same-stock alignment, shortlist, per-candidate exclusion reasons, accepted-reference separation, and pairwise evidence
+- verification: backend focused 24 passed; cohort/multi-factor regression 19 passed; Ruff/compileall; web cross-class dogfood and build passed
+- boundaries: no final accepted, no backtest, no queue/runtime/substitute DB; API surface is GET-only
+- workers: Planner/Dispatcher success; Executor partial/no_changes; Test Engineer systemError; Code Reviewer and Verifier reports unavailable
+- next: REAL_MULTI_FACTOR_PROVISIONAL_COHORT_CONFIRMATION_LOOP939
+
 # Orchestrator Latest — SYNC-954
 
 - status: success

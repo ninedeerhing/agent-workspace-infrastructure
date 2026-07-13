@@ -1,5 +1,21 @@
 # Worker Report — code-reviewer
 
+## loop938 Report — 2026-07-13T17:05:00+08:00
+
+report:
+  role_id: "code-reviewer"
+  status: "blocked"
+  task: "A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938"
+  changes: []
+  verification: []
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: ["Do not treat waitingOnApproval as a review result; retain the permanent identity and record channel blocker."]
+    performance_note: "Read-only review did not return a final report."
+  blockers: ["permanent Code Reviewer channel remained waitingOnApproval"]
+  next: "Repair/reuse permanent reviewer before the next high-risk review gate."
+
 ## loop865 Report — 2026-07-11T16:55:00+08:00
 
 report:

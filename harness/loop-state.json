@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T16:40:00+08:00",
+  "updated_at": "2026-07-13T17:05:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "a-financial-ui-job-provisional-validation-loop937",
-  "next_atomic_action": "A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938：从 A/B/C/D 已持久化真实指标构建同窗口、同股票池的 provisional cohort，输出 shortlist、排除理由与真实相关性证据；不写 final accepted、不运行回测。",
+  "current_slice": "a-d-cross-class-provisional-cohort-loop938",
+  "next_atomic_action": "REAL_MULTI_FACTOR_PROVISIONAL_COHORT_CONFIRMATION_LOOP939：基于 loop938 shortlist、逐项排除理由和真实 pairwise evidence，生成消费级 provisional cohort confirmation 与多因子约束审查；不写 final accepted、不运行回测。",
   "next_after": "Freeze an explicit accepted evidence snapshot, then run controlled single-factor baselines and decorrelated multi-factor comparison before report/feedback memory; resume E history after provider reset.",
   "blockers": [
     {
@@ -19,9 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-954-loop937-a-financial-ui-provisional",
+  "last_tick": "SYNC-955-loop938-a-d-cross-class-provisional-cohort",
   "last_sync_sources": [
-    "SYNC-954 LOOP937 A financial UI provisional validation",
+    "SYNC-955 LOOP938 A/D cross-class provisional cohort",
+    "loop938 core: persisted-real A/B/C/D cohort with same-window/same-stock alignment, shortlist, exclusions, accepted-reference separation, and pairwise evidence",
+    "loop938 verification: backend focused 24 passed; cohort/multi-factor regression 19 passed; Ruff/compileall; web dogfood/build; no final accepted/backtest/substitute runtime",
+    "loop938 workers: Planner/Dispatcher success; Executor partial/no_changes; Test Engineer systemError; Code Reviewer/Verifier unavailable; blockers recorded",
+    "next: REAL_MULTI_FACTOR_PROVISIONAL_COHORT_CONFIRMATION_LOOP939",
     "loop937 runtime: user-global one actionable job; two DB-backed revision factors wrote 3092 values and both reached provisional-ready",
     "loop937 lineage: 13121 revision rows considered, 147 clean groups used, 34 ambiguous groups excluded, 20 codes, as-of 2026-06-18",
     "loop937 verification: backend focused suites/Ruff, web contract/build/lint, repeated real browser/API/DB QA, independent reviewer APPROVE; backtests unchanged",

@@ -1,5 +1,25 @@
 # Worker Report — executor
 
+## loop938 Report — 2026-07-13T17:05:00+08:00
+
+report:
+  role_id: "executor"
+  status: "partial"
+  task: "A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938"
+  changes: []
+  verification:
+    - command: "uv run pytest tests/test_factor_construction_cross_class_provisional_cohort_unit.py -q"
+      result: "orchestrator rerun 24 passed; worker channel rerun blocked by Windows ACL helper"
+    - command: "uv run ruff check scoped loop938 files"
+      result: "All checks passed"
+  roster_update:
+    workload_delta: "cleared"
+    mistakes: []
+    lessons: ["Existing clean implementation can be adopted without duplicate writes when scoped evidence is green."]
+    performance_note: "No scoped defect found; no changes made."
+  blockers: ["worker channel ACL helper blocked duplicate pytest rerun"]
+  next: "Orchestrator may use local evidence and proceed to loop939."
+
 report:
   role_id: "executor"
   status: "partial"

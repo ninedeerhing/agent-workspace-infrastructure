@@ -66,6 +66,8 @@ Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor 
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop854 | dispatched_readonly | gpt-5.5 | 2026-07-11T14:38:00+08:00 | loop854 read-only verification strategy review dispatched for official runner injection/no-auto-execution matrix | preserve permanent identity; integrate report when available |
 ## Latest Roster Notes
 
+- **SYNC-955 · loop938**：复用永久 Planner/Dispatcher/Executor/Test Engineer/Code Reviewer/Verifier。Planner 与 Dispatcher 返回成功；Executor 对既有 cohort 实现审阅后 no_changes/partial（通道 ACL 阻断重跑）；Test Engineer 返回 systemError；Code Reviewer/Verifier 尚未返回可用 report。不得创建同职责重复 worker；本轮本地验证作为有限兜底，并保留上述 blocker。
+
 - **SYNC-951 · loop934**：Planner 给出 A-E 实证矩阵；QA 真实 GET/browser 发现并复验单任务、报告、accepted 状态问题；A/E backend executors 与固定 web executor 按互斥范围实现，reviewer 多轮退回后最终 APPROVE。未创建同职责重复 worker，未自动 accepted/backtest。
 
 - **SYNC-948 · loop933**：固定 executor/test/reviewer 职责完成 E PIT event panel、official writer 与原 qa-pg-alt 真实写入。独立 reviewer 两次 REJECT（占位版本、readiness/compute 边界漂移），均由同一 executor TDD 修复，最终 APPROVE；98 tests + Ruff pass，真实写入 155 factor values，未自动 accepted/backtest。未创建重复角色。

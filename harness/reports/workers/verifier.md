@@ -1,5 +1,21 @@
 # Worker Report — verifier
 
+## loop938 Report — 2026-07-13T17:05:00+08:00
+
+report:
+  role_id: "verifier"
+  status: "blocked"
+  task: "A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938"
+  changes: []
+  verification: []
+  roster_update:
+    workload_delta: "unchanged"
+    mistakes: []
+    lessons: ["Local verification may be used only as bounded fallback when the permanent verifier channel is unavailable; do not fabricate a worker verdict."]
+    performance_note: "No final report returned during the rendezvous window."
+  blockers: ["permanent Verifier channel did not return a report"]
+  next: "Reuse the same permanent Verifier for loop939 evidence."
+
 ## loop390 Report — 2026-07-01T21:28:58+08:00
 
 report:
