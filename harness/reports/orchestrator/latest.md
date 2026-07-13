@@ -5,11 +5,11 @@
 - status: success
 - task: permanent cross-chat worker report inbox and phase transition repair
 - chain: Executor -> Report Relay -> Dispatcher -> Test -> Relay -> Dispatcher -> Review -> Relay -> Dispatcher -> Verifier -> Relay -> Dispatcher -> Sync
-- cold_mirror: generation-2 complete; 5 assignments; 5 receipts; cursor 1..5; all canonical SHA256 and transitions matched
+- cold_mirror: generation-3 complete; correction_cycle=1; 5 assignments; 5 receipts; cursor 1..5; all canonical SHA256 and transitions matched
 - recovery: same-thread archive/unarchive + no-approval follow-up recovered stuck Test/Review turns without duplicate workers
-- evidence: `harness/reports/orchestrator/worker-report-inbox-v1-sync.md`; 77 tests, Ruff, compileall, diff-check
+- evidence: `harness/reports/orchestrator/worker-report-inbox-v1-sync.md`; 18 focused and 81 full harness tests, Ruff, compileall, diff-check
 - boundary: no secrets, DB, Docker, runtime, or quant business mutation in this architecture Sync
-- next: close repository truth/clean-worktree checks, then resume unchanged LOOP939R mainline
+- next: worker-report architecture gate is closed; resume unchanged LOOP939R business mainline through its own mandatory Test/Review/Verifier chain
 
 # Orchestrator Latest — SYNC-957
 

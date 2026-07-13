@@ -6,11 +6,12 @@ updated_at: 2026-07-13T17:10:00+08:00
 
 - [DONE] Canonical Workers now proactively report to permanent Report Relay `019f59d6-f86d-75d3-9266-082079e31d71`; Relay validates/deduplicates and sends accepted receipts to permanent Dispatcher.
 - [DONE] Dispatcher directly advances `Executor -> Test -> Review -> Verifier -> Sync`; Orchestrator polling is no longer the phase-advance mechanism.
-- [VERIFY] Cold mirror generation-2 has 5 assignments and 5 receipts in exact phase order; cursor, canonical SHA256, applied transition, next phase, source-thread binding and legacy lineage all match.
-- [VERIFY] Root legacy v2 ledgers and generation-1 remain preserved; no replacement or cleanup destroyed audit evidence.
+- [VERIFY] Cold mirror generation-3 has 5 assignments and 5 receipts in exact phase order; cursor, canonical SHA256, applied transition, next phase, source-thread binding and lineage all match.
+- [VERIFY] Root legacy v2 ledgers plus generation-1 and generation-2 remain preserved; no replacement or cleanup destroyed audit evidence.
+- [RECOVERY] correction_cycle=1 completed on the same permanent Executor/Test/Review/Verifier identities. Test, Review, and Verifier canonical payloads were re-attested by their source threads before Sync hash finalization.
 - [RECOVERY] CodeX approval stalls are recovered on the same permanent thread by archive -> unarchive -> narrow no-approval follow-up; one bounded attempt, then fail closed.
 - [POLICY] User owns Worker model selection in CodeX UI; no thread message may override model.
-- [NEXT] Finish AWI docs/tests/clean-worktree closeout, then resume the unchanged business mainline `LOOP939R_CONFIRMATION_SAFETY_PROVENANCE_AND_CORRELATION_REPAIR`.
+- [NEXT] AWI report-chain closeout is complete. Resume the unchanged business mainline `LOOP939R_CONFIRMATION_SAFETY_PROVENANCE_AND_CORRELATION_REPAIR`; do not treat architecture receipts as business-loop approval.
 
 ## Latest Handoff — SYNC-957 LOOP939R mandatory-worker repair
 
