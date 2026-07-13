@@ -7,6 +7,8 @@
 - replay_order: `Executor -> Test -> Review -> Verifier -> Sync`
 - receipt_count: `5`
 - next_phase: `Planner reissue LOOP940` (not executed by this Sync)
+- relay_acceptance: accepted and forwarded to Dispatcher
+- dispatcher_acceptance: LOOP939R closed; no blockers
 
 ## Canonical Receipt Hashes
 
