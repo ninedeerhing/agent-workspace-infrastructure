@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-12T23:57:00+08:00
+updated_at: 2026-07-13T16:40:00+08:00
+
+## Latest Handoff — SYNC-954 A financial UI provisional loop937
+
+- [DONE] A profitability/financial-quality ConstructionSpec now reaches DB-backed revision candidates from the consumer UI, with user-global atomic mining-job reuse/supersede and exactly one actionable task.
+- [DONE] Real job `mj_102248214c5e` materialized/scored `revenue` and `n_income_attr_p`, wrote 3,092 values, and produced two provisional-ready records without accepted/backtest execution.
+- [VERIFY] Jobs UI and API expose 13,121 considered revision rows, 147 clean groups, 34 ambiguous groups excluded, 20 codes, as-of 2026-06-18, `ready_with_ambiguity`.
+- [VERIFY] Focused backend suites/Ruff, web contract/dogfood/build/lint, repeated browser/API/DB QA and final independent review passed; backtests remain 25.
+- [WORKER] Backend Executor, Web Executor, Planner, Code Reviewer and QA Tester were reused with disjoint responsibility; reports were reconciled against real qa-pg-alt evidence.
+- [NEXT] `A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938`: align A/B/C/D persisted metrics into one comparable provisional cohort; no final accepted/backtest.
 
 ## Latest Handoff — SYNC-940 seeded taxonomy + runtime identity guards
 

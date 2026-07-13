@@ -1,5 +1,14 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-954
+
+- status: success
+- task: A_FINANCIAL_UI_JOB_PROVISIONAL_VALIDATION_LOOP937
+- runtime: one user-global actionable job; two DB-backed revision factors; 3,092 values; two provisional-ready; backtests unchanged at 25
+- lineage: 13,121 considered rows / 147 clean groups / 34 ambiguous groups excluded / 20 codes / 2026-06-18
+- verification: focused backend tests and Ruff; three web dogfood contracts, build/lint; repeated browser/API/DB QA; reviewer APPROVE
+- next: A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938
+
 # Orchestrator Latest — SYNC-953
 
 - status: success

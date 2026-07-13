@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T15:00:00+08:00",
+  "updated_at": "2026-07-13T16:40:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "a-financial-revision-history-pit-execution-loop936",
-  "next_atomic_action": "A_FINANCIAL_UI_JOB_PROVISIONAL_VALIDATION_LOOP937：从真实 UI A 类盈利能力入口创建任务，验证 revision 候选生成、正式评分、歧义隔离与 provisional-ready 展示/确认边界；保持 final accepted/backtest 需显式后续确认。",
-  "next_after": "After A financial UI validation, continue real multi-class provisional selection and controlled single/multi-factor backtest/report validation; resume E history after provider reset.",
+  "current_slice": "a-financial-ui-job-provisional-validation-loop937",
+  "next_atomic_action": "A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938：从 A/B/C/D 已持久化真实指标构建同窗口、同股票池的 provisional cohort，输出 shortlist、排除理由与真实相关性证据；不写 final accepted、不运行回测。",
+  "next_after": "Freeze an explicit accepted evidence snapshot, then run controlled single-factor baselines and decorrelated multi-factor comparison before report/feedback memory; resume E history after provider reset.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-953-loop936-a-financial-revision-pit",
+  "last_tick": "SYNC-954-loop937-a-financial-ui-provisional",
   "last_sync_sources": [
+    "SYNC-954 LOOP937 A financial UI provisional validation",
+    "loop937 runtime: user-global one actionable job; two DB-backed revision factors wrote 3092 values and both reached provisional-ready",
+    "loop937 lineage: 13121 revision rows considered, 147 clean groups used, 34 ambiguous groups excluded, 20 codes, as-of 2026-06-18",
+    "loop937 verification: backend focused suites/Ruff, web contract/build/lint, repeated real browser/API/DB QA, independent reviewer APPROVE; backtests unchanged",
+    "next: A_D_CROSS_CLASS_PROVISIONAL_COHORT_LOOP938",
     "SYNC-953 LOOP936 A financial revision-history PIT execution",
     "loop936 runtime: 234 immutable revisions for 20 codes; 147 clean latest groups and 34 ambiguous groups isolated",
     "loop936 scoring: revenue and n_income_attr_p each wrote/read 8215 values across 562 dates with finite IC/RankIC/coverage",

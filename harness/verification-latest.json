@@ -1,11 +1,11 @@
 {
-  "recorded_at": "2026-07-12T16:00:48Z",
-  "last_tick": "SYNC-940-seeded-taxonomy-runtime-identity-guards",
-  "pytest_passed": 103,
+  "recorded_at": "2026-07-13T01:24:31Z",
+  "last_tick": "SYNC-954-loop937-a-financial-ui-provisional",
+  "pytest_passed": 133,
   "ruff": "pass",
   "evidence_paths": [
-    "SYNC-940 seeded taxonomy, runtime identity guards, live qa-pg-alt readiness smoke"
+    "SYNC-954 LOOP937: real UI/API/qa-pg-alt A financial scoring, lineage, web build/dogfood, reviewer approve"
   ],
-  "section5_ref": "5.1263",
+  "section5_ref": "5.1267",
   "source": "manual"
 }

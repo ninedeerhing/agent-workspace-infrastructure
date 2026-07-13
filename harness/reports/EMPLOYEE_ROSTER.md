@@ -1,8 +1,10 @@
 # AWI Employee Roster
 
+> 2026-07-13 SYNC-954：LOOP937 Backend Executor、Web Executor、Planner、Code Reviewer、QA Tester 按单一职责完成 A 财务 UI→真实评分→provisional 链；多轮真实 QA 暴露并关闭 stale summary、跨 thread 多任务和 revision lineage 展示问题，最终 reviewer APPROVE。
+>
 > 2026-07-13 SYNC-952：LOOP935 planner/source executor/reviewer 完成有界历史执行器与真实 provider 诊断；外部 frequency-limit deferred，下一任务转 A 财报 PIT。
 
-Updated: 2026-07-13T13:20:00+08:00
+Updated: 2026-07-13T16:40:00+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
