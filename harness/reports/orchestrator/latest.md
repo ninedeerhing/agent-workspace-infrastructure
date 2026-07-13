@@ -1,5 +1,16 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-959
+
+- status: success_with_dispatch_delivery_defect_recorded
+- task: REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940
+- core: persisted-real single-factor baselines versus separate decorrelated multi-factor candidate plan with benefit/stability/overlap/correlation/exclusion evidence
+- verification: focused 32; final adjacent 120; independent Test 121; Review/Verifier clean; Ruff/compileall/diff passed
+- boundary: passive comparison only; no accepted write, queue, scorer/backtest, default runner, substitute runtime, or seeded/demo evidence
+- dispatch defect: Verifier->Sync was accepted and ACKed but not delivered to Orchestrator; delivery-ACK repair is mandatory before LOOP941 dispatch
+- evidence: `harness/reports/orchestrator/loop940-sync.md`
+- next: REAL_MULTI_FACTOR_ACCEPTED_SNAPSHOT_CONFIRMATION_LOOP941 after delivery-ACK repair
+
 # Orchestrator Latest — SYNC-958
 
 - status: success

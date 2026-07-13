@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-13T17:20:00+08:00
+updated_at: 2026-07-13T18:10:00+08:00
+
+## Latest Handoff — SYNC-959 LOOP940 mandatory chain closed
+
+- [DONE] Persisted-real single-factor baselines and the decorrelated multi-factor candidate plan now have distinct paths plus incremental-benefit, stability, overlap, correlation and exclusion evidence.
+- [VERIFY] Focused 32 passed; final adjacent 120 passed; independent Test 121 passed; Review and Verifier clean; Ruff, compileall and diff-check passed.
+- [BOUNDARY] Passive comparison only: no accepted write, queue, scorer/backtest, default runner, substitute runtime or seeded/demo evidence.
+- [WORKER] Permanent Executor/Test/Review/Verifier identities completed correction_cycle=2. Orchestrator acted only as mechanical patch/command proxy under the known Windows ACL failure.
+- [DEFECT] Relay and Dispatcher accepted the final Verifier receipt, but `dispatcher_ack_only` suppressed actual Sync delivery to the Orchestrator. Ledger-ready is not delivery-complete; repair requires target delivery ACK before LOOP941.
+- [NEXT] After the Worker delivery-ACK repair closes, start `REAL_MULTI_FACTOR_ACCEPTED_SNAPSHOT_CONFIRMATION_LOOP941` as the next core business function.
 
 ## Latest Handoff — SYNC-958 LOOP939R mandatory chain closed
 
