@@ -4,7 +4,9 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from hashlib import sha256
 from pathlib import Path
+from typing import Literal
 
 from harness.worker_report_contracts import (
     CanonicalPhase,
@@ -26,6 +28,7 @@ CANONICAL_THREAD_IDS = {
     CanonicalPhase.TEST: "019eeece-52d7-7b73-868a-7beb496ba303",
     CanonicalPhase.REVIEW: "019eeed1-7e14-7342-9d45-d7948aec94d2",
     CanonicalPhase.VERIFIER: "019eeed2-dbc0-7313-8d64-f9c6f199c68b",
+    CanonicalPhase.SYNC: "019ee9b4-0e6b-7ec0-a2fc-70ae7a5f8482",
 }
 
 
@@ -36,6 +39,8 @@ class DispatcherHandoff:
     role: str
     canonical_thread_id: str
     source_receipt_hash: str
+    dispatch_id: str
+    delivery_mode: Literal["deliver_then_ack"]
 
 
 @dataclass(frozen=True, slots=True)
@@ -52,6 +57,7 @@ class RelayReceipt:
     replaced_report_hash: str | None
     correction_cycle: int | None
     origin_phase: CanonicalPhase | None
+    no_phase_advance: bool
 
 
 def consume_relay_receipt(
@@ -94,12 +100,20 @@ def consume_relay_receipt(
     assignment = inbox.dispatch_current()
     if assignment is None or assignment.phase is not receipt.next_phase:
         raise ReceiptIntegrityError("relay_dispatch_assignment_missing")
+    dispatch_id = _dispatch_id(
+        assignment_id=assignment.assignment_id,
+        phase=assignment.phase,
+        target_thread_id=receipt.canonical_next_thread_id,
+        source_receipt_hash=receipt.report_hash,
+    )
     return DispatcherHandoff(
         assignment_id=assignment.assignment_id,
         phase=assignment.phase,
         role=assignment.role,
         canonical_thread_id=receipt.canonical_next_thread_id,
         source_receipt_hash=receipt.report_hash,
+        dispatch_id=dispatch_id,
+        delivery_mode="deliver_then_ack",
     )
 
 
@@ -122,6 +136,7 @@ def parse_relay_receipt(
         "source_message_id", "replaces_hash_drift_receipt", "replaced_report_hash",
         "dispatch_protocol", "correction_cycle", "origin_phase", "retry_same_worker",
         "no_duplicate_worker",
+        "no_phase_advance",
     }
     if not required.issubset(payload) or not set(payload).issubset(required | optional):
         raise ReceiptIntegrityError("relay_fields_invalid")
@@ -172,6 +187,9 @@ def parse_relay_receipt(
         not isinstance(replaced_report_hash, str) or len(replaced_report_hash) != 64
     ):
         raise ReceiptIntegrityError("relay_replacement_evidence_invalid")
+    no_phase_advance = payload.get("no_phase_advance", False)
+    if not isinstance(no_phase_advance, bool):
+        raise ReceiptIntegrityError("relay_no_phase_advance_invalid")
     return RelayReceipt(
         protocol=protocol,
         report=report,
@@ -185,6 +203,7 @@ def parse_relay_receipt(
         replaced_report_hash=replaced_report_hash,
         correction_cycle=correction_cycle,
         origin_phase=origin_phase,
+        no_phase_advance=no_phase_advance,
     )
 
 
@@ -232,3 +251,16 @@ def _string(payload: dict[str, object], key: str) -> str:
     if not isinstance(value, str) or not value.strip():
         raise ReceiptIntegrityError(f"relay_{key}_invalid")
     return value.strip()
+
+
+def _dispatch_id(
+    *,
+    assignment_id: str,
+    phase: CanonicalPhase,
+    target_thread_id: str,
+    source_receipt_hash: str,
+) -> str:
+    canonical = "|".join(
+        (assignment_id, phase.value, target_thread_id, source_receipt_hash),
+    )
+    return sha256(canonical.encode()).hexdigest()

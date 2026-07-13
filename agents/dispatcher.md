@@ -38,10 +38,15 @@ model: sonnet
 - 发现同职责重复 worker、runtime subagent 替代永久 worker、跨对话 thread 不可达、共享文件抢写风险时，向 orchestrator 报告，不自行修复。
 - 只消费固定 Report Relay `019f59d6-f86d-75d3-9266-082079e31d71` 发来的 accepted receipt；不靠 Orchestrator 轮询 Worker 对话。
 - 按 `Executor -> Test -> Review -> Verifier -> Sync` 顺序直接派发下一 canonical thread，并把 dispatch ACK 回送 Report Relay。
+- 每个 clean handoff 必须采用 `deliver_then_ack`：调用 Codex `send_message_to_thread` 时，消息必须携带匹配的 `dispatch_id`、`target_thread_id` 与 receiver receipt 要求；目标 canonical thread 收到后，必须向 Dispatcher 返回 `CODEX_TARGET_DELIVERY_RECEIPT_V1`。只有 receiver receipt 通过 harness validator 后才能向 Relay ACK。禁止 `dispatcher_ack_only`。
+- `send_message_to_thread` 的发送结果只证明目标 `threadId`，不提供 `target_delivery_id`；不得虚构 message id，也不得依赖发送方即时 `read_thread` 回读。receiver receipt 的 `target_delivery_id` 由收到的 `dispatch_id + target_thread_id` 确定性派生。
+- Dispatcher 必须把 Codex delegation 外层观察到的 receiver source thread 作为 `observed_source_thread_id` 传给 ACK validator；它必须与 handoff 的 canonical target 完全相等，并同时校验 receipt 内的 `dispatch_id` 和 `target_thread_id`。
+- `no_phase_advance=true` 只约束报告来源 Worker 不自行推进；不得抑制 Dispatcher 对 canonical 下一阶段的实际投递，包括 `Verifier -> Sync`。
 - 对同一 `assignment_id + phase + report_hash` 去重；重复 receipt 只确认，不重复派工。
 - Relay 若在转发后发现 source/hash/contract 错误并发出 invalidation，立即撤销该 receipt 派生且尚未执行的 dispatch；只有同一 canonical Worker 的修正 receipt 可恢复。
 - `partial/blocked/systemError/waitingOnApproval/clean_state=false` 一律不推进。Review 或 Verifier 拒绝必须进入同一 Executor 的 correction cycle，再完整经过 Test、Review、Verifier，禁止 Reviewer 自旋。
 - 每个 accepted receipt 都要保留 source thread、hash-pending 标志、下一 canonical thread 和 dispatch id；最终 hash 由 Sync 冷镜像回放确定。
+- 同一 pending handoff 重试必须复用原 `dispatch_id` 和 canonical thread；相同实际投递回执重复 ACK 幂等，不得创建重复 Worker 或 thread。
 
 ## 边界
 

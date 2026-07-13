@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T18:10:00+08:00",
+  "updated_at": "2026-07-13T18:12:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
@@ -19,8 +19,13 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-959-loop940-mandatory-chain-closed",
+  "last_tick": "SYNC-960-worker-delivery-ack-v1-closed",
   "last_sync_sources": [
+    "SYNC-960 AWI canonical handoff delivery ACK closed",
+    "receiver proof: actual Dispatcher -> Orchestrator Sync delivery plus deterministic CODEX_TARGET_DELIVERY_RECEIPT_V1 and Relay ACK V60",
+    "verification: delivery ACK 13, related 74, full harness 94, Ruff/compileall/diff clean",
+    "boundary: architecture closeout only; no business loop, DB, Docker, scorer, backtest, runtime, duplicate worker, or model override",
+    "next: REAL_MULTI_FACTOR_ACCEPTED_SNAPSHOT_CONFIRMATION_LOOP941",
     "SYNC-959 LOOP940 mandatory chain closed",
     "loop940 core: persisted-real single-factor baselines versus a separate decorrelated multi-factor candidate plan with benefit/stability/overlap/correlation/exclusion evidence",
     "loop940 verification: focused 32 passed; final adjacent 120 passed; independent Test 121 passed; Review and Verifier clean; Ruff/compileall/diff passed",

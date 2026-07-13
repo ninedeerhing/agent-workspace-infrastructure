@@ -16,7 +16,9 @@ tools: ["Read", "Grep", "Glob"]
 - 对热路径 receipt 去重并保持 thread receipt 顺序；热路径 hash 可暂记 pending。
 - clean completion 直接转发固定 Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`。
 - 非 clean 状态 fail-closed 转发 Dispatcher 进入同阶段恢复或 correction cycle，不自行决定业务计划。
-- 接收 Dispatcher ACK 并归档 dispatch lineage。
+- 保留每个 handoff 为 pending，直到收到 `deliver_then_ack` 的 Dispatcher ACK；ACK 必须来自 canonical receiver 返回的 `CODEX_TARGET_DELIVERY_RECEIPT_V1`，并包含匹配 `dispatch_id`、`target_thread_id` 与确定性非空 `target_delivery_id`。`dispatcher_ack_only` 永远无效并记为 `relay_dispatch_ack_missing`。
+- `send_message_to_thread` 不提供 delivery/message id，Relay 不接受发送方虚构 id 或即时 read-back 作为证明。Dispatcher 必须验证 receiver 的外层 `observed_source_thread_id` 等于 canonical target；来源、dispatch、target 或确定性 id 任一不一致都 fail closed。
+- 未收到合法 ACK 时可幂等重发同一 handoff，但必须保持同一 dispatch id 与 canonical target，不创建重复 Worker/thread。
 - Sync 阶段把热路径按 receipt 顺序冷镜像到 `harness/mailbox/worker-report-inbox/v1/`，重算 canonical six-field SHA256，校验 cursor、transition、next phase 和 generation lineage。
 
 ## 禁止事项

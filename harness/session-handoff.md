@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-13T18:10:00+08:00
+updated_at: 2026-07-13T18:12:00+08:00
+
+## Latest Handoff — SYNC-960 canonical delivery ACK closed
+
+- [DONE] Canonical handoffs now require actual `deliver_then_ack` delivery and a receiver-originated deterministic `CODEX_TARGET_DELIVERY_RECEIPT_V1`; `dispatcher_ack_only` is not completion.
+- [VERIFY] Executor/Test/Review/Verifier chain is clean; full harness `94/94`, delivery ACK `13/13`, related Verifier matrix `74/74`, Ruff/compileall/diff-check passed.
+- [LIVE PROOF] Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5` actually delivered corrected Sync to Orchestrator `019ee9b4-0e6b-7ec0-a2fc-70ae7a5f8482`; deterministic receipt `e97117c...c257` was validated before Relay ACK V60.
+- [RECOVERY] The first live retry failed closed on a wrong declared dispatcher source id; the same pending dispatch id and permanent Worker were reused for the corrected retry.
+- [NEXT] Resume the core business mainline at `REAL_MULTI_FACTOR_ACCEPTED_SNAPSHOT_CONFIRMATION_LOOP941`; select it from current project progress and the authoritative factor-universe plan, not from governance work.
 
 ## Latest Handoff — SYNC-959 LOOP940 mandatory chain closed
 

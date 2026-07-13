@@ -1,5 +1,16 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-960
+
+- status: success
+- task: AWI_CANONICAL_HANDOFF_DELIVERY_ACK_V1
+- chain: Executor -> Test -> Review -> Verifier -> actual Sync delivery -> receiver receipt -> Dispatcher ACK -> Relay
+- verification: delivery ACK 13; related Verifier 74; full harness 94; Ruff/compileall/diff passed
+- live_proof: dispatch `AWI_CANONICAL_HANDOFF_DELIVERY_ACK_V1:sync:correction-cycle-2`, receipt `e97117c4664303fd7e207fc1c040d023cddd98795cf637f84e2734368567c257`, Relay ACK V60
+- boundary: architecture closeout only; no business/runtime/DB/Docker/scorer/backtest action
+- evidence: `harness/reports/orchestrator/worker-delivery-ack-v1-sync.md`
+- next: REAL_MULTI_FACTOR_ACCEPTED_SNAPSHOT_CONFIRMATION_LOOP941
+
 # Orchestrator Latest — SYNC-959
 
 - status: success_with_dispatch_delivery_defect_recorded
