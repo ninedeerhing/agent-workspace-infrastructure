@@ -1,5 +1,16 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-958
+
+- status: success
+- task: LOOP939R_CONFIRMATION_SAFETY_PROVENANCE_AND_CORRELATION_REPAIR
+- chain: Executor -> Test -> Review -> Verifier -> Sync, correction_cycle=2, permanent identities only
+- core: strict metric schema/values, malformed refs, A-D taxonomy and role partition now fail closed before confirmation refs
+- verification: 89 focused/adjacent tests; Verifier 76 fresh tests; Ruff, compileall proxy and diff check passed
+- cold_mirror: five receipts replayed in order; canonical SHA256 and final lineage reconciled in `harness/reports/orchestrator/loop939r-sync.md`
+- boundary: confirmation-only; no accepted write, queue, scorer, backtest, DB, Docker, runtime startup, duplicate worker, or model override
+- next: permanent Planner reissues REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940; LOOP940 was not advanced inside this Sync
+
 # Orchestrator Latest — AWI-WORKER-REPORT-INBOX-V1
 
 - status: success

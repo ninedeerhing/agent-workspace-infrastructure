@@ -1,19 +1,29 @@
 # raindeer 项目进度日志
 
-> 更新时间：2026-06-10 12:00（Asia/Shanghai）
-> 更新批次：awi-harness-bootstrap
+> 更新时间：2026-07-13 17:20（Asia/Shanghai）
+> 更新批次：SYNC-958-loop939r-mandatory-chain-closed
 > 本文档是 `harness/progress.md`，记录 raindeer 项目的人类可读进度日志。
+
+---
+
+## Hot Path Summary（2026-07-13）
+
+- **当前主线**：TREE-6 因子构造宇宙，LOOP939R 强制链已关闭。
+- **本轮结果**：候选指标合同、引用解析、A-D taxonomy 与 role partition 全部 fail closed；confirmation-only 边界保持。
+- **验证证据**：89 个 focused/adjacent tests，Verifier 76 个 fresh tests，Ruff、compileall proxy、diff-check 全部通过。
+- **Worker 链**：永久 Executor -> Test -> Review -> Verifier -> Sync；correction_cycle=2，冷镜像与 SHA256 lineage 已对账。
+- **下一动作**：永久 Planner 重新签发 `REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940`，随后由 Dispatcher 恢复 mandatory chain。
 
 ---
 
 ## Current State（当前状态）
 
-- **项目阶段**：初始化 / AWI 治理层融合完成
-- **整体进度**：基础设施就绪，业务功能开发待开始
-- **当前主线**：AWI 治理层文件创建（harness 目录 Bootstrap）
-- **活跃任务树**：无（治理层文件创建中）
-- **后台专题**：无
-- **环境状态**：本地开发环境就绪
+- **项目阶段**：TREE-6 因子构造宇宙真实可用主线
+- **整体进度**：跨类别 provisional cohort confirmation 已完成；下一阶段为真实单因子基线与去相关多因子组合比较
+- **当前主线**：LOOP939R closed；等待永久 Planner 签发 LOOP940
+- **活跃任务树**：TREE-6
+- **后台专题**：AWI permanent Worker report chain 已关闭并保持运行
+- **环境状态**：本地开发环境就绪；本轮未启动 DB/Docker/runtime
   - Python 3.13 + uv
   - PostgreSQL/TimescaleDB
   - 项目根 `e:\raindeer`

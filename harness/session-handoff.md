@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-13T17:10:00+08:00
+updated_at: 2026-07-13T17:20:00+08:00
+
+## Latest Handoff — SYNC-958 LOOP939R mandatory chain closed
+
+- [DONE] LOOP939R correction_cycle=2 closed strict candidate metrics, malformed reference, A-D taxonomy and role-partition false-ready paths while preserving confirmation-only/no-execution boundaries.
+- [VERIFY] Canonical Executor/Test/Review/Verifier reports are clean; focused/adjacent verification passed 89 tests, Verifier independently spot-checked 76 fresh tests, and Ruff/compileall/diff-check passed.
+- [WORKER] Permanent identities were reused end-to-end. Executor-authored exact patches and command requests were mechanically proxied only because the Windows ACL helper failed before tool execution; no redesign, duplicate role, or model override occurred.
+- [VERIFY] Cold mirror replay order is `Executor -> Test -> Review -> Verifier -> Sync`; five canonical SHA256 values and correction lineage are recorded in `harness/reports/orchestrator/loop939r-sync.md`.
+- [RECOVERY] Earlier partial Review generations remain preserved: safety/provenance/correlation findings, then taxonomy/role findings, followed by the final clean generation.
+- [NEXT] Permanent Planner reissues `REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940`; LOOP940 was not executed inside this Sync.
 
 ## Latest Handoff — AWI permanent Worker report chain repaired
 

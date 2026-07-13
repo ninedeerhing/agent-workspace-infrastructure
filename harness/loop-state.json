@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T11:28:00+08:00",
+  "updated_at": "2026-07-13T17:20:00+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-multi-factor-provisional-cohort-confirmation-repair-loop939r",
-  "next_atomic_action": "LOOP939R_CONFIRMATION_SAFETY_PROVENANCE_AND_CORRELATION_REPAIR：修复 confirmation 在安全/来源元数据不完整或 pairwise abs(corr) 超过约束阈值时仍可能 ready 的 P2；测试、审查、验证全部通过前禁止进入 LOOP940。",
-  "next_after": "Only after all mandatory worker reports approve LOOP939R may the planner reissue REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940.",
+  "current_slice": "real-multi-factor-baseline-comparison-planning-loop940",
+  "next_atomic_action": "PLANNER_REISSUE_REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940：永久 Planner 基于已关闭的 LOOP939R 与总链路重新签发核心功能计划；本次 Sync 不执行 LOOP940。",
+  "next_after": "After the Planner report, Dispatcher assigns the permanent workers and restarts the mandatory business chain.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-957-loop939r-worker-fail-closed-repair",
+  "last_tick": "SYNC-958-loop939r-mandatory-chain-closed",
   "last_sync_sources": [
+    "SYNC-958 LOOP939R mandatory chain closed",
+    "loop939r core: strict metric schema/value validation, strict references, A-D taxonomy and role partition all fail closed before confirmation refs",
+    "loop939r workers: same permanent Executor/Test/Review/Verifier identities completed correction_cycle=2; no duplicate role or model override",
+    "loop939r verification: 89 focused/adjacent tests, independent Verifier 76 fresh tests, Ruff, compileall proxy and diff check all passed",
+    "loop939r cold mirror: Executor -> Test -> Review -> Verifier -> Sync receipt order and canonical SHA256 lineage reconciled",
+    "next: Planner reissues REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940",
     "SYNC-956 LOOP939 read-only cohort confirmation API/UI",
     "loop939 core: actual cohort GET now exposes fail-closed ABCD confirmation, typed Jobs notice separates shortlist/accepted refs and constraint blockers",
     "loop939 verification: cohort+confirmation 20 passed; confirmation UI static 1 passed; Ruff/diff; web build passed; lint 0 errors/1 inherited warning",

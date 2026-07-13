@@ -1,5 +1,7 @@
 # AWI Employee Roster
 
+> 2026-07-13 SYNC-958：LOOP939R correction_cycle=2 强制链已由同一永久 Executor -> Test Engineer -> Code Reviewer -> Verifier -> Sync 关闭；最终报告 clean，冷镜像五阶段 SHA256 与 lineage 已对账。下一动作由永久 Planner 重新签发 LOOP940。
+>
 > 2026-07-13 AWI worker-report-inbox v1：永久 Worker 主动上报链已完成 Executor -> Test -> Review -> Verifier -> Sync 冷/热双路径验证。新增永久 Report Relay `019f59d6-f86d-75d3-9266-082079e31d71`；Dispatcher 消费 Relay accepted receipt 并直接派下一 canonical thread。模型完全由用户在 CodeX UI 管理，任何角色不得传 model override。
 >
 > 2026-07-13 SYNC-957：LOOP939R 因 Executor final report P2 重新打开；LOOP940 dispatch 已撤销。Executor/Test Engineer/Code Reviewer/Verifier 全部是强制 rendezvous role，任一 systemError/waiting/空 report/unresolved finding 即阻断当前 loop；只重试原永久线程，不创建重复身份。
@@ -60,16 +62,18 @@ Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor 
 
 | role_id | codex_thread_id | loop | status | model_tier | report_at | current_task | roster_update |
 |---|---|---|---|---|---|---|---|
-| orchestrator | current-thread | loop935 | continuous_loop_active | gpt-5.6-sol | 2026-07-13T13:20:00+08:00 | SYNC-952 historical news provider frequency-limit deferred; next loop936 A financial revision PIT | continue loop936 |
+| orchestrator | current-thread | loop939r | sync_complete | UI-configured | 2026-07-13T17:20:00+08:00 | SYNC-958 mandatory chain and cold mirror closed | dispatch Planner reissue for loop940 |
 | Kierkegaard | 019f5188-a129-7092-a5b7-9635c2d11f8f | loop913 | idle_no_report | gpt-5.4 | 2026-07-12T11:50:00+08:00 | previous read-only product QA did not provide completion evidence; not used for loop913 completion | preserve fixed thread; do not create duplicate worker |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop924 | report_success | gpt-5.6-sol | 2026-07-12T11:05:42+08:00 | loop924 plan returned; runtime-backed A/D/E six-state readiness, consumer checklist, no fake ready | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop924 | report_success | gpt-5.6-sol | 2026-07-12T11:06:49+08:00 | loop924 assignment matrix returned; disjoint backend/UI/test scopes and no substitute runtime | preserve permanent identity |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | awi-worker-report-inbox-v1 | report_success_idle | UI-configured | 2026-07-13 | correction_cycle=1 P2 protocol recovery completed; 18 focused and 81 harness tests passed | preserve permanent identity; available for unchanged LOOP939R business dispatch |
-| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | awi-worker-report-inbox-v1 | report_success_idle | UI-configured | 2026-07-13 | correction_cycle=1 Review confirmed five closures with no findings | preserve permanent identity; next review must be LOOP939R business evidence |
-| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | awi-worker-report-inbox-v1 | report_success_idle | UI-configured | 2026-07-13 | correction_cycle=1 Test confirmed 18 focused and 81 full harness tests | preserve permanent identity; available for LOOP939R business verification |
-| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | awi-worker-report-inbox-v1 | report_success_idle | UI-configured | 2026-07-13 | correction_cycle=1 Verifier confirmed no unresolved findings | preserve permanent identity; available for LOOP939R final verification |
-| report-relay | 019f59d6-f86d-75d3-9266-082079e31d71 | awi-worker-report-inbox-v1 | report_success_idle | UI-configured | 2026-07-13T17:10:00+08:00 | canonical hot receipt collection, validation, dedupe, Dispatcher handoff, cold-mirror lineage | permanent lifecycle supervisor; no planning/code/review authority |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop939r | report_success_idle | UI-configured | 2026-07-13T17:20:00+08:00 | correction_cycle=2 exact bounded repair authored; mechanical proxy used only after ACL failure | preserve permanent identity; await loop940 dispatch |
+| code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop939r | report_success_idle | UI-configured | 2026-07-13T17:20:00+08:00 | final Review clean after safety/provenance/correlation and taxonomy/role corrections | preserve permanent identity; await loop940 review |
+| test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop939r | report_success_idle | UI-configured | 2026-07-13T17:20:00+08:00 | final Test accepted 89/89 focused/adjacent evidence plus Ruff/diff | preserve permanent identity; await loop940 test |
+| verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop939r | report_success_idle | UI-configured | 2026-07-13T17:20:00+08:00 | final Verifier clean; 76 fresh tests and no unresolved P1/P2/P3 | preserve permanent identity; await loop940 verification |
+| report-relay | 019f59d6-f86d-75d3-9266-082079e31d71 | loop939r | sync_receipt_pending | UI-configured | 2026-07-13T17:20:00+08:00 | canonical hot receipts accepted through Verifier; final Sync cold mirror reconciled | permanent lifecycle supervisor; accept final Sync receipt |
 ## Latest Roster Notes
+
+- **SYNC-958 · LOOP939R mandatory closeout**：同一永久 Executor、Test Engineer、Code Reviewer、Verifier 完成 correction_cycle=2。两轮 partial finding lineage 均保留，最终 clean generation 通过 89 个 focused/adjacent tests、Verifier 76 个 fresh tests、Ruff、compileall proxy 与 diff-check。Executor 的 Windows ACL helper 在命令启动前失败时，仅机械应用其原样 patch/命令，不更换 worker、不覆盖模型、不由 Orchestrator 重新设计。下一动作由永久 Planner 重新签发 LOOP940。
 
 - **AWI worker-report-inbox v1 Sync**：永久 Executor、Test Engineer、Code Reviewer、Verifier 均主动把 hot receipt 发给 Report Relay；Relay 验证后交 Dispatcher，Dispatcher 直接派下一 canonical thread，最终 Sync delegation 主动回到 Orchestrator。correction_cycle=1 的 generation-3 冷镜像 5/5 receipts、5/5 assignments、cursor 1..5、canonical SHA256 和 applied transitions 全部一致；legacy root、generation-1、generation-2 均保留。CodeX approval 卡死的已验证恢复方式是对同一 thread archive -> unarchive -> 窄 follow-up，不换 identity、不建 duplicate。
 
