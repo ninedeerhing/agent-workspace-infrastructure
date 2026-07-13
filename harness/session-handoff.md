@@ -2,6 +2,15 @@
 
 updated_at: 2026-07-13T16:40:00+08:00
 
+## Latest Handoff — SYNC-956 cohort confirmation API/UI loop939
+
+- [DONE] `GET /api/v1/quant/provisional-cohort` exposes a fail-closed ABCD provisional confirmation derived from actual cohort evidence.
+- [DONE] Jobs cohort notice renders confirmation status, provisional shortlist vs accepted references, constraint result and blockers; it adds no confirmation button or execution behavior.
+- [VERIFY] cohort/confirmation Python suites 20 passed; confirmation UI static 1 passed; Ruff/diff pass; web build pass; lint 0 errors / 1 inherited warning.
+- [RISK] Existing broad Jobs static suite has 31 obsolete failures because it forbids any literal POST while the product intentionally has explicit-click POST scaffolding. Keep as a test-semantic repair, not confirmation regression.
+- [WORKER] Executor delivered implementation but terminal channel returned waitingOnApproval during cosmetic closeout; bounded local whitespace/import cleanup followed user approval. Test Engineer reverified closure; Verifier focused 9-pass report returned; Code Reviewer systemError. No duplicate worker created.
+- [NEXT] `REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940`: construct single-factor baseline and decorrelated multi-factor comparison read-model/plan from persisted cohort evidence; no automatic accepted/queue/backtest.
+
 ## Latest Handoff — SYNC-955 A/D cross-class provisional cohort loop938
 
 - [DONE] Cross-class cohort read-model consumes persisted real provisional metrics and separates provisional candidates from accepted references.

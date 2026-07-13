@@ -256,3 +256,18 @@ report:
     performance_note: "Acceptance matrix was reflected in focused RED/GREEN and regression tests."
   blockers: []
   next: "Concrete qa-pg-alt adapter tests should preserve approved-store-only and no-final/backtest boundaries."
+# LOOP939 report (2026-07-13)
+
+report:
+  role_id: "test-engineer"
+  status: "partial"
+  task: "LOOP939 confirmation re-verification"
+  changes: []
+  verification:
+    - command: "cohort and confirmation tests"
+      result: "20 passed"
+    - command: "web build"
+      result: "passed"
+  blockers:
+    - "Legacy JobsPage static suite has obsolete no-POST assertions against explicit-click behavior."
+  next: "Treat legacy static suite semantic repair as a separate follow-up."

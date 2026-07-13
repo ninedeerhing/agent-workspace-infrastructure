@@ -163,3 +163,17 @@ report:
     performance_note: "Permanent Verifier thread reachable; final pass came from orchestrator command evidence against verifier checklist."
   blockers: []
   next: "Verify loop388 review packet with focused/related/Ruff/compileall/forbidden/truth/git clean checks."
+# LOOP939 report (2026-07-13)
+
+report:
+  role_id: "verifier"
+  status: "partial"
+  task: "LOOP939 confirmation API/UI evidence verification"
+  changes: []
+  verification:
+    - command: "focused confirmation/API/UI pytest"
+      result: "9 passed"
+    - command: "ruff focused files"
+      result: "passed"
+  blockers: []
+  next: "Repair or scope obsolete broad JobsPage static assertions separately."

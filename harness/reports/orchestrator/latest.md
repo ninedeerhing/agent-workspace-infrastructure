@@ -1,5 +1,16 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-956
+
+- status: success_with_isolated_legacy_test_debt
+- task: REAL_MULTI_FACTOR_PROVISIONAL_COHORT_CONFIRMATION_LOOP939
+- core: actual provisional-cohort GET and Jobs consumer notice now carry fail-closed ABCD confirmation and multi-factor constraint review
+- verification: cohort/confirmation 20 passed; confirmation UI static 1 passed; Ruff/diff pass; web build passed; lint 0 errors / 1 inherited warning
+- boundaries: no confirmation action, final accepted write, queue, scorer, backtest, Docker, or substitute runtime
+- workers: Executor implementation delivered; Test Engineer reverified must-fix closure; Verifier focused 9-pass report; Code Reviewer systemError
+- residual: legacy Jobs static suite incorrectly forbids explicit-click POST source text (31 failures); separate test-semantic repair
+- next: REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940
+
 # Orchestrator Latest — SYNC-955
 
 - status: partial_worker_reports_local_verified

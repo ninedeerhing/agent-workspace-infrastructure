@@ -1,10 +1,12 @@
 # AWI Employee Roster
 
+> 2026-07-13 SYNC-956：LOOP939 复用永久 Executor/Test Engineer/Code Reviewer/Verifier：Executor 以当前最新最强模型完成 confirmation API/UI；Test Engineer 复核关闭 API/UI must-fix；Verifier focused 9-pass；Code Reviewer systemError 按通道异常记录，不创建重复 worker。
+>
 > 2026-07-13 SYNC-954：LOOP937 Backend Executor、Web Executor、Planner、Code Reviewer、QA Tester 按单一职责完成 A 财务 UI→真实评分→provisional 链；多轮真实 QA 暴露并关闭 stale summary、跨 thread 多任务和 revision lineage 展示问题，最终 reviewer APPROVE。
 >
 > 2026-07-13 SYNC-952：LOOP935 planner/source executor/reviewer 完成有界历史执行器与真实 provider 诊断；外部 frequency-limit deferred，下一任务转 A 财报 PIT。
 
-Updated: 2026-07-13T16:40:00+08:00
+Updated: 2026-07-13T11:20:05+08:00
 
 This roster is the stable cross-chat inventory for AWI managers and workers. It lets the orchestrator assign work by identity, responsibility boundary, current load, mistake/lesson history, and report location without relying on chat memory.
 
@@ -49,7 +51,7 @@ Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor 
 ## Model Budget Policy
 
 - **Default**: non-critical workers and routine work use `<=gpt-5.4`. Prefer `gpt-5.4-mini` for daily ops, git/status checks, index refresh, report formatting, thread hygiene, and other low-risk mechanical work; use `gpt-5.4` for ordinary read-only research, planning, governance, traceability, and routine verification.
-- **Critical**: use `gpt-5.5` for production code edits, product/UI design, architecture boundary decisions, security/authorization reviews, real-execution gates, release/high-risk final verification, and any worker asked to make or review user-facing product behavior.
+- **Critical**: use the current available latest/strongest model (currently `gpt-5.6`) for production code edits, product/UI design, architecture boundary decisions, security/authorization reviews, real-execution gates, release/high-risk final verification, and any worker asked to make or review user-facing product behavior.
 - **Dispatch requirement**: every worker assignment must record `model_tier` and `model_reason` in the assignment envelope / cluster manifest. Existing cross-dialogue worker threads must be continued with `send_message_to_thread(model=...)` instead of creating duplicate threads only to change model.
 
 ## Current Assignment Overlay
@@ -60,11 +62,13 @@ Latest dispatch: loop916 used permanent Dispatcher, Test Engineer, and Executor 
 | Kierkegaard | 019f5188-a129-7092-a5b7-9635c2d11f8f | loop913 | idle_no_report | gpt-5.4 | 2026-07-12T11:50:00+08:00 | previous read-only product QA did not provide completion evidence; not used for loop913 completion | preserve fixed thread; do not create duplicate worker |
 | planner | 019f0890-69e6-7270-a742-1178836608ef | loop924 | report_success | gpt-5.6-sol | 2026-07-12T11:05:42+08:00 | loop924 plan returned; runtime-backed A/D/E six-state readiness, consumer checklist, no fake ready | preserve permanent identity |
 | dispatcher | 019f0890-af82-7ad3-a19a-d319d9aa8bb5 | loop924 | report_success | gpt-5.6-sol | 2026-07-12T11:06:49+08:00 | loop924 assignment matrix returned; disjoint backend/UI/test scopes and no substitute runtime | preserve permanent identity |
-| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop731 | channel_waitingOnApproval | gpt-5.5 | 2026-07-05T00:31:16+08:00 | loop731 implementation started but stalled waitingOnApproval after adding conflicting proof-only test shape | preserve identity; do not create duplicate executor; next executor prompt must avoid escalation and wait for orchestrator write-lock clearance |
+| executor | 019eeece-c617-71c3-a80a-39a693ad3ac3 | loop939 | channel_waitingOnApproval_after_delivery | gpt-5.6 | 2026-07-13T11:20:05+08:00 | loop939 confirmation API/UI implementation delivered; client stalled during cosmetic closeout | preserve identity; no duplicate executor; use latest model and bounded local fallback only after explicit user approval |
 | code-reviewer | 019eeed1-7e14-7342-9d45-d7948aec94d2 | loop868 | report_channel_anomaly | gpt-5.5 | 2026-07-11T18:05:00+08:00 | loop868 read-only live dogfood risk review dispatched; wait_agent returned completed with no report body | preserve permanent thread; do not count empty-body completion as review evidence |
 | test-engineer | 019eeece-52d7-7b73-868a-7beb496ba303 | loop924 | channel_waitingOnApproval | gpt-5.6-terra | 2026-07-12T11:08:00+08:00 | loop924 read-only verification queued behind stale loop923 build approval; local focused/API/browser matrix used | preserve permanent thread; do not create duplicate; clear stale approval before next write assignment |
 | verifier | 019eeed2-dbc0-7313-8d64-f9c6f199c68b | loop854 | dispatched_readonly | gpt-5.5 | 2026-07-11T14:38:00+08:00 | loop854 read-only verification strategy review dispatched for official runner injection/no-auto-execution matrix | preserve permanent identity; integrate report when available |
 ## Latest Roster Notes
+
+- **SYNC-956 · loop939**：永久 Executor 完成 confirmation contract/API/UI 接线，且在用户更新策略后使用 `gpt-5.6`；Test Engineer reverify 关闭 API/UI must-fix。Executor 最后 cosmetic closeout channel waitingOnApproval，已按用户继续授权做极小本地清理；Code Reviewer systemError，Verifier pending，不创建同职责重复 worker。遗留 Jobs static suite 31 失败是旧“源码不得出现 POST”断言与现有显式点击 POST 的语义冲突，独立登记。
 
 - **SYNC-955 · loop938**：复用永久 Planner/Dispatcher/Executor/Test Engineer/Code Reviewer/Verifier。Planner 与 Dispatcher 返回成功；Executor 对既有 cohort 实现审阅后 no_changes/partial（通道 ACL 阻断重跑）；Test Engineer 返回 systemError；Code Reviewer/Verifier 尚未返回可用 report。不得创建同职责重复 worker；本轮本地验证作为有限兜底，并保留上述 blocker。
 
