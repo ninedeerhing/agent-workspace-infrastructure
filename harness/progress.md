@@ -1,20 +1,29 @@
 # raindeer 项目进度日志
 
 > 更新时间：2026-07-13 19:17（Asia/Shanghai）
-> 更新批次：SYNC-961-loop941-accepted-snapshot-confirmation-closed
+> 更新批次：SYNC-962-loop942-controlled-comparison-backtest-closed
 > 本文档是 `harness/progress.md`，记录 raindeer 项目的人类可读进度日志。
 
 ---
 
 ## Hot Path Summary（2026-07-13）
 
-- **当前主线**：TREE-6 因子构造宇宙，LOOP941 accepted snapshot confirmation 已关闭。
-- **本轮结果**：真实单因子与去相关多因子快照保持独立；完整比较证据与 confirm/reject/hold 消费动作已进入稳定创建计划 read-model。
-- **验证证据**：focused 17 passed，Verifier explicit adjacent 131 passed，Ruff、compileall、diff-check 全部通过。
-- **Worker 链**：永久 Executor -> Test -> Review -> Verifier -> Sync；correction_cycle=1 关闭 baseline provenance / nested marker fail-open。
-- **下一动作**：永久 Planner 按显式用户确认约束选择下一核心功能；权威候选为 `CONTROLLED_COMPARISON_BACKTEST_LOOP942`。
+- **当前主线**：TREE-6 因子构造宇宙，LOOP942 controlled comparison backtest readiness 已关闭。
+- **本轮结果**：显式用户确认绑定完整 LOOP941 快照指纹；快照先经过严格 schema、指标、scope、summary、provenance、action 和嵌套执行标记重验，随后只生成分离的单因子/多因子回测草案与 qa-pg-alt 运行前复核材料。
+- **验证证据**：focused 17 passed，直接 LOOP940-942 矩阵 72 passed，Verifier confirmation→selector→940→941→942 链 148 passed，Ruff、compileall、diff-check 全部通过。
+- **Worker 链**：永久 Executor -> Test -> Review -> Verifier -> Sync；Review correction_cycle=1 关闭 malformed ready-shaped snapshot P2。
+- **停止状态**：用户明确要求本轮收口后停止；已设置 `user_explicit_stop`，不启动 LOOP943。
 
 ---
+
+## SYNC-962 · LOOP942 controlled comparison backtest readiness closed（2026-07-13）
+
+- [x] 缺少用户确认：保持 awaiting_user_confirmation，草案为空。
+- [x] reject/hold、过期 refs、过期 fingerprint、畸形/不安全快照全部 fail-closed。
+- [x] 显式 human confirm 只产生 single-factor drafts + 一个 multi-factor draft；`executable_request=null`、`execution_allowed=false`。
+- [x] Review 发现并修复 LOOP941 快照浅校验问题；严格重验发生在 fingerprint 接受之前。
+- [x] 仅声明 `qa-pg-alt` + injected runner review material；无 DB/Docker/runtime、queue、scorer、backtest 或 accepted 写入。
+- [x] Test/Review/Verifier/Sync 链闭合，当前按用户明确停止。
 
 ## Current State（当前状态）
 

@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T19:17:11+08:00",
+  "updated_at": "2026-07-13T20:02:00+08:00",
   "mode": "continuous_implementation_loop",
-  "stop_reason": "",
+  "stop_reason": "user_explicit_stop",
   "current_tree": "TREE-6",
-  "current_slice": "planner-select-next-core-function-after-loop941",
-  "next_atomic_action": "永久 Planner 基于权威因子宇宙计划、LOOP941 消费级 accepted snapshot confirmation evidence 与显式用户确认约束，签发下一核心功能计划；候选方向为 LOOP942 controlled comparison backtest，但不得由 Orchestrator 代替用户确认。",
-  "next_after": "Dispatcher assigns the same permanent workers for the Planner-approved next core loop. Keep the AWI raw worker-protocol UI-noise improvement in the architecture parking lot; it must not displace the quant mainline.",
+  "current_slice": "CONTROLLED_COMPARISON_BACKTEST_LOOP942_SYNC_CLOSED",
+  "next_atomic_action": "",
+  "next_after": "等待用户下一次指令；不启动 LOOP943。AWI 总调度 UI 原始 Worker 协议噪声改进仍在 parking lot。",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-961-loop941-accepted-snapshot-confirmation-closed",
+  "last_tick": "SYNC-962-loop942-controlled-comparison-backtest-closed",
   "last_sync_sources": [
+    "SYNC-962 LOOP942 mandatory chain closed after Review correction_cycle=1",
+    "loop942 core: explicit human confirmation is fingerprint-bound to a strictly revalidated LOOP941 snapshot before producing separate single-factor and multi-factor draft-only comparison requests",
+    "loop942 verification: focused 17 passed; direct LOOP940-942 matrix 72 passed; verifier confirmation-selector-940-941-942 chain 148 passed; Ruff/compileall/diff clean",
+    "loop942 safety: malformed ready-shaped snapshots, stale fingerprints, unsafe markers, reject/hold/mismatch and missing confirmation fail closed; qa-pg-alt injected-runner review material only; no execution/write/queue/scorer/default runner/substitute runtime",
+    "loop942 worker chain: permanent Executor/Test/Review/Verifier clean; Review P2 correction closed strict snapshot revalidation before fingerprint acceptance; no duplicate worker or model override",
+    "loop942 stop: user_explicit_stop after Sync; do not start LOOP943",
     "SYNC-961 LOOP941 mandatory chain closed",
     "loop941 core: consumer-readable accepted snapshot proposal keeps real single-factor and decorrelated multi-factor snapshots distinct and exposes confirm/reject/hold actions",
     "loop941 evidence: metric, incremental benefit, stability, overlap, correlation, exclusions and provenance are surfaced from LOOP939R/940 persisted-real contracts",

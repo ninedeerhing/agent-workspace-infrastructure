@@ -1,25 +1,56 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T02:27:48Z",
+  "updated_at": "2026-07-13T12:00:36Z",
   "loop_state_path": "harness/loop-state.json",
   "continuation_path": "apps/quant_assistant/docs/CONTINUATION_PROMPT.md",
   "task_trees_path": "apps/quant_assistant/docs/TASK_TREES.md",
   "project_status_path": "apps/quant_assistant/docs/PROJECT_STATUS.md",
-  "loop_next_atomic_action": "REAL_MULTI_FACTOR_PROVISIONAL_COHORT_CONFIRMATION_LOOP939：基于 loop938 shortlist、逐项排除理由和真实 pairwise evidence，生成消费级 provisional cohort confirmation 与多因子约束审查；不写 final accepted、不运行回测。",
+  "loop_next_atomic_action": "永久 Planner 基于权威因子宇宙计划、LOOP941 消费级 accepted snapshot confirmation evidence 与显式用户确认约束，签发下一核心功能计划；候选方向为 LOOP942 controlled comparison backtest，但不得由 Orchestrator 代替用户确认。",
   "continuation_next_action": "REAL_MULTI_FACTOR_PROVISIONAL_COHORT_CONFIRMATION_LOOP939：基于 loop938 shortlist、逐项排除理由和真实 pairwise evidence，生成消费级 provisional cohort confirmation 与多因子约束审查；不写 final accepted、不运行回测。",
-  "task_trees_next_hint": "REAL_MULTI_FACTOR_PROVISIONAL_COHORT_CONFIRMATION_LOOP939：基于 loop938 shortlist、逐项排除理由和真实 pairwise evidence，生成消费级 provisional cohort confirmation 与多因子约束审查；不写 final accepted、不运行回测。",
+  "task_trees_next_hint": "REAL_MULTI_FACTOR_ACCEPTED_SNAPSHOT_CONFIRMATION_LOOP941：消费 LOOP940 comparison evidence，形成单因子/多因子分离的 accepted snapshot proposal 和消费级确认内容；未获用户按钮确认前不写 accepted、不排队、不运行回测。",
   "foreground_tree": "TREE-6",
   "foreground_slice": "",
   "latest_section5_id": "1267",
   "latest_section5_title": "LOOP928 · A fundamental PIT core backend path（2026-07-13）",
   "top_summary_section5_ref": "1277",
-  "top_summary_last_tick": "loop938-a-d-cross-class-provisional-cohort",
-  "loop_last_tick": "SYNC-955-loop938-a-d-cross-class-provisional-cohort",
-  "findings": [],
+  "top_summary_last_tick": "loop941-accepted-snapshot-confirmation-closed",
+  "loop_last_tick": "SYNC-961-loop941-accepted-snapshot-confirmation-closed",
+  "findings": [
+    {
+      "severity": "warning",
+      "code": "SYNC-LOOP-CONT",
+      "paths": [
+        "harness\\loop-state.json",
+        "apps\\quant_assistant\\docs\\CONTINUATION_PROMPT.md"
+      ],
+      "detail": "loop-state next_atomic_action='永久 Planner 基于权威因子宇宙计划、LOOP941 消费级 accepted snapshot confirmation evidence 与显式用户确认约束，签发下一核心功能计划；候选方向为 LOOP942 controlled comparison backtest，但不得由 Orchestrator 代替用户确认。' vs CONTINUATION 下一动作='REAL_MULTI_FACTOR_PROVISIONAL_COHORT_CONFIRMATION_LOOP939：基于 loop938 shortlist、逐项排除理由和真实 pairwise evidence，生成消费级 provisional cohort confirmation 与多因子约束审查；不写 final accepted、不运行回测。'",
+      "recommendation": "对齐 loop-state.json 与 CONTINUATION_PROMPT 下一动作字段。"
+    },
+    {
+      "severity": "info",
+      "code": "SYNC-LOOP-TREES",
+      "paths": [
+        "harness\\loop-state.json",
+        "apps\\quant_assistant\\docs\\TASK_TREES.md"
+      ],
+      "detail": "loop-state='永久 Planner 基于权威因子宇宙计划、LOOP941 消费级 accepted snapshot confirmation evidence 与显式用户确认约束，签发下一核心功能计划；候选方向为 LOOP942 controlled comparison backtest，但不得由 Orchestrator 代替用户确认。' vs TASK_TREES 下一未勾选项='REAL_MULTI_FACTOR_ACCEPTED_SNAPSHOT_CONFIRMATION_LOOP941：消费 LOOP940 comparison evidence，形成单因子/多因子分离的 accepted snapshot proposal 和消费级确认内容；未获用户按钮确认前不写 accepted、不排队、不运行回测。'",
+      "recommendation": "确认 TASK_TREES 排序与 loop-state 已同步。"
+    },
+    {
+      "severity": "warning",
+      "code": "SYNC-TOP-NEXT",
+      "paths": [
+        "apps\\quant_assistant\\docs\\PROJECT_STATUS.md",
+        "harness\\loop-state.json"
+      ],
+      "detail": "顶部摘要未体现 loop-state 下一动作：'永久 Planner 基于权威因子宇宙计划、LOOP941 消费级 accepted snapshot confirmation evidence 与显式用户确认约束，签发下一核心功能计划；候选方向为 LOOP942 controlled comparison backtest，但不得由 Orchestrator 代替用户确认。'",
+      "recommendation": "更新顶部「下一方向」与 next_atomic_action 一致。"
+    }
+  ],
   "last_lifecycle": {
-    "at": "2026-07-13T02:27:48Z",
-    "finding_count": 0,
-    "warning_count": 0,
+    "at": "2026-07-13T12:00:36Z",
+    "finding_count": 3,
+    "warning_count": 2,
     "error_count": 0
   }
 }

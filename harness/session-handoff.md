@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-13T19:17:11+08:00
+updated_at: 2026-07-13T20:02:00+08:00
+
+## Latest Handoff — SYNC-962 LOOP942 controlled comparison backtest readiness closed
+
+- [DONE] LOOP942 consumes LOOP941 accepted snapshot plus explicit human outcome; complete snapshot schema validation precedes fingerprint-bound confirmation.
+- [DONE] Missing confirmation waits; reject/hold/malformed/stale/unsafe inputs clear drafts; valid confirm yields separate single-factor and multi-factor draft-only comparison requests.
+- [VERIFY] Focused `17`, direct LOOP940-942 `72`, Verifier chain `148`; Ruff/compileall/diff clean.
+- [BOUNDARY] `qa-pg-alt` injected-runner review material only; no executable request, accepted write, queue, scorer, backtest, default runner, substitute runtime or secret access.
+- [STOP] User explicitly requested stopping after this loop; do not start LOOP943 until a new instruction.
+- [PARKED] Reduce Orchestrator UI protocol noise by moving raw Worker/mechanical receipts to background task views and showing only product-stage summaries.
 
 ## Latest Handoff — SYNC-961 LOOP941 accepted snapshot confirmation closed
 
