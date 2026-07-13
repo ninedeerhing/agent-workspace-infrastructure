@@ -8,6 +8,7 @@ updated_at: 2026-07-13T16:40:00+08:00
 - [DONE] Invalidated LOOP940 planning/dispatch; loop-state points to LOOP939R repair.
 - [GATE] No close/advance until canonical Executor, Test Engineer, Code Reviewer, and Verifier all return valid reports with no unresolved finding. `systemError`, `waitingOnApproval`, empty report, reject, or stale channel blocks.
 - [RECOVERY] Retry only canonical Executor thread; do not create duplicate role or use orchestrator write fallback for the core repair.
+- [BLOCKED] Canonical Executor retry identified all four P2 conditions but its two `apply_patch` attempts were denied by its Windows ACL helper before any write. Await the same Worker channel's file-access recovery.
 - [NEXT] `LOOP939R_CONFIRMATION_SAFETY_PROVENANCE_AND_CORRELATION_REPAIR`.
 
 ## Latest Handoff — SYNC-956 cohort confirmation API/UI loop939
