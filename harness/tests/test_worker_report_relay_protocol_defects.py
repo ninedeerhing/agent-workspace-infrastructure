@@ -74,6 +74,20 @@ def test_relay_rejects_arbitrary_canonical_next_thread(tmp_path: Path) -> None:
         )
 
 
+def test_relay_rejects_payload_source_that_differs_from_observed_sender(
+    tmp_path: Path,
+) -> None:
+    payload = _payload(_report(CanonicalPhase.EXECUTOR), CanonicalPhase.TEST)
+
+    with pytest.raises(ReceiptIntegrityError, match="relay_source_thread_mismatch"):
+        consume_relay_receipt(
+            json.dumps(payload),
+            workflow_id="protocol-flow",
+            ledger_root=tmp_path,
+            observed_source_thread_id="different-sender-thread",
+        )
+
+
 @pytest.mark.parametrize("origin", [CanonicalPhase.REVIEW, CanonicalPhase.VERIFIER])
 def test_hot_path_correction_restarts_test_review_verifier_without_skip(
     tmp_path: Path,

@@ -12,7 +12,7 @@ tools: ["Read", "Grep", "Glob"]
 
 ## 单一职责
 
-- 接收 `HOT_PATH_WORKER_REPORT_V1`，验证 assignment、phase、role、canonical source thread、status 和 clean state。
+- 接收 `HOT_PATH_WORKER_REPORT_V1`，验证 assignment、phase、role、canonical source thread、status 和 clean state。CodeX delegation 外层实际 sender thread id 必须与 payload `source_thread_id` 完全相等；只看其中一层属于 `relay_source_thread_mismatch`，必须拒绝。
 - 对热路径 receipt 去重并保持 thread receipt 顺序；热路径 hash 可暂记 pending。
 - clean completion 直接转发固定 Dispatcher `019f0890-af82-7ad3-a19a-d319d9aa8bb5`。
 - 非 clean 状态 fail-closed 转发 Dispatcher 进入同阶段恢复或 correction cycle，不自行决定业务计划。
@@ -39,6 +39,7 @@ tools: ["Read", "Grep", "Glob"]
 - `relay_dispatch_ack_missing`
 
 任一错误存在时 `clean_state=false`，不得推进 phase。
+如果错误 receipt 已经转给 Dispatcher，Relay 必须立即发送 invalidation，Dispatcher 撤销该 receipt 派生的所有未执行 dispatch，再要求同一 canonical Worker 修正上报。
 
 ## 完成语义
 

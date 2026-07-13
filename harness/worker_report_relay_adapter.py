@@ -59,9 +59,12 @@ def consume_relay_receipt(
     *,
     workflow_id: str,
     ledger_root: Path = DEFAULT_RELAY_LEDGER_ROOT,
+    observed_source_thread_id: str | None = None,
 ) -> DispatcherHandoff | None:
     """Persist one relay receipt and return only a clean downstream dispatch."""
-    receipt = parse_relay_receipt(raw)
+    receipt = parse_relay_receipt(
+        raw, observed_source_thread_id=observed_source_thread_id,
+    )
     if receipt.report.assignment_id != workflow_id:
         raise ReceiptIntegrityError("relay_assignment_id_mismatch")
     generations = RelayLedgerGenerations(ledger_root, workflow_id=workflow_id)
@@ -100,7 +103,9 @@ def consume_relay_receipt(
     )
 
 
-def parse_relay_receipt(raw: str) -> RelayReceipt:
+def parse_relay_receipt(
+    raw: str, *, observed_source_thread_id: str | None = None,
+) -> RelayReceipt:
     """Parse and cross-check a relay envelope against its canonical report."""
     try:
         payload = json.loads(raw)
@@ -140,6 +145,11 @@ def parse_relay_receipt(raw: str) -> RelayReceipt:
     if report_hash != canonical_report_hash(report):
         raise ReceiptIntegrityError("relay_report_hash_mismatch")
     source_thread_id = _string(payload, "source_thread_id")
+    if (
+        observed_source_thread_id is not None
+        and source_thread_id != observed_source_thread_id.strip()
+    ):
+        raise ReceiptIntegrityError("relay_source_thread_mismatch")
     source_message_id = payload.get("source_message_id")
     if source_message_id is not None and (
         not isinstance(source_message_id, str) or not source_message_id.strip()

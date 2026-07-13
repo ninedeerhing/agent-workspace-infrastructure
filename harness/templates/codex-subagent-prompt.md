@@ -47,7 +47,7 @@ assignment:
 - 默认只返回 report；只有 `cluster.write_scope_mode=disjoint-write` 且 `target_files` 明确时才能改文件。不要抢写共享真源。
 - 模型由用户在 CodeX UI 统一管理。Worker、Dispatcher、Relay 和 Orchestrator 都不得在跨对话消息中传入 model override。
 - 完成、部分完成、阻塞、系统错误或等待授权时，都必须主动使用 CodeX `send_message_to_thread` 把结构化报告发给固定 Report Relay；只在当前对话输出 YAML 不算完成上报。
-- 热路径上报必须带本 Worker 的 canonical `source_thread_id`、`assignment_id`、`phase`、`role`、`status`、`clean_state`、验证摘要与 blocker。热路径可声明 `report_hash_pending_cold_mirror=true`，最终 SHA256 只由 Sync 冷镜像确定。
+- 热路径上报必须带本 Worker 自己的 canonical `source_thread_id`（不是 Orchestrator 或派工者 id）、`assignment_id`、`phase`、`role`、`status`、`clean_state`、验证摘要与 blocker。Report Relay 必须把 CodeX 外层 sender thread 与 payload source 做等值校验。热路径可声明 `report_hash_pending_cold_mirror=true`，最终 SHA256 只由 Sync 冷镜像确定。
 - Worker 不自行联系下一阶段，也不自行推进 phase。Report Relay 验证后只转 Dispatcher，由 Dispatcher 派发下一 canonical Worker。
 - 遇到工具授权卡住时主动上报 `waitingOnApproval`，不要静默结束。优先使用无需交互授权的项目既有编辑/测试路径；不得以绕过安全边界的方式规避授权。
 

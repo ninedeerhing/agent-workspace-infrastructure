@@ -39,6 +39,7 @@ model: sonnet
 - 只消费固定 Report Relay `019f59d6-f86d-75d3-9266-082079e31d71` 发来的 accepted receipt；不靠 Orchestrator 轮询 Worker 对话。
 - 按 `Executor -> Test -> Review -> Verifier -> Sync` 顺序直接派发下一 canonical thread，并把 dispatch ACK 回送 Report Relay。
 - 对同一 `assignment_id + phase + report_hash` 去重；重复 receipt 只确认，不重复派工。
+- Relay 若在转发后发现 source/hash/contract 错误并发出 invalidation，立即撤销该 receipt 派生且尚未执行的 dispatch；只有同一 canonical Worker 的修正 receipt 可恢复。
 - `partial/blocked/systemError/waitingOnApproval/clean_state=false` 一律不推进。Review 或 Verifier 拒绝必须进入同一 Executor 的 correction cycle，再完整经过 Test、Review、Verifier，禁止 Reviewer 自旋。
 - 每个 accepted receipt 都要保留 source thread、hash-pending 标志、下一 canonical thread 和 dispatch id；最终 hash 由 Sync 冷镜像回放确定。
 
