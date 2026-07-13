@@ -1,5 +1,13 @@
 # Orchestrator latest report
 
+# Orchestrator Latest — SYNC-957
+
+- status: blocked_worker_gate
+- task: LOOP939R_CONFIRMATION_SAFETY_PROVENANCE_AND_CORRELATION_REPAIR
+- blocker: Executor final report identified unclosed P2 safety/provenance and correlation-threshold false-ready risks; its repair retry currently returned systemError
+- governance: LOOP940 invalidated. Mandatory Executor/Test Engineer/Code Reviewer/Verifier rendezvous is fail-closed; no local bypass and no duplicate worker identity.
+- next: recover canonical Executor channel, then complete TDD repair and all required reviews.
+
 # Orchestrator Latest — SYNC-956
 
 - status: success_with_isolated_legacy_test_debt

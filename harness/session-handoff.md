@@ -2,6 +2,14 @@
 
 updated_at: 2026-07-13T16:40:00+08:00
 
+## Latest Handoff — SYNC-957 LOOP939R mandatory-worker repair
+
+- [BLOCKED] Executor final LOOP939 report disclosed P2 false-ready risks: incomplete safety/provenance metadata and unconstrained pairwise absolute correlation.
+- [DONE] Invalidated LOOP940 planning/dispatch; loop-state points to LOOP939R repair.
+- [GATE] No close/advance until canonical Executor, Test Engineer, Code Reviewer, and Verifier all return valid reports with no unresolved finding. `systemError`, `waitingOnApproval`, empty report, reject, or stale channel blocks.
+- [RECOVERY] Retry only canonical Executor thread; do not create duplicate role or use orchestrator write fallback for the core repair.
+- [NEXT] `LOOP939R_CONFIRMATION_SAFETY_PROVENANCE_AND_CORRELATION_REPAIR`.
+
 ## Latest Handoff — SYNC-956 cohort confirmation API/UI loop939
 
 - [DONE] `GET /api/v1/quant/provisional-cohort` exposes a fail-closed ABCD provisional confirmation derived from actual cohort evidence.

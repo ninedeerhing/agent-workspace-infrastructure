@@ -1,6 +1,6 @@
 # AWI Employee Roster
 
-> 2026-07-13 SYNC-956：LOOP939 复用永久 Executor/Test Engineer/Code Reviewer/Verifier：Executor 以当前最新最强模型完成 confirmation API/UI；Test Engineer 复核关闭 API/UI must-fix；Verifier focused 9-pass；Code Reviewer systemError 按通道异常记录，不创建重复 worker。
+> 2026-07-13 SYNC-957：LOOP939R 因 Executor final report P2 重新打开；LOOP940 dispatch 已撤销。Executor/Test Engineer/Code Reviewer/Verifier 全部是强制 rendezvous role，任一 systemError/waiting/空 report/unresolved finding 即阻断当前 loop；只重试原永久线程，不创建重复身份。
 >
 > 2026-07-13 SYNC-954：LOOP937 Backend Executor、Web Executor、Planner、Code Reviewer、QA Tester 按单一职责完成 A 财务 UI→真实评分→provisional 链；多轮真实 QA 暴露并关闭 stale summary、跨 thread 多任务和 revision lineage 展示问题，最终 reviewer APPROVE。
 >
