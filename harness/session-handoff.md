@@ -1,6 +1,16 @@
 # Session Handoff
 
-updated_at: 2026-07-13T18:12:00+08:00
+updated_at: 2026-07-13T19:17:11+08:00
+
+## Latest Handoff — SYNC-961 LOOP941 accepted snapshot confirmation closed
+
+- [DONE] LOOP939R confirmation plus LOOP940 persisted-real comparison now produce one consumer-readable accepted snapshot proposal with distinct single-factor and decorrelated multi-factor snapshots.
+- [DONE] Metric, incremental-benefit, stability, overlap, correlation, exclusion and provenance evidence are visible; confirm/reject/hold remain explicit user actions with no write/queue/backtest authority.
+- [VERIFY] Baseline/scope schemas are closed, rows are sanitized allowlist reconstructions, and seeded/provisional/unknown/nested execution-bearing evidence fails closed and clears outputs.
+- [VERIFY] Focused 17 passed; explicit adjacent chain 131 passed; Ruff/compileall/diff passed; permanent Executor/Test/Review/Verifier chain is clean after correction_cycle=1.
+- [BOUNDARY] No accepted write, queue, scorer, backtest, default runner, substitute runtime, secret access, model override or duplicate Worker.
+- [NEXT] Permanent Planner selects the next core function under explicit-user-confirmation constraints; authoritative candidate is LOOP942 controlled comparison backtest.
+- [PARKED] Reduce Orchestrator UI protocol noise by moving raw Worker/mechanical receipts to background task views and showing only product-stage summaries; do not displace the quant mainline.
 
 ## Latest Handoff — SYNC-960 canonical delivery ACK closed
 

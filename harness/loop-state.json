@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T18:12:00+08:00",
+  "updated_at": "2026-07-13T19:17:11+08:00",
   "mode": "continuous_implementation_loop",
   "stop_reason": "",
   "current_tree": "TREE-6",
-  "current_slice": "real-multi-factor-accepted-snapshot-confirmation-loop941",
-  "next_atomic_action": "REAL_MULTI_FACTOR_ACCEPTED_SNAPSHOT_CONFIRMATION_LOOP941：永久 Planner 基于 LOOP940 comparison evidence 签发消费级 accepted snapshot proposal 与显式确认路径的核心功能计划。",
-  "next_after": "After the worker-delivery ACK defect is closed, Dispatcher assigns the permanent workers for LOOP941; no automatic accepted write, queue, scorer, or backtest before explicit user confirmation.",
+  "current_slice": "planner-select-next-core-function-after-loop941",
+  "next_atomic_action": "永久 Planner 基于权威因子宇宙计划、LOOP941 消费级 accepted snapshot confirmation evidence 与显式用户确认约束，签发下一核心功能计划；候选方向为 LOOP942 controlled comparison backtest，但不得由 Orchestrator 代替用户确认。",
+  "next_after": "Dispatcher assigns the same permanent workers for the Planner-approved next core loop. Keep the AWI raw worker-protocol UI-noise improvement in the architecture parking lot; it must not displace the quant mainline.",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,15 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-960-worker-delivery-ack-v1-closed",
+  "last_tick": "SYNC-961-loop941-accepted-snapshot-confirmation-closed",
   "last_sync_sources": [
+    "SYNC-961 LOOP941 mandatory chain closed",
+    "loop941 core: consumer-readable accepted snapshot proposal keeps real single-factor and decorrelated multi-factor snapshots distinct and exposes confirm/reject/hold actions",
+    "loop941 evidence: metric, incremental benefit, stability, overlap, correlation, exclusions and provenance are surfaced from LOOP939R/940 persisted-real contracts",
+    "loop941 safety: malformed/stale/seeded/provisional/unknown/nested execution-bearing evidence fails closed; visible rows are sanitized allowlist reconstructions",
+    "loop941 verification: focused 17 passed; explicit adjacent chain 131 passed; Ruff/compileall/diff clean; permanent Test/Review/Verifier clean",
+    "loop941 boundary: no accepted write, queue, scorer, backtest, default runner, substitute runtime or model override",
+    "next: permanent Planner selects the next core function under explicit user-confirmation constraints; likely LOOP942 controlled comparison backtest planning/execution path",
     "SYNC-960 AWI canonical handoff delivery ACK closed",
     "receiver proof: actual Dispatcher -> Orchestrator Sync delivery plus deterministic CODEX_TARGET_DELIVERY_RECEIPT_V1 and Relay ACK V60",
     "verification: delivery ACK 13, related 74, full harness 94, Ruff/compileall/diff clean",

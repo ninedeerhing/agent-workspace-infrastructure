@@ -1,26 +1,26 @@
 # raindeer 项目进度日志
 
-> 更新时间：2026-07-13 17:20（Asia/Shanghai）
-> 更新批次：SYNC-958-loop939r-mandatory-chain-closed
+> 更新时间：2026-07-13 19:17（Asia/Shanghai）
+> 更新批次：SYNC-961-loop941-accepted-snapshot-confirmation-closed
 > 本文档是 `harness/progress.md`，记录 raindeer 项目的人类可读进度日志。
 
 ---
 
 ## Hot Path Summary（2026-07-13）
 
-- **当前主线**：TREE-6 因子构造宇宙，LOOP939R 强制链已关闭。
-- **本轮结果**：候选指标合同、引用解析、A-D taxonomy 与 role partition 全部 fail closed；confirmation-only 边界保持。
-- **验证证据**：89 个 focused/adjacent tests，Verifier 76 个 fresh tests，Ruff、compileall proxy、diff-check 全部通过。
-- **Worker 链**：永久 Executor -> Test -> Review -> Verifier -> Sync；correction_cycle=2，冷镜像与 SHA256 lineage 已对账。
-- **下一动作**：永久 Planner 重新签发 `REAL_MULTI_FACTOR_BASELINE_COMPARISON_LOOP940`，随后由 Dispatcher 恢复 mandatory chain。
+- **当前主线**：TREE-6 因子构造宇宙，LOOP941 accepted snapshot confirmation 已关闭。
+- **本轮结果**：真实单因子与去相关多因子快照保持独立；完整比较证据与 confirm/reject/hold 消费动作已进入稳定创建计划 read-model。
+- **验证证据**：focused 17 passed，Verifier explicit adjacent 131 passed，Ruff、compileall、diff-check 全部通过。
+- **Worker 链**：永久 Executor -> Test -> Review -> Verifier -> Sync；correction_cycle=1 关闭 baseline provenance / nested marker fail-open。
+- **下一动作**：永久 Planner 按显式用户确认约束选择下一核心功能；权威候选为 `CONTROLLED_COMPARISON_BACKTEST_LOOP942`。
 
 ---
 
 ## Current State（当前状态）
 
 - **项目阶段**：TREE-6 因子构造宇宙真实可用主线
-- **整体进度**：跨类别 provisional cohort confirmation 已完成；下一阶段为真实单因子基线与去相关多因子组合比较
-- **当前主线**：LOOP939R closed；等待永久 Planner 签发 LOOP940
+- **整体进度**：跨类别 provisional cohort、真实单/多因子比较与消费级 accepted snapshot proposal 已完成；下一阶段为显式确认后的受控比较回测
+- **当前主线**：LOOP941 closed；等待永久 Planner 签发下一核心功能
 - **活跃任务树**：TREE-6
 - **后台专题**：AWI permanent Worker report chain 已关闭并保持运行
 - **环境状态**：本地开发环境就绪；本轮未启动 DB/Docker/runtime
