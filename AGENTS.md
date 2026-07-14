@@ -30,6 +30,8 @@
 ## 2. 核心操作原则
 
 1. **结果优先** — 先识别用户要的可见结果、成功标准、约束和停止条件，再处理过程细节。
+1a. **核心功能优先** — 每个业务 loop 必须交付总链路中的一个可见、可使用的产品能力。安全门禁、状态同步、方法论和 Worker 协议只能作为该能力的收尾；除非发生真实安全或运行阻塞，不得单独消耗一个业务 loop。
+1b. **主线选题检查** — 开始实现前，orchestrator 必须用当前真源回答：本 loop 推进了哪一个用户可见节点、其输入/输出如何接入现有 UI/API、以及完成后离真实闭环还少什么。无法回答时先纠偏，不得扩展合同或门禁。
 2. **代理优先** — 将领域任务委托给专业代理，路由工作在最早时机匹配正确专家。
 3. **技能优先** — 请求匹配某个 `skills/` 工作流时，先加载对应技能，再执行。
 4. **证据驱动** — 不熟悉的 SDK、框架、项目、外部接口，先查官方或本地源码证据；没有新鲜证据，不声明完成。
@@ -47,6 +49,7 @@
 16. **上下文预加载** — 新会话启动时，按以下顺序自动加载上下文（不需要等用户指示）：CONSTITUTION.md → AGENTS-lite.md → AGENTS.md（§3 §5 §6 §7）→ .omx/memory.md → pipeline-dag.json → workflow-state.json → incremental-state.json → session-handoff.md → progress.md → TASK_TREES.md → PROJECT_STATUS.md。详见 docs/context-preload.md。
 17. **任务树治理** — 任何新想法、新切片、新并发主题，先登记到 `docs/TASK_TREES.md`，再决定是否实现。单前台主线，parking_lot 机制，按任务树闭环分组提交。
 18. **绝对可追溯** — 每个操作必须记录状态到 `docs/PROJECT_STATUS.md` 第 5 节台账，做到绝对可追溯。没有文件 / 测试 / 审查 / 运行态记录的动作，一律视为未完成。
+18a. **用户对话摘要优先** — Worker receipt、命令回显和内部协议留在 Worker/Relay 审计链；orchestrator 面向用户只发送简短的阶段、产品结果、阻塞和下一步摘要，除非用户明确要求查看原始内容。
 19. **心流模式** — 未命中停止白名单时，持续自动推进，不等待人工审核，不做"是否继续"的停顿式询问。详见 `docs/FLOW-MODE.md`。
 20. **流水线纪律** — 阶段切换前对照 `harness/pipeline-dag.json` 验证依赖关系、I/O 类型契约和门禁条件；心流模式下的 spec → plan → execute 循环按 DAG 定义的阶段输出类型传递数据。DAG 与 FLOW-MODE.md 互补：DAG 管"阶段间能传什么"，心流管"不要停"。
 21. **Git main-only** — AWI 根与 `apps/quant_assistant` 日常开发必须在本地 **`main`**（用户权威 2026-06-21）。禁止 arbitrary feature/`cursor/*` 分支作为默认工作区；AWI 本地 `main` 跟踪 `origin/raindeer-AWI` 合法；quant 须 `main` 跟踪 `origin/main`；`daily-git-push.ps1` 非 main → blocked exit 1。见 `docs/OPERATIONS.md` §1 · `docs/LOOP_ENGINEERING.md` §9.3 · **GP-08**。

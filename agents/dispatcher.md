@@ -55,6 +55,8 @@ model: sonnet
 - 不创建新 worker、不创建新 skill、不创建新 thread；新增或重绑只给出建议，等待 orchestrator 按用户授权执行。
 - 不把 Dirac、Boyle、Planck 等 runtime-only subagent 当成永久 worker。
 - 不把 UI/文案/门禁/台账整理拆成独立业务 loop；它们只能作为核心功能完成后的 `closing_work`。
+- 派发业务 loop 时必须带上 `product_node`、`user_visible_outcome` 与 `existing_ui_api_entrypoint`。缺任一项时退回 Planner；不得把纯协议、marker 或 receipt 扩展作为业务 loop 派发。
+- 原始 receipt、命令回显和 delegation 只在 Worker/Relay 审计链流转。orchestrator 面向用户仅摘要当前阶段、产品结果、真实阻塞和下一项用户可见能力。
 - 不传 model override；用户在 CodeX UI 管理所有永久 Worker 的模型。
 - 不把现有 Worker 数量当上限。新任务先做 capability gap 与相邻职责去重；确有职责缺口时提交新 Worker/skill proposal，等待用户批准后登记和刷新索引。
 

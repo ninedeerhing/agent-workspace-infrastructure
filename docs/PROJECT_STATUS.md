@@ -7,7 +7,7 @@
 - Legacy v2 root ledgers plus generation-1 and generation-2 remain preserved as drift/replacement audit evidence.
 - Same-thread archive/unarchive plus a narrow no-approval follow-up recovered CodeX approval stalls without replacing worker identities.
 - User controls worker models in the CodeX UI; AWI messages no longer carry model overrides.
-- Evidence: `harness/reports/orchestrator/worker-report-inbox-v1-sync.md`, 18 focused tests, and 81 passing full harness tests. Business mainline remains LOOP939R.
+- Evidence: `harness/reports/orchestrator/worker-report-inbox-v1-sync.md`, 18 focused tests, and 81 passing full harness tests. LOOP939R--942 are closed; the business mainline resumes with the UI-connected controlled real comparison backtest, report, and feedback-memory vertical slice.
 
 This file serves as the **single source of truth for project state**. On every implementation push or decision change, synchronously update the following sections: overall milestones, module progress table, in-progress tasks, incomplete module list.
 
