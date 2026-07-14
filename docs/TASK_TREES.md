@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-14T17:35:43+08:00 · TREE-6 · controlled comparison persisted report hydration closed
+Updated: 2026-07-14T17:42:00+08:00 · TREE-6 · scoring evidence provenance linkage active
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -78,12 +78,13 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 - Verification and boundary: 最终后端矩阵 `183 passed`，桥接/报告相邻矩阵 `36 passed`，Ruff、compileall、diff、前端 current-task contract 和 build 通过。畸形 bridge、未知字段、错误 runner/runtime、重复或非法 run ID、未脱敏错误都会清空输出并 fail-closed；本轮未启动服务、DB、Docker、queue、scorer 或真实 backtest。
 - Closed core slice: `CONTROLLED_COMPARISON_PERSISTED_REPORT_HYDRATION`。已在同一 Jobs/Factor Library 路径中读取三条所属用户的真实持久化回测结果，展示单因子/多因子指标和真实差值；完整 request 语义、归属、成功状态和重复执行均已严格处理。
 - Evidence boundary: 真实回测指标已回填，但该表没有 IC/RankIC。证据缺失时报告保持不完整、feedback-memory 不 ready，绝不伪造评分指标。
-- Next core candidate: `CONTROLLED_COMPARISON_SCORING_EVIDENCE_LINKAGE`，只在能证明同一 factor/scope 的前提下关联既有真实评分 IC/RankIC，完成报告和反馈闭环；不是新增确认或门禁。
+- Closed core slice: `CONTROLLED_COMPARISON_SCORING_EVIDENCE_PROVENANCE`。真实评分结果现在携带 `source_job_id`、`source_user_id`、不可变 `scoring_evidence_id` 与完整 scope fingerprint；held/failed 结果不可消费。
+- Non-goals: 本切片不读取或补写回测结果、不自动接入 IC/RankIC 到报告、不新增确认、队列、runner 或 runtime；它只补齐后续真实关联所需的产品 provenance。
 - Execution topology: 用户已明确启用临时 `in_chat_subagents` Goal-mode；本对话内实现、测试和独立审查仍需职责分离。用户明确恢复前不派发跨对话 Worker。
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `PLAN_CONTROLLED_COMPARISON_SCORING_EVIDENCE_LINKAGE` — audit existing persisted real-scoring evidence and its scope/ownership contract before linking authentic IC/RankIC to the completed comparison report. Keep no DB/Docker/scorer/backtest.
+- Next atomic action: `PLAN_SCORING_EVIDENCE_TO_COMPARISON_LINKAGE` — consume only exact provenance-matched real scoring IC/RankIC in the completed comparison report; keep no DB/Docker/scorer/backtest.
 
 ## EXCLUDE: Default Exclusions
 

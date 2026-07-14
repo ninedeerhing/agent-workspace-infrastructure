@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-14T17:35:43+08:00",
+  "updated_at": "2026-07-14T17:42:00+08:00",
   "mode": "continuous_implementation_loop",
   "execution_topology": {
     "default": "cross_thread_workers",
@@ -14,9 +14,9 @@
   },
   "stop_reason": null,
   "current_tree": "TREE-6",
-  "current_slice": "CONTROLLED_COMPARISON_PERSISTED_REPORT_HYDRATION_CLOSED",
-  "next_atomic_action": "PLAN_CONTROLLED_COMPARISON_SCORING_EVIDENCE_LINKAGE",
-  "next_after": "将合法的持久化真实评分 IC/RankIC 证据与同一比较 scope 关联；只有证据完整时才让报告和 feedback-memory 进入 ready，绝不推断或伪造指标。",
+  "current_slice": "CONTROLLED_COMPARISON_SCORING_EVIDENCE_PROVENANCE_CLOSED",
+  "next_atomic_action": "PLAN_SCORING_EVIDENCE_TO_COMPARISON_LINKAGE",
+  "next_after": "仅使用 source_job_id/source_user_id/scoring_evidence_id/scope_fingerprint 完整匹配的真实评分证据为比较报告补充 IC/RankIC；缺任一证据时保持不完整。",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -29,8 +29,9 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "GOAL-IN-CHAT-002-controlled-comparison-persisted-report-hydration-closed",
+  "last_tick": "GOAL-IN-CHAT-003-controlled-comparison-scoring-evidence-provenance-closed",
   "last_sync_sources": [
+    "GOAL-IN-CHAT-003: next core function selected from scoring-evidence audit; current contracts lack owner/job/immutable evidence/scope linkage and must not be guessed",
     "GOAL-IN-CHAT-002: controlled comparison persisted report hydration closed after direct 43 passed, adjacent TREE-6 183 passed, independent review corrections, Ruff, compileall and diff check",
     "product: Jobs/Factor Library now show owned official single-vs-multi persisted backtest metrics and deltas; absent IC/RankIC remains explicitly incomplete and not feedback-ready",
     "GOAL-IN-CHAT-001: user enabled temporary in-chat-subagent goal mode and resumed mainline after explicit pause",
