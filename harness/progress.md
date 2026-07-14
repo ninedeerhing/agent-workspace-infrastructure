@@ -192,3 +192,10 @@
 3. 当两处存在冲突时，以本项目级 `harness/progress.md` 为准（但应同步对齐）
 4. 所有"已完成"声明必须有对应验证证据
 5. 每轮状态更新必须同步更新本文件的 Current State 和时间戳
+
+## 2026-07-14 · SYNC-963 · TREE-6 controlled comparison vertical slice
+
+- Closed the user-visible LOOP941/942 comparison path: explicit Jobs action only, official injected runner only, `qa-pg-alt` contract only, with separate single-factor and multi-factor request lineage.
+- Jobs and Factor Library now carry comparison run IDs, progress/report state and feedback-memory state. Strict bridge validation rejects malformed runtime/progress/report/feedback evidence without regressing legacy controlled-backtest observability.
+- Verification: backend `183 passed`; bridge/surface `36 passed`; Ruff, compileall, diff check, web current-task contract and production build passed. No services, DB, Docker, queue, scorer or real backtest were started for verification.
+- Status: user-requested pause after this loop; no next business action is scheduled.

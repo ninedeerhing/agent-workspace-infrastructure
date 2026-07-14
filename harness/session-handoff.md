@@ -6703,3 +6703,10 @@ python harness/loop_tick.py prepare
 - **Real evidence**: 234 revisions/20 codes; 147 clean and 34 ambiguous latest groups. Revenue and attributable-net-income factors each produced 8,215 values over 562 dates and finite IC/RankIC/coverage. Backtest tables unchanged.
 - **Verification**: 58 focused tests, Ruff, final independent review APPROVE after two repair rounds.
 - **Next**: `A_FINANCIAL_UI_JOB_PROVISIONAL_VALIDATION_LOOP937`.
+
+# Current Handoff · SYNC-963 · 2026-07-14
+
+- **Completed**: UI-connected controlled real comparison backtest vertical slice. LOOP941 accepted snapshot and LOOP942 fingerprint-bound explicit confirmation now route through one explicit Jobs action to separate single-factor and weighted multi-factor requests using the official injected runner contract on `qa-pg-alt`.
+- **Product result**: Jobs and Factor Library surface comparison run IDs, progress, report readiness, comparison report and feedback-memory state. Invalid comparison bridge data is fail-closed and cleared before consumer rendering; legacy non-comparison controlled-backtest observability remains compatible.
+- **Verification**: final backend matrix `183 passed`; bridge/surface matrix `36 passed`; Ruff, compileall and `git diff --check` passed; web current-task model check and production build passed. No DB/Docker/service/runtime/backtest action occurred during verification.
+- **Stop**: user explicitly requested a pause after this loop. `harness/loop-state.json` has no next atomic action; wait for the user's next task.

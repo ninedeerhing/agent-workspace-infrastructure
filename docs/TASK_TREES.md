@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-14T00:00:00+08:00 · MAINLINE-REALIGNMENT · Product-closure-first recovery after LOOP942
+Updated: 2026-07-14T16:58:50+08:00 · TREE-6 · UI-connected controlled comparison slice closed; user-requested pause
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -74,8 +74,9 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 - AWI architecture blocker `awi-worker-report-inbox-v1` is closed: permanent hot-report Relay, direct Dispatcher phase handoff, correction cycle, cold mirror and same-thread approval recovery are verified. It remains a runtime governance sidecar and does not replace TREE-6 business goals.
 
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
-- Current operational loop: `apps/quant_assistant` 因子构造宇宙真实可用链路；LOOP939R--942 已完成 evidence/confirmation/read-model 收口，但裁判审查确认它们尚未成为用户可点击的真实回测闭环。
-- Next core slice: 将 LOOP941 accepted snapshot 与 LOOP942 explicit confirmation 接入现有 UI/API，使用既有 `qa-pg-alt` 与注入 runner 完成一个受控的真实单因子/多因子比较回测，并在 Jobs/Factor Library 展示 run ID、指标、报告和 feedback-memory 状态。状态同步、门禁和 Worker 审计只作为该切片收尾。
+- Current operational loop: `UI_CONNECTED_CONTROLLED_REAL_COMPARISON_BACKTEST_VERTICAL_SLICE` 已关闭。LOOP941 accepted snapshot 与 LOOP942 explicit confirmation 已接入现有 Jobs/API：明确用户操作后才会将单因子和加权多因子比较请求交给既有 `qa-pg-alt` 官方注入 runner；Jobs/Factor Library 已展示 run ID、比较进度、报告就绪度和 feedback-memory 状态。
+- Verification and boundary: 最终后端矩阵 `183 passed`，桥接/报告相邻矩阵 `36 passed`，Ruff、compileall、diff、前端 current-task contract 和 build 通过。畸形 bridge、未知字段、错误 runner/runtime、重复或非法 run ID、未脱敏错误都会清空输出并 fail-closed；本轮未启动服务、DB、Docker、queue、scorer 或真实 backtest。
+- Status: 用户要求本 loop 收口后暂停；不启动下一 core slice，等待新的明确任务。
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.

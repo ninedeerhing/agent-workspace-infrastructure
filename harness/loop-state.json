@@ -1,12 +1,12 @@
 {
   "version": "1.0.0",
-  "updated_at": "2026-07-13T20:02:00+08:00",
+  "updated_at": "2026-07-14T16:58:50+08:00",
   "mode": "continuous_implementation_loop",
-  "stop_reason": null,
+  "stop_reason": "user_explicit_stop_after_ui_connected_controlled_real_comparison_backtest_vertical_slice",
   "current_tree": "TREE-6",
-  "current_slice": "PRODUCT_CLOSURE_REALIGNMENT_AFTER_LOOP942",
-  "next_atomic_action": "PLAN_UI_CONNECTED_CONTROLLED_REAL_COMPARISON_BACKTEST_VERTICAL_SLICE",
-  "next_after": "先完成 UI/API/真实回测/报告/feedback-memory 的最小垂直闭环；门禁、真源同步和 Worker 审计只作为收尾。",
+  "current_slice": "UI_CONNECTED_CONTROLLED_REAL_COMPARISON_BACKTEST_VERTICAL_SLICE_CLOSED",
+  "next_atomic_action": null,
+  "next_after": "用户已要求在本轮收口后暂停；等待新的明确任务，不得自行启动下一业务 loop。",
   "blockers": [
     {
       "id": "WSL2-BENCH-1",
@@ -19,8 +19,14 @@
       "note": "IC smoke pass loop123 · daily_trade_status tail complete status=ok 14/14 post cnt=23390725/day_cnt=3995/max=2026-06-18 · missing_to_20260618=0 · old tail process gone · duplicate scan other_batch_count=0 · loop144 adj_factor column path audit closed as stale wording: schema column/view + daily snapshot step + backtest extras job + cn_adj_factor updater are wired; no DB/backfill restart needed"
     }
   ],
-  "last_tick": "SYNC-962-loop942-controlled-comparison-backtest-closed",
+  "last_tick": "SYNC-963-ui-connected-controlled-real-comparison-backtest-vertical-slice-closed",
   "last_sync_sources": [
+    "SYNC-963 UI-connected controlled real comparison backtest vertical slice closed after correction_cycle=1",
+    "core: LOOP941 accepted snapshot and LOOP942 explicit confirmation now feed an explicit Jobs action that delegates single-factor plus weighted multi-factor comparison requests only to the official injected runner on qa-pg-alt",
+    "product: Jobs and Factor Library expose comparison run IDs, progress, report readiness and feedback-memory status; malformed/stale/unsafe comparison bridge data is cleared and blocked before it can render completed",
+    "verification: final backend matrix 183 passed; bridge/surface matrix 36 passed; Ruff, compileall and diff check passed; web controlled-current-task-card contract and production build passed",
+    "boundary: no service, DB, Docker, queue, scorer or real backtest was run during this slice verification; no default or substitute runner/runtime",
+    "stop: user explicitly requested pause after this loop; do not dispatch the next business loop",
     "SYNC-962 LOOP942 mandatory chain closed after Review correction_cycle=1",
     "loop942 core: explicit human confirmation is fingerprint-bound to a strictly revalidated LOOP941 snapshot before producing separate single-factor and multi-factor draft-only comparison requests",
     "loop942 verification: focused 17 passed; direct LOOP940-942 matrix 72 passed; verifier confirmation-selector-940-941-942 chain 148 passed; Ruff/compileall/diff clean",
