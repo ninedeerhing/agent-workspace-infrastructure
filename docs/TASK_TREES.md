@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-14T17:42:00+08:00 · TREE-6 · scoring evidence provenance linkage active
+Updated: 2026-07-14T19:30:18+08:00 · TREE-6 · formal comparison quality metrics closed
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -79,12 +79,13 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 - Closed core slice: `CONTROLLED_COMPARISON_PERSISTED_REPORT_HYDRATION`。已在同一 Jobs/Factor Library 路径中读取三条所属用户的真实持久化回测结果，展示单因子/多因子指标和真实差值；完整 request 语义、归属、成功状态和重复执行均已严格处理。
 - Evidence boundary: 真实回测指标已回填，但该表没有 IC/RankIC。证据缺失时报告保持不完整、feedback-memory 不 ready，绝不伪造评分指标。
 - Closed core slice: `CONTROLLED_COMPARISON_SCORING_EVIDENCE_PROVENANCE`。真实评分结果现在携带 `source_job_id`、`source_user_id`、不可变 `scoring_evidence_id` 与完整 scope fingerprint；held/failed 结果不可消费。
-- Non-goals: 本切片不读取或补写回测结果、不自动接入 IC/RankIC 到报告、不新增确认、队列、runner 或 runtime；它只补齐后续真实关联所需的产品 provenance。
+- Closed core slice: `CONTROLLED_COMPARISON_BACKTEST_QUALITY_METRICS`。官方回测现在从同一 `BacktestRequest` 的因子面板、日期范围、universe 和非交易过滤计算单因子/加权多因子的真实 IC/RankIC，并和该 `run_id` 一起持久化；已有报告会直接消费这些指标并在三条运行齐全时完成 feedback-memory。
+- Evidence boundary: 旧的成功运行没有 `quality_computed` 标记，绝不在读模型刷新时自动重跑；新运行即使样本不足也会标记已计算并保留空 IC/RankIC。缓存只复用已完成质量计算的运行，避免把升级前结果误当作已验证证据。
 - Execution topology: 用户已明确启用临时 `in_chat_subagents` Goal-mode；本对话内实现、测试和独立审查仍需职责分离。用户明确恢复前不派发跨对话 Worker。
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `PLAN_SCORING_EVIDENCE_TO_COMPARISON_LINKAGE` — consume only exact provenance-matched real scoring IC/RankIC in the completed comparison report; keep no DB/Docker/scorer/backtest.
+- Next atomic action: `PLAN_EXPLICIT_COMPARISON_QUALITY_REFRESH_ACTION` — 为旧完成比较提供一个用户可见、显式触发的官方重跑/刷新入口；只在用户操作后重算同范围质量指标，读模型刷新绝不隐式执行。
 
 ## EXCLUDE: Default Exclusions
 

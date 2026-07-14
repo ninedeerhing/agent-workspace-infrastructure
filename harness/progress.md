@@ -1,17 +1,17 @@
 # raindeer 项目进度日志
 
-> 更新时间：2026-07-14 17:35（Asia/Shanghai）
-> 更新批次：TREE-6-controlled-comparison-persisted-report-hydration
+> 更新时间：2026-07-14 19:30（Asia/Shanghai）
+> 更新批次：TREE-6-controlled-comparison-backtest-quality-metrics
 > 本文档是 `harness/progress.md`，记录 raindeer 项目的人类可读进度日志。
 
 ---
 
 ## Hot Path Summary（2026-07-13）
 
-- **当前主线**：TREE-6 因子构造宇宙，已进入受控比较回测的持久化结果消费阶段。
-- **本轮结果**：Jobs/Factor Library 现在会从三个所属用户的官方持久化比较运行中回填真实年化、回撤、换手、胜率、Sharpe 和多因子相对每个单因子的差值。完整请求语义、归属和运行状态均被验证，已完成比较只会刷新结果，绝不会重复触发 runner。
-- **证据状态**：回测表没有 IC/RankIC 时，报告明确显示“已回填但证据不完整”，不会把反馈记忆误标为 ready。
-- **验证证据**：direct 43 passed，TREE-6 adjacent 183 passed，Ruff、compileall、diff-check 全部通过；独立审查三项产品正确性问题已修复并复验。
+- **当前主线**：TREE-6 因子构造宇宙，正式受控比较回测现已能产出同范围质量指标。
+- **本轮结果**：官方回测从实际请求使用的因子面板、日期范围、universe 与非交易过滤派生真实 IC/RankIC，并与年化、回撤、换手、胜率、Sharpe 一起按同一 `run_id` 持久化；既有 Jobs/Factor Library 报告可直接消费三条完整真实结果。
+- **证据状态**：样本不足仍会保留空 IC/RankIC；升级前缓存记录则通过 `quality_computed=false` 识别，绝不被伪装成已验证结果或在刷新时自动重跑。
+- **验证证据**：focused/adjacent 53 passed，Ruff、compileall、diff-check 全部通过；未启动 DB/Docker/runtime、queue、scorer 或真实 backtest。
 - **执行模式**：临时使用当前对话内子代理 Goal 模式；用户恢复前不派发跨对话 Worker。
 
 ---
@@ -28,8 +28,8 @@
 ## Current State（当前状态）
 
 - **项目阶段**：TREE-6 因子构造宇宙真实可用主线
-- **整体进度**：跨类别 provisional cohort、真实单/多因子比较、accepted snapshot、显式确认、受控比较回测与真实回测指标回填已完成；下一阶段是把合法的真实评分 IC/RankIC 证据关联到比较报告，完成反馈闭环。
-- **当前主线**：`CONTROLLED_COMPARISON_PERSISTED_REPORT_HYDRATION` closed；下一核心功能待按真实评分证据的数据契约选择。
+- **整体进度**：跨类别 provisional cohort、真实单/多因子比较、accepted snapshot、显式确认、受控比较回测、正式回测指标及同范围 IC/RankIC 已完成；下一阶段是让用户可以显式刷新升级前的已完成比较，完成反馈闭环。
+- **当前主线**：`CONTROLLED_COMPARISON_BACKTEST_QUALITY_METRICS` closed；下一核心功能是旧比较的显式质量刷新入口。
 - **活跃任务树**：TREE-6
 - **后台专题**：AWI permanent Worker report chain 已关闭并保持运行
 - **环境状态**：本地开发环境就绪；本轮未启动 DB/Docker/runtime

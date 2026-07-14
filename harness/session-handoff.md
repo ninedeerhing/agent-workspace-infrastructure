@@ -1,6 +1,14 @@
 # Session Handoff
 
-updated_at: 2026-07-14T17:35:43+08:00
+updated_at: 2026-07-14T19:30:18+08:00
+
+## Latest Handoff — controlled comparison backtest quality metrics closed
+
+- [DONE] The official backtest now derives IC/RankIC from the same factor panel, dates, universe and tradability decisions as each single-factor or weighted multi-factor `BacktestRequest`, and persists both metrics with that run's existing performance row.
+- [DONE] The completed controlled-comparison report already consumes these persisted metrics; when all three owned runs contain real values, its comparison report and feedback-memory become complete without a cross-window score join.
+- [DONE] `backtest_metrics.quality_computed` prevents legacy pre-upgrade rows from satisfying the official-run cache. New small-sample runs remain cacheable but visibly retain null IC/RankIC rather than fabricated values.
+- [VERIFY] Focused and adjacent matrix `53 passed`; Ruff, compileall and diff check passed. No DB/Docker/service/queue/scorer/real-backtest was run.
+- [NEXT] Build the user-visible explicit refresh action for old completed comparisons. It may invoke only the existing official runner after a user action; observability and report refresh must remain read-only.
 
 ## Latest Handoff — controlled comparison persisted report hydration closed
 
