@@ -1,6 +1,6 @@
 # Task Tree Ledger
 
-Updated: 2026-07-14T16:58:50+08:00 · TREE-6 · UI-connected controlled comparison slice closed; user-requested pause
+Updated: 2026-07-14T17:35:43+08:00 · TREE-6 · controlled comparison persisted report hydration closed
 
 Maintenance principle: any new idea, new slice, or new concurrent theme must be registered in this file before implementation.
 
@@ -76,11 +76,14 @@ New ideas registered here before implementation. Move to a TREE when ready to ex
 - Current sole foreground mainline: `TREE-6 / Factor Construction Universe`；`TREE-RT` CodeX-effective baseline 已验收，后续只做防漂移维护
 - Current operational loop: `UI_CONNECTED_CONTROLLED_REAL_COMPARISON_BACKTEST_VERTICAL_SLICE` 已关闭。LOOP941 accepted snapshot 与 LOOP942 explicit confirmation 已接入现有 Jobs/API：明确用户操作后才会将单因子和加权多因子比较请求交给既有 `qa-pg-alt` 官方注入 runner；Jobs/Factor Library 已展示 run ID、比较进度、报告就绪度和 feedback-memory 状态。
 - Verification and boundary: 最终后端矩阵 `183 passed`，桥接/报告相邻矩阵 `36 passed`，Ruff、compileall、diff、前端 current-task contract 和 build 通过。畸形 bridge、未知字段、错误 runner/runtime、重复或非法 run ID、未脱敏错误都会清空输出并 fail-closed；本轮未启动服务、DB、Docker、queue、scorer 或真实 backtest。
-- Status: 用户要求本 loop 收口后暂停；不启动下一 core slice，等待新的明确任务。
+- Closed core slice: `CONTROLLED_COMPARISON_PERSISTED_REPORT_HYDRATION`。已在同一 Jobs/Factor Library 路径中读取三条所属用户的真实持久化回测结果，展示单因子/多因子指标和真实差值；完整 request 语义、归属、成功状态和重复执行均已严格处理。
+- Evidence boundary: 真实回测指标已回填，但该表没有 IC/RankIC。证据缺失时报告保持不完整、feedback-memory 不 ready，绝不伪造评分指标。
+- Next core candidate: `CONTROLLED_COMPARISON_SCORING_EVIDENCE_LINKAGE`，只在能证明同一 factor/scope 的前提下关联既有真实评分 IC/RankIC，完成报告和反馈闭环；不是新增确认或门禁。
+- Execution topology: 用户已明确启用临时 `in_chat_subagents` Goal-mode；本对话内实现、测试和独立审查仍需职责分离。用户明确恢复前不派发跨对话 Worker。
 - Post-backfill route: continue the unique core mainline toward **user idea / no idea / class selection → ConstructionSpec → Factor Construction Universe → Candidate Registry → Quality Gates → real scoring → provisional/accepted pool → auto backtest → report → feedback memory**. Gaps are next goals, not stop points.
 - Current background themes: `apps/quant_assistant` TREE-2 degraded/future/env gaps remain explicit but non-blocking; no active backfill batch
 - Side capability themes: `PL-002` Codex skills router / gating, `PL-003` worker cluster / rendezvous governance, and `PL-004` daily-ops consolidation are promoted into loop/TREE-RT preflight gates; neither may overwrite global `~/.codex/skills` or create new worker roles without approval except the user-approved `daily-ops` worker. Router telemetry stays in Git-ignored `tmp/` unless summarized into truth sources.
-- Next atomic action: `POST_ACCEPTANCE_ENTRY_MODE_OBSERVABILITY_IN_JOBS_LOOP883` — carry manual category, user idea, and no-idea auto exploration context into Jobs current task/list observability, so users keep source_mode, idea/auto reason, category, and generator profile after clicking 查看当前任务. Keep no DB/Docker/scorer/backtest.
+- Next atomic action: `PLAN_CONTROLLED_COMPARISON_SCORING_EVIDENCE_LINKAGE` — audit existing persisted real-scoring evidence and its scope/ownership contract before linking authentic IC/RankIC to the completed comparison report. Keep no DB/Docker/scorer/backtest.
 
 ## EXCLUDE: Default Exclusions
 

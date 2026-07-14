@@ -1,6 +1,15 @@
 # Session Handoff
 
-updated_at: 2026-07-13T20:02:00+08:00
+updated_at: 2026-07-14T17:35:43+08:00
+
+## Latest Handoff — controlled comparison persisted report hydration closed
+
+- [DONE] A completed explicit controlled comparison now reads its three owned official persisted runs back into Jobs and Factor Library: two single-factor results, one weighted multi-factor result, and per-single deltas.
+- [DONE] Hydration validates user ownership, official `success` state, unique run IDs, and the complete original `BacktestRequest` semantics including universe, date window, rebalance, position count, weighting, fees/slippage, tradability, benchmark, and multi-factor weights/directions.
+- [DONE] Re-entering a completed comparison bridge refreshes persisted results only; it does not submit the runner again.
+- [VERIFY] Direct matrix `43 passed`; adjacent TREE-6 matrix `183 passed`; Ruff, compileall, and diff check passed. Independent review findings were fixed and retested.
+- [BOUNDARY] No actual DB/Docker/service/queue/scorer/backtest was run during verification. The persisted backtest table does not supply IC/RankIC, so hydrated real results remain explicitly incomplete and feedback-memory stays not ready without authentic scoring evidence.
+- [NEXT] Select the next core function from the scoring-result contract: associate legitimate persisted real IC/RankIC evidence with the exact comparison scope, or expose the evidence gap to the user. Do not invent metrics or add another confirmation/gating loop.
 
 ## Latest Handoff — SYNC-962 LOOP942 controlled comparison backtest readiness closed
 

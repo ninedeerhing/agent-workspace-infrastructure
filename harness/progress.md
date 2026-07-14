@@ -1,18 +1,18 @@
 # raindeer 项目进度日志
 
-> 更新时间：2026-07-13 19:17（Asia/Shanghai）
-> 更新批次：SYNC-962-loop942-controlled-comparison-backtest-closed
+> 更新时间：2026-07-14 17:35（Asia/Shanghai）
+> 更新批次：TREE-6-controlled-comparison-persisted-report-hydration
 > 本文档是 `harness/progress.md`，记录 raindeer 项目的人类可读进度日志。
 
 ---
 
 ## Hot Path Summary（2026-07-13）
 
-- **当前主线**：TREE-6 因子构造宇宙，LOOP942 controlled comparison backtest readiness 已关闭。
-- **本轮结果**：显式用户确认绑定完整 LOOP941 快照指纹；快照先经过严格 schema、指标、scope、summary、provenance、action 和嵌套执行标记重验，随后只生成分离的单因子/多因子回测草案与 qa-pg-alt 运行前复核材料。
-- **验证证据**：focused 17 passed，直接 LOOP940-942 矩阵 72 passed，Verifier confirmation→selector→940→941→942 链 148 passed，Ruff、compileall、diff-check 全部通过。
-- **Worker 链**：永久 Executor -> Test -> Review -> Verifier -> Sync；Review correction_cycle=1 关闭 malformed ready-shaped snapshot P2。
-- **停止状态**：用户明确要求本轮收口后停止；已设置 `user_explicit_stop`，不启动 LOOP943。
+- **当前主线**：TREE-6 因子构造宇宙，已进入受控比较回测的持久化结果消费阶段。
+- **本轮结果**：Jobs/Factor Library 现在会从三个所属用户的官方持久化比较运行中回填真实年化、回撤、换手、胜率、Sharpe 和多因子相对每个单因子的差值。完整请求语义、归属和运行状态均被验证，已完成比较只会刷新结果，绝不会重复触发 runner。
+- **证据状态**：回测表没有 IC/RankIC 时，报告明确显示“已回填但证据不完整”，不会把反馈记忆误标为 ready。
+- **验证证据**：direct 43 passed，TREE-6 adjacent 183 passed，Ruff、compileall、diff-check 全部通过；独立审查三项产品正确性问题已修复并复验。
+- **执行模式**：临时使用当前对话内子代理 Goal 模式；用户恢复前不派发跨对话 Worker。
 
 ---
 
@@ -28,8 +28,8 @@
 ## Current State（当前状态）
 
 - **项目阶段**：TREE-6 因子构造宇宙真实可用主线
-- **整体进度**：跨类别 provisional cohort、真实单/多因子比较与消费级 accepted snapshot proposal 已完成；下一阶段为显式确认后的受控比较回测
-- **当前主线**：LOOP941 closed；等待永久 Planner 签发下一核心功能
+- **整体进度**：跨类别 provisional cohort、真实单/多因子比较、accepted snapshot、显式确认、受控比较回测与真实回测指标回填已完成；下一阶段是把合法的真实评分 IC/RankIC 证据关联到比较报告，完成反馈闭环。
+- **当前主线**：`CONTROLLED_COMPARISON_PERSISTED_REPORT_HYDRATION` closed；下一核心功能待按真实评分证据的数据契约选择。
 - **活跃任务树**：TREE-6
 - **后台专题**：AWI permanent Worker report chain 已关闭并保持运行
 - **环境状态**：本地开发环境就绪；本轮未启动 DB/Docker/runtime
