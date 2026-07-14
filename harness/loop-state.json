@@ -4,12 +4,13 @@
   "mode": "continuous_implementation_loop",
   "execution_topology": {
     "default": "cross_thread_workers",
-    "active": "cross_thread_workers",
+    "active": "in_chat_subagents",
     "in_chat_subagents_requires_explicit_user_instruction": true,
     "in_chat_subagents_requires_native_runtime_support": true,
-    "in_chat_subagents_availability": "must_be_checked_per_task",
+    "in_chat_subagents_availability": "native_runtime_confirmed_2026-07-14",
     "automatic_fallback_allowed": false,
-    "selection_scope": "per_user_task"
+    "selection_scope": "temporary_user_trial_until_explicit_revert",
+    "selection_note": "User requested upcoming loops use in-chat subagents; permanent cross-thread Workers remain preserved and default topology restores only on explicit user revert."
   },
   "stop_reason": "user_explicit_stop_after_ui_connected_controlled_real_comparison_backtest_vertical_slice",
   "current_tree": "TREE-6",
