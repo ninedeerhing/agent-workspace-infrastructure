@@ -68,14 +68,16 @@ AWI 支持两套等价的执行拓扑；二者都必须遵守同一任务树、T
 | 模式 | 标识 | 何时使用 | 调度方式 |
 |------|------|----------|----------|
 | 跨对话 Worker 调度 | `cross_thread_workers` | **默认模式**；用户未特别指定时一律使用 | 复用永久 canonical Worker，按 `Executor -> Test -> Review -> Verifier -> Sync` 和 Relay/Dispatcher 审计链推进。 |
-| 当前对话子代理驱动 | `in_chat_subagents` | 仅当用户明确说“本对话内 subagent driven”“当前对话子代理模式”或语义等价的明确指令时 | orchestrator 在当前对话内派发有限子代理，保留实现、测试、审查和验证的职责分离；不创建或替换永久跨对话 Worker。 |
+| 当前对话子代理驱动 | `in_chat_subagents` | 仅当用户明确说“本对话内 subagent driven”“当前对话子代理模式”或语义等价的明确指令，且当前 Codex runtime 已暴露原生子代理能力时 | orchestrator 在当前对话内派发有限子代理，保留实现、测试、审查和验证的职责分离；不创建或替换永久跨对话 Worker。 |
 
 切换规则：
 
 - 不得因跨对话 Worker 超时、ACL、审批或实现便利自动切换到 `in_chat_subagents`；应先按既有恢复和 fail-closed 规则处理。
 - 用户的本次明确模式指令只覆盖当前任务或用户明确指定的范围；后续任务自动恢复 `cross_thread_workers`。
+- 每次选择 `in_chat_subagents` 前，orchestrator 必须先检查当前运行时是否真的提供原生子代理派发/回收能力。能力不存在或不能证明时，必须明确报告“当前会话不可用”，不得把普通文本分工伪装成子代理执行。
 - orchestrator 必须在任务开始时记录所选 `execution_topology`；面向用户只摘要模式、阶段、产品结果、阻塞和下一步，不转发内部 receipt。
 - `in_chat_subagents` 只改变执行载体，不降低审查强度，也不允许绕过运行时、密钥、数据库、Docker 或真实执行边界。
+- 跨对话模式仍是需要长期持久性、独立审查身份、异步回报、冷镜像或可恢复审计链时的首选；当前对话子代理不承担永久 Worker 的身份、线程历史或 Relay 账本职责。
 
 | 路由通道 | 使用场景 |
 |----------|----------|

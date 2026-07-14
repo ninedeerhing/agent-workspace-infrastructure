@@ -6,6 +6,8 @@
     "default": "cross_thread_workers",
     "active": "cross_thread_workers",
     "in_chat_subagents_requires_explicit_user_instruction": true,
+    "in_chat_subagents_requires_native_runtime_support": true,
+    "in_chat_subagents_availability": "must_be_checked_per_task",
     "automatic_fallback_allowed": false,
     "selection_scope": "per_user_task"
   },
